@@ -3,8 +3,12 @@
 .temp/
 .DS_Store
 
+# Vercel
+.vercel/
+
 # Node / editor
 node_modules/
 *.log
 .vscode/
 .idea/
+.vercel
