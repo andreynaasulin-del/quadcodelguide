@@ -2,9 +2,16 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "trailingSlash": false,
   "rewrites": [
+    { "source": "/adminpanelqc", "destination": "/ui_views/admin.html" },
     { "source": "/", "destination": "/ui_views/landing.html" }
   ],
   "headers": [
+    {
+      "source": "/adminpanelqc",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+      ]
+    },
     {
       "source": "/(.*)",
       "headers": [
