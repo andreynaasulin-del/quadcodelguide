@@ -61,6 +61,35 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .nav a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; }
   .nav a:hover { color: var(--white); }
 
+  /* ---------- Marquee ticker ---------- */
+  .ticker {
+    position: relative; overflow: hidden;
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    background: rgba(255,255,255,.02);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .ticker-track {
+    display: flex; width: max-content;
+    animation: ticker-scroll 42s linear infinite;
+    will-change: transform;
+  }
+  .ticker:hover .ticker-track { animation-play-state: paused; }
+  .ticker-group { display: flex; flex: 0 0 auto; }
+  .ticker-item {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 12px 26px; font-size: 13px; font-weight: 500;
+    color: var(--muted); white-space: nowrap; letter-spacing: .2px;
+  }
+  .ticker-item::before {
+    content: ''; width: 5px; height: 5px; border-radius: 999px;
+    background: var(--acc-1); flex: 0 0 5px;
+  }
+  @keyframes ticker-scroll {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(-50%, 0, 0); }
+  }
+
   /* ---------- Focus-bracket frame ---------- */
   .framed { position: relative; }
   .framed::before, .framed::after {
@@ -204,6 +233,37 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   /* ---------- Footer ---------- */
   .foot { text-align: center; padding: 28px 0 52px; font-size: 13px; color: var(--muted-2); }
 
+  /* ---------- Subtle reveal on scroll ---------- */
+  .reveal {
+    opacity: 0; transform: translateY(14px);
+    transition: opacity .6s cubic-bezier(.22,.61,.36,1), transform .6s cubic-bezier(.22,.61,.36,1);
+    will-change: opacity, transform;
+  }
+  .reveal.in { opacity: 1; transform: none; }
+  /* stagger grid cards slightly via inline --d */
+  .card.reveal { transition-delay: var(--d, 0ms); }
+
+  /* Hero soft entrance (runs once on load) */
+  .hero .kicker, .hero h1, .hero p, .hero .cta {
+    opacity: 0; transform: translateY(12px);
+    animation: hero-in .7s cubic-bezier(.22,.61,.36,1) forwards;
+  }
+  .hero h1   { animation-delay: .07s; }
+  .hero p    { animation-delay: .14s; }
+  .hero .cta { animation-delay: .21s; }
+  @keyframes hero-in { to { opacity: 1; transform: none; } }
+
+  /* ---------- Reduced motion: kill everything ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    .ticker-track { animation: none; transform: none; }
+    .reveal { opacity: 1 !important; transform: none !important; transition: none; }
+    .hero .kicker, .hero h1, .hero p, .hero .cta {
+      opacity: 1 !important; transform: none !important; animation: none;
+    }
+    .card { transition: none; }
+    .card:hover { transform: none; }
+  }
+
   @media (max-width: 860px) {
     .grid, .steps { grid-template-columns: repeat(2, 1fr); }
     .nav { display: none; }
@@ -225,6 +285,11 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       <a href="#guides">Guides</a>
     </nav>
   </header>
+
+  <!-- Marquee ticker -->
+  <div class="ticker" id="ticker" aria-hidden="true">
+    <div class="ticker-track" id="tickerTrack"></div>
+  </div>
 
   <main class="wrap">
     <!-- Hero -->
@@ -261,6 +326,48 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     const filtersEl = document.getElementById('filters');
     const gridEl = document.getElementById('grid');
 
+    // ---- Marquee ticker ----
+    const TICKER_PHRASES = [
+      "Make a game character",
+      "Score a track in minutes",
+      "Design a poster",
+      "Animate a logo",
+      "Cut a short video",
+      "Build a scene",
+      "One prompt, one result",
+      "New guide every day"
+    ];
+    function buildTicker() {
+      const track = document.getElementById('tickerTrack');
+      if (!track) return;
+      const group = TICKER_PHRASES
+        .map(p => '<span class="ticker-item">' + esc(p) + '</span>').join('');
+      // two identical groups → seamless -50% loop
+      track.innerHTML =
+        '<div class="ticker-group">' + group + '</div>' +
+        '<div class="ticker-group">' + group + '</div>';
+    }
+
+    // ---- Reveal on scroll ----
+    let revealObserver = null;
+    function initRevealObserver() {
+      if (!('IntersectionObserver' in window)) return;
+      revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(en => {
+          if (en.isIntersecting) {
+            en.target.classList.add('in');
+            revealObserver.unobserve(en.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    }
+    function observeReveal(el, delayMs) {
+      if (!revealObserver) { el.classList.add('in'); return; }
+      el.classList.add('reveal');
+      if (delayMs) el.style.setProperty('--d', delayMs + 'ms');
+      revealObserver.observe(el);
+    }
+
     function renderFilters() {
       filtersEl.innerHTML = '';
       CATEGORIES.forEach(cat => {
@@ -282,7 +389,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         gridEl.innerHTML = '<div class="empty">No guides here yet.</div>';
         return;
       }
-      list.forEach(g => {
+      list.forEach((g, i) => {
         const c = document.createElement('div');
         c.className = 'card';
         c.innerHTML =
@@ -293,6 +400,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           '<div class="read">Read guide</div>';
         c.onclick = () => openGuide(g);
         gridEl.appendChild(c);
+        observeReveal(c, Math.min(i * 60, 240));
       });
     }
 
@@ -356,8 +464,13 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       }
       document.getElementById('__qc-fouc-guard')?.remove();
       await loadData();
+      buildTicker();
+      initRevealObserver();
       renderFilters();
       renderGrid();
+      // safety: never leave revealed elements stuck hidden
+      setTimeout(() => document.querySelectorAll('.reveal:not(.in)')
+        .forEach(el => el.classList.add('in')), 1500);
       document.getElementById('overlay').addEventListener('click', e => {
         if (e.target.id === 'overlay') closeGuide();
       });
