@@ -7,13 +7,10 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Quadcode Guide · Admin</title>
 <style id="__qc-fouc-guard">body{visibility:hidden!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-  @font-face {
-    font-family: 'League Spartan';
-    src: local('League Spartan');
-    font-weight: 400 700;
-    font-display: swap;
-  }
   :root {
     --bg:      #13131E;
     --bg-2:    #212233;
@@ -26,11 +23,13 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     --acc-2:   #DD344D;
     --grad:    linear-gradient(100deg, #FF9569 0%, #DD344D 100%);
     --radius:  14px;
+    --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
   }
   * { box-sizing: border-box; }
   body {
     margin: 0; background: var(--bg); color: var(--white);
-    font-family: 'League Spartan', 'Inter', system-ui, sans-serif; line-height: 1.5;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif; line-height: 1.5;
+    -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
     background-image: radial-gradient(rgba(255,255,255,.035) 1px, transparent 1px);
     background-size: 26px 26px;
   }
@@ -40,7 +39,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
   .logo { display: flex; align-items: center; gap: 10px; }
   .logo img { width: 32px; height: 32px; border-radius: 8px; display: block; }
-  .logo b { font-size: 18px; font-weight: 700; }
+  .logo b { font-family: var(--font-display); font-size: 18px; font-weight: 700; letter-spacing: -.2px; }
   .logo .tag {
     font-size: 11px; font-weight: 600; letter-spacing: 1.4px; text-transform: uppercase;
     color: var(--acc-1); margin-left: 4px;
@@ -60,7 +59,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .panel {
     background: var(--bg-2); border-radius: var(--radius); padding: 26px; margin-bottom: 22px;
   }
-  .panel h2 { margin: 0 0 18px; font-size: 20px; font-weight: 700; letter-spacing: -.3px; }
+  .panel h2 { font-family: var(--font-display); margin: 0 0 18px; font-size: 20px; font-weight: 700; letter-spacing: -.4px; }
 
   label { display: block; font-size: 12px; font-weight: 600; letter-spacing: .4px;
     text-transform: uppercase; color: var(--muted); margin: 0 0 6px; }

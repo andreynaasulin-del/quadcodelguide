@@ -7,14 +7,10 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Quadcode Guide</title>
 <style id="__qc-fouc-guard">body{visibility:hidden!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-  @font-face {
-    font-family: 'League Spartan';
-    src: local('League Spartan');
-    font-weight: 400 700;
-    font-display: swap;
-  }
-
   :root {
     --bg:        #13131E;
     --bg-2:      #212233;
@@ -27,6 +23,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     --acc-2:     #DD344D;
     --grad:      linear-gradient(100deg, #FF9569 0%, #DD344D 100%);
     --radius:    14px;
+    --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
   }
 
   * { box-sizing: border-box; }
@@ -35,8 +32,9 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     margin: 0;
     background: var(--bg);
     color: var(--white);
-    font-family: 'League Spartan', 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     line-height: 1.5;
+    -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
     /* focus dot-grid pattern */
     background-image:
       radial-gradient(rgba(255,255,255,.035) 1px, transparent 1px);
@@ -56,7 +54,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     width: 30px; height: 30px; border-radius: 8px;
     display: block; object-fit: contain;
   }
-  .logo b { font-size: 16px; font-weight: 700; letter-spacing: .2px; }
+  .logo b { font-family: var(--font-display); font-size: 17px; font-weight: 700; letter-spacing: -.2px; }
   .nav { display: flex; gap: 26px; }
   .nav a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; }
   .nav a:hover { color: var(--white); }
@@ -107,8 +105,9 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     color: var(--acc-1); margin-bottom: 18px;
   }
   .hero h1 {
+    font-family: var(--font-display);
     font-size: 68px; line-height: .98; font-weight: 700;
-    margin: 0 0 20px; letter-spacing: -1.5px;
+    margin: 0 0 20px; letter-spacing: -2px;
   }
   .hero h1 .g {
     background: var(--grad);
@@ -158,7 +157,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     background: var(--grad); -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent; color: transparent; width: fit-content;
   }
-  .card h3 { margin: 0; font-size: 19px; font-weight: 600; letter-spacing: -.3px; }
+  .card h3 { font-family: var(--font-display); margin: 0; font-size: 19px; font-weight: 600; letter-spacing: -.4px; }
   .card p { margin: 0; font-size: 14px; color: var(--muted); font-weight: 400; }
   .card .time {
     font-size: 12px; font-weight: 500; color: var(--muted-2);
@@ -201,7 +200,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     font-size: 26px; line-height: 1; cursor: pointer; font-family: inherit;
   }
   .modal-close:hover { color: var(--white); }
-  .m-title { margin: 10px 0 8px; font-size: 30px; font-weight: 700; letter-spacing: -.6px; }
+  .m-title { font-family: var(--font-display); margin: 10px 0 8px; font-size: 30px; font-weight: 700; letter-spacing: -.8px; }
   .m-desc { margin: 0 0 14px; font-size: 15px; color: var(--muted); font-weight: 400; }
   .m-steps { margin-top: 26px; display: flex; flex-direction: column; gap: 18px; }
   .m-step { display: flex; gap: 14px; }
