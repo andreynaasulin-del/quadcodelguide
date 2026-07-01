@@ -153,21 +153,53 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     border-radius: var(--radius); font-weight: 400;
   }
 
-  /* ---------- Onboarding ---------- */
-  .onboard {
-    background: var(--bg-3); border-radius: 20px;
-    padding: 52px 40px; margin-bottom: 72px;
+  /* ---------- Guide modal ---------- */
+  .overlay {
+    position: fixed; inset: 0; z-index: 50;
+    background: rgba(6,7,12,.78); backdrop-filter: blur(4px);
+    display: none; align-items: flex-start; justify-content: center;
+    padding: 48px 20px; overflow-y: auto;
   }
-  .onboard h2 { text-align: center; font-size: 34px; margin: 0 0 40px; font-weight: 700; letter-spacing: -.6px; }
-  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-  .step { text-align: center; }
-  .step .num {
-    width: 40px; height: 40px; line-height: 40px; margin: 0 auto 14px;
-    border-radius: 999px; background: var(--grad); color: #fff;
-    font-weight: 700; font-size: 16px;
+  .overlay.open { display: flex; }
+  .modal {
+    position: relative; width: 100%; max-width: 620px;
+    background: var(--bg-2); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 40px;
   }
-  .step h4 { margin: 0 0 7px; font-size: 17px; font-weight: 600; }
-  .step p { margin: 0; font-size: 14px; color: var(--muted); font-weight: 400; }
+  .modal-close {
+    position: absolute; top: 16px; right: 18px;
+    background: none; border: 0; color: var(--muted);
+    font-size: 26px; line-height: 1; cursor: pointer; font-family: inherit;
+  }
+  .modal-close:hover { color: var(--white); }
+  .m-title { margin: 10px 0 8px; font-size: 30px; font-weight: 700; letter-spacing: -.6px; }
+  .m-desc { margin: 0 0 14px; font-size: 15px; color: var(--muted); font-weight: 400; }
+  .m-steps { margin-top: 26px; display: flex; flex-direction: column; gap: 18px; }
+  .m-step { display: flex; gap: 14px; }
+  .m-num {
+    flex: 0 0 30px; width: 30px; height: 30px; line-height: 30px; text-align: center;
+    border-radius: 999px; background: var(--grad); color: #fff; font-weight: 700; font-size: 14px;
+  }
+  .m-step-body { flex: 1; }
+  .m-step-body h4 { margin: 3px 0 5px; font-size: 16px; font-weight: 600; }
+  .m-step-body p { margin: 0; font-size: 14px; color: var(--muted); font-weight: 400; }
+  .m-prompt {
+    margin-top: 10px; background: var(--bg-3); border: 1px solid var(--line);
+    border-radius: 10px; padding: 12px 14px;
+  }
+  .m-prompt span, .m-result span {
+    display: block; font-size: 11px; font-weight: 600; letter-spacing: 1.2px;
+    text-transform: uppercase; color: var(--acc-1); margin-bottom: 6px;
+  }
+  .m-prompt code {
+    font-family: 'SF Mono', ui-monospace, monospace; font-size: 13px;
+    color: var(--white); white-space: pre-wrap; word-break: break-word;
+  }
+  .m-result {
+    margin-top: 26px; background: var(--bg-3); border: 1px solid var(--line);
+    border-radius: 12px; padding: 18px 20px;
+  }
+  .m-result p { margin: 0; font-size: 15px; font-weight: 500; }
 
   /* ---------- Footer ---------- */
   .foot { text-align: center; padding: 28px 0 52px; font-size: 13px; color: var(--muted-2); }
@@ -191,7 +223,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     </div>
     <nav class="nav">
       <a href="#guides">Guides</a>
-      <a href="#start">How it works</a>
     </nav>
   </header>
 
@@ -210,45 +241,21 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       <div class="grid" id="grid"></div>
     </section>
 
-    <!-- Onboarding -->
-    <section class="onboard" id="start">
-      <h2>How it works</h2>
-      <div class="steps">
-        <div class="step">
-          <div class="num">1</div>
-          <h4>Pick a topic</h4>
-          <p>Choose the tool or skill you want to learn.</p>
-        </div>
-        <div class="step">
-          <div class="num">2</div>
-          <h4>Follow the steps</h4>
-          <p>Each guide is short, clear and easy to follow.</p>
-        </div>
-        <div class="step">
-          <div class="num">3</div>
-          <h4>Make it yourself</h4>
-          <p>Build your first result and keep going.</p>
-        </div>
-      </div>
-    </section>
-
     <footer class="foot">Made for creators. Start with any guide above.</footer>
   </main>
 
+  <!-- Guide detail modal -->
+  <div class="overlay" id="overlay">
+    <div class="modal">
+      <button class="modal-close" onclick="closeGuide()" aria-label="Close">&times;</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
   <script>
-    // ---- Taxonomy (English only) ----
-    const CATEGORIES = ["All", "Motion Design", "Gamedev", "Music", "Video", "Design"];
-
-    // ---- Guides (added one at a time) ----
-    const GUIDES = [
-      {
-        cat: "Gamedev",
-        title: "Make your first game character",
-        desc: "Turn a simple idea into a ready-to-use character with one prompt.",
-        time: "10 min"
-      }
-    ];
-
+    // ---- Data loaded from guides.json ----
+    let CATEGORIES = ["All"];
+    let GUIDES = [];
     let activeCat = "All";
 
     const filtersEl = document.getElementById('filters');
@@ -279,16 +286,68 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         const c = document.createElement('div');
         c.className = 'card';
         c.innerHTML =
-          '<div class="cat-label">' + g.cat + '</div>' +
-          '<h3>' + g.title + '</h3>' +
-          '<p>' + g.desc + '</p>' +
-          (g.time ? '<div class="time">' + g.time + '</div>' : '') +
+          '<div class="cat-label">' + esc(g.cat) + '</div>' +
+          '<h3>' + esc(g.title) + '</h3>' +
+          '<p>' + esc(g.desc) + '</p>' +
+          (g.time ? '<div class="time">' + esc(g.time) + '</div>' : '') +
           '<div class="read">Read guide</div>';
+        c.onclick = () => openGuide(g);
         gridEl.appendChild(c);
       });
     }
 
+    // ---- Guide detail modal ----
+    function esc(s) {
+      return String(s == null ? '' : s).replace(/[&<>"]/g, m =>
+        ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]));
+    }
+
+    function openGuide(g) {
+      const overlay = document.getElementById('overlay');
+      const body = document.getElementById('modalBody');
+      let html =
+        '<div class="cat-label">' + esc(g.cat) + (g.sub ? ' · ' + esc(g.sub) : '') + '</div>' +
+        '<h2 class="m-title">' + esc(g.title) + '</h2>' +
+        '<p class="m-desc">' + esc(g.desc) + '</p>' +
+        (g.time ? '<div class="time">' + esc(g.time) + '</div>' : '');
+      if (Array.isArray(g.steps) && g.steps.length) {
+        html += '<div class="m-steps">';
+        g.steps.forEach((s, i) => {
+          html +=
+            '<div class="m-step">' +
+              '<div class="m-num">' + (i + 1) + '</div>' +
+              '<div class="m-step-body">' +
+                '<h4>' + esc(s.title) + '</h4>' +
+                (s.text ? '<p>' + esc(s.text) + '</p>' : '') +
+                (s.prompt ? '<div class="m-prompt"><span>Prompt</span><code>' + esc(s.prompt) + '</code></div>' : '') +
+              '</div>' +
+            '</div>';
+        });
+        html += '</div>';
+      }
+      if (g.result) {
+        html += '<div class="m-result"><span>Result</span><p>' + esc(g.result) + '</p></div>';
+      }
+      body.innerHTML = html;
+      overlay.classList.add('open');
+    }
+
+    function closeGuide() {
+      document.getElementById('overlay').classList.remove('open');
+    }
+
     // ---- IDE bridge (theme) + FOUC guard ----
+    async function loadData() {
+      try {
+        const res = await fetch('/ui_views/guides.json?t=' + Date.now());
+        const data = await res.json();
+        if (Array.isArray(data.categories) && data.categories.length) CATEGORIES = data.categories;
+        if (Array.isArray(data.guides)) GUIDES = data.guides;
+      } catch (e) {
+        console.error('Failed to load guides.json', e);
+      }
+    }
+
     async function init() {
       if (window.QC || await new Promise(r => {
         var d = Date.now() + 2000, t = setInterval(() => { (window.QC || Date.now() > d) && (clearInterval(t), r(window.QC)); }, 20);
@@ -296,8 +355,13 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         await QC.ready();
       }
       document.getElementById('__qc-fouc-guard')?.remove();
+      await loadData();
       renderFilters();
       renderGrid();
+      document.getElementById('overlay').addEventListener('click', e => {
+        if (e.target.id === 'overlay') closeGuide();
+      });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeGuide(); });
     }
     init();
   </script>

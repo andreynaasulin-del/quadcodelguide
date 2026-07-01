@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<!-- This is page to be shown in Quadcode.ai ide workspace - SKILL COMPLIANCE REQUIRED
+Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_data_using_html_js -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quadcode Guide · Admin</title>
+<style id="__qc-fouc-guard">body{visibility:hidden!important}</style>
+<style>
+  @font-face {
+    font-family: 'League Spartan';
+    src: local('League Spartan');
+    font-weight: 400 700;
+    font-display: swap;
+  }
+  :root {
+    --bg:      #13131E;
+    --bg-2:    #212233;
+    --bg-3:    #0B0D15;
+    --white:   #FFFFFF;
+    --muted:   rgba(255,255,255,.55);
+    --muted-2: rgba(255,255,255,.32);
+    --line:    rgba(255,255,255,.08);
+    --acc-1:   #FF9569;
+    --acc-2:   #DD344D;
+    --grad:    linear-gradient(100deg, #FF9569 0%, #DD344D 100%);
+    --radius:  14px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--white);
+    font-family: 'League Spartan', 'Inter', system-ui, sans-serif; line-height: 1.5;
+    background-image: radial-gradient(rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size: 26px 26px;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 28px; }
+
+  /* header */
+  .head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+  .logo { display: flex; align-items: center; gap: 10px; }
+  .logo img { width: 32px; height: 32px; border-radius: 8px; display: block; }
+  .logo b { font-size: 18px; font-weight: 700; }
+  .logo .tag {
+    font-size: 11px; font-weight: 600; letter-spacing: 1.4px; text-transform: uppercase;
+    color: var(--acc-1); margin-left: 4px;
+  }
+  .sub { color: var(--muted); font-size: 14px; margin: 0 0 26px; }
+
+  /* daily hint */
+  .daily {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--bg-3); border-radius: 12px; padding: 12px 16px; margin-bottom: 26px;
+    font-size: 13px; color: var(--muted);
+  }
+  .daily .dot { width: 8px; height: 8px; border-radius: 999px; background: var(--acc-1); flex: 0 0 8px; }
+  .daily b { color: var(--white); font-weight: 600; }
+
+  /* panels */
+  .panel {
+    background: var(--bg-2); border-radius: var(--radius); padding: 26px; margin-bottom: 22px;
+  }
+  .panel h2 { margin: 0 0 18px; font-size: 20px; font-weight: 700; letter-spacing: -.3px; }
+
+  label { display: block; font-size: 12px; font-weight: 600; letter-spacing: .4px;
+    text-transform: uppercase; color: var(--muted); margin: 0 0 6px; }
+  .field { margin-bottom: 16px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  input, textarea, select {
+    width: 100%; background: var(--bg-3); color: var(--white);
+    border: 1px solid var(--line); border-radius: 10px; padding: 11px 13px;
+    font-family: inherit; font-size: 14px; font-weight: 400;
+  }
+  input:focus, textarea:focus, select:focus { outline: none; border-color: var(--acc-1); }
+  textarea { resize: vertical; min-height: 64px; }
+  select { cursor: pointer; }
+
+  /* steps */
+  .step-item {
+    background: var(--bg-3); border: 1px solid var(--line);
+    border-radius: 12px; padding: 16px; margin-bottom: 14px; position: relative;
+  }
+  .step-item .step-head {
+    display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;
+  }
+  .step-item .step-num {
+    font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    background: var(--grad); -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+  .btn-x {
+    background: none; border: 0; color: var(--muted); cursor: pointer;
+    font-size: 13px; font-weight: 500; font-family: inherit;
+  }
+  .btn-x:hover { color: var(--acc-2); }
+
+  /* buttons */
+  .btn {
+    display: inline-block; border: 1px solid var(--line); background: var(--bg-3);
+    color: var(--white); font-size: 14px; font-weight: 600; font-family: inherit;
+    padding: 11px 20px; border-radius: 999px; cursor: pointer;
+  }
+  .btn:hover { border-color: var(--acc-1); }
+  .btn-grad {
+    background: var(--grad); border: 0; color: #fff;
+  }
+  .btn-grad:hover { filter: brightness(1.06); }
+  .btn-grad:disabled { opacity: .5; cursor: not-allowed; filter: none; }
+  .actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 6px; }
+
+  /* status */
+  .status {
+    font-size: 13px; font-weight: 500; margin-left: auto;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .status .s-dot { width: 8px; height: 8px; border-radius: 999px; background: var(--muted-2); }
+  .status.ok  .s-dot { background: #4ade80; }
+  .status.err .s-dot { background: var(--acc-2); }
+  .status.work .s-dot { background: var(--acc-1); animation: pulse 1s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
+
+  /* existing list */
+  .glist { display: flex; flex-direction: column; gap: 10px; }
+  .gitem {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--bg-3); border: 1px solid var(--line);
+    border-radius: 10px; padding: 12px 16px;
+  }
+  .gitem .g-cat {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    background: var(--grad); -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent; flex: 0 0 auto;
+  }
+  .gitem .g-title { font-size: 14px; font-weight: 600; flex: 1; }
+  .gitem .g-date { font-size: 12px; color: var(--muted-2); }
+  .gitem .g-del { color: var(--muted); cursor: pointer; background: none; border: 0; font-family: inherit; font-size: 13px; }
+  .gitem .g-del:hover { color: var(--acc-2); }
+  .empty { color: var(--muted-2); font-size: 14px; padding: 14px 0; }
+
+  @media (max-width: 640px) { .row { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="logo">
+        <img src="/ui_views/assets/logo.png" alt="Quadcode logo">
+        <b>Quadcode Guide</b><span class="tag">Admin</span>
+      </div>
+    </div>
+    <p class="sub">Create and publish one guide per day. Simple English, no technical words.</p>
+
+    <div class="daily">
+      <span class="dot"></span>
+      <span>Today: <b id="todayDate">—</b> · <b id="todayCount">0</b> guide(s) published today</span>
+    </div>
+
+    <!-- New guide -->
+    <div class="panel">
+      <h2>New guide</h2>
+
+      <div class="row">
+        <div class="field">
+          <label>Category</label>
+          <select id="f-cat"></select>
+        </div>
+        <div class="field">
+          <label>Subcategory (optional)</label>
+          <input id="f-sub" placeholder="e.g. Characters">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Title</label>
+        <input id="f-title" placeholder="Make your first game character">
+      </div>
+
+      <div class="field">
+        <label>Short description</label>
+        <input id="f-desc" placeholder="One clear line about what they will make.">
+      </div>
+
+      <div class="field">
+        <label>Time to complete</label>
+        <input id="f-time" placeholder="10 min">
+      </div>
+
+      <div class="field">
+        <label>Steps</label>
+        <div id="steps"></div>
+        <button class="btn" onclick="addStep()">+ Add step</button>
+      </div>
+
+      <div class="field">
+        <label>Result</label>
+        <textarea id="f-result" placeholder="What they have at the end."></textarea>
+      </div>
+
+      <div class="actions">
+        <button class="btn-grad btn" id="saveBtn" onclick="saveGuide()">Save &amp; publish</button>
+        <button class="btn" onclick="resetForm()">Clear</button>
+        <span class="status" id="status"><span class="s-dot"></span><span id="statusText">Ready</span></span>
+      </div>
+    </div>
+
+    <!-- Existing -->
+    <div class="panel">
+      <h2>Published guides</h2>
+      <div class="glist" id="glist"></div>
+    </div>
+  </div>
+
+  <script>
+    let DATA = { categories: ["All", "Motion Design", "Gamedev", "Music", "Video", "Design"], guides: [] };
+
+    const $ = id => document.getElementById(id);
+
+    function setStatus(text, kind) {
+      $('statusText').textContent = text;
+      $('status').className = 'status' + (kind ? ' ' + kind : '');
+    }
+
+    function todayStr() {
+      const d = new Date();
+      return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    }
+
+    function slugify(s) {
+      return String(s).toLowerCase().trim()
+        .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60) || ('guide-' + Date.now());
+    }
+
+    // ---- steps ----
+    function stepRow(step = {}) {
+      const div = document.createElement('div');
+      div.className = 'step-item';
+      div.innerHTML =
+        '<div class="step-head"><span class="step-num">Step</span>' +
+        '<button class="btn-x" onclick="this.closest(\'.step-item\').remove(); renumber();">Remove</button></div>' +
+        '<div class="field"><label>Step title</label><input class="s-title" placeholder="Describe your idea"></div>' +
+        '<div class="field"><label>Instruction</label><textarea class="s-text" placeholder="Short, clear instruction."></textarea></div>' +
+        '<div class="field" style="margin-bottom:0"><label>Prompt (optional)</label><textarea class="s-prompt" placeholder="Prompt to copy, if any."></textarea></div>';
+      $('steps').appendChild(div);
+      div.querySelector('.s-title').value = step.title || '';
+      div.querySelector('.s-text').value = step.text || '';
+      div.querySelector('.s-prompt').value = step.prompt || '';
+      renumber();
+    }
+    function addStep() { stepRow(); }
+    function renumber() {
+      document.querySelectorAll('#steps .step-num').forEach((el, i) => el.textContent = 'Step ' + (i + 1));
+    }
+
+    function collectSteps() {
+      return Array.from(document.querySelectorAll('#steps .step-item')).map(d => ({
+        title: d.querySelector('.s-title').value.trim(),
+        text: d.querySelector('.s-text').value.trim(),
+        prompt: d.querySelector('.s-prompt').value.trim()
+      })).filter(s => s.title || s.text || s.prompt);
+    }
+
+    function resetForm() {
+      $('f-sub').value = ''; $('f-title').value = ''; $('f-desc').value = '';
+      $('f-time').value = ''; $('f-result').value = '';
+      $('steps').innerHTML = '';
+      stepRow();
+      setStatus('Ready');
+    }
+
+    // ---- categories ----
+    function fillCats() {
+      const sel = $('f-cat');
+      sel.innerHTML = '';
+      DATA.categories.filter(c => c !== 'All').forEach(c => {
+        const o = document.createElement('option');
+        o.value = c; o.textContent = c; sel.appendChild(o);
+      });
+    }
+
+    // ---- existing list ----
+    function renderList() {
+      const el = $('glist');
+      el.innerHTML = '';
+      if (!DATA.guides.length) { el.innerHTML = '<div class="empty">No guides yet.</div>'; return; }
+      DATA.guides.slice().reverse().forEach(g => {
+        const row = document.createElement('div');
+        row.className = 'gitem';
+        row.innerHTML =
+          '<span class="g-cat">' + (g.cat || '') + '</span>' +
+          '<span class="g-title">' + (g.title || '') + '</span>' +
+          '<span class="g-date">' + (g.date || '') + '</span>' +
+          '<button class="g-del" title="Delete">Delete</button>';
+        row.querySelector('.g-del').onclick = () => deleteGuide(g.id);
+        el.appendChild(row);
+      });
+      const today = todayStr();
+      $('todayDate').textContent = today;
+      $('todayCount').textContent = DATA.guides.filter(g => g.date === today).length;
+    }
+
+    // ---- persistence ----
+    async function writeData() {
+      const json = JSON.stringify(DATA, null, 2) + '\n';
+      const res = await QC.actions.ToolTextFileEdit({
+        filename: 'ui_views/guides.json',
+        old_text: '<ENTIRE_FILE>',
+        new_text: json,
+        short_description: 'update guides.json from admin'
+      });
+      return res && res.success;
+    }
+
+    async function saveGuide() {
+      const title = $('f-title').value.trim();
+      const desc = $('f-desc').value.trim();
+      if (!title || !desc) { setStatus('Title and description are required', 'err'); return; }
+
+      const guide = {
+        id: slugify(title),
+        cat: $('f-cat').value,
+        sub: $('f-sub').value.trim(),
+        title, desc,
+        time: $('f-time').value.trim(),
+        date: todayStr(),
+        steps: collectSteps(),
+        result: $('f-result').value.trim()
+      };
+
+      // replace if same id exists, else append
+      const idx = DATA.guides.findIndex(g => g.id === guide.id);
+      if (idx >= 0) DATA.guides[idx] = guide; else DATA.guides.push(guide);
+
+      $('saveBtn').disabled = true;
+      setStatus('Saving…', 'work');
+      try {
+        const ok = await writeData();
+        if (!ok) throw new Error('write failed');
+        renderList();
+        setStatus('Saved. Publishing live…', 'work');
+        publishLive(guide.title);
+      } catch (e) {
+        console.error(e);
+        setStatus('Save failed', 'err');
+      } finally {
+        $('saveBtn').disabled = false;
+      }
+    }
+
+    async function deleteGuide(id) {
+      DATA.guides = DATA.guides.filter(g => g.id !== id);
+      setStatus('Removing…', 'work');
+      try {
+        const ok = await writeData();
+        if (!ok) throw new Error('write failed');
+        renderList();
+        setStatus('Removed. Publish to update the live site.', 'ok');
+      } catch (e) {
+        console.error(e);
+        setStatus('Remove failed', 'err');
+      }
+    }
+
+    function publishLive(title) {
+      // Ask the agent to commit + deploy. Self-sufficient prompt.
+      QC.actions.ToolAskAgent({
+        agent_name: 'Cody',
+        question: 'The file ui_views/guides.json was just updated with a new/edited guide titled "' + title + '". ' +
+          'Commit all changes in this repo with git (message: "Publish guide: ' + title + '") and push to origin main, ' +
+          'then deploy to Vercel production with: npx vercel deploy --prod --yes. ' +
+          'The project is already linked (.vercel/project.json) and git remote origin is set. Report the final production URL.',
+        short_description: 'Publish guide: ' + title
+      }).then(() => {
+        setStatus('Published live', 'ok');
+      }).catch(e => {
+        console.error(e);
+        setStatus('Saved, but publish step failed — run deploy manually', 'err');
+      });
+    }
+
+    // ---- init ----
+    async function loadData() {
+      try {
+        const res = await fetch('/ui_views/guides.json?t=' + Date.now());
+        const d = await res.json();
+        if (d && Array.isArray(d.guides)) DATA = d;
+        if (!Array.isArray(DATA.categories) || !DATA.categories.length)
+          DATA.categories = ["All", "Motion Design", "Gamedev", "Music", "Video", "Design"];
+      } catch (e) { console.error('load failed', e); }
+    }
+
+    async function init() {
+      if (window.QC || await new Promise(r => {
+        var d = Date.now() + 2000, t = setInterval(() => { (window.QC || Date.now() > d) && (clearInterval(t), r(window.QC)); }, 20);
+      })) {
+        await QC.ready();
+      }
+      document.getElementById('__qc-fouc-guard')?.remove();
+      await loadData();
+      fillCats();
+      renderList();
+      stepRow();
+      $('todayDate').textContent = todayStr();
+    }
+    init();
+  </script>
+</body>
+</html>

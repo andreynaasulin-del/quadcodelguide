@@ -1,0 +1,32 @@
+{
+  "categories": ["All", "Motion Design", "Gamedev", "Music", "Video", "Design"],
+  "guides": [
+    {
+      "id": "first-game-character",
+      "cat": "Gamedev",
+      "sub": "Characters",
+      "title": "Make your first game character",
+      "desc": "Turn a simple idea into a ready-to-use character with one prompt.",
+      "time": "10 min",
+      "date": "2026-07-01",
+      "steps": [
+        {
+          "title": "Describe your character",
+          "text": "Write one short line about who your character is. Keep it simple.",
+          "prompt": "A friendly robot hero, round shapes, bright colors, game character, full body"
+        },
+        {
+          "title": "Generate the look",
+          "text": "Run the prompt and pick the version you like most.",
+          "prompt": ""
+        },
+        {
+          "title": "Save and use it",
+          "text": "Export the image and drop it into your game.",
+          "prompt": ""
+        }
+      ],
+      "result": "You now have a game-ready character made from one simple idea."
+    }
+  ]
+}
