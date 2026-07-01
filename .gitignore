@@ -1,0 +1,10 @@
+.quadcodeai/
+# Temp / working files
+.temp/
+.DS_Store
+
+# Node / editor
+node_modules/
+*.log
+.vscode/
+.idea/

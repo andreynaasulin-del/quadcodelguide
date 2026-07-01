@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<!-- This is page to be shown in Quadcode.ai ide workspace - SKILL COMPLIANCE REQUIRED
+Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_data_using_html_js -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guidebook</title>
+<style id="__qc-fouc-guard">body{visibility:hidden!important}</style>
+<style>
+  @font-face {
+    font-family: 'League Spartan';
+    src: local('League Spartan');
+    font-weight: 400 700;
+    font-display: swap;
+  }
+
+  :root {
+    --bg:        #13131E;
+    --bg-2:      #212233;
+    --bg-3:      #0B0D15;
+    --white:     #FFFFFF;
+    --muted:     rgba(255,255,255,.55);
+    --muted-2:   rgba(255,255,255,.32);
+    --line:      rgba(255,255,255,.08);
+    --acc-1:     #FF9569;
+    --acc-2:     #DD344D;
+    --grad:      linear-gradient(100deg, #FF9569 0%, #DD344D 100%);
+    --radius:    14px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'League Spartan', 'Inter', system-ui, sans-serif;
+    line-height: 1.5;
+    /* focus dot-grid pattern */
+    background-image:
+      radial-gradient(rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size: 26px 26px;
+    background-position: center top;
+  }
+
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- Top bar ---------- */
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: 1120px; margin: 0 auto; padding: 22px 28px;
+  }
+  .logo { display: flex; align-items: center; gap: 9px; }
+  .logo .mark {
+    width: 24px; height: 24px; border-radius: 7px;
+    background: var(--grad);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='2' y='2' width='20' height='20' rx='6' fill='none' stroke='black' stroke-width='2.4'/%3E%3Ccircle cx='12' cy='12' r='4' fill='none' stroke='black' stroke-width='2.4'/%3E%3Crect x='16' y='16' width='5' height='5' rx='1.5' fill='black'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='2' y='2' width='20' height='20' rx='6' fill='none' stroke='black' stroke-width='2.4'/%3E%3Ccircle cx='12' cy='12' r='4' fill='none' stroke='black' stroke-width='2.4'/%3E%3Crect x='16' y='16' width='5' height='5' rx='1.5' fill='black'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
+  .logo b { font-size: 16px; font-weight: 700; letter-spacing: .2px; }
+  .nav { display: flex; gap: 26px; }
+  .nav a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; }
+  .nav a:hover { color: var(--white); }
+
+  /* ---------- Focus-bracket frame ---------- */
+  .framed { position: relative; }
+  .framed::before, .framed::after {
+    content: ''; position: absolute; width: 26px; height: 26px; pointer-events: none;
+    border: 2px solid var(--acc-2);
+  }
+  .framed::before { top: 0; left: 0; border-right: 0; border-bottom: 0; }
+  .framed::after  { bottom: 0; right: 0; border-left: 0; border-top: 0; }
+
+  /* ---------- Hero ---------- */
+  .hero { text-align: center; padding: 70px 0 44px; position: relative; }
+  .kicker {
+    display: inline-block; font-size: 12px; font-weight: 600;
+    letter-spacing: 2.4px; text-transform: uppercase;
+    color: var(--acc-1); margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-size: 68px; line-height: .98; font-weight: 700;
+    margin: 0 0 20px; letter-spacing: -1.5px;
+  }
+  .hero h1 .g {
+    background: var(--grad);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+  .hero p {
+    font-size: 17px; color: var(--muted); max-width: 500px;
+    margin: 0 auto 30px; font-weight: 400;
+  }
+  .cta {
+    display: inline-block; background: var(--grad); color: #fff;
+    text-decoration: none; font-size: 15px; font-weight: 600;
+    padding: 14px 30px; border-radius: 999px; border: 0; cursor: pointer;
+    font-family: inherit;
+  }
+  .cta:hover { filter: brightness(1.06); }
+
+  /* ---------- Category filter ---------- */
+  .filters {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    justify-content: center; padding: 12px 0 40px;
+  }
+  .chip {
+    font-size: 14px; font-weight: 500; color: var(--muted);
+    background: var(--bg-2); border: 1px solid var(--line);
+    padding: 9px 20px; border-radius: 999px; cursor: pointer; font-family: inherit;
+  }
+  .chip:hover { color: var(--white); }
+  .chip.active { background: var(--grad); border-color: transparent; color: #fff; font-weight: 600; }
+
+  /* ---------- Guide grid ---------- */
+  .grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 18px; padding-bottom: 64px; min-height: 120px;
+  }
+  .card {
+    background: var(--bg-2); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 24px;
+    cursor: pointer; display: flex; flex-direction: column; gap: 12px;
+    transition: transform .15s ease, border-color .15s ease;
+  }
+  .card:hover { transform: translateY(-3px); border-color: rgba(255,149,105,.4); }
+  .card .cat-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 1.4px;
+    font-weight: 600;
+    background: var(--grad); -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent; width: fit-content;
+  }
+  .card h3 { margin: 0; font-size: 19px; font-weight: 600; letter-spacing: -.3px; }
+  .card p { margin: 0; font-size: 14px; color: var(--muted); font-weight: 400; }
+  .card .time {
+    font-size: 12px; font-weight: 500; color: var(--muted-2);
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .card .time::before {
+    content: ''; width: 12px; height: 12px; display: inline-block;
+    background: var(--muted-2);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='9' fill='none' stroke='black' stroke-width='2'/%3E%3Cpath d='M12 7v5l3 2' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='9' fill='none' stroke='black' stroke-width='2'/%3E%3Cpath d='M12 7v5l3 2' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
+  .card .read {
+    margin-top: auto; font-size: 14px; font-weight: 600; color: var(--acc-1);
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .card .read::after { content: '\2192'; }
+
+  .empty {
+    grid-column: 1 / -1; text-align: center; color: var(--muted-2);
+    padding: 56px 0; font-size: 15px; border: 1px dashed var(--line);
+    border-radius: var(--radius); font-weight: 400;
+  }
+
+  /* ---------- Onboarding ---------- */
+  .onboard {
+    background: var(--bg-3); border-radius: 20px;
+    padding: 52px 40px; margin-bottom: 72px;
+  }
+  .onboard h2 { text-align: center; font-size: 34px; margin: 0 0 40px; font-weight: 700; letter-spacing: -.6px; }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .step { text-align: center; }
+  .step .num {
+    width: 40px; height: 40px; line-height: 40px; margin: 0 auto 14px;
+    border-radius: 999px; background: var(--grad); color: #fff;
+    font-weight: 700; font-size: 16px;
+  }
+  .step h4 { margin: 0 0 7px; font-size: 17px; font-weight: 600; }
+  .step p { margin: 0; font-size: 14px; color: var(--muted); font-weight: 400; }
+
+  /* ---------- Footer ---------- */
+  .foot { text-align: center; padding: 28px 0 52px; font-size: 13px; color: var(--muted-2); }
+
+  @media (max-width: 860px) {
+    .grid, .steps { grid-template-columns: repeat(2, 1fr); }
+    .nav { display: none; }
+    .hero h1 { font-size: 46px; }
+  }
+  @media (max-width: 540px) {
+    .grid, .steps { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 38px; }
+  }
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo">
+      <span class="mark"></span>
+      <b>Guidebook</b>
+    </div>
+    <nav class="nav">
+      <a href="#guides">Guides</a>
+      <a href="#start">How it works</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <!-- Hero -->
+    <section class="hero framed">
+      <span class="kicker">Learn by doing</span>
+      <h1>Learn to make<br><span class="g">anything</span></h1>
+      <p>Simple, step-by-step guides for motion design, games, music, video and design. Pick a topic and start creating today.</p>
+      <a class="cta" href="#guides">Browse guides</a>
+    </section>
+
+    <!-- Category filter -->
+    <section id="guides">
+      <div class="filters" id="filters"></div>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <!-- Onboarding -->
+    <section class="onboard" id="start">
+      <h2>How it works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <h4>Pick a topic</h4>
+          <p>Choose the tool or skill you want to learn.</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h4>Follow the steps</h4>
+          <p>Each guide is short, clear and easy to follow.</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h4>Make it yourself</h4>
+          <p>Build your first result and keep going.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="foot">Made for creators. Start with any guide above.</footer>
+  </main>
+
+  <script>
+    // ---- Taxonomy (English only) ----
+    const CATEGORIES = ["All", "Motion Design", "Gamedev", "Music", "Video", "Design"];
+
+    // ---- Guides (added one at a time) ----
+    const GUIDES = [
+      {
+        cat: "Gamedev",
+        title: "Make your first game character",
+        desc: "Turn a simple idea into a ready-to-use character with one prompt.",
+        time: "10 min"
+      }
+    ];
+
+    let activeCat = "All";
+
+    const filtersEl = document.getElementById('filters');
+    const gridEl = document.getElementById('grid');
+
+    function renderFilters() {
+      filtersEl.innerHTML = '';
+      CATEGORIES.forEach(cat => {
+        const b = document.createElement('button');
+        b.className = 'chip' + (cat === activeCat ? ' active' : '');
+        b.textContent = cat;
+        b.onclick = () => { activeCat = cat; renderFilters(); renderGrid(); };
+        filtersEl.appendChild(b);
+      });
+    }
+
+    function renderGrid() {
+      const list = activeCat === "All"
+        ? GUIDES
+        : GUIDES.filter(g => g.cat === activeCat);
+
+      gridEl.innerHTML = '';
+      if (!list.length) {
+        gridEl.innerHTML = '<div class="empty">No guides here yet.</div>';
+        return;
+      }
+      list.forEach(g => {
+        const c = document.createElement('div');
+        c.className = 'card';
+        c.innerHTML =
+          '<div class="cat-label">' + g.cat + '</div>' +
+          '<h3>' + g.title + '</h3>' +
+          '<p>' + g.desc + '</p>' +
+          (g.time ? '<div class="time">' + g.time + '</div>' : '') +
+          '<div class="read">Read guide</div>';
+        gridEl.appendChild(c);
+      });
+    }
+
+    // ---- IDE bridge (theme) + FOUC guard ----
+    async function init() {
+      if (window.QC || await new Promise(r => {
+        var d = Date.now() + 2000, t = setInterval(() => { (window.QC || Date.now() > d) && (clearInterval(t), r(window.QC)); }, 20);
+      })) {
+        await QC.ready();
+      }
+      document.getElementById('__qc-fouc-guard')?.remove();
+      renderFilters();
+      renderGrid();
+    }
+    init();
+  </script>
+</body>
+</html>
