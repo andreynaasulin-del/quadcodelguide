@@ -29,39 +29,6 @@
       "result": "You now have a game-ready character made from one simple idea."
     },
     {
-      "id": "make-a-poster",
-      "cat": "Design",
-      "sub": "Posters",
-      "title": "Make a poster in minutes",
-      "desc": "Turn one idea into a bold, ready-to-share poster with a single prompt.",
-      "time": "8 min",
-      "date": "2026-07-02",
-      "image": "/ui_views/assets/guide-make-a-poster.png",
-      "steps": [
-        {
-          "title": "Pick your idea",
-          "text": "Say in one line what the poster is for. An event, a quote, a product. Keep it simple.",
-          "prompt": "Bold minimalist poster for a summer music festival, big title text, warm sunset colors, clean modern layout, high contrast"
-        },
-        {
-          "title": "Generate the look",
-          "text": "Run the prompt and pick the version you like most. Try it a few times for more options.",
-          "prompt": ""
-        },
-        {
-          "title": "Add your own text",
-          "text": "Swap the example title for your real words. Keep it short so it stays easy to read.",
-          "prompt": "Replace the title with \"SUMMER FEST 2026\", keep the same colors and layout"
-        },
-        {
-          "title": "Save and share",
-          "text": "Export the image and post it, print it, or send it out.",
-          "prompt": ""
-        }
-      ],
-      "result": "You have a bold, ready-to-share poster made from one simple idea."
-    },
-    {
       "id": "gta6-hitman-crossover",
       "cat": "Gamedev",
       "sub": "Crossover Art",
