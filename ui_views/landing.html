@@ -130,25 +130,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .cta:hover { filter: brightness(1.06); transform: translateY(-2px); box-shadow: 0 10px 26px rgba(221,52,77,.32); }
   .cta:active { transform: translateY(0) scale(.97); filter: brightness(.98); }
 
-  /* ---------- Promo banner ---------- */
-  .promo-banner {
-    display: block; position: relative;
-    border-radius: var(--radius); overflow: hidden;
-    margin: 0 0 48px; cursor: pointer; background: var(--bg-3);
-    opacity: 0; transform: translateY(24px) scale(.98);
-    transition: transform .3s cubic-bezier(.22,.61,.36,1), box-shadow .3s ease;
-  }
-  .promo-banner.in { animation: banner-in .7s cubic-bezier(.22,.61,.36,1) forwards; }
-  @keyframes banner-in { to { opacity: 1; transform: none; } }
-  .promo-banner:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(0,0,0,.4); }
-  .promo-banner:active { transform: translateY(-1px) scale(.985); transition-duration: .12s; }
-  .promo-banner img {
-    display: block; width: 100%;
-    aspect-ratio: 16 / 9; object-fit: cover;
-    transition: transform .6s cubic-bezier(.22,.61,.36,1);
-  }
-  .promo-banner:hover img { transform: scale(1.035); }
-
   /* ---------- Category filter ---------- */
   .filters {
     display: flex; flex-wrap: wrap; gap: 10px;
@@ -313,10 +294,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     }
     .card { transition: none; }
     .card:hover { transform: none; }
-    .promo-banner { opacity: 1 !important; transform: none !important; animation: none; transition: none; }
-    .promo-banner img { transition: none; }
-    .promo-banner:hover, .promo-banner:active { transform: none; box-shadow: none; }
-    .promo-banner:hover img { transform: none; }
   }
 
   @media (max-width: 860px) {
@@ -327,7 +304,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   @media (max-width: 540px) {
     .grid, .steps { grid-template-columns: 1fr; }
     .hero h1 { font-size: 38px; }
-    .promo-banner img { aspect-ratio: 16 / 10; }
   }
 </style>
 </head>
@@ -355,11 +331,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       <p>Simple, step-by-step guides for motion design, games, music, video and design. Pick a topic and start creating today.</p>
       <a class="cta" href="#guides">Browse guides</a>
     </section>
-
-    <!-- Promo banner -->
-    <a class="promo-banner" id="promoBanner" href="#guides" aria-label="GTA VI x Hitman crossover — Especially Dangerous Mission, browse guides">
-      <img src="/ui_views/assets/poster-gta6-hitman.png" alt="GTA VI x Hitman crossover banner — Especially Dangerous Mission" loading="eager">
-    </a>
 
     <!-- Category filter -->
     <section id="guides">
@@ -529,17 +500,11 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       await loadData();
       buildTicker();
       initRevealObserver();
-      const promoBanner = document.getElementById('promoBanner');
-      if (promoBanner) {
-        if (revealObserver) revealObserver.observe(promoBanner);
-        else promoBanner.classList.add('in');
-      }
       renderFilters();
       renderGrid();
       // safety: never leave revealed elements stuck hidden
       setTimeout(() => {
         document.querySelectorAll('.reveal:not(.in)').forEach(el => el.classList.add('in'));
-        if (promoBanner && !promoBanner.classList.contains('in')) promoBanner.classList.add('in');
       }, 1500);
       document.getElementById('overlay').addEventListener('click', e => {
         if (e.target.id === 'overlay') closeGuide();

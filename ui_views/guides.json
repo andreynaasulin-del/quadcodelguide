@@ -60,6 +60,39 @@
         }
       ],
       "result": "You have a bold, ready-to-share poster made from one simple idea."
+    },
+    {
+      "id": "gta6-hitman-crossover",
+      "cat": "Gamedev",
+      "sub": "Crossover Art",
+      "title": "Make a game crossover poster",
+      "desc": "Mix two games into one bold comic-style banner with a single prompt.",
+      "time": "10 min",
+      "date": "2026-07-02",
+      "image": "/ui_views/assets/poster-gta6-hitman.png",
+      "steps": [
+        {
+          "title": "Pick two games",
+          "text": "Choose two characters or games you want to mix. Keep the idea in one short sentence.",
+          "prompt": "Comic-book style crossover poster, two game characters sharing one scene, bold ink outlines, halftone shading, neon sunset city colors"
+        },
+        {
+          "title": "Set the scene",
+          "text": "Say where the scene happens and what each character is doing. Make sure it reads as one story, not two random photos glued together.",
+          "prompt": "One character covers the other from a rooftop with a sniper rifle while the other walks a neon city street holding a pistol, split by a diagonal comic panel line"
+        },
+        {
+          "title": "Add a title and caption",
+          "text": "Add a big crossover logo with both names, plus a short bold caption at the bottom.",
+          "prompt": "Add bold comic logo text combining both game names, and a caption box at the bottom with a short punchy mission title"
+        },
+        {
+          "title": "Generate and pick your favorite",
+          "text": "Run the prompt a few times and keep the version with the cleanest text and the most exciting scene.",
+          "prompt": ""
+        }
+      ],
+      "result": "A sharp, comic-style crossover banner ready to post or use as cover art."
     }
   ]
 }
