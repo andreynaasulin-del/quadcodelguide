@@ -60,6 +60,39 @@
         }
       ],
       "result": "A sharp, comic-style crossover banner ready to post or use as cover art."
+    },
+    {
+      "id": "jazz-rnb-restaurant-track",
+      "cat": "Music",
+      "sub": "Jazz R&B",
+      "title": "Make a jazz R&B restaurant track",
+      "desc": "Score a smooth, upscale fine-dining lounge track with one prompt.",
+      "time": "5 min",
+      "date": "2026-07-02",
+      "audio": "/ui_views/assets/music-rnb-latenight.mp3",
+      "steps": [
+        {
+          "title": "Set the vibe",
+          "text": "Say the mood and place in one line. For a premium restaurant, keep it smooth and classy.",
+          "prompt": "Sophisticated jazz R&B instrumental for an upscale fine-dining restaurant lounge, smooth, elegant and relaxed"
+        },
+        {
+          "title": "Name the instruments",
+          "text": "List a few real instruments so it sounds live and warm, not synthetic.",
+          "prompt": "Warm Rhodes electric piano, soft brushed drums, walking upright bass, mellow muted trumpet and tenor saxophone, lush jazz chords"
+        },
+        {
+          "title": "Set tempo and finish",
+          "text": "Add a slow tempo and keep it instrumental so it never gets in the way of conversation.",
+          "prompt": "Relaxed 85 BPM, subtle vinyl warmth, smooth dynamics, tasteful and understated, no vocals"
+        },
+        {
+          "title": "Generate and pick your take",
+          "text": "Run it, listen, and keep the version that feels the most refined. Press play below to hear the result.",
+          "prompt": ""
+        }
+      ],
+      "result": "A polished jazz R&B instrumental ready to loop in a restaurant, cafe, or lounge."
     }
   ]
 }

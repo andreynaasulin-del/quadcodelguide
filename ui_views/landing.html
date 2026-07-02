@@ -262,6 +262,71 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   }
   .m-result p { margin: 0; font-size: 15px; font-weight: 500; }
 
+  /* ---------- Audio player (music guides) ---------- */
+  .m-audio {
+    margin-top: 22px; background: var(--bg-3); border: 1px solid var(--line);
+    border-radius: 12px; padding: 16px 18px;
+  }
+  .m-audio span {
+    display: block; font-size: 11px; font-weight: 600; letter-spacing: 1.2px;
+    text-transform: uppercase; color: var(--acc-1); margin-bottom: 10px;
+  }
+  .m-audio audio { display: none; }
+  /* custom waveform player */
+  .qc-player { display: block; }
+  .qc-wave {
+    width: 100%; height: 120px; display: block;
+    border-radius: 8px; background: rgba(255,255,255,.02);
+    cursor: pointer;
+  }
+  .qc-controls {
+    display: flex; align-items: center; gap: 18px;
+    margin-top: 14px; flex-wrap: wrap;
+  }
+  .qc-btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: none; border: 0; color: var(--white);
+    font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer;
+    padding: 0; transition: color .18s ease, transform .16s cubic-bezier(.22,.61,.36,1);
+  }
+  .qc-btn:hover { color: var(--acc-1); }
+  .qc-btn:active { transform: scale(.92); }
+  .qc-btn .ico { width: 15px; height: 15px; display: inline-block; background: currentColor;
+    -webkit-mask-position: center; mask-position: center;
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+    -webkit-mask-size: contain; mask-size: contain; }
+  .qc-btn.qc-play .ico  { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E"); }
+  .qc-btn.qc-pause .ico { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 5h4v14H6zM14 5h4v14h-4z'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 5h4v14H6zM14 5h4v14h-4z'/%3E%3C/svg%3E"); }
+  .qc-btn .vico { width: 17px; height: 17px; display: inline-block; background: var(--muted);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 10v4h4l5 5V5L7 10H3zm13.5 2a4.5 4.5 0 00-2.5-4v8a4.5 4.5 0 002.5-4z'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 10v4h4l5 5V5L7 10H3zm13.5 2a4.5 4.5 0 00-2.5-4v8a4.5 4.5 0 002.5-4z'/%3E%3C/svg%3E") center/contain no-repeat; }
+  .qc-vol { display: inline-flex; align-items: center; gap: 9px; }
+  .qc-vol input[type=range] {
+    -webkit-appearance: none; appearance: none; width: 90px; height: 4px;
+    background: rgba(255,255,255,.15); border-radius: 999px; outline: none; cursor: pointer;
+  }
+  .qc-vol input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none; width: 13px; height: 13px;
+    border-radius: 999px; background: var(--acc-1); cursor: pointer;
+  }
+  .qc-vol input[type=range]::-moz-range-thumb {
+    width: 13px; height: 13px; border: 0; border-radius: 999px; background: var(--acc-1); cursor: pointer;
+  }
+  .qc-time { font-size: 12px; color: var(--muted-2); font-variant-numeric: tabular-nums; margin-left: auto; }
+  .qc-btn.qc-loop { color: var(--muted); }
+  .qc-btn.qc-loop.on { color: var(--acc-1); }
+  .qc-btn.qc-loop .ico { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z'/%3E%3C/svg%3E"); }
+  .card .audio-tag {
+    font-size: 12px; font-weight: 600; color: var(--acc-1);
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .card .audio-tag::before {
+    content: ''; width: 12px; height: 12px; display: inline-block;
+    background: var(--acc-1);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z' fill='black'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z' fill='black'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
+
   /* ---------- Footer ---------- */
   .foot { text-align: center; padding: 28px 0 52px; font-size: 13px; color: var(--muted-2); }
 
@@ -430,6 +495,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           '<h3>' + esc(g.title) + '</h3>' +
           '<p>' + esc(g.desc) + '</p>' +
           (g.time ? '<div class="time">' + esc(g.time) + '</div>' : '') +
+          (g.audio ? '<div class="audio-tag">Audio track</div>' : '') +
           '<div class="read">Read guide</div>';
         c.onclick = () => openGuide(g);
         gridEl.appendChild(c);
@@ -451,7 +517,19 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         '<div class="cat-label">' + esc(g.cat) + (g.sub ? ' · ' + esc(g.sub) : '') + '</div>' +
         '<h2 class="m-title">' + esc(g.title) + '</h2>' +
         '<p class="m-desc">' + esc(g.desc) + '</p>' +
-        (g.time ? '<div class="time">' + esc(g.time) + '</div>' : '');
+        (g.time ? '<div class="time">' + esc(g.time) + '</div>' : '') +
+        (g.audio ? '<div class="m-audio"><span>Listen</span>' +
+          '<div class="qc-player">' +
+            '<audio preload="metadata" src="' + esc(g.audio) + '"></audio>' +
+            '<canvas class="qc-wave"></canvas>' +
+            '<div class="qc-controls">' +
+              '<button class="qc-btn qc-play" data-role="play"><span class="ico"></span><span class="lbl">Play</span></button>' +
+              '<button class="qc-btn qc-loop" data-role="loop"><span class="ico"></span><span>Loop</span></button>' +
+              '<span class="qc-vol"><span class="vico"></span><input type="range" min="0" max="1" step="0.01" value="1" data-role="vol"></span>' +
+              '<span class="qc-time" data-role="time">0:00 / 0:00</span>' +
+            '</div>' +
+          '</div>' +
+        '</div>' : '');
       if (Array.isArray(g.steps) && g.steps.length) {
         html += '<div class="m-steps">';
         g.steps.forEach((s, i) => {
@@ -472,9 +550,107 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       }
       body.innerHTML = html;
       overlay.classList.add('open');
+      const pl = body.querySelector('.qc-player');
+      if (pl) initPlayer(pl);
+    }
+
+    // ---- Custom waveform audio player ----
+    function fmtTime(s) {
+      if (!isFinite(s)) s = 0;
+      const m = Math.floor(s / 60), ss = Math.floor(s % 60);
+      return m + ':' + String(ss).padStart(2, '0');
+    }
+    function initPlayer(root) {
+      const audio = root.querySelector('audio');
+      const canvas = root.querySelector('.qc-wave');
+      const playBtn = root.querySelector('[data-role=play]');
+      const loopBtn = root.querySelector('[data-role=loop]');
+      const vol = root.querySelector('[data-role=vol]');
+      const timeEl = root.querySelector('[data-role=time]');
+      let peaks = null, progress = 0;
+
+      // draw bars
+      function draw() {
+        const dpr = window.devicePixelRatio || 1;
+        const w = canvas.clientWidth, h = canvas.clientHeight;
+        if (!w || !h) return;
+        canvas.width = w * dpr; canvas.height = h * dpr;
+        const ctx = canvas.getContext('2d');
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, w, h);
+        const bars = peaks ? peaks.length : 64;
+        const gap = 2, bw = Math.max(1.5, (w - gap * bars) / bars);
+        const mid = h / 2;
+        for (let i = 0; i < bars; i++) {
+          const amp = peaks ? peaks[i] : (0.25 + 0.55 * Math.abs(Math.sin(i * 0.5)));
+          const bh = Math.max(3, amp * (h * 0.9));
+          const x = i * (bw + gap);
+          const played = (i / bars) <= progress;
+          ctx.fillStyle = played ? '#DD344D' : '#FF9569';
+          ctx.globalAlpha = played ? 1 : 0.85;
+          const r = Math.min(bw / 2, 2);
+          const y = mid - bh / 2;
+          ctx.beginPath();
+          if (ctx.roundRect) ctx.roundRect(x, y, bw, bh, r);
+          else ctx.rect(x, y, bw, bh);
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+      }
+
+      // compute peaks from audio via WebAudio
+      function computePeaks() {
+        fetch(audio.src).then(r => r.arrayBuffer()).then(buf => {
+          const AC = window.AudioContext || window.webkitAudioContext;
+          if (!AC) { draw(); return; }
+          const ac = new AC();
+          ac.decodeAudioData(buf, (decoded) => {
+            const raw = decoded.getChannelData(0);
+            const bars = 64, block = Math.floor(raw.length / bars);
+            const arr = [];
+            let max = 0;
+            for (let i = 0; i < bars; i++) {
+              let sum = 0;
+              for (let j = 0; j < block; j++) sum += Math.abs(raw[i * block + j] || 0);
+              const v = sum / block; arr.push(v); if (v > max) max = v;
+            }
+            peaks = arr.map(v => max ? Math.min(1, (v / max) * 1.1) : 0.3);
+            draw();
+            ac.close();
+          }, () => draw());
+        }).catch(() => draw());
+      }
+
+      playBtn.onclick = () => { audio.paused ? audio.play() : audio.pause(); };
+      loopBtn.onclick = () => { audio.loop = !audio.loop; loopBtn.classList.toggle('on', audio.loop); };
+      vol.oninput = () => { audio.volume = parseFloat(vol.value); };
+      canvas.onclick = (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const p = (e.clientX - rect.left) / rect.width;
+        if (audio.duration) audio.currentTime = p * audio.duration;
+      };
+      audio.addEventListener('play', () => {
+        playBtn.classList.remove('qc-play'); playBtn.classList.add('qc-pause');
+        playBtn.querySelector('.lbl').textContent = 'Pause';
+      });
+      audio.addEventListener('pause', () => {
+        playBtn.classList.remove('qc-pause'); playBtn.classList.add('qc-play');
+        playBtn.querySelector('.lbl').textContent = 'Play';
+      });
+      audio.addEventListener('timeupdate', () => {
+        progress = audio.duration ? audio.currentTime / audio.duration : 0;
+        timeEl.textContent = fmtTime(audio.currentTime) + ' / ' + fmtTime(audio.duration);
+        draw();
+      });
+      audio.addEventListener('loadedmetadata', () => {
+        timeEl.textContent = '0:00 / ' + fmtTime(audio.duration);
+      });
+      requestAnimationFrame(() => { draw(); computePeaks(); });
     }
 
     function closeGuide() {
+      const a = document.querySelector('#modalBody audio');
+      if (a) { a.pause(); a.currentTime = 0; }
       document.getElementById('overlay').classList.remove('open');
     }
 
