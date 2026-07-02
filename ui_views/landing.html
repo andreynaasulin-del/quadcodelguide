@@ -124,7 +124,30 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     padding: 14px 30px; border-radius: 999px; border: 0; cursor: pointer;
     font-family: inherit;
   }
-  .cta:hover { filter: brightness(1.06); }
+  .cta {
+    transition: filter .18s ease, transform .18s cubic-bezier(.22,.61,.36,1), box-shadow .18s ease;
+  }
+  .cta:hover { filter: brightness(1.06); transform: translateY(-2px); box-shadow: 0 10px 26px rgba(221,52,77,.32); }
+  .cta:active { transform: translateY(0) scale(.97); filter: brightness(.98); }
+
+  /* ---------- Promo banner ---------- */
+  .promo-banner {
+    display: block; position: relative;
+    border-radius: var(--radius); overflow: hidden;
+    margin: 0 0 48px; cursor: pointer; background: var(--bg-3);
+    opacity: 0; transform: translateY(24px) scale(.98);
+    transition: transform .3s cubic-bezier(.22,.61,.36,1), box-shadow .3s ease;
+  }
+  .promo-banner.in { animation: banner-in .7s cubic-bezier(.22,.61,.36,1) forwards; }
+  @keyframes banner-in { to { opacity: 1; transform: none; } }
+  .promo-banner:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(0,0,0,.4); }
+  .promo-banner:active { transform: translateY(-1px) scale(.985); transition-duration: .12s; }
+  .promo-banner img {
+    display: block; width: 100%;
+    aspect-ratio: 16 / 9; object-fit: cover;
+    transition: transform .6s cubic-bezier(.22,.61,.36,1);
+  }
+  .promo-banner:hover img { transform: scale(1.035); }
 
   /* ---------- Category filter ---------- */
   .filters {
@@ -135,8 +158,10 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     font-size: 14px; font-weight: 500; color: var(--muted);
     background: var(--bg-2); border: 1px solid var(--line);
     padding: 9px 20px; border-radius: 999px; cursor: pointer; font-family: inherit;
+    transition: color .18s ease, background .25s ease, border-color .18s ease, transform .16s cubic-bezier(.22,.61,.36,1);
   }
-  .chip:hover { color: var(--white); }
+  .chip:hover { color: var(--white); border-color: rgba(255,149,105,.4); transform: translateY(-1px); }
+  .chip:active { transform: scale(.94); }
   .chip.active { background: var(--grad); border-color: transparent; color: #fff; font-weight: 600; }
 
   /* ---------- Guide grid ---------- */
@@ -148,15 +173,19 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     background: var(--bg-2); border: 1px solid var(--line);
     border-radius: var(--radius); padding: 24px;
     cursor: pointer; display: flex; flex-direction: column; gap: 12px;
-    transition: transform .15s ease, border-color .15s ease;
+    transition: transform .22s cubic-bezier(.22,.61,.36,1), border-color .22s ease, box-shadow .22s ease;
+    overflow: hidden;
   }
-  .card:hover { transform: translateY(-3px); border-color: rgba(255,149,105,.4); }
+  .card:hover { transform: translateY(-5px); border-color: rgba(255,149,105,.45); box-shadow: 0 14px 34px rgba(0,0,0,.36); }
+  .card:active { transform: translateY(-2px) scale(.99); transition-duration: .1s; }
   .card .cover {
     margin: -24px -24px 4px; display: block; width: calc(100% + 48px);
     aspect-ratio: 16 / 10; object-fit: cover;
     border-radius: var(--radius) var(--radius) 0 0;
     background: var(--bg-3);
+    transition: transform .5s cubic-bezier(.22,.61,.36,1);
   }
+  .card:hover .cover { transform: scale(1.05); }
   .card .cat-label {
     font-size: 11px; text-transform: uppercase; letter-spacing: 1.4px;
     font-weight: 600;
@@ -179,7 +208,8 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     margin-top: auto; font-size: 14px; font-weight: 600; color: var(--acc-1);
     display: inline-flex; align-items: center; gap: 6px;
   }
-  .card .read::after { content: '\2192'; }
+  .card .read::after { content: '\2192'; transition: transform .22s cubic-bezier(.22,.61,.36,1); }
+  .card:hover .read::after { transform: translateX(4px); }
 
   .empty {
     grid-column: 1 / -1; text-align: center; color: var(--muted-2);
@@ -191,21 +221,28 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .overlay {
     position: fixed; inset: 0; z-index: 50;
     background: rgba(6,7,12,.78); backdrop-filter: blur(4px);
-    display: none; align-items: flex-start; justify-content: center;
+    display: flex; align-items: flex-start; justify-content: center;
     padding: 48px 20px; overflow-y: auto;
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity .28s ease, visibility 0s linear .28s;
   }
-  .overlay.open { display: flex; }
+  .overlay.open { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity .28s ease; }
   .modal {
     position: relative; width: 100%; max-width: 620px;
     background: var(--bg-2); border: 1px solid var(--line);
     border-radius: var(--radius); padding: 40px;
+    transform: translateY(20px) scale(.96); opacity: 0;
+    transition: transform .38s cubic-bezier(.22,.61,.36,1), opacity .3s ease;
   }
+  .overlay.open .modal { transform: none; opacity: 1; }
   .modal-close {
     position: absolute; top: 16px; right: 18px;
     background: none; border: 0; color: var(--muted);
     font-size: 26px; line-height: 1; cursor: pointer; font-family: inherit;
   }
-  .modal-close:hover { color: var(--white); }
+  .modal-close { transition: color .18s ease, transform .22s cubic-bezier(.22,.61,.36,1); }
+  .modal-close:hover { color: var(--white); transform: rotate(90deg); }
+  .modal-close:active { transform: rotate(90deg) scale(.85); }
   .m-cover {
     display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover;
     border-radius: 12px; margin-bottom: 20px; background: var(--bg-3);
@@ -214,6 +251,11 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .m-desc { margin: 0 0 14px; font-size: 15px; color: var(--muted); font-weight: 400; }
   .m-steps { margin-top: 26px; display: flex; flex-direction: column; gap: 18px; }
   .m-step { display: flex; gap: 14px; }
+  .overlay.open .m-step {
+    animation: step-in .45s cubic-bezier(.22,.61,.36,1) both;
+    animation-delay: var(--sd, 0ms);
+  }
+  @keyframes step-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
   .m-num {
     flex: 0 0 30px; width: 30px; height: 30px; line-height: 30px; text-align: center;
     border-radius: 999px; background: var(--grad); color: #fff; font-weight: 700; font-size: 14px;
@@ -271,6 +313,10 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     }
     .card { transition: none; }
     .card:hover { transform: none; }
+    .promo-banner { opacity: 1 !important; transform: none !important; animation: none; transition: none; }
+    .promo-banner img { transition: none; }
+    .promo-banner:hover, .promo-banner:active { transform: none; box-shadow: none; }
+    .promo-banner:hover img { transform: none; }
   }
 
   @media (max-width: 860px) {
@@ -281,6 +327,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   @media (max-width: 540px) {
     .grid, .steps { grid-template-columns: 1fr; }
     .hero h1 { font-size: 38px; }
+    .promo-banner img { aspect-ratio: 16 / 10; }
   }
 </style>
 </head>
@@ -308,6 +355,11 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       <p>Simple, step-by-step guides for motion design, games, music, video and design. Pick a topic and start creating today.</p>
       <a class="cta" href="#guides">Browse guides</a>
     </section>
+
+    <!-- Promo banner -->
+    <a class="promo-banner" id="promoBanner" href="#guides" aria-label="GTA VI x Hitman crossover — Especially Dangerous Mission, browse guides">
+      <img src="/ui_views/assets/poster-gta6-hitman.png" alt="GTA VI x Hitman crossover banner — Especially Dangerous Mission" loading="eager">
+    </a>
 
     <!-- Category filter -->
     <section id="guides">
@@ -433,7 +485,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         html += '<div class="m-steps">';
         g.steps.forEach((s, i) => {
           html +=
-            '<div class="m-step">' +
+            '<div class="m-step" style="--sd:' + (120 + i * 70) + 'ms">' +
               '<div class="m-num">' + (i + 1) + '</div>' +
               '<div class="m-step-body">' +
                 '<h4>' + esc(s.title) + '</h4>' +
@@ -477,11 +529,18 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       await loadData();
       buildTicker();
       initRevealObserver();
+      const promoBanner = document.getElementById('promoBanner');
+      if (promoBanner) {
+        if (revealObserver) revealObserver.observe(promoBanner);
+        else promoBanner.classList.add('in');
+      }
       renderFilters();
       renderGrid();
       // safety: never leave revealed elements stuck hidden
-      setTimeout(() => document.querySelectorAll('.reveal:not(.in)')
-        .forEach(el => el.classList.add('in')), 1500);
+      setTimeout(() => {
+        document.querySelectorAll('.reveal:not(.in)').forEach(el => el.classList.add('in'));
+        if (promoBanner && !promoBanner.classList.contains('in')) promoBanner.classList.add('in');
+      }, 1500);
       document.getElementById('overlay').addEventListener('click', e => {
         if (e.target.id === 'overlay') closeGuide();
       });
