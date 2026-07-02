@@ -151,6 +151,12 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     transition: transform .15s ease, border-color .15s ease;
   }
   .card:hover { transform: translateY(-3px); border-color: rgba(255,149,105,.4); }
+  .card .cover {
+    margin: -24px -24px 4px; display: block; width: calc(100% + 48px);
+    aspect-ratio: 16 / 10; object-fit: cover;
+    border-radius: var(--radius) var(--radius) 0 0;
+    background: var(--bg-3);
+  }
   .card .cat-label {
     font-size: 11px; text-transform: uppercase; letter-spacing: 1.4px;
     font-weight: 600;
@@ -200,6 +206,10 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     font-size: 26px; line-height: 1; cursor: pointer; font-family: inherit;
   }
   .modal-close:hover { color: var(--white); }
+  .m-cover {
+    display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover;
+    border-radius: 12px; margin-bottom: 20px; background: var(--bg-3);
+  }
   .m-title { font-family: var(--font-display); margin: 10px 0 8px; font-size: 30px; font-weight: 700; letter-spacing: -.8px; }
   .m-desc { margin: 0 0 14px; font-size: 15px; color: var(--muted); font-weight: 400; }
   .m-steps { margin-top: 26px; display: flex; flex-direction: column; gap: 18px; }
@@ -392,6 +402,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         const c = document.createElement('div');
         c.className = 'card';
         c.innerHTML =
+          (g.image ? '<img class="cover" src="' + esc(g.image) + '" alt="" loading="lazy">' : '') +
           '<div class="cat-label">' + esc(g.cat) + '</div>' +
           '<h3>' + esc(g.title) + '</h3>' +
           '<p>' + esc(g.desc) + '</p>' +
@@ -413,6 +424,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       const overlay = document.getElementById('overlay');
       const body = document.getElementById('modalBody');
       let html =
+        (g.image ? '<img class="m-cover" src="' + esc(g.image) + '" alt="">' : '') +
         '<div class="cat-label">' + esc(g.cat) + (g.sub ? ' · ' + esc(g.sub) : '') + '</div>' +
         '<h2 class="m-title">' + esc(g.title) + '</h2>' +
         '<p class="m-desc">' + esc(g.desc) + '</p>' +
