@@ -172,6 +172,10 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .level-badge.lv-middle  { color: var(--acc-1); border-color: rgba(255,149,105,.3); }
   .level-badge.lv-middleplus { color: #ffb454; border-color: rgba(255,180,84,.3); }
   .level-badge.lv-senior  { color: var(--acc-2); border-color: rgba(221,52,77,.3); }
+  .filters-row3 {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    justify-content: center; padding: 0 0 40px;
+  }
 
   /* ---------- Guide grid ---------- */
   .grid {
@@ -455,6 +459,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     <section id="guides">
       <div class="filters" id="filters"></div>
       <div class="filters-row2" id="filtersRow2"></div>
+      <div class="filters-row3" id="filtersRow3"></div>
       <div class="grid" id="grid"></div>
     </section>
 
@@ -478,13 +483,25 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     const LEVEL_RANK = { "Junior": 1, "Middle": 2, "Middle+": 3, "Senior": 4 };
     let activeLevel = "All";
     let sortByLevel = 0; // 0 = off (default order), 1 = asc, -1 = desc
+    let activeModels = new Set(); // multi-select, empty = all models
 
     const filtersEl = document.getElementById('filters');
     const filtersRow2El = document.getElementById('filtersRow2');
+    const filtersRow3El = document.getElementById('filtersRow3');
     const gridEl = document.getElementById('grid');
 
     function levelClass(lvl) {
       return 'lv-' + String(lvl || '').toLowerCase().replace('+', 'plus');
+    }
+
+    // parse "GPT-Image, Seedance" -> ["GPT-Image", "Seedance"]
+    function parseModels(g) {
+      return (g.models || '').split(',').map(s => s.trim()).filter(Boolean);
+    }
+    function allModelsList() {
+      const set = new Set();
+      GUIDES.forEach(g => parseModels(g).forEach(m => set.add(m)));
+      return Array.from(set).sort();
     }
 
     // ---- Marquee ticker ----
@@ -562,11 +579,33 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       filtersRow2El.appendChild(sortBtn);
     }
 
+    function renderModelFilters() {
+      filtersRow3El.innerHTML = '';
+      const models = allModelsList();
+      if (!models.length) return;
+      const allBtn = document.createElement('button');
+      allBtn.className = 'chip chip-sm' + (activeModels.size === 0 ? ' active' : '');
+      allBtn.textContent = 'All models';
+      allBtn.onclick = () => { activeModels.clear(); renderModelFilters(); renderGrid(); };
+      filtersRow3El.appendChild(allBtn);
+      models.forEach(m => {
+        const b = document.createElement('button');
+        b.className = 'chip chip-sm' + (activeModels.has(m) ? ' active' : '');
+        b.textContent = m;
+        b.onclick = () => {
+          activeModels.has(m) ? activeModels.delete(m) : activeModels.add(m);
+          renderModelFilters(); renderGrid();
+        };
+        filtersRow3El.appendChild(b);
+      });
+    }
+
     function renderGrid() {
       let list = activeCat === "All"
         ? GUIDES.slice()
         : GUIDES.filter(g => g.cat === activeCat);
       if (activeLevel !== "All") list = list.filter(g => g.level === activeLevel);
+      if (activeModels.size) list = list.filter(g => parseModels(g).some(m => activeModels.has(m)));
       if (sortByLevel) {
         list.sort((a, b) => sortByLevel * ((LEVEL_RANK[a.level] || 0) - (LEVEL_RANK[b.level] || 0)));
       }
@@ -790,6 +829,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       initRevealObserver();
       renderFilters();
       renderLevelFilters();
+      renderModelFilters();
       renderGrid();
       // safety: never leave revealed elements stuck hidden
       setTimeout(() => {
