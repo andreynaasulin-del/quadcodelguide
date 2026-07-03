@@ -231,7 +231,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   video.m-cover { object-fit: contain; background: #000; }
   .card .cover-video {
     margin: -24px -24px 4px; display: block; width: calc(100% + 48px);
-    aspect-ratio: 16 / 10; object-fit: cover;
+    aspect-ratio: 16 / 10; object-fit: cover; object-position: top center;
     border-radius: var(--radius) var(--radius) 0 0;
     background: #000;
     transition: transform .5s cubic-bezier(.22,.61,.36,1);
@@ -510,7 +510,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         c.className = 'card';
         c.innerHTML =
           (g.video
-            ? '<video class="cover-video" src="' + esc(g.video) + '" muted loop playsinline preload="metadata"></video>'
+            ? '<video class="cover-video" src="' + esc(g.video) + '"' + (g.poster ? ' poster="' + esc(g.poster) + '"' : '') + ' muted loop playsinline preload="metadata"></video>'
             : (g.image ? '<img class="cover" src="' + esc(g.image) + '" alt="" loading="lazy">' : '')) +
           '<div class="cat-label">' + esc(g.cat) + '</div>' +
           '<h3>' + esc(g.title) + '</h3>' +
@@ -541,7 +541,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       const body = document.getElementById('modalBody');
       let html =
         (g.video
-          ? '<video class="m-cover" src="' + esc(g.video) + '" controls autoplay muted loop playsinline preload="metadata"></video>'
+          ? '<video class="m-cover" src="' + esc(g.video) + '"' + (g.poster ? ' poster="' + esc(g.poster) + '"' : '') + ' controls autoplay muted loop playsinline preload="metadata"></video>'
           : (g.image ? '<img class="m-cover" src="' + esc(g.image) + '" alt="">' : '')) +
         '<div class="cat-label">' + esc(g.cat) + (g.sub ? ' · ' + esc(g.sub) : '') + '</div>' +
         '<h2 class="m-title">' + esc(g.title) + '</h2>' +

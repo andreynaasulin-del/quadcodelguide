@@ -36,7 +36,7 @@
     },
     {
       "id": "gta6-hitman-crossover",
-      "cat": "Gamedev",
+      "cat": "Design",
       "sub": "Crossover Art",
       "title": "Make a game crossover poster",
       "desc": "Mix two games into one bold comic-style banner with a single prompt.",
@@ -75,6 +75,7 @@
       "desc": "Score a smooth, upscale fine-dining lounge track with one prompt.",
       "time": "5 min",
       "date": "2026-07-02",
+      "image": "/ui_views/assets/music-jazz-restaurant-cover.png",
       "audio": "/ui_views/assets/music-rnb-latenight.mp3",
       "steps": [
         {
@@ -99,6 +100,45 @@
         }
       ],
       "result": "A polished jazz R&B instrumental ready to loop in a restaurant, cafe, or lounge."
+    },
+    {
+      "id": "premium-product-montage",
+      "cat": "Video",
+      "sub": "Product Ads",
+      "title": "Make a premium product montage",
+      "desc": "Turn one product into a slick, ad-style video with a few simple shots.",
+      "time": "8 min",
+      "date": "2026-07-03",
+      "video": "/ui_views/assets/video-airpods-max-montage.mp4",
+      "poster": "/ui_views/assets/video-airpods-max-poster.jpg",
+      "steps": [
+        {
+          "title": "Open with a reveal",
+          "text": "Start with an unboxing or reveal shot. One dramatic light, one clean product, nothing else in frame.",
+          "prompt": "Elegant unboxing shot, box lid opening under a single dramatic spotlight, premium headphones nested in soft packaging, dark studio background"
+        },
+        {
+          "title": "Add a hero shot",
+          "text": "Show the full product from its best angle with soft rim light to trace the edges.",
+          "prompt": "Clean 3/4 hero shot of premium headphones on a dark reflective surface, soft rim light on the edges, minimal studio background"
+        },
+        {
+          "title": "Zoom into the details",
+          "text": "Cut to close-up macro shots of textures and materials, this is what makes it feel premium.",
+          "prompt": "Extreme close-up macro shot on the dial and ear-cushion mesh texture, shallow depth of field, tactile and premium"
+        },
+        {
+          "title": "Show it in real life",
+          "text": "Add one lifestyle shot of someone using the product in a moody, cinematic setting.",
+          "prompt": "A person wearing the headphones walking down a rain-slicked neon city street at night, cinematic bokeh from lights, moody and premium"
+        },
+        {
+          "title": "Close on the brand",
+          "text": "End on a simple brand card and stitch every shot together into one smooth video.",
+          "prompt": "Product centered on black background, small clean wordmark below, minimal premium brand end card"
+        }
+      ],
+      "result": "A slick, ad-style product montage ready to post or use as a promo video."
     }
   ]
 }
