@@ -228,6 +228,25 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover;
     border-radius: 12px; margin-bottom: 20px; background: var(--bg-3);
   }
+  video.m-cover { object-fit: contain; background: #000; }
+  .card .cover-video {
+    margin: -24px -24px 4px; display: block; width: calc(100% + 48px);
+    aspect-ratio: 16 / 10; object-fit: cover;
+    border-radius: var(--radius) var(--radius) 0 0;
+    background: #000;
+    transition: transform .5s cubic-bezier(.22,.61,.36,1);
+  }
+  .card:hover .cover-video { transform: scale(1.05); }
+  .card .video-tag {
+    font-size: 12px; font-weight: 600; color: var(--acc-1);
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .card .video-tag::before {
+    content: ''; width: 12px; height: 12px; display: inline-block;
+    background: var(--acc-1);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z' fill='black'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z' fill='black'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
   .m-title { font-family: var(--font-display); margin: 10px 0 8px; font-size: 30px; font-weight: 700; letter-spacing: -.8px; }
   .m-desc { margin: 0 0 14px; font-size: 15px; color: var(--muted); font-weight: 400; }
   .m-steps { margin-top: 26px; display: flex; flex-direction: column; gap: 18px; }
@@ -490,13 +509,21 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         const c = document.createElement('div');
         c.className = 'card';
         c.innerHTML =
-          (g.image ? '<img class="cover" src="' + esc(g.image) + '" alt="" loading="lazy">' : '') +
+          (g.video
+            ? '<video class="cover-video" src="' + esc(g.video) + '" muted loop playsinline preload="metadata"></video>'
+            : (g.image ? '<img class="cover" src="' + esc(g.image) + '" alt="" loading="lazy">' : '')) +
           '<div class="cat-label">' + esc(g.cat) + '</div>' +
           '<h3>' + esc(g.title) + '</h3>' +
           '<p>' + esc(g.desc) + '</p>' +
           (g.time ? '<div class="time">' + esc(g.time) + '</div>' : '') +
+          (g.video ? '<div class="video-tag">Video guide</div>' : '') +
           (g.audio ? '<div class="audio-tag">Audio track</div>' : '') +
           '<div class="read">Read guide</div>';
+        if (g.video) {
+          const v = c.querySelector('video');
+          c.addEventListener('mouseenter', () => { v.play().catch(()=>{}); });
+          c.addEventListener('mouseleave', () => { v.pause(); v.currentTime = 0; });
+        }
         c.onclick = () => openGuide(g);
         gridEl.appendChild(c);
         observeReveal(c, Math.min(i * 60, 240));
@@ -513,7 +540,9 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       const overlay = document.getElementById('overlay');
       const body = document.getElementById('modalBody');
       let html =
-        (g.image ? '<img class="m-cover" src="' + esc(g.image) + '" alt="">' : '') +
+        (g.video
+          ? '<video class="m-cover" src="' + esc(g.video) + '" controls autoplay muted loop playsinline preload="metadata"></video>'
+          : (g.image ? '<img class="m-cover" src="' + esc(g.image) + '" alt="">' : '')) +
         '<div class="cat-label">' + esc(g.cat) + (g.sub ? ' · ' + esc(g.sub) : '') + '</div>' +
         '<h2 class="m-title">' + esc(g.title) + '</h2>' +
         '<p class="m-desc">' + esc(g.desc) + '</p>' +
@@ -651,6 +680,8 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     function closeGuide() {
       const a = document.querySelector('#modalBody audio');
       if (a) { a.pause(); a.currentTime = 0; }
+      const v = document.querySelector('#modalBody video');
+      if (v) { v.pause(); }
       document.getElementById('overlay').classList.remove('open');
     }
 

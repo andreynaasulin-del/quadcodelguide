@@ -5,28 +5,34 @@
       "id": "first-game-character",
       "cat": "Gamedev",
       "sub": "Characters",
-      "title": "Make your first game character",
-      "desc": "Turn a simple idea into a ready-to-use character with one prompt.",
-      "time": "10 min",
+      "title": "Create your own RPG character",
+      "desc": "Turn one idea into a unique, animated 3D RPG hero you can spin around and drop into your game.",
+      "time": "12 min",
       "date": "2026-07-01",
+      "video": "/ui_views/assets/gamedev-rpg-character.mp4",
       "steps": [
         {
-          "title": "Describe your character",
-          "text": "Write one short line about who your character is. Keep it simple.",
-          "prompt": "A friendly robot hero, round shapes, bright colors, game character, full body"
+          "title": "Describe your hero",
+          "text": "Write one short line about who your character is: their class, vibe and one signature detail. Keep it simple and specific.",
+          "prompt": "A mythical jade sorcerer, ancient guardian, standing hero pose, ornate carved gold armor over deep emerald jade scales, dragon-like crest helmet, glowing arcane engravings, fantasy RPG game character, stylized realism, full body"
         },
         {
-          "title": "Generate the look",
-          "text": "Run the prompt and pick the version you like most.",
-          "prompt": ""
+          "title": "Lock the look and details",
+          "text": "Add color, material and mood so the character feels one-of-a-kind, not generic. Name real materials so it reads as game-ready art.",
+          "prompt": "Polished emerald jade, weathered antique gold filigree, intricate ancient runes, subtle green subsurface glow, moody teal underground lighting, clean readable silhouette, relaxed hero stance on a round base, single character"
         },
         {
-          "title": "Save and use it",
-          "text": "Export the image and drop it into your game.",
+          "title": "Turn it into a 3D model",
+          "text": "Send the image to the 3D step to get a real, rotatable mesh with clean topology and baked textures.",
+          "prompt": "Convert this character into a 3D model: full body, clean topology, textured, game-ready, T-pose friendly, consistent proportions, PBR materials"
+        },
+        {
+          "title": "Spin, check and export",
+          "text": "Rotate the model to check it from every side, fix anything off, then export. Play the clip above to see the final turntable.",
           "prompt": ""
         }
       ],
-      "result": "You now have a game-ready character made from one simple idea."
+      "result": "You now have a unique, fully rotatable 3D RPG character, ready to animate and drop straight into your game."
     },
     {
       "id": "gta6-hitman-crossover",
