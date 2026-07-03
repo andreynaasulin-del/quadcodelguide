@@ -133,8 +133,13 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   /* ---------- Category filter ---------- */
   .filters {
     display: flex; flex-wrap: wrap; gap: 10px;
+    justify-content: center; padding: 12px 0 0;
+  }
+  .filters-row2 {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
     justify-content: center; padding: 12px 0 40px;
   }
+  .filters-row2 .sep { width: 1px; height: 18px; background: var(--line); margin: 0 2px; }
   .chip {
     font-size: 14px; font-weight: 500; color: var(--muted);
     background: var(--bg-2); border: 1px solid var(--line);
@@ -144,6 +149,29 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .chip:hover { color: var(--white); border-color: rgba(255,149,105,.4); transform: translateY(-1px); }
   .chip:active { transform: scale(.94); }
   .chip.active { background: var(--grad); border-color: transparent; color: #fff; font-weight: 600; }
+  .chip-sm {
+    font-size: 12.5px; padding: 7px 16px;
+  }
+  .sort-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12.5px; font-weight: 600; color: var(--muted);
+    background: var(--bg-2); border: 1px solid var(--line);
+    padding: 7px 16px; border-radius: 999px; cursor: pointer; font-family: inherit;
+    transition: color .18s ease, border-color .18s ease, transform .16s cubic-bezier(.22,.61,.36,1);
+  }
+  .sort-btn:hover { color: var(--white); border-color: rgba(255,149,105,.4); }
+  .sort-btn.active { color: var(--acc-1); border-color: rgba(255,149,105,.4); }
+  .sort-btn .arrow { transition: transform .2s ease; }
+  .sort-btn.desc .arrow { transform: rotate(180deg); }
+  .level-badge {
+    font-size: 10.5px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase;
+    color: var(--muted); background: var(--bg-3); border: 1px solid var(--line);
+    padding: 3px 9px; border-radius: 999px; display: inline-flex; width: fit-content;
+  }
+  .level-badge.lv-junior  { color: #7ee787; border-color: rgba(126,231,135,.3); }
+  .level-badge.lv-middle  { color: var(--acc-1); border-color: rgba(255,149,105,.3); }
+  .level-badge.lv-middleplus { color: #ffb454; border-color: rgba(255,180,84,.3); }
+  .level-badge.lv-senior  { color: var(--acc-2); border-color: rgba(221,52,77,.3); }
 
   /* ---------- Guide grid ---------- */
   .grid {
@@ -426,6 +454,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     <!-- Category filter -->
     <section id="guides">
       <div class="filters" id="filters"></div>
+      <div class="filters-row2" id="filtersRow2"></div>
       <div class="grid" id="grid"></div>
     </section>
 
@@ -445,9 +474,18 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     let CATEGORIES = ["All"];
     let GUIDES = [];
     let activeCat = "All";
+    const LEVELS = ["All", "Junior", "Middle", "Middle+", "Senior"];
+    const LEVEL_RANK = { "Junior": 1, "Middle": 2, "Middle+": 3, "Senior": 4 };
+    let activeLevel = "All";
+    let sortByLevel = 0; // 0 = off (default order), 1 = asc, -1 = desc
 
     const filtersEl = document.getElementById('filters');
+    const filtersRow2El = document.getElementById('filtersRow2');
     const gridEl = document.getElementById('grid');
+
+    function levelClass(lvl) {
+      return 'lv-' + String(lvl || '').toLowerCase().replace('+', 'plus');
+    }
 
     // ---- Marquee ticker ----
     const TICKER_PHRASES = [
@@ -502,10 +540,36 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       });
     }
 
+    function renderLevelFilters() {
+      filtersRow2El.innerHTML = '';
+      LEVELS.forEach(lvl => {
+        const b = document.createElement('button');
+        b.className = 'chip chip-sm' + (lvl === activeLevel ? ' active' : '');
+        b.textContent = lvl === "All" ? "All levels" : lvl;
+        b.onclick = () => { activeLevel = lvl; renderLevelFilters(); renderGrid(); };
+        filtersRow2El.appendChild(b);
+      });
+      const sep = document.createElement('span');
+      sep.className = 'sep';
+      filtersRow2El.appendChild(sep);
+      const sortBtn = document.createElement('button');
+      sortBtn.className = 'sort-btn' + (sortByLevel ? ' active' : '') + (sortByLevel === -1 ? ' desc' : '');
+      sortBtn.innerHTML = 'Sort by level <span class="arrow">&uarr;</span>';
+      sortBtn.onclick = () => {
+        sortByLevel = sortByLevel === 0 ? 1 : (sortByLevel === 1 ? -1 : 0);
+        renderLevelFilters(); renderGrid();
+      };
+      filtersRow2El.appendChild(sortBtn);
+    }
+
     function renderGrid() {
-      const list = activeCat === "All"
-        ? GUIDES
+      let list = activeCat === "All"
+        ? GUIDES.slice()
         : GUIDES.filter(g => g.cat === activeCat);
+      if (activeLevel !== "All") list = list.filter(g => g.level === activeLevel);
+      if (sortByLevel) {
+        list.sort((a, b) => sortByLevel * ((LEVEL_RANK[a.level] || 0) - (LEVEL_RANK[b.level] || 0)));
+      }
 
       gridEl.innerHTML = '';
       if (!list.length) {
@@ -523,6 +587,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           '<h3>' + esc(g.title) + '</h3>' +
           '<p>' + esc(g.desc) + '</p>' +
           (g.time ? '<div class="time">' + esc(g.time) + '</div>' : '') +
+          (g.level ? '<div class="level-badge ' + levelClass(g.level) + '">' + esc(g.level) + '</div>' : '') +
           (g.video ? '<div class="video-tag">Video guide</div>' : '') +
           (g.audio ? '<div class="audio-tag">Audio track</div>' : '') +
           '<div class="read">Read guide</div>';
@@ -550,8 +615,10 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         (g.video
           ? '<video class="m-cover" src="' + esc(g.video) + '"' + (g.poster ? ' poster="' + esc(g.poster) + '"' : '') + ' controls autoplay muted loop playsinline preload="metadata"></video>'
           : (g.image ? '<img class="m-cover" src="' + esc(g.image) + '" alt="">' : '')) +
-        ((g.models || g.cost)
+        ((g.models || g.cost || g.level)
           ? '<div class="m-meta">' +
+              (g.level ? '<span class="level-badge ' + levelClass(g.level) + '">' + esc(g.level) + '</span>' : '') +
+              (g.level && (g.models || g.cost) ? '<span class="m-meta-sep">&middot;</span>' : '') +
               (g.models ? '<span><b>Models</b>' + esc(g.models) + '</span>' : '') +
               (g.models && g.cost ? '<span class="m-meta-sep">&middot;</span>' : '') +
               (g.cost ? '<span><b>Est. cost</b>' + esc(g.cost) + '</span>' : '') +
@@ -722,6 +789,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       buildTicker();
       initRevealObserver();
       renderFilters();
+      renderLevelFilters();
       renderGrid();
       // safety: never leave revealed elements stuck hidden
       setTimeout(() => {

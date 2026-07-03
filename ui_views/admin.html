@@ -170,6 +170,27 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         </div>
       </div>
 
+      <div class="row">
+        <div class="field">
+          <label>Difficulty level</label>
+          <select id="f-level">
+            <option value="Junior">Junior</option>
+            <option value="Middle">Middle</option>
+            <option value="Middle+">Middle+</option>
+            <option value="Senior">Senior</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Models used (optional)</label>
+          <input id="f-models" placeholder="e.g. GPT-Image, Seedance">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Est. cost in qcc (optional)</label>
+        <input id="f-cost" placeholder="e.g. ~18 qcc">
+      </div>
+
       <div class="field">
         <label>Title</label>
         <input id="f-title" placeholder="Make your first game character">
@@ -262,6 +283,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     function resetForm() {
       $('f-sub').value = ''; $('f-title').value = ''; $('f-desc').value = '';
       $('f-time').value = ''; $('f-result').value = '';
+      $('f-level').value = 'Junior'; $('f-models').value = ''; $('f-cost').value = '';
       $('steps').innerHTML = '';
       stepRow();
       setStatus('Ready');
@@ -322,6 +344,9 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         title, desc,
         time: $('f-time').value.trim(),
         date: todayStr(),
+        level: $('f-level').value,
+        models: $('f-models').value.trim(),
+        cost: $('f-cost').value.trim(),
         steps: collectSteps(),
         result: $('f-result').value.trim()
       };
