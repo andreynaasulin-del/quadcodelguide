@@ -9,6 +9,8 @@
       "desc": "Turn one idea into a unique, animated 3D RPG hero you can spin around and drop into your game.",
       "time": "12 min",
       "date": "2026-07-01",
+      "models": "GPT-Image, Seedance",
+      "cost": "~238 qcc",
       "video": "/ui_views/assets/gamedev-rpg-character.mp4",
       "steps": [
         {
@@ -42,6 +44,8 @@
       "desc": "Mix two games into one bold comic-style banner with a single prompt.",
       "time": "10 min",
       "date": "2026-07-02",
+      "models": "GPT-Image, Nanobanana",
+      "cost": "~18 qcc",
       "image": "/ui_views/assets/poster-gta6-hitman.png",
       "steps": [
         {
@@ -75,6 +79,8 @@
       "desc": "Score a smooth, upscale fine-dining lounge track with one prompt.",
       "time": "5 min",
       "date": "2026-07-02",
+      "models": "GPT-Image, Suno",
+      "cost": "~13 qcc",
       "image": "/ui_views/assets/music-jazz-restaurant-cover.png",
       "audio": "/ui_views/assets/music-rnb-latenight.mp3",
       "steps": [
@@ -109,6 +115,8 @@
       "desc": "Turn one product into a slick, ad-style video with a few simple shots.",
       "time": "8 min",
       "date": "2026-07-03",
+      "models": "Seedance",
+      "cost": "~1150 qcc",
       "video": "/ui_views/assets/video-airpods-max-montage.mp4",
       "poster": "/ui_views/assets/video-airpods-max-poster.jpg",
       "steps": [

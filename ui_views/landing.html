@@ -247,6 +247,13 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z' fill='black'/%3E%3C/svg%3E") center/contain no-repeat;
             mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z' fill='black'/%3E%3C/svg%3E") center/contain no-repeat;
   }
+  .m-meta {
+    display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px;
+    margin: 12px 0 4px; padding-bottom: 14px; border-bottom: 1px solid var(--line);
+    font-size: 13px; color: var(--muted); font-weight: 400;
+  }
+  .m-meta b { color: var(--white); font-weight: 600; margin-right: 5px; }
+  .m-meta .m-meta-sep { color: var(--muted-2); }
   .m-title { font-family: var(--font-display); margin: 10px 0 8px; font-size: 30px; font-weight: 700; letter-spacing: -.8px; }
   .m-desc { margin: 0 0 14px; font-size: 15px; color: var(--muted); font-weight: 400; }
   .m-steps { margin-top: 26px; display: flex; flex-direction: column; gap: 18px; }
@@ -543,6 +550,13 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         (g.video
           ? '<video class="m-cover" src="' + esc(g.video) + '"' + (g.poster ? ' poster="' + esc(g.poster) + '"' : '') + ' controls autoplay muted loop playsinline preload="metadata"></video>'
           : (g.image ? '<img class="m-cover" src="' + esc(g.image) + '" alt="">' : '')) +
+        ((g.models || g.cost)
+          ? '<div class="m-meta">' +
+              (g.models ? '<span><b>Models</b>' + esc(g.models) + '</span>' : '') +
+              (g.models && g.cost ? '<span class="m-meta-sep">&middot;</span>' : '') +
+              (g.cost ? '<span><b>Est. cost</b>' + esc(g.cost) + '</span>' : '') +
+            '</div>'
+          : '') +
         '<div class="cat-label">' + esc(g.cat) + (g.sub ? ' · ' + esc(g.sub) : '') + '</div>' +
         '<h2 class="m-title">' + esc(g.title) + '</h2>' +
         '<p class="m-desc">' + esc(g.desc) + '</p>' +
