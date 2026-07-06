@@ -230,6 +230,50 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     border-radius: var(--radius); font-weight: 400;
   }
 
+  /* ---------- Skeleton loading system ---------- */
+  .skel {
+    position: relative; overflow: hidden;
+    background: rgba(255,255,255,.05); border-radius: 8px;
+  }
+  .skel::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(100deg, transparent 20%, rgba(255,255,255,.07) 50%, transparent 80%);
+    transform: translateX(-100%);
+    animation: skel-shimmer 1.4s ease-in-out infinite;
+  }
+  @keyframes skel-shimmer { to { transform: translateX(100%); } }
+  .skel-card {
+    background: var(--bg-2); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 24px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .skel-card .skel-cover {
+    margin: -24px -24px 4px; width: calc(100% + 48px);
+    aspect-ratio: 16 / 10; border-radius: var(--radius) var(--radius) 0 0;
+  }
+  .skel-card .skel-line { height: 12px; }
+  .skel-card .skel-line.w40 { width: 40%; }
+  .skel-card .skel-line.w80 { width: 80%; height: 18px; }
+  .skel-card .skel-line.w60 { width: 60%; }
+
+  /* media fade-in: covers stay skeleton-toned until frame is ready */
+  .media-fade {
+    opacity: 0;
+    transition: opacity .45s ease;
+  }
+  .media-fade.ready { opacity: 1; }
+  .card .cover, .card .cover-wrap, .m-cover, .m-step-media {
+    background:
+      linear-gradient(100deg, rgba(255,255,255,.04) 20%, rgba(255,255,255,.08) 50%, rgba(255,255,255,.04) 80%),
+      var(--bg-3);
+    background-size: 200% 100%;
+    animation: skel-bg 1.4s ease-in-out infinite;
+  }
+  @keyframes skel-bg { from { background-position: 120% 0; } to { background-position: -80% 0; } }
+  .card .cover.ready, .card .cover-wrap.ready, .m-cover.ready, .m-step-media.ready {
+    animation: none; background: var(--bg-3);
+  }
+
   /* ---------- Guide full page ---------- */
   .guide-page { padding: 24px 28px 80px; }
   .guide-page-inner {
@@ -454,6 +498,9 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   /* ---------- Reduced motion: kill everything ---------- */
   @media (prefers-reduced-motion: reduce) {
     .ticker-track { animation: none; transform: none; }
+    .skel::after { animation: none; }
+    .card .cover, .card .cover-wrap, .m-cover, .m-step-media { animation: none; }
+    .media-fade { transition: none; opacity: 1; }
     .reveal { opacity: 1 !important; transform: none !important; transition: none; }
     .hero .kicker, .hero h1, .hero p, .hero .cta {
       opacity: 1 !important; transform: none !important; animation: none;
@@ -569,6 +616,54 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         '<div class="ticker-group">' + group + '</div>';
     }
 
+    // ---- Skeleton placeholders (shown while guides.json loads) ----
+    function renderSkeletonGrid(count) {
+      gridEl.innerHTML = '';
+      for (let i = 0; i < count; i++) {
+        const s = document.createElement('div');
+        s.className = 'skel-card';
+        s.setAttribute('aria-hidden', 'true');
+        s.innerHTML =
+          '<div class="skel skel-cover"></div>' +
+          '<div class="skel skel-line w40"></div>' +
+          '<div class="skel skel-line w80"></div>' +
+          '<div class="skel skel-line w60"></div>';
+        gridEl.appendChild(s);
+      }
+    }
+
+    // ---- Media preload: fade media in only when a frame is ready ----
+    function markReady(media) {
+      media.classList.add('ready');
+      const wrap = media.closest('.cover-wrap, .m-step-media');
+      (wrap || media).classList.add('ready');
+    }
+    function attachMediaFade(root) {
+      root.querySelectorAll('img.cover, img.m-cover, .m-step-media img').forEach(img => {
+        img.classList.add('media-fade');
+        if (img.complete && img.naturalWidth) { markReady(img); return; }
+        img.addEventListener('load', () => markReady(img), { once: true });
+        img.addEventListener('error', () => markReady(img), { once: true });
+      });
+      root.querySelectorAll('video').forEach(v => {
+        v.classList.add('media-fade');
+        // poster paints before video data: treat poster load as ready too
+        const ready = () => markReady(v);
+        if (v.readyState >= 2) { ready(); return; }
+        if (v.poster) {
+          const p = new Image();
+          p.onload = ready;
+          p.src = v.poster;
+        }
+        v.addEventListener('loadeddata', ready, { once: true });
+        v.addEventListener('error', ready, { once: true });
+      });
+      // safety: never leave media invisible
+      setTimeout(() => {
+        root.querySelectorAll('.media-fade:not(.ready)').forEach(markReady);
+      }, 2500);
+    }
+
     // ---- Reveal on scroll ----
     let revealObserver = null;
     function initRevealObserver() {
@@ -682,6 +777,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         gridEl.appendChild(c);
         observeReveal(c, Math.min(i * 60, 240));
       });
+      attachMediaFade(gridEl);
     }
 
     // ---- Guide detail modal ----
@@ -776,6 +872,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       guidePageEl.hidden = false;
       document.title = g.title + ' — Quadcode Guide';
       window.scrollTo(0, 0);
+      attachMediaFade(guideBodyEl);
       const pl = guideBodyEl.querySelector('.qc-player');
       if (pl) initPlayer(pl);
       guideBodyEl.querySelectorAll('.copy-btn').forEach(btn => {
@@ -940,6 +1037,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         await QC.ready();
       }
       document.getElementById('__qc-fouc-guard')?.remove();
+      renderSkeletonGrid(6);
       await loadData();
       buildTicker();
       initRevealObserver();
