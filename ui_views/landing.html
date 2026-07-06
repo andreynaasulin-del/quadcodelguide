@@ -239,6 +239,10 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='9' fill='none' stroke='black' stroke-width='2'/%3E%3Cpath d='M12 7v5l3 2' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;
             mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='9' fill='none' stroke='black' stroke-width='2'/%3E%3Cpath d='M12 7v5l3 2' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;
   }
+  .card .time .cost-dot { color: var(--muted-2); margin: 0 2px; }
+  .card .time .cost-tag {
+    font-weight: 600; color: var(--acc-1);
+  }
   .card .read {
     margin-top: auto; font-size: 14px; font-weight: 600; color: var(--acc-1);
     display: inline-flex; align-items: center; gap: 6px;
@@ -672,6 +676,12 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     const LEVEL_RANK = { "Junior": 1, "Middle": 2, "Middle+": 3, "Senior": 4 };
     let activeLevel = "All";
     let sortByLevel = 0; // 0 = off (default order), 1 = asc, -1 = desc
+    let sortByCost = 0;  // 0 = off, 1 = asc (cheapest first), -1 = desc
+
+    function parseCost(g) {
+      const m = String(g.cost || '').match(/(\d+(?:\.\d+)?)/);
+      return m ? parseFloat(m[1]) : null;
+    }
     let activeModels = new Set(); // multi-select, empty = all models
 
     const filtersEl = document.getElementById('filters');
@@ -811,9 +821,20 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       sortBtn.innerHTML = 'Sort by level <span class="arrow">&uarr;</span>';
       sortBtn.onclick = () => {
         sortByLevel = sortByLevel === 0 ? 1 : (sortByLevel === 1 ? -1 : 0);
+        if (sortByLevel) sortByCost = 0;
         renderLevelFilters(); renderGrid(true);
       };
       filtersRow2El.appendChild(sortBtn);
+
+      const costBtn = document.createElement('button');
+      costBtn.className = 'sort-btn' + (sortByCost ? ' active' : '') + (sortByCost === -1 ? ' desc' : '');
+      costBtn.innerHTML = 'Sort by cost <span class="arrow">&uarr;</span>';
+      costBtn.onclick = () => {
+        sortByCost = sortByCost === 0 ? 1 : (sortByCost === 1 ? -1 : 0);
+        if (sortByCost) sortByLevel = 0;
+        renderLevelFilters(); renderGrid(true);
+      };
+      filtersRow2El.appendChild(costBtn);
     }
 
     function renderModelFilters() {
@@ -845,6 +866,14 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       if (activeModels.size) list = list.filter(g => parseModels(g).some(m => activeModels.has(m)));
       if (sortByLevel) {
         list.sort((a, b) => sortByLevel * ((LEVEL_RANK[a.level] || 0) - (LEVEL_RANK[b.level] || 0)));
+      } else if (sortByCost) {
+        list.sort((a, b) => {
+          const ca = parseCost(a), cb = parseCost(b);
+          if (ca == null && cb == null) return 0;
+          if (ca == null) return 1;   // guides without cost go last
+          if (cb == null) return -1;
+          return sortByCost * (ca - cb);
+        });
       }
 
       gridEl.innerHTML = '';
@@ -862,7 +891,11 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           '<div class="cat-label">' + esc(g.cat) + '</div>' +
           '<h3>' + esc(g.title) + '</h3>' +
           '<p>' + esc(g.desc) + '</p>' +
-          (g.time ? '<div class="time">' + esc(g.time) + '</div>' : '') +
+          ((g.time || g.cost)
+            ? '<div class="time">' + esc(g.time || '') +
+              (g.time && g.cost ? '<span class="cost-dot">&middot;</span>' : '') +
+              (g.cost ? '<span class="cost-tag">' + esc(g.cost) + '</span>' : '') + '</div>'
+            : '') +
           (g.level ? '<div class="level-badge ' + levelClass(g.level) + '">' + esc(g.level) + '</div>' : '') +
           (g.video ? '<div class="video-tag">Video guide</div>' : '') +
           (g.audio ? '<div class="audio-tag">Audio track</div>' : '') +

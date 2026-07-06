@@ -1,6 +1,7 @@
 .quadcodeai/
 # Temp / working files
 .temp/
+production/
 .DS_Store
 
 # Vercel

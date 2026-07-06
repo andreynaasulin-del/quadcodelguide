@@ -19,14 +19,12 @@ NOTE ON TERMINOLOGY: meeting doc calls guides "cases" (kejsy) — same entity as
 ## Phase 1 — Data model + main page (frontend only, no ambiguity)
 - [x] Add `level` field (Junior / Middle / Middle+ / Senior) to all guides
 - [x] Add level filter chips + sorting by level on main page
-- [ ] Add `models` as structured array (keep display string) for multi-select filter
-- [ ] Add model multi-select filter UI on main page (reuse qcc pricing model list — pinned as qcc_full_pricing)
-- [ ] Confirm: "tokens spent" counter = same as qcc `cost` field already shown (assumption, needs PO confirm) — just needs to move to TOP of guide + be filterable/sortable on main page
-- [ ] Add token/qcc range filter + sort on main page
+- [x] Add model multi-select filter UI on main page (chips row 3, done)
+- [x] Confirmed by PO: tokens = qcc cost. Cost shown at top of guide page.
+- [ ] Add qcc cost sort on main page (IN PROGRESS)
 
-## Phase 2 — Case pages architecture (needs PO confirm on approach)
-- [ ] Convert guide modal (popup) → individual page view
-      PROPOSED APPROACH: hash-based client routing (#/guide/<id>) within same landing.html — full-viewport view (not overlay), updates document.title, back/forward + deep-linkable, no build step / still static hosting. Awaiting PO OK vs alternative (real per-file static pages, needs generation step).
+## Phase 2 — Case pages architecture
+- [x] Convert guide modal (popup) → individual page view — hash routing #/guide/<id>, PO approved, DONE + deployed
 - [x] Per-step result media: extend steps[] with `result_image` / `result_video` fields, render under each PROMPT block — ALL guides now covered (RPG 4/4, Design 3/4, Video 5/5; Music = audio player is the result)
 - [x] RPG card poster frame extracted (ffmpeg, gamedev-rpg-poster.jpg)
 - [ ] Video/gif preview in card thumbnails — ALREADY WORKS (`.cover-video`, hover autoplay) — just confirm gif support (currently video-only; need <img> animated gif path too? confirm with PO)
