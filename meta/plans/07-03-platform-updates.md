@@ -27,7 +27,8 @@ NOTE ON TERMINOLOGY: meeting doc calls guides "cases" (kejsy) — same entity as
 ## Phase 2 — Case pages architecture (needs PO confirm on approach)
 - [ ] Convert guide modal (popup) → individual page view
       PROPOSED APPROACH: hash-based client routing (#/guide/<id>) within same landing.html — full-viewport view (not overlay), updates document.title, back/forward + deep-linkable, no build step / still static hosting. Awaiting PO OK vs alternative (real per-file static pages, needs generation step).
-- [ ] Per-step result media: extend steps[] with `result_image` / `result_video` fields, render under each PROMPT block
+- [x] Per-step result media: extend steps[] with `result_image` / `result_video` fields, render under each PROMPT block — ALL guides now covered (RPG 4/4, Design 3/4, Video 5/5; Music = audio player is the result)
+- [x] RPG card poster frame extracted (ffmpeg, gamedev-rpg-poster.jpg)
 - [ ] Video/gif preview in card thumbnails — ALREADY WORKS (`.cover-video`, hover autoplay) — just confirm gif support (currently video-only; need <img> animated gif path too? confirm with PO)
 
 ## Phase 3 — Categories mega-dropdown (needs taxonomy confirm)
