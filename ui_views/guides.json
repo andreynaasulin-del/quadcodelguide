@@ -27,12 +27,14 @@
         {
           "title": "Turn it into a 3D model",
           "text": "Send the image to the 3D step to get a real, rotatable mesh with clean topology and baked textures.",
-          "prompt": "Convert this character into a 3D model: full body, clean topology, textured, game-ready, T-pose friendly, consistent proportions, PBR materials"
+          "prompt": "Convert this character into a 3D model: full body, clean topology, textured, game-ready, T-pose friendly, consistent proportions, PBR materials",
+          "result_image": "/ui_views/assets/gamedev-rpg-step3-3dmodel.jpg"
         },
         {
           "title": "Spin, check and export",
           "text": "Rotate the model to check it from every side, fix anything off, then export. Play the clip above to see the final turntable.",
-          "prompt": ""
+          "prompt": "",
+          "result_video": "/ui_views/assets/gamedev-rpg-character.mp4"
         }
       ],
       "result": "You now have a unique, fully rotatable 3D RPG character, ready to animate and drop straight into your game."
@@ -63,7 +65,8 @@
         {
           "title": "Add a title and caption",
           "text": "Add a big crossover logo with both names, plus a short bold caption at the bottom.",
-          "prompt": "Add bold comic logo text combining both game names, and a caption box at the bottom with a short punchy mission title"
+          "prompt": "Add bold comic logo text combining both game names, and a caption box at the bottom with a short punchy mission title",
+          "result_image": "/ui_views/assets/poster-gta6-hitman.png"
         },
         {
           "title": "Generate and pick your favorite",
@@ -127,27 +130,32 @@
         {
           "title": "Open with a reveal",
           "text": "Start with an unboxing or reveal shot. One dramatic light, one clean product, nothing else in frame.",
-          "prompt": "Elegant unboxing shot, box lid opening under a single dramatic spotlight, premium headphones nested in soft packaging, dark studio background"
+          "prompt": "Elegant unboxing shot, box lid opening under a single dramatic spotlight, premium headphones nested in soft packaging, dark studio background",
+          "result_image": "/ui_views/assets/video-airpods-step1-reveal.jpg"
         },
         {
           "title": "Add a hero shot",
           "text": "Show the full product from its best angle with soft rim light to trace the edges.",
-          "prompt": "Clean 3/4 hero shot of premium headphones on a dark reflective surface, soft rim light on the edges, minimal studio background"
+          "prompt": "Clean 3/4 hero shot of premium headphones on a dark reflective surface, soft rim light on the edges, minimal studio background",
+          "result_image": "/ui_views/assets/video-airpods-step2-hero.jpg"
         },
         {
           "title": "Zoom into the details",
           "text": "Cut to close-up macro shots of textures and materials, this is what makes it feel premium.",
-          "prompt": "Extreme close-up macro shot on the dial and ear-cushion mesh texture, shallow depth of field, tactile and premium"
+          "prompt": "Extreme close-up macro shot on the dial and ear-cushion mesh texture, shallow depth of field, tactile and premium",
+          "result_image": "/ui_views/assets/video-airpods-step3-macro.jpg"
         },
         {
           "title": "Show it in real life",
           "text": "Add one lifestyle shot of someone using the product in a moody, cinematic setting.",
-          "prompt": "A person wearing the headphones walking down a rain-slicked neon city street at night, cinematic bokeh from lights, moody and premium"
+          "prompt": "A person wearing the headphones walking down a rain-slicked neon city street at night, cinematic bokeh from lights, moody and premium",
+          "result_image": "/ui_views/assets/video-airpods-step4-lifestyle.jpg"
         },
         {
           "title": "Close on the brand",
           "text": "End on a simple brand card and stitch every shot together into one smooth video.",
-          "prompt": "Product centered on black background, small clean wordmark below, minimal premium brand end card"
+          "prompt": "Product centered on black background, small clean wordmark below, minimal premium brand end card",
+          "result_image": "/ui_views/assets/video-airpods-step5-brand.jpg"
         }
       ],
       "result": "A slick, ad-style product montage ready to post or use as a promo video."
