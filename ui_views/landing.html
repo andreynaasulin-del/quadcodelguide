@@ -282,6 +282,26 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .skel-card .skel-line.w80 { width: 80%; height: 18px; }
   .skel-card .skel-line.w60 { width: 60%; }
 
+  /* skeleton -> content crossfade */
+  .skel-card, .skel-guide { transition: opacity .22s ease; }
+  .skel-out { opacity: 0 !important; }
+  .guide-in { animation: guide-in .38s cubic-bezier(.16,1,.3,1) both; }
+  @keyframes guide-in { from { opacity: 0; transform: translateY(10px); } }
+
+  /* guide page skeleton (direct #/guide/... load) */
+  .skel-guide { display: flex; flex-direction: column; gap: 14px; }
+  .skel-guide .sg-cover { width: 100%; aspect-ratio: 16 / 9; border-radius: var(--radius); }
+  .skel-guide .sg-line { height: 12px; }
+  .skel-guide .w30 { width: 30%; }
+  .skel-guide .w50 { width: 50%; }
+  .skel-guide .w70 { width: 70%; }
+  .skel-guide .w90 { width: 90%; }
+  .skel-guide .sg-title { height: 32px; width: 64%; margin-top: 6px; }
+  .skel-guide .sg-step { display: flex; gap: 16px; margin-top: 22px; }
+  .skel-guide .sg-num { width: 34px; height: 34px; border-radius: 50%; flex: none; }
+  .skel-guide .sg-step-body { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+  .skel-guide .sg-prompt { height: 84px; border-radius: 12px; margin-top: 4px; }
+
   /* media fade-in: covers stay skeleton-toned until frame is ready */
   .media-fade {
     opacity: 0;
@@ -602,6 +622,8 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     .card .cover, .card .cover-video { transition: none; }
     .ticker-track { animation: none; transform: none; }
     .skel::after { animation: none; }
+    .skel-card, .skel-guide { transition: none; }
+    .guide-in { animation: none; }
     .card .cover, .card .cover-wrap, .m-cover, .m-step-media { animation: none; }
     .media-fade { transition: none; opacity: 1; }
     .reveal { opacity: 1 !important; transform: none !important; transition: none; }
@@ -759,6 +781,47 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           '<div class="skel skel-line w60"></div>';
         gridEl.appendChild(s);
       }
+      skelGridT0 = performance.now();
+    }
+    let skelGridT0 = 0, skelGuideT0 = 0;
+
+    // fade skeletons out, then render real cards (staggered swap-in)
+    function swapSkeletonGrid() {
+      return new Promise(res => {
+        const skels = gridEl.querySelectorAll('.skel-card');
+        if (!skels.length || REDUCED_MOTION) { renderGrid(); res(); return; }
+        // small min-hold so fast loads don't flicker
+        const hold = Math.max(0, 300 - (performance.now() - skelGridT0));
+        setTimeout(() => {
+          skels.forEach(s => s.classList.add('skel-out'));
+          setTimeout(() => { renderGrid(true); res(); }, 210);
+        }, hold);
+      });
+    }
+
+    // guide page skeleton (shown on direct #/guide/... load while data fetches)
+    function renderSkeletonGuide() {
+      const step =
+        '<div class="sg-step">' +
+          '<div class="skel sg-num"></div>' +
+          '<div class="sg-step-body">' +
+            '<div class="skel sg-line w50"></div>' +
+            '<div class="skel sg-line w90"></div>' +
+            '<div class="skel sg-prompt"></div>' +
+          '</div>' +
+        '</div>';
+      guideBodyEl.innerHTML =
+        '<div class="skel-guide" aria-hidden="true">' +
+          '<div class="skel sg-cover"></div>' +
+          '<div class="skel sg-line w30"></div>' +
+          '<div class="skel sg-title"></div>' +
+          '<div class="skel sg-line w90"></div>' +
+          '<div class="skel sg-line w70"></div>' +
+          step + step + step +
+        '</div>';
+      homeEl.hidden = true;
+      guidePageEl.hidden = false;
+      skelGuideT0 = performance.now();
     }
 
     // ---- Media preload: fade media in only when a frame is ready ----
@@ -1110,7 +1173,25 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 
     function showGuidePage(g) {
       if (!homeEl.hidden) homeScrollY = window.scrollY;
-      guideBodyEl.innerHTML = guideHtml(g);
+      const skel = guideBodyEl.querySelector('.skel-guide');
+      const inject = () => {
+        guideBodyEl.innerHTML = guideHtml(g);
+        if (skel && !REDUCED_MOTION) {
+          guideBodyEl.classList.add('guide-in');
+          guideBodyEl.addEventListener('animationend',
+            () => guideBodyEl.classList.remove('guide-in'), { once: true });
+        }
+        attachMediaFade(guideBodyEl);
+        const pl = guideBodyEl.querySelector('.qc-player');
+        if (pl) initPlayer(pl);
+        guideBodyEl.querySelectorAll('.copy-btn').forEach(btn => {
+          btn.onclick = () => {
+            const step = (g.steps || [])[parseInt(btn.dataset.copyStep, 10)];
+            if (!step || !step.prompt) return;
+            copyText(step.prompt, btn);
+          };
+        });
+      };
       homeEl.hidden = true;
       guidePageEl.hidden = false;
       document.title = g.title + ' — Quadcode Guide';
@@ -1118,16 +1199,16 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       animateEnter(guidePageEl);
       progressEl.classList.add('on');
       updateProgress();
-      attachMediaFade(guideBodyEl);
-      const pl = guideBodyEl.querySelector('.qc-player');
-      if (pl) initPlayer(pl);
-      guideBodyEl.querySelectorAll('.copy-btn').forEach(btn => {
-        btn.onclick = () => {
-          const step = (g.steps || [])[parseInt(btn.dataset.copyStep, 10)];
-          if (!step || !step.prompt) return;
-          copyText(step.prompt, btn);
-        };
-      });
+      if (skel && !REDUCED_MOTION) {
+        // crossfade: hold skeleton briefly, fade it out, then inject real content
+        const hold = Math.max(0, 340 - (performance.now() - skelGuideT0));
+        setTimeout(() => {
+          skel.classList.add('skel-out');
+          setTimeout(inject, 200);
+        }, hold);
+      } else {
+        inject();
+      }
     }
 
     function copyText(text, btn) {
@@ -1305,13 +1386,15 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       document.getElementById('__qc-fouc-guard')?.remove();
       initHeroTypewriter();
       renderSkeletonGrid(6);
+      // deep link straight to a guide: show guide skeleton instead of home grid
+      if (/^#\/guide\//.test(location.hash)) renderSkeletonGuide();
       await loadData();
       buildTicker();
       initRevealObserver();
       renderFilters();
       renderLevelFilters();
       renderModelFilters();
-      renderGrid();
+      await swapSkeletonGrid();
       // safety: never leave revealed elements stuck hidden
       setTimeout(() => {
         document.querySelectorAll('.reveal:not(.in)').forEach(el => el.classList.add('in'));
