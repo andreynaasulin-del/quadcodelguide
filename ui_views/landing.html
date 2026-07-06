@@ -616,9 +616,16 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .hero h1 .tw-word:empty::before { content: '\200B'; } /* keep line height while empty */
   .tw-caret {
     display: inline-block; width: .07em; height: .78em;
-    margin-left: .08em; vertical-align: -.04em;
+    margin-left: .08em;
+    margin-right: calc(-.07em - .08em); /* zero net width: line centers on text only */
+    vertical-align: -.04em;
     background: var(--acc-1); border-radius: 2px;
     animation: tw-blink 1.05s steps(1) infinite;
+  }
+  .tw-caret.typing { animation: none; opacity: 1; } /* solid while typing */
+  .hero h1 .tw-word {
+    background-size: 8em 100%;
+    background-position: center;
   }
   @keyframes tw-blink { 50% { opacity: 0; } }
   @media (prefers-reduced-motion: reduce) {
@@ -1040,13 +1047,15 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       let wi = 0;
 
       function typeStr(el, str, i, cb) {
-        if (i > str.length) { cb(); return; }
+        caret.classList.add('typing');
+        if (i > str.length) { caret.classList.remove('typing'); cb(); return; }
         el.textContent = str.slice(0, i);
         setTimeout(() => typeStr(el, str, i + 1, cb), T.type);
       }
       function delStr(el, cb) {
+        caret.classList.add('typing');
         const s = el.textContent;
-        if (!s.length) { cb(); return; }
+        if (!s.length) { caret.classList.remove('typing'); cb(); return; }
         el.textContent = s.slice(0, -1);
         setTimeout(() => delStr(el, cb), T.del);
       }
