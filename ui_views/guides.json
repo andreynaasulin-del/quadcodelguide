@@ -13,16 +13,19 @@
       "models": "GPT-Image, Seedance",
       "cost": "~238 qcc",
       "video": "/ui_views/assets/gamedev-rpg-character.mp4",
+      "poster": "/ui_views/assets/gamedev-rpg-poster.jpg",
       "steps": [
         {
           "title": "Describe your hero",
           "text": "Write one short line about who your character is: their class, vibe and one signature detail. Keep it simple and specific.",
-          "prompt": "A mythical jade sorcerer, ancient guardian, standing hero pose, ornate carved gold armor over deep emerald jade scales, dragon-like crest helmet, glowing arcane engravings, fantasy RPG game character, stylized realism, full body"
+          "prompt": "A mythical jade sorcerer, ancient guardian, standing hero pose, ornate carved gold armor over deep emerald jade scales, dragon-like crest helmet, glowing arcane engravings, fantasy RPG game character, stylized realism, full body",
+          "result_image": "/ui_views/assets/gamedev-rpg-step1-concept.png"
         },
         {
           "title": "Lock the look and details",
           "text": "Add color, material and mood so the character feels one-of-a-kind, not generic. Name real materials so it reads as game-ready art.",
-          "prompt": "Polished emerald jade, weathered antique gold filigree, intricate ancient runes, subtle green subsurface glow, moody teal underground lighting, clean readable silhouette, relaxed hero stance on a round base, single character"
+          "prompt": "Polished emerald jade, weathered antique gold filigree, intricate ancient runes, subtle green subsurface glow, moody teal underground lighting, clean readable silhouette, relaxed hero stance on a round base, single character",
+          "result_image": "/ui_views/assets/gamedev-rpg-step2-concept.png"
         },
         {
           "title": "Turn it into a 3D model",
@@ -55,12 +58,14 @@
         {
           "title": "Pick two games",
           "text": "Choose two characters or games you want to mix. Keep the idea in one short sentence.",
-          "prompt": "Comic-book style crossover poster, two game characters sharing one scene, bold ink outlines, halftone shading, neon sunset city colors"
+          "prompt": "Comic-book style crossover poster, two game characters sharing one scene, bold ink outlines, halftone shading, neon sunset city colors",
+          "result_image": "/ui_views/assets/design-poster-step1-concept.png"
         },
         {
           "title": "Set the scene",
           "text": "Say where the scene happens and what each character is doing. Make sure it reads as one story, not two random photos glued together.",
-          "prompt": "One character covers the other from a rooftop with a sniper rifle while the other walks a neon city street holding a pistol, split by a diagonal comic panel line"
+          "prompt": "One character covers the other from a rooftop with a sniper rifle while the other walks a neon city street holding a pistol, split by a diagonal comic panel line",
+          "result_image": "/ui_views/assets/design-poster-step2-concept.png"
         },
         {
           "title": "Add a title and caption",
