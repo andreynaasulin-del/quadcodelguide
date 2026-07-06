@@ -192,7 +192,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .level-badge.lv-junior  { color: #7ee787; border-color: rgba(126,231,135,.3); }
   .level-badge.lv-middle  { color: var(--acc-1); border-color: rgba(255,149,105,.3); }
   .level-badge.lv-middleplus { color: #ffb454; border-color: rgba(255,180,84,.3); }
-  .level-badge.lv-senior  { color: var(--acc-2); border-color: rgba(221,52,77,.3); }
   .filters-row3 {
     display: flex; flex-wrap: wrap; gap: 10px;
     justify-content: center; padding: 0 0 40px;
@@ -750,8 +749,8 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     let CATEGORIES = ["All"];
     let GUIDES = [];
     let activeCat = "All";
-    const LEVELS = ["All", "Junior", "Middle", "Middle+", "Senior"];
-    const LEVEL_RANK = { "Junior": 1, "Middle": 2, "Middle+": 3, "Senior": 4 };
+    const LEVELS = ["All", "Junior", "Middle", "Middle+"];
+    const LEVEL_RANK = { "Junior": 1, "Middle": 2, "Middle+": 3 };
     let activeLevel = "All";
     let sortByLevel = 0; // 0 = off (default order), 1 = asc, -1 = desc
     let sortByCost = 0;  // 0 = off, 1 = asc (cheapest first), -1 = desc
