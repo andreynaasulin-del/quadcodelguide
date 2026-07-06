@@ -1451,8 +1451,12 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       try {
         const res = await fetch('/ui_views/guides.json?t=' + Date.now());
         const data = await res.json();
-        if (Array.isArray(data.categories) && data.categories.length) CATEGORIES = data.categories;
         if (Array.isArray(data.guides)) GUIDES = data.guides;
+        if (Array.isArray(data.categories) && data.categories.length) {
+          // hide categories that have no guides yet ("All" always stays)
+          const used = new Set(GUIDES.map(g => g.cat));
+          CATEGORIES = data.categories.filter(c => c === 'All' || used.has(c));
+        }
       } catch (e) {
         console.error('Failed to load guides.json', e);
       }
