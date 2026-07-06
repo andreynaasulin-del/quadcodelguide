@@ -549,10 +549,48 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .hl + br + .hl .hl-in { animation-delay: .2s; }
   @keyframes line-up { to { transform: translateY(0); } }
 
+  /* Hero title: 5 entrance variations (JS picks one per visit) */
+  /* v1: typewriter, letter by letter */
+  .t-ch { opacity: 0; animation: t-in 1ms steps(1, end) forwards; animation-delay: var(--td, 0ms); }
+  @keyframes t-in { to { opacity: 1; } }
+  .t-caret {
+    display: inline-block; width: .05em; height: .78em; margin-left: .07em;
+    background: var(--acc-1); vertical-align: -.04em; border-radius: 2px;
+    animation: t-blink .85s steps(1, end) infinite,
+               t-hide .5s ease var(--tend, 2.5s) forwards;
+  }
+  @keyframes t-blink { 50% { opacity: 0; } }
+  @keyframes t-hide { to { opacity: 0; width: 0; margin-left: 0; } }
+  /* v2: word-by-word masked rise */
+  .hw {
+    display: inline-block; overflow: hidden; vertical-align: bottom;
+    padding-bottom: .09em; margin-bottom: -.09em;
+  }
+  .hw-in {
+    display: inline-block; transform: translateY(112%);
+    animation: line-up .85s var(--ease-out) var(--wd, 0ms) forwards;
+  }
+  /* v4: staggered letter cascade */
+  .lt {
+    display: inline-block; opacity: 0; transform: translateY(.38em);
+    animation: lt-in .7s var(--ease-out) var(--ld, 0ms) forwards;
+  }
+  @keyframes lt-in { to { opacity: 1; transform: none; } }
+  .g-ch {
+    background-image: var(--grad);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+  /* v5: soft fade with cursor */
+  .hero h1.fade-var { opacity: 0; animation: hero-in 1.15s ease .1s forwards; }
+
   /* ---------- Reduced motion: kill everything ---------- */
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .hl-in { animation: none; transform: none; }
+    .t-ch, .hw-in, .lt { animation: none; opacity: 1; transform: none; }
+    .t-caret { display: none; }
+    .hero h1.fade-var { animation: none; opacity: 1; }
     .hero.framed::before, .hero.framed::after { animation: none; }
     .view-leave, .view-enter, .card.swap-in { animation: none; }
     .copy-btn.copied { animation: none; }
@@ -927,6 +965,90 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       return html;
     }
 
+    // ---- Hero title: 5 entrance variations ----
+    const HERO_L1 = 'Learn to make', HERO_L2 = 'anything';
+
+    function buildHeroVariant(v) {
+      const h1 = document.querySelector('.hero h1');
+      if (!h1) return;
+      h1.classList.remove('fade-var');
+
+      if (v === 'lines') {
+        // masked line reveal (two lines slide up from under a mask)
+        h1.innerHTML =
+          '<span class="hl"><span class="hl-in">' + esc(HERO_L1) + '</span></span><br>' +
+          '<span class="hl"><span class="hl-in"><span class="g">' + esc(HERO_L2) + '</span></span></span>';
+        return;
+      }
+
+      if (v === 'words') {
+        // word-by-word masked rise
+        let d = 60, html = '';
+        HERO_L1.split(' ').forEach(w => {
+          html += '<span class="hw"><span class="hw-in" style="--wd:' + d + 'ms">' + esc(w) + '</span></span> ';
+          d += 110;
+        });
+        html = html.trim() + '<br>' +
+          '<span class="hw"><span class="hw-in g" style="--wd:' + (d + 60) + 'ms">' + esc(HERO_L2) + '</span></span>';
+        h1.innerHTML = html;
+        return;
+      }
+
+      if (v === 'type') {
+        // typewriter, letter by letter, blinking caret
+        let t = 150, html = '';
+        for (const ch of HERO_L1) {
+          html += '<span class="t-ch" style="--td:' + t + 'ms">' + (ch === ' ' ? '&nbsp;' : esc(ch)) + '</span>';
+          t += 46;
+        }
+        t += 220; // beat before the accent word
+        html += '<br><span class="g">';
+        for (const ch of HERO_L2) {
+          html += '<span class="t-ch" style="--td:' + t + 'ms">' + esc(ch) + '</span>';
+          t += 46;
+        }
+        html += '</span><span class="t-caret" style="--tend:' + (t + 1400) + 'ms" aria-hidden="true"></span>';
+        h1.innerHTML = html;
+        return;
+      }
+
+      if (v === 'letters') {
+        // staggered letter cascade; gradient sliced across the accent word
+        let d = 60, html = '';
+        for (const ch of HERO_L1) {
+          html += ch === ' ' ? ' '
+            : '<span class="lt" style="--ld:' + d + 'ms">' + esc(ch) + '</span>';
+          d += 26;
+        }
+        html += '<br>';
+        const n = HERO_L2.length;
+        for (let i = 0; i < n; i++) {
+          const pos = n > 1 ? (i / (n - 1) * 100).toFixed(1) : '0';
+          html += '<span class="lt g-ch" style="--ld:' + d + 'ms;background-size:' + (n * 100) + '% 100%;background-position:' + pos + '% 0">' + esc(HERO_L2[i]) + '</span>';
+          d += 26;
+        }
+        h1.innerHTML = html;
+        return;
+      }
+
+      // 'fade': soft fade-in with a blinking cursor that retires
+      h1.innerHTML = esc(HERO_L1) + '<br><span class="g">' + esc(HERO_L2) + '</span>' +
+        '<span class="t-caret" style="--tend:2600ms" aria-hidden="true"></span>';
+      h1.classList.add('fade-var');
+    }
+
+    function initHeroVariant() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const variants = ['type', 'words', 'lines', 'letters', 'fade'];
+      let i = Math.floor(Math.random() * variants.length);
+      try {
+        const prev = parseInt(localStorage.getItem('qcHeroVar'), 10);
+        if (!isNaN(prev)) i = (prev + 1) % variants.length;
+        localStorage.setItem('qcHeroVar', String(i));
+      } catch (e) {}
+      buildHeroVariant(variants[i]);
+    }
+
     // ---- Hash routing (#/guide/slug) ----
     const homeEl = document.querySelector('main.wrap');
     const guidePageEl = document.getElementById('guidePage');
@@ -1154,6 +1276,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         await QC.ready();
       }
       document.getElementById('__qc-fouc-guard')?.remove();
+      initHeroVariant();
       renderSkeletonGrid(6);
       await loadData();
       buildTicker();

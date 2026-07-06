@@ -1,6 +1,9 @@
-.git
 .temp
+.quadcodeai
 meta
+.git
+.gitignore
 node_modules
 *.log
+*.md
 .DS_Store
