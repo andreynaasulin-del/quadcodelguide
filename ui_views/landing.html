@@ -165,7 +165,11 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   }
   .chip:hover { color: var(--white); border-color: rgba(255,149,105,.4); transform: translateY(-1px); }
   .chip:active { transform: scale(.94); }
-  .chip.active { background: var(--grad); border-color: transparent; color: #fff; font-weight: 600; }
+  .chip.active {
+    background: var(--grad); border-color: transparent; color: #fff; font-weight: 600;
+    animation: chip-pop .3s var(--ease-out);
+  }
+  @keyframes chip-pop { 0% { transform: scale(.92); } 55% { transform: scale(1.06); } 100% { transform: scale(1); } }
   .chip-sm {
     font-size: 12.5px; padding: 7px 16px;
   }
@@ -530,6 +534,20 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     from { opacity: 0; transform: translateY(10px); }
     to   { opacity: 1; transform: none; }
   }
+  /* home -> guide: clicked card zooms toward viewer, siblings dim */
+  .card.zoom-out {
+    transform: scale(1.045) !important; opacity: 0;
+    transition: transform .3s var(--ease-out), opacity .26s ease;
+    pointer-events: none;
+  }
+  .grid.dimmed .card:not(.zoom-out) { opacity: .3; transition: opacity .24s ease; }
+  /* guide cover parallax: travels further than page body on enter (transform only,
+     opacity stays owned by .media-fade) */
+  .view-enter .m-cover { animation: cover-parallax .65s var(--ease-out) both; }
+  @keyframes cover-parallax {
+    from { transform: translateY(24px) scale(1.02); }
+    to   { transform: none; }
+  }
 
   /* ---------- Reading progress (guide page) ---------- */
   .scroll-progress {
@@ -618,6 +636,11 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     .hero.framed::before, .hero.framed::after { animation: none; }
     .view-leave, .view-enter, .card.swap-in { animation: none; }
     .copy-btn.copied { animation: none; }
+    .chip.active { animation: none; }
+    .card.zoom-out { transition: none; opacity: 1; transform: none !important; }
+    .grid.dimmed .card:not(.zoom-out) { opacity: 1; transition: none; }
+    .view-enter .m-cover { animation: none; }
+    .guide-page .m-step { animation: none; opacity: 1; transform: none; }
     .scroll-progress { display: none; }
     .card .cover, .card .cover-video { transition: none; }
     .ticker-track { animation: none; transform: none; }
@@ -867,13 +890,27 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
             revealObserver.unobserve(en.target);
           }
         });
-      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      }, { threshold: 0.12, rootMargin: '2000% 0px -8% 0px' });
+      // huge top margin: anything scrolled past (above viewport) counts as seen,
+      // so fast jumps can't leave elements stuck invisible
     }
     function observeReveal(el, delayMs) {
       if (!revealObserver) { el.classList.add('in'); return; }
       el.classList.add('reveal');
       if (delayMs) el.style.setProperty('--d', delayMs + 'ms');
       revealObserver.observe(el);
+    }
+
+    // guide steps below the fold reveal on scroll instead of animating unseen
+    function revealGuideSteps() {
+      if (REDUCED_MOTION || !revealObserver) return;
+      guideBodyEl.querySelectorAll('.m-steps .m-step').forEach(st => {
+        if (st.getBoundingClientRect().top > window.innerHeight * 0.95) {
+          st.style.animation = 'none';       // cancel the load-time step-in
+          st.style.removeProperty('--sd');
+          observeReveal(st, 0);
+        }
+      });
     }
 
     function renderFilters() {
@@ -988,7 +1025,15 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           c.addEventListener('mouseenter', () => { v.play().catch(()=>{}); });
           c.addEventListener('mouseleave', () => { v.pause(); v.currentTime = 0; });
         }
-        c.onclick = () => openGuide(g);
+        c.onclick = () => {
+          if (!REDUCED_MOTION && !gridEl.classList.contains('dimmed')) {
+            gridEl.classList.add('dimmed');
+            c.classList.add('zoom-out');
+            setTimeout(() => openGuide(g), 170);
+          } else {
+            openGuide(g);
+          }
+        };
         gridEl.appendChild(c);
         if (swap) {
           c.classList.add('swap-in');
@@ -1182,6 +1227,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
             () => guideBodyEl.classList.remove('guide-in'), { once: true });
         }
         attachMediaFade(guideBodyEl);
+        revealGuideSteps();
         const pl = guideBodyEl.querySelector('.qc-player');
         if (pl) initPlayer(pl);
         guideBodyEl.querySelectorAll('.copy-btn').forEach(btn => {
@@ -1241,6 +1287,9 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       homeEl.hidden = false;
       document.title = 'Quadcode Guide';
       progressEl.classList.remove('on');
+      // reset home -> guide zoom transition state
+      gridEl.classList.remove('dimmed');
+      gridEl.querySelectorAll('.card.zoom-out').forEach(c => c.classList.remove('zoom-out'));
       if (wasHidden) {
         animateEnter(homeEl);
         try { window.scrollTo({ top: homeScrollY, behavior: 'instant' }); }
