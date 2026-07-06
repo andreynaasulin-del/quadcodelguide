@@ -306,12 +306,13 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .skel-guide .sg-step-body { flex: 1; display: flex; flex-direction: column; gap: 10px; }
   .skel-guide .sg-prompt { height: 84px; border-radius: 12px; margin-top: 4px; }
 
-  /* media fade-in: covers stay skeleton-toned until frame is ready */
+  /* media fade-in: covers stay skeleton-toned until frame is ready.
+     blur-up: frame resolves from soft blur to sharp (progressive reveal) */
   .media-fade {
-    opacity: 0;
-    transition: opacity .45s ease;
+    opacity: 0; filter: blur(14px) saturate(1.15);
+    transition: opacity .45s ease, filter .65s ease;
   }
-  .media-fade.ready { opacity: 1; }
+  .media-fade.ready { opacity: 1; filter: none; }
   .card .cover, .card .cover-wrap, .m-cover, .m-step-media {
     background:
       linear-gradient(100deg, rgba(255,255,255,.04) 20%, rgba(255,255,255,.08) 50%, rgba(255,255,255,.04) 80%),
@@ -369,6 +370,17 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
             mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E") center/contain no-repeat;
   }
   .card:hover .play-badge { opacity: 0; transform: translate(-50%,-50%) scale(.8); }
+  /* video buffering spinner: thin ring over the preview while data stalls */
+  .cover-wrap, .m-step-media { position: relative; }
+  .cover-wrap.buffering::after, .m-step-media.buffering::after {
+    content: ''; position: absolute; top: 50%; left: 50%;
+    width: 30px; height: 30px; margin: -15px 0 0 -15px;
+    border-radius: 50%; z-index: 3; pointer-events: none;
+    border: 2.5px solid rgba(255,255,255,.22);
+    border-top-color: var(--acc-1);
+    animation: buf-spin .7s linear infinite;
+  }
+  @keyframes buf-spin { to { transform: rotate(360deg); } }
   .card .video-tag {
     font-size: 12px; font-weight: 600; color: var(--acc-1);
     display: inline-flex; align-items: center; gap: 6px;
@@ -648,7 +660,8 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     .skel-card, .skel-guide { transition: none; }
     .guide-in { animation: none; }
     .card .cover, .card .cover-wrap, .m-cover, .m-step-media { animation: none; }
-    .media-fade { transition: none; opacity: 1; }
+    .media-fade { transition: none; opacity: 1; filter: none; }
+    .cover-wrap.buffering::after, .m-step-media.buffering::after { animation-duration: 1.4s; }
     .reveal { opacity: 1 !important; transform: none !important; transition: none; }
     .hero .kicker, .hero h1, .hero p, .hero .cta {
       opacity: 1 !important; transform: none !important; animation: none;
@@ -862,6 +875,15 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       });
       root.querySelectorAll('video').forEach(v => {
         v.classList.add('media-fade');
+        // buffering spinner: show ring if playback stalls for >150ms
+        const wrap = v.closest('.cover-wrap, .m-step-media');
+        if (wrap) {
+          let bufT = 0;
+          const showBuf = () => { clearTimeout(bufT); bufT = setTimeout(() => wrap.classList.add('buffering'), 150); };
+          const hideBuf = () => { clearTimeout(bufT); wrap.classList.remove('buffering'); };
+          ['waiting', 'stalled', 'seeking'].forEach(e => v.addEventListener(e, showBuf));
+          ['playing', 'canplay', 'pause', 'seeked', 'error', 'emptied'].forEach(e => v.addEventListener(e, hideBuf));
+        }
         // poster paints before video data: treat poster load as ready too
         const ready = () => markReady(v);
         if (v.readyState >= 2) { ready(); return; }
@@ -1195,17 +1217,27 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     const progressEl = document.createElement('div');
     progressEl.className = 'scroll-progress';
     document.body.appendChild(progressEl);
-    let progressTick = false;
-    function updateProgress() {
+    // lerp-smoothed: the bar eases toward the scroll position instead of snapping
+    let progTarget = 0, progCurrent = 0, progRaf = 0;
+    function progressLoop() {
+      progCurrent += (progTarget - progCurrent) * 0.14;
+      if (Math.abs(progTarget - progCurrent) < 0.0005) progCurrent = progTarget;
+      progressEl.style.transform = 'scaleX(' + progCurrent + ')';
+      progRaf = (progCurrent !== progTarget) ? requestAnimationFrame(progressLoop) : 0;
+    }
+    function updateProgress(instant) {
       const max = document.documentElement.scrollHeight - window.innerHeight;
-      progressEl.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, window.scrollY / max) : 0) + ')';
-      progressTick = false;
+      progTarget = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+      if (instant || REDUCED_MOTION) {
+        if (progRaf) { cancelAnimationFrame(progRaf); progRaf = 0; }
+        progCurrent = progTarget;
+        progressEl.style.transform = 'scaleX(' + progTarget + ')';
+        return;
+      }
+      if (!progRaf) progRaf = requestAnimationFrame(progressLoop);
     }
     window.addEventListener('scroll', () => {
-      if (!progressTick && !guidePageEl.hidden) {
-        progressTick = true;
-        requestAnimationFrame(updateProgress);
-      }
+      if (!guidePageEl.hidden) updateProgress();
     }, { passive: true });
 
     function animateEnter(el) {
@@ -1244,7 +1276,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       window.scrollTo(0, 0);
       animateEnter(guidePageEl);
       progressEl.classList.add('on');
-      updateProgress();
+      updateProgress(true); // instant reset, no lerp from previous page position
       if (skel && !REDUCED_MOTION) {
         // crossfade: hold skeleton briefly, fade it out, then inject real content
         const hold = Math.max(0, 340 - (performance.now() - skelGuideT0));
