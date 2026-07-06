@@ -612,6 +612,19 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     .card:hover { transform: none; }
   }
 
+  /* ---------- Hero looping typewriter ---------- */
+  .hero h1 .tw-word:empty::before { content: '\200B'; } /* keep line height while empty */
+  .tw-caret {
+    display: inline-block; width: .07em; height: .78em;
+    margin-left: .08em; vertical-align: -.04em;
+    background: var(--acc-1); border-radius: 2px;
+    animation: tw-blink 1.05s steps(1) infinite;
+  }
+  @keyframes tw-blink { 50% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .tw-caret { display: none; }
+  }
+
   @media (max-width: 860px) {
     .grid, .steps { grid-template-columns: repeat(2, 1fr); }
     .nav { display: none; }
@@ -998,88 +1011,52 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       return html;
     }
 
-    // ---- Hero title: 5 entrance variations ----
-    const HERO_L1 = 'Learn to make', HERO_L2 = 'anything';
-
-    function buildHeroVariant(v) {
+    // ---- Hero title: live looping typewriter ----
+    // "Learn to make" types once, then the accent word cycles:
+    // anything -> games -> music -> videos -> posters -> ...
+    function initHeroTypewriter() {
       const h1 = document.querySelector('.hero h1');
       if (!h1) return;
-      h1.classList.remove('fade-var');
-
-      if (v === 'lines') {
-        // masked line reveal (two lines slide up from under a mask)
-        h1.innerHTML =
-          '<span class="hl"><span class="hl-in">' + esc(HERO_L1) + '</span></span><br>' +
-          '<span class="hl"><span class="hl-in"><span class="g">' + esc(HERO_L2) + '</span></span></span>';
-        return;
-      }
-
-      if (v === 'words') {
-        // word-by-word masked rise
-        let d = 60, html = '';
-        HERO_L1.split(' ').forEach(w => {
-          html += '<span class="hw"><span class="hw-in" style="--wd:' + d + 'ms">' + esc(w) + '</span></span> ';
-          d += 110;
-        });
-        html = html.trim() + '<br>' +
-          '<span class="hw"><span class="hw-in g" style="--wd:' + (d + 60) + 'ms">' + esc(HERO_L2) + '</span></span>';
-        h1.innerHTML = html;
-        return;
-      }
-
-      if (v === 'type') {
-        // typewriter, letter by letter, blinking caret
-        let t = 150, html = '';
-        for (const ch of HERO_L1) {
-          html += '<span class="t-ch" style="--td:' + t + 'ms">' + (ch === ' ' ? '&nbsp;' : esc(ch)) + '</span>';
-          t += 46;
-        }
-        t += 220; // beat before the accent word
-        html += '<br><span class="g">';
-        for (const ch of HERO_L2) {
-          html += '<span class="t-ch" style="--td:' + t + 'ms">' + esc(ch) + '</span>';
-          t += 46;
-        }
-        html += '</span><span class="t-caret" style="--tend:' + (t + 1400) + 'ms" aria-hidden="true"></span>';
-        h1.innerHTML = html;
-        return;
-      }
-
-      if (v === 'letters') {
-        // staggered letter cascade; gradient sliced across the accent word
-        let d = 60, html = '';
-        for (const ch of HERO_L1) {
-          html += ch === ' ' ? ' '
-            : '<span class="lt" style="--ld:' + d + 'ms">' + esc(ch) + '</span>';
-          d += 26;
-        }
-        html += '<br>';
-        const n = HERO_L2.length;
-        for (let i = 0; i < n; i++) {
-          const pos = n > 1 ? (i / (n - 1) * 100).toFixed(1) : '0';
-          html += '<span class="lt g-ch" style="--ld:' + d + 'ms;background-size:' + (n * 100) + '% 100%;background-position:' + pos + '% 0">' + esc(HERO_L2[i]) + '</span>';
-          d += 26;
-        }
-        h1.innerHTML = html;
-        return;
-      }
-
-      // 'fade': soft fade-in with a blinking cursor that retires
-      h1.innerHTML = esc(HERO_L1) + '<br><span class="g">' + esc(HERO_L2) + '</span>' +
-        '<span class="t-caret" style="--tend:2600ms" aria-hidden="true"></span>';
-      h1.classList.add('fade-var');
-    }
-
-    function initHeroVariant() {
+      // reduced motion: keep the static masked-reveal markup as is
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      const variants = ['type', 'words', 'lines', 'letters', 'fade'];
-      let i = Math.floor(Math.random() * variants.length);
-      try {
-        const prev = parseInt(localStorage.getItem('qcHeroVar'), 10);
-        if (!isNaN(prev)) i = (prev + 1) % variants.length;
-        localStorage.setItem('qcHeroVar', String(i));
-      } catch (e) {}
-      buildHeroVariant(variants[i]);
+
+      const WORDS = ['anything', 'games', 'music', 'videos', 'posters'];
+      const T = { type: 58, del: 34, hold: 2100, gap: 380 };
+
+      h1.innerHTML =
+        '<span class="tw-l1"></span><br>' +
+        '<span class="g tw-word"></span><span class="tw-caret" aria-hidden="true"></span>';
+      const l1 = h1.querySelector('.tw-l1');
+      const wEl = h1.querySelector('.tw-word');
+      const caret = h1.querySelector('.tw-caret');
+      let wi = 0;
+
+      function typeStr(el, str, i, cb) {
+        if (i > str.length) { cb(); return; }
+        el.textContent = str.slice(0, i);
+        setTimeout(() => typeStr(el, str, i + 1, cb), T.type);
+      }
+      function delStr(el, cb) {
+        const s = el.textContent;
+        if (!s.length) { cb(); return; }
+        el.textContent = s.slice(0, -1);
+        setTimeout(() => delStr(el, cb), T.del);
+      }
+      function loop() {
+        typeStr(wEl, WORDS[wi % WORDS.length], 1, () => {
+          setTimeout(() => delStr(wEl, () => {
+            wi++;
+            setTimeout(loop, T.gap);
+          }), T.hold);
+        });
+      }
+
+      // caret follows line 1 while it types, then jumps to line 2
+      l1.after(caret);
+      typeStr(l1, 'Learn to make', 1, () => {
+        wEl.after(caret);
+        setTimeout(loop, 260);
+      });
     }
 
     // ---- Hash routing (#/guide/slug) ----
@@ -1309,7 +1286,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         await QC.ready();
       }
       document.getElementById('__qc-fouc-guard')?.remove();
-      initHeroVariant();
+      initHeroTypewriter();
       renderSkeletonGrid(6);
       await loadData();
       buildTicker();

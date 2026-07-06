@@ -21,7 +21,7 @@ NOTE ON TERMINOLOGY: meeting doc calls guides "cases" (kejsy) — same entity as
 - [x] Add level filter chips + sorting by level on main page
 - [x] Add model multi-select filter UI on main page (chips row 3, done)
 - [x] Confirmed by PO: tokens = qcc cost. Cost shown at top of guide page.
-- [ ] Add qcc cost sort on main page (IN PROGRESS)
+- [x] Add qcc cost sort on main page + cost tag on cards — DONE, deployed
 
 ## Phase 2 — Case pages architecture
 - [x] Convert guide modal (popup) → individual page view — hash routing #/guide/<id>, PO approved, DONE + deployed
