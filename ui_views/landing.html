@@ -1020,8 +1020,16 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       // reduced motion: keep the static masked-reveal markup as is
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-      const WORDS = ['anything', 'games', 'music', 'videos', 'posters'];
-      const T = { type: 58, del: 34, hold: 2100, gap: 380 };
+      const WORDS = [
+        'anything',
+        'a film soundtrack',
+        'your game hero',
+        'a comic poster',
+        'a 3D game asset',
+        'a product ad',
+        'motion templates'
+      ];
+      const T = { type: 58, del: 26, hold: 2100, gap: 380 };
 
       h1.innerHTML =
         '<span class="tw-l1"></span><br>' +
