@@ -48,35 +48,18 @@
       "sub": "Crossover Art",
       "title": "Make a game crossover poster",
       "desc": "Mix two games into one bold comic-style banner with a single prompt.",
-      "time": "10 min",
+      "time": "5 min",
       "date": "2026-07-02",
       "level": "Junior",
-      "models": "GPT-Image, Nanobanana",
+      "models": "GPT-Image",
       "cost": "~18 qcc",
       "image": "/ui_views/assets/poster-gta6-hitman.png",
       "steps": [
         {
-          "title": "Pick two games",
-          "text": "Choose two characters or games you want to mix. Keep the idea in one short sentence.",
-          "prompt": "Comic-book style crossover poster, two game characters sharing one scene, bold ink outlines, halftone shading, neon sunset city colors",
-          "result_image": "/ui_views/assets/design-poster-step1-concept.png"
-        },
-        {
-          "title": "Set the scene",
-          "text": "Say where the scene happens and what each character is doing. Make sure it reads as one story, not two random photos glued together.",
-          "prompt": "One character covers the other from a rooftop with a sniper rifle while the other walks a neon city street holding a pistol, split by a diagonal comic panel line",
-          "result_image": "/ui_views/assets/design-poster-step2-concept.png"
-        },
-        {
-          "title": "Add a title and caption",
-          "text": "Add a big crossover logo with both names, plus a short bold caption at the bottom.",
-          "prompt": "Add bold comic logo text combining both game names, and a caption box at the bottom with a short punchy mission title",
+          "title": "One prompt, whole poster",
+          "text": "Describe the scene, both characters, the style and the text in a single prompt. Run it a few times and keep the version with the cleanest lettering.",
+          "prompt": "Wide horizontal comic-book crossover poster mixing two games. Upper-left panel: a bald assassin in a sharp black suit and red tie kneels on a rooftop, aiming a long sniper rifle across the skyline, covering the hero below. Lower-right panel: a young man in a white tank top with a tattooed arm walks a sun-drenched neon city street at dusk holding a pistol, palm trees, retro convertible cars, pink and orange sunset. The two panels are split by one bold diagonal comic slash so it reads as protection, not an ambush. Bold ink outlines, halftone shading, saturated neon colors. Big comic logo at the top combining both game names, and a caption box at the bottom reading \"ESPECIALLY DANGEROUS MISSION\". Keep all text crisp and correctly spelled, no watermarks.",
           "result_image": "/ui_views/assets/poster-gta6-hitman.png"
-        },
-        {
-          "title": "Generate and pick your favorite",
-          "text": "Run the prompt a few times and keep the version with the cleanest text and the most exciting scene.",
-          "prompt": ""
         }
       ],
       "result": "A sharp, comic-style crossover banner ready to post or use as cover art."
@@ -90,8 +73,8 @@
       "time": "5 min",
       "date": "2026-07-02",
       "level": "Junior",
-      "models": "GPT-Image, Suno",
-      "cost": "~13 qcc",
+      "models": "Suno",
+      "cost": "~9 qcc",
       "image": "/ui_views/assets/music-jazz-restaurant-cover.png",
       "audio": "/ui_views/assets/music-rnb-latenight.mp3",
       "steps": [
@@ -127,40 +110,40 @@
       "time": "8 min",
       "date": "2026-07-03",
       "level": "Middle+",
-      "models": "Seedance",
+      "models": "GPT-Image, Seedance",
       "cost": "~1150 qcc",
       "video": "/ui_views/assets/video-airpods-max-montage.mp4",
       "poster": "/ui_views/assets/video-airpods-max-poster.jpg",
       "steps": [
         {
-          "title": "Open with a reveal",
-          "text": "Start with an unboxing or reveal shot. One dramatic light, one clean product, nothing else in frame.",
-          "prompt": "Elegant unboxing shot, box lid opening under a single dramatic spotlight, premium headphones nested in soft packaging, dark studio background",
-          "result_image": "/ui_views/assets/video-airpods-step1-reveal.jpg"
+          "title": "Plan the film with one image",
+          "text": "Generate one storyboard sheet with GPT-Image. It locks the look of every shot before you spend a single video credit.",
+          "prompt": "A professional film storyboard sheet for a 20-second premium headphones spec ad, dark cinematic layout on black. Eight 16:9 frames in a grid, each with a caption and timecode: box reveal under a single spotlight, hero product floating on black with a specular light sweep, macro of the dial and brushed metal, macro of the knit mesh cushion, person wearing the headphones in a neon city at night, night walk on a wet reflective street, brand end card with the product on a glossy floor, final slow push-in. Consistent silver over-ear headphones in every frame, Apple-style product cinematography, clean typography, high-end pitch deck look.",
+          "result_image": "/ui_views/assets/video-airpods-storyboard.jpg"
         },
         {
-          "title": "Add a hero shot",
-          "text": "Show the full product from its best angle with soft rim light to trace the edges.",
-          "prompt": "Clean 3/4 hero shot of premium headphones on a dark reflective surface, soft rim light on the edges, minimal studio background",
-          "result_image": "/ui_views/assets/video-airpods-step2-hero.jpg"
+          "title": "Shot 1 — the reveal",
+          "text": "Feed the storyboard frame into Seedance and generate the opening clip. One box, one light, nothing else.",
+          "prompt": "A pristine white product box on a dark reflective floor under one soft spotlight. The lid slowly lifts and warm light blooms from inside, revealing silver over-ear headphones nested in the packaging. Slow overhead push-in, quiet and premium, dark studio, no text.",
+          "result_video": "/ui_views/assets/video-airpods-clip-unboxing.mp4"
         },
         {
-          "title": "Zoom into the details",
-          "text": "Cut to close-up macro shots of textures and materials, this is what makes it feel premium.",
-          "prompt": "Extreme close-up macro shot on the dial and ear-cushion mesh texture, shallow depth of field, tactile and premium",
-          "result_image": "/ui_views/assets/video-airpods-step3-macro.jpg"
+          "title": "Shot 2 — the hero",
+          "text": "Now the money shot: the product alone on black with light doing all the work.",
+          "prompt": "Silver over-ear headphones float centered on a pure black background. A single specular light streak sweeps across the aluminium ear cups as the product slowly rotates. Slow drifting camera, high-contrast studio lighting, shallow depth of field, premium ad style, no text.",
+          "result_video": "/ui_views/assets/video-airpods-clip-hero.mp4"
         },
         {
-          "title": "Show it in real life",
-          "text": "Add one lifestyle shot of someone using the product in a moody, cinematic setting.",
-          "prompt": "A person wearing the headphones walking down a rain-slicked neon city street at night, cinematic bokeh from lights, moody and premium",
-          "result_image": "/ui_views/assets/video-airpods-step4-lifestyle.jpg"
+          "title": "Shot 3 — real life",
+          "text": "One lifestyle clip so the product lives outside the studio. Keep it moody and cinematic.",
+          "prompt": "A young man wearing silver over-ear headphones walks away from camera through a neon-lit city street at night, wet asphalt reflecting the signs, cinematic bokeh from car lights, smooth forward tracking shot, moody, immersive and premium.",
+          "result_video": "/ui_views/assets/video-airpods-clip-lifestyle.mp4"
         },
         {
-          "title": "Close on the brand",
-          "text": "End on a simple brand card and stitch every shot together into one smooth video.",
-          "prompt": "Product centered on black background, small clean wordmark below, minimal premium brand end card",
-          "result_image": "/ui_views/assets/video-airpods-step5-brand.jpg"
+          "title": "Shot 4 — the end card",
+          "text": "Close on the brand, then stitch all four clips together in any editor.",
+          "prompt": "Silver over-ear headphones stand centered on a glossy black floor with a soft mirror reflection. The camera pushes in slowly while the light gently dims to black. Minimal premium brand end-card mood, elegant and calm, no text.",
+          "result_video": "/ui_views/assets/video-airpods-clip-endcard.mp4"
         }
       ],
       "result": "A slick, ad-style product montage ready to post or use as a promo video."
