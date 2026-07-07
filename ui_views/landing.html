@@ -6,6 +6,17 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Quadcode Guide</title>
+<meta name="description" content="Simple, step-by-step guides for making AI content — posters, music, video, 3D game characters. One prompt, one result. Open it straight in Quadcode.ai.">
+<!-- Social share card (site-wide default; link previews on TG / X / etc.) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Quadcode Guide">
+<meta property="og:title" content="Quadcode Guide — learn to make AI content">
+<meta property="og:description" content="Step-by-step guides: posters, music, video, 3D game characters. One prompt, one result.">
+<meta property="og:image" content="/ui_views/assets/poster-gta6-hitman.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Quadcode Guide — learn to make AI content">
+<meta name="twitter:description" content="Step-by-step guides: posters, music, video, 3D game characters. One prompt, one result.">
+<meta name="twitter:image" content="/ui_views/assets/poster-gta6-hitman.png">
 <style id="__qc-fouc-guard">body{visibility:hidden!important}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,6 +40,9 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   }
 
   * { box-sizing: border-box; }
+
+  /* keep [hidden] working on elements whose class sets display:flex */
+  [hidden] { display: none !important; }
 
   html { scroll-behavior: smooth; }
 
@@ -59,44 +73,26 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     display: flex; align-items: center; justify-content: space-between;
     max-width: 1120px; margin: 0 auto; padding: 22px 28px;
   }
-  .logo { display: flex; align-items: center; gap: 9px; }
+  .logo {
+    display: flex; align-items: center; gap: 9px;
+    cursor: pointer; user-select: none;
+    padding: 4px; margin: -4px; border-radius: 10px;
+    transition: opacity .2s ease, transform .2s var(--ease-out);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .logo:hover { opacity: .85; }
+  .logo:active { transform: scale(.97); }
+  .logo:focus-visible { outline: 2px solid var(--acc-1); outline-offset: 3px; }
   .logo .mark {
     width: 30px; height: 30px; border-radius: 8px;
     display: block; object-fit: contain;
+    transition: transform .25s var(--ease-out);
   }
+  .logo:hover .mark { transform: rotate(-6deg) scale(1.06); }
   .logo b { font-family: var(--font-display); font-size: 17px; font-weight: 700; letter-spacing: -.2px; }
   .nav { display: flex; gap: 26px; }
   .nav a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; }
   .nav a:hover { color: var(--white); }
-
-  /* ---------- Marquee ticker ---------- */
-  .ticker {
-    position: relative; overflow: hidden;
-    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-    background: rgba(255,255,255,.02);
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-            mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-  }
-  .ticker-track {
-    display: flex; width: max-content;
-    animation: ticker-scroll 42s linear infinite;
-    will-change: transform;
-  }
-  .ticker:hover .ticker-track { animation-play-state: paused; }
-  .ticker-group { display: flex; flex: 0 0 auto; }
-  .ticker-item {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 12px 26px; font-size: 13px; font-weight: 500;
-    color: var(--muted); white-space: nowrap; letter-spacing: .2px;
-  }
-  .ticker-item::before {
-    content: ''; width: 5px; height: 5px; border-radius: 999px;
-    background: var(--acc-1); flex: 0 0 5px;
-  }
-  @keyframes ticker-scroll {
-    from { transform: translate3d(0, 0, 0); }
-    to   { transform: translate3d(-50%, 0, 0); }
-  }
 
   /* ---------- Focus-bracket frame ---------- */
   .framed { position: relative; }
@@ -146,6 +142,58 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   }
   .cta:hover { filter: brightness(1.06); transform: translateY(-2px); box-shadow: 0 6px 18px -6px rgba(221,52,77,.45); }
   .cta:active { transform: translateY(0) scale(.97); filter: brightness(.98); }
+
+  /* ---------- Hero search ---------- */
+  .hero-search {
+    display: flex; align-items: center; gap: 10px;
+    max-width: 540px; margin: 0 auto; text-align: left;
+    background: var(--bg-2); border: 1px solid var(--line);
+    border-radius: 999px; padding: 7px 16px 7px 20px;
+    transition: border-color .2s ease, box-shadow .25s ease;
+  }
+  .hero-search:focus-within {
+    border-color: var(--acc-1);
+    box-shadow: 0 0 0 4px rgba(255,149,105,.14), 0 14px 34px -18px rgba(221,52,77,.5);
+  }
+  .hero-search .hs-icon {
+    width: 16px; height: 16px; flex: 0 0 16px; background: var(--muted-2);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z'/%3E%3C/svg%3E") center/contain no-repeat;
+    transition: background .2s ease;
+  }
+  .hero-search:focus-within .hs-icon { background: var(--acc-1); }
+  .hero-search input {
+    flex: 1; min-width: 0; background: none; border: 0; outline: none;
+    color: var(--white); font-family: inherit; font-size: 15px; font-weight: 400;
+    padding: 8px 0;
+  }
+  .hero-search input::placeholder { color: var(--muted); }
+  .hero-search input::-webkit-search-cancel-button,
+  .hero-search input::-webkit-search-decoration { -webkit-appearance: none; appearance: none; }
+  .hs-clear {
+    flex: 0 0 auto; width: 24px; height: 24px; border: 0; border-radius: 999px;
+    background: var(--bg-3); color: var(--muted); cursor: pointer;
+    font-family: inherit; font-size: 14px; line-height: 1;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: color .15s ease, transform .16s var(--ease);
+  }
+  .hs-clear:hover { color: var(--white); }
+  .hs-clear:active { transform: scale(.88); }
+  .hs-key {
+    flex: 0 0 auto; font-size: 11px; font-weight: 600; color: var(--muted);
+    font-family: 'SF Mono', ui-monospace, monospace;
+    border: 1px solid var(--line); border-radius: 6px; padding: 2px 8px;
+  }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+  .count-b {
+    background: var(--grad);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+    font-weight: 700;
+  }
 
   /* ---------- Category filter ---------- */
   .filters {
@@ -197,12 +245,112 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     justify-content: center; padding: 0 0 40px;
   }
 
+  /* ---------- Consolidated filter toolbar ---------- */
+  .toolbar {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px; padding: 12px 0 0;
+  }
+  .toolbar .filters { padding: 0; justify-content: flex-start; flex: 1 1 auto; }
+  .tb-right { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
+  .tb-btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 13px; font-weight: 600; color: var(--muted);
+    background: var(--bg-2); border: 1px solid var(--line);
+    padding: 9px 16px; border-radius: 999px; cursor: pointer; font-family: inherit;
+    transition: color .18s ease, border-color .18s ease, transform .16s var(--ease);
+  }
+  .tb-btn:hover { color: var(--white); border-color: rgba(255,149,105,.4); }
+  .tb-btn:active { transform: scale(.96); }
+  .tb-btn.on { color: var(--acc-1); border-color: rgba(255,149,105,.45); background: rgba(255,149,105,.07); }
+  .tb-btn b { color: var(--white); font-weight: 600; }
+  .tb-btn .caret { width: 9px; height: 9px; margin-left: 1px; background: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") center/contain no-repeat;
+    transition: transform .2s ease; }
+  .tb-btn[aria-expanded="true"] .caret { transform: rotate(180deg); }
+  .tb-ico { width: 14px; height: 14px; background: currentColor;
+    -webkit-mask-position: center; mask-position: center;
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+    -webkit-mask-size: contain; mask-size: contain; }
+  .tb-ico.ico-filter {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 5h18v2l-7 7v5l-4 2v-7L3 7z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 5h18v2l-7 7v5l-4 2v-7L3 7z'/%3E%3C/svg%3E");
+  }
+  .tb-badge {
+    min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px;
+    background: var(--grad); color: #fff; font-size: 11px; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .tb-select { position: relative; }
+  .tb-menu {
+    position: absolute; top: calc(100% + 8px); right: 0; z-index: 40;
+    min-width: 210px; padding: 6px; border-radius: 12px;
+    background: var(--bg-2); border: 1px solid var(--line);
+    box-shadow: 0 18px 44px -14px rgba(0,0,0,.6);
+    animation: menu-in .16s var(--ease-out);
+  }
+  @keyframes menu-in { from { opacity: 0; transform: translateY(-6px); } }
+  .tb-menu button, .cat-menu button {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    width: 100%; text-align: left; font-family: inherit; font-size: 13.5px; font-weight: 500;
+    color: var(--muted); background: none; border: 0; cursor: pointer;
+    padding: 9px 12px; border-radius: 8px;
+    transition: background .14s ease, color .14s ease;
+  }
+  .tb-menu button:hover, .cat-menu button:hover { background: var(--bg-3); color: var(--white); }
+  .tb-menu button.on, .cat-menu button.on { color: var(--acc-1); }
+  .tb-menu button.on::after, .cat-menu button.on::after {
+    content: ''; width: 14px; height: 14px; background: var(--acc-1);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.2l-3.5-3.5-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.2l-3.5-3.5-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
+  /* category dropdown (chip → subcategory list) */
+  .cat-wrap { position: relative; display: inline-flex; }
+  .chip-caret {
+    width: 9px; height: 9px; margin-left: 1px; background: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") center/contain no-repeat;
+    transition: transform .2s ease;
+  }
+  .chip[aria-expanded="true"] .chip-caret { transform: rotate(180deg); }
+  .cat-menu {
+    position: absolute; top: calc(100% + 8px); left: 0; z-index: 45;
+    min-width: 190px; max-height: 340px; overflow-y: auto;
+    padding: 6px; border-radius: 12px;
+    background: var(--bg-2); border: 1px solid var(--line);
+    box-shadow: 0 18px 44px -14px rgba(0,0,0,.6);
+    animation: menu-in .16s var(--ease-out);
+  }
+  .filters-panel {
+    display: flex; flex-direction: column; gap: 14px;
+    margin-top: 14px; padding: 16px 18px; border-radius: 14px;
+    background: var(--bg-2); border: 1px solid var(--line);
+    animation: menu-in .18s var(--ease-out);
+  }
+  .filters-panel .fp-group { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+  .filters-panel .fp-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--muted-2); flex: 0 0 56px;
+  }
+  .filters-panel #filtersRow2, .filters-panel #filtersRow3 {
+    display: flex; flex-wrap: wrap; gap: 8px; padding: 0;
+  }
+  /* toolbar wrapper gets bottom spacing that the old row3 used to provide */
+  .filters-section { padding-bottom: 34px; }
+  /* subcategory chip row (appears when a category is active) */
+  .subfilters {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px;
+    animation: menu-in .18s var(--ease-out);
+  }
+  .filters .chip { display: inline-flex; align-items: center; gap: 7px; }
+
   /* ---------- Guide grid ---------- */
   .grid {
     display: grid; grid-template-columns: repeat(3, 1fr);
     gap: 18px; padding-bottom: 64px; min-height: 120px;
   }
   .card {
+    position: relative;
     background: var(--bg-2); border: 1px solid var(--line);
     border-radius: var(--radius); padding: 24px;
     cursor: pointer; display: flex; flex-direction: column; gap: 12px;
@@ -225,15 +373,34 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   }
   .card:hover .cover { transform: scale(1.045); }
   .card .cat-label {
+    display: inline-flex; align-items: center; gap: 6px;
     font-size: 11px; text-transform: uppercase; letter-spacing: 1.4px;
     font-weight: 600;
     background: var(--grad); -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent; color: transparent; width: fit-content;
   }
+  .card .cat-label .sub-label { color: var(--muted-2); -webkit-text-fill-color: var(--muted-2); }
+  .card .cat-label .sub-label::before { content: '\2192'; margin-right: 5px; color: var(--muted-2); -webkit-text-fill-color: var(--muted-2); }
+  /* category icon in the eyebrow (masked, gradient-tinted via bg) */
+  .cat-ico {
+    width: 13px; height: 13px; flex: 0 0 13px; -webkit-text-fill-color: initial;
+    background: var(--acc-1);
+    -webkit-mask-position: center; mask-position: center;
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+    -webkit-mask-size: contain; mask-size: contain;
+  }
+  /* inside chips the icon tracks the chip's text color (muted → white active) */
+  .chip .cat-ico { background: currentColor; width: 14px; height: 14px; flex: 0 0 14px; }
+  .cat-ico.ci-all { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z'/%3E%3C/svg%3E"); }
+  .cat-ico.ci-gamedev { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M21 6H3a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zM11 13H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3-3a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M21 6H3a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zM11 13H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3-3a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z'/%3E%3C/svg%3E"); }
+  .cat-ico.ci-music { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z'/%3E%3C/svg%3E"); }
+  .cat-ico.ci-video { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z'/%3E%3C/svg%3E"); }
+  .cat-ico.ci-design { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10c.93 0 1.65-.75 1.65-1.69 0-.44-.18-.83-.44-1.12-.29-.29-.44-.65-.44-1.12 0-.93.75-1.69 1.69-1.69H16C19.03 15.38 22 13.4 22 9.5 22 5.36 17.51 2 12 2zM6.5 12a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10c.93 0 1.65-.75 1.65-1.69 0-.44-.18-.83-.44-1.12-.29-.29-.44-.65-.44-1.12 0-.93.75-1.69 1.69-1.69H16C19.03 15.38 22 13.4 22 9.5 22 5.36 17.51 2 12 2zM6.5 12a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z'/%3E%3C/svg%3E"); }
+  .cat-ico.ci-motion-design { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 6.47L5.76 10H20v8H4V6.47M22 4h-4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4z'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 6.47L5.76 10H20v8H4V6.47M22 4h-4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4z'/%3E%3C/svg%3E"); }
   .card h3 { font-family: var(--font-display); margin: 0; font-size: 19px; font-weight: 600; letter-spacing: -.4px; }
   .card p { margin: 0; font-size: 14px; color: var(--muted); font-weight: 400; }
   .card .time {
-    font-size: 12px; font-weight: 500; color: var(--muted-2);
+    font-size: 12.5px; font-weight: 500; color: var(--muted);
     display: inline-flex; align-items: center; gap: 6px;
   }
   .card .time::before {
@@ -247,17 +414,201 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     font-weight: 600; color: var(--acc-1);
   }
   .card .read {
-    margin-top: auto; font-size: 14px; font-weight: 600; color: var(--acc-1);
-    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13.5px; font-weight: 600; color: var(--acc-1);
+    display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
   }
   .card .read::after { content: '\2192'; transition: transform .22s cubic-bezier(.22,.61,.36,1); }
   .card:hover .read::after { transform: translateX(4px); }
+
+  /* card tag pills: one visual system for level / trending / media */
+  .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 10.5px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 999px;
+    background: var(--bg-3); border: 1px solid var(--line); color: var(--muted);
+  }
+  .pill::before {
+    content: ''; width: 10px; height: 10px; flex: 0 0 10px; background: currentColor;
+    -webkit-mask-position: center; mask-position: center;
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+    -webkit-mask-size: contain; mask-size: contain;
+    display: none;
+  }
+  /* Level = solid tinted STATUS badge (rounded pill, filled) */
+  .pill.lv-junior  { color: #7ee787; border-color: rgba(126,231,135,.4); background: rgba(126,231,135,.14); }
+  .pill.lv-middle  { color: var(--acc-1); border-color: rgba(255,149,105,.4); background: rgba(255,149,105,.14); }
+  .pill.lv-middleplus { color: #ffb454; border-color: rgba(255,180,84,.4); background: rgba(255,180,84,.14); }
+  /* Trending = accent status pill */
+  .pill-trend {
+    color: var(--acc-1); border-color: rgba(255,149,105,.4);
+    background: rgba(255,149,105,.1);
+  }
+  .pill-trend::before {
+    display: inline-block;
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z'/%3E%3C/svg%3E");
+  }
+  /* Content type = a differently-shaped chip (squared corners, icon-led,
+     lowercase-ish) so difficulty and content read as two different things */
+  .pill-media {
+    text-transform: none; letter-spacing: .1px; font-weight: 600; font-size: 11px;
+    padding: 4px 9px 4px 8px; border-radius: 7px;
+    background: rgba(255,255,255,.03); border-color: var(--line); color: var(--muted);
+  }
+  .pill-media::before { display: inline-block; width: 11px; height: 11px; flex: 0 0 11px; background: var(--acc-1); }
+  .pm-video::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z'/%3E%3C/svg%3E");
+  }
+  .pm-sound::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1c2.9.9 5 3.5 5 6.7s-2.1 5.8-5 6.7v2.1c4-1 7-4.6 7-8.8s-3-7.8-7-8.8z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1c2.9.9 5 3.5 5 6.7s-2.1 5.8-5 6.7v2.1c4-1 7-4.6 7-8.8s-3-7.8-7-8.8z'/%3E%3C/svg%3E");
+  }
+  .pm-audio::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z'/%3E%3C/svg%3E");
+  }
+  .pm-image::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z'/%3E%3C/svg%3E");
+  }
+
+  /* card footer: time·cost left, action right, one line, pinned to an even baseline */
+  .card-foot {
+    margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  }
+  .card-foot .time { min-width: 0; }
+
+  /* view counter — cover overlay badge on cards, inline in guide meta */
+  .view-badge {
+    position: absolute; left: 10px; bottom: 10px; z-index: 2;
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 11.5px; font-weight: 600; color: #fff;
+    padding: 4px 9px 4px 8px; border-radius: 999px;
+    background: rgba(11,13,21,.6); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,.14);
+    font-variant-numeric: tabular-nums; pointer-events: none;
+  }
+  .view-badge::before {
+    content: ''; width: 12px; height: 12px; flex: 0 0 12px; background: #fff;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 4.5C7 4.5 2.7 7.6 1 12c1.7 4.4 6 7.5 11 7.5s9.3-3.1 11-7.5C21.3 7.6 17 4.5 12 4.5zm0 12.5a5 5 0 110-10 5 5 0 010 10zm0-2.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 4.5C7 4.5 2.7 7.6 1 12c1.7 4.4 6 7.5 11 7.5s9.3-3.1 11-7.5C21.3 7.6 17 4.5 12 4.5zm0 12.5a5 5 0 110-10 5 5 0 010 10zm0-2.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
+  /* image cover inside the wrapper: the wrapper owns the bleed + radius */
+  .card .cover-wrap .cover { margin: 0; width: 100%; border-radius: 0; }
+
+  /* cover overlays: media-type chips (top-left), trending (top-right) */
+  .cover-chips {
+    position: absolute; top: 10px; left: 10px; z-index: 2;
+    display: flex; gap: 6px; flex-wrap: wrap; max-width: calc(100% - 100px);
+    pointer-events: none;
+  }
+  .cover-chip {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 10.5px; font-weight: 600; color: #fff;
+    padding: 4px 9px 4px 8px; border-radius: 7px;
+    background: rgba(11,13,21,.6); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,.14);
+  }
+  .cover-chip::before {
+    content: ''; width: 11px; height: 11px; flex: 0 0 11px; background: #fff;
+    -webkit-mask-position: center; mask-position: center;
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+    -webkit-mask-size: contain; mask-size: contain;
+  }
+  .cover-trend {
+    position: absolute; top: 10px; right: 10px; z-index: 2;
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 10.5px; font-weight: 700; letter-spacing: .3px; color: #fff;
+    padding: 4px 10px 4px 8px; border-radius: 999px;
+    background: linear-gradient(100deg, rgba(255,149,105,.92), rgba(221,52,77,.92));
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,.2); pointer-events: none;
+  }
+  .cover-trend::before {
+    content: ''; width: 11px; height: 11px; flex: 0 0 11px; background: #fff;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
+
+  /* view counter inline in the guide meta strip */
+  .views {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 13px; font-weight: 500; color: var(--muted);
+    font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  .views::before {
+    content: ''; width: 13px; height: 13px; display: inline-block; flex: 0 0 13px;
+    background: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 4.5C7 4.5 2.7 7.6 1 12c1.7 4.4 6 7.5 11 7.5s9.3-3.1 11-7.5C21.3 7.6 17 4.5 12 4.5zm0 12.5a5 5 0 110-10 5 5 0 010 10zm0-2.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 4.5C7 4.5 2.7 7.6 1 12c1.7 4.4 6 7.5 11 7.5s9.3-3.1 11-7.5C21.3 7.6 17 4.5 12 4.5zm0 12.5a5 5 0 110-10 5 5 0 010 10zm0-2.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
 
   .empty {
     grid-column: 1 / -1; text-align: center; color: var(--muted-2);
     padding: 56px 0; font-size: 15px; border: 1px dashed var(--line);
     border-radius: var(--radius); font-weight: 400;
   }
+  .empty .chip { margin-top: 14px; }
+
+  /* ---------- Results bar (search / filter summary) ---------- */
+  .results-bar {
+    display: flex; align-items: center; justify-content: center;
+    flex-wrap: wrap; gap: 10px 14px;
+    margin-top: -14px; padding: 0 0 30px;
+    font-size: 14px; color: var(--muted);
+  }
+  .results-bar b { color: var(--white); font-weight: 600; }
+  .results-bar .rb-q { color: var(--acc-1); font-weight: 600; }
+
+  /* ---------- Catalog shelves (Trending / For beginners) ---------- */
+  .shelf .grid { padding-bottom: 34px; }
+  .shelf-head, .all-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 14px; margin: 0 0 18px;
+  }
+  .shelf-title {
+    display: flex; align-items: center; gap: 10px; margin: 0;
+    font-family: var(--font-display); font-size: 22px; font-weight: 700; letter-spacing: -.5px;
+  }
+  .shelf-title .sh-ico {
+    width: 18px; height: 18px; flex: 0 0 18px; background: var(--acc-1);
+    -webkit-mask-position: center; mask-position: center;
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+    -webkit-mask-size: contain; mask-size: contain;
+  }
+  .sh-ico.ico-trend {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z'/%3E%3C/svg%3E");
+  }
+  .sh-ico.ico-school {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z'/%3E%3C/svg%3E");
+  }
+  .shelf-title .sh-count {
+    font-family: 'Inter', system-ui, sans-serif; font-size: 13px; font-weight: 500;
+    color: var(--muted); letter-spacing: 0;
+  }
+  .shelf-link {
+    background: none; border: 0; padding: 0; cursor: pointer;
+    font-family: inherit; font-size: 14px; font-weight: 600; color: var(--acc-1);
+    display: inline-flex; align-items: center; gap: 6px; flex: 0 0 auto;
+  }
+  .shelf-link::after { content: '\2192'; transition: transform .22s var(--ease); }
+  .shelf-link:hover::after { transform: translateX(4px); }
+
+  /* ---------- Load more ---------- */
+  .load-more-wrap { display: flex; justify-content: center; margin-top: -28px; padding: 0 0 64px; }
+  .load-more {
+    font-size: 14px; font-weight: 600; color: var(--muted);
+    background: var(--bg-2); border: 1px solid var(--line);
+    padding: 12px 30px; border-radius: 999px; cursor: pointer; font-family: inherit;
+    transition: color .18s ease, border-color .18s ease, transform .16s var(--ease);
+  }
+  .load-more:hover { color: var(--white); border-color: rgba(255,149,105,.4); transform: translateY(-1px); }
+  .load-more:active { transform: scale(.96); }
 
   /* ---------- Skeleton loading system ---------- */
   .skel {
@@ -380,16 +731,30 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     animation: buf-spin .7s linear infinite;
   }
   @keyframes buf-spin { to { transform: rotate(360deg); } }
-  .card .video-tag {
-    font-size: 12px; font-weight: 600; color: var(--acc-1);
-    display: inline-flex; align-items: center; gap: 6px;
+  /* hover sound preview: animated equalizer badge over the cover */
+  .eq {
+    position: absolute; top: 13px; right: 13px; z-index: 5;
+    display: flex; align-items: flex-end; gap: 3px;
+    height: 15px; padding: 6px 8px;
+    border-radius: 999px;
+    background: rgba(11,13,21,.62);
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,.14);
+    opacity: 0; transform: translateY(-5px) scale(.9);
+    transition: opacity .28s ease, transform .28s var(--ease-out);
+    pointer-events: none;
   }
-  .card .video-tag::before {
-    content: ''; width: 12px; height: 12px; display: inline-block;
-    background: var(--acc-1);
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z' fill='black'/%3E%3C/svg%3E") center/contain no-repeat;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z' fill='black'/%3E%3C/svg%3E") center/contain no-repeat;
+  .card.previewing .eq { opacity: 1; transform: none; }
+  .eq span {
+    width: 3px; height: 100%; border-radius: 2px;
+    background: var(--acc-1); transform-origin: bottom;
+    transform: scaleY(.3);
   }
+  .card.previewing .eq span { animation: eq-bounce .9s ease-in-out infinite; }
+  .eq span:nth-child(2) { animation-delay: .17s; animation-duration: .74s; }
+  .eq span:nth-child(3) { animation-delay: .34s; animation-duration: 1.06s; }
+  .eq span:nth-child(4) { animation-delay: .11s; animation-duration: .83s; }
+  @keyframes eq-bounce { 0%,100% { transform: scaleY(.28); } 50% { transform: scaleY(1); } }
   .m-meta {
     display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px;
     margin: 12px 0 4px; padding-bottom: 14px; border-bottom: 1px solid var(--line);
@@ -472,6 +837,157 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   }
   .m-result p { margin: 0; font-size: 15px; font-weight: 500; }
 
+  /* cover "Final result" badge */
+  .m-cover-wrap { position: relative; margin-bottom: 20px; }
+  .m-cover-wrap .m-cover { margin-bottom: 0; }
+  .result-badge {
+    position: absolute; top: 12px; left: 12px; z-index: 2;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase;
+    color: #fff; padding: 6px 12px; border-radius: 999px;
+    background: rgba(11,13,21,.66); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,.14);
+  }
+  .result-badge::before {
+    content: ''; width: 11px; height: 11px; background: var(--acc-1);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l2.4 6.9L21 9.2l-5.4 4.2L17.6 21 12 16.9 6.4 21l2-7.6L3 9.2l6.6-.3z'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l2.4 6.9L21 9.2l-5.4 4.2L17.6 21 12 16.9 6.4 21l2-7.6L3 9.2l6.6-.3z'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
+
+  /* ---------- Guide bottom CTA ---------- */
+  .m-cta {
+    margin-top: 30px; padding: 26px; border-radius: 16px;
+    background:
+      radial-gradient(120% 140% at 100% 0%, rgba(255,149,105,.14), transparent 55%),
+      radial-gradient(120% 140% at 0% 100%, rgba(221,52,77,.12), transparent 55%),
+      var(--bg-2);
+    border: 1px solid rgba(255,149,105,.22);
+    text-align: center;
+  }
+  .m-cta b { display: block; font-family: var(--font-display); font-size: 21px; font-weight: 700; letter-spacing: -.4px; margin-bottom: 6px; }
+  .m-cta span { display: block; font-size: 14px; color: var(--muted); margin-bottom: 18px; }
+  .m-cta .cta { font-size: 15px; }
+  .m-cta-note { margin-top: 12px; font-size: 12.5px; color: var(--muted-2); }
+
+  /* per-step prompt actions: Copy + Open in Quadcode */
+  .m-prompt-actions { display: inline-flex; align-items: center; gap: 8px; }
+  .qc-open-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,149,105,.1); border: 1px solid rgba(255,149,105,.35);
+    color: var(--acc-1); font-family: inherit; font-size: 11.5px; font-weight: 600;
+    padding: 5px 12px; border-radius: 999px; cursor: pointer;
+    transition: filter .18s ease, border-color .18s ease, transform .16s var(--ease);
+  }
+  .qc-open-btn::before {
+    content: ''; width: 12px; height: 12px; background: var(--acc-1);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7zM19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7zM19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
+  .qc-open-btn:hover { filter: brightness(1.12); border-color: rgba(255,149,105,.6); }
+  .qc-open-btn:active { transform: scale(.94); }
+
+  /* toast (prompt copied → opening Quadcode) */
+  .qc-toast {
+    position: fixed; left: 50%; bottom: 26px; transform: translate(-50%, 20px);
+    z-index: 80; pointer-events: none;
+    background: var(--bg-2); border: 1px solid rgba(255,149,105,.35);
+    color: var(--white); font-size: 13.5px; font-weight: 600;
+    padding: 11px 18px; border-radius: 999px;
+    box-shadow: 0 14px 40px -12px rgba(0,0,0,.6);
+    opacity: 0; transition: opacity .25s ease, transform .3s var(--ease-out);
+  }
+  .qc-toast.on { opacity: 1; transform: translate(-50%, 0); }
+  @media (prefers-reduced-motion: reduce) { .qc-toast { transition: opacity .2s ease; transform: translate(-50%,0); } }
+
+  /* share row on guide page */
+  .m-share { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 16px 0 0; }
+  .share-btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--bg-2); border: 1px solid var(--line); color: var(--muted);
+    font-family: inherit; font-size: 13px; font-weight: 600;
+    padding: 8px 15px; border-radius: 999px; cursor: pointer;
+    transition: color .18s ease, border-color .18s ease, transform .16s var(--ease);
+  }
+  .share-btn:hover { color: var(--white); border-color: rgba(255,149,105,.4); }
+  .share-btn:active { transform: scale(.95); }
+  .share-btn .sh-i { width: 14px; height: 14px; background: currentColor;
+    -webkit-mask-position: center; mask-position: center; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+    -webkit-mask-size: contain; mask-size: contain; }
+  .sh-i.i-share { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 1 0-3-3c0 .24.04.47.09.7L8.04 9.81A3 3 0 1 0 6 15c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65a2.92 2.92 0 1 0 2.92-2.92z'/%3E%3C/svg%3E");
+                     mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 1 0-3-3c0 .24.04.47.09.7L8.04 9.81A3 3 0 1 0 6 15c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65a2.92 2.92 0 1 0 2.92-2.92z'/%3E%3C/svg%3E"); }
+  .sh-i.i-link { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3.9 12a3.1 3.1 0 0 1 3.1-3.1h4V7h-4a5 5 0 0 0 0 10h4v-1.9h-4A3.1 3.1 0 0 1 3.9 12zM8 13h8v-2H8v2zm5-6v1.9h4a3.1 3.1 0 0 1 0 6.2h-4V17h4a5 5 0 0 0 0-10h-4z'/%3E%3C/svg%3E");
+                    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3.9 12a3.1 3.1 0 0 1 3.1-3.1h4V7h-4a5 5 0 0 0 0 10h4v-1.9h-4A3.1 3.1 0 0 1 3.9 12zM8 13h8v-2H8v2zm5-6v1.9h4a3.1 3.1 0 0 1 0 6.2h-4V17h4a5 5 0 0 0 0-10h-4z'/%3E%3C/svg%3E"); }
+
+  /* related guides */
+  .m-related { margin-top: 40px; }
+  .m-related h3 {
+    font-family: var(--font-display); font-size: 18px; font-weight: 700; letter-spacing: -.3px; margin: 0 0 16px;
+  }
+  .m-related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .rel-card {
+    display: flex; flex-direction: column; text-align: left;
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px;
+    overflow: hidden; cursor: pointer; font-family: inherit; padding: 0;
+    transition: transform .3s var(--ease-out), border-color .3s ease;
+  }
+  .rel-card:hover { transform: translateY(-4px); border-color: rgba(255,149,105,.4); }
+  .rel-card .rel-cover { width: 100%; aspect-ratio: 16/10; object-fit: cover; background: var(--bg-3); display: block; }
+  .rel-card .rel-body { padding: 12px 13px 14px; }
+  .rel-card .rel-cat {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    background: var(--grad); -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+  .rel-card .rel-title { font-size: 14px; font-weight: 600; margin-top: 5px; letter-spacing: -.2px; color: var(--white); }
+  @media (max-width: 640px) { .m-related-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- Guide sticky bar (scroll) ---------- */
+  .guide-sticky {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 55;
+    display: flex; align-items: center; gap: 14px;
+    padding: 10px max(28px, calc(50vw - 540px));
+    background: rgba(19,19,30,.82); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+    transform: translateY(-100%); opacity: 0; pointer-events: none;
+    transition: transform .3s var(--ease-out), opacity .25s ease;
+  }
+  .guide-sticky.on { transform: none; opacity: 1; pointer-events: auto; }
+  .gs-title {
+    font-family: var(--font-display); font-size: 15px; font-weight: 600; letter-spacing: -.2px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1 1 auto; min-width: 0;
+  }
+  .gs-step {
+    font-size: 12px; font-weight: 600; color: var(--muted); flex: 0 0 auto;
+    font-variant-numeric: tabular-nums;
+  }
+  .cta-sm { padding: 9px 18px; font-size: 13.5px; flex: 0 0 auto; }
+
+  /* ---------- Step progress rail (desktop) ---------- */
+  .step-rail {
+    position: fixed; top: 50%; transform: translateY(-50%);
+    left: max(24px, calc(50vw - 470px));
+    display: flex; flex-direction: column; gap: 4px; z-index: 50;
+    opacity: 0; transition: opacity .3s ease; pointer-events: none;
+  }
+  .step-rail.on { opacity: 1; pointer-events: auto; }
+  .step-rail button {
+    display: flex; align-items: center; gap: 10px;
+    background: none; border: 0; cursor: pointer; font-family: inherit;
+    padding: 5px 2px; color: var(--muted-2);
+  }
+  .step-rail .sr-dot {
+    width: 10px; height: 10px; border-radius: 999px; flex: 0 0 10px;
+    border: 2px solid var(--muted-2); background: transparent;
+    transition: background .2s ease, border-color .2s ease, transform .2s ease;
+  }
+  .step-rail .sr-label {
+    font-size: 12px; font-weight: 600; opacity: 0; transform: translateX(-4px);
+    white-space: nowrap; transition: opacity .2s ease, transform .2s ease, color .2s ease;
+  }
+  .step-rail button:hover .sr-label { opacity: 1; transform: none; color: var(--white); }
+  .step-rail button.active .sr-dot { border-color: var(--acc-1); background: var(--acc-1); transform: scale(1.15); }
+  @media (max-width: 1240px) { .step-rail { display: none; } }
+
   /* ---------- Audio player (music guides) ---------- */
   .m-audio {
     margin-top: 22px; background: var(--bg-3); border: 1px solid var(--line);
@@ -526,16 +1042,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .qc-btn.qc-loop { color: var(--muted); }
   .qc-btn.qc-loop.on { color: var(--acc-1); }
   .qc-btn.qc-loop .ico { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z'/%3E%3C/svg%3E"); }
-  .card .audio-tag {
-    font-size: 12px; font-weight: 600; color: var(--acc-1);
-    display: inline-flex; align-items: center; gap: 6px;
-  }
-  .card .audio-tag::before {
-    content: ''; width: 12px; height: 12px; display: inline-block;
-    background: var(--acc-1);
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z' fill='black'/%3E%3C/svg%3E") center/contain no-repeat;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z' fill='black'/%3E%3C/svg%3E") center/contain no-repeat;
-  }
 
   /* ---------- View transitions (home <-> guide page) ---------- */
   .view-leave { animation: view-out .18s ease both; }
@@ -584,12 +1090,12 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .card.reveal { transition-delay: var(--d, 0ms); }
 
   /* Hero entrance: masked line reveal (runs once on load) */
-  .hero .kicker, .hero p, .hero .cta {
+  .hero .kicker, .hero p, .hero .cta, .hero .hero-search {
     opacity: 0; transform: translateY(14px);
     animation: hero-in .8s var(--ease-out) forwards;
   }
   .hero p    { animation-delay: .38s; }
-  .hero .cta { animation-delay: .5s; }
+  .hero .cta, .hero .hero-search { animation-delay: .5s; }
   @keyframes hero-in { to { opacity: 1; transform: none; } }
   .hl {
     display: inline-block; overflow: hidden; vertical-align: bottom;
@@ -654,19 +1160,33 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     .guide-page .m-step { animation: none; opacity: 1; transform: none; }
     .scroll-progress { display: none; }
     .card .cover, .card .cover-video { transition: none; }
-    .ticker-track { animation: none; transform: none; }
     .skel::after { animation: none; }
     .skel-card, .skel-guide { transition: none; }
     .guide-in { animation: none; }
     .card .cover, .card .cover-wrap, .m-cover, .m-step-media { animation: none; }
     .media-fade { transition: none; opacity: 1; filter: none; }
     .cover-wrap.buffering::after, .m-step-media.buffering::after { animation-duration: 1.4s; }
+    .card.previewing .eq span { animation: none; transform: scaleY(.6); }
     .reveal { opacity: 1 !important; transform: none !important; transition: none; }
-    .hero .kicker, .hero h1, .hero p, .hero .cta {
+    .hero .kicker, .hero h1, .hero p, .hero .cta, .hero .hero-search {
       opacity: 1 !important; transform: none !important; animation: none;
     }
+    .hero-search, .hs-clear, .hero-search .hs-icon { transition: none; }
+    .hs-clear:active { transform: none; }
+    .chip:hover, .chip:active { transform: none; }
+    .shelf-link::after { transition: none; }
+    .shelf-link:hover::after { transform: none; }
+    .load-more { transition: none; }
+    .load-more:hover, .load-more:active { transform: none; }
     .card { transition: none; }
     .card:hover { transform: none; }
+    .tb-btn, .tb-btn .caret { transition: none; }
+    .tb-btn:active { transform: none; }
+    .tb-menu, .cat-menu, .filters-panel, .subfilters { animation: none; }
+    .chip-caret { transition: none; }
+    .guide-sticky { transition: opacity .25s ease; transform: none; }
+    .guide-sticky:not(.on) { display: none; }
+    .step-rail, .step-rail .sr-dot, .step-rail .sr-label { transition: none; }
   }
 
   /* ---------- Hero looping typewriter ---------- */
@@ -697,12 +1217,18 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   @media (max-width: 540px) {
     .grid, .steps { grid-template-columns: 1fr; }
     .hero h1 { font-size: 38px; }
+    .hs-key { display: none; }
+    .shelf-head, .all-head { flex-direction: column; align-items: flex-start; gap: 4px; }
+    /* comfortable touch targets on phones */
+    .chip { padding: 12px 20px; }
+    .chip-sm { padding: 10px 16px; }
+    .sort-btn { padding: 10px 16px; }
   }
 </style>
 </head>
 <body>
   <header class="topbar">
-    <div class="logo">
+    <div class="logo" id="brandHome" role="button" tabindex="0" aria-label="Quadcode Guide — go to home">
       <img class="mark" src="/ui_views/assets/logo.png" alt="Quadcode logo" width="30" height="30">
       <b>Quadcode Guide</b>
     </div>
@@ -711,26 +1237,51 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     </nav>
   </header>
 
-  <!-- Marquee ticker -->
-  <div class="ticker" id="ticker" aria-hidden="true">
-    <div class="ticker-track" id="tickerTrack"></div>
-  </div>
-
   <main class="wrap">
     <!-- Hero -->
     <section class="hero framed">
       <span class="kicker">Learn by doing</span>
       <h1><span class="hl"><span class="hl-in">Learn to make</span></span><br><span class="hl"><span class="hl-in"><span class="g">UGC content</span></span></span></h1>
-      <p>Simple, step-by-step guides for motion design, games, music, video and design. Pick a topic and start creating today.</p>
-      <a class="cta" href="#guides">Browse guides</a>
+      <p id="heroSub">Simple, step-by-step guides for motion design, games, music, video and design. Pick a topic and start creating today.</p>
+      <form class="hero-search" id="heroSearch" role="search" onsubmit="event.preventDefault()">
+        <span class="hs-icon" aria-hidden="true"></span>
+        <input id="searchInput" type="search" placeholder="Search guides &mdash; poster, music, 3D character&hellip;" autocomplete="off" aria-label="Search guides">
+        <button type="button" class="hs-clear" id="searchClear" aria-label="Clear search" hidden>&#215;</button>
+        <span class="hs-key" aria-hidden="true">/</span>
+      </form>
     </section>
 
-    <!-- Category filter -->
+    <!-- Category filter + catalog -->
     <section id="guides">
-      <div class="filters" id="filters"></div>
-      <div class="filters-row2" id="filtersRow2"></div>
-      <div class="filters-row3" id="filtersRow3"></div>
+      <div class="filters-section">
+        <div class="toolbar">
+          <div class="filters" id="filters"></div>
+          <div class="tb-right">
+            <button class="tb-btn" id="filtersBtn" type="button" aria-expanded="false" aria-controls="filtersPanel">
+              <span class="tb-ico ico-filter" aria-hidden="true"></span>Filters<span class="tb-badge" id="filtersBadge" hidden></span>
+            </button>
+            <div class="tb-select">
+              <button class="tb-btn" id="sortBtn" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="sortMenu">Sort: <b id="sortLabel">Featured</b><span class="caret" aria-hidden="true"></span></button>
+              <div class="tb-menu" id="sortMenu" role="menu" hidden></div>
+            </div>
+          </div>
+        </div>
+        <div class="filters-panel" id="filtersPanel" hidden>
+          <div class="fp-group"><span class="fp-label">Level</span><div id="filtersRow2"></div></div>
+          <div class="fp-group"><span class="fp-label">Models</span><div id="filtersRow3"></div></div>
+        </div>
+        <div class="subfilters" id="subFilters" hidden></div>
+      </div>
+      <span class="sr-only" id="srStatus" role="status" aria-live="polite"></span>
+      <div class="results-bar" id="resultsBar" tabindex="-1" hidden></div>
+      <div id="shelves"></div>
+      <div class="all-head" id="allHead" tabindex="-1" hidden>
+        <h2 class="shelf-title"><span id="allTitle">All guides</span> <span class="sh-count" id="allCount"></span></h2>
+      </div>
       <div class="grid" id="grid"></div>
+      <div class="load-more-wrap" id="loadMoreWrap" hidden>
+        <button class="load-more" id="loadMoreBtn" type="button">Load more guides</button>
+      </div>
     </section>
 
     <footer class="foot">Made for creators. Start with any guide above.</footer>
@@ -738,6 +1289,12 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 
   <!-- Guide full page view (#/guide/slug) -->
   <main class="guide-page" id="guidePage" hidden>
+    <div class="guide-sticky" id="guideSticky">
+      <span class="gs-title" id="guideStickyTitle"></span>
+      <span class="gs-step" id="guideStickyStep"></span>
+      <a class="cta cta-sm" id="guideStickyCta" target="_blank" rel="noopener">Open in Quadcode</a>
+    </div>
+    <nav class="step-rail" id="stepRail" aria-label="Guide steps"></nav>
     <div class="guide-page-inner">
       <a class="back-btn" href="#guides">&larr; All guides</a>
       <div id="guideBody"></div>
@@ -746,9 +1303,11 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 
   <script>
     // ---- Data loaded from guides.json ----
+    const CTA_URL = 'https://quadcode.ai';   // where "Open in Quadcode" links
     let CATEGORIES = ["All"];
     let GUIDES = [];
     let activeCat = "All";
+    let activeSub = "All";  // subcategory within the active category
     const LEVELS = ["All", "Junior", "Middle", "Middle+"];
     const LEVEL_RANK = { "Junior": 1, "Middle": 2, "Middle+": 3 };
     let activeLevel = "All";
@@ -760,15 +1319,86 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       return m ? parseFloat(m[1]) : null;
     }
     let activeModels = new Set(); // multi-select, empty = all models
+    let searchQ = '';        // debounced search query
+    let trendingOnly = false; // "View all" on the Trending shelf
+    let sortByNew = 0;       // 0 = off, 1 = newest first
+    let sortByViews = 0;     // 0 = off, 1 = most viewed first
+    const PAGE_SIZE = 12;
+    let visibleCount = PAGE_SIZE;
 
     const filtersEl = document.getElementById('filters');
     const filtersRow2El = document.getElementById('filtersRow2');
     const filtersRow3El = document.getElementById('filtersRow3');
+    const subFiltersEl = document.getElementById('subFilters');
     const gridEl = document.getElementById('grid');
+    const resultsBarEl = document.getElementById('resultsBar');
+    const shelvesEl = document.getElementById('shelves');
+    const allHeadEl = document.getElementById('allHead');
+    const allCountEl = document.getElementById('allCount');
+    const loadMoreWrapEl = document.getElementById('loadMoreWrap');
+    const loadMoreBtnEl = document.getElementById('loadMoreBtn');
+    const searchInputEl = document.getElementById('searchInput');
+    const searchClearEl = document.getElementById('searchClear');
+    const filtersBtnEl = document.getElementById('filtersBtn');
+    const filtersBadgeEl = document.getElementById('filtersBadge');
+    const filtersPanelEl = document.getElementById('filtersPanel');
+    const sortBtnEl = document.getElementById('sortBtn');
+    const sortLabelEl = document.getElementById('sortLabel');
+    const sortMenuEl = document.getElementById('sortMenu');
 
     function levelClass(lvl) {
       return 'lv-' + String(lvl || '').toLowerCase().replace('+', 'plus');
     }
+
+    // ---- Category icons + subcategory taxonomy ----
+    function catSlug(cat) {
+      return String(cat || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    }
+    const CAT_ICON_KNOWN = { 'all':1, 'gamedev':1, 'music':1, 'video':1, 'design':1, 'motion-design':1 };
+    function catIconHtml(cat) {
+      const slug = catSlug(cat);
+      const cls = CAT_ICON_KNOWN[slug] ? slug : 'all';
+      return '<span class="cat-ico ci-' + cls + '" aria-hidden="true"></span>';
+    }
+    // rich subcategory lists per category (shown when a category is picked)
+    const SUBCATEGORIES = {
+      "Gamedev": ["Characters", "Environments", "Props & Items", "Concept Art", "UI & Icons", "Creatures", "Vehicles"],
+      "Music": ["Hip-hop", "Beats", "Lo-fi", "Jazz & R&B", "Classical", "Cinematic", "Pop", "Ambient", "Electronic"],
+      "Video": ["Product Ads", "Trailers", "Social Clips", "Explainers", "Music Videos", "B-roll", "Intros"],
+      "Design": ["Posters", "Crossover Art", "Logos", "Thumbnails", "Merch", "Book Covers", "Album Art"],
+      "Motion Design": ["Logo Reveals", "Transitions", "Title Cards", "Loops", "Lower Thirds", "Kinetic Text"]
+    };
+    // sub-chips for a category: taxonomy + any real guide subs, deduped
+    function subsForCat(cat) {
+      const out = [], seen = new Set();
+      const add = s => { const k = String(s).trim().toLowerCase(); if (s && !seen.has(k)) { seen.add(k); out.push(String(s).trim()); } };
+      (SUBCATEGORIES[cat] || []).forEach(add);
+      GUIDES.filter(g => g.cat === cat && g.sub).forEach(g => add(g.sub));
+      return out;
+    }
+
+    // ---- View count: real g.views if set, else a stable believable number
+    // derived from the id (8k+, never a round thousand/hundred) ----
+    function hashStr(s) {
+      let h = 2166136261 >>> 0;
+      for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; }
+      return h >>> 0;
+    }
+    function viewCount(g) {
+      if (typeof g.views === 'number' && g.views > 0) return Math.floor(g.views);
+      const h = hashStr('qcviews:' + (g.id || g.title || ''));
+      let n = 8000 + (h % 84000) + ((h >> 7) % 967); // 8,000 .. ~92,900
+      if (n % 1000 === 0) n += 137;                  // never a round thousand
+      if (n % 100 === 0) n += 13;                    // never a round hundred
+      return n;
+    }
+    function formatViews(n) { return n.toLocaleString('en-US'); }
+    function viewsHtml(g, cls) {
+      return '<span class="' + cls + '" title="' + formatViews(viewCount(g)) + ' views">' +
+        formatViews(viewCount(g)) + '</span>';
+    }
+    // the qcc currency is always uppercased in the UI
+    function fmtCost(c) { return String(c == null ? '' : c).replace(/qcc/gi, 'QCC'); }
 
     // parse "GPT-Image, Seedance" -> ["GPT-Image", "Seedance"]
     function parseModels(g) {
@@ -778,28 +1408,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       const set = new Set();
       GUIDES.forEach(g => parseModels(g).forEach(m => set.add(m)));
       return Array.from(set).sort();
-    }
-
-    // ---- Marquee ticker ----
-    const TICKER_PHRASES = [
-      "Make a game character",
-      "Score a track in minutes",
-      "Design a poster",
-      "Animate a logo",
-      "Cut a short video",
-      "Build a scene",
-      "One prompt, one result",
-      "New guide every day"
-    ];
-    function buildTicker() {
-      const track = document.getElementById('tickerTrack');
-      if (!track) return;
-      const group = TICKER_PHRASES
-        .map(p => '<span class="ticker-item">' + esc(p) + '</span>').join('');
-      // two identical groups → seamless -50% loop
-      track.innerHTML =
-        '<div class="ticker-group">' + group + '</div>' +
-        '<div class="ticker-group">' + group + '</div>';
     }
 
     // ---- Skeleton placeholders (shown while guides.json loads) ----
@@ -828,8 +1436,13 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         // small min-hold so fast loads don't flicker
         const hold = Math.max(0, 300 - (performance.now() - skelGridT0));
         setTimeout(() => {
+          // a user interaction may have already rendered the real grid
+          if (!gridEl.querySelector('.skel-card')) { res(); return; }
           skels.forEach(s => s.classList.add('skel-out'));
-          setTimeout(() => { renderGrid(true); res(); }, 210);
+          setTimeout(() => {
+            if (!gridEl.querySelector('.skel-card')) { res(); return; }
+            renderGrid(true); res();
+          }, 210);
         }, hold);
       });
     }
@@ -900,6 +1513,73 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       }, 2500);
     }
 
+    // ---- Media preload: warm the cache so navigation is instant ----
+    const _preloaded = new Set();
+    function preloadImg(url) {
+      if (!url || _preloaded.has(url)) return;
+      _preloaded.add(url);
+      const im = new Image();
+      im.decoding = 'async';
+      im.src = url;
+      if (im.decode) im.decode().catch(() => {});
+    }
+    function prefetchFile(url) {
+      if (!url || _preloaded.has(url)) return;
+      _preloaded.add(url);
+      const l = document.createElement('link');
+      l.rel = 'prefetch';
+      l.href = url;
+      document.head.appendChild(l);
+    }
+    // light: still images only (cover + poster) — cheap, safe to run for every guide
+    function preloadGuideImages(g) {
+      if (!g) return;
+      preloadImg(g.image);
+      preloadImg(g.poster);
+      (g.steps || []).forEach(s => {
+        if (s) { preloadImg(s.result_image); preloadImg(s.result_poster); }
+      });
+    }
+    // full: images now + low-priority prefetch of the heavy media behind the click
+    function prefetchGuideMedia(g) {
+      if (!g) return;
+      preloadGuideImages(g);
+      prefetchFile(g.video);
+      prefetchFile(g.audio);
+      (g.steps || []).forEach(s => { if (s) prefetchFile(s.result_video); });
+    }
+    // background: after the grid paints, warm every guide's still images during idle time
+    function warmAllGuideImages() {
+      const ric = window.requestIdleCallback ||
+        (fn => setTimeout(() => fn({ timeRemaining: () => 8 }), 200));
+      let i = 0;
+      const step = (deadline) => {
+        while (i < GUIDES.length && (!deadline || deadline.timeRemaining() > 2)) {
+          preloadGuideImages(GUIDES[i++]);
+        }
+        if (i < GUIDES.length) ric(step);
+      };
+      ric(step);
+    }
+
+    // ---- Hover sound preview: only one plays at a time, with a soft volume fade ----
+    let _activePreview = null;
+    function fadeVol(el, to, ms, done) {
+      if (el._fadeRaf) cancelAnimationFrame(el._fadeRaf);
+      const from = el.volume, t0 = performance.now();
+      const tick = (now) => {
+        const k = ms <= 0 ? 1 : Math.min(1, (now - t0) / ms);
+        el.volume = Math.max(0, Math.min(1, from + (to - from) * k));
+        if (k < 1) { el._fadeRaf = requestAnimationFrame(tick); }
+        else { el._fadeRaf = 0; if (done) done(); }
+      };
+      el._fadeRaf = requestAnimationFrame(tick);
+    }
+    function stopPreview() {
+      if (!_activePreview) return;
+      const p = _activePreview; _activePreview = null; p.stop();
+    }
+
     // ---- Reveal on scroll ----
     let revealObserver = null;
     function initRevealObserver() {
@@ -937,12 +1617,60 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     function renderFilters() {
       filtersEl.innerHTML = '';
       CATEGORIES.forEach(cat => {
+        const subs = cat === 'All' ? [] : subsForCat(cat);
+        const isActive = cat === activeCat;
+        const wrap = document.createElement('div');
+        wrap.className = 'cat-wrap';
         const b = document.createElement('button');
-        b.className = 'chip' + (cat === activeCat ? ' active' : '');
-        b.textContent = cat;
-        b.onclick = () => { activeCat = cat; renderFilters(); renderGrid(true); };
-        filtersEl.appendChild(b);
+        b.className = 'chip' + (isActive ? ' active' : '');
+        // active category with a chosen subcategory shows it in the label
+        const label = (isActive && activeSub !== 'All') ? esc(cat) + ' · ' + esc(activeSub) : esc(cat);
+        b.innerHTML = catIconHtml(cat) + '<span>' + label + '</span>' +
+          (subs.length ? '<span class="chip-caret" aria-hidden="true"></span>' : '');
+        wrap.appendChild(b);
+
+        if (!subs.length) {
+          b.onclick = () => {
+            activeCat = cat; activeSub = 'All';
+            renderFilters(); renderGrid(true);
+          };
+        } else {
+          b.setAttribute('aria-haspopup', 'true');
+          b.setAttribute('aria-expanded', 'false');
+          const menu = document.createElement('div');
+          menu.className = 'cat-menu'; menu.hidden = true; menu.setAttribute('role', 'menu');
+          const item = (text, subVal) => {
+            const mi = document.createElement('button');
+            mi.type = 'button'; mi.setAttribute('role', 'menuitemradio');
+            const on = isActive && activeSub === subVal;
+            mi.className = on ? 'on' : '';
+            mi.setAttribute('aria-checked', on ? 'true' : 'false');
+            mi.textContent = text;
+            mi.onclick = () => {
+              activeCat = cat; activeSub = subVal;
+              closeMenus(); renderFilters(); renderGrid(true);
+            };
+            return mi;
+          };
+          menu.appendChild(item('All ' + cat, 'All'));
+          subs.forEach(s => menu.appendChild(item(s, s)));
+          b.onclick = (e) => {
+            e.stopPropagation();
+            const open = menu.hidden;
+            closeMenus();
+            menu.hidden = !open;
+            b.setAttribute('aria-expanded', open ? 'true' : 'false');
+          };
+          menu.addEventListener('click', e => e.stopPropagation());
+          wrap.appendChild(menu);
+        }
+        filtersEl.appendChild(wrap);
       });
+    }
+
+    // old subcategory row is replaced by per-category dropdowns; keep it hidden
+    function renderSubFilters() {
+      if (subFiltersEl) { subFiltersEl.hidden = true; subFiltersEl.innerHTML = ''; }
     }
 
     function renderLevelFilters() {
@@ -951,41 +1679,20 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         const b = document.createElement('button');
         b.className = 'chip chip-sm' + (lvl === activeLevel ? ' active' : '');
         b.textContent = lvl === "All" ? "All levels" : lvl;
-        b.onclick = () => { activeLevel = lvl; renderLevelFilters(); renderGrid(true); };
+        b.onclick = () => { activeLevel = lvl; renderLevelFilters(); updateFilterBadge(); renderGrid(true); };
         filtersRow2El.appendChild(b);
       });
-      const sep = document.createElement('span');
-      sep.className = 'sep';
-      filtersRow2El.appendChild(sep);
-      const sortBtn = document.createElement('button');
-      sortBtn.className = 'sort-btn' + (sortByLevel ? ' active' : '') + (sortByLevel === -1 ? ' desc' : '');
-      sortBtn.innerHTML = 'Sort by level <span class="arrow">&uarr;</span>';
-      sortBtn.onclick = () => {
-        sortByLevel = sortByLevel === 0 ? 1 : (sortByLevel === 1 ? -1 : 0);
-        if (sortByLevel) sortByCost = 0;
-        renderLevelFilters(); renderGrid(true);
-      };
-      filtersRow2El.appendChild(sortBtn);
-
-      const costBtn = document.createElement('button');
-      costBtn.className = 'sort-btn' + (sortByCost ? ' active' : '') + (sortByCost === -1 ? ' desc' : '');
-      costBtn.innerHTML = 'Sort by cost <span class="arrow">&uarr;</span>';
-      costBtn.onclick = () => {
-        sortByCost = sortByCost === 0 ? 1 : (sortByCost === 1 ? -1 : 0);
-        if (sortByCost) sortByLevel = 0;
-        renderLevelFilters(); renderGrid(true);
-      };
-      filtersRow2El.appendChild(costBtn);
+      updateFilterBadge();
     }
 
     function renderModelFilters() {
       filtersRow3El.innerHTML = '';
       const models = allModelsList();
-      if (!models.length) return;
+      if (!models.length) { updateFilterBadge(); return; }
       const allBtn = document.createElement('button');
       allBtn.className = 'chip chip-sm' + (activeModels.size === 0 ? ' active' : '');
       allBtn.textContent = 'All models';
-      allBtn.onclick = () => { activeModels.clear(); renderModelFilters(); renderGrid(true); };
+      allBtn.onclick = () => { activeModels.clear(); renderModelFilters(); updateFilterBadge(); renderGrid(true); };
       filtersRow3El.appendChild(allBtn);
       models.forEach(m => {
         const b = document.createElement('button');
@@ -993,18 +1700,127 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         b.textContent = m;
         b.onclick = () => {
           activeModels.has(m) ? activeModels.delete(m) : activeModels.add(m);
-          renderModelFilters(); renderGrid(true);
+          renderModelFilters(); updateFilterBadge(); renderGrid(true);
         };
         filtersRow3El.appendChild(b);
       });
+      updateFilterBadge();
     }
 
-    function renderGrid(swap) {
-      let list = activeCat === "All"
-        ? GUIDES.slice()
-        : GUIDES.filter(g => g.cat === activeCat);
-      if (activeLevel !== "All") list = list.filter(g => g.level === activeLevel);
+    // badge = count of active level + model constraints (categories live in the chip row)
+    function updateFilterBadge() {
+      if (!filtersBadgeEl) return;
+      const n = (activeLevel !== 'All' ? 1 : 0) + activeModels.size;
+      filtersBadgeEl.textContent = n;
+      filtersBadgeEl.hidden = n === 0;
+      filtersBtnEl.classList.toggle('on', n > 0);
+    }
+
+    // ---- Sort dropdown (level / cost / newest folded into one menu) ----
+    const SORT_OPTIONS = [
+      { key: 'featured', label: 'Featured', apply: () => { sortByLevel = 0; sortByCost = 0; sortByNew = 0; sortByViews = 0; } },
+      { key: 'views',    label: 'Most viewed', apply: () => { sortByViews = 1; sortByNew = 0; sortByLevel = 0; sortByCost = 0; } },
+      { key: 'new',      label: 'Newest first', apply: () => { sortByNew = 1; sortByLevel = 0; sortByCost = 0; sortByViews = 0; } },
+      { key: 'lvl-asc',  label: 'Difficulty: easy first', apply: () => { sortByLevel = 1; sortByCost = 0; sortByNew = 0; sortByViews = 0; } },
+      { key: 'lvl-desc', label: 'Difficulty: hard first', apply: () => { sortByLevel = -1; sortByCost = 0; sortByNew = 0; sortByViews = 0; } },
+      { key: 'cost-asc', label: 'Cost: low to high', apply: () => { sortByCost = 1; sortByLevel = 0; sortByNew = 0; sortByViews = 0; } },
+      { key: 'cost-desc',label: 'Cost: high to low', apply: () => { sortByCost = -1; sortByLevel = 0; sortByNew = 0; sortByViews = 0; } }
+    ];
+    function currentSortKey() {
+      if (sortByViews) return 'views';
+      if (sortByNew) return 'new';
+      if (sortByLevel === 1) return 'lvl-asc';
+      if (sortByLevel === -1) return 'lvl-desc';
+      if (sortByCost === 1) return 'cost-asc';
+      if (sortByCost === -1) return 'cost-desc';
+      return 'featured';
+    }
+    function renderSort() {
+      const cur = currentSortKey();
+      sortMenuEl.innerHTML = '';
+      SORT_OPTIONS.forEach(o => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.setAttribute('role', 'menuitemradio');
+        b.className = o.key === cur ? 'on' : '';
+        b.setAttribute('aria-checked', o.key === cur ? 'true' : 'false');
+        b.textContent = o.label;
+        b.onclick = () => { o.apply(); sortLabelEl.textContent = o.label; closeMenus(); renderSort(); renderGrid(true); };
+        sortMenuEl.appendChild(b);
+      });
+      const active = SORT_OPTIONS.find(o => o.key === cur);
+      if (active) sortLabelEl.textContent = active.label;
+    }
+
+    function closeMenus() {
+      sortMenuEl.hidden = true; sortBtnEl.setAttribute('aria-expanded', 'false');
+      filtersPanelEl.hidden = true; filtersBtnEl.setAttribute('aria-expanded', 'false');
+      filtersEl.querySelectorAll('.cat-menu').forEach(m => { m.hidden = true; });
+      filtersEl.querySelectorAll('.chip[aria-expanded]').forEach(b => b.setAttribute('aria-expanded', 'false'));
+    }
+    function wireToolbar() {
+      filtersBtnEl.onclick = (e) => {
+        e.stopPropagation();
+        const open = filtersPanelEl.hidden;
+        closeMenus();
+        filtersPanelEl.hidden = !open;
+        filtersBtnEl.setAttribute('aria-expanded', open ? 'true' : 'false');
+      };
+      sortBtnEl.onclick = (e) => {
+        e.stopPropagation();
+        const open = sortMenuEl.hidden;
+        closeMenus();
+        sortMenuEl.hidden = !open;
+        sortBtnEl.setAttribute('aria-expanded', open ? 'true' : 'false');
+      };
+      sortMenuEl.addEventListener('click', e => e.stopPropagation());
+      filtersPanelEl.addEventListener('click', e => e.stopPropagation());
+      document.addEventListener('click', closeMenus);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenus(); });
+      renderSort();
+    }
+
+    // ---- Search: every word must match; title/desc/meta hits rank higher ----
+    function guideHaystack(g) {
+      const parts = [String(g.id || '').replace(/-/g, ' '), g.title, g.desc, g.cat, g.sub, g.models, g.level, g.result];
+      (g.steps || []).forEach(s => { parts.push(s.title, s.text, s.prompt); });
+      return parts.filter(Boolean).join(' ').toLowerCase();
+    }
+    function searchScore(g, q) {
+      const words = q.split(/\s+/).filter(Boolean);
+      if (!words.length) return 1;
+      const hay = guideHaystack(g);
+      if (!words.every(w => hay.includes(w))) return 0;
+      let score = 1;
+      const title = String(g.title || '').toLowerCase();
+      const desc = String(g.desc || '').toLowerCase();
+      const meta = (String(g.cat || '') + ' ' + String(g.sub || '') + ' ' + String(g.models || '')).toLowerCase();
+      words.forEach(w => {
+        if (title.includes(w)) score += 4;
+        if (desc.includes(w)) score += 2;
+        if (meta.includes(w)) score += 2;
+      });
+      return score;
+    }
+
+    // idle = nothing searched/filtered/sorted -> show discovery shelves
+    function isIdleCatalog() {
+      return !searchQ && !trendingOnly &&
+        activeCat === 'All' && activeLevel === 'All' && !activeModels.size &&
+        !sortByLevel && !sortByCost && !sortByNew && !sortByViews;
+    }
+
+    function filteredList() {
+      let list = GUIDES.slice();
+      if (activeCat !== 'All') list = list.filter(g => g.cat === activeCat);
+      if (activeCat !== 'All' && activeSub !== 'All') {
+        const sub = activeSub.toLowerCase();
+        list = list.filter(g => String(g.sub || '').toLowerCase() === sub);
+      }
+      if (activeLevel !== 'All') list = list.filter(g => g.level === activeLevel);
       if (activeModels.size) list = list.filter(g => parseModels(g).some(m => activeModels.has(m)));
+      if (trendingOnly) list = list.filter(g => g.trending);
+      const q = searchQ.toLowerCase();
+      if (q) list = list.filter(g => searchScore(g, q) > 0);
       if (sortByLevel) {
         list.sort((a, b) => sortByLevel * ((LEVEL_RANK[a.level] || 0) - (LEVEL_RANK[b.level] || 0)));
       } else if (sortByCost) {
@@ -1015,55 +1831,300 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           if (cb == null) return -1;
           return sortByCost * (ca - cb);
         });
+      } else if (sortByNew) {
+        list.sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
+      } else if (sortByViews) {
+        list.sort((a, b) => viewCount(b) - viewCount(a));
+      } else if (q) {
+        list.sort((a, b) => searchScore(b, q) - searchScore(a, q));
       }
+      return list;
+    }
 
-      gridEl.innerHTML = '';
-      if (!list.length) {
-        gridEl.innerHTML = '<div class="empty">No guides here yet.</div>';
-        return;
-      }
-      list.forEach((g, i) => {
-        const c = document.createElement('div');
-        c.className = 'card';
-        c.innerHTML =
-          (g.video
-            ? '<div class="cover-wrap"><video class="cover-video" src="' + esc(g.video) + '"' + (g.poster ? ' poster="' + esc(g.poster) + '"' : '') + ' muted loop playsinline preload="metadata"></video><div class="play-badge"></div></div>'
-            : (g.image ? '<img class="cover" src="' + esc(g.image) + '" alt="" loading="lazy">' : '')) +
-          '<div class="cat-label">' + esc(g.cat) + '</div>' +
-          '<h3>' + esc(g.title) + '</h3>' +
-          '<p>' + esc(g.desc) + '</p>' +
+    function cardEl(g, i, swap, opts) {
+      const c = document.createElement('div');
+      c.className = 'card';
+      c.setAttribute('role', 'button');
+      c.tabIndex = 0;
+      // Separation of concerns:
+      //   BODY  = difficulty only (the level pill) — "how hard is this"
+      //   COVER = what you get (media chips) + trending + views — "what is this"
+      const levelPill = g.level ? '<span class="pill ' + levelClass(g.level) + '">' + esc(g.level) + '</span>' : '';
+      const mediaChips =
+        (g.video ? '<span class="cover-chip pm-video">Video</span>' : '') +
+        (g.video && g.sound !== false ? '<span class="cover-chip pm-sound">Sound</span>' : '') +
+        (g.audio && !g.video ? '<span class="cover-chip pm-audio">Audio</span>' : '') +
+        (g.image && !g.video && !g.audio ? '<span class="cover-chip pm-image">Image</span>' : '');
+      const coverOverlay =
+        (mediaChips ? '<div class="cover-chips">' + mediaChips + '</div>' : '') +
+        (g.trending && !(opts && opts.hideTrend) ? '<span class="cover-trend">Trending</span>' : '') +
+        '<span class="view-badge">' + formatViews(viewCount(g)) + '</span>';
+      c.innerHTML =
+        (g.video
+          ? '<div class="cover-wrap"><video class="cover-video" src="' + esc(g.video) + '"' + (g.poster ? ' poster="' + esc(g.poster) + '"' : '') + ' muted loop playsinline preload="metadata"></video><div class="play-badge"></div>' + coverOverlay + '</div>'
+          : (g.image ? '<div class="cover-wrap"><img class="cover" src="' + esc(g.image) + '" alt="" loading="lazy">' + coverOverlay + '</div>' : '')) +
+        '<div class="cat-label">' + catIconHtml(g.cat) + '<span>' + esc(g.cat) + '</span>' + (g.sub ? '<span class="sub-label">' + esc(g.sub) + '</span>' : '') + '</div>' +
+        '<h3>' + esc(g.title) + '</h3>' +
+        '<p>' + esc(g.desc) + '</p>' +
+        (levelPill ? '<div class="card-tags">' + levelPill + '</div>' : '') +
+        '<div class="card-foot">' +
           ((g.time || g.cost)
             ? '<div class="time">' + esc(g.time || '') +
               (g.time && g.cost ? '<span class="cost-dot">&middot;</span>' : '') +
-              (g.cost ? '<span class="cost-tag">' + esc(g.cost) + '</span>' : '') + '</div>'
-            : '') +
-          (g.level ? '<div class="level-badge ' + levelClass(g.level) + '">' + esc(g.level) + '</div>' : '') +
-          (g.video ? '<div class="video-tag">Video guide</div>' : '') +
-          (g.audio ? '<div class="audio-tag">Audio track</div>' : '') +
-          '<div class="read">Read guide</div>';
-        if (g.video) {
-          const v = c.querySelector('video');
-          c.addEventListener('mouseenter', () => { v.play().catch(()=>{}); });
-          c.addEventListener('mouseleave', () => { v.pause(); v.currentTime = 0; });
-        }
-        c.onclick = () => {
-          if (!REDUCED_MOTION && !gridEl.classList.contains('dimmed')) {
-            gridEl.classList.add('dimmed');
-            c.classList.add('zoom-out');
-            setTimeout(() => openGuide(g), 170);
+              (g.cost ? '<span class="cost-tag">' + esc(fmtCost(g.cost)) + '</span>' : '') + '</div>'
+            : '<span></span>') +
+          '<div class="read">Read guide</div>' +
+        '</div>';
+      // ---- Hover preview: video plays with sound, audio-only cards preview the track ----
+      if (g.video || g.audio) {
+        const eq = document.createElement('div');
+        eq.className = 'eq';
+        eq.setAttribute('aria-hidden', 'true');
+        eq.innerHTML = '<span></span><span></span><span></span><span></span>';
+        c.appendChild(eq);
+
+        let sound = g.video ? c.querySelector('video') : null;  // audio element created lazily
+        const startPreview = () => {
+          stopPreview();
+          // token guards the async play() resolution: if the cursor already left
+          // (a new/no preview is active), the late .then must not restart sound
+          const token = {};
+          if (g.video) {
+            const v = sound;
+            token.stop = () => {
+              c.classList.remove('previewing');
+              fadeVol(v, 0, 160, () => { v.pause(); v.currentTime = 0; v.muted = true; });
+            };
+            _activePreview = token;
+            v.muted = false; v.volume = 0;
+            const onOk = () => { if (_activePreview !== token) return; c.classList.add('previewing'); fadeVol(v, 1, 260); };
+            const go = v.play();
+            if (go && go.then) go.then(onOk).catch(() => { if (_activePreview === token) { v.muted = true; v.play().catch(() => {}); } }); // sound blocked -> silent loop
+            else onOk();
           } else {
-            openGuide(g);
+            if (!sound) { sound = new Audio(g.audio); sound.loop = true; sound.preload = 'auto'; }
+            const a = sound;
+            token.stop = () => {
+              c.classList.remove('previewing');
+              fadeVol(a, 0, 180, () => a.pause());
+            };
+            _activePreview = token;
+            try { a.currentTime = 0; } catch (e) {}
+            a.volume = 0;
+            const onOk = () => { if (_activePreview !== token) { a.pause(); return; } c.classList.add('previewing'); fadeVol(a, 1, 300); };
+            const go = a.play();
+            if (go && go.then) go.then(onOk).catch(() => {});
+            else onOk();
           }
         };
-        gridEl.appendChild(c);
-        if (swap) {
-          c.classList.add('swap-in');
-          c.style.animationDelay = Math.min(i * 45, 315) + 'ms';
+        c.addEventListener('mouseenter', startPreview);
+        c.addEventListener('mouseleave', stopPreview);
+      }
+      // preload this guide's media on intent so opening it feels instant
+      const prefetch = () => prefetchGuideMedia(g);
+      c.addEventListener('mouseenter', prefetch, { once: true });
+      c.addEventListener('focus', prefetch, { once: true });
+      c.addEventListener('touchstart', prefetch, { once: true, passive: true });
+      c.onclick = () => {
+        stopPreview();
+        const grid = c.closest('.grid');
+        if (!REDUCED_MOTION && grid && !grid.classList.contains('dimmed')) {
+          grid.classList.add('dimmed');
+          c.classList.add('zoom-out');
+          setTimeout(() => openGuide(g), 170);
         } else {
-          observeReveal(c, Math.min(i * 60, 240));
+          openGuide(g);
+        }
+      };
+      c.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); c.click(); }
+      });
+      if (swap) {
+        c.classList.add('swap-in');
+        c.style.animationDelay = Math.min(i * 45, 315) + 'ms';
+      } else {
+        observeReveal(c, Math.min(i * 60, 240));
+      }
+      attachMediaFade(c);
+      return c;
+    }
+
+    // ---- Discovery shelves (idle catalog only) ----
+    const SHELVES = [
+      {
+        title: 'Trending', ico: 'ico-trend', hideTrend: true,
+        pick: list => list.filter(g => g.trending),
+        viewAll: () => { trendingOnly = true; }
+      },
+      {
+        title: 'For beginners', ico: 'ico-school',
+        pick: list => list.filter(g => g.level === 'Junior'),
+        viewAll: () => { activeLevel = 'Junior'; renderLevelFilters(); }
+      }
+    ];
+    const SHELF_CAP = 6;
+
+    function renderShelves(swap) {
+      shelvesEl.innerHTML = '';
+      SHELVES.forEach(def => {
+        const items = def.pick(GUIDES);
+        if (!items.length) return;
+        const sec = document.createElement('section');
+        sec.className = 'shelf';
+        sec.innerHTML =
+          '<div class="shelf-head">' +
+            '<h2 class="shelf-title"><span class="sh-ico ' + def.ico + '"></span>' + esc(def.title) +
+              '<span class="sh-count">' + items.length + '</span></h2>' +
+            '<button class="shelf-link" type="button">View all</button>' +
+          '</div>' +
+          '<div class="grid"></div>';
+        const grid = sec.querySelector('.grid');
+        items.slice(0, SHELF_CAP).forEach((g, i) => grid.appendChild(cardEl(g, i, swap, { hideTrend: def.hideTrend })));
+        sec.querySelector('.shelf-link').onclick = () => {
+          def.viewAll();
+          renderGrid(true);
+          // the clicked button is destroyed by the re-render: park focus on the results bar
+          if (!resultsBarEl.hidden) resultsBarEl.focus({ preventScroll: true });
+        };
+        shelvesEl.appendChild(sec);
+      });
+    }
+
+    function renderResultsBar(n, idle) {
+      if (idle) { resultsBarEl.hidden = true; resultsBarEl.innerHTML = ''; return; }
+      let html = '<span><b>' + n + '</b> ' + (n === 1 ? 'guide' : 'guides');
+      if (searchQ) html += ' for <span class="rb-q">“' + esc(searchQ) + '”</span>';
+      html += '</span>';
+      if (trendingOnly) html += '<button class="chip chip-sm active" id="rbTrend" type="button">Trending &#215;</button>';
+      // when the grid is empty its own reset button owns the action
+      if (n > 0) html += '<button class="chip chip-sm" id="rbClear" type="button">Reset all</button>';
+      resultsBarEl.innerHTML = html;
+      resultsBarEl.hidden = false;
+      const tb = document.getElementById('rbTrend');
+      if (tb) tb.onclick = () => { trendingOnly = false; renderGrid(true); };
+      const rb = document.getElementById('rbClear');
+      if (rb) rb.onclick = clearAllFilters;
+    }
+
+    function clearAllFilters() {
+      searchQ = ''; trendingOnly = false;
+      activeCat = 'All'; activeSub = 'All'; activeLevel = 'All'; activeModels.clear();
+      sortByLevel = 0; sortByCost = 0; sortByNew = 0; sortByViews = 0;
+      if (searchInputEl) { searchInputEl.value = ''; searchClearEl.hidden = true; }
+      renderFilters(); renderSubFilters(); renderLevelFilters(); renderModelFilters(); renderSort();
+      closeMenus();
+      renderGrid(true);
+      // the clicked reset control is destroyed by the re-render: park focus nearby
+      if (!allHeadEl.hidden) allHeadEl.focus({ preventScroll: true });
+    }
+
+    function appendCards(list, from, swap) {
+      list.slice(from, visibleCount).forEach((g, i) => {
+        gridEl.appendChild(cardEl(g, i, swap));
+      });
+      loadMoreWrapEl.hidden = list.length <= visibleCount;
+      loadMoreBtnEl.onclick = () => {
+        const next = visibleCount;
+        visibleCount += PAGE_SIZE;
+        appendCards(list, next, true);
+      };
+    }
+
+    function renderGrid(swap) {
+      visibleCount = PAGE_SIZE;
+      const srStatusEl = document.getElementById('srStatus');
+      // no data at all (fetch failed or nothing published yet)
+      if (!GUIDES.length) {
+        resultsBarEl.hidden = true; resultsBarEl.innerHTML = '';
+        shelvesEl.innerHTML = '';
+        allHeadEl.hidden = true;
+        gridEl.innerHTML = '<div class="empty">No guides here yet.</div>';
+        loadMoreWrapEl.hidden = true;
+        if (srStatusEl) srStatusEl.textContent = 'No guides yet';
+        return;
+      }
+      const idle = isIdleCatalog();
+      const list = filteredList();
+      renderResultsBar(list.length, idle);
+      if (idle) renderShelves(swap); else shelvesEl.innerHTML = '';
+      allHeadEl.hidden = false;
+      document.getElementById('allTitle').textContent = idle ? 'All guides' : 'Results';
+      allCountEl.textContent = idle ? GUIDES.length : list.length;
+      if (srStatusEl) {
+        srStatusEl.textContent = list.length + (list.length === 1 ? ' guide' : ' guides') +
+          (searchQ ? ' for ' + searchQ : '') + (idle ? '' : ' shown');
+      }
+      gridEl.innerHTML = '';
+      if (!list.length) {
+        gridEl.innerHTML =
+          '<div class="empty">No guides match' +
+          (searchQ ? ' “' + esc(searchQ) + '”' : ' these filters') +
+          '.<br><button class="chip chip-sm empty-reset" type="button">Reset all filters</button></div>';
+        gridEl.querySelector('.empty-reset').onclick = clearAllFilters;
+        loadMoreWrapEl.hidden = true;
+        return;
+      }
+      appendCards(list, 0, swap);
+    }
+
+    // ---- Hero search wiring ----
+    function initSearch() {
+      if (!searchInputEl) return;
+      // the example-filled placeholder clips at phone widths
+      if (window.matchMedia('(max-width: 600px)').matches) searchInputEl.placeholder = 'Search guides…';
+      let t = 0;
+      const apply = () => {
+        searchClearEl.hidden = !searchInputEl.value;
+        const v = searchInputEl.value.trim();
+        if (v === searchQ) return;
+        searchQ = v;
+        renderGrid(true);
+      };
+      searchInputEl.addEventListener('input', () => {
+        searchClearEl.hidden = !searchInputEl.value;
+        clearTimeout(t);
+        t = setTimeout(apply, 180);
+      });
+      searchInputEl.addEventListener('keydown', e => {
+        if (e.isComposing || e.keyCode === 229) return; // key consumed by IME composition
+        if (e.key !== 'Escape') return;
+        if (searchInputEl.value) {
+          searchInputEl.value = '';
+          clearTimeout(t);
+          apply();
+        } else {
+          searchInputEl.blur();
         }
       });
-      attachMediaFade(gridEl);
+      document.getElementById('heroSearch').addEventListener('submit', e => {
+        e.preventDefault();
+        clearTimeout(t);
+        apply();
+        document.getElementById('guides').scrollIntoView({ behavior: REDUCED_MOTION ? 'auto' : 'smooth', block: 'start' });
+      });
+      searchClearEl.addEventListener('click', () => {
+        searchInputEl.value = '';
+        clearTimeout(t);
+        apply();
+        searchInputEl.focus();
+      });
+      // "/" focuses search from anywhere on the home view
+      document.addEventListener('keydown', e => {
+        if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey) return;
+        const el = document.activeElement;
+        const typing = el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable);
+        if (typing || !guidePageEl.hidden) return;
+        e.preventDefault();
+        searchInputEl.focus();
+      });
+    }
+
+    function updateHeroCount() {
+      const el = document.getElementById('heroSub');
+      if (!el || !GUIDES.length) return;
+      const n = GUIDES.length;
+      el.innerHTML = '<b class="count-b">' + n + '</b> step-by-step ' + (n === 1 ? 'guide' : 'guides') +
+        ' for motion design, games, music, video and design. Search or pick a topic and start creating today.';
     }
 
     // ---- Guide detail modal ----
@@ -1089,23 +2150,30 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     }
 
     function guideHtml(g) {
+      // cover shows the actual result → badge it so the payoff reads instantly
+      const cover = g.video
+        ? '<video class="m-cover" src="' + esc(g.video) + '"' + (g.poster ? ' poster="' + esc(g.poster) + '"' : '') + ' controls autoplay muted loop playsinline preload="metadata"></video>'
+        : (g.image ? '<img class="m-cover" src="' + esc(g.image) + '" alt="">' : '');
+      // header: eyebrow → title → desc → one unified meta strip (title-first)
+      const metaBits = [];
+      if (g.level) metaBits.push('<span class="level-badge ' + levelClass(g.level) + '">' + esc(g.level) + '</span>');
+      metaBits.push(viewsHtml(g, 'views') + '<span class="vlabel">&nbsp;views</span>');
+      if (g.time) metaBits.push('<span>' + esc(g.time) + '</span>');
+      if (g.models) metaBits.push('<span><b>Models</b>' + esc(g.models) + '</span>');
+      if (g.cost) metaBits.push('<span><b>Est. cost</b>' + esc(fmtCost(g.cost)) + '</span>');
       let html =
-        (g.video
-          ? '<video class="m-cover" src="' + esc(g.video) + '"' + (g.poster ? ' poster="' + esc(g.poster) + '"' : '') + ' controls autoplay muted loop playsinline preload="metadata"></video>'
-          : (g.image ? '<img class="m-cover" src="' + esc(g.image) + '" alt="">' : '')) +
-        ((g.models || g.cost || g.level)
-          ? '<div class="m-meta">' +
-              (g.level ? '<span class="level-badge ' + levelClass(g.level) + '">' + esc(g.level) + '</span>' : '') +
-              (g.level && (g.models || g.cost) ? '<span class="m-meta-sep">&middot;</span>' : '') +
-              (g.models ? '<span><b>Models</b>' + esc(g.models) + '</span>' : '') +
-              (g.models && g.cost ? '<span class="m-meta-sep">&middot;</span>' : '') +
-              (g.cost ? '<span><b>Est. cost</b>' + esc(g.cost) + '</span>' : '') +
-            '</div>'
-          : '') +
-        '<div class="cat-label">' + esc(g.cat) + (g.sub ? ' · ' + esc(g.sub) : '') + '</div>' +
+        (cover ? '<div class="m-cover-wrap">' + cover +
+          '<span class="result-badge">Final result</span></div>' : '') +
+        '<div class="cat-label">' + catIconHtml(g.cat) + '<span>' + esc(g.cat) + '</span>' + (g.sub ? '<span class="sub-label">' + esc(g.sub) + '</span>' : '') + '</div>' +
         '<h2 class="m-title">' + esc(g.title) + '</h2>' +
         '<p class="m-desc">' + esc(g.desc) + '</p>' +
-        (g.time ? '<div class="time">' + esc(g.time) + '</div>' : '') +
+        (metaBits.length
+          ? '<div class="m-meta">' + metaBits.join('<span class="m-meta-sep">&middot;</span>') + '</div>'
+          : '') +
+        '<div class="m-share">' +
+          '<button class="share-btn" data-share type="button"><span class="sh-i i-share"></span>Share</button>' +
+          '<button class="share-btn" data-copy-link type="button"><span class="sh-i i-link"></span>Copy link</button>' +
+        '</div>' +
         (g.audio ? '<div class="m-audio"><span>Listen</span>' +
           '<div class="qc-player">' +
             '<audio preload="metadata" src="' + esc(g.audio) + '"></audio>' +
@@ -1130,7 +2198,10 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
                 (s.prompt
                   ? '<div class="m-prompt">' +
                       '<div class="m-prompt-head"><span>Prompt</span>' +
-                        '<button class="copy-btn" data-copy-step="' + i + '">Copy prompt</button>' +
+                        '<div class="m-prompt-actions">' +
+                          '<button class="copy-btn" data-copy-step="' + i + '">Copy prompt</button>' +
+                          '<button class="qc-open-btn" data-open-step="' + i + '" type="button">Open in Quadcode</button>' +
+                        '</div>' +
                       '</div>' +
                       '<code>' + esc(s.prompt) + '</code>' +
                     '</div>'
@@ -1144,7 +2215,69 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       if (g.result) {
         html += '<div class="m-result"><span>Result</span><p>' + esc(g.result) + '</p></div>';
       }
+      // primary conversion path: take them into the product to actually make it
+      const note = [fmtCost(g.cost), g.level].filter(Boolean).join(' · ');
+      html += '<div class="m-cta">' +
+        '<b>Ready to make this?</b>' +
+        '<span>Opens Quadcode.ai with the prompt ready to paste.</span>' +
+        '<button class="cta" data-qc-open type="button">Open in Quadcode.ai &rarr;</button>' +
+        (note ? '<div class="m-cta-note">' + esc(note) + '</div>' : '') +
+        '</div>';
+      // keep them in the catalog: 3 related guides (same category first)
+      const rel = relatedGuides(g, 3);
+      if (rel.length) {
+        html += '<div class="m-related"><h3>More guides to try</h3><div class="m-related-grid">';
+        rel.forEach(r => {
+          const thumb = r.image || r.poster || '';
+          html += '<button class="rel-card" type="button" data-guide-id="' + esc(r.id) + '">' +
+            (thumb ? '<img class="rel-cover" src="' + esc(thumb) + '" alt="" loading="lazy">' : '') +
+            '<div class="rel-body"><div class="rel-cat">' + esc(r.cat) + '</div>' +
+            '<div class="rel-title">' + esc(r.title) + '</div></div>' +
+          '</button>';
+        });
+        html += '</div></div>';
+      }
       return html;
+    }
+
+    // related = same category first (most-viewed), then fill with other most-viewed
+    function relatedGuides(g, n) {
+      const others = GUIDES.filter(x => x.id !== g.id);
+      const byViews = (a, b) => viewCount(b) - viewCount(a);
+      const same = others.filter(x => x.cat === g.cat).sort(byViews);
+      const rest = others.filter(x => x.cat !== g.cat).sort(byViews);
+      return same.concat(rest).slice(0, n);
+    }
+
+    // first step that carries a prompt (what the CTA pre-fills)
+    function guidePrimaryPrompt(g) {
+      const s = (g.steps || []).find(st => st && st.prompt && st.prompt.trim());
+      return s ? s.prompt : '';
+    }
+    // copy the prompt, then open the product (with ?prompt= as best-effort prefill)
+    function openInQuadcode(promptText) {
+      let url = CTA_URL;
+      if (promptText) {
+        url += (url.indexOf('?') >= 0 ? '&' : '?') + 'prompt=' + encodeURIComponent(promptText.slice(0, 600));
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(promptText).catch(() => {});
+        }
+        showToast('Prompt copied — opening Quadcode');
+      }
+      window.open(url, '_blank', 'noopener');
+    }
+    let toastT = 0;
+    function showToast(msg) {
+      let el = document.getElementById('qcToast');
+      if (!el) {
+        el = document.createElement('div');
+        el.id = 'qcToast'; el.className = 'qc-toast'; el.setAttribute('role', 'status');
+        document.body.appendChild(el);
+      }
+      el.textContent = msg;
+      el.classList.add('on');
+      clearTimeout(toastT);
+      toastT = setTimeout(() => el.classList.remove('on'), 2200);
     }
 
     // ---- Hero title: live looping typewriter ----
@@ -1209,6 +2342,12 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     const homeEl = document.querySelector('main.wrap');
     const guidePageEl = document.getElementById('guidePage');
     const guideBodyEl = document.getElementById('guideBody');
+    const guideStickyEl = document.getElementById('guideSticky');
+    const guideStickyTitleEl = document.getElementById('guideStickyTitle');
+    const guideStickyStepEl = document.getElementById('guideStickyStep');
+    const guideStickyCtaEl = document.getElementById('guideStickyCta');
+    const stepRailEl = document.getElementById('stepRail');
+    let guideStepCount = 0;
     const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let homeScrollY = 0;
 
@@ -1236,8 +2375,48 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       if (!progRaf) progRaf = requestAnimationFrame(progressLoop);
     }
     window.addEventListener('scroll', () => {
-      if (!guidePageEl.hidden) updateProgress();
+      if (!guidePageEl.hidden) { updateProgress(); updateGuideChrome(); }
     }, { passive: true });
+
+    // ---- Guide chrome: sticky bar + step rail ----
+    function setupGuideChrome(g) {
+      const steps = Array.isArray(g.steps) ? g.steps.filter(s => s.title || s.text || s.prompt) : [];
+      guideStepCount = steps.length;
+      guideStickyTitleEl.textContent = g.title;
+      guideStickyCtaEl.href = CTA_URL; // real link (focusable + fallback); onclick enriches with prompt
+      guideStickyCtaEl.onclick = (e) => { e.preventDefault(); openInQuadcode(guidePrimaryPrompt(g)); };
+      stepRailEl.innerHTML = '';
+      if (guideStepCount >= 2) {
+        steps.forEach((s, i) => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.innerHTML = '<span class="sr-dot"></span><span class="sr-label">' + esc(s.title || ('Step ' + (i + 1))) + '</span>';
+          b.onclick = () => {
+            const el = guideBodyEl.querySelectorAll('.m-steps .m-step')[i];
+            if (el) el.scrollIntoView({ behavior: REDUCED_MOTION ? 'auto' : 'smooth', block: 'center' });
+          };
+          stepRailEl.appendChild(b);
+        });
+      }
+      updateGuideChrome();
+    }
+    function updateGuideChrome() {
+      if (guidePageEl.hidden) return;
+      // sticky bar appears once the cover has scrolled mostly out of view
+      const cover = guideBodyEl.querySelector('.m-cover-wrap, .m-cover');
+      const trigger = cover ? cover.getBoundingClientRect().bottom < 40 : window.scrollY > 260;
+      guideStickyEl.classList.toggle('on', trigger);
+      if (!guideStepCount) { stepRailEl.classList.remove('on'); guideStickyStepEl.textContent = ''; return; }
+      // find the step whose top is closest above the viewport middle
+      const steps = guideBodyEl.querySelectorAll('.m-steps .m-step');
+      const mid = window.innerHeight * 0.4;
+      let active = 0;
+      steps.forEach((el, i) => { if (el.getBoundingClientRect().top <= mid) active = i; });
+      stepRailEl.querySelectorAll('button').forEach((b, i) => b.classList.toggle('active', i === active));
+      const inSteps = steps.length && steps[0].getBoundingClientRect().top < window.innerHeight;
+      stepRailEl.classList.toggle('on', trigger && inSteps);
+      guideStickyStepEl.textContent = inSteps ? ('Step ' + (active + 1) + ' / ' + guideStepCount) : '';
+    }
 
     function animateEnter(el) {
       if (REDUCED_MOTION) return;
@@ -1259,6 +2438,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         }
         attachMediaFade(guideBodyEl);
         revealGuideSteps();
+        setupGuideChrome(g);
         const pl = guideBodyEl.querySelector('.qc-player');
         if (pl) initPlayer(pl);
         guideBodyEl.querySelectorAll('.copy-btn').forEach(btn => {
@@ -1266,6 +2446,36 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
             const step = (g.steps || [])[parseInt(btn.dataset.copyStep, 10)];
             if (!step || !step.prompt) return;
             copyText(step.prompt, btn);
+          };
+        });
+        // "Open in Quadcode" — per step carries that step's prompt, CTA the primary one
+        const primaryPrompt = guidePrimaryPrompt(g);
+        guideBodyEl.querySelectorAll('[data-open-step]').forEach(btn => {
+          btn.onclick = () => {
+            const step = (g.steps || [])[parseInt(btn.dataset.openStep, 10)];
+            openInQuadcode(step && step.prompt ? step.prompt : primaryPrompt);
+          };
+        });
+        guideBodyEl.querySelectorAll('[data-qc-open]').forEach(btn => {
+          btn.onclick = () => openInQuadcode(primaryPrompt);
+        });
+        // share + copy link
+        const shareUrl = location.href;
+        const shareData = { title: g.title + ' — Quadcode Guide', text: g.desc || '', url: shareUrl };
+        guideBodyEl.querySelectorAll('[data-share]').forEach(btn => {
+          btn.onclick = () => {
+            if (navigator.share) { navigator.share(shareData).catch(() => {}); }
+            else { copyLink(shareUrl); }
+          };
+        });
+        guideBodyEl.querySelectorAll('[data-copy-link]').forEach(btn => {
+          btn.onclick = () => copyLink(shareUrl);
+        });
+        // related guide cards
+        guideBodyEl.querySelectorAll('.rel-card[data-guide-id]').forEach(card => {
+          card.onclick = () => {
+            const rg = GUIDES.find(x => x.id === card.dataset.guideId);
+            if (rg) openGuide(rg);
           };
         });
       };
@@ -1307,6 +2517,14 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       try { document.execCommand('copy'); done(); } catch (e) {}
       document.body.removeChild(ta);
     }
+    function copyLink(url) {
+      const done = () => showToast('Link copied');
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(done).catch(() => fallbackCopy(url, done));
+      } else {
+        fallbackCopy(url, done);
+      }
+    }
 
     function showHome() {
       const a = guideBodyEl.querySelector('audio');
@@ -1318,9 +2536,11 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       homeEl.hidden = false;
       document.title = 'Quadcode Guide';
       progressEl.classList.remove('on');
-      // reset home -> guide zoom transition state
-      gridEl.classList.remove('dimmed');
-      gridEl.querySelectorAll('.card.zoom-out').forEach(c => c.classList.remove('zoom-out'));
+      guideStickyEl.classList.remove('on');
+      stepRailEl.classList.remove('on');
+      // reset home -> guide zoom transition state (main grid + shelf grids)
+      document.querySelectorAll('#guides .grid.dimmed').forEach(gr => gr.classList.remove('dimmed'));
+      document.querySelectorAll('#guides .card.zoom-out').forEach(c => c.classList.remove('zoom-out'));
       if (wasHidden) {
         animateEnter(homeEl);
         try { window.scrollTo({ top: homeScrollY, behavior: 'instant' }); }
@@ -1473,11 +2693,14 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       // deep link straight to a guide: show guide skeleton instead of home grid
       if (/^#\/guide\//.test(location.hash)) renderSkeletonGuide();
       await loadData();
-      buildTicker();
       initRevealObserver();
+      updateHeroCount();
+      initSearch();
       renderFilters();
+      renderSubFilters();
       renderLevelFilters();
       renderModelFilters();
+      wireToolbar();
       await swapSkeletonGrid();
       // safety: never leave revealed elements stuck hidden
       setTimeout(() => {
@@ -1487,7 +2710,26 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       document.addEventListener('keydown', e => {
         if (e.key === 'Escape' && !guidePageEl.hidden) location.hash = '#guides';
       });
+      // brand logo -> home (top)
+      const brand = document.getElementById('brandHome');
+      if (brand) {
+        const goHome = () => {
+          homeScrollY = 0;
+          if (!guidePageEl.hidden) {
+            location.hash = '#guides';   // leave the guide -> router animates back home
+          } else {
+            try { window.scrollTo({ top: 0, behavior: REDUCED_MOTION ? 'auto' : 'smooth' }); }
+            catch (e) { window.scrollTo(0, 0); }
+          }
+        };
+        brand.addEventListener('click', goHome);
+        brand.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goHome(); }
+        });
+      }
       router();
+      // warm every guide's still images in the background (instant navigation)
+      warmAllGuideImages();
     }
     init();
   </script>

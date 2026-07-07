@@ -12,6 +12,7 @@
       "level": "Middle",
       "models": "GPT-Image, Seedance",
       "cost": "~238 qcc",
+      "trending": true,
       "video": "/ui_views/assets/gamedev-rpg-character.mp4",
       "poster": "/ui_views/assets/gamedev-rpg-poster.jpg",
       "steps": [
@@ -53,6 +54,7 @@
       "level": "Junior",
       "models": "GPT-Image",
       "cost": "~18 qcc",
+      "trending": true,
       "image": "/ui_views/assets/poster-gta6-hitman.png",
       "steps": [
         {
@@ -111,6 +113,7 @@
       "level": "Middle+",
       "models": "GPT-Image, Seedance",
       "cost": "~1150 qcc",
+      "trending": true,
       "video": "/ui_views/assets/video-airpods-max-montage.mp4",
       "poster": "/ui_views/assets/video-airpods-max-poster.jpg",
       "steps": [

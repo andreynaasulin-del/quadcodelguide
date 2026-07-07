@@ -185,9 +185,18 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         </div>
       </div>
 
-      <div class="field">
-        <label>Est. cost in qcc (optional)</label>
-        <input id="f-cost" placeholder="e.g. ~18 qcc">
+      <div class="row">
+        <div class="field">
+          <label>Est. cost in qcc (optional)</label>
+          <input id="f-cost" placeholder="e.g. ~18 qcc">
+        </div>
+        <div class="field">
+          <label>Trending (featured shelf on landing)</label>
+          <select id="f-trending">
+            <option value="">No</option>
+            <option value="yes">Yes — show in Trending</option>
+          </select>
+        </div>
       </div>
 
       <div class="field">
@@ -283,6 +292,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       $('f-sub').value = ''; $('f-title').value = ''; $('f-desc').value = '';
       $('f-time').value = ''; $('f-result').value = '';
       $('f-level').value = 'Junior'; $('f-models').value = ''; $('f-cost').value = '';
+      $('f-trending').value = '';
       $('steps').innerHTML = '';
       stepRow();
       setStatus('Ready');
@@ -308,7 +318,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         row.className = 'gitem';
         row.innerHTML =
           '<span class="g-cat">' + (g.cat || '') + '</span>' +
-          '<span class="g-title">' + (g.title || '') + '</span>' +
+          '<span class="g-title">' + (g.trending ? '&#128293; ' : '') + (g.title || '') + '</span>' +
           '<span class="g-date">' + (g.date || '') + '</span>' +
           '<button class="g-del" title="Delete">Delete</button>';
         row.querySelector('.g-del').onclick = () => deleteGuide(g.id);
@@ -349,10 +359,25 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         steps: collectSteps(),
         result: $('f-result').value.trim()
       };
+      if ($('f-trending').value === 'yes') guide.trending = true;
 
-      // replace if same id exists, else append
+      // replace if same id exists, else append.
+      // The form has no media fields, so keep the previous guide's media
+      // (cover image/video/poster/audio and per-step results) on re-save.
       const idx = DATA.guides.findIndex(g => g.id === guide.id);
-      if (idx >= 0) DATA.guides[idx] = guide; else DATA.guides.push(guide);
+      if (idx >= 0) {
+        const prev = DATA.guides[idx];
+        ['image', 'video', 'poster', 'audio'].forEach(k => {
+          if (prev[k] != null && guide[k] == null) guide[k] = prev[k];
+        });
+        guide.steps = guide.steps.map((s, i) => {
+          const ps = (prev.steps || [])[i];
+          return ps ? Object.assign({}, ps, s) : s;
+        });
+        DATA.guides[idx] = guide;
+      } else {
+        DATA.guides.push(guide);
+      }
 
       $('saveBtn').disabled = true;
       setStatus('Saving…', 'work');
