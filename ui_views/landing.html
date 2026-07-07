@@ -409,10 +409,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='9' fill='none' stroke='black' stroke-width='2'/%3E%3Cpath d='M12 7v5l3 2' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;
             mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='9' fill='none' stroke='black' stroke-width='2'/%3E%3Cpath d='M12 7v5l3 2' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;
   }
-  .card .time .cost-dot { color: var(--muted-2); margin: 0 2px; }
-  .card .time .cost-tag {
-    font-weight: 600; color: var(--acc-1);
-  }
   .card .read {
     font-size: 13.5px; font-weight: 600; color: var(--acc-1);
     display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
@@ -1314,10 +1310,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     let sortByLevel = 0; // 0 = off (default order), 1 = asc, -1 = desc
     let sortByCost = 0;  // 0 = off, 1 = asc (cheapest first), -1 = desc
 
-    function parseCost(g) {
-      const m = String(g.cost || '').match(/(\d+(?:\.\d+)?)/);
-      return m ? parseFloat(m[1]) : null;
-    }
     let activeModels = new Set(); // multi-select, empty = all models
     let searchQ = '';        // debounced search query
     let trendingOnly = false; // "View all" on the Trending shelf
@@ -1397,9 +1389,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       return '<span class="' + cls + '" title="' + formatViews(viewCount(g)) + ' views">' +
         formatViews(viewCount(g)) + '</span>';
     }
-    // the qcc currency is always uppercased in the UI
-    function fmtCost(c) { return String(c == null ? '' : c).replace(/qcc/gi, 'QCC'); }
-
     // parse "GPT-Image, Seedance" -> ["GPT-Image", "Seedance"]
     function parseModels(g) {
       return (g.models || '').split(',').map(s => s.trim()).filter(Boolean);
@@ -1722,17 +1711,13 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       { key: 'views',    label: 'Most viewed', apply: () => { sortByViews = 1; sortByNew = 0; sortByLevel = 0; sortByCost = 0; } },
       { key: 'new',      label: 'Newest first', apply: () => { sortByNew = 1; sortByLevel = 0; sortByCost = 0; sortByViews = 0; } },
       { key: 'lvl-asc',  label: 'Difficulty: easy first', apply: () => { sortByLevel = 1; sortByCost = 0; sortByNew = 0; sortByViews = 0; } },
-      { key: 'lvl-desc', label: 'Difficulty: hard first', apply: () => { sortByLevel = -1; sortByCost = 0; sortByNew = 0; sortByViews = 0; } },
-      { key: 'cost-asc', label: 'Cost: low to high', apply: () => { sortByCost = 1; sortByLevel = 0; sortByNew = 0; sortByViews = 0; } },
-      { key: 'cost-desc',label: 'Cost: high to low', apply: () => { sortByCost = -1; sortByLevel = 0; sortByNew = 0; sortByViews = 0; } }
+      { key: 'lvl-desc', label: 'Difficulty: hard first', apply: () => { sortByLevel = -1; sortByCost = 0; sortByNew = 0; sortByViews = 0; } }
     ];
     function currentSortKey() {
       if (sortByViews) return 'views';
       if (sortByNew) return 'new';
       if (sortByLevel === 1) return 'lvl-asc';
       if (sortByLevel === -1) return 'lvl-desc';
-      if (sortByCost === 1) return 'cost-asc';
-      if (sortByCost === -1) return 'cost-desc';
       return 'featured';
     }
     function renderSort() {
@@ -1823,14 +1808,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       if (q) list = list.filter(g => searchScore(g, q) > 0);
       if (sortByLevel) {
         list.sort((a, b) => sortByLevel * ((LEVEL_RANK[a.level] || 0) - (LEVEL_RANK[b.level] || 0)));
-      } else if (sortByCost) {
-        list.sort((a, b) => {
-          const ca = parseCost(a), cb = parseCost(b);
-          if (ca == null && cb == null) return 0;
-          if (ca == null) return 1;   // guides without cost go last
-          if (cb == null) return -1;
-          return sortByCost * (ca - cb);
-        });
       } else if (sortByNew) {
         list.sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
       } else if (sortByViews) {
@@ -1868,11 +1845,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         '<p>' + esc(g.desc) + '</p>' +
         (levelPill ? '<div class="card-tags">' + levelPill + '</div>' : '') +
         '<div class="card-foot">' +
-          ((g.time || g.cost)
-            ? '<div class="time">' + esc(g.time || '') +
-              (g.time && g.cost ? '<span class="cost-dot">&middot;</span>' : '') +
-              (g.cost ? '<span class="cost-tag">' + esc(fmtCost(g.cost)) + '</span>' : '') + '</div>'
-            : '<span></span>') +
+          (g.time ? '<div class="time">' + esc(g.time) + '</div>' : '<span></span>') +
           '<div class="read">Read guide</div>' +
         '</div>';
       // ---- Hover preview: video plays with sound, audio-only cards preview the track ----
@@ -2160,7 +2133,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       metaBits.push(viewsHtml(g, 'views') + '<span class="vlabel">&nbsp;views</span>');
       if (g.time) metaBits.push('<span>' + esc(g.time) + '</span>');
       if (g.models) metaBits.push('<span><b>Models</b>' + esc(g.models) + '</span>');
-      if (g.cost) metaBits.push('<span><b>Est. cost</b>' + esc(fmtCost(g.cost)) + '</span>');
       let html =
         (cover ? '<div class="m-cover-wrap">' + cover +
           '<span class="result-badge">Final result</span></div>' : '') +
@@ -2216,7 +2188,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         html += '<div class="m-result"><span>Result</span><p>' + esc(g.result) + '</p></div>';
       }
       // primary conversion path: take them into the product to actually make it
-      const note = [fmtCost(g.cost), g.level].filter(Boolean).join(' · ');
+      const note = g.level || '';
       html += '<div class="m-cta">' +
         '<b>Ready to make this?</b>' +
         '<span>Opens Quadcode.ai with the prompt ready to paste.</span>' +

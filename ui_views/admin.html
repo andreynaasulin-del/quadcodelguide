@@ -185,18 +185,12 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         </div>
       </div>
 
-      <div class="row">
-        <div class="field">
-          <label>Est. cost in qcc (optional)</label>
-          <input id="f-cost" placeholder="e.g. ~18 qcc">
-        </div>
-        <div class="field">
-          <label>Trending (featured shelf on landing)</label>
-          <select id="f-trending">
-            <option value="">No</option>
-            <option value="yes">Yes — show in Trending</option>
-          </select>
-        </div>
+      <div class="field">
+        <label>Trending (featured shelf on landing)</label>
+        <select id="f-trending">
+          <option value="">No</option>
+          <option value="yes">Yes — show in Trending</option>
+        </select>
       </div>
 
       <div class="field">
@@ -291,7 +285,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     function resetForm() {
       $('f-sub').value = ''; $('f-title').value = ''; $('f-desc').value = '';
       $('f-time').value = ''; $('f-result').value = '';
-      $('f-level').value = 'Junior'; $('f-models').value = ''; $('f-cost').value = '';
+      $('f-level').value = 'Junior'; $('f-models').value = '';
       $('f-trending').value = '';
       $('steps').innerHTML = '';
       stepRow();
@@ -355,7 +349,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         date: todayStr(),
         level: $('f-level').value,
         models: $('f-models').value.trim(),
-        cost: $('f-cost').value.trim(),
         steps: collectSteps(),
         result: $('f-result').value.trim()
       };

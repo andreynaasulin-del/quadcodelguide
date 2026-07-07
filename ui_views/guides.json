@@ -11,7 +11,6 @@
       "date": "2026-07-01",
       "level": "Middle",
       "models": "GPT-Image, Seedance",
-      "cost": "~238 qcc",
       "trending": true,
       "video": "/ui_views/assets/gamedev-rpg-character.mp4",
       "poster": "/ui_views/assets/gamedev-rpg-poster.jpg",
@@ -53,7 +52,6 @@
       "date": "2026-07-02",
       "level": "Junior",
       "models": "GPT-Image",
-      "cost": "~18 qcc",
       "trending": true,
       "image": "/ui_views/assets/poster-gta6-hitman.png",
       "steps": [
@@ -75,7 +73,6 @@
       "date": "2026-07-02",
       "level": "Junior",
       "models": "Suno",
-      "cost": "~9 qcc",
       "image": "/ui_views/assets/music-jazz-restaurant-cover.png",
       "audio": "/ui_views/assets/music-rnb-latenight.mp3",
       "steps": [
@@ -112,7 +109,6 @@
       "date": "2026-07-03",
       "level": "Middle+",
       "models": "GPT-Image, Seedance",
-      "cost": "~1150 qcc",
       "trending": true,
       "video": "/ui_views/assets/video-airpods-max-montage.mp4",
       "poster": "/ui_views/assets/video-airpods-max-poster.jpg",
