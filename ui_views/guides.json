@@ -100,6 +100,37 @@
       "result": "A polished jazz R&B instrumental ready to loop in a restaurant, cafe, or lounge."
     },
     {
+      "id": "minidv-camcorder-memory",
+      "cat": "Video",
+      "sub": "Retro Camcorder",
+      "title": "Shoot a 2000s camcorder memory",
+      "desc": "Turn one prompt into a nostalgic MiniDV street clip that feels like real found footage.",
+      "time": "6 min",
+      "date": "2026-07-08",
+      "level": "Junior",
+      "models": "Seedance",
+      "video": "/ui_views/assets/video-minidv-alley.mp4",
+      "poster": "/ui_views/assets/video-minidv-poster.jpg",
+      "steps": [
+        {
+          "title": "Pick the camera, not the style",
+          "text": "The trick is to describe the device that filmed it. Name a real 2000s camcorder look and the AI stops making glossy footage.",
+          "prompt": "Footage filmed on a 2004 MiniDV handycam with a fisheye lens attachment, slight barrel distortion, soft focus, washed-out colors, mild tape noise, white date-time stamp in the corner reading 2004. 5.29 AM 10:47, 4:3 home-video framing"
+        },
+        {
+          "title": "Direct one small, real moment",
+          "text": "Big scenes look fake on old tape. One quiet everyday moment sells the illusion — say exactly who does what.",
+          "prompt": "A quiet back alley in Seoul on a sunny morning, a young woman with a loose ponytail crouches on the cracked pavement and slowly reaches her open hand toward a stray tabby cat, the cat sniffs her fingers, old tires and a dark green metal gate behind them, candid handheld moment"
+        },
+        {
+          "title": "Generate and keep the honest take",
+          "text": "Run both parts as one prompt in Seedance, 15 seconds. Pick the take with natural motion — small pauses and imperfect framing are what make it believable. Play the clip above to see the result.",
+          "prompt": ""
+        }
+      ],
+      "result": "A 15-second retro camcorder clip that looks like a real memory from 2004 — ready for reels, moodboards or a music video."
+    },
+    {
       "id": "premium-product-montage",
       "cat": "Video",
       "sub": "Product Ads",
