@@ -131,6 +131,38 @@
       "result": "A 15-second retro camcorder clip that looks like a real memory from 2004 — ready for reels, moodboards or a music video."
     },
     {
+      "id": "ugc-ads-workflow",
+      "cat": "Video",
+      "sub": "UGC Ads",
+      "title": "Mass-produce UGC ads from one product photo",
+      "desc": "Build an AI actor, hand them your product and generate ultra-realistic UGC ad clips on repeat.",
+      "time": "10 min",
+      "date": "2026-07-09",
+      "level": "Middle",
+      "models": "Claude, Kling, GPT-Image",
+      "trending": true,
+      "video": "/ui_views/assets/video-ugc-ads-workflow.mp4",
+      "poster": "/ui_views/assets/video-ugc-ads-poster.jpg",
+      "steps": [
+        {
+          "title": "Create your AI actor",
+          "text": "Generate one consistent, believable creator with GPT-Image. Keep the look casual and trustworthy — this face will front all your ads.",
+          "prompt": "Photorealistic portrait of a female UGC creator in her early 30s, natural blonde hair, soft daylight, beige wool coat over a cream turtleneck, neutral warm background, looking at camera with a calm friendly expression, shot on a mirrorless camera, 85mm, realistic skin texture, no retouching look"
+        },
+        {
+          "title": "Put the product in her hands",
+          "text": "Combine the actor and your product photo into one natural shot. Name the product and the action — the AI does the compositing.",
+          "prompt": "The same woman naturally holds and presents a black leather tote bag to the camera, fingers resting on the top edge of the bag, soft indoor daylight, candid UGC style, product clearly visible and in focus, realistic hands, no studio look"
+        },
+        {
+          "title": "Bring it to life with video",
+          "text": "Send the composite shot to Kling and describe one simple creator movement. Short, natural motion sells it — repeat with new angles for endless variations.",
+          "prompt": "The UGC creator presents and shows the bag to camera: she lifts it slightly, turns it to show the front, and smiles — natural handheld framing, soft motion, realistic lighting, 5 seconds"
+        }
+      ],
+      "result": "A repeatable pipeline: one AI actor + one product photo = a stream of ultra-realistic UGC ad clips, ready for TikTok, Reels and paid campaigns."
+    },
+    {
       "id": "photo-particle-poster",
       "cat": "Video",
       "sub": "Interactive Art",
