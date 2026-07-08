@@ -131,6 +131,38 @@
       "result": "A 15-second retro camcorder clip that looks like a real memory from 2004 — ready for reels, moodboards or a music video."
     },
     {
+      "id": "photo-particle-poster",
+      "cat": "Video",
+      "sub": "Interactive Art",
+      "title": "Turn a photo into a living particle poster",
+      "desc": "One photo becomes thousands of dots that scatter under your cursor — a hero page coded by the agent from three prompts.",
+      "time": "10 min",
+      "date": "2026-07-09",
+      "level": "Middle",
+      "models": "Claude Sonnet",
+      "video": "/ui_views/assets/video-shellgraphic.mp4",
+      "poster": "/ui_views/assets/video-shellgraphic-poster.jpg",
+      "steps": [
+        {
+          "title": "Turn the photo into dots",
+          "text": "Ask the agent to build a page where your image is redrawn as a halftone grid — thousands of tiny circles, sized by brightness. Pick a photo with strong contrast on a dark background.",
+          "prompt": "Build a single-page hero section on a pure black background. Center: a photorealistic seashell image rendered as a halftone particle grid — thousands of small circular dots sampled from the image, dot size driven by pixel brightness. Smooth 60fps canvas rendering, subtle floor reflection under the shell."
+        },
+        {
+          "title": "Make it react to the cursor",
+          "text": "Add the hook: dots near the cursor fly away with soft physics and drift back when you leave. This one interaction is what makes people stop and play.",
+          "prompt": "Add interaction: when the cursor moves across the image, nearby dots scatter away with soft spring physics and slowly drift back into place when the cursor leaves. Keep the motion smooth and organic — no jitter, no lag."
+        },
+        {
+          "title": "Frame it like a poster",
+          "text": "Finish with an editorial typography layer around the artwork so the page reads as a premium poster, not a tech demo. Then record the page as a video to share.",
+          "prompt": "Add an editorial typography layer: large serif logotype top-left, small uppercase spaced labels — a tagline top-right, a collection label bottom-left, a \"MOVE CURSOR TO DISSOLVE\" hint bottom-right, and a small date tag rotated on the left edge. Premium editorial poster look, all text crisp.",
+          "result_video": "/ui_views/assets/video-shellgraphic.mp4"
+        }
+      ],
+      "result": "An interactive particle-poster web page that dissolves under the cursor — recorded here as a 13-second clip, ready for your portfolio or socials."
+    },
+    {
       "id": "premium-product-montage",
       "cat": "Video",
       "sub": "Product Ads",
