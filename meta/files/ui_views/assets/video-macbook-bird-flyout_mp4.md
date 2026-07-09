@@ -18,5 +18,5 @@ USAGE: Video shown in the "Make a screen-to-reality hero video" guide (Website c
 COMMENTS: ## Video Notes
 - Source: user-uploaded macbook_bird_flyout_4k.mp4 (3840x2160, 24fps, 65.6MB, 10.1s, AAC stereo audio) — recompressed to 1920x1080 H.264 Lanczos → 6.1MB
 - Poster: ui_views/assets/video-macbook-bird-poster.jpg — frame at ~6.7s (macaw with wings fully spread over the hand, strongest hook)
-- Models referenced in guide: GPT-Image (keyframe), Seedance (screen-breakout animation)
+- Models referenced in guide: Seedance (keyframe + screen-breakout animation) — GPT-Image was NOT used in this case (removed from models on user request)
 - Third guide in the Website category — pairs with beauty-brand-landing and product-hero-turntable as "hero video" material for landing pages
