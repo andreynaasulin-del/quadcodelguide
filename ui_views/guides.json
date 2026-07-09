@@ -10,6 +10,39 @@
   ],
   "guides": [
     {
+      "id": "screen-to-reality-hero",
+      "cat": "Website",
+      "sub": "Hero Video",
+      "title": "Make a screen-to-reality hero video",
+      "desc": "A parrot flies out of a laptop screen and lands on your hand — the wow-moment hero clip that stops visitors cold.",
+      "time": "8 min",
+      "date": "2026-07-09",
+      "level": "Middle",
+      "models": "GPT-Image, Seedance",
+      "trending": true,
+      "video": "/ui_views/assets/video-macbook-bird-flyout.mp4",
+      "poster": "/ui_views/assets/video-macbook-bird-poster.jpg",
+      "steps": [
+        {
+          "title": "Stage the screen inside the scene",
+          "text": "Generate one keyframe where the laptop screen shows the exact subject that will break out of it. Matching light between screen and scene is what sells the trick later.",
+          "prompt": "Photorealistic shot of an open silver laptop on a dark wooden table on a tropical veranda at golden hour, the screen displays a vivid scarlet macaw parrot filling the frame, lush palm jungle bokeh behind the railing, warm low sun flaring through the trees, screen glow matching the ambient light, centered composition, 16:9"
+        },
+        {
+          "title": "Direct the breakout moment",
+          "text": "Describe one continuous action: the subject leaves the screen and enters the real scene. Name the landing point — a hand entering the frame gives the camera somewhere to go.",
+          "prompt": "The scarlet macaw on the laptop screen comes alive and flies out of the screen into the real scene, wings spreading wide toward the camera, feathers catching the golden sunlight, then it gently lands on a person's outstretched hand in the foreground, camera pulls back smoothly to follow the flight, photorealistic motion, natural wing physics, seamless transition from screen to reality, 10 seconds"
+        },
+        {
+          "title": "Ship it as your landing hero",
+          "text": "Keep the take where the screen-exit reads clean and the landing feels weighty. Drop it into your page hero with autoplay, mute and loop — the first three seconds do all the selling. Play the clip above to see the result.",
+          "prompt": "",
+          "result_video": "/ui_views/assets/video-macbook-bird-flyout.mp4"
+        }
+      ],
+      "result": "A 10-second screen-to-reality hero video in 4K — the kind of opening shot that makes visitors stop scrolling and watch your landing page."
+    },
+    {
       "id": "product-hero-turntable",
       "cat": "Website",
       "sub": "Product Hero",
