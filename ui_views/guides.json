@@ -5,9 +5,43 @@
     "Gamedev",
     "Music",
     "Video",
-    "Design"
+    "Design",
+    "Website"
   ],
   "guides": [
+    {
+      "id": "beauty-brand-landing",
+      "cat": "Website",
+      "sub": "Landing Page",
+      "title": "Build a luxury beauty brand landing page",
+      "desc": "Three prompts turn into a polished, scroll-ready skincare landing page — the agent writes all the code for you.",
+      "time": "10 min",
+      "date": "2026-07-09",
+      "level": "Middle",
+      "models": "Claude Sonnet",
+      "trending": true,
+      "video": "/ui_views/assets/video-bloomcare-landing.mp4",
+      "poster": "/ui_views/assets/video-bloomcare-poster.jpg",
+      "steps": [
+        {
+          "title": "Set the brand and mood",
+          "text": "Give the agent one clear brief: brand name, product, aesthetic and audience. Name a real design direction — 'Japanese minimalism' works harder than 'make it pretty'.",
+          "prompt": "Build a single-page landing site for BLOOM CARE — a premium Japanese skincare brand built around sakura extract. Aesthetic: Japanese minimalism, soft blush-pink and cream palette, elegant serif headlines, generous whitespace. The page should feel like a quiet luxury boutique, calm and editorial, not a loud e-commerce store."
+        },
+        {
+          "title": "Structure the page",
+          "text": "List the sections in order so the page tells one story: hook, products, hero product, proof, full collection. The agent builds every section with real layout and copy.",
+          "prompt": "Page structure, top to bottom: (1) sticky header with logo, nav and cart; (2) hero — headline \"The art of timeless beauty\", one-line subcopy, two buttons, product photo on the right; (3) bestsellers row — three product cards with prices and add-to-cart; (4) hero product spotlight — Sakura Repair Serum with key actives listed in a spec table; (5) formulation story — cherry blossom imagery with short claims; (6) full collection grid. Write all copy in polished brand English."
+        },
+        {
+          "title": "Polish and record",
+          "text": "Finish with the details that sell the premium feel: micro-animations, a benefits marquee, hover states. Then scroll the live page and screen-record it for your portfolio or client.",
+          "prompt": "Add finishing touches: a slim scrolling marquee strip with offers (free samples, cruelty-free, 30-day guarantee, free shipping), subtle fade-up animations on scroll, soft hover lift on product cards, and a typing caret effect on the hero headline. Keep every animation quiet and smooth — premium, never flashy.",
+          "result_video": "/ui_views/assets/video-bloomcare-landing.mp4"
+        }
+      ],
+      "result": "A complete luxury skincare landing page coded by the agent — recorded here as a 12-second scroll-through, ready to ship or hand to a client."
+    },
     {
       "id": "first-game-character",
       "cat": "Gamedev",
