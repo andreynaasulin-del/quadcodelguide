@@ -10,6 +10,38 @@
   ],
   "guides": [
     {
+      "id": "product-hero-turntable",
+      "cat": "Website",
+      "sub": "Product Hero",
+      "title": "Spin a 360° product hero for your landing page",
+      "desc": "One product photo becomes a seamless 4K turntable loop — the hero video that makes a landing page feel expensive.",
+      "time": "8 min",
+      "date": "2026-07-09",
+      "level": "Middle",
+      "models": "GPT-Image, Seedance, Topaz",
+      "video": "/ui_views/assets/video-sakura-turntable.mp4",
+      "poster": "/ui_views/assets/video-sakura-turntable-poster.jpg",
+      "steps": [
+        {
+          "title": "Generate the hero keyframe",
+          "text": "Start with one strong product shot — this single image locks the look of the whole loop. Match it to your brand palette so the video drops straight into your page.",
+          "prompt": "Photorealistic product shot of a frosted glass cosmetic jar labeled SAKURA GLOW CREAM 50ml with a rose-gold metallic lid, standing on a dark glossy reflective surface, soft cherry blossom petals drifting in the air and resting nearby, warm dusty-rose studio backdrop, premium beauty ad lighting, centered composition, 16:9"
+        },
+        {
+          "title": "Turn it into a seamless 360° loop",
+          "text": "Feed the same image as both the start and end frame with transition mode on — that is what makes the loop invisible. Describe only the rotation, nothing else.",
+          "prompt": "The jar rotates slowly through a full 360° turntable spin on the glossy surface, camera locked, cherry blossom petals drifting gently in the background, soft studio reflections gliding across the rose-gold lid, smooth constant speed, seamless loop — first and last frame identical"
+        },
+        {
+          "title": "Upscale to 4K and ship it",
+          "text": "Run the finished loop through the upscaler for a crisp 4K master, then drop it into your landing page hero with autoplay, mute and loop. Play the clip above to see the result.",
+          "prompt": "",
+          "result_video": "/ui_views/assets/video-sakura-turntable.mp4"
+        }
+      ],
+      "result": "A seamless 16-second 360° product turntable in 4K — the hero video that turns a static landing page into a premium storefront."
+    },
+    {
       "id": "beauty-brand-landing",
       "cat": "Website",
       "sub": "Landing Page",
