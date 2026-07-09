@@ -97,11 +97,11 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 
   /* ---------- Extra home tabs (Skills / Integrations) ---------- */
   .extra-section { padding: 4px 0 48px; }
-  .extra-section .extra-head { margin-bottom: 32px; }
+  .extra-section .extra-head { margin-bottom: 28px; }
   .extra-section h2 {
     font-family: var(--font-display);
     font-size: 28px; font-weight: 700; letter-spacing: -.6px;
-    margin: 0 0 10px;
+    margin: 0 0 8px;
   }
   .extra-section .extra-sub {
     margin: 0; font-size: 15px; color: var(--muted); line-height: 1.5; max-width: 40em;
@@ -112,23 +112,14 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     border-top: 1px solid var(--line);
   }
   .extra-item:last-child { border-bottom: 1px solid var(--line); }
-  .extra-item.skill-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 28px;
-  }
-  .extra-item .extra-body { flex: 1; min-width: 0; }
   .extra-item .extra-meta {
     display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
     margin-bottom: 8px;
   }
-  .extra-item .extra-tag,
   .extra-item .extra-status {
     display: inline-block;
     font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
   }
-  .extra-item .extra-tag { color: var(--acc-1); }
   .extra-item .extra-status.status-connected { color: #7ee787; }
   .extra-item .extra-status.status-available { color: var(--acc-1); }
   .extra-item .extra-status.status-planned { color: var(--muted-2); }
@@ -138,26 +129,157 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     margin: 0 0 6px;
   }
   .extra-item p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.45; max-width: 44em; }
+
+  /* ---------- Skills marketplace ---------- */
+  #skills.extra-section .extra-head { margin-bottom: 22px; }
+  #skills.extra-section h2 { font-size: 26px; margin-bottom: 6px; }
+  #skills.extra-section .extra-sub { font-size: 14px; max-width: 36em; }
+  .skills-toolbar {
+    display: flex; flex-direction: column; gap: 14px;
+    margin-bottom: 22px;
+  }
+  .skills-search {
+    display: flex; align-items: center; gap: 10px;
+    width: 100%; max-width: 420px;
+    background: var(--bg-2); border: 1px solid var(--line);
+    border-radius: 12px; padding: 10px 14px;
+    transition: border-color .2s ease, box-shadow .25s ease;
+  }
+  .skills-search:focus-within {
+    border-color: var(--acc-1);
+    box-shadow: 0 0 0 3px rgba(255,149,105,.12);
+  }
+  .skills-search .sk-ico {
+    width: 15px; height: 15px; flex: 0 0 15px; background: var(--muted-2);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z'/%3E%3C/svg%3E") center/contain no-repeat;
+    transition: background .2s ease;
+  }
+  .skills-search:focus-within .sk-ico { background: var(--acc-1); }
+  .skills-search input {
+    flex: 1; min-width: 0; border: 0; outline: 0; background: transparent;
+    color: var(--white); font-family: inherit; font-size: 14px; font-weight: 500;
+  }
+  .skills-search input::placeholder { color: var(--muted-2); font-weight: 400; }
+  .skills-search .sk-clear {
+    width: 22px; height: 22px; flex: 0 0 22px; border: 0; padding: 0;
+    border-radius: 6px; cursor: pointer; background: transparent;
+    color: var(--muted-2); font-size: 16px; line-height: 1;
+    display: none; align-items: center; justify-content: center;
+    transition: color .15s ease, background .15s ease;
+  }
+  .skills-search .sk-clear.on { display: inline-flex; }
+  .skills-search .sk-clear:hover { color: var(--white); background: rgba(255,255,255,.06); }
+  .skills-chips {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+  }
+  .skills-chips .chip { font-size: 13px; padding: 7px 14px; }
+  .skills-meta-row {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; margin-bottom: 14px; min-height: 18px;
+  }
+  .skills-count {
+    font-size: 12px; font-weight: 500; color: var(--muted-2); letter-spacing: .2px;
+  }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .skill-card {
+    display: flex; flex-direction: column;
+    background: rgba(255,255,255,.03);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px 18px 16px;
+    min-height: 0;
+    transition: border-color .2s ease, transform .2s var(--ease-out), background .2s ease, box-shadow .25s ease;
+  }
+  .skill-card:hover {
+    border-color: rgba(255,149,105,.35);
+    background: rgba(255,255,255,.045);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 36px -22px rgba(0,0,0,.65), 0 0 0 1px rgba(255,149,105,.08);
+  }
+  .skill-card-top {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 14px;
+  }
+  .skill-card-icon {
+    width: 40px; height: 40px; flex: 0 0 40px; border-radius: 11px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 15px; font-weight: 700;
+    color: #fff; letter-spacing: -.3px;
+    background: var(--grad);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.12);
+  }
+  .skill-card-icon[data-tone="1"] { background: linear-gradient(135deg, #FF9569 0%, #E85A3C 100%); }
+  .skill-card-icon[data-tone="2"] { background: linear-gradient(135deg, #DD344D 0%, #9B1D3A 100%); }
+  .skill-card-icon[data-tone="3"] { background: linear-gradient(135deg, #FFB088 0%, #FF9569 55%, #DD344D 100%); }
+  .skill-card-icon[data-tone="4"] { background: linear-gradient(135deg, #E85A3C 0%, #DD344D 100%); }
+  .skill-card-tag {
+    font-size: 11px; font-weight: 700; letter-spacing: 1.1px; text-transform: uppercase;
+    color: var(--acc-1);
+  }
+  .skill-card-title {
+    font-family: var(--font-display);
+    font-size: 16px; font-weight: 600; letter-spacing: -.3px;
+    margin: 0 0 6px; line-height: 1.25;
+  }
+  .skill-card-desc {
+    margin: 0; font-size: 13px; color: var(--muted); line-height: 1.45;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .skill-card-snippet {
+    margin: 12px 0 0; padding: 10px 11px;
+    border-radius: 9px;
+    background: rgba(0,0,0,.22);
+    border: 1px solid var(--line);
+    font-size: 11.5px; line-height: 1.5; color: var(--muted-2);
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .skill-card-foot {
+    margin-top: auto; padding-top: 16px;
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  }
+  .skill-card-author {
+    font-size: 12px; color: var(--muted-2); font-weight: 500;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
   .skill-install-btn {
     flex: 0 0 auto;
-    display: inline-flex; align-items: center; justify-content: center;
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
     background: var(--grad); color: #fff; border: 0; cursor: pointer;
-    font-family: inherit; font-size: 13px; font-weight: 600;
-    padding: 10px 18px; border-radius: 999px; white-space: nowrap;
+    font-family: inherit; font-size: 12.5px; font-weight: 600;
+    padding: 8px 14px; border-radius: 999px; white-space: nowrap;
     transition: filter .18s ease, transform .16s var(--ease), box-shadow .18s ease;
+  }
+  .skill-install-btn::after {
+    content: ''; width: 12px; height: 12px; flex: 0 0 auto; background: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7zM19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7zM19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z'/%3E%3C/svg%3E") center/contain no-repeat;
   }
   .skill-install-btn:hover {
     filter: brightness(1.06); transform: translateY(-1px);
     box-shadow: 0 6px 18px -6px rgba(221,52,77,.45);
   }
   .skill-install-btn:active { transform: translateY(0) scale(.97); filter: brightness(.98); }
+  .skills-empty {
+    grid-column: 1 / -1;
+    text-align: center; padding: 48px 20px;
+    color: var(--muted); font-size: 14px;
+  }
+  .skills-empty strong { color: var(--white); font-weight: 600; }
+  @media (max-width: 900px) {
+    .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
   @media (max-width: 640px) {
-    .extra-item.skill-row {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 16px;
-    }
-    .skill-install-btn { align-self: stretch; text-align: center; }
+    .skills-grid { grid-template-columns: 1fr; gap: 12px; }
+    .skills-search { max-width: none; }
+    .skill-card-foot { flex-wrap: wrap; }
+    .skill-install-btn { width: 100%; }
   }
 
   /* ---------- Focus-bracket frame ---------- */
@@ -1246,6 +1368,9 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     .load-more:hover, .load-more:active { transform: none; }
     .card { transition: none; }
     .card:hover { transform: none; }
+    .skill-card { transition: none; }
+    .skill-card:hover { transform: none; box-shadow: none; }
+    .skill-install-btn:hover, .skill-install-btn:active { transform: none; }
     .tb-btn, .tb-btn .caret { transition: none; }
     .tb-btn:active { transform: none; }
     .tb-menu, .cat-menu, .filters-panel, .subfilters { animation: none; }
@@ -1352,13 +1477,24 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       </div>
     </section>
 
-    <!-- Skills tab (#skills) — catalog rendered from SKILLS in JS -->
+    <!-- Skills tab (#skills) — marketplace catalog from SKILLS in JS -->
     <section id="skills" class="extra-section" hidden>
       <div class="extra-head">
         <h2>Skills</h2>
-        <p class="extra-sub">Reusable Cursor / Quadcode skills for the same workflows as the guides — video, landings, characters, music, and publish.</p>
+        <p class="extra-sub">Browse reusable Cursor / Quadcode skills — install any workflow into your IDE in one click.</p>
       </div>
-      <div class="extra-list" id="skillsList"></div>
+      <div class="skills-toolbar">
+        <div class="skills-search" role="search">
+          <span class="sk-ico" aria-hidden="true"></span>
+          <input id="skillsSearch" type="search" placeholder="Search skills…" autocomplete="off" aria-label="Search skills">
+          <button class="sk-clear" id="skillsSearchClear" type="button" aria-label="Clear search">&times;</button>
+        </div>
+        <div class="skills-chips" id="skillsChips" role="tablist" aria-label="Skill categories"></div>
+      </div>
+      <div class="skills-meta-row">
+        <span class="skills-count" id="skillsCount"></span>
+      </div>
+      <div class="skills-grid" id="skillsList"></div>
     </section>
 
     <!-- Integrations tab (#integrations) — catalog rendered from INTEGRATIONS in JS -->
@@ -1399,55 +1535,109 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         tag: 'Video',
         title: 'Video prompt craft',
         desc: 'Camera language, physics cues, and negative prompts that hold up in Seedance and Kling takes.',
-        installPrompt: 'Install the Quadcode skill: Video prompt craft. Camera language, physics cues, and negative prompts that hold up in Seedance and Kling takes. Set it up as a reusable Cursor/Quadcode skill (SKILL.md) I can invoke for this workflow.'
+        body:
+          'When invoked, write image-to-video prompts that survive Seedance/Kling generation.\n' +
+          '1) Lock subject, setting, lighting, and lens in the first sentence.\n' +
+          '2) Specify camera move (dolly, pan, locked) + duration; keep motion smooth and single-shot.\n' +
+          '3) Add physics cues (weight, splash, cloth, reflections) so motion reads real.\n' +
+          '4) End with a short negative list: text, watermark, shake, cuts, morphing.\n' +
+          'Return copy-paste ready prompts; ask only if the brief is missing subject or format.'
       },
       {
         tag: 'Video',
         title: 'Shot list',
         desc: 'Turn one product or scene brief into ordered shots with framing, duration, and end-card notes.',
-        installPrompt: 'Install the Quadcode skill: Shot list. Turn one product or scene brief into ordered shots with framing, duration, and end-card notes. Set it up as a reusable Cursor/Quadcode skill (SKILL.md) I can invoke for this workflow.'
+        body:
+          'When invoked, turn one product or scene brief into a production shot list.\n' +
+          '1) Clarify goal, aspect ratio, and total runtime if missing.\n' +
+          '2) Output numbered shots: framing, camera move, duration, on-screen action, audio note.\n' +
+          '3) Mark hero / B-roll / end-card; keep cuts editable for montage or UGC.\n' +
+          '4) Add a one-line prompt seed per shot for image or video gen.\n' +
+          'Prefer a compact table or checklist the user can hand to an editor or agent.'
       },
       {
         tag: 'Website',
         title: 'Hero turntable',
         desc: 'Keyframe → seamless 360° loop → 4K upscale — the expensive-looking landing hero from one still.',
-        installPrompt: 'Install the Quadcode skill: Hero turntable. Keyframe → seamless 360° loop → 4K upscale — the expensive-looking landing hero from one still. Set it up as a reusable Cursor/Quadcode skill (SKILL.md) I can invoke for this workflow.'
+        body:
+          'When invoked, build a premium product hero turntable from one still or brief.\n' +
+          '1) Write a GPT-Image keyframe: centered product, studio light, clean surface, 16:9, no text.\n' +
+          '2) Write a Seedance/Kling i2v prompt: locked camera, constant-speed 360° spin, seamless loop (first = last frame).\n' +
+          '3) Upscale with Topaz (or equivalent) to 4K H.264 for landing <video> use.\n' +
+          '4) Suggest hero placement: muted loop, poster fallback, reduced-motion still.\n' +
+          'Deliver prompts + short next steps; do not invent brand copy unless asked.'
       },
       {
         tag: 'Gamedev',
         title: 'Character turntable',
         desc: 'Lock RPG hero identity across stills, then spin and export a clean 3D-ready turntable.',
-        installPrompt: 'Install the Quadcode skill: Character turntable. Lock RPG hero identity across stills, then spin and export a clean 3D-ready turntable. Set it up as a reusable Cursor/Quadcode skill (SKILL.md) I can invoke for this workflow.'
+        body:
+          'When invoked, lock an RPG hero identity then produce a clean character turntable.\n' +
+          '1) Write a concept prompt: silhouette, materials, palette, stance, full body.\n' +
+          '2) Add a consistency pass (same armor/colors/proportions) before any spin.\n' +
+          '3) Convert to 3D-ready guidance: clean topology notes, T-pose friendly, PBR materials.\n' +
+          '4) Generate a turntable brief: slow orbit, neutral ground, no text, export-ready clip.\n' +
+          'Keep identity locked across every step; flag anything that would break the silhouette.'
       },
       {
         tag: 'Video',
         title: 'UGC pipeline',
         desc: 'AI actor, product-in-hand stills, then short Kling clips — mass-produce UGC from one photo.',
-        installPrompt: 'Install the Quadcode skill: UGC pipeline. AI actor, product-in-hand stills, then short Kling clips — mass-produce UGC from one photo. Set it up as a reusable Cursor/Quadcode skill (SKILL.md) I can invoke for this workflow.'
+        body:
+          'When invoked, run a UGC mass-production pipeline from one photo or actor brief.\n' +
+          '1) Define AI actor look + wardrobe that matches the product niche.\n' +
+          '2) Generate product-in-hand still prompts (vertical, candid phone energy).\n' +
+          '3) Convert keepers to short Kling/Seedance clips with natural hand/body motion.\n' +
+          '4) Batch variants: angles, hooks, CTAs; keep naming clear for export.\n' +
+          'Optimize for vertical social; avoid cinematic grade unless the brief asks for it.'
       },
       {
         tag: 'Website',
         title: 'Landing motion',
         desc: 'Hero loops, scroll parallax, and GSAP ScrollTrigger patterns used in cinematic landings.',
-        installPrompt: 'Install the Quadcode skill: Landing motion. Hero loops, scroll parallax, and GSAP ScrollTrigger patterns used in cinematic landings. Set it up as a reusable Cursor/Quadcode skill (SKILL.md) I can invoke for this workflow.'
+        body:
+          'When invoked, design cinematic landing motion with hero loops and scroll parallax.\n' +
+          '1) Plan sections: hero video/loop, interlude parallax, scrubbed path or map if needed.\n' +
+          '2) Specify GSAP + ScrollTrigger patterns (scrub, pin, layered parallax, reduced-motion).\n' +
+          '3) Tie AI assets to motion: Ken Burns hero, lateral drift under overlays, poster fallback.\n' +
+          '4) Prefer vanilla HTML/CSS/JS + CDN unless the project already has a stack.\n' +
+          'Ship concrete structure + motion notes the agent can implement without fluff.'
       },
       {
         tag: 'Music',
         title: 'Music sync',
         desc: 'Suno beds with tempo, instruments, and cut points that sit under montage or UGC edits.',
-        installPrompt: 'Install the Quadcode skill: Music sync. Suno beds with tempo, instruments, and cut points that sit under montage or UGC edits. Set it up as a reusable Cursor/Quadcode skill (SKILL.md) I can invoke for this workflow.'
+        body:
+          'When invoked, write Suno (or similar) beds that sync under montage or UGC edits.\n' +
+          '1) Capture mood, BPM/tempo feel, instruments, and length from the visual brief.\n' +
+          '2) Output a generation prompt plus cut points (intro / lift / outro) for editors.\n' +
+          '3) Prefer instrumental beds unless vocals are requested; avoid lyric clashes with VO.\n' +
+          '4) Note loopability and ducking tips under dialogue or SFX.\n' +
+          'Return one primary prompt and 1–2 variants tuned to the cut list.'
       },
       {
         tag: 'Design',
         title: 'Poster design',
         desc: 'One-shot crossover posters and cursor-reactive particle frames from a single photo.',
-        installPrompt: 'Install the Quadcode skill: Poster design. One-shot crossover posters and cursor-reactive particle frames from a single photo. Set it up as a reusable Cursor/Quadcode skill (SKILL.md) I can invoke for this workflow.'
+        body:
+          'When invoked, produce bold one-shot posters or interactive poster frames from a brief/photo.\n' +
+          '1) Lock composition: subject placement, style (comic, editorial, product), aspect ratio.\n' +
+          '2) Write a single image prompt with crisp text/logo instructions when lettering matters.\n' +
+          '3) For interactive frames: describe cursor-reactive particles or hover motion lightly.\n' +
+          '4) Offer 2–3 variants; keep spelling and brand marks correct.\n' +
+          'Prefer one strong prompt over a long chain unless the user asks for iterations.'
       },
       {
         tag: 'Workflow',
         title: 'Publish guide',
         desc: 'Upload media to Vercel Blob and ship a case with publish_case so it lands in guides.json.',
-        installPrompt: 'Install the Quadcode skill: Publish guide. Upload media to Vercel Blob and ship a case with publish_case so it lands in guides.json. Set it up as a reusable Cursor/Quadcode skill (SKILL.md) I can invoke for this workflow.'
+        body:
+          'When invoked, publish a finished case into Quadcode Guide.\n' +
+          '1) Collect title, desc, category, models, steps, and local/remote media paths.\n' +
+          '2) Upload assets to Vercel Blob; use public URLs only in the case payload.\n' +
+          '3) Run publish_case (or the project publish script) so the entry lands in guides.json.\n' +
+          '4) Validate required fields and that media URLs resolve before go-live.\n' +
+          'Do not invent Blob credentials; follow the repo publish flow and report the new guide id.'
       }
     ];
 
@@ -1504,31 +1694,123 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 
     function skillInstallPrompt(s) {
       if (s.installPrompt) return s.installPrompt;
-      return 'Install the Quadcode skill: ' + s.title + '. ' + s.desc +
-        ' Set it up as a reusable Cursor/Quadcode skill (SKILL.md) I can invoke for this workflow.';
+      const body = s.body || s.skillText || '';
+      return 'Install the Quadcode skill: ' + s.title + '.\n\n' +
+        'Summary: ' + s.desc + '\n\n' +
+        (body ? 'Skill instructions:\n' + body + '\n\n' : '') +
+        'Create a reusable Cursor/Quadcode skill (SKILL.md) with this title, summary, and full skill body so I can invoke it for this workflow.';
+    }
+
+    let skillsTagFilter = 'All';
+    let skillsSearchQ = '';
+
+    function skillInitials(title) {
+      const parts = String(title || '').trim().split(/\s+/).filter(Boolean);
+      if (!parts.length) return 'S';
+      if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+      return (parts[0][0] + parts[1][0]).toUpperCase();
+    }
+
+    function skillSnippet(s) {
+      const body = String(s.body || s.skillText || '').replace(/\s+/g, ' ').trim();
+      if (!body) return '';
+      return body.length > 160 ? body.slice(0, 157) + '\u2026' : body;
+    }
+
+    function skillMatches(s, q, tag) {
+      if (tag && tag !== 'All' && s.tag !== tag) return false;
+      if (!q) return true;
+      const hay = [s.tag, s.title, s.desc, s.body, s.skillText].filter(Boolean).join(' ').toLowerCase();
+      return hay.includes(q);
+    }
+
+    function renderSkillsChips() {
+      const chipsEl = document.getElementById('skillsChips');
+      if (!chipsEl) return;
+      const tags = ['All', ...Array.from(new Set(SKILLS.map(s => s.tag).filter(Boolean)))];
+      chipsEl.innerHTML = tags.map(tag =>
+        '<button type="button" class="chip' + (tag === skillsTagFilter ? ' active' : '') + '" data-skill-tag="' + escapeHtml(tag) + '" role="tab" aria-selected="' + (tag === skillsTagFilter) + '">' +
+          escapeHtml(tag) +
+        '</button>'
+      ).join('');
+      chipsEl.querySelectorAll('[data-skill-tag]').forEach(btn => {
+        btn.onclick = () => {
+          skillsTagFilter = btn.getAttribute('data-skill-tag') || 'All';
+          renderSkillsCatalog();
+        };
+      });
+    }
+
+    function renderSkillsCatalog() {
+      const skillsList = document.getElementById('skillsList');
+      const countEl = document.getElementById('skillsCount');
+      const clearBtn = document.getElementById('skillsSearchClear');
+      if (clearBtn) clearBtn.classList.toggle('on', !!skillsSearchQ);
+      renderSkillsChips();
+      if (!skillsList) return;
+      const q = skillsSearchQ.trim().toLowerCase();
+      const matched = SKILLS.map((s, i) => ({ s, i })).filter(({ s }) => skillMatches(s, q, skillsTagFilter));
+      if (countEl) {
+        countEl.textContent = matched.length === SKILLS.length
+          ? matched.length + ' skill' + (matched.length === 1 ? '' : 's')
+          : matched.length + ' of ' + SKILLS.length + ' skills';
+      }
+      if (!matched.length) {
+        skillsList.innerHTML = '<div class="skills-empty">No skills match <strong>' + escapeHtml(skillsSearchQ || skillsTagFilter) + '</strong>. Try another search or tag.</div>';
+        return;
+      }
+      skillsList.innerHTML = matched.map(({ s, i }) => {
+        const snippet = skillSnippet(s);
+        const tone = (i % 4) + 1;
+        return '<article class="skill-card">' +
+          '<div class="skill-card-top">' +
+            '<div class="skill-card-icon" data-tone="' + tone + '" aria-hidden="true">' + escapeHtml(skillInitials(s.title)) + '</div>' +
+            '<span class="skill-card-tag">' + escapeHtml(s.tag) + '</span>' +
+          '</div>' +
+          '<h3 class="skill-card-title">' + escapeHtml(s.title) + '</h3>' +
+          '<p class="skill-card-desc">' + escapeHtml(s.desc) + '</p>' +
+          (snippet ? '<p class="skill-card-snippet">' + escapeHtml(snippet) + '</p>' : '') +
+          '<div class="skill-card-foot">' +
+            '<span class="skill-card-author">Quadcode</span>' +
+            '<button class="skill-install-btn" type="button" data-skill-install="' + i + '">Use in Quadcode</button>' +
+          '</div>' +
+        '</article>';
+      }).join('');
+      skillsList.querySelectorAll('[data-skill-install]').forEach(btn => {
+        btn.onclick = () => {
+          const skill = SKILLS[+btn.getAttribute('data-skill-install')];
+          if (skill) openInQuadcode(skillInstallPrompt(skill));
+        };
+      });
+    }
+
+    function bindSkillsSearch() {
+      const input = document.getElementById('skillsSearch');
+      const clearBtn = document.getElementById('skillsSearchClear');
+      if (!input || input.dataset.bound === '1') return;
+      input.dataset.bound = '1';
+      let t = null;
+      input.addEventListener('input', () => {
+        clearTimeout(t);
+        t = setTimeout(() => {
+          skillsSearchQ = input.value || '';
+          renderSkillsCatalog();
+        }, 120);
+      });
+      if (clearBtn) {
+        clearBtn.onclick = () => {
+          input.value = '';
+          skillsSearchQ = '';
+          renderSkillsCatalog();
+          input.focus();
+        };
+      }
     }
 
     function renderExtraCatalogs() {
-      const skillsList = document.getElementById('skillsList');
+      bindSkillsSearch();
+      renderSkillsCatalog();
       const integList = document.getElementById('integrationsList');
-      if (skillsList) {
-        skillsList.innerHTML = SKILLS.map((s, i) =>
-          '<div class="extra-item skill-row">' +
-            '<div class="extra-body">' +
-              '<div class="extra-meta"><span class="extra-tag">' + escapeHtml(s.tag) + '</span></div>' +
-              '<h3>' + escapeHtml(s.title) + '</h3>' +
-              '<p>' + escapeHtml(s.desc) + '</p>' +
-            '</div>' +
-            '<button class="skill-install-btn" type="button" data-skill-install="' + i + '">Install in Quadcode</button>' +
-          '</div>'
-        ).join('');
-        skillsList.querySelectorAll('[data-skill-install]').forEach(btn => {
-          btn.onclick = () => {
-            const skill = SKILLS[+btn.getAttribute('data-skill-install')];
-            if (skill) openInQuadcode(skillInstallPrompt(skill));
-          };
-        });
-      }
       if (integList) {
         integList.innerHTML = INTEGRATIONS.map(it => {
           const st = String(it.status || 'Planned');
@@ -1541,6 +1823,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         }).join('');
       }
     }
+
     let activeCat = "All";
     let activeSub = "All";  // subcategory within the active category
     const LEVELS = ["All", "Junior", "Middle", "Middle+"];
