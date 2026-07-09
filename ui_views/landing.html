@@ -112,6 +112,13 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     border-top: 1px solid var(--line);
   }
   .extra-item:last-child { border-bottom: 1px solid var(--line); }
+  .extra-item.skill-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+  }
+  .extra-item .extra-body { flex: 1; min-width: 0; }
   .extra-item .extra-meta {
     display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
     margin-bottom: 8px;
@@ -131,6 +138,27 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     margin: 0 0 6px;
   }
   .extra-item p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.45; max-width: 44em; }
+  .skill-install-btn {
+    flex: 0 0 auto;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--grad); color: #fff; border: 0; cursor: pointer;
+    font-family: inherit; font-size: 13px; font-weight: 600;
+    padding: 10px 18px; border-radius: 999px; white-space: nowrap;
+    transition: filter .18s ease, transform .16s var(--ease), box-shadow .18s ease;
+  }
+  .skill-install-btn:hover {
+    filter: brightness(1.06); transform: translateY(-1px);
+    box-shadow: 0 6px 18px -6px rgba(221,52,77,.45);
+  }
+  .skill-install-btn:active { transform: translateY(0) scale(.97); filter: brightness(.98); }
+  @media (max-width: 640px) {
+    .extra-item.skill-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .skill-install-btn { align-self: stretch; text-align: center; }
+  }
 
   /* ---------- Focus-bracket frame ---------- */
   .framed { position: relative; }
@@ -1369,48 +1397,57 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     const SKILLS = [
       {
         tag: 'Video',
-        title: 'Prompt craft for video & motion',
-        desc: 'Camera language, physics cues, and negative prompts that hold up in Seedance and Kling takes.'
+        title: 'Video prompt craft',
+        desc: 'Camera language, physics cues, and negative prompts that hold up in Seedance and Kling takes.',
+        installPrompt: 'Install the Quadcode skill: Video prompt craft. Camera language, physics cues, and negative prompts that hold up in Seedance and Kling takes. Set it up as a reusable Cursor/Quadcode skill (SKILL.md) I can invoke for this workflow.'
       },
       {
         tag: 'Video',
-        title: 'Storyboard → shot list',
-        desc: 'Turn one product or scene brief into ordered shots with framing, duration, and end-card notes.'
+        title: 'Shot list',
+        desc: 'Turn one product or scene brief into ordered shots with framing, duration, and end-card notes.',
+        installPrompt: 'Install the Quadcode skill: Shot list. Turn one product or scene brief into ordered shots with framing, duration, and end-card notes. Set it up as a reusable Cursor/Quadcode skill (SKILL.md) I can invoke for this workflow.'
       },
       {
         tag: 'Website',
-        title: 'Product hero turntable',
-        desc: 'Keyframe → seamless 360° loop → 4K upscale — the expensive-looking landing hero from one still.'
+        title: 'Hero turntable',
+        desc: 'Keyframe → seamless 360° loop → 4K upscale — the expensive-looking landing hero from one still.',
+        installPrompt: 'Install the Quadcode skill: Hero turntable. Keyframe → seamless 360° loop → 4K upscale — the expensive-looking landing hero from one still. Set it up as a reusable Cursor/Quadcode skill (SKILL.md) I can invoke for this workflow.'
       },
       {
         tag: 'Gamedev',
-        title: 'Character look lock & turntable',
-        desc: 'Lock RPG hero identity across stills, then spin and export a clean 3D-ready turntable.'
+        title: 'Character turntable',
+        desc: 'Lock RPG hero identity across stills, then spin and export a clean 3D-ready turntable.',
+        installPrompt: 'Install the Quadcode skill: Character turntable. Lock RPG hero identity across stills, then spin and export a clean 3D-ready turntable. Set it up as a reusable Cursor/Quadcode skill (SKILL.md) I can invoke for this workflow.'
       },
       {
         tag: 'Video',
-        title: 'UGC ad pipeline',
-        desc: 'AI actor, product-in-hand stills, then short Kling clips — mass-produce UGC from one photo.'
+        title: 'UGC pipeline',
+        desc: 'AI actor, product-in-hand stills, then short Kling clips — mass-produce UGC from one photo.',
+        installPrompt: 'Install the Quadcode skill: UGC pipeline. AI actor, product-in-hand stills, then short Kling clips — mass-produce UGC from one photo. Set it up as a reusable Cursor/Quadcode skill (SKILL.md) I can invoke for this workflow.'
       },
       {
         tag: 'Website',
-        title: 'Landing page motion',
-        desc: 'Hero loops, scroll parallax, and GSAP ScrollTrigger patterns used in cinematic landings.'
+        title: 'Landing motion',
+        desc: 'Hero loops, scroll parallax, and GSAP ScrollTrigger patterns used in cinematic landings.',
+        installPrompt: 'Install the Quadcode skill: Landing motion. Hero loops, scroll parallax, and GSAP ScrollTrigger patterns used in cinematic landings. Set it up as a reusable Cursor/Quadcode skill (SKILL.md) I can invoke for this workflow.'
       },
       {
         tag: 'Music',
-        title: 'Music bed & sync',
-        desc: 'Suno beds with tempo, instruments, and cut points that sit under montage or UGC edits.'
+        title: 'Music sync',
+        desc: 'Suno beds with tempo, instruments, and cut points that sit under montage or UGC edits.',
+        installPrompt: 'Install the Quadcode skill: Music sync. Suno beds with tempo, instruments, and cut points that sit under montage or UGC edits. Set it up as a reusable Cursor/Quadcode skill (SKILL.md) I can invoke for this workflow.'
       },
       {
         tag: 'Design',
-        title: 'Poster & particle design',
-        desc: 'One-shot crossover posters and cursor-reactive particle frames from a single photo.'
+        title: 'Poster design',
+        desc: 'One-shot crossover posters and cursor-reactive particle frames from a single photo.',
+        installPrompt: 'Install the Quadcode skill: Poster design. One-shot crossover posters and cursor-reactive particle frames from a single photo. Set it up as a reusable Cursor/Quadcode skill (SKILL.md) I can invoke for this workflow.'
       },
       {
         tag: 'Workflow',
-        title: 'Publish to Guide',
-        desc: 'Upload media to Vercel Blob and ship a case with publish_case so it lands in guides.json.'
+        title: 'Publish guide',
+        desc: 'Upload media to Vercel Blob and ship a case with publish_case so it lands in guides.json.',
+        installPrompt: 'Install the Quadcode skill: Publish guide. Upload media to Vercel Blob and ship a case with publish_case so it lands in guides.json. Set it up as a reusable Cursor/Quadcode skill (SKILL.md) I can invoke for this workflow.'
       }
     ];
 
@@ -1465,17 +1502,32 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         .replace(/"/g, '&quot;');
     }
 
+    function skillInstallPrompt(s) {
+      if (s.installPrompt) return s.installPrompt;
+      return 'Install the Quadcode skill: ' + s.title + '. ' + s.desc +
+        ' Set it up as a reusable Cursor/Quadcode skill (SKILL.md) I can invoke for this workflow.';
+    }
+
     function renderExtraCatalogs() {
       const skillsList = document.getElementById('skillsList');
       const integList = document.getElementById('integrationsList');
       if (skillsList) {
-        skillsList.innerHTML = SKILLS.map(s =>
-          '<div class="extra-item">' +
-            '<div class="extra-meta"><span class="extra-tag">' + escapeHtml(s.tag) + '</span></div>' +
-            '<h3>' + escapeHtml(s.title) + '</h3>' +
-            '<p>' + escapeHtml(s.desc) + '</p>' +
+        skillsList.innerHTML = SKILLS.map((s, i) =>
+          '<div class="extra-item skill-row">' +
+            '<div class="extra-body">' +
+              '<div class="extra-meta"><span class="extra-tag">' + escapeHtml(s.tag) + '</span></div>' +
+              '<h3>' + escapeHtml(s.title) + '</h3>' +
+              '<p>' + escapeHtml(s.desc) + '</p>' +
+            '</div>' +
+            '<button class="skill-install-btn" type="button" data-skill-install="' + i + '">Install in Quadcode</button>' +
           '</div>'
         ).join('');
+        skillsList.querySelectorAll('[data-skill-install]').forEach(btn => {
+          btn.onclick = () => {
+            const skill = SKILLS[+btn.getAttribute('data-skill-install')];
+            if (skill) openInQuadcode(skillInstallPrompt(skill));
+          };
+        });
       }
       if (integList) {
         integList.innerHTML = INTEGRATIONS.map(it => {
