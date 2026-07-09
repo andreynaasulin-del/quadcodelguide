@@ -31,14 +31,22 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: 'Method not allowed. Use POST.' });
   }
 
-  // --- Auth: same key as /api/publish ---
-  if (!timingSafeMatch(req.headers['x-api-key'], process.env.GUIDES_API_KEY)) {
-    return res.status(401).json({ error: 'Invalid or missing x-api-key' });
-  }
-
   let body = req.body;
   if (typeof body === 'string') {
     try { body = JSON.parse(body); } catch { return res.status(400).json({ error: 'Body is not valid JSON' }); }
+  }
+
+  // --- Auth: same key as /api/publish ---
+  // Token-generation requests must carry the key in the x-api-key header
+  // or in clientPayload (the @vercel/blob client can't send custom headers).
+  // "blob.upload-completed" callbacks come from Vercel infra and are
+  // signature-verified by handleUpload itself, so no key check for them.
+  const isCallback = body && body.type === 'blob.upload-completed';
+  if (!isCallback) {
+    const givenKey = req.headers['x-api-key'] || (body && body.payload && body.payload.clientPayload);
+    if (!timingSafeMatch(givenKey, process.env.GUIDES_API_KEY)) {
+      return res.status(401).json({ error: 'Invalid or missing x-api-key' });
+    }
   }
 
   try {
@@ -55,6 +63,8 @@ module.exports = async (req, res) => {
         addRandomSuffix: true,
         // keep everything under a tidy prefix
         pathname: pathname.startsWith('guides/') ? pathname : `guides/${pathname}`,
+        // clientPayload carries the API key for auth — never bake it into the token
+        tokenPayload: null,
       }),
       onUploadCompleted: async () => {
         // nothing to do server-side; the publish script wires URLs into guides.json

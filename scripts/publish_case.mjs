@@ -70,8 +70,8 @@ async function uploadFile(localPath) {
     access: 'public',
     contentType: MIME[ext] || 'application/octet-stream',
     handleUploadUrl: `${SITE}/api/upload`,
-    clientPayload: null,
-    headers: { 'x-api-key': KEY },
+    // the @vercel/blob client can't send custom headers — key rides in clientPayload
+    clientPayload: KEY,
   });
   console.log(`  -> ${blob.url}`);
   return blob.url;
