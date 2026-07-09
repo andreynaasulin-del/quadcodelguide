@@ -1,0 +1,9 @@
+{
+  "name": "quadcodeguide",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Quadcode Guide site + publish API",
+  "dependencies": {
+    "@vercel/blob": "^0.27.3"
+  }
+}
