@@ -1,5 +1,12 @@
 {
-  "categories": ["All", "Motion Design", "Gamedev", "Music", "Video", "Design"],
+  "categories": [
+    "All",
+    "Motion Design",
+    "Gamedev",
+    "Music",
+    "Video",
+    "Design"
+  ],
   "guides": [
     {
       "id": "first-game-character",
