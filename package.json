@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "description": "Quadcode Guide site + publish API",
+  "scripts": {
+    "publish-case": "node scripts/publish_case.mjs",
+    "migrate-videos": "node scripts/migrate_assets_to_blob.mjs",
+    "migrate-videos:dry": "node scripts/migrate_assets_to_blob.mjs --dry-run"
+  },
   "dependencies": {
     "@vercel/blob": "^0.27.3"
   }

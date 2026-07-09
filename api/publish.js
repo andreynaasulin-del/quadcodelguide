@@ -32,6 +32,10 @@ function timingSafeMatch(given, expected) {
   return crypto.timingSafeEqual(a, b);
 }
 
+function isLocalVideoPath(v) {
+  return typeof v === 'string' && /^\/ui_views\/.+\.(mp4|webm|mov)(\?|$)/i.test(v);
+}
+
 function validateGuide(g) {
   const errs = [];
   if (!g || typeof g !== 'object') return ['guide must be an object'];
@@ -43,7 +47,14 @@ function validateGuide(g) {
   if (Array.isArray(g.steps)) {
     g.steps.forEach((s, i) => {
       if (!s || !s.title || !s.text) errs.push(`steps[${i}] needs title and text`);
+      if (isLocalVideoPath(s.result_video)) {
+        errs.push(`steps[${i}].result_video must be a Vercel Blob https URL (not a local /ui_views path)`);
+      }
     });
+  }
+  // Videos must live on Blob — local /ui_views/*.mp4 are excluded from deploy
+  if (isLocalVideoPath(g.video)) {
+    errs.push('video must be a Vercel Blob https URL (use scripts/publish_case.mjs to upload)');
   }
   return errs;
 }

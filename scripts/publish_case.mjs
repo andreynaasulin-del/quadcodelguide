@@ -8,20 +8,20 @@
  *
  * guide.json = a normal guide object (same schema as guides.json entries),
  * BUT media fields ("video", "poster", "image", "audio", steps[].result_image,
- * steps[].result_video) may point to LOCAL FILES. Every local path found is
- * uploaded to Vercel Blob storage first, then the field is replaced with the
- * public Blob URL and the guide is published via /api/publish.
+ * steps[].result_video, steps[].result_poster) may point to LOCAL FILES or
+ * site paths like /ui_views/assets/foo.mp4. Every local path found is uploaded
+ * to Vercel Blob first, then replaced with the public Blob URL and published.
  *
  * Options:
  *   --dry-run     validate + upload nothing, show what would happen
  *   --site <url>  override site base (default https://quadcodeguide.vercel.app)
  *
- * Requires: Node 18+ (built-in fetch), npm i @vercel/blob (for client upload).
+ * Requires: Node 18+ (built-in fetch), npm i @vercel/blob
  */
 
-import { readFileSync, existsSync, statSync } from 'node:fs';
-import { basename, resolve, dirname } from 'node:path';
-import { upload } from '@vercel/blob/client';
+import { readFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { rewriteGuideMedia, isRemoteUrl } from './lib/media.mjs';
 
 const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
@@ -31,66 +31,44 @@ const guideFile = args.find((a) => !a.startsWith('--') && a !== SITE);
 const KEY = process.env.GUIDES_API_KEY;
 
 if (!guideFile || !KEY) {
-  console.error('Usage: GUIDES_API_KEY=<key> node scripts/publish_case.mjs <guide.json> [--dry-run]');
+  console.error('Usage: GUIDES_API_KEY=<key> node scripts/publish_case.mjs <guide.json> [--dry-run] [--site url]');
   process.exit(1);
 }
 
 const guide = JSON.parse(readFileSync(guideFile, 'utf8'));
 const baseDir = dirname(resolve(guideFile));
 
-// Media-bearing fields on the guide root and on each step
-const ROOT_MEDIA = ['video', 'poster', 'image', 'audio'];
-const STEP_MEDIA = ['result_image', 'result_video'];
-
-const MIME = {
-  mp4: 'video/mp4', webm: 'video/webm', mov: 'video/quicktime',
-  jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png',
-  webp: 'image/webp', gif: 'image/gif',
-  mp3: 'audio/mpeg', wav: 'audio/wav', m4a: 'audio/mp4',
-};
-
-function isLocalFile(v) {
-  if (typeof v !== 'string' || !v) return false;
-  if (v.startsWith('http://') || v.startsWith('https://') || v.startsWith('/ui_views/')) return false;
-  const p = resolve(baseDir, v);
-  return existsSync(p) && statSync(p).isFile();
-}
-
-async function uploadFile(localPath) {
-  const abs = resolve(baseDir, localPath);
-  const name = basename(abs);
-  const ext = name.split('.').pop().toLowerCase();
-  const size = (statSync(abs).size / 1024 / 1024).toFixed(1);
-  if (dryRun) {
-    console.log(`  [dry-run] would upload ${name} (${size}MB)`);
-    return `https://blob.example/guides/${name}`;
-  }
-  console.log(`  uploading ${name} (${size}MB)...`);
-  const blob = await upload(`guides/${guide.id}/${name}`, readFileSync(abs), {
-    access: 'public',
-    contentType: MIME[ext] || 'application/octet-stream',
-    handleUploadUrl: `${SITE}/api/upload`,
-    // the @vercel/blob client can't send custom headers — key rides in clientPayload
-    clientPayload: KEY,
-  });
-  console.log(`  -> ${blob.url}`);
-  return blob.url;
-}
-
 async function main() {
   console.log(`Publishing case "${guide.id}" to ${SITE}${dryRun ? ' (dry run)' : ''}`);
 
-  // 1. Upload local media, replace paths with Blob URLs
-  for (const f of ROOT_MEDIA) {
-    if (isLocalFile(guide[f])) guide[f] = await uploadFile(guide[f]);
-  }
-  for (const step of guide.steps || []) {
-    for (const f of STEP_MEDIA) {
-      if (isLocalFile(step[f])) step[f] = await uploadFile(step[f]);
+  const n = await rewriteGuideMedia(guide, {
+    site: SITE,
+    apiKey: KEY,
+    dryRun,
+    baseDir,
+    fetchMissingFromGit: true,
+  });
+  console.log(`  media fields uploaded: ${n}`);
+
+  // Warn if any media field is still a local /ui_views path (file missing)
+  const leftover = [];
+  for (const f of ['video', 'poster', 'image', 'audio']) {
+    if (guide[f] && !isRemoteUrl(guide[f]) && String(guide[f]).startsWith('/')) {
+      leftover.push(`${f}=${guide[f]}`);
     }
   }
+  for (const [i, s] of (guide.steps || []).entries()) {
+    for (const f of ['result_image', 'result_video', 'result_poster']) {
+      if (s[f] && !isRemoteUrl(s[f]) && String(s[f]).startsWith('/')) {
+        leftover.push(`steps[${i}].${f}=${s[f]}`);
+      }
+    }
+  }
+  if (leftover.length) {
+    console.warn('  WARNING: still non-Blob paths (file missing or skipped):');
+    leftover.forEach((l) => console.warn('   ', l));
+  }
 
-  // 2. Publish guide text via /api/publish
   const res = await fetch(`${SITE}/api/publish`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'x-api-key': KEY },

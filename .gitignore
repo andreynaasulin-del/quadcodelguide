@@ -4,6 +4,11 @@
 production/
 .DS_Store
 
+# Large media — host on Vercel Blob, not in git
+*.mp4
+*.webm
+*.mov
+
 # Vercel
 .vercel/
 

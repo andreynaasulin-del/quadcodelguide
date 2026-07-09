@@ -93,6 +93,44 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .nav { display: flex; gap: 26px; }
   .nav a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; }
   .nav a:hover { color: var(--white); }
+  .nav a.active { color: var(--white); }
+
+  /* ---------- Extra home tabs (Skills / Integrations) ---------- */
+  .extra-section { padding: 4px 0 48px; }
+  .extra-section .extra-head { margin-bottom: 32px; }
+  .extra-section h2 {
+    font-family: var(--font-display);
+    font-size: 28px; font-weight: 700; letter-spacing: -.6px;
+    margin: 0 0 10px;
+  }
+  .extra-section .extra-sub {
+    margin: 0; font-size: 15px; color: var(--muted); line-height: 1.5; max-width: 40em;
+  }
+  .extra-list { display: flex; flex-direction: column; }
+  .extra-item {
+    padding: 22px 0;
+    border-top: 1px solid var(--line);
+  }
+  .extra-item:last-child { border-bottom: 1px solid var(--line); }
+  .extra-item .extra-meta {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .extra-item .extra-tag,
+  .extra-item .extra-status {
+    display: inline-block;
+    font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+  }
+  .extra-item .extra-tag { color: var(--acc-1); }
+  .extra-item .extra-status.status-connected { color: #7ee787; }
+  .extra-item .extra-status.status-available { color: var(--acc-1); }
+  .extra-item .extra-status.status-planned { color: var(--muted-2); }
+  .extra-item h3 {
+    font-family: var(--font-display);
+    font-size: 18px; font-weight: 600; letter-spacing: -.3px;
+    margin: 0 0 6px;
+  }
+  .extra-item p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.45; max-width: 44em; }
 
   /* ---------- Focus-bracket frame ---------- */
   .framed { position: relative; }
@@ -1232,8 +1270,10 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       <img class="mark" src="/ui_views/assets/logo.png" alt="Quadcode logo" width="30" height="30">
       <b>Quadcode Guide</b>
     </div>
-    <nav class="nav">
-      <a href="#guides">Guides</a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#guides" data-tab="guides" class="active">Guides</a>
+      <a href="#skills" data-tab="skills">Skills</a>
+      <a href="#integrations" data-tab="integrations">Integrations</a>
     </nav>
   </header>
 
@@ -1284,7 +1324,25 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       </div>
     </section>
 
-    <footer class="foot">Made for creators. Start with any guide above.</footer>
+    <!-- Skills tab (#skills) — catalog rendered from SKILLS in JS -->
+    <section id="skills" class="extra-section" hidden>
+      <div class="extra-head">
+        <h2>Skills</h2>
+        <p class="extra-sub">Reusable Cursor / Quadcode skills for the same workflows as the guides — video, landings, characters, music, and publish.</p>
+      </div>
+      <div class="extra-list" id="skillsList"></div>
+    </section>
+
+    <!-- Integrations tab (#integrations) — catalog rendered from INTEGRATIONS in JS -->
+    <section id="integrations" class="extra-section" hidden>
+      <div class="extra-head">
+        <h2>Integrations</h2>
+        <p class="extra-sub">Tools and platforms this guide stack already uses — or plans to wire next.</p>
+      </div>
+      <div class="extra-list" id="integrationsList"></div>
+    </section>
+
+    <footer class="foot" id="homeFoot">Made for creators. Start with any guide above.</footer>
   </main>
 
   <!-- Guide full page view (#/guide/slug) -->
@@ -1306,6 +1364,131 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     const CTA_URL = 'https://quadcode.ai';   // where "Open in Quadcode" links
     let CATEGORIES = ["All"];
     let GUIDES = [];
+
+    // Skills / Integrations catalogs (home tabs — not guide categories)
+    const SKILLS = [
+      {
+        tag: 'Video',
+        title: 'Prompt craft for video & motion',
+        desc: 'Camera language, physics cues, and negative prompts that hold up in Seedance and Kling takes.'
+      },
+      {
+        tag: 'Video',
+        title: 'Storyboard → shot list',
+        desc: 'Turn one product or scene brief into ordered shots with framing, duration, and end-card notes.'
+      },
+      {
+        tag: 'Website',
+        title: 'Product hero turntable',
+        desc: 'Keyframe → seamless 360° loop → 4K upscale — the expensive-looking landing hero from one still.'
+      },
+      {
+        tag: 'Gamedev',
+        title: 'Character look lock & turntable',
+        desc: 'Lock RPG hero identity across stills, then spin and export a clean 3D-ready turntable.'
+      },
+      {
+        tag: 'Video',
+        title: 'UGC ad pipeline',
+        desc: 'AI actor, product-in-hand stills, then short Kling clips — mass-produce UGC from one photo.'
+      },
+      {
+        tag: 'Website',
+        title: 'Landing page motion',
+        desc: 'Hero loops, scroll parallax, and GSAP ScrollTrigger patterns used in cinematic landings.'
+      },
+      {
+        tag: 'Music',
+        title: 'Music bed & sync',
+        desc: 'Suno beds with tempo, instruments, and cut points that sit under montage or UGC edits.'
+      },
+      {
+        tag: 'Design',
+        title: 'Poster & particle design',
+        desc: 'One-shot crossover posters and cursor-reactive particle frames from a single photo.'
+      },
+      {
+        tag: 'Workflow',
+        title: 'Publish to Guide',
+        desc: 'Upload media to Vercel Blob and ship a case with publish_case so it lands in guides.json.'
+      }
+    ];
+
+    const INTEGRATIONS = [
+      {
+        status: 'Connected',
+        title: 'Vercel Blob',
+        desc: 'Guide videos, posters, and step assets — the live media store for published cases.'
+      },
+      {
+        status: 'Connected',
+        title: 'Vercel',
+        desc: 'Hosts Quadcode Guide and the publish API that validates Blob URLs before go-live.'
+      },
+      {
+        status: 'Connected',
+        title: 'GitHub',
+        desc: 'Source of truth for guides.json and site deploys when a new case is published.'
+      },
+      {
+        status: 'Connected',
+        title: 'Cursor / Quadcode IDE',
+        desc: 'Open any guide prompt straight in Quadcode — copy, paste, generate without leaving the flow.'
+      },
+      {
+        status: 'Available',
+        title: 'GPT-Image · Kling · Seedance · Topaz',
+        desc: 'Image, image-to-video, and upscale stack used across cinematic, product, and UGC guides.'
+      },
+      {
+        status: 'Available',
+        title: 'Suno',
+        desc: 'Music generation for restaurant beds, montage scores, and short-form audio beds.'
+      },
+      {
+        status: 'Planned',
+        title: 'Figma',
+        desc: 'Pull design refs and brand frames into prompt packs for landings and posters.'
+      },
+      {
+        status: 'Planned',
+        title: 'YouTube & social export',
+        desc: 'Export UGC and viral cuts with vertical presets and share-ready naming.'
+      }
+    ];
+
+    function escapeHtml(s) {
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function renderExtraCatalogs() {
+      const skillsList = document.getElementById('skillsList');
+      const integList = document.getElementById('integrationsList');
+      if (skillsList) {
+        skillsList.innerHTML = SKILLS.map(s =>
+          '<div class="extra-item">' +
+            '<div class="extra-meta"><span class="extra-tag">' + escapeHtml(s.tag) + '</span></div>' +
+            '<h3>' + escapeHtml(s.title) + '</h3>' +
+            '<p>' + escapeHtml(s.desc) + '</p>' +
+          '</div>'
+        ).join('');
+      }
+      if (integList) {
+        integList.innerHTML = INTEGRATIONS.map(it => {
+          const st = String(it.status || 'Planned');
+          const cls = 'status-' + st.toLowerCase();
+          return '<div class="extra-item">' +
+            '<div class="extra-meta"><span class="extra-status ' + cls + '">' + escapeHtml(st) + '</span></div>' +
+            '<h3>' + escapeHtml(it.title) + '</h3>' +
+            '<p>' + escapeHtml(it.desc) + '</p>' +
+          '</div>';
+        }).join('');
+      }
+    }
     let activeCat = "All";
     let activeSub = "All";  // subcategory within the active category
     const LEVELS = ["All", "Junior", "Middle", "Middle+"];
@@ -2522,6 +2705,37 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         try { window.scrollTo({ top: homeScrollY, behavior: 'instant' }); }
         catch (e) { window.scrollTo(0, homeScrollY); }
       }
+      showHomeTab(parseHomeTab(location.hash));
+    }
+
+    function parseHomeTab(hash) {
+      const h = String(hash || '').replace(/^#/, '').toLowerCase();
+      if (h === 'skills') return 'skills';
+      if (h === 'integrations') return 'integrations';
+      return 'guides';
+    }
+
+    function showHomeTab(tab) {
+      const guidesEl = document.getElementById('guides');
+      const skillsEl = document.getElementById('skills');
+      const integEl = document.getElementById('integrations');
+      const footEl = document.getElementById('homeFoot');
+      if (guidesEl) guidesEl.hidden = tab !== 'guides';
+      if (skillsEl) skillsEl.hidden = tab !== 'skills';
+      if (integEl) integEl.hidden = tab !== 'integrations';
+      document.querySelectorAll('.nav a[data-tab]').forEach(a => {
+        a.classList.toggle('active', a.dataset.tab === tab);
+      });
+      if (footEl) {
+        footEl.textContent = tab === 'guides'
+          ? 'Made for creators. Start with any guide above.'
+          : tab === 'skills'
+            ? 'Skills mirror the guide workflows — drop them into Cursor or Quadcode.'
+            : 'Connected tools power publish and media; Available ones show up in the guides.';
+      }
+      if (tab === 'skills') document.title = 'Skills — Quadcode Guide';
+      else if (tab === 'integrations') document.title = 'Integrations — Quadcode Guide';
+      else document.title = 'Quadcode Guide';
     }
 
     function applyRoute() {
@@ -2537,7 +2751,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     function router() {
       const goingToGuide = /^#\/guide\//.test(location.hash);
       const guideVisible = !guidePageEl.hidden;
-      // no cross-view change (e.g. anchor scroll on home) -> apply instantly
+      // no cross-view change (e.g. tab switch or anchor on home) -> apply instantly
       if (REDUCED_MOTION || goingToGuide === guideVisible) { applyRoute(); return; }
       const leaving = guideVisible ? guidePageEl : homeEl;
       leaving.classList.add('view-leave');
@@ -2665,6 +2879,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       }
       document.getElementById('__qc-fouc-guard')?.remove();
       initHeroTypewriter();
+      renderExtraCatalogs();
       renderSkeletonGrid(6);
       // deep link straight to a guide: show guide skeleton instead of home grid
       if (/^#\/guide\//.test(location.hash)) renderSkeletonGuide();
@@ -2686,13 +2901,14 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       document.addEventListener('keydown', e => {
         if (e.key === 'Escape' && !guidePageEl.hidden) location.hash = '#guides';
       });
-      // brand logo -> home (top)
+      // brand logo -> guides home (top)
       const brand = document.getElementById('brandHome');
       if (brand) {
         const goHome = () => {
           homeScrollY = 0;
-          if (!guidePageEl.hidden) {
-            location.hash = '#guides';   // leave the guide -> router animates back home
+          const onGuides = guidePageEl.hidden && parseHomeTab(location.hash) === 'guides';
+          if (!onGuides) {
+            location.hash = '#guides';   // leave guide / other tab -> router shows guides
           } else {
             try { window.scrollTo({ top: 0, behavior: REDUCED_MOTION ? 'auto' : 'smooth' }); }
             catch (e) { window.scrollTo(0, 0); }
