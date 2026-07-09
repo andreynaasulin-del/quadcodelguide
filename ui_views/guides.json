@@ -10,6 +10,39 @@
   ],
   "guides": [
     {
+      "id": "walk-on-water-viral",
+      "cat": "Video",
+      "sub": "Viral Video",
+      "title": "Fake a viral walking-on-water clip",
+      "desc": "A woman steps off the pier and runs across the ocean while the crowd films — the impossible moment that floods comment sections.",
+      "time": "6 min",
+      "date": "2026-07-09",
+      "level": "Junior",
+      "models": "Seedance",
+      "trending": true,
+      "video": "/ui_views/assets/video-ocean-walk.mp4",
+      "poster": "/ui_views/assets/video-ocean-walk-poster.jpg",
+      "steps": [
+        {
+          "title": "Stage it like real phone footage",
+          "text": "The trick is the witnesses. Put a crowd with phones on the pier — if bystanders are filming, viewers' brains read the clip as documentary, not CGI.",
+          "prompt": "Handheld phone footage at a tropical resort pier, a crowd of tourists in swimwear stands on the wooden dock filming with their phones, crystal-clear turquoise lagoon, a small boat anchored in the distance, bright midday sun, candid vertical-video energy, realistic colors, no cinematic grading"
+        },
+        {
+          "title": "Direct the impossible moment",
+          "text": "Describe one continuous action with real physics: she steps off the pier onto the water and runs. Name the splashes and the foam trail — believable water reaction is what sells the fake.",
+          "prompt": "A young woman in a white crop top and black shorts steps off the pier directly onto the ocean surface and walks on the water, then breaks into a run across the lagoon toward the beach, her feet slap the surface leaving splashes and a long white foam trail behind her, the crowd on the pier keeps filming in disbelief, camera follows her from behind, natural body mechanics, realistic water physics, 11 seconds"
+        },
+        {
+          "title": "Keep the take that fools people",
+          "text": "Generate a few takes and keep the one where the feet actually read as striking the surface — one bad footstep breaks the whole illusion. Play the clip above to see the result.",
+          "prompt": "",
+          "result_video": "/ui_views/assets/video-ocean-walk.mp4"
+        }
+      ],
+      "result": "An 11-second walking-on-water clip that looks like real bystander footage — built to stop the scroll and start the 'how is this possible' comments."
+    },
+    {
       "id": "screen-to-reality-hero",
       "cat": "Website",
       "sub": "Hero Video",
