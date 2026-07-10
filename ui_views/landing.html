@@ -1086,8 +1086,16 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .learn-continue {
     display: none; align-items: center; justify-content: center; gap: 10px;
     margin: 14px 0 0; flex-wrap: wrap;
+    opacity: 1; transform: none;
+    transition: opacity .28s ease, transform .28s var(--ease-out), max-height .28s ease, margin .28s ease;
+    max-height: 80px; overflow: hidden;
   }
   .learn-continue.on { display: flex; }
+  .learn-continue.on.scrolled-away {
+    opacity: 0; transform: translateY(-8px) scale(.98);
+    max-height: 0; margin-top: 0; margin-bottom: 0;
+    pointer-events: none;
+  }
   .learn-continue .lc-btn {
     display: inline-flex; align-items: center; gap: 8px;
     font-family: inherit; font-size: 13.5px; font-weight: 700;
@@ -1096,6 +1104,10 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   }
   .learn-continue .lc-btn:hover { filter: brightness(1.06); }
   .learn-continue .lc-meta { font-size: 13px; color: var(--muted); }
+  @media (prefers-reduced-motion: reduce) {
+    .learn-continue { transition: opacity .15s ease; }
+    .learn-continue.on.scrolled-away { transform: none; }
+  }
   .card-progress {
     position: absolute; left: 10px; bottom: 10px; z-index: 3;
     display: flex; gap: 6px; align-items: center;
@@ -2113,6 +2125,15 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       if (ogTitle) ogTitle.setAttribute('content', title);
       if (ogDesc && desc) ogDesc.setAttribute('content', desc);
     }
+    function syncContinueScroll() {
+      const wrap = document.getElementById('learnContinue');
+      if (!wrap || wrap.hidden || !wrap.classList.contains('on')) return;
+      // Only on home — hide once the hero is mostly scrolled past
+      const onHome = homeEl && !homeEl.hidden;
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      const threshold = 120;
+      wrap.classList.toggle('scrolled-away', onHome && y > threshold);
+    }
     function refreshContinueHero() {
       const wrap = document.getElementById('learnContinue');
       const btn = document.getElementById('learnContinueBtn');
@@ -2121,7 +2142,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       const rows = continueCandidates();
       if (!rows.length) {
         wrap.hidden = true;
-        wrap.classList.remove('on');
+        wrap.classList.remove('on', 'scrolled-away');
         return;
       }
       const top = rows[0];
@@ -2137,6 +2158,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         track('continue_click', { id: top.g.id });
         openGuide(top.g);
       };
+      syncContinueScroll();
     }
 
     // Skills catalog (home tab — not a guide category)
@@ -3632,8 +3654,13 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         '<div class="m-cta-foot">No app yet? <a href="' + CTA_URL + '" target="_blank" rel="noopener">Get Quadcode</a></div>' +
         '</div>';
       html += '<div class="m-made">' +
-        '<p><b>I made this</b> — share your result and inspire the next creator.</p>' +
-        '<button type="button" class="m-cta-secondary" data-made-share>Copy share text</button>' +
+        '<div class="m-made-copy">' +
+          '<span class="m-made-kicker">Share</span>' +
+          '<p><b>I made this</b> — copy a short post and show what you built.</p>' +
+        '</div>' +
+        '<button type="button" class="m-made-btn" data-made-share>' +
+          '<span class="sh-i i-share" aria-hidden="true"></span>Copy share text' +
+        '</button>' +
         '</div>';
       // keep them in the catalog: 3 related guides (same category first)
       const rel = relatedGuides(g, 3);
