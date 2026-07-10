@@ -64,11 +64,14 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     font-family: 'Manrope', system-ui, -apple-system, sans-serif;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
-    /* focus dot-grid pattern */
+    text-size-adjust: 100%;
+    /* focus dot-grid pattern — fixed attachment kills scroll perf on some GPUs */
     background-image:
       radial-gradient(rgba(255,255,255,.035) 1px, transparent 1px);
     background-size: 26px 26px;
     background-position: center top;
+    background-attachment: scroll;
+    scroll-padding-top: calc(var(--topbar-h) + 12px);
   }
 
   .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
@@ -81,10 +84,13 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     width: 100%;
     min-height: var(--topbar-h);
     margin: 0; padding: 12px max(28px, calc(50vw - 560px));
-    background: rgba(14,14,20,.78);
-    -webkit-backdrop-filter: blur(16px) saturate(1.2);
-    backdrop-filter: blur(16px) saturate(1.2);
+    background: rgba(14,14,20,.88);
+    -webkit-backdrop-filter: blur(12px) saturate(1.15);
+    backdrop-filter: blur(12px) saturate(1.15);
     border-bottom: 1px solid var(--line);
+  }
+  @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+    .topbar { background: rgba(14,14,20,.96); }
   }
   .topbar-right {
     display: flex; align-items: center; gap: 18px; flex: 0 0 auto;
@@ -824,24 +830,27 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     background: var(--bg-2); border: 1px solid var(--line);
     border-radius: var(--radius); padding: 24px;
     cursor: pointer; display: flex; flex-direction: column; gap: 12px;
-    transition: transform .4s var(--ease-out), border-color .4s ease, box-shadow .4s var(--ease-out);
+    transition: transform .28s var(--ease-out), border-color .28s ease, box-shadow .28s var(--ease-out);
     overflow: hidden;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 360px;
+    contain: layout paint style;
   }
-  .card:hover { transform: translateY(-6px); border-color: rgba(255,149,105,.45); box-shadow: 0 18px 42px rgba(0,0,0,.42); }
-  .card.swap-in { animation: card-swap .55s var(--ease-out) both; }
+  .card:hover { transform: translateY(-5px); border-color: rgba(255,149,105,.45); box-shadow: 0 16px 36px rgba(0,0,0,.4); }
+  .card.swap-in { animation: card-swap .38s var(--ease-out) both; }
   @keyframes card-swap {
-    from { opacity: 0; transform: translateY(12px) scale(.985); }
+    from { opacity: 0; transform: translateY(10px); }
     to   { opacity: 1; transform: none; }
   }
-  .card:active { transform: translateY(-2px) scale(.99); transition-duration: .1s; }
+  .card:active { transform: translateY(-1px) scale(.99); transition-duration: .1s; }
   .card .cover {
     margin: -24px -24px 4px; display: block; width: calc(100% + 48px);
     aspect-ratio: 16 / 10; object-fit: cover;
     border-radius: var(--radius) var(--radius) 0 0;
     background: var(--bg-3);
-    transition: transform .9s var(--ease-out);
+    transition: transform .55s var(--ease-out);
   }
-  .card:hover .cover { transform: scale(1.045); }
+  .card:hover .cover { transform: scale(1.03); }
   .card .cat-label {
     display: inline-flex; align-items: center; gap: 6px;
     font-size: 11px; text-transform: uppercase; letter-spacing: 1.4px;
@@ -872,7 +881,11 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .cat-ico.ci-website { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4H4V6h16v2zm0 10H4v-8h16v8zM6 7a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4H4V6h16v2zm0 10H4v-8h16v8zM6 7a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z'/%3E%3C/svg%3E"); }
   .cat-ico.ci-interfaces { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 4h7v7H4V4zm9 0h7v4h-7V4zM4 13h7v7H4v-7zm9 2h7v5h-7v-5zm0-2h7v1h-7v-1z'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 4h7v7H4V4zm9 0h7v4h-7V4zM4 13h7v7H4v-7zm9 2h7v5h-7v-5zm0-2h7v1h-7v-1z'/%3E%3C/svg%3E"); }
   .cat-ico.ci-motion-design { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 6.47L5.76 10H20v8H4V6.47M22 4h-4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4z'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 6.47L5.76 10H20v8H4V6.47M22 4h-4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4z'/%3E%3C/svg%3E"); }
-  .card h3 { font-family: var(--font-display); margin: 0; font-size: 19px; font-weight: 600; letter-spacing: -.4px; }
+  .card h3 {
+    font-family: var(--font-display); margin: 0; font-size: 19px; font-weight: 600; letter-spacing: -.4px;
+    transition: color .2s ease;
+  }
+  .card:hover h3 { color: #fff; }
   .card .time {
     font-size: 12.5px; font-weight: 500; color: var(--muted);
     display: inline-flex; align-items: center; gap: 6px;
@@ -1053,7 +1066,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
             mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z'/%3E%3C/svg%3E");
   }
   .shelf-title .sh-count {
-    font-family: 'Inter', system-ui, sans-serif; font-size: 13px; font-weight: 500;
+    font-family: inherit; font-size: 13px; font-weight: 500;
     color: var(--muted); letter-spacing: 0;
   }
   .shelf-link {
@@ -1261,23 +1274,17 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .skel-guide .sg-step-body { flex: 1; display: flex; flex-direction: column; gap: 10px; }
   .skel-guide .sg-prompt { height: 84px; border-radius: 12px; margin-top: 4px; }
 
-  /* media fade-in: covers stay skeleton-toned until frame is ready.
-     blur-up: frame resolves from soft blur to sharp (progressive reveal) */
+  /* media fade-in: opacity only — blur filters are expensive on scroll */
   .media-fade {
-    opacity: 0; filter: blur(14px) saturate(1.15);
-    transition: opacity .45s ease, filter .65s ease;
+    opacity: 0;
+    transition: opacity .32s ease;
   }
-  .media-fade.ready { opacity: 1; filter: none; }
+  .media-fade.ready { opacity: 1; }
   .card .cover, .card .cover-wrap, .m-cover, .m-step-media {
-    background:
-      linear-gradient(100deg, rgba(255,255,255,.04) 20%, rgba(255,255,255,.08) 50%, rgba(255,255,255,.04) 80%),
-      var(--bg-3);
-    background-size: 200% 100%;
-    animation: skel-bg 1.4s ease-in-out infinite;
+    background: var(--bg-3);
   }
-  @keyframes skel-bg { from { background-position: 120% 0; } to { background-position: -80% 0; } }
   .card .cover.ready, .card .cover-wrap.ready, .m-cover.ready, .m-step-media.ready {
-    animation: none; background: var(--bg-3);
+    background: var(--bg-3);
   }
 
   /* ---------- Guide full page ---------- */
@@ -1317,15 +1324,17 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     display: block; width: 100%;
     aspect-ratio: 16 / 10; object-fit: cover; object-position: top center;
     background: #000;
-    transition: transform .9s var(--ease-out);
+    transition: transform .55s var(--ease-out);
   }
-  .card:hover .cover-video { transform: scale(1.045); }
+  .card:hover .cover-video { transform: scale(1.03); }
   .play-badge {
     position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-    width: 56px; height: 56px; border-radius: 999px;
-    background: rgba(11,13,21,.62); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+    width: 52px; height: 52px; border-radius: 999px;
+    background: rgba(11,13,21,.72);
+    border: 1px solid rgba(255,255,255,.12);
+    box-shadow: 0 8px 24px rgba(0,0,0,.35);
     pointer-events: none;
-    transition: opacity .25s ease, transform .25s ease;
+    transition: opacity .22s ease, transform .22s ease;
   }
   .play-badge::after {
     content: ''; position: absolute; top: 50%; left: 50%;
@@ -1667,34 +1676,34 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .qc-btn.qc-loop .ico { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z'/%3E%3C/svg%3E"); }
 
   /* ---------- View transitions (home <-> guide / skill / tabs) ---------- */
-  .view-leave { animation: view-out .28s var(--ease-out) both; pointer-events: none; }
+  .view-leave { animation: view-out .2s var(--ease-out) both; pointer-events: none; }
   @keyframes view-out {
-    to { opacity: 0; transform: translateY(10px) scale(.992); filter: blur(2px); }
+    to { opacity: 0; transform: translateY(8px); }
   }
-  .view-enter { animation: view-in .48s var(--ease-out) both; }
+  .view-enter { animation: view-in .36s var(--ease-out) both; }
   @keyframes view-in {
-    from { opacity: 0; transform: translateY(14px) scale(.992); filter: blur(3px); }
-    to   { opacity: 1; transform: none; filter: none; }
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: none; }
   }
-  .tab-enter { animation: tab-in .4s var(--ease-out) both; }
+  .tab-enter { animation: tab-in .32s var(--ease-out) both; }
   @keyframes tab-in {
-    from { opacity: 0; transform: translateY(12px); }
+    from { opacity: 0; transform: translateY(8px); }
     to   { opacity: 1; transform: none; }
   }
   @supports (view-transition-name: none) {
     ::view-transition-old(root) {
-      animation: vt-out .32s var(--ease-out) both;
+      animation: vt-out .22s var(--ease-out) both;
     }
     ::view-transition-new(root) {
-      animation: vt-in .42s var(--ease-out) both;
+      animation: vt-in .32s var(--ease-out) both;
     }
   }
   @keyframes vt-out {
-    to { opacity: 0; transform: scale(.988); filter: blur(3px); }
+    to { opacity: 0; }
   }
   @keyframes vt-in {
-    from { opacity: 0; transform: translateY(10px) scale(.992); filter: blur(3px); }
-    to   { opacity: 1; transform: none; filter: none; }
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: none; }
   }
   /* home -> guide: clicked card zooms toward viewer, siblings dim */
   .card.zoom-out {
@@ -1705,9 +1714,9 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .grid.dimmed .card:not(.zoom-out) { opacity: .3; transition: opacity .24s ease; }
   /* guide cover parallax: travels further than page body on enter (transform only,
      opacity stays owned by .media-fade) */
-  .view-enter .m-cover { animation: cover-parallax .65s var(--ease-out) both; }
+  .view-enter .m-cover { animation: cover-parallax .42s var(--ease-out) both; }
   @keyframes cover-parallax {
-    from { transform: translateY(24px) scale(1.02); }
+    from { transform: translateY(12px); }
     to   { transform: none; }
   }
 
@@ -1726,9 +1735,8 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 
   /* ---------- Subtle reveal on scroll ---------- */
   .reveal {
-    opacity: 0; transform: translateY(14px);
-    transition: opacity .6s cubic-bezier(.22,.61,.36,1), transform .6s cubic-bezier(.22,.61,.36,1);
-    will-change: opacity, transform;
+    opacity: 0; transform: translateY(10px);
+    transition: opacity .45s var(--ease-out), transform .45s var(--ease-out);
   }
   .reveal.in { opacity: 1; transform: none; }
   /* stagger grid cards slightly via inline --d */
@@ -1736,11 +1744,11 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 
   /* Hero entrance: masked line reveal (runs once on load) */
   .hero .kicker, .hero p, .hero .cta, .hero .hero-search {
-    opacity: 0; transform: translateY(14px);
-    animation: hero-in .8s var(--ease-out) forwards;
+    opacity: 0; transform: translateY(10px);
+    animation: hero-in .55s var(--ease-out) forwards;
   }
-  .hero p    { animation-delay: .38s; }
-  .hero .cta, .hero .hero-search { animation-delay: .5s; }
+  .hero p    { animation-delay: .22s; }
+  .hero .cta, .hero .hero-search { animation-delay: .32s; }
   @keyframes hero-in { to { opacity: 1; transform: none; } }
   .hl {
     display: inline-block; overflow: hidden; vertical-align: bottom;
@@ -1786,7 +1794,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     -webkit-text-fill-color: transparent; color: transparent;
   }
   /* v5: soft fade with cursor */
-  .hero h1.fade-var { opacity: 0; animation: hero-in 1.15s ease .1s forwards; }
+  .hero h1.fade-var { opacity: 0; animation: hero-in .7s ease .06s forwards; }
 
   /* ---------- Reduced motion: kill everything ---------- */
   @media (prefers-reduced-motion: reduce) {
@@ -1867,6 +1875,11 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     .nav-toggle { display: inline-flex; }
   .mobile-nav.open { display: block !important; }
     .hero h1 { font-size: 46px; }
+    .topbar {
+      -webkit-backdrop-filter: blur(8px) saturate(1.1);
+      backdrop-filter: blur(8px) saturate(1.1);
+      background: rgba(14,14,20,.92);
+    }
   }
   @media (max-width: 540px) {
     .grid, .steps { grid-template-columns: 1fr; }
@@ -2750,14 +2763,80 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       const wrap = media.closest('.cover-wrap, .m-step-media');
       (wrap || media).classList.add('ready');
     }
+    function ensureVideoSrc(v) {
+      if (!v) return v;
+      if (v.getAttribute('src')) return v;
+      const url = v.getAttribute('data-src');
+      if (!url) return v;
+      v.src = url;
+      v.removeAttribute('data-src');
+      try { v.load(); } catch (e) {}
+      return v;
+    }
+    let lazyVideoObserver = null;
+    function initLazyVideos() {
+      if (!('IntersectionObserver' in window)) return;
+      lazyVideoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(en => {
+          if (!en.isIntersecting) return;
+          ensureVideoSrc(en.target);
+          lazyVideoObserver.unobserve(en.target);
+        });
+      }, { rootMargin: '240px 0px', threshold: 0.01 });
+    }
+    function observeLazyVideo(v) {
+      if (!v || v.getAttribute('src') || !v.getAttribute('data-src')) return;
+      if (!lazyVideoObserver) { ensureVideoSrc(v); return; }
+      lazyVideoObserver.observe(v);
+    }
     function attachMediaFade(root) {
       root.querySelectorAll('img.cover, img.m-cover, .m-step-media img').forEach(img => {
+        if (!img.getAttribute('decoding')) img.decoding = 'async';
         img.classList.add('media-fade');
         if (img.complete && img.naturalWidth) { markReady(img); return; }
         img.addEventListener('load', () => markReady(img), { once: true });
         img.addEventListener('error', () => markReady(img), { once: true });
       });
       root.querySelectorAll('video').forEach(v => {
+        const lazy = v.getAttribute('data-src') && !v.getAttribute('src');
+        if (lazy) {
+          observeLazyVideo(v);
+          v.addEventListener('pointerdown', () => ensureVideoSrc(v), { once: true });
+          // poster paints immediately — mark ready without waiting for video bytes
+          v.classList.add('media-fade');
+          if (v.poster) {
+            const p = new Image();
+            p.onload = () => markReady(v);
+            p.onerror = () => markReady(v);
+            p.src = v.poster;
+          } else {
+            markReady(v);
+          }
+          // when src eventually loads, keep buffering UX
+          const wrap = v.closest('.cover-wrap, .m-step-media');
+          if (wrap) {
+            let bufT = 0;
+            const showBuf = () => { clearTimeout(bufT); bufT = setTimeout(() => wrap.classList.add('buffering'), 150); };
+            const hideBuf = () => { clearTimeout(bufT); wrap.classList.remove('buffering'); };
+            ['waiting', 'stalled', 'seeking'].forEach(e => v.addEventListener(e, showBuf));
+            ['playing', 'canplay', 'pause', 'seeked', 'error', 'emptied'].forEach(e => v.addEventListener(e, hideBuf));
+          }
+          v.addEventListener('error', () => {
+            const poster = v.getAttribute('poster') || '';
+            const wrapEl = v.closest('.cover-wrap, .m-cover-wrap, .m-step-media');
+            if (poster && wrapEl && !wrapEl.querySelector('img.media-fallback')) {
+              const img = document.createElement('img');
+              img.className = (v.classList.contains('m-cover') ? 'm-cover' : 'cover') + ' media-fade media-fallback ready';
+              img.src = poster;
+              img.alt = '';
+              img.loading = 'lazy';
+              img.decoding = 'async';
+              v.replaceWith(img);
+              markReady(img);
+            }
+          }, { once: true });
+          return;
+        }
         v.classList.add('media-fade');
         // buffering spinner: show ring if playback stalls for >150ms
         const wrap = v.closest('.cover-wrap, .m-step-media');
@@ -2787,6 +2866,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
             img.src = poster;
             img.alt = '';
             img.loading = 'lazy';
+            img.decoding = 'async';
             v.replaceWith(img);
             markReady(img);
             return;
@@ -2815,6 +2895,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       _preloaded.add(url);
       const l = document.createElement('link');
       l.rel = 'prefetch';
+      l.as = url.match(/\.(mp4|webm|mov)(\?|$)/i) ? 'video' : 'fetch';
       l.href = url;
       document.head.appendChild(l);
     }
@@ -2827,6 +2908,11 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         if (s) { preloadImg(s.result_image); preloadImg(s.result_poster); }
       });
     }
+    function preloadGuideCover(g) {
+      if (!g) return;
+      preloadImg(g.image);
+      preloadImg(g.poster);
+    }
     // full: images now + low-priority prefetch of the heavy media behind the click
     function prefetchGuideMedia(g) {
       if (!g) return;
@@ -2835,18 +2921,18 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       prefetchFile(g.audio);
       (g.steps || []).forEach(s => { if (s) prefetchFile(s.result_video); });
     }
-    // background: after the grid paints, warm every guide's still images during idle time
+    // background: after first paint settles, warm cover stills only (not every step asset)
     function warmAllGuideImages() {
       const ric = window.requestIdleCallback ||
         (fn => setTimeout(() => fn({ timeRemaining: () => 8 }), 200));
       let i = 0;
       const step = (deadline) => {
         while (i < GUIDES.length && (!deadline || deadline.timeRemaining() > 2)) {
-          preloadGuideImages(GUIDES[i++]);
+          preloadGuideCover(GUIDES[i++]);
         }
         if (i < GUIDES.length) ric(step);
       };
-      ric(step);
+      setTimeout(() => ric(step), 1800);
     }
 
     // ---- Hover sound preview: only one plays at a time, with a soft volume fade ----
@@ -3163,8 +3249,8 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         : '';
       c.innerHTML =
         (g.video
-          ? '<div class="cover-wrap"><video class="cover-video" src="' + esc(g.video) + '"' + (g.poster ? ' poster="' + esc(g.poster) + '"' : '') + ' muted loop playsinline preload="metadata"></video><div class="play-badge"></div>' + coverOverlay + progressUi + '</div>'
-          : (thumb ? '<div class="cover-wrap"><img class="cover" src="' + esc(thumb) + '" alt="" loading="lazy">' + coverOverlay + progressUi + '</div>'
+          ? '<div class="cover-wrap"><video class="cover-video media-fade ready" data-src="' + esc(g.video) + '"' + (g.poster ? ' poster="' + esc(g.poster) + '"' : '') + ' muted loop playsinline preload="none"></video><div class="play-badge"></div>' + coverOverlay + progressUi + '</div>'
+          : (thumb ? '<div class="cover-wrap"><img class="cover" src="' + esc(thumb) + '" alt="" loading="lazy" decoding="async">' + coverOverlay + progressUi + '</div>'
             : (progressUi ? '<div class="cover-wrap" style="min-height:12px">' + progressUi + '</div>' : ''))) +
         '<div class="cat-label">' + catIconHtml(g.cat) + '<span>' + esc(g.cat) + '</span>' + (g.sub ? '<span class="sub-label">' + esc(g.sub) + '</span>' : '') + '</div>' +
         '<h3>' + esc(g.title) + '</h3>' +
@@ -3188,7 +3274,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           // (a new/no preview is active), the late .then must not restart sound
           const token = {};
           if (g.video) {
-            const v = sound;
+            const v = ensureVideoSrc(sound);
             token.stop = () => {
               c.classList.remove('previewing');
               fadeVol(v, 0, 160, () => { v.pause(); v.currentTime = 0; v.muted = true; });
@@ -3239,9 +3325,9 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       });
       if (swap) {
         c.classList.add('swap-in');
-        c.style.animationDelay = Math.min(i * 45, 315) + 'ms';
+        c.style.animationDelay = Math.min(i * 32, 220) + 'ms';
       } else {
-        observeReveal(c, Math.min(i * 60, 240));
+        observeReveal(c, Math.min(i * 40, 160));
       }
       attachMediaFade(c);
       return c;
@@ -3488,12 +3574,12 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 
     function stepMediaHtml(s) {
       if (s.result_video) {
-        return '<div class="m-step-media"><video src="' + esc(s.result_video) + '"' +
+        return '<div class="m-step-media"><video data-src="' + esc(s.result_video) + '"' +
           (s.result_poster ? ' poster="' + esc(s.result_poster) + '"' : '') +
-          ' controls muted loop playsinline preload="metadata"></video><span class="media-label">Result</span></div>';
+          ' controls muted loop playsinline preload="none"></video><span class="media-label">Result</span></div>';
       }
       if (s.result_image) {
-        return '<div class="m-step-media"><img src="' + esc(s.result_image) + '" alt="Step result" loading="lazy"><span class="media-label">Result</span></div>';
+        return '<div class="m-step-media"><img src="' + esc(s.result_image) + '" alt="Step result" loading="lazy" decoding="async"><span class="media-label">Result</span></div>';
       }
       return '';
     }
@@ -3511,7 +3597,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           : (st.startedAt ? 'In progress' : 'Not started yet'));
       const cover = g.video
         ? '<video class="m-cover" src="' + esc(g.video) + '"' + (g.poster ? ' poster="' + esc(g.poster) + '"' : '') + ' controls autoplay muted loop playsinline preload="metadata"></video>'
-        : (thumb ? '<img class="m-cover" src="' + esc(thumb) + '" alt="">' : '');
+        : (thumb ? '<img class="m-cover" src="' + esc(thumb) + '" alt="" decoding="async">' : '');
       // header: eyebrow → title → desc → one unified meta strip (title-first)
       const metaBits = [];
       if (g.level) metaBits.push('<span class="level-badge ' + levelClass(g.level) + '">' + esc(g.level) + '</span>');
@@ -3616,7 +3702,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         rel.forEach(r => {
           const rthumb = r.image || r.poster || '';
           html += '<button class="rel-card" type="button" data-guide-id="' + esc(r.id) + '">' +
-            (rthumb ? '<img class="rel-cover" src="' + esc(rthumb) + '" alt="" loading="lazy">' : '') +
+            (rthumb ? '<img class="rel-cover" src="' + esc(rthumb) + '" alt="" loading="lazy" decoding="async">' : '') +
             '<div class="rel-body"><div class="rel-cat">' + esc(r.cat) + '</div>' +
             '<div class="rel-title">' + esc(r.title) + '</div></div>' +
           '</button>';
@@ -4507,6 +4593,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       if (parseHomeTab(location.hash) === 'skills') renderSkillsSkeleton(6);
       await loadData();
       initRevealObserver();
+      initLazyVideos();
       updateHeroCount();
       initSearch();
       renderFilters();
