@@ -1121,13 +1121,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   }
   .cp-badge.done { color: #7ee787; border-color: rgba(126,231,135,.35); }
   .cp-badge.prog { color: var(--acc-1); border-color: rgba(255,149,105,.4); }
-  .cp-fav {
-    width: 28px; height: 28px; border-radius: 999px; border: 1px solid rgba(255,255,255,.14);
-    background: rgba(11,13,21,.72); color: var(--muted); cursor: pointer;
-    display: inline-flex; align-items: center; justify-content: center;
-    font-size: 14px; line-height: 1;
-  }
-  .cp-fav.on { color: #ff6b8a; border-color: rgba(255,107,138,.45); }
   .m-step.is-done .m-num { background: #1f3d2a; color: #7ee787; }
   .m-step-check {
     flex: 0 0 30px; width: 30px; height: 30px; border-radius: 999px;
@@ -1147,11 +1140,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     font-size: 13px; font-weight: 600; color: var(--muted);
   }
   .m-learn-bar .ml-prog b { color: var(--white); }
-  .saved-empty {
-    text-align: center; padding: 48px 20px; color: var(--muted);
-    border: 1px dashed var(--line); border-radius: 16px; margin: 8px 0 40px;
-  }
-  .saved-empty b { color: var(--white); display: block; margin-bottom: 6px; font-size: 16px; }
   .m-skills-row, .m-guides-row {
     display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;
   }
@@ -1915,7 +1903,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       <nav class="nav" aria-label="Primary">
         <a href="#guides" data-tab="guides" class="active">Guides</a>
         <a href="#skills" data-tab="skills">Skills</a>
-        <a href="#saved" data-tab="saved">Saved</a>
       </nav>
       <button type="button" class="topbar-cta" id="topbarOpenQc" data-qc-home>Open Quadcode</button>
       <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
@@ -1925,7 +1912,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     <div class="mobile-nav" id="mobileNav" hidden>
       <a href="#guides" data-tab="guides">Guides</a>
       <a href="#skills" data-tab="skills">Skills</a>
-      <a href="#saved" data-tab="saved">Saved</a>
       <button type="button" class="mobile-nav-cta" data-qc-home>Open Quadcode</button>
     </div>
   </header>
@@ -2041,7 +2027,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     let CATEGORIES = ["All"];
     let GUIDES = [];
 
-    // ---- Local learning store (progress / favorites / light analytics) ----
+    // ---- Local learning store (progress / light analytics) ----
     const STORE_KEY = 'qcguide.v1';
     function loadStore() {
       try {
@@ -2066,8 +2052,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         startedAt: g.startedAt || 0,
         updatedAt: g.updatedAt || 0,
         doneSteps: g.doneSteps && typeof g.doneSteps === 'object' ? g.doneSteps : {},
-        completed: !!g.completed,
-        fav: !!g.fav
+        completed: !!g.completed
       };
     }
     function patchGuideState(id, patch) {
@@ -2076,13 +2061,10 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       const cur = guideState(id);
       s.guides[id] = Object.assign({}, cur, patch, { updatedAt: Date.now() });
       if (!s.guides[id].startedAt) s.guides[id].startedAt = Date.now();
+      // Drop legacy fav field if present
+      delete s.guides[id].fav;
       saveStore(s);
       return s.guides[id];
-    }
-    function stepDoneCount(id, total) {
-      const st = guideState(id);
-      const n = Object.keys(st.doneSteps).filter(k => st.doneSteps[k]).length;
-      return { n: Math.min(n, total || n), total: total || 0, completed: !!st.completed, fav: !!st.fav };
     }
     function continueCandidates() {
       const s = loadStore();
@@ -2093,15 +2075,11 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         if (st.completed) return null;
         const total = (g.steps || []).length;
         const done = Object.keys(st.doneSteps).filter(k => st.doneSteps[k]).length;
-        if (!st.startedAt && !done && !st.fav) return null;
         if (!done && !st.startedAt) return null;
         return { g, st, done, total, updatedAt: st.updatedAt || st.startedAt };
       }).filter(Boolean);
       rows.sort((a, b) => b.updatedAt - a.updatedAt);
       return rows;
-    }
-    function favoriteGuides() {
-      return GUIDES.filter(g => guideState(g.id).fav);
     }
     function relatedSkillsForGuide(g) {
       const cat = String(g.cat || '');
@@ -2127,7 +2105,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     function syncContinueScroll() {
       const wrap = document.getElementById('learnContinue');
       if (!wrap || wrap.hidden || !wrap.classList.contains('on')) return;
-      // Only on home — hide once the hero is mostly scrolled past
       const onHome = homeEl && !homeEl.hidden;
       const y = window.scrollY || document.documentElement.scrollTop || 0;
       const threshold = 120;
@@ -2610,7 +2587,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     let activeModels = new Set(); // multi-select, empty = all models
     let searchQ = '';        // debounced search query
     let trendingOnly = false; // "View all" on the Trending shelf
-    let savedOnly = false;    // Saved tab / favorites filter
     let sortByNew = 0;       // 0 = off, 1 = newest first
     let sortByViews = 0;     // 0 = off, 1 = most viewed first
     const PAGE_SIZE = 12;
@@ -3113,14 +3089,13 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 
     // idle = nothing searched/filtered/sorted -> show discovery shelves
     function isIdleCatalog() {
-      return !savedOnly && !searchQ && !trendingOnly &&
+      return !searchQ && !trendingOnly &&
         activeCat === 'All' && activeLevel === 'All' && !activeModels.size &&
         !sortByLevel && !sortByCost && !sortByNew && !sortByViews;
     }
 
     function filteredList() {
       let list = GUIDES.slice();
-      if (savedOnly) list = list.filter(g => guideState(g.id).fav);
       if (activeCat !== 'All') list = list.filter(g => g.cat === activeCat);
       if (activeCat !== 'All' && activeSub !== 'All') {
         const sub = activeSub.toLowerCase();
@@ -3183,16 +3158,14 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         progBadge = '<span class="cp-badge prog">' +
           (totalSteps ? (doneN + '/' + totalSteps) : 'Started') + '</span>';
       }
-      const progressUi =
-        '<div class="card-progress">' +
-          progBadge +
-          '<button type="button" class="cp-fav' + (st.fav ? ' on' : '') + '" data-fav-id="' + esc(g.id) + '" aria-label="' + (st.fav ? 'Remove favorite' : 'Save favorite') + '" title="Favorite">' + (st.fav ? '♥' : '♡') + '</button>' +
-        '</div>';
+      const progressUi = progBadge
+        ? '<div class="card-progress">' + progBadge + '</div>'
+        : '';
       c.innerHTML =
         (g.video
           ? '<div class="cover-wrap"><video class="cover-video" src="' + esc(g.video) + '"' + (g.poster ? ' poster="' + esc(g.poster) + '"' : '') + ' muted loop playsinline preload="metadata"></video><div class="play-badge"></div>' + coverOverlay + progressUi + '</div>'
           : (thumb ? '<div class="cover-wrap"><img class="cover" src="' + esc(thumb) + '" alt="" loading="lazy">' + coverOverlay + progressUi + '</div>'
-            : '<div class="cover-wrap" style="min-height:12px">' + progressUi + '</div>')) +
+            : (progressUi ? '<div class="cover-wrap" style="min-height:12px">' + progressUi + '</div>' : ''))) +
         '<div class="cat-label">' + catIconHtml(g.cat) + '<span>' + esc(g.cat) + '</span>' + (g.sub ? '<span class="sub-label">' + esc(g.sub) + '</span>' : '') + '</div>' +
         '<h3>' + esc(g.title) + '</h3>' +
         (levelPill ? '<div class="card-tags">' + levelPill + '</div>' : '') +
@@ -3200,20 +3173,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           (g.time ? '<div class="time">' + esc(g.time) + '</div>' : '<span></span>') +
           '<div class="read">' + (st.completed ? 'Open again' : (doneN ? 'Continue' : 'Read guide')) + '</div>' +
         '</div>';
-      const favBtn = c.querySelector('[data-fav-id]');
-      if (favBtn) {
-        favBtn.addEventListener('click', e => {
-          e.stopPropagation();
-          const next = !guideState(g.id).fav;
-          patchGuideState(g.id, { fav: next });
-          track('favorite_toggle', { id: g.id, on: next });
-          favBtn.classList.toggle('on', next);
-          favBtn.textContent = next ? '♥' : '♡';
-          favBtn.setAttribute('aria-label', next ? 'Remove favorite' : 'Save favorite');
-          refreshContinueHero();
-        });
-      }
-      // ---- Hover preview: video plays with sound, audio-only cards preview the track ----
+      // preload this guide's media on intent so opening it feels instant
       if (g.video || g.audio) {
         const eq = document.createElement('div');
         eq.className = 'eq';
@@ -3421,24 +3381,14 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       renderResultsBar(list.length, idle);
       if (idle) renderShelves(swap); else shelvesEl.innerHTML = '';
       allHeadEl.hidden = false;
-      document.getElementById('allTitle').textContent = savedOnly ? 'Saved guides' : (idle ? 'All guides' : 'Results');
-      allCountEl.textContent = idle && !savedOnly ? GUIDES.length : list.length;
+      document.getElementById('allTitle').textContent = idle ? 'All guides' : 'Results';
+      allCountEl.textContent = idle ? GUIDES.length : list.length;
       if (srStatusEl) {
         srStatusEl.textContent = list.length + (list.length === 1 ? ' guide' : ' guides') +
           (searchQ ? ' for ' + searchQ : '') + (idle ? '' : ' shown');
       }
       gridEl.innerHTML = '';
       if (!list.length) {
-        if (savedOnly && !searchQ) {
-          gridEl.innerHTML =
-            '<div class="saved-empty">' +
-              '<b>No saved guides yet</b>' +
-              'Tap ♡ Save on a guide — then find them here.' +
-              '<br><br><a class="chip chip-sm" href="#guides">Browse guides</a>' +
-            '</div>';
-          loadMoreWrapEl.hidden = true;
-          return;
-        }
         const skillHits = searchQ
           ? SKILLS.filter(s => {
               const blob = (s.title + ' ' + s.desc + ' ' + s.tag + ' ' + (s.body || '')).toLowerCase();
@@ -3580,7 +3530,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           ? '<div class="m-meta">' + metaBits.join('<span class="m-meta-sep">&middot;</span>') + '</div>'
           : '') +
         '<div class="m-share">' +
-          '<button class="share-btn" data-fav-toggle type="button">' + (st.fav ? '♥ Saved' : '♡ Save') + '</button>' +
           '<button class="share-btn" data-share type="button"><span class="sh-i i-share"></span>Share</button>' +
           '<button class="share-btn" data-copy-link type="button"><span class="sh-i i-link"></span>Copy link</button>' +
         '</div>' +
@@ -4168,8 +4117,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
               ? '<b>Completed</b> — nice work'
               : (total ? ('Progress <b>' + done + ' / ' + total + '</b> steps') : 'In progress');
           }
-          const fav = guideBodyEl.querySelector('[data-fav-toggle]');
-          if (fav) fav.textContent = stNow.fav ? '♥ Saved' : '♡ Save';
           guideBodyEl.querySelectorAll('[data-step-toggle]').forEach(btn => {
             const i = btn.getAttribute('data-step-toggle');
             const on = !!stNow.doneSteps[String(i)];
@@ -4196,17 +4143,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
             refreshContinueHero();
           };
         });
-        const favToggle = guideBodyEl.querySelector('[data-fav-toggle]');
-        if (favToggle) {
-          favToggle.onclick = () => {
-            const next = !guideState(g.id).fav;
-            patchGuideState(g.id, { fav: next });
-            track('favorite_toggle', { id: g.id, on: next });
-            refreshLearnUi();
-            refreshContinueHero();
-            showToast(next ? 'Saved — open Saved in the top menu' : 'Removed from saved');
-          };
-        }
         const madeBtn = guideBodyEl.querySelector('[data-made-share]');
         if (madeBtn) {
           madeBtn.onclick = () => {
@@ -4308,7 +4244,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     function parseHomeTab(hash) {
       const h = String(hash || '').replace(/^#/, '').toLowerCase();
       if (h === 'skills') return 'skills';
-      if (h === 'saved') return 'saved';
       return 'guides';
     }
 
@@ -4319,28 +4254,22 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       const footEl = document.getElementById('homeFoot');
       const filtersSection = document.querySelector('#guides .filters-section');
       const prevTab = !homeEl.hidden
-        ? (skillsEl && !skillsEl.hidden ? 'skills' : (savedOnly ? 'saved' : 'guides'))
+        ? (skillsEl && !skillsEl.hidden ? 'skills' : 'guides')
         : null;
-      savedOnly = tab === 'saved';
-      if (guidesEl) guidesEl.hidden = tab !== 'guides' && tab !== 'saved';
+      if (guidesEl) guidesEl.hidden = tab !== 'guides';
       if (skillsEl) skillsEl.hidden = tab !== 'skills';
-      if (filtersSection) filtersSection.hidden = tab === 'saved';
+      if (filtersSection) filtersSection.hidden = false;
       document.querySelectorAll('a[data-tab]').forEach(a => {
         a.classList.toggle('active', a.dataset.tab === tab);
       });
       if (footEl) {
         footEl.textContent = tab === 'skills'
           ? 'Skills mirror the guide workflows — drop them into Cursor or Quadcode.'
-          : tab === 'saved'
-            ? 'Your saved guides live here — tap ♡ Save on any guide to add more.'
-            : 'Made for creators. Start with any guide above.';
+          : 'Made for creators. Start with any guide above.';
       }
       if (tab === 'skills') {
         setDocMeta('Skills — Quadcode Guide', 'Reusable Quadcode skills for video, UI, and workflows.');
         ensureSkillsCatalog();
-      } else if (tab === 'saved') {
-        setDocMeta('Saved — Quadcode Guide', 'Guides you saved for later.');
-        renderGrid(true);
       } else {
         setDocMeta('Quadcode Guide', 'Step-by-step Quadcode guides — Interfaces, video, music, gamedev, design.');
         renderGrid(true);
@@ -4367,7 +4296,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       if (!skillPageEl.hidden) return 'skill';
       const skillsEl = document.getElementById('skills');
       if (skillsEl && !skillsEl.hidden) return 'home:skills';
-      if (savedOnly) return 'home:saved';
       return 'home:guides';
     }
 
