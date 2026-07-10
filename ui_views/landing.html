@@ -3280,36 +3280,92 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     }
     // Prefer IDE chat (ToolAskAgent) when running inside Quadcode;
     // otherwise open the desktop app via quadcode:// and copy the prompt.
+    // Keep deep links SHORT — stuffing long ?prompt= into the URL breaks Windows
+    // protocol handlers (CreateProcess command-line limit).
     const DESKTOP_URL = 'quadcode://open';
-    function openInQuadcode(promptText, opts) {
-      const text = String(promptText || '').trim();
-      const short = (opts && opts.shortDescription) || 'Open in Quadcode';
-      const agent = (opts && opts.agentName) || 'Cody';
 
-      if (text && window.QC && QC.actions && typeof QC.actions.ToolAskAgent === 'function') {
-        showToast('Sending prompt to Quadcode…');
-        QC.actions.ToolAskAgent({
-          agent_name: agent,
-          question: text,
-          short_description: short.slice(0, 80)
-        }).catch(err => {
-          console.error(err);
-          showToast('Could not send to agent — opening desktop app');
-          openDesktopQuadcode(text);
+    function copyPromptSilent(text) {
+      if (!text) return Promise.resolve(false);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(text).then(() => true).catch(() => {
+          fallbackCopy(text, () => {});
+          return true;
         });
-        return;
       }
-      openDesktopQuadcode(text);
+      fallbackCopy(text, () => {});
+      return Promise.resolve(true);
     }
 
-    function openDesktopQuadcode(promptText) {
-      if (promptText && navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(promptText).catch(() => {});
+    function launchProtocol(url) {
+      // 1) <a> click — most reliable for custom schemes in Chromium
+      try {
+        const a = document.createElement('a');
+        a.href = url;
+        a.rel = 'noopener';
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      } catch (e) {}
+      // 2) hidden iframe fallback
+      try {
+        const iframe = document.createElement('iframe');
+        iframe.setAttribute('aria-hidden', 'true');
+        iframe.style.cssText = 'position:fixed;width:0;height:0;border:0;opacity:0;pointer-events:none';
+        iframe.src = url;
+        document.body.appendChild(iframe);
+        setTimeout(() => { try { iframe.remove(); } catch (e) {} }, 2500);
+      } catch (e) {}
+      // 3) legacy Edge
+      try {
+        if (typeof navigator.msLaunchUri === 'function') navigator.msLaunchUri(url);
+      } catch (e) {}
+    }
+
+    async function openInQuadcode(promptText, opts) {
+      const text = String(promptText || '').trim();
+      const short = String((opts && opts.shortDescription) || 'Open in Quadcode').slice(0, 100);
+      const agent = (opts && opts.agentName) || 'Cody';
+
+      // Always copy first so Ctrl+V works even if launch/agent fails
+      await copyPromptSilent(text);
+
+      if (text && window.QC && QC.actions && typeof QC.actions.ToolAskAgent === 'function') {
+        showToast('Sending to ' + agent + '…');
+        try {
+          if (typeof QC.ready === 'function') await QC.ready();
+          const req = QC.actions.ToolAskAgent({
+            agent_name: agent,
+            question: text,
+            short_description: short
+          });
+          // Fire-and-forget UI: agent panel may open without resolving the promise quickly
+          Promise.race([
+            Promise.resolve(req).then(() => 'ok'),
+            new Promise(r => setTimeout(() => r('pending'), 1200))
+          ]).then(state => {
+            if (state === 'ok' || state === 'pending') {
+              showToast('Sent to ' + agent + ' — check agent chat (prompt copied)');
+            }
+          }).catch(err => {
+            console.error(err);
+            showToast('Could not send to agent — opening app (prompt copied)');
+            openDesktopQuadcode(text, { alreadyCopied: true });
+          });
+        } catch (err) {
+          console.error(err);
+          showToast('Could not send to agent — opening app (prompt copied)');
+          openDesktopQuadcode(text, { alreadyCopied: true });
+        }
+        return;
       }
-      let deep = DESKTOP_URL;
-      if (promptText) {
-        deep += '?prompt=' + encodeURIComponent(promptText.slice(0, 1800));
-      }
+      openDesktopQuadcode(text, { alreadyCopied: true });
+    }
+
+    function openDesktopQuadcode(promptText, opts) {
+      if (!(opts && opts.alreadyCopied)) copyPromptSilent(promptText);
+      // Short deep link only — long ?prompt= payloads fail silently on Windows
+      const deep = DESKTOP_URL;
       showToast(promptText
         ? 'Opening Quadcode — prompt copied (Ctrl+V in chat)'
         : 'Opening Quadcode…');
@@ -3317,21 +3373,11 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       const onHide = () => { left = true; };
       document.addEventListener('visibilitychange', onHide, { once: true });
       window.addEventListener('blur', onHide, { once: true });
-      try {
-        const a = document.createElement('a');
-        a.href = deep;
-        a.style.display = 'none';
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-      } catch (e) {
-        try { window.open(deep, '_blank'); } catch (e2) {}
-      }
-      // If protocol handler didn't take focus, offer web fallback (toast only — no forced popup)
+      launchProtocol(deep);
       setTimeout(() => {
         if (left || document.hidden) return;
         showToast('App not opening? Visit quadcode.ai — prompt is already copied');
-      }, 1800);
+      }, 2000);
     }
     let toastT = 0;
     function showToast(msg) {
