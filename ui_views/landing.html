@@ -1065,6 +1065,104 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .shelf-link::after { content: '\2192'; transition: transform .22s var(--ease); }
   .shelf-link:hover::after { transform: translateX(4px); }
 
+  /* ---------- Learning layer (progress / path / continue) ---------- */
+  .learn-path {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+    gap: 8px 6px; margin: 18px 0 0;
+  }
+  .learn-path .lp-label {
+    font-size: 12px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase;
+    color: var(--muted-2); margin-right: 4px;
+  }
+  .learn-path button {
+    font-family: inherit; font-size: 13px; font-weight: 600;
+    color: var(--muted); background: rgba(255,255,255,.04);
+    border: 1px solid var(--line); border-radius: 999px;
+    padding: 7px 12px; cursor: pointer;
+    transition: color .18s ease, border-color .18s ease, background .18s ease;
+  }
+  .learn-path button:hover { color: var(--white); border-color: rgba(255,149,105,.4); }
+  .learn-path .lp-sep { color: var(--muted-2); font-size: 12px; }
+  .learn-continue {
+    display: none; align-items: center; justify-content: center; gap: 10px;
+    margin: 14px 0 0; flex-wrap: wrap;
+  }
+  .learn-continue.on { display: flex; }
+  .learn-continue .lc-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: inherit; font-size: 13.5px; font-weight: 700;
+    color: #fff; background: var(--grad); border: 0; border-radius: 999px;
+    padding: 10px 16px; cursor: pointer;
+  }
+  .learn-continue .lc-btn:hover { filter: brightness(1.06); }
+  .learn-continue .lc-meta { font-size: 13px; color: var(--muted); }
+  .card-progress {
+    position: absolute; left: 10px; bottom: 10px; z-index: 3;
+    display: flex; gap: 6px; align-items: center;
+  }
+  .cover-wrap { position: relative; }
+  .cp-badge {
+    font-size: 10px; font-weight: 700; letter-spacing: .4px; text-transform: uppercase;
+    padding: 4px 8px; border-radius: 999px;
+    background: rgba(11,13,21,.72); color: var(--white);
+    border: 1px solid rgba(255,255,255,.14);
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  }
+  .cp-badge.done { color: #7ee787; border-color: rgba(126,231,135,.35); }
+  .cp-badge.prog { color: var(--acc-1); border-color: rgba(255,149,105,.4); }
+  .cp-fav {
+    width: 28px; height: 28px; border-radius: 999px; border: 1px solid rgba(255,255,255,.14);
+    background: rgba(11,13,21,.72); color: var(--muted); cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 14px; line-height: 1;
+  }
+  .cp-fav.on { color: #ff6b8a; border-color: rgba(255,107,138,.45); }
+  .m-step.is-done .m-num { background: #1f3d2a; color: #7ee787; }
+  .m-step-check {
+    flex: 0 0 30px; width: 30px; height: 30px; border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.04);
+    color: var(--muted); cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center; padding: 0;
+  }
+  .m-step-check:hover { border-color: rgba(255,149,105,.5); color: var(--white); }
+  .m-step-check[aria-pressed="true"] {
+    background: #1f3d2a; border-color: rgba(126,231,135,.45); color: #7ee787;
+  }
+  .m-learn-bar {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+    margin: 8px 0 4px;
+  }
+  .m-learn-bar .ml-prog {
+    font-size: 13px; font-weight: 600; color: var(--muted);
+  }
+  .m-learn-bar .ml-prog b { color: var(--white); }
+  .m-skills-row, .m-guides-row {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;
+  }
+  .m-skill-chip, .m-guide-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: inherit; font-size: 13px; font-weight: 600;
+    color: var(--muted); background: var(--bg-2); border: 1px solid var(--line);
+    border-radius: 999px; padding: 8px 12px; cursor: pointer; text-decoration: none;
+  }
+  .m-skill-chip:hover, .m-guide-chip:hover {
+    color: var(--white); border-color: rgba(255,149,105,.4);
+  }
+  .m-made {
+    margin-top: 18px; padding: 18px 20px; border-radius: 14px;
+    border: 1px dashed rgba(255,255,255,.14); background: rgba(255,255,255,.02);
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .m-made p { margin: 0; font-size: 14px; color: var(--muted); max-width: 36em; }
+  .m-made b { color: var(--white); }
+  .search-skill-hint {
+    margin: 10px 0 0; font-size: 13px; color: var(--muted);
+  }
+  .search-skill-hint button {
+    font-family: inherit; font-size: 13px; font-weight: 700;
+    color: var(--acc-1); background: none; border: 0; cursor: pointer; padding: 0;
+  }
+
   /* ---------- Load more ---------- */
   .load-more-wrap { display: flex; justify-content: center; margin-top: -28px; padding: 0 0 64px; }
   .load-more {
@@ -1783,6 +1881,20 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         <button type="button" data-quick-cat="Interfaces">Interfaces</button>
         <button type="button" data-quick-cat="Website">Website</button>
       </div>
+      <div class="learn-path" id="learnPath" aria-label="Suggested learning path">
+        <span class="lp-label">Path</span>
+        <button type="button" data-path-cat="Interfaces">Interfaces</button>
+        <span class="lp-sep">→</span>
+        <button type="button" data-path-cat="Video">Video</button>
+        <span class="lp-sep">→</span>
+        <button type="button" data-path-cat="Website">Website</button>
+        <span class="lp-sep">→</span>
+        <button type="button" data-path-cat="Design">Design</button>
+      </div>
+      <div class="learn-continue" id="learnContinue" hidden>
+        <button type="button" class="lc-btn" id="learnContinueBtn">Continue where you left off</button>
+        <span class="lc-meta" id="learnContinueMeta"></span>
+      </div>
     </section>
 
     <!-- Category filter + catalog -->
@@ -1862,6 +1974,115 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     const CTA_URL = 'https://quadcode.ai';   // where "Open in Quadcode" links
     let CATEGORIES = ["All"];
     let GUIDES = [];
+
+    // ---- Local learning store (progress / favorites / light analytics) ----
+    const STORE_KEY = 'qcguide.v1';
+    function loadStore() {
+      try {
+        const raw = localStorage.getItem(STORE_KEY);
+        return raw ? JSON.parse(raw) : { guides: {}, events: [] };
+      } catch (e) { return { guides: {}, events: [] }; }
+    }
+    function saveStore(s) {
+      try { localStorage.setItem(STORE_KEY, JSON.stringify(s)); } catch (e) {}
+    }
+    function track(event, data) {
+      const s = loadStore();
+      s.events = Array.isArray(s.events) ? s.events : [];
+      s.events.push(Object.assign({ t: Date.now(), e: event }, data || {}));
+      if (s.events.length > 200) s.events = s.events.slice(-120);
+      saveStore(s);
+    }
+    function guideState(id) {
+      const s = loadStore();
+      const g = (s.guides && s.guides[id]) || {};
+      return {
+        startedAt: g.startedAt || 0,
+        updatedAt: g.updatedAt || 0,
+        doneSteps: g.doneSteps && typeof g.doneSteps === 'object' ? g.doneSteps : {},
+        completed: !!g.completed,
+        fav: !!g.fav
+      };
+    }
+    function patchGuideState(id, patch) {
+      const s = loadStore();
+      s.guides = s.guides || {};
+      const cur = guideState(id);
+      s.guides[id] = Object.assign({}, cur, patch, { updatedAt: Date.now() });
+      if (!s.guides[id].startedAt) s.guides[id].startedAt = Date.now();
+      saveStore(s);
+      return s.guides[id];
+    }
+    function stepDoneCount(id, total) {
+      const st = guideState(id);
+      const n = Object.keys(st.doneSteps).filter(k => st.doneSteps[k]).length;
+      return { n: Math.min(n, total || n), total: total || 0, completed: !!st.completed, fav: !!st.fav };
+    }
+    function continueCandidates() {
+      const s = loadStore();
+      const rows = Object.keys(s.guides || {}).map(id => {
+        const g = GUIDES.find(x => x.id === id);
+        if (!g) return null;
+        const st = guideState(id);
+        if (st.completed) return null;
+        const total = (g.steps || []).length;
+        const done = Object.keys(st.doneSteps).filter(k => st.doneSteps[k]).length;
+        if (!st.startedAt && !done && !st.fav) return null;
+        if (!done && !st.startedAt) return null;
+        return { g, st, done, total, updatedAt: st.updatedAt || st.startedAt };
+      }).filter(Boolean);
+      rows.sort((a, b) => b.updatedAt - a.updatedAt);
+      return rows;
+    }
+    function favoriteGuides() {
+      return GUIDES.filter(g => guideState(g.id).fav);
+    }
+    function relatedSkillsForGuide(g) {
+      const cat = String(g.cat || '');
+      return SKILLS.filter(s => s.tag === cat).slice(0, 4);
+    }
+    function relatedGuidesForSkill(s) {
+      return GUIDES.filter(g => g.cat === s.tag).slice(0, 4);
+    }
+    function setDocMeta(title, desc) {
+      document.title = title;
+      let md = document.querySelector('meta[name="description"]');
+      if (!md) {
+        md = document.createElement('meta');
+        md.setAttribute('name', 'description');
+        document.head.appendChild(md);
+      }
+      if (desc) md.setAttribute('content', desc);
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogTitle) ogTitle.setAttribute('content', title);
+      if (ogDesc && desc) ogDesc.setAttribute('content', desc);
+    }
+    function refreshContinueHero() {
+      const wrap = document.getElementById('learnContinue');
+      const btn = document.getElementById('learnContinueBtn');
+      const meta = document.getElementById('learnContinueMeta');
+      if (!wrap || !btn) return;
+      const rows = continueCandidates();
+      if (!rows.length) {
+        wrap.hidden = true;
+        wrap.classList.remove('on');
+        return;
+      }
+      const top = rows[0];
+      wrap.hidden = false;
+      wrap.classList.add('on');
+      btn.textContent = 'Continue: ' + top.g.title;
+      if (meta) {
+        meta.textContent = top.total
+          ? (top.done + ' / ' + top.total + ' steps')
+          : 'In progress';
+      }
+      btn.onclick = () => {
+        track('continue_click', { id: top.g.id });
+        openGuide(top.g);
+      };
+    }
 
     // Skills catalog (home tab — not a guide category)
     const SKILLS = [
@@ -2875,18 +3096,46 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         (mediaChips ? '<div class="cover-chips">' + mediaChips + '</div>' : '') +
         (g.trending && !(opts && opts.hideTrend) ? '<span class="cover-trend">Trending</span>' : '') +
         (g.time ? '<span class="time-badge">' + esc(g.time) + '</span>' : '');
+      const st = guideState(g.id);
+      const totalSteps = (g.steps || []).length;
+      const doneN = Object.keys(st.doneSteps).filter(k => st.doneSteps[k]).length;
+      let progBadge = '';
+      if (st.completed) progBadge = '<span class="cp-badge done">Done</span>';
+      else if (doneN > 0 || st.startedAt) {
+        progBadge = '<span class="cp-badge prog">' +
+          (totalSteps ? (doneN + '/' + totalSteps) : 'Started') + '</span>';
+      }
+      const progressUi =
+        '<div class="card-progress">' +
+          progBadge +
+          '<button type="button" class="cp-fav' + (st.fav ? ' on' : '') + '" data-fav-id="' + esc(g.id) + '" aria-label="' + (st.fav ? 'Remove favorite' : 'Save favorite') + '" title="Favorite">' + (st.fav ? '♥' : '♡') + '</button>' +
+        '</div>';
       c.innerHTML =
         (g.video
-          ? '<div class="cover-wrap"><video class="cover-video" src="' + esc(g.video) + '"' + (g.poster ? ' poster="' + esc(g.poster) + '"' : '') + ' muted loop playsinline preload="metadata"></video><div class="play-badge"></div>' + coverOverlay + '</div>'
-          : (thumb ? '<div class="cover-wrap"><img class="cover" src="' + esc(thumb) + '" alt="" loading="lazy">' + coverOverlay + '</div>' : '')) +
+          ? '<div class="cover-wrap"><video class="cover-video" src="' + esc(g.video) + '"' + (g.poster ? ' poster="' + esc(g.poster) + '"' : '') + ' muted loop playsinline preload="metadata"></video><div class="play-badge"></div>' + coverOverlay + progressUi + '</div>'
+          : (thumb ? '<div class="cover-wrap"><img class="cover" src="' + esc(thumb) + '" alt="" loading="lazy">' + coverOverlay + progressUi + '</div>'
+            : '<div class="cover-wrap" style="min-height:12px">' + progressUi + '</div>')) +
         '<div class="cat-label">' + catIconHtml(g.cat) + '<span>' + esc(g.cat) + '</span>' + (g.sub ? '<span class="sub-label">' + esc(g.sub) + '</span>' : '') + '</div>' +
         '<h3>' + esc(g.title) + '</h3>' +
         '<p>' + esc(g.desc) + '</p>' +
         (levelPill ? '<div class="card-tags">' + levelPill + '</div>' : '') +
         '<div class="card-foot">' +
           (g.time ? '<div class="time">' + esc(g.time) + '</div>' : '<span></span>') +
-          '<div class="read">Read guide</div>' +
+          '<div class="read">' + (st.completed ? 'Open again' : (doneN ? 'Continue' : 'Read guide')) + '</div>' +
         '</div>';
+      const favBtn = c.querySelector('[data-fav-id]');
+      if (favBtn) {
+        favBtn.addEventListener('click', e => {
+          e.stopPropagation();
+          const next = !guideState(g.id).fav;
+          patchGuideState(g.id, { fav: next });
+          track('favorite_toggle', { id: g.id, on: next });
+          favBtn.classList.toggle('on', next);
+          favBtn.textContent = next ? '♥' : '♡';
+          favBtn.setAttribute('aria-label', next ? 'Remove favorite' : 'Save favorite');
+          refreshContinueHero();
+        });
+      }
       // ---- Hover preview: video plays with sound, audio-only cards preview the track ----
       if (g.video || g.audio) {
         const eq = document.createElement('div');
@@ -2969,12 +3218,22 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     ];
     const SHELVES = [
       {
+        title: 'Continue', ico: 'ico-trend',
+        pick: () => continueCandidates().map(r => r.g),
+        viewAll: null
+      },
+      {
+        title: 'Saved', ico: 'ico-school',
+        pick: () => favoriteGuides(),
+        viewAll: null
+      },
+      {
         title: 'Start here', ico: 'ico-school',
         pick: list => {
           const byId = new Map(list.map(g => [g.id, g]));
           return START_HERE_IDS.map(id => byId.get(id)).filter(Boolean);
         },
-        viewAll: () => { /* stay on featured default */ }
+        viewAll: null
       },
       {
         title: 'Trending', ico: 'ico-trend', hideTrend: true,
@@ -2991,12 +3250,13 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 
     function renderShelves(swap) {
       shelvesEl.innerHTML = '';
+      refreshContinueHero();
       SHELVES.forEach(def => {
         const items = def.pick(GUIDES);
         if (!items.length) return;
         const sec = document.createElement('section');
         sec.className = 'shelf';
-        const showViewAll = def.title !== 'Start here';
+        const showViewAll = typeof def.viewAll === 'function';
         sec.innerHTML =
           '<div class="shelf-head">' +
             '<h2 class="shelf-title"><span class="sh-ico ' + def.ico + '"></span>' + esc(def.title) +
@@ -3007,7 +3267,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         const grid = sec.querySelector('.grid');
         items.slice(0, SHELF_CAP).forEach((g, i) => grid.appendChild(cardEl(g, i, swap, { hideTrend: def.hideTrend })));
         const link = sec.querySelector('.shelf-link');
-        if (link) {
+        if (link && showViewAll) {
           link.onclick = () => {
             def.viewAll();
             renderGrid(true);
@@ -3097,11 +3357,26 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       }
       gridEl.innerHTML = '';
       if (!list.length) {
+        const skillHits = searchQ
+          ? SKILLS.filter(s => {
+              const blob = (s.title + ' ' + s.desc + ' ' + s.tag + ' ' + (s.body || '')).toLowerCase();
+              return blob.includes(searchQ.toLowerCase());
+            }).slice(0, 3)
+          : [];
         gridEl.innerHTML =
           '<div class="empty">No guides match' +
           (searchQ ? ' “' + esc(searchQ) + '”' : ' these filters') +
-          '.<br><button class="chip chip-sm empty-reset" type="button">Reset all filters</button></div>';
+          '.<br><button class="chip chip-sm empty-reset" type="button">Reset all filters</button>' +
+          (skillHits.length
+            ? '<div class="search-skill-hint">Found in Skills: ' +
+                skillHits.map(s => '<button type="button" data-go-skill="' + esc(s.id) + '">' + esc(s.title) + '</button>').join(' · ') +
+              '</div>'
+            : '') +
+          '</div>';
         gridEl.querySelector('.empty-reset').onclick = clearAllFilters;
+        gridEl.querySelectorAll('[data-go-skill]').forEach(btn => {
+          btn.onclick = () => { location.hash = '#/skill/' + encodeURIComponent(btn.getAttribute('data-go-skill')); };
+        });
         loadMoreWrapEl.hidden = true;
         return;
       }
@@ -3193,6 +3468,14 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     function guideHtml(g) {
       // cover shows the actual result → badge it so the payoff reads instantly
       const thumb = coverSrc(g);
+      const st = guideState(g.id);
+      const totalSteps = (g.steps || []).length;
+      const doneN = Object.keys(st.doneSteps).filter(k => st.doneSteps[k]).length;
+      const progLabel = st.completed
+        ? '<b>Completed</b> — nice work'
+        : (totalSteps
+          ? ('Progress <b>' + doneN + ' / ' + totalSteps + '</b> steps')
+          : (st.startedAt ? 'In progress' : 'Not started yet'));
       const cover = g.video
         ? '<video class="m-cover" src="' + esc(g.video) + '"' + (g.poster ? ' poster="' + esc(g.poster) + '"' : '') + ' controls autoplay muted loop playsinline preload="metadata"></video>'
         : (thumb ? '<img class="m-cover" src="' + esc(thumb) + '" alt="">' : '');
@@ -3216,9 +3499,14 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         '<div class="m-share">' +
           '<button class="share-btn" data-share type="button"><span class="sh-i i-share"></span>Share</button>' +
           '<button class="share-btn" data-copy-link type="button"><span class="sh-i i-link"></span>Copy link</button>' +
+          '<button class="share-btn" data-fav-toggle type="button">' + (st.fav ? '♥ Saved' : '♡ Save') + '</button>' +
           (allPrompts.length
             ? '<button class="share-btn" data-copy-all-prompts type="button"><span class="sh-i i-link"></span>Copy all prompts</button>'
             : '') +
+        '</div>' +
+        '<div class="m-learn-bar">' +
+          '<span class="ml-prog" id="guideLearnProg">' + progLabel + '</span>' +
+          '<button class="share-btn" data-mark-done type="button">' + (st.completed ? 'Completed ✓' : 'Mark as done') + '</button>' +
         '</div>' +
         (g.audio ? '<div class="m-audio"><span>Listen</span>' +
           '<div class="qc-player">' +
@@ -3235,9 +3523,12 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       if (Array.isArray(g.steps) && g.steps.length) {
         html += '<div class="m-steps">';
         g.steps.forEach((s, i) => {
+          const checked = !!st.doneSteps[String(i)];
           html +=
-            '<div class="m-step" style="--sd:' + (120 + i * 70) + 'ms">' +
-              '<div class="m-num">' + (i + 1) + '</div>' +
+            '<div class="m-step' + (checked ? ' is-done' : '') + '" style="--sd:' + (120 + i * 70) + 'ms" data-step-idx="' + i + '">' +
+              '<button type="button" class="m-step-check" data-step-toggle="' + i + '" aria-pressed="' + (checked ? 'true' : 'false') + '" aria-label="Mark step ' + (i + 1) + ' done">' +
+                (checked ? '✓' : (i + 1)) +
+              '</button>' +
               '<div class="m-step-body">' +
                 '<h4>' + esc(s.title) + '</h4>' +
                 (s.text ? '<p>' + esc(s.text) + '</p>' : '') +
@@ -3261,6 +3552,14 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       if (g.result) {
         html += '<div class="m-result"><span>Result</span><p>' + esc(g.result) + '</p></div>';
       }
+      const skillsRel = relatedSkillsForGuide(g);
+      if (skillsRel.length) {
+        html += '<div class="m-related"><h3>Skills for this workflow</h3><div class="m-skills-row">';
+        skillsRel.forEach(sk => {
+          html += '<a class="m-skill-chip" href="#/skill/' + encodeURIComponent(sk.id) + '">' + esc(sk.title) + '</a>';
+        });
+        html += '</div></div>';
+      }
       // primary conversion path: take them into the product to actually make it
       html += '<div class="m-cta">' +
         '<b>Ready to make this?</b>' +
@@ -3273,14 +3572,18 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         '</div>' +
         '<div class="m-cta-foot">No app yet? <a href="' + CTA_URL + '" target="_blank" rel="noopener">Get Quadcode</a></div>' +
         '</div>';
+      html += '<div class="m-made">' +
+        '<p><b>I made this</b> — share your result and inspire the next creator.</p>' +
+        '<button type="button" class="m-cta-secondary" data-made-share>Copy share text</button>' +
+        '</div>';
       // keep them in the catalog: 3 related guides (same category first)
       const rel = relatedGuides(g, 3);
       if (rel.length) {
         html += '<div class="m-related"><h3>More guides to try</h3><div class="m-related-grid">';
         rel.forEach(r => {
-          const thumb = r.image || r.poster || '';
+          const rthumb = r.image || r.poster || '';
           html += '<button class="rel-card" type="button" data-guide-id="' + esc(r.id) + '">' +
-            (thumb ? '<img class="rel-cover" src="' + esc(thumb) + '" alt="" loading="lazy">' : '') +
+            (rthumb ? '<img class="rel-cover" src="' + esc(rthumb) + '" alt="" loading="lazy">' : '') +
             '<div class="rel-body"><div class="rel-cat">' + esc(r.cat) + '</div>' +
             '<div class="rel-title">' + esc(r.title) + '</div></div>' +
           '</button>';
@@ -3356,6 +3659,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       const text = String(promptText || '').trim();
       const short = String((opts && opts.shortDescription) || 'Open in Quadcode').slice(0, 100);
       const agent = (opts && opts.agentName) || 'Cody';
+      track('open_quadcode', { via: (window.QC && QC.actions && QC.actions.ToolAskAgent) ? 'ide' : 'desktop', len: text.length });
 
       // Always copy first so Ctrl+V works even if launch/agent fails
       await copyPromptSilent(text);
@@ -3572,16 +3876,36 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
                 tools.map(t => '<span class="sk-tool">' + escapeHtml(t) + '</span>').join('') +
               '</div>' +
             '</section>'
-          : '');
+          : '') +
+        (() => {
+          const guidesRel = relatedGuidesForSkill(s);
+          if (!guidesRel.length) return '';
+          return '<section class="sk-section">' +
+            '<h2 class="sk-section-label">Related guides <b>' + guidesRel.length + '</b></h2>' +
+            '<div class="m-guides-row">' +
+              guidesRel.map(g =>
+                '<button type="button" class="m-guide-chip" data-open-guide="' + escapeHtml(g.id) + '">' +
+                  escapeHtml(g.title) +
+                '</button>'
+              ).join('') +
+            '</div></section>';
+        })();
       const tryBtn = skillBodyEl.querySelector('[data-skill-try]');
       if (tryBtn) {
         tryBtn.onclick = () => {
+          track('skill_try', { id: s.id });
           openInQuadcode(skillInstallPrompt(s), {
             shortDescription: 'Try skill: ' + s.title,
             agentName: 'Cody'
           });
         };
       }
+      skillBodyEl.querySelectorAll('[data-open-guide]').forEach(btn => {
+        btn.onclick = () => {
+          const g = GUIDES.find(x => x.id === btn.getAttribute('data-open-guide'));
+          if (g) openGuide(g);
+        };
+      });
       const copyBtn = skillBodyEl.querySelector('[data-skill-copy]');
       if (copyBtn) {
         copyBtn.onclick = () => {
@@ -3606,7 +3930,8 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       homeEl.hidden = true;
       guidePageEl.hidden = true;
       skillPageEl.hidden = false;
-      document.title = s.title + ' — Quadcode Guide';
+      track('skill_open', { id: s.id });
+      setDocMeta(s.title + ' — Quadcode Guide', s.desc || '');
       window.scrollTo(0, 0);
       animateEnter(skillPageEl);
       progressEl.classList.remove('on');
@@ -3749,6 +4074,88 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
             }
           };
         });
+        const refreshLearnUi = () => {
+          const stNow = guideState(g.id);
+          const total = (g.steps || []).length;
+          const done = Object.keys(stNow.doneSteps).filter(k => stNow.doneSteps[k]).length;
+          const prog = guideBodyEl.querySelector('#guideLearnProg');
+          if (prog) {
+            prog.innerHTML = stNow.completed
+              ? '<b>Completed</b> — nice work'
+              : (total ? ('Progress <b>' + done + ' / ' + total + '</b> steps') : 'In progress');
+          }
+          const mark = guideBodyEl.querySelector('[data-mark-done]');
+          if (mark) mark.textContent = stNow.completed ? 'Completed ✓' : 'Mark as done';
+          const fav = guideBodyEl.querySelector('[data-fav-toggle]');
+          if (fav) fav.textContent = stNow.fav ? '♥ Saved' : '♡ Save';
+          guideBodyEl.querySelectorAll('[data-step-toggle]').forEach(btn => {
+            const i = btn.getAttribute('data-step-toggle');
+            const on = !!stNow.doneSteps[String(i)];
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            btn.textContent = on ? '✓' : String(Number(i) + 1);
+            const row = btn.closest('.m-step');
+            if (row) row.classList.toggle('is-done', on);
+          });
+        };
+        guideBodyEl.querySelectorAll('[data-step-toggle]').forEach(btn => {
+          btn.onclick = () => {
+            const i = String(btn.getAttribute('data-step-toggle'));
+            const stNow = guideState(g.id);
+            const next = Object.assign({}, stNow.doneSteps);
+            next[i] = !next[i];
+            const total = (g.steps || []).length;
+            const done = Object.keys(next).filter(k => next[k]).length;
+            patchGuideState(g.id, {
+              doneSteps: next,
+              completed: total > 0 && done >= total ? true : stNow.completed
+            });
+            track('step_toggle', { id: g.id, step: Number(i), on: !!next[i] });
+            refreshLearnUi();
+            refreshContinueHero();
+          };
+        });
+        const favToggle = guideBodyEl.querySelector('[data-fav-toggle]');
+        if (favToggle) {
+          favToggle.onclick = () => {
+            const next = !guideState(g.id).fav;
+            patchGuideState(g.id, { fav: next });
+            track('favorite_toggle', { id: g.id, on: next });
+            refreshLearnUi();
+            refreshContinueHero();
+            showToast(next ? 'Saved to favorites' : 'Removed from favorites');
+          };
+        }
+        const markDone = guideBodyEl.querySelector('[data-mark-done]');
+        if (markDone) {
+          markDone.onclick = () => {
+            const stNow = guideState(g.id);
+            const next = !stNow.completed;
+            const total = (g.steps || []).length;
+            const doneSteps = Object.assign({}, stNow.doneSteps);
+            if (next && total) {
+              for (let i = 0; i < total; i++) doneSteps[String(i)] = true;
+            }
+            patchGuideState(g.id, { completed: next, doneSteps });
+            track('mark_done', { id: g.id, on: next });
+            refreshLearnUi();
+            refreshContinueHero();
+            showToast(next ? 'Marked as done' : 'Marked incomplete');
+          };
+        }
+        const madeBtn = guideBodyEl.querySelector('[data-made-share]');
+        if (madeBtn) {
+          madeBtn.onclick = () => {
+            const text = 'I made this with Quadcode Guide: ' + g.title + '\n' + location.href +
+              '\n\nBuilt in Quadcode — ' + CTA_URL;
+            const done = () => {
+              track('made_share', { id: g.id });
+              showToast('Share text copied');
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+            } else fallbackCopy(text, done);
+          };
+        }
         // related guide cards
         guideBodyEl.querySelectorAll('.rel-card[data-guide-id]').forEach(card => {
           card.onclick = () => {
@@ -3760,7 +4167,9 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       homeEl.hidden = true;
       skillPageEl.hidden = true;
       guidePageEl.hidden = false;
-      document.title = g.title + ' — Quadcode Guide';
+      patchGuideState(g.id, {});
+      track('guide_open', { id: g.id });
+      setDocMeta(g.title + ' — Quadcode Guide', g.desc || '');
       window.scrollTo(0, 0);
       animateEnter(guidePageEl);
       progressEl.classList.add('on');
@@ -3815,7 +4224,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       skillPageEl.hidden = true;
       if (skillBodyEl) skillBodyEl.innerHTML = '';
       homeEl.hidden = false;
-      document.title = 'Quadcode Guide';
+      setDocMeta('Quadcode Guide', 'Step-by-step Quadcode guides — Interfaces, video, music, gamedev, design.');
       progressEl.classList.remove('on');
       guideStickyEl.classList.remove('on');
       stepRailEl.classList.remove('on');
@@ -3828,6 +4237,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         catch (e) { window.scrollTo(0, homeScrollY); }
       }
       showHomeTab(parseHomeTab(location.hash));
+      refreshContinueHero();
     }
 
     function parseHomeTab(hash) {
@@ -4181,6 +4591,19 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           if (guidesSec) guidesSec.scrollIntoView({ behavior: REDUCED_MOTION ? 'auto' : 'smooth', block: 'start' });
         });
       });
+      document.querySelectorAll('#learnPath [data-path-cat]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const cat = btn.getAttribute('data-path-cat');
+          if (!cat) return;
+          track('path_click', { cat });
+          activeCat = cat; activeSub = 'All';
+          location.hash = '#guides';
+          renderFilters(); renderGrid(true);
+          const guidesSec = document.getElementById('guides');
+          if (guidesSec) guidesSec.scrollIntoView({ behavior: REDUCED_MOTION ? 'auto' : 'smooth', block: 'start' });
+        });
+      });
+      refreshContinueHero();
 
       router();
       // warm every guide's still images in the background (instant navigation)
