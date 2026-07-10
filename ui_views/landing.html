@@ -2453,16 +2453,20 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     function swapSkeletonGrid() {
       return new Promise(res => {
         const skels = gridEl.querySelectorAll('.skel-card');
-        if (!skels.length || REDUCED_MOTION) { renderGrid(); res(); return; }
+        const finish = () => { renderGrid(true); res(); };
+        if (!skels.length || REDUCED_MOTION) { finish(); return; }
         // small min-hold so fast loads don't flicker
         const hold = Math.max(0, 300 - (performance.now() - skelGridT0));
         setTimeout(() => {
-          // a user interaction may have already rendered the real grid
-          if (!gridEl.querySelector('.skel-card')) { res(); return; }
+          // if skeleton already gone, still ensure real cards render when we have data
+          if (!gridEl.querySelector('.skel-card')) {
+            if (GUIDES.length && !gridEl.querySelector('.card')) renderGrid(true);
+            res();
+            return;
+          }
           skels.forEach(s => s.classList.add('skel-out'));
           setTimeout(() => {
-            if (!gridEl.querySelector('.skel-card')) { res(); return; }
-            renderGrid(true); res();
+            finish();
           }, 210);
         }, hold);
       });
@@ -3090,7 +3094,20 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         resultsBarEl.hidden = true; resultsBarEl.innerHTML = '';
         shelvesEl.innerHTML = '';
         allHeadEl.hidden = true;
-        gridEl.innerHTML = '<div class="empty">No guides here yet.</div>';
+        gridEl.innerHTML =
+          '<div class="empty">No guides here yet.' +
+          '<br><button class="chip chip-sm empty-reset" type="button" id="retryGuides">Retry load</button></div>';
+        const retry = document.getElementById('retryGuides');
+        if (retry) {
+          retry.onclick = async () => {
+            retry.textContent = 'Loading…';
+            const ok = await loadData();
+            updateHeroCount();
+            renderFilters();
+            renderGrid(true);
+            if (!ok) showToast('Still can’t load guides.json');
+          };
+        }
         loadMoreWrapEl.hidden = true;
         if (srStatusEl) srStatusEl.textContent = 'No guides yet';
         return;
@@ -3959,21 +3976,48 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     }
 
     // ---- IDE bridge (theme) + FOUC guard ----
-    async function loadData() {
+    function guidesJsonUrls() {
+      const t = Date.now();
+      const urls = [];
+      // same folder as landing.html (works for /ui_views/landing.html and file/IDE previews)
       try {
-        const res = await fetch('/ui_views/guides.json?t=' + Date.now());
-        const data = await res.json();
-        if (Array.isArray(data.guides)) GUIDES = data.guides;
-        if (Array.isArray(data.categories) && data.categories.length) {
-          // hide empty categories — except All + featured (Interfaces) which we always surface
-          const used = new Set(GUIDES.map(g => g.cat));
-          CATEGORIES = data.categories.filter(c =>
-            c === 'All' || FEATURED_CATEGORIES[c] || used.has(c)
-          );
+        if (/landing\.html/i.test(location.pathname) || /landing\.html/i.test(location.href)) {
+          urls.push(new URL('guides.json', location.href).href.replace(/([?&]t=\d+)?$/, '') + '?t=' + t);
         }
-      } catch (e) {
-        console.error('Failed to load guides.json', e);
+      } catch (e) {}
+      urls.push('/ui_views/guides.json?t=' + t);
+      urls.push('ui_views/guides.json?t=' + t);
+      return [...new Set(urls)];
+    }
+
+    async function loadData() {
+      let lastErr = null;
+      for (const url of guidesJsonUrls()) {
+        try {
+          const res = await fetch(url, { cache: 'no-store' });
+          if (!res.ok) throw new Error(url + ' → HTTP ' + res.status);
+          let text = await res.text();
+          if (text.charCodeAt(0) === 0xFEFF) text = text.slice(1);
+          const data = JSON.parse(text);
+          if (Array.isArray(data.guides)) GUIDES = data.guides;
+          if (Array.isArray(data.categories) && data.categories.length) {
+            const used = new Set(GUIDES.map(g => g.cat));
+            CATEGORIES = data.categories.filter(c =>
+              c === 'All' || FEATURED_CATEGORIES[c] || used.has(c)
+            );
+          }
+          if (GUIDES.length) {
+            console.info('[Quadcode Guide] loaded', GUIDES.length, 'guides from', url);
+            return true;
+          }
+          lastErr = new Error('guides array empty from ' + url);
+        } catch (e) {
+          lastErr = e;
+          console.warn('[Quadcode Guide] guides fetch failed:', url, e);
+        }
       }
+      console.error('Failed to load guides.json', lastErr);
+      return false;
     }
 
     async function init() {
@@ -4000,6 +4044,10 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       renderModelFilters();
       wireToolbar();
       await swapSkeletonGrid();
+      // belt-and-suspenders: never leave an empty catalog if data is present
+      if (GUIDES.length && !gridEl.querySelector('.card') && !document.getElementById('shelves')?.querySelector('.card')) {
+        renderGrid(true);
+      }
       // safety: never leave revealed elements stuck hidden
       setTimeout(() => {
         document.querySelectorAll('.reveal:not(.in)').forEach(el => el.classList.add('in'));
