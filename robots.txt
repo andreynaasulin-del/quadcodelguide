@@ -3,4 +3,4 @@ Allow: /
 Disallow: /adminpanelqc
 Disallow: /api/
 
-Sitemap: https://quadcodelguide.vercel.app/sitemap.xml
+Sitemap: https://quadcodeguide.vercel.app/sitemap.xml
