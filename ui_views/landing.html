@@ -1257,6 +1257,16 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover;
     border-radius: 12px; margin-bottom: 20px; background: var(--bg-3);
   }
+  /* Portrait UI mockups (phone screens) must not be cropped by 16:9 cover */
+  img.m-cover {
+    width: 100%; height: auto; max-height: min(82vh, 960px);
+    aspect-ratio: auto; object-fit: contain; object-position: top center;
+    margin-inline: auto;
+  }
+  .m-cover-wrap:has(> img.m-cover) {
+    display: flex; justify-content: center; align-items: flex-start;
+    background: var(--bg-3); border-radius: 12px; overflow: hidden;
+  }
   video.m-cover { object-fit: contain; background: #000; }
   .card .cover-wrap {
     position: relative; margin: -24px -24px 4px; width: calc(100% + 48px);
