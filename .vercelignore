@@ -8,8 +8,4 @@ node_modules
 *.log
 *.md
 .DS_Store
-*.mp4
-*.webm
-*.mov
 scripts
-

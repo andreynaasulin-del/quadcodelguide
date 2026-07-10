@@ -407,6 +407,24 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     box-shadow: 0 8px 20px -8px rgba(59,130,246,.55);
   }
   .sk-try-btn:active { transform: translateY(0) scale(.98); }
+  .sk-try-wrap {
+    display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
+    flex: 0 0 auto;
+  }
+  .sk-get-link {
+    font-size: 12px; font-weight: 600; color: var(--muted-2);
+    text-decoration: none; border: 0; background: none; cursor: pointer;
+    font-family: inherit; padding: 0;
+  }
+  .sk-get-link:hover { color: var(--acc-1); }
+  .m-cta-actions {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+  }
+  .m-cta .get-qc {
+    font-size: 13px; font-weight: 600; color: var(--muted);
+    text-decoration: none;
+  }
+  .m-cta .get-qc:hover { color: var(--acc-1); }
   .sk-section { margin-top: 28px; }
   .sk-section-label {
     font-size: 13px; font-weight: 500; color: var(--muted-2);
@@ -2509,7 +2527,22 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           p.src = v.poster;
         }
         v.addEventListener('loadeddata', ready, { once: true });
-        v.addEventListener('error', ready, { once: true });
+        v.addEventListener('error', () => {
+          // Local /ui_views/*.mp4 are excluded from Vercel — fall back to poster still
+          const poster = v.getAttribute('poster') || '';
+          const wrap = v.closest('.cover-wrap, .m-cover-wrap, .m-step-media');
+          if (poster && wrap && !wrap.querySelector('img.media-fallback')) {
+            const img = document.createElement('img');
+            img.className = (v.classList.contains('m-cover') ? 'm-cover' : 'cover') + ' media-fade media-fallback ready';
+            img.src = poster;
+            img.alt = '';
+            img.loading = 'lazy';
+            v.replaceWith(img);
+            markReady(img);
+            return;
+          }
+          ready();
+        }, { once: true });
       });
       // safety: never leave media invisible
       setTimeout(() => {
@@ -3244,10 +3277,13 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       html += '<div class="m-cta">' +
         '<b>Ready to make this?</b>' +
         '<span>Opens Quadcode with the prompt ready — or copies it if the app isn’t installed.</span>' +
-        '<button class="cta" data-qc-open type="button">Open in Quadcode.ai &rarr;</button>' +
-        (allPrompts.length
-          ? '<button class="share-btn" data-copy-all-prompts type="button" style="margin-top:10px">Copy all prompts</button>'
-          : '') +
+        '<div class="m-cta-actions">' +
+          '<button class="cta" data-qc-open type="button">Open in Quadcode.ai &rarr;</button>' +
+          '<a class="get-qc" href="' + CTA_URL + '" target="_blank" rel="noopener">Get Quadcode</a>' +
+          (allPrompts.length
+            ? '<button class="share-btn" data-copy-all-prompts type="button">Copy all prompts</button>'
+            : '') +
+        '</div>' +
         (note ? '<div class="m-cta-note">' + esc(note) + '</div>' : '') +
         '</div>';
       // keep them in the catalog: 3 related guides (same category first)
@@ -3477,7 +3513,10 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
               '<p class="sk-hero-desc">' + escapeHtml(s.desc) + '</p>' +
             '</div>' +
           '</div>' +
-          '<button type="button" class="sk-try-btn" data-skill-try>Try in Quadcode</button>' +
+          '<div class="sk-try-wrap">' +
+            '<button type="button" class="sk-try-btn" data-skill-try>Try in Quadcode</button>' +
+            '<a class="sk-get-link" href="' + CTA_URL + '" target="_blank" rel="noopener">Get Quadcode if app missing</a>' +
+          '</div>' +
         '</div>' +
         '<section class="sk-section">' +
           '<h2 class="sk-section-label">Triggers <b>1</b></h2>' +

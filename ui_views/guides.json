@@ -23,6 +23,9 @@
       "trending": true,
       "featured": true,
       "poster": "/ui_views/assets/interfaces-workflow-poster.jpg",
+      "steps": [
+        {
+          "title": "Lock the product brief in one pass",
           "text": "Before any pixels, force a tight brief: who it's for, the one job of the screen, and what 'done' looks like. Ambiguous briefs are what burn tokens later.",
           "prompt": "Act as a product designer inside Quadcode. Turn my rough idea into a locked UI brief with: (1) user + job-to-be-done, (2) primary screen goal in one sentence, (3) must-have vs nice-to-have, (4) platform (web/desktop/mobile) + density, (5) success criteria I can check visually. Ask at most 3 clarifying questions only if a blocker is missing — otherwise assume sensible defaults and proceed."
         },
