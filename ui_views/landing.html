@@ -147,7 +147,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .nav a:hover { color: var(--white); }
   .nav a.active { color: var(--white); }
 
-  /* ---------- Extra home tabs (Skills / Integrations) ---------- */
+  /* ---------- Extra home tabs (Skills) ---------- */
   .extra-section { padding: 4px 0 48px; }
   .extra-section .extra-head { margin-bottom: 28px; }
   .extra-section h2 {
@@ -158,29 +158,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .extra-section .extra-sub {
     margin: 0; font-size: 15px; color: var(--muted); line-height: 1.5; max-width: 40em;
   }
-  .extra-list { display: flex; flex-direction: column; }
-  .extra-item {
-    padding: 22px 0;
-    border-top: 1px solid var(--line);
-  }
-  .extra-item:last-child { border-bottom: 1px solid var(--line); }
-  .extra-item .extra-meta {
-    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
-    margin-bottom: 8px;
-  }
-  .extra-item .extra-status {
-    display: inline-block;
-    font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
-  }
-  .extra-item .extra-status.status-connected { color: #7ee787; }
-  .extra-item .extra-status.status-available { color: var(--acc-1); }
-  .extra-item .extra-status.status-planned { color: var(--muted-2); }
-  .extra-item h3 {
-    font-family: var(--font-display);
-    font-size: 18px; font-weight: 600; letter-spacing: -.3px;
-    margin: 0 0 6px;
-  }
-  .extra-item p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.45; max-width: 44em; }
 
   /* ---------- Skills marketplace (automation-row cards) ---------- */
   #skills.extra-section .extra-head { margin-bottom: 0; }
@@ -1500,13 +1477,35 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .qc-btn.qc-loop.on { color: var(--acc-1); }
   .qc-btn.qc-loop .ico { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z'/%3E%3C/svg%3E"); }
 
-  /* ---------- View transitions (home <-> guide page) ---------- */
-  .view-leave { animation: view-out .18s ease both; }
-  @keyframes view-out { to { opacity: 0; transform: translateY(8px); } }
-  .view-enter { animation: view-in .5s var(--ease-out) both; }
+  /* ---------- View transitions (home <-> guide / skill / tabs) ---------- */
+  .view-leave { animation: view-out .28s var(--ease-out) both; pointer-events: none; }
+  @keyframes view-out {
+    to { opacity: 0; transform: translateY(10px) scale(.992); filter: blur(2px); }
+  }
+  .view-enter { animation: view-in .48s var(--ease-out) both; }
   @keyframes view-in {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(14px) scale(.992); filter: blur(3px); }
+    to   { opacity: 1; transform: none; filter: none; }
+  }
+  .tab-enter { animation: tab-in .4s var(--ease-out) both; }
+  @keyframes tab-in {
+    from { opacity: 0; transform: translateY(12px); }
     to   { opacity: 1; transform: none; }
+  }
+  @supports (view-transition-name: none) {
+    ::view-transition-old(root) {
+      animation: vt-out .32s var(--ease-out) both;
+    }
+    ::view-transition-new(root) {
+      animation: vt-in .42s var(--ease-out) both;
+    }
+  }
+  @keyframes vt-out {
+    to { opacity: 0; transform: scale(.988); filter: blur(3px); }
+  }
+  @keyframes vt-in {
+    from { opacity: 0; transform: translateY(10px) scale(.992); filter: blur(3px); }
+    to   { opacity: 1; transform: none; filter: none; }
   }
   /* home -> guide: clicked card zooms toward viewer, siblings dim */
   .card.zoom-out {
@@ -1608,7 +1607,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     .t-caret { display: none; }
     .hero h1.fade-var { animation: none; opacity: 1; }
     .hero.framed::before, .hero.framed::after { animation: none; }
-    .view-leave, .view-enter, .card.swap-in { animation: none; }
+    .view-leave, .view-enter, .tab-enter, .card.swap-in { animation: none; }
     .copy-btn.copied { animation: none; }
     .chip.active { animation: none; }
     .card.zoom-out { transition: none; opacity: 1; transform: none !important; }
@@ -1622,6 +1621,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     .guide-in { animation: none; }
     .card .cover, .card .cover-wrap, .m-cover, .m-step-media { animation: none; }
     .media-fade { transition: none; opacity: 1; filter: none; }
+    ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
     .cover-wrap.buffering::after, .m-step-media.buffering::after { animation-duration: 1.4s; }
     .card.previewing .eq span { animation: none; transform: scaleY(.6); }
     .reveal { opacity: 1 !important; transform: none !important; transition: none; }
@@ -1714,7 +1714,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       <nav class="nav" aria-label="Primary">
         <a href="#guides" data-tab="guides" class="active">Guides</a>
         <a href="#skills" data-tab="skills">Skills</a>
-        <a href="#integrations" data-tab="integrations">Integrations</a>
       </nav>
       <button type="button" class="topbar-cta" id="topbarOpenQc" data-qc-home>Open Quadcode</button>
       <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
@@ -1724,7 +1723,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     <div class="mobile-nav" id="mobileNav" hidden>
       <a href="#guides" data-tab="guides">Guides</a>
       <a href="#skills" data-tab="skills">Skills</a>
-      <a href="#integrations" data-tab="integrations">Integrations</a>
       <button type="button" class="mobile-nav-cta" data-qc-home>Open Quadcode</button>
     </div>
   </header>
@@ -1798,15 +1796,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       <div class="skills-grid" id="skillsList" aria-busy="false"></div>
     </section>
 
-    <!-- Integrations tab (#integrations) — catalog rendered from INTEGRATIONS in JS -->
-    <section id="integrations" class="extra-section" hidden>
-      <div class="extra-head">
-        <h2>Integrations</h2>
-        <p class="extra-sub">Tools and platforms this guide stack already uses — or plans to wire next.</p>
-      </div>
-      <div class="extra-list" id="integrationsList"></div>
-    </section>
-
     <footer class="foot" id="homeFoot">Made for creators. Start with any guide above.</footer>
   </main>
 
@@ -1835,7 +1824,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     let CATEGORIES = ["All"];
     let GUIDES = [];
 
-    // Skills / Integrations catalogs (home tabs — not guide categories)
+    // Skills catalog (home tab — not a guide category)
     const SKILLS = [
       {
         id: 'video-prompt-craft',
@@ -2029,49 +2018,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           '3) Run publish_case (or the project publish script) so the entry lands in guides.json.\n' +
           '4) Validate required fields and that media URLs resolve before go-live.\n' +
           'Do not invent Blob credentials; follow the repo publish flow and report the new guide id.'
-      }
-    ];
-
-    const INTEGRATIONS = [
-      {
-        status: 'Connected',
-        title: 'Vercel Blob',
-        desc: 'Guide videos, posters, and step assets — the live media store for published cases.'
-      },
-      {
-        status: 'Connected',
-        title: 'Vercel',
-        desc: 'Hosts Quadcode Guide and the publish API that validates Blob URLs before go-live.'
-      },
-      {
-        status: 'Connected',
-        title: 'GitHub',
-        desc: 'Source of truth for guides.json and site deploys when a new case is published.'
-      },
-      {
-        status: 'Connected',
-        title: 'Cursor / Quadcode IDE',
-        desc: 'Open any guide prompt straight in Quadcode — copy, paste, generate without leaving the flow.'
-      },
-      {
-        status: 'Available',
-        title: 'GPT-Image · Kling · Seedance · Topaz',
-        desc: 'Image, image-to-video, and upscale stack used across cinematic, product, and UGC guides.'
-      },
-      {
-        status: 'Available',
-        title: 'Suno',
-        desc: 'Music generation for restaurant beds, montage scores, and short-form audio beds.'
-      },
-      {
-        status: 'Planned',
-        title: 'Figma',
-        desc: 'Pull design refs and brand frames into prompt packs for landings and posters.'
-      },
-      {
-        status: 'Planned',
-        title: 'YouTube & social export',
-        desc: 'Export UGC and viral cuts with vertical presets and share-ready naming.'
       }
     ];
 
@@ -2315,19 +2261,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 
     function renderExtraCatalogs() {
       bindSkillsSearch();
-      const integList = document.getElementById('integrationsList');
-      if (integList) {
-        const visible = INTEGRATIONS.filter(it => String(it.status || '').toLowerCase() !== 'planned');
-        integList.innerHTML = visible.map(it => {
-          const st = String(it.status || 'Available');
-          const cls = 'status-' + st.toLowerCase();
-          return '<div class="extra-item">' +
-            '<div class="extra-meta"><span class="extra-status ' + cls + '">' + escapeHtml(st) + '</span></div>' +
-            '<h3>' + escapeHtml(it.title) + '</h3>' +
-            '<p>' + escapeHtml(it.desc) + '</p>' +
-          '</div>';
-        }).join('');
-      }
     }
 
     let activeCat = "All";
@@ -3666,7 +3599,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     }
 
     function animateEnter(el) {
-      if (REDUCED_MOTION) return;
+      if (REDUCED_MOTION || skipEnterAnim) return;
       el.classList.remove('view-enter');
       void el.offsetWidth;
       el.classList.add('view-enter');
@@ -3817,33 +3750,78 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     function parseHomeTab(hash) {
       const h = String(hash || '').replace(/^#/, '').toLowerCase();
       if (h === 'skills') return 'skills';
-      if (h === 'integrations') return 'integrations';
       return 'guides';
     }
 
-    function showHomeTab(tab) {
+    function showHomeTab(tab, opts) {
+      const animate = !!(opts && opts.animate) && !REDUCED_MOTION;
       const guidesEl = document.getElementById('guides');
       const skillsEl = document.getElementById('skills');
-      const integEl = document.getElementById('integrations');
       const footEl = document.getElementById('homeFoot');
+      const prevTab = guidesEl && !guidesEl.hidden ? 'guides'
+        : (skillsEl && !skillsEl.hidden ? 'skills' : null);
       if (guidesEl) guidesEl.hidden = tab !== 'guides';
       if (skillsEl) skillsEl.hidden = tab !== 'skills';
-      if (integEl) integEl.hidden = tab !== 'integrations';
-      document.querySelectorAll('.nav a[data-tab]').forEach(a => {
+      document.querySelectorAll('a[data-tab]').forEach(a => {
         a.classList.toggle('active', a.dataset.tab === tab);
       });
       if (footEl) {
         footEl.textContent = tab === 'guides'
           ? 'Made for creators. Start with any guide above.'
-          : tab === 'skills'
-            ? 'Skills mirror the guide workflows — drop them into Cursor or Quadcode.'
-            : 'Connected tools power publish and media; Available ones show up in the guides.';
+          : 'Skills mirror the guide workflows — drop them into Cursor or Quadcode.';
       }
       if (tab === 'skills') {
         document.title = 'Skills — Quadcode Guide';
         ensureSkillsCatalog();
-      } else if (tab === 'integrations') document.title = 'Integrations — Quadcode Guide';
-      else document.title = 'Quadcode Guide';
+      } else {
+        document.title = 'Quadcode Guide';
+      }
+      if (animate && prevTab && prevTab !== tab) {
+        const panel = tab === 'skills' ? skillsEl : guidesEl;
+        if (panel) {
+          panel.classList.remove('tab-enter');
+          void panel.offsetWidth;
+          panel.classList.add('tab-enter');
+          panel.addEventListener('animationend', () => panel.classList.remove('tab-enter'), { once: true });
+        }
+      }
+    }
+
+    function routeKind(hash) {
+      if (/^#\/guide\//.test(hash)) return 'guide';
+      if (/^#\/skill\//.test(hash)) return 'skill';
+      return 'home:' + parseHomeTab(hash);
+    }
+
+    function visibleKind() {
+      if (!guidePageEl.hidden) return 'guide';
+      if (!skillPageEl.hidden) return 'skill';
+      const guidesEl = document.getElementById('guides');
+      if (guidesEl && !guidesEl.hidden) return 'home:guides';
+      return 'home:skills';
+    }
+
+    let skipEnterAnim = false;
+
+    function runRouteTransition(update) {
+      if (REDUCED_MOTION) { update(); return; }
+      if (typeof document.startViewTransition === 'function') {
+        try {
+          document.startViewTransition(() => {
+            skipEnterAnim = true;
+            try { update(); } finally { skipEnterAnim = false; }
+          });
+          return;
+        } catch (e) { /* fall through */ }
+      }
+      const leaving = !guidePageEl.hidden
+        ? guidePageEl
+        : (!skillPageEl.hidden ? skillPageEl : homeEl);
+      leaving.classList.add('view-leave');
+      setTimeout(() => {
+        leaving.classList.remove('view-leave');
+        update();
+      }, 260);
     }
 
     function applyRoute() {
@@ -3865,20 +3843,15 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     }
 
     function router() {
-      const goingToGuide = /^#\/guide\//.test(location.hash);
-      const goingToSkill = /^#\/skill\//.test(location.hash);
-      const goingDeep = goingToGuide || goingToSkill;
-      const deepVisible = !guidePageEl.hidden || !skillPageEl.hidden;
-      // no cross-view change (e.g. tab switch or anchor on home) -> apply instantly
-      if (REDUCED_MOTION || goingDeep === deepVisible) { applyRoute(); return; }
-      const leaving = !guidePageEl.hidden
-        ? guidePageEl
-        : (!skillPageEl.hidden ? skillPageEl : homeEl);
-      leaving.classList.add('view-leave');
-      setTimeout(() => {
-        leaving.classList.remove('view-leave');
-        applyRoute();
-      }, 170);
+      const next = routeKind(location.hash);
+      const prev = visibleKind();
+      if (next === prev) { applyRoute(); return; }
+      // Home tab switch (guides <-> skills): light panel fade, keep hero
+      if (next.startsWith('home:') && prev.startsWith('home:')) {
+        showHomeTab(parseHomeTab(location.hash), { animate: true });
+        return;
+      }
+      runRouteTransition(applyRoute);
     }
 
     // ---- Custom waveform audio player ----
