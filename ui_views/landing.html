@@ -1130,12 +1130,17 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   }
   .m-learn-bar {
     display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
-    margin: 8px 0 4px;
+    margin: 10px 0 0; padding-top: 12px; border-top: 1px solid var(--line);
   }
   .m-learn-bar .ml-prog {
     font-size: 13px; font-weight: 600; color: var(--muted);
   }
   .m-learn-bar .ml-prog b { color: var(--white); }
+  .saved-empty {
+    text-align: center; padding: 48px 20px; color: var(--muted);
+    border: 1px dashed var(--line); border-radius: 16px; margin: 8px 0 40px;
+  }
+  .saved-empty b { color: var(--white); display: block; margin-bottom: 6px; font-size: 16px; }
   .m-skills-row, .m-guides-row {
     display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;
   }
@@ -1481,7 +1486,8 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   @media (prefers-reduced-motion: reduce) { .qc-toast { transition: opacity .2s ease; transform: translate(-50%,0); } }
 
   /* share row on guide page */
-  .m-share { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 16px 0 0; }
+  .m-share { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 14px 0 0; }
+  .m-share .share-btn { padding: 7px 12px; }
   .share-btn {
     display: inline-flex; align-items: center; gap: 7px;
     background: var(--bg-2); border: 1px solid var(--line); color: var(--muted);
@@ -1861,6 +1867,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       <nav class="nav" aria-label="Primary">
         <a href="#guides" data-tab="guides" class="active">Guides</a>
         <a href="#skills" data-tab="skills">Skills</a>
+        <a href="#saved" data-tab="saved">Saved</a>
       </nav>
       <button type="button" class="topbar-cta" id="topbarOpenQc" data-qc-home>Open Quadcode</button>
       <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
@@ -1870,6 +1877,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     <div class="mobile-nav" id="mobileNav" hidden>
       <a href="#guides" data-tab="guides">Guides</a>
       <a href="#skills" data-tab="skills">Skills</a>
+      <a href="#saved" data-tab="saved">Saved</a>
       <button type="button" class="mobile-nav-cta" data-qc-home>Open Quadcode</button>
     </div>
   </header>
@@ -2544,6 +2552,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     let activeModels = new Set(); // multi-select, empty = all models
     let searchQ = '';        // debounced search query
     let trendingOnly = false; // "View all" on the Trending shelf
+    let savedOnly = false;    // Saved tab / favorites filter
     let sortByNew = 0;       // 0 = off, 1 = newest first
     let sortByViews = 0;     // 0 = off, 1 = most viewed first
     const PAGE_SIZE = 12;
@@ -3046,13 +3055,14 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 
     // idle = nothing searched/filtered/sorted -> show discovery shelves
     function isIdleCatalog() {
-      return !searchQ && !trendingOnly &&
+      return !savedOnly && !searchQ && !trendingOnly &&
         activeCat === 'All' && activeLevel === 'All' && !activeModels.size &&
         !sortByLevel && !sortByCost && !sortByNew && !sortByViews;
     }
 
     function filteredList() {
       let list = GUIDES.slice();
+      if (savedOnly) list = list.filter(g => guideState(g.id).fav);
       if (activeCat !== 'All') list = list.filter(g => g.cat === activeCat);
       if (activeCat !== 'All' && activeSub !== 'All') {
         const sub = activeSub.toLowerCase();
@@ -3233,11 +3243,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         viewAll: null
       },
       {
-        title: 'Saved', ico: 'ico-school',
-        pick: () => favoriteGuides(),
-        viewAll: null
-      },
-      {
         title: 'Start here', ico: 'ico-school',
         pick: list => {
           const byId = new Map(list.map(g => [g.id, g]));
@@ -3359,14 +3364,24 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       renderResultsBar(list.length, idle);
       if (idle) renderShelves(swap); else shelvesEl.innerHTML = '';
       allHeadEl.hidden = false;
-      document.getElementById('allTitle').textContent = idle ? 'All guides' : 'Results';
-      allCountEl.textContent = idle ? GUIDES.length : list.length;
+      document.getElementById('allTitle').textContent = savedOnly ? 'Saved guides' : (idle ? 'All guides' : 'Results');
+      allCountEl.textContent = idle && !savedOnly ? GUIDES.length : list.length;
       if (srStatusEl) {
         srStatusEl.textContent = list.length + (list.length === 1 ? ' guide' : ' guides') +
           (searchQ ? ' for ' + searchQ : '') + (idle ? '' : ' shown');
       }
       gridEl.innerHTML = '';
       if (!list.length) {
+        if (savedOnly && !searchQ) {
+          gridEl.innerHTML =
+            '<div class="saved-empty">' +
+              '<b>No saved guides yet</b>' +
+              'Tap ♡ Save on a guide — then find them here.' +
+              '<br><br><a class="chip chip-sm" href="#guides">Browse guides</a>' +
+            '</div>';
+          loadMoreWrapEl.hidden = true;
+          return;
+        }
         const skillHits = searchQ
           ? SKILLS.filter(s => {
               const blob = (s.title + ' ' + s.desc + ' ' + s.tag + ' ' + (s.body || '')).toLowerCase();
@@ -3383,7 +3398,8 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
               '</div>'
             : '') +
           '</div>';
-        gridEl.querySelector('.empty-reset').onclick = clearAllFilters;
+        const resetBtn = gridEl.querySelector('.empty-reset');
+        if (resetBtn) resetBtn.onclick = clearAllFilters;
         gridEl.querySelectorAll('[data-go-skill]').forEach(btn => {
           btn.onclick = () => { location.hash = '#/skill/' + encodeURIComponent(btn.getAttribute('data-go-skill')); };
         });
@@ -3507,17 +3523,13 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           ? '<div class="m-meta">' + metaBits.join('<span class="m-meta-sep">&middot;</span>') + '</div>'
           : '') +
         '<div class="m-share">' +
+          '<button class="share-btn" data-fav-toggle type="button">' + (st.fav ? '♥ Saved' : '♡ Save') + '</button>' +
           '<button class="share-btn" data-share type="button"><span class="sh-i i-share"></span>Share</button>' +
           '<button class="share-btn" data-copy-link type="button"><span class="sh-i i-link"></span>Copy link</button>' +
-          '<button class="share-btn" data-fav-toggle type="button">' + (st.fav ? '♥ Saved' : '♡ Save') + '</button>' +
-          (allPrompts.length
-            ? '<button class="share-btn" data-copy-all-prompts type="button"><span class="sh-i i-link"></span>Copy all prompts</button>'
-            : '') +
         '</div>' +
-        '<div class="m-learn-bar">' +
-          '<span class="ml-prog" id="guideLearnProg">' + progLabel + '</span>' +
-          '<button class="share-btn" data-mark-done type="button">' + (st.completed ? 'Completed ✓' : 'Mark as done') + '</button>' +
-        '</div>' +
+        (totalSteps || st.completed
+          ? '<div class="m-learn-bar"><span class="ml-prog" id="guideLearnProg">' + progLabel + '</span></div>'
+          : '') +
         (g.audio ? '<div class="m-audio"><span>Listen</span>' +
           '<div class="qc-player">' +
             '<audio preload="metadata" src="' + esc(g.audio) + '"></audio>' +
@@ -4094,8 +4106,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
               ? '<b>Completed</b> — nice work'
               : (total ? ('Progress <b>' + done + ' / ' + total + '</b> steps') : 'In progress');
           }
-          const mark = guideBodyEl.querySelector('[data-mark-done]');
-          if (mark) mark.textContent = stNow.completed ? 'Completed ✓' : 'Mark as done';
           const fav = guideBodyEl.querySelector('[data-fav-toggle]');
           if (fav) fav.textContent = stNow.fav ? '♥ Saved' : '♡ Save';
           guideBodyEl.querySelectorAll('[data-step-toggle]').forEach(btn => {
@@ -4132,24 +4142,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
             track('favorite_toggle', { id: g.id, on: next });
             refreshLearnUi();
             refreshContinueHero();
-            showToast(next ? 'Saved to favorites' : 'Removed from favorites');
-          };
-        }
-        const markDone = guideBodyEl.querySelector('[data-mark-done]');
-        if (markDone) {
-          markDone.onclick = () => {
-            const stNow = guideState(g.id);
-            const next = !stNow.completed;
-            const total = (g.steps || []).length;
-            const doneSteps = Object.assign({}, stNow.doneSteps);
-            if (next && total) {
-              for (let i = 0; i < total; i++) doneSteps[String(i)] = true;
-            }
-            patchGuideState(g.id, { completed: next, doneSteps });
-            track('mark_done', { id: g.id, on: next });
-            refreshLearnUi();
-            refreshContinueHero();
-            showToast(next ? 'Marked as done' : 'Marked incomplete');
+            showToast(next ? 'Saved — open Saved in the top menu' : 'Removed from saved');
           };
         }
         const madeBtn = guideBodyEl.querySelector('[data-made-share]');
@@ -4253,6 +4246,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     function parseHomeTab(hash) {
       const h = String(hash || '').replace(/^#/, '').toLowerCase();
       if (h === 'skills') return 'skills';
+      if (h === 'saved') return 'saved';
       return 'guides';
     }
 
@@ -4261,23 +4255,33 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       const guidesEl = document.getElementById('guides');
       const skillsEl = document.getElementById('skills');
       const footEl = document.getElementById('homeFoot');
-      const prevTab = guidesEl && !guidesEl.hidden ? 'guides'
-        : (skillsEl && !skillsEl.hidden ? 'skills' : null);
-      if (guidesEl) guidesEl.hidden = tab !== 'guides';
+      const filtersSection = document.querySelector('#guides .filters-section');
+      const prevTab = !homeEl.hidden
+        ? (skillsEl && !skillsEl.hidden ? 'skills' : (savedOnly ? 'saved' : 'guides'))
+        : null;
+      savedOnly = tab === 'saved';
+      if (guidesEl) guidesEl.hidden = tab !== 'guides' && tab !== 'saved';
       if (skillsEl) skillsEl.hidden = tab !== 'skills';
+      if (filtersSection) filtersSection.hidden = tab === 'saved';
       document.querySelectorAll('a[data-tab]').forEach(a => {
         a.classList.toggle('active', a.dataset.tab === tab);
       });
       if (footEl) {
-        footEl.textContent = tab === 'guides'
-          ? 'Made for creators. Start with any guide above.'
-          : 'Skills mirror the guide workflows — drop them into Cursor or Quadcode.';
+        footEl.textContent = tab === 'skills'
+          ? 'Skills mirror the guide workflows — drop them into Cursor or Quadcode.'
+          : tab === 'saved'
+            ? 'Your saved guides live here — tap ♡ Save on any guide to add more.'
+            : 'Made for creators. Start with any guide above.';
       }
       if (tab === 'skills') {
-        document.title = 'Skills — Quadcode Guide';
+        setDocMeta('Skills — Quadcode Guide', 'Reusable Quadcode skills for video, UI, and workflows.');
         ensureSkillsCatalog();
+      } else if (tab === 'saved') {
+        setDocMeta('Saved — Quadcode Guide', 'Guides you saved for later.');
+        renderGrid(true);
       } else {
-        document.title = 'Quadcode Guide';
+        setDocMeta('Quadcode Guide', 'Step-by-step Quadcode guides — Interfaces, video, music, gamedev, design.');
+        renderGrid(true);
       }
       if (animate && prevTab && prevTab !== tab) {
         const panel = tab === 'skills' ? skillsEl : guidesEl;
@@ -4299,9 +4303,10 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     function visibleKind() {
       if (!guidePageEl.hidden) return 'guide';
       if (!skillPageEl.hidden) return 'skill';
-      const guidesEl = document.getElementById('guides');
-      if (guidesEl && !guidesEl.hidden) return 'home:guides';
-      return 'home:skills';
+      const skillsEl = document.getElementById('skills');
+      if (skillsEl && !skillsEl.hidden) return 'home:skills';
+      if (savedOnly) return 'home:saved';
+      return 'home:guides';
     }
 
     let skipEnterAnim = false;
