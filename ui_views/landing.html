@@ -3001,7 +3001,8 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       return s ? s.prompt : '';
     }
     // Prefer IDE chat (ToolAskAgent) when running inside Quadcode;
-    // otherwise copy + open web with ?prompt= prefill.
+    // otherwise open the desktop app via quadcode:// and copy the prompt.
+    const DESKTOP_URL = 'quadcode://open';
     function openInQuadcode(promptText, opts) {
       const text = String(promptText || '').trim();
       const short = (opts && opts.shortDescription) || 'Open in Quadcode';
@@ -3015,24 +3016,36 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           short_description: short.slice(0, 80)
         }).catch(err => {
           console.error(err);
-          showToast('Could not send to agent — copied prompt');
-          fallbackOpenQuadcode(text);
+          showToast('Could not send to agent — opening desktop app');
+          openDesktopQuadcode(text);
         });
         return;
       }
-      fallbackOpenQuadcode(text);
+      openDesktopQuadcode(text);
     }
 
-    function fallbackOpenQuadcode(promptText) {
-      let url = CTA_URL;
-      if (promptText) {
-        url += (url.indexOf('?') >= 0 ? '&' : '?') + 'prompt=' + encodeURIComponent(promptText.slice(0, 1800));
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(promptText).catch(() => {});
-        }
-        showToast('Prompt copied — opening Quadcode');
+    function openDesktopQuadcode(promptText) {
+      if (promptText && navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(promptText).catch(() => {});
       }
-      window.open(url, '_blank', 'noopener');
+      let deep = DESKTOP_URL;
+      if (promptText) {
+        deep += '?prompt=' + encodeURIComponent(promptText.slice(0, 1800));
+      }
+      showToast(promptText
+        ? 'Opening Quadcode — prompt copied (Ctrl+V in chat)'
+        : 'Opening Quadcode…');
+      // Trigger OS protocol handler without leaving this page
+      try {
+        const a = document.createElement('a');
+        a.href = deep;
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      } catch (e) {
+        try { window.open(deep, '_blank'); } catch (e2) {}
+      }
     }
     let toastT = 0;
     function showToast(msg) {
