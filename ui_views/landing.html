@@ -24,21 +24,21 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 <style id="__qc-fouc-guard">body{visibility:hidden!important}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:        #13131E;
-    --bg-2:      #212233;
-    --bg-3:      #0B0D15;
+    --bg:        #0E0E14;
+    --bg-2:      #1A1A24;
+    --bg-3:      #0A0A10;
     --white:     #FFFFFF;
-    --muted:     rgba(255,255,255,.55);
-    --muted-2:   rgba(255,255,255,.32);
+    --muted:     rgba(255,255,255,.65);
+    --muted-2:   rgba(255,255,255,.38);
     --line:      rgba(255,255,255,.08);
     --acc-1:     #FF9569;
     --acc-2:     #DD344D;
     --grad:      linear-gradient(100deg, #FF9569 0%, #DD344D 100%);
     --radius:    14px;
-    --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    --font-display: 'Space Grotesk', 'Manrope', system-ui, sans-serif;
     --ease-out:  cubic-bezier(.16, 1, .3, 1);
     --ease:      cubic-bezier(.22, .61, .36, 1);
   }
@@ -60,7 +60,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     margin: 0;
     background: var(--bg);
     color: var(--white);
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Manrope', system-ui, -apple-system, sans-serif;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
     /* focus dot-grid pattern */
@@ -75,7 +75,55 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   /* ---------- Top bar ---------- */
   .topbar {
     display: flex; align-items: center; justify-content: space-between;
-    max-width: 1120px; margin: 0 auto; padding: 22px 28px;
+    gap: 16px;
+    max-width: 1120px; margin: 0 auto; padding: 18px 28px;
+    position: relative; z-index: 60;
+  }
+  .topbar-right {
+    display: flex; align-items: center; gap: 18px; flex: 0 0 auto;
+  }
+  .topbar-cta {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--grad); color: #fff; text-decoration: none;
+    font-size: 13px; font-weight: 700; padding: 9px 16px; border-radius: 999px;
+    border: 0; cursor: pointer; font-family: inherit; white-space: nowrap;
+    transition: filter .18s ease, transform .16s var(--ease);
+  }
+  .topbar-cta:hover { filter: brightness(1.06); transform: translateY(-1px); }
+  .topbar-cta:active { transform: scale(.97); }
+  .nav-toggle {
+    display: none; width: 40px; height: 40px; padding: 0; border: 0;
+    border-radius: 10px; background: var(--bg-2); border: 1px solid var(--line);
+    cursor: pointer; align-items: center; justify-content: center;
+  }
+  .nav-toggle span {
+    display: block; width: 16px; height: 1.5px; background: var(--white);
+    position: relative; border-radius: 2px;
+  }
+  .nav-toggle span::before, .nav-toggle span::after {
+    content: ''; position: absolute; left: 0; width: 16px; height: 1.5px;
+    background: var(--white); border-radius: 2px;
+  }
+  .nav-toggle span::before { top: -5px; }
+  .nav-toggle span::after { top: 5px; }
+  .nav-toggle[aria-expanded="true"] span { background: transparent; }
+  .nav-toggle[aria-expanded="true"] span::before { top: 0; transform: rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span::after { top: 0; transform: rotate(-45deg); }
+  .mobile-nav {
+    display: none; position: absolute; top: calc(100% - 4px); left: 16px; right: 16px;
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: 14px;
+    padding: 10px; box-shadow: 0 18px 44px -14px rgba(0,0,0,.65);
+    z-index: 70;
+  }
+  .mobile-nav a, .mobile-nav button.mobile-nav-cta {
+    display: block; width: 100%; text-align: left;
+    padding: 12px 14px; border-radius: 10px; border: 0;
+    background: transparent; color: var(--muted); text-decoration: none;
+    font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer;
+  }
+  .mobile-nav a:hover, .mobile-nav a.active { color: var(--white); background: rgba(255,255,255,.04); }
+  .mobile-nav button.mobile-nav-cta {
+    margin-top: 6px; background: var(--grad); color: #fff; text-align: center;
   }
   .logo {
     display: flex; align-items: center; gap: 9px;
@@ -516,6 +564,21 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .hero-search input::placeholder { color: var(--muted); }
   .hero-search input::-webkit-search-cancel-button,
   .hero-search input::-webkit-search-decoration { -webkit-appearance: none; appearance: none; }
+  .hero-quick {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+    margin: 16px auto 0; max-width: 540px;
+  }
+  .hero-quick button {
+    font-family: inherit; font-size: 12.5px; font-weight: 600;
+    color: var(--muted); background: rgba(255,255,255,.04);
+    border: 1px solid var(--line); border-radius: 999px;
+    padding: 7px 14px; cursor: pointer;
+    transition: color .15s ease, border-color .15s ease, background .15s ease;
+  }
+  .hero-quick button:hover {
+    color: var(--white); border-color: rgba(255,149,105,.4);
+    background: rgba(255,149,105,.08);
+  }
   .hs-clear {
     flex: 0 0 auto; width: 24px; height: 24px; border: 0; border-radius: 999px;
     background: var(--bg-3); color: var(--muted); cursor: pointer;
@@ -573,29 +636,28 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     border-color: #f07068;
   }
   .chip.active:active { transform: scale(.97); filter: brightness(.98); }
-  /* Featured category (Interfaces) — always stands out to drive discovery */
+  /* Featured category (Interfaces) — quiet ring, not a banner */
   .chip.featured:not(.active) {
-    color: #fff;
-    border-color: rgba(255,149,105,.5);
-    background:
-      linear-gradient(100deg, rgba(255,149,105,.22), rgba(221,52,77,.16));
-    box-shadow:
-      0 0 0 1px rgba(255,149,105,.12),
-      0 10px 28px -14px rgba(221,52,77,.55);
+    color: rgba(255,255,255,.92);
+    border-color: rgba(255,149,105,.45);
+    background: rgba(255,149,105,.08);
+    box-shadow: inset 0 0 0 1px rgba(255,149,105,.12);
   }
   .chip.featured:not(.active):hover {
-    border-color: rgba(255,149,105,.75);
-    filter: brightness(1.05);
+    border-color: rgba(255,149,105,.7);
+    background: rgba(255,149,105,.14);
   }
   .chip .chip-hot {
-    font-size: 10px; font-weight: 700; letter-spacing: .5px;
+    font-size: 10px; font-weight: 700; letter-spacing: .4px;
     text-transform: uppercase; line-height: 1;
     padding: 3px 7px; border-radius: 999px;
-    background: var(--grad); color: #fff;
+    background: transparent; color: var(--acc-1);
+    border: 1px solid rgba(255,149,105,.45);
     flex: 0 0 auto;
   }
   .chip.active .chip-hot {
-    background: rgba(255,255,255,.22);
+    background: rgba(255,255,255,.18);
+    border-color: transparent;
     color: #fff;
   }
   @keyframes chip-pop { 0% { transform: scale(.92); } 55% { transform: scale(1.06); } 100% { transform: scale(1); } }
@@ -863,20 +925,15 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   }
   .card-foot .time { min-width: 0; }
 
-  /* view counter — cover overlay badge on cards, inline in guide meta */
-  .view-badge {
+  /* view counter removed — time lives in card footer */
+  .time-badge {
     position: absolute; left: 10px; bottom: 10px; z-index: 2;
     display: inline-flex; align-items: center; gap: 5px;
     font-size: 11.5px; font-weight: 600; color: #fff;
-    padding: 4px 9px 4px 8px; border-radius: 999px;
+    padding: 4px 9px; border-radius: 999px;
     background: rgba(11,13,21,.6); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
     border: 1px solid rgba(255,255,255,.14);
-    font-variant-numeric: tabular-nums; pointer-events: none;
-  }
-  .view-badge::before {
-    content: ''; width: 12px; height: 12px; flex: 0 0 12px; background: #fff;
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 4.5C7 4.5 2.7 7.6 1 12c1.7 4.4 6 7.5 11 7.5s9.3-3.1 11-7.5C21.3 7.6 17 4.5 12 4.5zm0 12.5a5 5 0 110-10 5 5 0 010 10zm0-2.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z'/%3E%3C/svg%3E") center/contain no-repeat;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 4.5C7 4.5 2.7 7.6 1 12c1.7 4.4 6 7.5 11 7.5s9.3-3.1 11-7.5C21.3 7.6 17 4.5 12 4.5zm0 12.5a5 5 0 110-10 5 5 0 010 10zm0-2.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z'/%3E%3C/svg%3E") center/contain no-repeat;
+    pointer-events: none;
   }
   /* image cover inside the wrapper: the wrapper owns the bleed + radius */
   .card .cover-wrap .cover { margin: 0; width: 100%; border-radius: 0; }
@@ -1599,6 +1656,9 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   @media (max-width: 860px) {
     .grid, .steps { grid-template-columns: repeat(2, 1fr); }
     .nav { display: none; }
+    .topbar-cta { display: none; }
+    .nav-toggle { display: inline-flex; }
+  .mobile-nav.open { display: block !important; }
     .hero h1 { font-size: 46px; }
   }
   @media (max-width: 540px) {
@@ -1632,11 +1692,23 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       </svg>
       <b>Quadcode Guide</b>
     </div>
-    <nav class="nav" aria-label="Primary">
-      <a href="#guides" data-tab="guides" class="active">Guides</a>
+    <div class="topbar-right">
+      <nav class="nav" aria-label="Primary">
+        <a href="#guides" data-tab="guides" class="active">Guides</a>
+        <a href="#skills" data-tab="skills">Skills</a>
+        <a href="#integrations" data-tab="integrations">Integrations</a>
+      </nav>
+      <button type="button" class="topbar-cta" id="topbarOpenQc" data-qc-home>Open Quadcode</button>
+      <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <span></span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobileNav" hidden>
+      <a href="#guides" data-tab="guides">Guides</a>
       <a href="#skills" data-tab="skills">Skills</a>
       <a href="#integrations" data-tab="integrations">Integrations</a>
-    </nav>
+      <button type="button" class="mobile-nav-cta" data-qc-home>Open Quadcode</button>
+    </div>
   </header>
 
   <main class="wrap">
@@ -1644,13 +1716,18 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     <section class="hero framed">
       <span class="kicker">Learn by doing</span>
       <h1><span class="hl"><span class="hl-in">Learn to make</span></span><br><span class="hl"><span class="hl-in"><span class="g">UGC content</span></span></span></h1>
-      <p id="heroSub">Simple, step-by-step guides for motion design, games, music, video and design. Pick a topic and start creating today.</p>
+      <p id="heroSub">Step-by-step guides for interfaces, video, music, games and design. Pick a topic and start creating in Quadcode.</p>
       <form class="hero-search" id="heroSearch" role="search" onsubmit="event.preventDefault()">
         <span class="hs-icon" aria-hidden="true"></span>
         <input id="searchInput" type="search" placeholder="Search guides &mdash; poster, music, 3D character&hellip;" autocomplete="off" aria-label="Search guides">
         <button type="button" class="hs-clear" id="searchClear" aria-label="Clear search" hidden>&#215;</button>
         <span class="hs-key" aria-hidden="true">/</span>
       </form>
+      <div class="hero-quick" id="heroQuick" aria-label="Quick start categories">
+        <button type="button" data-quick-cat="Video">Video</button>
+        <button type="button" data-quick-cat="Interfaces">Interfaces</button>
+        <button type="button" data-quick-cat="Website">Website</button>
+      </div>
     </section>
 
     <!-- Category filter + catalog -->
@@ -2222,8 +2299,9 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       bindSkillsSearch();
       const integList = document.getElementById('integrationsList');
       if (integList) {
-        integList.innerHTML = INTEGRATIONS.map(it => {
-          const st = String(it.status || 'Planned');
+        const visible = INTEGRATIONS.filter(it => String(it.status || '').toLowerCase() !== 'planned');
+        integList.innerHTML = visible.map(it => {
+          const st = String(it.status || 'Available');
           const cls = 'status-' + st.toLowerCase();
           return '<div class="extra-item">' +
             '<div class="extra-meta"><span class="extra-status ' + cls + '">' + escapeHtml(st) + '</span></div>' +
@@ -2296,34 +2374,34 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       "Motion Design": ["Logo Reveals", "Transitions", "Title Cards", "Loops", "Lower Thirds", "Kinetic Text"],
       "Website": ["Landing Page", "Product Hero", "Hero Video", "Marketing Site", "Portfolio"]
     };
-    // sub-chips for a category: taxonomy + any real guide subs, deduped
+    // sub-chips: only taxonomy entries that have at least one guide, plus any extra guide subs
     function subsForCat(cat) {
       const out = [], seen = new Set();
       const add = s => { const k = String(s).trim().toLowerCase(); if (s && !seen.has(k)) { seen.add(k); out.push(String(s).trim()); } };
-      (SUBCATEGORIES[cat] || []).forEach(add);
+      const live = new Set(
+        GUIDES.filter(g => g.cat === cat && g.sub).map(g => String(g.sub).trim().toLowerCase())
+      );
+      (SUBCATEGORIES[cat] || []).forEach(s => {
+        if (live.has(String(s).trim().toLowerCase())) add(s);
+      });
       GUIDES.filter(g => g.cat === cat && g.sub).forEach(g => add(g.sub));
       return out;
     }
 
-    // ---- View count: real g.views if set, else a stable believable number
-    // derived from the id (8k+, never a round thousand/hundred) ----
-    function hashStr(s) {
-      let h = 2166136261 >>> 0;
-      for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; }
-      return h >>> 0;
-    }
+    // ---- View count: only real g.views (no fake social proof) ----
     function viewCount(g) {
       if (typeof g.views === 'number' && g.views > 0) return Math.floor(g.views);
-      const h = hashStr('qcviews:' + (g.id || g.title || ''));
-      let n = 8000 + (h % 84000) + ((h >> 7) % 967); // 8,000 .. ~92,900
-      if (n % 1000 === 0) n += 137;                  // never a round thousand
-      if (n % 100 === 0) n += 13;                    // never a round hundred
-      return n;
+      return 0;
     }
     function formatViews(n) { return n.toLocaleString('en-US'); }
     function viewsHtml(g, cls) {
-      return '<span class="' + cls + '" title="' + formatViews(viewCount(g)) + ' views">' +
-        formatViews(viewCount(g)) + '</span>';
+      const n = viewCount(g);
+      if (!n) return '';
+      return '<span class="' + cls + '" title="' + formatViews(n) + ' views">' +
+        formatViews(n) + '</span>';
+    }
+    function coverSrc(g) {
+      return g.image || g.poster || '';
     }
     // parse "GPT-Image, Seedance" -> ["GPT-Image", "Seedance"]
     function parseModels(g) {
@@ -2553,7 +2631,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         // active category with a chosen subcategory shows it in the label
         const label = (isActive && activeSub !== 'All') ? esc(cat) + ' · ' + esc(activeSub) : esc(cat);
         b.innerHTML = catIconHtml(cat) + '<span>' + label + '</span>' +
-          (isFeatured ? '<span class="chip-hot">New</span>' : '') +
+          (isFeatured ? '<span class="chip-hot">Hot</span>' : '') +
           (subs.length ? '<span class="chip-caret" aria-hidden="true"></span>' : '');
         wrap.appendChild(b);
 
@@ -2750,7 +2828,11 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       } else if (sortByNew) {
         list.sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
       } else if (sortByViews) {
-        list.sort((a, b) => viewCount(b) - viewCount(a));
+        list.sort((a, b) => {
+          const dv = viewCount(b) - viewCount(a);
+          if (dv) return dv;
+          return (b.trending ? 1 : 0) - (a.trending ? 1 : 0) || String(b.date || '').localeCompare(String(a.date || ''));
+        });
       } else if (q) {
         list.sort((a, b) => searchScore(b, q) - searchScore(a, q));
       } else {
@@ -2770,21 +2852,24 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       c.tabIndex = 0;
       // Separation of concerns:
       //   BODY  = difficulty only (the level pill) — "how hard is this"
-      //   COVER = what you get (media chips) + trending + views — "what is this"
+      //   COVER = media chips + trending + time — "what is this"
       const levelPill = g.level ? '<span class="pill ' + levelClass(g.level) + '">' + esc(g.level) + '</span>' : '';
+      const thumb = coverSrc(g);
       const mediaChips =
         (g.video ? '<span class="cover-chip pm-video">Video</span>' : '') +
         (g.video && g.sound !== false ? '<span class="cover-chip pm-sound">Sound</span>' : '') +
         (g.audio && !g.video ? '<span class="cover-chip pm-audio">Audio</span>' : '') +
-        (g.image && !g.video && !g.audio ? '<span class="cover-chip pm-image">Image</span>' : '');
+        (!g.video && !g.audio && thumb
+          ? '<span class="cover-chip pm-image">' + (g.cat === 'Interfaces' ? 'UI' : 'Image') + '</span>'
+          : '');
       const coverOverlay =
         (mediaChips ? '<div class="cover-chips">' + mediaChips + '</div>' : '') +
         (g.trending && !(opts && opts.hideTrend) ? '<span class="cover-trend">Trending</span>' : '') +
-        '<span class="view-badge">' + formatViews(viewCount(g)) + '</span>';
+        (g.time ? '<span class="time-badge">' + esc(g.time) + '</span>' : '');
       c.innerHTML =
         (g.video
           ? '<div class="cover-wrap"><video class="cover-video" src="' + esc(g.video) + '"' + (g.poster ? ' poster="' + esc(g.poster) + '"' : '') + ' muted loop playsinline preload="metadata"></video><div class="play-badge"></div>' + coverOverlay + '</div>'
-          : (g.image ? '<div class="cover-wrap"><img class="cover" src="' + esc(g.image) + '" alt="" loading="lazy">' + coverOverlay + '</div>' : '')) +
+          : (thumb ? '<div class="cover-wrap"><img class="cover" src="' + esc(thumb) + '" alt="" loading="lazy">' + coverOverlay + '</div>' : '')) +
         '<div class="cat-label">' + catIconHtml(g.cat) + '<span>' + esc(g.cat) + '</span>' + (g.sub ? '<span class="sub-label">' + esc(g.sub) + '</span>' : '') + '</div>' +
         '<h3>' + esc(g.title) + '</h3>' +
         '<p>' + esc(g.desc) + '</p>' +
@@ -2868,7 +2953,20 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     }
 
     // ---- Discovery shelves (idle catalog only) ----
+    const START_HERE_IDS = [
+      'ugc-ads-workflow',
+      'beauty-brand-landing',
+      'quadcode-ui-workflow-optimize'
+    ];
     const SHELVES = [
+      {
+        title: 'Start here', ico: 'ico-school',
+        pick: list => {
+          const byId = new Map(list.map(g => [g.id, g]));
+          return START_HERE_IDS.map(id => byId.get(id)).filter(Boolean);
+        },
+        viewAll: () => { /* stay on featured default */ }
+      },
       {
         title: 'Trending', ico: 'ico-trend', hideTrend: true,
         pick: list => list.filter(g => g.trending),
@@ -2889,21 +2987,24 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         if (!items.length) return;
         const sec = document.createElement('section');
         sec.className = 'shelf';
+        const showViewAll = def.title !== 'Start here';
         sec.innerHTML =
           '<div class="shelf-head">' +
             '<h2 class="shelf-title"><span class="sh-ico ' + def.ico + '"></span>' + esc(def.title) +
               '<span class="sh-count">' + items.length + '</span></h2>' +
-            '<button class="shelf-link" type="button">View all</button>' +
+            (showViewAll ? '<button class="shelf-link" type="button">View all</button>' : '<span></span>') +
           '</div>' +
           '<div class="grid"></div>';
         const grid = sec.querySelector('.grid');
         items.slice(0, SHELF_CAP).forEach((g, i) => grid.appendChild(cardEl(g, i, swap, { hideTrend: def.hideTrend })));
-        sec.querySelector('.shelf-link').onclick = () => {
-          def.viewAll();
-          renderGrid(true);
-          // the clicked button is destroyed by the re-render: park focus on the results bar
-          if (!resultsBarEl.hidden) resultsBarEl.focus({ preventScroll: true });
-        };
+        const link = sec.querySelector('.shelf-link');
+        if (link) {
+          link.onclick = () => {
+            def.viewAll();
+            renderGrid(true);
+            if (!resultsBarEl.hidden) resultsBarEl.focus({ preventScroll: true });
+          };
+        }
         shelvesEl.appendChild(sec);
       });
     }
@@ -3069,15 +3170,18 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 
     function guideHtml(g) {
       // cover shows the actual result → badge it so the payoff reads instantly
+      const thumb = coverSrc(g);
       const cover = g.video
         ? '<video class="m-cover" src="' + esc(g.video) + '"' + (g.poster ? ' poster="' + esc(g.poster) + '"' : '') + ' controls autoplay muted loop playsinline preload="metadata"></video>'
-        : (g.image ? '<img class="m-cover" src="' + esc(g.image) + '" alt="">' : '');
+        : (thumb ? '<img class="m-cover" src="' + esc(thumb) + '" alt="">' : '');
       // header: eyebrow → title → desc → one unified meta strip (title-first)
       const metaBits = [];
       if (g.level) metaBits.push('<span class="level-badge ' + levelClass(g.level) + '">' + esc(g.level) + '</span>');
-      metaBits.push(viewsHtml(g, 'views') + '<span class="vlabel">&nbsp;views</span>');
+      const realViews = viewsHtml(g, 'views');
+      if (realViews) metaBits.push(realViews + '<span class="vlabel">&nbsp;views</span>');
       if (g.time) metaBits.push('<span>' + esc(g.time) + '</span>');
       if (g.models) metaBits.push('<span><b>Models</b>' + esc(g.models) + '</span>');
+      const allPrompts = (g.steps || []).map(s => s && s.prompt).filter(p => p && String(p).trim());
       let html =
         (cover ? '<div class="m-cover-wrap">' + cover +
           '<span class="result-badge">Final result</span></div>' : '') +
@@ -3090,6 +3194,9 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         '<div class="m-share">' +
           '<button class="share-btn" data-share type="button"><span class="sh-i i-share"></span>Share</button>' +
           '<button class="share-btn" data-copy-link type="button"><span class="sh-i i-link"></span>Copy link</button>' +
+          (allPrompts.length
+            ? '<button class="share-btn" data-copy-all-prompts type="button"><span class="sh-i i-link"></span>Copy all prompts</button>'
+            : '') +
         '</div>' +
         (g.audio ? '<div class="m-audio"><span>Listen</span>' +
           '<div class="qc-player">' +
@@ -3136,8 +3243,11 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       const note = g.level || '';
       html += '<div class="m-cta">' +
         '<b>Ready to make this?</b>' +
-        '<span>Opens Quadcode.ai with the prompt ready to paste.</span>' +
+        '<span>Opens Quadcode with the prompt ready — or copies it if the app isn’t installed.</span>' +
         '<button class="cta" data-qc-open type="button">Open in Quadcode.ai &rarr;</button>' +
+        (allPrompts.length
+          ? '<button class="share-btn" data-copy-all-prompts type="button" style="margin-top:10px">Copy all prompts</button>'
+          : '') +
         (note ? '<div class="m-cta-note">' + esc(note) + '</div>' : '') +
         '</div>';
       // keep them in the catalog: 3 related guides (same category first)
@@ -3157,12 +3267,16 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       return html;
     }
 
-    // related = same category first (most-viewed), then fill with other most-viewed
+    // related = same category first, then fill — prefer real views, else trending/date
     function relatedGuides(g, n) {
       const others = GUIDES.filter(x => x.id !== g.id);
-      const byViews = (a, b) => viewCount(b) - viewCount(a);
-      const same = others.filter(x => x.cat === g.cat).sort(byViews);
-      const rest = others.filter(x => x.cat !== g.cat).sort(byViews);
+      const byRank = (a, b) => {
+        const dv = viewCount(b) - viewCount(a);
+        if (dv) return dv;
+        return (b.trending ? 1 : 0) - (a.trending ? 1 : 0) || String(b.date || '').localeCompare(String(a.date || ''));
+      };
+      const same = others.filter(x => x.cat === g.cat).sort(byRank);
+      const rest = others.filter(x => x.cat !== g.cat).sort(byRank);
       return same.concat(rest).slice(0, n);
     }
 
@@ -3206,7 +3320,10 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       showToast(promptText
         ? 'Opening Quadcode — prompt copied (Ctrl+V in chat)'
         : 'Opening Quadcode…');
-      // Trigger OS protocol handler without leaving this page
+      let left = false;
+      const onHide = () => { left = true; };
+      document.addEventListener('visibilitychange', onHide, { once: true });
+      window.addEventListener('blur', onHide, { once: true });
       try {
         const a = document.createElement('a');
         a.href = deep;
@@ -3217,6 +3334,11 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       } catch (e) {
         try { window.open(deep, '_blank'); } catch (e2) {}
       }
+      // If protocol handler didn't take focus, offer web fallback (toast only — no forced popup)
+      setTimeout(() => {
+        if (left || document.hidden) return;
+        showToast('App not opening? Visit quadcode.ai — prompt is already copied');
+      }, 1800);
     }
     let toastT = 0;
     function showToast(msg) {
@@ -3243,12 +3365,13 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 
       const WORDS = [
         'UGC content',
+        'interfaces',
         'a film soundtrack',
         'your game hero',
         'a comic poster',
         'a 3D game asset',
         'ad creatives',
-        'motion templates'
+        'landing pages'
       ];
       const T = { type: 58, del: 26, hold: 2100, gap: 380 };
 
@@ -3538,6 +3661,21 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         });
         guideBodyEl.querySelectorAll('[data-copy-link]').forEach(btn => {
           btn.onclick = () => copyLink(shareUrl);
+        });
+        const allPromptText = (g.steps || [])
+          .map((s, i) => s && s.prompt ? ('## Step ' + (i + 1) + (s.title ? ' — ' + s.title : '') + '\n' + s.prompt) : '')
+          .filter(Boolean)
+          .join('\n\n');
+        guideBodyEl.querySelectorAll('[data-copy-all-prompts]').forEach(btn => {
+          btn.onclick = () => {
+            if (!allPromptText) return;
+            const done = () => showToast('All prompts copied');
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(allPromptText).then(done).catch(() => fallbackCopy(allPromptText, done));
+            } else {
+              fallbackCopy(allPromptText, done);
+            }
+          };
         });
         // related guide cards
         guideBodyEl.querySelectorAll('.rel-card[data-guide-id]').forEach(card => {
@@ -3851,6 +3989,56 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goHome(); }
         });
       }
+
+      // Topbar / mobile: Open Quadcode
+      document.querySelectorAll('[data-qc-home]').forEach(btn => {
+        btn.addEventListener('click', () => openInQuadcode(
+          'Open Quadcode and help me pick a guide from Quadcode Guide to start creating.',
+          { shortDescription: 'Open Quadcode' }
+        ));
+      });
+
+      // Mobile nav drawer
+      const navToggle = document.getElementById('navToggle');
+      const mobileNav = document.getElementById('mobileNav');
+      const closeMobileNav = () => {
+        if (!mobileNav || !navToggle) return;
+        mobileNav.classList.remove('open');
+        mobileNav.hidden = true;
+        navToggle.setAttribute('aria-expanded', 'false');
+      };
+      if (navToggle && mobileNav) {
+        navToggle.addEventListener('click', () => {
+          const open = mobileNav.classList.toggle('open');
+          mobileNav.hidden = !open;
+          navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        mobileNav.querySelectorAll('a[data-tab]').forEach(a => {
+          a.addEventListener('click', () => closeMobileNav());
+        });
+        document.addEventListener('click', e => {
+          if (!mobileNav.classList.contains('open')) return;
+          if (mobileNav.contains(e.target) || navToggle.contains(e.target)) return;
+          closeMobileNav();
+        });
+      }
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeMobileNav();
+      });
+
+      // Hero quick category chips
+      document.querySelectorAll('#heroQuick [data-quick-cat]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const cat = btn.getAttribute('data-quick-cat');
+          if (!cat) return;
+          activeCat = cat; activeSub = 'All';
+          location.hash = '#guides';
+          renderFilters(); renderGrid(true);
+          const guidesSec = document.getElementById('guides');
+          if (guidesSec) guidesSec.scrollIntoView({ behavior: REDUCED_MOTION ? 'auto' : 'smooth', block: 'start' });
+        });
+      });
+
       router();
       // warm every guide's still images in the background (instant navigation)
       warmAllGuideImages();
