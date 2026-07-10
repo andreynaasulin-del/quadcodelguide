@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /adminpanelqc
+Disallow: /api/
+
+Sitemap: https://quadcodelguide.vercel.app/sitemap.xml

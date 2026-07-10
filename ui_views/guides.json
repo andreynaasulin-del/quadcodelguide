@@ -1,6 +1,7 @@
 {
   "categories": [
     "All",
+    "Interfaces",
     "Motion Design",
     "Gamedev",
     "Music",
@@ -9,6 +10,110 @@
     "Website"
   ],
   "guides": [
+    {
+      "id": "quadcode-ui-workflow-optimize",
+      "cat": "Interfaces",
+      "sub": "Workflow",
+      "title": "Optimize how you ship UI in Quadcode",
+      "desc": "The full playbook: brief → screen map → component system → states → polish. Cut rework and get production-ready interfaces faster.",
+      "time": "12 min",
+      "date": "2026-07-10",
+      "level": "Middle+",
+      "models": "Claude Sonnet, GPT-Image",
+      "trending": true,
+      "featured": true,
+      "poster": "/ui_views/assets/video-bloomcare-poster.jpg",
+      "steps": [
+        {
+          "title": "Lock the product brief in one pass",
+          "text": "Before any pixels, force a tight brief: who it's for, the one job of the screen, and what 'done' looks like. Ambiguous briefs are what burn tokens later.",
+          "prompt": "Act as a product designer inside Quadcode. Turn my rough idea into a locked UI brief with: (1) user + job-to-be-done, (2) primary screen goal in one sentence, (3) must-have vs nice-to-have, (4) platform (web/desktop/mobile) + density, (5) success criteria I can check visually. Ask at most 3 clarifying questions only if a blocker is missing — otherwise assume sensible defaults and proceed."
+        },
+        {
+          "title": "Map screens before you generate",
+          "text": "List every screen and the navigation between them. Agents that jump straight to a pretty mock invent dead ends; a map keeps the system coherent.",
+          "prompt": "From the locked brief, produce a screen map: numbered screens, purpose of each, entry/exit, and the primary CTA. Output as a compact table + a one-line user flow. Flag any screen that can be merged or cut. Do not write visual styles yet."
+        },
+        {
+          "title": "Define the component system once",
+          "text": "Tokens and components first — then every screen reuses them. This is the biggest speed win: change the system once instead of restyling ten mocks.",
+          "prompt": "Design a minimal UI system for this product: color tokens (bg/surface/text/accent/danger), type scale, spacing scale (4/8/12/16/24), radius, elevation, and a component inventory (Button, Input, Select, Card, Nav, Table/List, Modal, Toast, Empty state). Specify default / hover / focus / disabled for interactive parts. Keep it implementable in HTML/CSS or React without a design-tool roundtrip."
+        },
+        {
+          "title": "Build the hero screen with real states",
+          "text": "Generate the main screen in three states: empty, loading, populated. Interfaces fail in the edges — bake them in on the first pass.",
+          "prompt": "Using the system above, implement the primary screen as production-ready UI (HTML/CSS or the project's stack). Include: empty state, loading skeleton, and populated data. Use realistic copy and sample data — no lorem. Match the tokens exactly. Prefer one composition, strong hierarchy, no decorative card clutter."
+        },
+        {
+          "title": "Stress-test and ship the checklist",
+          "text": "Close with a QA pass the agent can run itself: contrast, keyboard focus, mobile width, reduced motion, and copy length. Then export the handoff notes.",
+          "prompt": "Run an interface QA pass on what we built. Check: contrast, focus rings, 375px layout, truncated labels, empty/error copy, reduced-motion. Fix anything broken. End with a short handoff: file list, tokens used, remaining TODOs, and the exact prompt I should reuse next time to extend this UI without drifting the system."
+        }
+      ],
+      "result": "A repeatable Quadcode UI workflow — brief, map, system, states, QA — so every new interface starts faster and ships cleaner."
+    },
+    {
+      "id": "saas-dashboard-interface",
+      "cat": "Interfaces",
+      "sub": "Dashboards",
+      "title": "Build a SaaS analytics dashboard UI",
+      "desc": "One brief → dense but readable dashboard: KPI row, chart zone, activity table, and filters that feel native.",
+      "time": "15 min",
+      "date": "2026-07-10",
+      "level": "Middle+",
+      "models": "Claude Sonnet",
+      "trending": true,
+      "poster": "/ui_views/assets/video-bloomcare-poster.jpg",
+      "steps": [
+        {
+          "title": "Frame the dashboard job",
+          "text": "Name the operator and the decision they make in under 10 seconds. Dashboards without a decision become wallpaper.",
+          "prompt": "Design a dark SaaS analytics dashboard for a B2B ops lead who needs to spot revenue risk in under 10 seconds. Product: Northline. Sections: left nav, top bar with date range + workspace switcher, KPI strip (4 metrics), main chart, secondary breakdown, and a filterable activity table. Aesthetic: calm, dense, professional — not playful. Stack: single HTML/CSS/JS page."
+        },
+        {
+          "title": "Lay out hierarchy and density",
+          "text": "KPIs first, chart second, table last. Keep filters sticky. Ask for realistic numbers so the layout is tested with real string lengths.",
+          "prompt": "Implement the full dashboard layout with realistic sample data (currency, % deltas, timestamps). KPI cards show value + delta + sparkline placeholder. Chart area uses a simple SVG line chart. Table has status pills, search, and column sort affordances. Use CSS grid; no card soup; one clear visual hierarchy."
+        },
+        {
+          "title": "Add interaction without noise",
+          "text": "Date range, row hover, and empty filter results — enough to feel alive, not a motion demo.",
+          "prompt": "Add light interactions: date-range segmented control, table filter that updates visible rows, row hover, and an empty-filter state. Prefer CSS transitions under 200ms. Respect prefers-reduced-motion. No purple glow, no glassmorphism."
+        }
+      ],
+      "result": "A production-shaped SaaS dashboard UI you can hand to engineering or keep iterating inside Quadcode."
+    },
+    {
+      "id": "mobile-app-screens-kit",
+      "cat": "Interfaces",
+      "sub": "Mobile",
+      "title": "Ship a mobile app screen kit",
+      "desc": "Onboarding, home, and detail — three linked mobile screens with shared components so the product feels like one app.",
+      "time": "14 min",
+      "date": "2026-07-10",
+      "level": "Middle",
+      "models": "Claude Sonnet, GPT-Image",
+      "trending": true,
+      "poster": "/ui_views/assets/video-ugc-ads-poster.jpg",
+      "steps": [
+        {
+          "title": "Define the mobile product spine",
+          "text": "Three screens only for v1: onboarding, home, detail. Everything else waits.",
+          "prompt": "Plan a mobile consumer app UI kit (390×844). App: Pulse Habit. Screens: (1) onboarding with value prop + CTA, (2) home with today's habits + progress, (3) habit detail with streak and log action. Shared: bottom tab bar, primary button, list row. Light theme, soft neutrals, one accent. Output the screen map first."
+        },
+        {
+          "title": "Generate a visual keyframe for mood",
+          "text": "One still locks color and photography mood before you code screens — optional but keeps the kit on-brand.",
+          "prompt": "Clean mobile UI mockup keyframe, habit-tracking home screen on a phone, soft neutral background, coral accent, large readable type, progress rings, calm lifestyle photo header, modern iOS-like spacing, centered product shot, no tiny unreadable text, 9:16"
+        },
+        {
+          "title": "Implement the three screens as one system",
+          "text": "Code them together so tokens and components stay shared. Link with simple in-page navigation.",
+          "prompt": "Implement all three Pulse Habit screens as one HTML/CSS file with shared tokens and components. Include a simple screen switcher. Use realistic copy. Touch targets ≥44px. Safe-area padding. Empty and completed habit states on home."
+        }
+      ],
+      "result": "A coherent three-screen mobile UI kit — onboarding, home, detail — ready to extend or hand off."
+    },
     {
       "id": "atlas-freight-cinematic-logistics",
       "cat": "Design",

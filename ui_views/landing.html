@@ -6,17 +6,21 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Quadcode Guide</title>
-<meta name="description" content="Simple, step-by-step guides for making AI content — posters, music, video, 3D game characters. One prompt, one result. Open it straight in Quadcode.ai.">
+<meta name="description" content="Step-by-step Quadcode guides — Interfaces, video, music, gamedev, design. Ship UI and AI content faster. Open straight in Quadcode.ai.">
 <!-- Social share card (site-wide default; link previews on TG / X / etc.) -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Quadcode Guide">
 <meta property="og:title" content="Quadcode Guide — learn to make AI content">
-<meta property="og:description" content="Step-by-step guides: posters, music, video, 3D game characters. One prompt, one result.">
+<meta property="og:description" content="Interfaces, video, music, gamedev, design — step-by-step guides. One prompt, one result.">
 <meta property="og:image" content="/ui_views/assets/poster-gta6-hitman.png">
+<meta property="og:url" content="https://quadcodelguide.vercel.app/">
+<link rel="canonical" href="https://quadcodelguide.vercel.app/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Quadcode Guide — learn to make AI content">
-<meta name="twitter:description" content="Step-by-step guides: posters, music, video, 3D game characters. One prompt, one result.">
+<meta name="twitter:description" content="Interfaces, video, music, gamedev, design — step-by-step guides. One prompt, one result.">
 <meta name="twitter:image" content="/ui_views/assets/poster-gta6-hitman.png">
+<meta name="theme-color" content="#13131E">
+<link rel="icon" href="/ui_views/assets/logo.png" type="image/png">
 <style id="__qc-fouc-guard">body{visibility:hidden!important}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -569,6 +573,31 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     border-color: #f07068;
   }
   .chip.active:active { transform: scale(.97); filter: brightness(.98); }
+  /* Featured category (Interfaces) — always stands out to drive discovery */
+  .chip.featured:not(.active) {
+    color: #fff;
+    border-color: rgba(255,149,105,.5);
+    background:
+      linear-gradient(100deg, rgba(255,149,105,.22), rgba(221,52,77,.16));
+    box-shadow:
+      0 0 0 1px rgba(255,149,105,.12),
+      0 10px 28px -14px rgba(221,52,77,.55);
+  }
+  .chip.featured:not(.active):hover {
+    border-color: rgba(255,149,105,.75);
+    filter: brightness(1.05);
+  }
+  .chip .chip-hot {
+    font-size: 10px; font-weight: 700; letter-spacing: .5px;
+    text-transform: uppercase; line-height: 1;
+    padding: 3px 7px; border-radius: 999px;
+    background: var(--grad); color: #fff;
+    flex: 0 0 auto;
+  }
+  .chip.active .chip-hot {
+    background: rgba(255,255,255,.22);
+    color: #fff;
+  }
   @keyframes chip-pop { 0% { transform: scale(.92); } 55% { transform: scale(1.06); } 100% { transform: scale(1); } }
   .chip-sm {
     font-size: 12.5px; padding: 7px 16px;
@@ -752,6 +781,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .cat-ico.ci-video { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z'/%3E%3C/svg%3E"); }
   .cat-ico.ci-design { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10c.93 0 1.65-.75 1.65-1.69 0-.44-.18-.83-.44-1.12-.29-.29-.44-.65-.44-1.12 0-.93.75-1.69 1.69-1.69H16C19.03 15.38 22 13.4 22 9.5 22 5.36 17.51 2 12 2zM6.5 12a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10c.93 0 1.65-.75 1.65-1.69 0-.44-.18-.83-.44-1.12-.29-.29-.44-.65-.44-1.12 0-.93.75-1.69 1.69-1.69H16C19.03 15.38 22 13.4 22 9.5 22 5.36 17.51 2 12 2zM6.5 12a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z'/%3E%3C/svg%3E"); }
   .cat-ico.ci-website { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4H4V6h16v2zm0 10H4v-8h16v8zM6 7a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4H4V6h16v2zm0 10H4v-8h16v8zM6 7a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z'/%3E%3C/svg%3E"); }
+  .cat-ico.ci-interfaces { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 4h7v7H4V4zm9 0h7v4h-7V4zM4 13h7v7H4v-7zm9 2h7v5h-7v-5zm0-2h7v1h-7v-1z'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 4h7v7H4V4zm9 0h7v4h-7V4zM4 13h7v7H4v-7zm9 2h7v5h-7v-5zm0-2h7v1h-7v-1z'/%3E%3C/svg%3E"); }
   .cat-ico.ci-motion-design { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 6.47L5.76 10H20v8H4V6.47M22 4h-4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4z'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 6.47L5.76 10H20v8H4V6.47M22 4h-4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4z'/%3E%3C/svg%3E"); }
   .card h3 { font-family: var(--font-display); margin: 0; font-size: 19px; font-weight: 600; letter-spacing: -.4px; }
   .card p { margin: 0; font-size: 14px; color: var(--muted); font-weight: 400; }
@@ -1841,6 +1871,55 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           'Prefer one strong prompt over a long chain unless the user asks for iterations.'
       },
       {
+        id: 'ui-workflow-optimize',
+        tag: 'Interfaces',
+        icon: 'layers',
+        title: 'UI workflow optimize',
+        desc: 'Brief → screen map → tokens → states → QA — the playbook that cuts rework on every interface.',
+        trigger: 'When you ask in Quadcode chat',
+        tools: ['Claude Sonnet', 'GPT-Image'],
+        body:
+          'When invoked, run the Quadcode UI shipping playbook end-to-end.\n' +
+          '1) Lock a one-pass product brief (user, job, done criteria).\n' +
+          '2) Output a screen map before any visuals.\n' +
+          '3) Define tokens + component inventory once; reuse everywhere.\n' +
+          '4) Build the hero screen with empty / loading / populated states.\n' +
+          '5) Run contrast, focus, mobile, reduced-motion QA and handoff notes.\n' +
+          'Prefer production-ready HTML/CSS or the project stack; no decorative card clutter.'
+      },
+      {
+        id: 'saas-dashboard-ui',
+        tag: 'Interfaces',
+        icon: 'layers',
+        title: 'SaaS dashboard UI',
+        desc: 'Dense analytics layout: KPIs, chart, filters, and a live-feeling activity table.',
+        trigger: 'When you ask in Quadcode chat',
+        tools: ['Claude Sonnet'],
+        body:
+          'When invoked, design and implement a SaaS analytics dashboard UI.\n' +
+          '1) Clarify operator + the 10-second decision the dashboard supports.\n' +
+          '2) Layout: nav, KPI strip, primary chart, breakdown, filterable table.\n' +
+          '3) Use realistic sample data and string lengths.\n' +
+          '4) Add light interactions (range, filter, empty state) under 200ms.\n' +
+          'Keep it calm and dense — professional, not playful or glowing.'
+      },
+      {
+        id: 'mobile-screen-kit',
+        tag: 'Interfaces',
+        icon: 'phone',
+        title: 'Mobile screen kit',
+        desc: 'Onboarding + home + detail as one shared-component mobile kit.',
+        trigger: 'When you ask in Quadcode chat',
+        tools: ['Claude Sonnet', 'GPT-Image'],
+        body:
+          'When invoked, ship a three-screen mobile UI kit with shared components.\n' +
+          '1) Limit v1 to onboarding, home, and detail — cut everything else.\n' +
+          '2) Optional: one GPT-Image keyframe to lock mood before coding.\n' +
+          '3) Implement all screens in one file with shared tokens.\n' +
+          '4) Touch targets ≥44px, safe-area padding, empty/completed states.\n' +
+          'Link screens with a simple switcher; keep the system coherent.'
+      },
+      {
         id: 'publish-guide',
         tag: 'Workflow',
         icon: 'upload',
@@ -1924,7 +2003,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     let skelSkillsT0 = 0;
 
     const SKILL_TONE_BY_TAG = {
-      Video: 1, Website: 2, Gamedev: 3, Music: 5, Design: 6, Workflow: 4
+      Video: 1, Website: 2, Gamedev: 3, Music: 5, Design: 6, Workflow: 4, Interfaces: 2
     };
 
     const SKILL_ICON_PATHS = {
@@ -2199,19 +2278,23 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     function catSlug(cat) {
       return String(cat || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
     }
-    const CAT_ICON_KNOWN = { 'all':1, 'gamedev':1, 'music':1, 'video':1, 'design':1, 'motion-design':1, 'website':1 };
+    const CAT_ICON_KNOWN = { 'all':1, 'gamedev':1, 'music':1, 'video':1, 'design':1, 'motion-design':1, 'website':1, 'interfaces':1 };
     function catIconHtml(cat) {
       const slug = catSlug(cat);
       const cls = CAT_ICON_KNOWN[slug] ? slug : 'all';
       return '<span class="cat-ico ci-' + cls + '" aria-hidden="true"></span>';
     }
+    // Categories we always show (even before guides exist) + highlight to drive clicks
+    const FEATURED_CATEGORIES = { Interfaces: true };
     // rich subcategory lists per category (shown when a category is picked)
     const SUBCATEGORIES = {
+      "Interfaces": ["Workflow", "Dashboards", "Mobile", "Design Systems", "Onboarding", "Settings", "Admin Panels"],
       "Gamedev": ["Characters", "Environments", "Props & Items", "Concept Art", "UI & Icons", "Creatures", "Vehicles"],
       "Music": ["Hip-hop", "Beats", "Lo-fi", "Jazz & R&B", "Classical", "Cinematic", "Pop", "Ambient", "Electronic"],
       "Video": ["Product Ads", "Trailers", "Social Clips", "Explainers", "Music Videos", "B-roll", "Intros"],
       "Design": ["Posters", "Crossover Art", "Logos", "Thumbnails", "Merch", "Book Covers", "Album Art"],
-      "Motion Design": ["Logo Reveals", "Transitions", "Title Cards", "Loops", "Lower Thirds", "Kinetic Text"]
+      "Motion Design": ["Logo Reveals", "Transitions", "Title Cards", "Loops", "Lower Thirds", "Kinetic Text"],
+      "Website": ["Landing Page", "Product Hero", "Hero Video", "Marketing Site", "Portfolio"]
     };
     // sub-chips for a category: taxonomy + any real guide subs, deduped
     function subsForCat(cat) {
@@ -2462,13 +2545,15 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       CATEGORIES.forEach(cat => {
         const subs = cat === 'All' ? [] : subsForCat(cat);
         const isActive = cat === activeCat;
+        const isFeatured = !!FEATURED_CATEGORIES[cat];
         const wrap = document.createElement('div');
         wrap.className = 'cat-wrap';
         const b = document.createElement('button');
-        b.className = 'chip' + (isActive ? ' active' : '');
+        b.className = 'chip' + (isActive ? ' active' : '') + (isFeatured ? ' featured' : '');
         // active category with a chosen subcategory shows it in the label
         const label = (isActive && activeSub !== 'All') ? esc(cat) + ' · ' + esc(activeSub) : esc(cat);
         b.innerHTML = catIconHtml(cat) + '<span>' + label + '</span>' +
+          (isFeatured ? '<span class="chip-hot">New</span>' : '') +
           (subs.length ? '<span class="chip-caret" aria-hidden="true"></span>' : '');
         wrap.appendChild(b);
 
@@ -2668,6 +2753,12 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         list.sort((a, b) => viewCount(b) - viewCount(a));
       } else if (q) {
         list.sort((a, b) => searchScore(b, q) - searchScore(a, q));
+      } else {
+        // Featured default: pin featured/Interfaces guides, then trending
+        list.sort((a, b) => {
+          const score = g => (g.featured ? 4 : 0) + (g.cat === 'Interfaces' ? 2 : 0) + (g.trending ? 1 : 0);
+          return score(b) - score(a);
+        });
       }
       return list;
     }
@@ -3697,9 +3788,11 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         const data = await res.json();
         if (Array.isArray(data.guides)) GUIDES = data.guides;
         if (Array.isArray(data.categories) && data.categories.length) {
-          // hide categories that have no guides yet ("All" always stays)
+          // hide empty categories — except All + featured (Interfaces) which we always surface
           const used = new Set(GUIDES.map(g => g.cat));
-          CATEGORIES = data.categories.filter(c => c === 'All' || used.has(c));
+          CATEGORIES = data.categories.filter(c =>
+            c === 'All' || FEATURED_CATEGORIES[c] || used.has(c)
+          );
         }
       } catch (e) {
         console.error('Failed to load guides.json', e);
