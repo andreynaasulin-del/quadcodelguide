@@ -551,14 +551,24 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     font-size: 14px; font-weight: 500; color: var(--muted);
     background: var(--bg-2); border: 1px solid var(--line);
     padding: 9px 20px; border-radius: 999px; cursor: pointer; font-family: inherit;
-    transition: color .18s ease, background .25s ease, border-color .18s ease, transform .16s cubic-bezier(.22,.61,.36,1);
+    overflow: hidden; isolation: isolate;
+    transition: color .18s ease, background .25s ease, border-color .18s ease, transform .16s cubic-bezier(.22,.61,.36,1), filter .18s ease;
   }
   .chip:hover { color: var(--white); border-color: rgba(255,149,105,.4); transform: translateY(-1px); }
   .chip:active { transform: scale(.94); }
   .chip.active {
-    background: var(--grad); border-color: transparent; color: #fff; font-weight: 600;
+    background: var(--grad);
+    /* opaque edge — transparent border + gradient AA fringes on the sides */
+    border-color: #e85d5a;
+    color: #fff; font-weight: 600;
     animation: chip-pop .3s var(--ease-out);
   }
+  .chip.active:hover {
+    transform: none;
+    filter: brightness(1.06);
+    border-color: #f07068;
+  }
+  .chip.active:active { transform: scale(.97); filter: brightness(.98); }
   @keyframes chip-pop { 0% { transform: scale(.92); } 55% { transform: scale(1.06); } 100% { transform: scale(1); } }
   .chip-sm {
     font-size: 12.5px; padding: 7px 16px;
