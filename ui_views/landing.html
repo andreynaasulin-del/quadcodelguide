@@ -4683,6 +4683,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         });
       });
       refreshContinueHero();
+      window.addEventListener('scroll', syncContinueScroll, { passive: true });
 
       router();
       // warm every guide's still images in the background (instant navigation)
