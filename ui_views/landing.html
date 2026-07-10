@@ -130,24 +130,34 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   }
   .extra-item p { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.45; max-width: 44em; }
 
-  /* ---------- Skills marketplace ---------- */
-  #skills.extra-section .extra-head { margin-bottom: 22px; }
-  #skills.extra-section h2 { font-size: 26px; margin-bottom: 6px; }
-  #skills.extra-section .extra-sub { font-size: 14px; max-width: 36em; }
+  /* ---------- Skills marketplace (automation-row cards) ---------- */
+  #skills.extra-section .extra-head { margin-bottom: 0; }
+  #skills.extra-section h2 {
+    font-family: inherit; font-size: 18px; font-weight: 600;
+    letter-spacing: -.2px; margin: 0;
+  }
+  #skills.extra-section .extra-sub { display: none; }
+  .skills-head {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+    margin-bottom: 16px;
+  }
+  .skills-head .skills-count {
+    font-size: 13px; font-weight: 500; color: var(--muted-2); letter-spacing: 0;
+  }
   .skills-toolbar {
-    display: flex; flex-direction: column; gap: 14px;
-    margin-bottom: 22px;
+    display: flex; flex-direction: column; gap: 12px;
+    margin-bottom: 16px;
   }
   .skills-search {
     display: flex; align-items: center; gap: 10px;
     width: 100%; max-width: 420px;
-    background: var(--bg-2); border: 1px solid var(--line);
-    border-radius: 12px; padding: 10px 14px;
+    background: rgba(255,255,255,.04); border: 1px solid var(--line);
+    border-radius: 10px; padding: 9px 12px;
     transition: border-color .2s ease, box-shadow .25s ease;
   }
   .skills-search:focus-within {
-    border-color: var(--acc-1);
-    box-shadow: 0 0 0 3px rgba(255,149,105,.12);
+    border-color: rgba(255,255,255,.18);
+    box-shadow: 0 0 0 3px rgba(255,255,255,.04);
   }
   .skills-search .sk-ico {
     width: 15px; height: 15px; flex: 0 0 15px; background: var(--muted-2);
@@ -155,7 +165,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
             mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z'/%3E%3C/svg%3E") center/contain no-repeat;
     transition: background .2s ease;
   }
-  .skills-search:focus-within .sk-ico { background: var(--acc-1); }
+  .skills-search:focus-within .sk-ico { background: var(--muted); }
   .skills-search input {
     flex: 1; min-width: 0; border: 0; outline: 0; background: transparent;
     color: var(--white); font-family: inherit; font-size: 14px; font-weight: 500;
@@ -173,127 +183,78 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .skills-chips {
     display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
   }
-  .skills-chips .chip { font-size: 13px; padding: 7px 14px; }
-  .skills-meta-row {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 12px; margin-bottom: 14px; min-height: 18px;
-  }
-  .skills-count {
-    font-size: 12px; font-weight: 500; color: var(--muted-2); letter-spacing: .2px;
-  }
+  .skills-chips .chip { font-size: 12px; padding: 6px 12px; }
+  .skills-meta-row { display: none; }
   .skills-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 14px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
   }
   .skill-card {
-    display: flex; flex-direction: column;
-    background: rgba(255,255,255,.03);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 18px 18px 16px;
-    min-height: 0;
+    display: flex; align-items: center; gap: 14px;
+    background: #23211f;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    padding: 14px;
+    min-height: 0; min-width: 0;
     cursor: pointer;
-    transition: border-color .2s ease, transform .2s var(--ease-out), background .2s ease, box-shadow .25s ease;
+    text-align: left;
+    font: inherit; color: inherit;
+    width: 100%;
+    transition: background .18s ease, border-color .18s ease;
   }
   .skill-card:hover {
-    border-color: rgba(255,149,105,.35);
-    background: rgba(255,255,255,.045);
-    transform: translateY(-3px);
-    box-shadow: 0 16px 36px -22px rgba(0,0,0,.65), 0 0 0 1px rgba(255,149,105,.08);
+    background: #2a2825;
+    border-color: rgba(255,255,255,.06);
+    transform: none;
+    box-shadow: none;
   }
-  .skill-card-top {
-    display: flex; align-items: center; gap: 12px;
-    margin-bottom: 14px;
+  .skill-card:focus-visible {
+    outline: 2px solid var(--acc-1); outline-offset: 2px;
   }
   .skill-card-icon {
-    width: 40px; height: 40px; flex: 0 0 40px; border-radius: 10px;
+    width: 40px; height: 40px; flex: 0 0 40px; border-radius: 8px;
     display: flex; align-items: center; justify-content: center;
-    color: rgba(255,255,255,.92);
-    background: rgba(255,255,255,.08);
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+    color: #d8cfc4;
+    background: rgba(255,255,255,.06);
   }
   .skill-card-icon svg {
     width: 20px; height: 20px; display: block;
     stroke: currentColor; fill: none;
-    stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round;
+    stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round;
   }
-  .skill-card-icon[data-tone="1"] { background: rgba(166, 120, 78, .38); color: #f0e2d2; }
-  .skill-card-icon[data-tone="2"] { background: rgba(62, 130, 128, .40); color: #d5efed; }
-  .skill-card-icon[data-tone="3"] { background: rgba(78, 128, 92, .40); color: #d8eedc; }
-  .skill-card-icon[data-tone="4"] { background: rgba(110, 108, 128, .42); color: #e4e2ef; }
-  .skill-card-icon[data-tone="5"] { background: rgba(140, 96, 110, .40); color: #f0dde4; }
-  .skill-card-icon[data-tone="6"] { background: rgba(88, 112, 148, .42); color: #dce6f5; }
-  .skill-card-tag {
-    font-size: 11px; font-weight: 700; letter-spacing: 1.1px; text-transform: uppercase;
-    color: var(--acc-1);
+  .skill-card-icon[data-tone="1"] { background: rgba(166, 132, 88, .28); color: #e8d2b0; }
+  .skill-card-icon[data-tone="2"] { background: rgba(120, 118, 112, .35); color: #d4d0c8; }
+  .skill-card-icon[data-tone="3"] { background: rgba(90, 120, 140, .32); color: #c5d5e2; }
+  .skill-card-icon[data-tone="4"] { background: rgba(150, 95, 85, .30); color: #e8c4bc; }
+  .skill-card-icon[data-tone="5"] { background: rgba(100, 125, 100, .32); color: #c8dbc8; }
+  .skill-card-icon[data-tone="6"] { background: rgba(120, 105, 130, .32); color: #d8cce0; }
+  .skill-card-body {
+    flex: 1; min-width: 0;
+    display: flex; flex-direction: column; gap: 3px;
   }
   .skill-card-title {
-    font-family: var(--font-display);
-    font-size: 16px; font-weight: 600; letter-spacing: -.3px;
-    margin: 0 0 6px; line-height: 1.25;
+    font-family: inherit;
+    font-size: 14.5px; font-weight: 600; letter-spacing: -.15px;
+    margin: 0; line-height: 1.3; color: rgba(255,255,255,.92);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
   .skill-card-desc {
-    margin: 0; font-size: 13px; color: var(--muted); line-height: 1.45;
-    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
-    overflow: hidden;
+    margin: 0; font-size: 12.5px; color: #8b8681; line-height: 1.35;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
-  .skill-card-snippet {
-    margin: 12px 0 0; padding: 10px 11px;
-    border-radius: 9px;
-    background: rgba(0,0,0,.22);
-    border: 1px solid var(--line);
-    font-size: 11.5px; line-height: 1.5; color: var(--muted-2);
-    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
-    overflow: hidden;
-    white-space: normal;
+  .skill-card-chevron {
+    width: 16px; height: 16px; flex: 0 0 16px;
+    background: #8b8681;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6l6 6-6 6' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6l6 6-6 6' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+    opacity: .85;
+    transition: opacity .15s ease, transform .15s ease;
   }
-  .skill-card.is-open .skill-card-snippet {
-    display: block; -webkit-line-clamp: unset;
-    max-height: none; color: var(--muted);
-    white-space: pre-wrap;
+  .skill-card:hover .skill-card-chevron {
+    opacity: 1; background: rgba(255,255,255,.7);
+    transform: translateX(2px);
   }
-  .skill-card.is-open {
-    border-color: rgba(255,149,105,.4);
-    background: rgba(255,255,255,.05);
-  }
-  .skill-card-preview {
-    margin-top: 10px;
-    font-size: 12px; font-weight: 600; color: var(--acc-1);
-    background: none; border: 0; padding: 0; cursor: pointer;
-    font-family: inherit; text-align: left;
-  }
-  .skill-card-preview:hover { color: var(--white); }
-  .skill-card-foot {
-    margin-top: auto; padding-top: 16px;
-    display: flex; align-items: center; justify-content: space-between; gap: 10px;
-  }
-  .skill-card-author {
-    display: inline-flex; align-items: center; gap: 7px;
-    font-size: 12px; color: var(--muted-2); font-weight: 500;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0;
-  }
-  .skill-card-author svg {
-    width: 14px; height: 14px; flex: 0 0 14px;
-  }
-  .skill-install-btn {
-    flex: 0 0 auto;
-    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-    background: var(--grad); color: #fff; border: 0; cursor: pointer;
-    font-family: inherit; font-size: 12.5px; font-weight: 600;
-    padding: 8px 14px; border-radius: 999px; white-space: nowrap;
-    transition: filter .18s ease, transform .16s var(--ease), box-shadow .18s ease;
-  }
-  .skill-install-btn::after {
-    content: ''; width: 12px; height: 12px; flex: 0 0 auto; background: currentColor;
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7zM19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z'/%3E%3C/svg%3E") center/contain no-repeat;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7zM19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z'/%3E%3C/svg%3E") center/contain no-repeat;
-  }
-  .skill-install-btn:hover {
-    filter: brightness(1.06); transform: translateY(-1px);
-    box-shadow: 0 6px 18px -6px rgba(221,52,77,.45);
-  }
-  .skill-install-btn:active { transform: translateY(0) scale(.97); filter: brightness(.98); }
   .skills-empty {
     grid-column: 1 / -1;
     text-align: center; padding: 48px 20px;
@@ -303,34 +264,23 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 
   /* Skills skeleton + enter */
   .skel-skill-card {
-    display: flex; flex-direction: column; gap: 10px;
-    background: rgba(255,255,255,.03);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 18px 18px 16px;
-    min-height: 168px;
+    display: flex; align-items: center; gap: 14px;
+    background: #23211f;
+    border-radius: 10px;
+    padding: 14px;
+    min-height: 68px;
     transition: opacity .22s ease;
   }
-  .skel-skill-card .skel-sk-top {
-    display: flex; align-items: center; gap: 12px; margin-bottom: 4px;
-  }
   .skel-skill-card .skel-sk-ico {
-    width: 40px; height: 40px; flex: 0 0 40px; border-radius: 11px;
+    width: 40px; height: 40px; flex: 0 0 40px; border-radius: 8px;
   }
-  .skel-skill-card .skel-sk-tag { height: 10px; width: 52px; border-radius: 4px; }
-  .skel-skill-card .skel-sk-title { height: 16px; width: 72%; border-radius: 5px; }
-  .skel-skill-card .skel-sk-line { height: 11px; border-radius: 4px; }
-  .skel-skill-card .skel-sk-line.w90 { width: 90%; }
-  .skel-skill-card .skel-sk-line.w70 { width: 70%; }
-  .skel-skill-card .skel-sk-foot {
-    margin-top: auto; padding-top: 8px;
-    display: flex; align-items: center; justify-content: space-between; gap: 10px;
-  }
-  .skel-skill-card .skel-sk-author { height: 12px; width: 88px; border-radius: 4px; }
-  .skel-skill-card .skel-sk-btn { height: 32px; width: 118px; border-radius: 999px; }
+  .skel-skill-card .skel-sk-body { flex: 1; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .skel-skill-card .skel-sk-title { height: 13px; width: 55%; border-radius: 4px; }
+  .skel-skill-card .skel-sk-line { height: 11px; width: 82%; border-radius: 4px; }
+  .skel-skill-card .skel-sk-chev { width: 14px; height: 14px; flex: 0 0 14px; border-radius: 3px; }
   .skills-chips.skel-chips { pointer-events: none; }
   .skills-chips .skel-chip {
-    display: inline-block; height: 32px; width: 64px; border-radius: 999px;
+    display: inline-block; height: 28px; width: 64px; border-radius: 999px;
   }
   .skills-chips .skel-chip:nth-child(2) { width: 72px; }
   .skills-chips .skel-chip:nth-child(3) { width: 80px; }
@@ -339,18 +289,13 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     animation: skill-enter .42s cubic-bezier(.16,1,.3,1) both;
   }
   @keyframes skill-enter {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: none; }
   }
 
-  @media (max-width: 900px) {
-    .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  }
-  @media (max-width: 640px) {
-    .skills-grid { grid-template-columns: 1fr; gap: 12px; }
+  @media (max-width: 720px) {
+    .skills-grid { grid-template-columns: 1fr; gap: 8px; }
     .skills-search { max-width: none; }
-    .skill-card-foot { flex-wrap: wrap; }
-    .skill-install-btn { width: 100%; }
   }
 
   /* ---------- Focus-bracket frame ---------- */
@@ -1441,7 +1386,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     .card:hover { transform: none; }
     .skill-card { transition: none; }
     .skill-card:hover { transform: none; box-shadow: none; }
-    .skill-install-btn:hover, .skill-install-btn:active { transform: none; }
+    .skill-card:hover .skill-card-chevron { transform: none; }
     .skill-card.skill-enter { animation: none; }
     .skel-skill-card { transition: none; }
     .tb-btn, .tb-btn .caret { transition: none; }
@@ -1565,9 +1510,9 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 
     <!-- Skills tab (#skills) — marketplace catalog from SKILLS in JS -->
     <section id="skills" class="extra-section" hidden>
-      <div class="extra-head">
+      <div class="extra-head skills-head">
         <h2>Skills</h2>
-        <p class="extra-sub">Browse reusable Cursor / Quadcode skills — install any workflow into your IDE in one click.</p>
+        <span class="skills-count" id="skillsCount" aria-live="polite"></span>
       </div>
       <div class="skills-toolbar">
         <div class="skills-search" role="search">
@@ -1576,9 +1521,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           <button class="sk-clear" id="skillsSearchClear" type="button" aria-label="Clear search">&times;</button>
         </div>
         <div class="skills-chips" id="skillsChips" role="tablist" aria-label="Skill categories"></div>
-      </div>
-      <div class="skills-meta-row">
-        <span class="skills-count" id="skillsCount" aria-live="polite"></span>
       </div>
       <div class="skills-grid" id="skillsList" aria-busy="false"></div>
     </section>
@@ -1864,17 +1806,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       return hay.includes(q);
     }
 
-    function skillAuthorMarkHtml() {
-      return '<svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">' +
-        '<g fill="none" stroke="currentColor" stroke-width="2.35" stroke-linejoin="round">' +
-          '<rect x="4.2" y="4.2" width="19.6" height="19.6" rx="5.2"/>' +
-          '<rect x="9.4" y="9.4" width="9.2" height="9.2" rx="2.4"/>' +
-        '</g>' +
-        '<rect x="14.1" y="14.1" width="3.8" height="3.8" rx=".6" fill="currentColor"/>' +
-        '<rect x="22.4" y="22.4" width="5.2" height="5.2" rx="1" fill="currentColor"/>' +
-      '</svg>';
-    }
-
     function renderSkillsSkeleton(count) {
       const skillsList = document.getElementById('skillsList');
       const chipsEl = document.getElementById('skillsChips');
@@ -1894,17 +1825,12 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       for (let i = 0; i < count; i++) {
         html +=
           '<div class="skel-skill-card" aria-hidden="true">' +
-            '<div class="skel-sk-top">' +
-              '<div class="skel skel-sk-ico"></div>' +
-              '<div class="skel skel-sk-tag"></div>' +
+            '<div class="skel skel-sk-ico"></div>' +
+            '<div class="skel-sk-body">' +
+              '<div class="skel skel-sk-title"></div>' +
+              '<div class="skel skel-sk-line"></div>' +
             '</div>' +
-            '<div class="skel skel-sk-title"></div>' +
-            '<div class="skel skel-sk-line w90"></div>' +
-            '<div class="skel skel-sk-line w70"></div>' +
-            '<div class="skel-sk-foot">' +
-              '<div class="skel skel-sk-author"></div>' +
-              '<div class="skel skel-sk-btn"></div>' +
-            '</div>' +
+            '<div class="skel skel-sk-chev"></div>' +
           '</div>';
       }
       skillsList.innerHTML = html;
@@ -1978,7 +1904,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       if (countEl) {
         countEl.textContent = matched.length === SKILLS.length
           ? matched.length + ' skill' + (matched.length === 1 ? '' : 's')
-          : matched.length + ' of ' + SKILLS.length + ' skills';
+          : matched.length + ' of ' + SKILLS.length;
       }
       if (!matched.length) {
         skillsList.innerHTML = '<div class="skills-empty">No skills match <strong>' + escapeHtml(skillsSearchQ || skillsTagFilter) + '</strong>. Try another search or tag.</div>';
@@ -1987,30 +1913,22 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       const reduced = typeof REDUCED_MOTION !== 'undefined' && REDUCED_MOTION;
       const doEnter = !!animateEnter && !reduced;
       skillsList.innerHTML = matched.map(({ s, i }, idx) => {
-        const body = skillBodyText(s);
-        const tone = skillTone(s.tag);
+        const tone = ((i % 6) + 1);
         const enterCls = doEnter ? ' skill-enter' : '';
-        const delay = doEnter ? ' style="animation-delay:' + (idx * 45) + 'ms"' : '';
-        return '<article class="skill-card' + enterCls + '"' + delay + ' data-skill-card="' + i + '">' +
-          '<div class="skill-card-top">' +
-            '<div class="skill-card-icon" data-tone="' + tone + '" aria-hidden="true">' + skillIconHtml(s) + '</div>' +
-            '<span class="skill-card-tag">' + escapeHtml(s.tag) + '</span>' +
+        const delay = doEnter ? ' style="animation-delay:' + (idx * 40) + 'ms"' : '';
+        return '<button type="button" class="skill-card' + enterCls + '"' + delay +
+          ' data-skill-install="' + i + '"' +
+          ' aria-label="Try ' + escapeHtml(s.title) + ' in Quadcode">' +
+          '<div class="skill-card-icon" data-tone="' + tone + '" aria-hidden="true">' + skillIconHtml(s) + '</div>' +
+          '<div class="skill-card-body">' +
+            '<h3 class="skill-card-title">' + escapeHtml(s.title) + '</h3>' +
+            '<p class="skill-card-desc">' + escapeHtml(s.desc) + '</p>' +
           '</div>' +
-          '<h3 class="skill-card-title">' + escapeHtml(s.title) + '</h3>' +
-          '<p class="skill-card-desc">' + escapeHtml(s.desc) + '</p>' +
-          (body
-            ? '<p class="skill-card-snippet">' + escapeHtml(body) + '</p>' +
-              '<button type="button" class="skill-card-preview" data-skill-toggle>Show full skill</button>'
-            : '') +
-          '<div class="skill-card-foot">' +
-            '<span class="skill-card-author">' + skillAuthorMarkHtml() + 'Quadcode Guide</span>' +
-            '<button class="skill-install-btn" type="button" data-skill-install="' + i + '">Try in Quadcode</button>' +
-          '</div>' +
-        '</article>';
+          '<span class="skill-card-chevron" aria-hidden="true"></span>' +
+        '</button>';
       }).join('');
       skillsList.querySelectorAll('[data-skill-install]').forEach(btn => {
-        btn.onclick = (e) => {
-          e.stopPropagation();
+        btn.onclick = () => {
           const skill = SKILLS[+btn.getAttribute('data-skill-install')];
           if (!skill) return;
           openInQuadcode(skillInstallPrompt(skill), {
@@ -2018,22 +1936,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
             agentName: 'Cody'
           });
         };
-      });
-      skillsList.querySelectorAll('[data-skill-toggle]').forEach(btn => {
-        btn.onclick = (e) => {
-          e.stopPropagation();
-          const card = btn.closest('.skill-card');
-          if (!card) return;
-          const open = card.classList.toggle('is-open');
-          btn.textContent = open ? 'Show less' : 'Show full skill';
-        };
-      });
-      skillsList.querySelectorAll('[data-skill-card]').forEach(card => {
-        card.addEventListener('click', (e) => {
-          if (e.target.closest('[data-skill-install], [data-skill-toggle], a, button')) return;
-          const toggle = card.querySelector('[data-skill-toggle]');
-          if (toggle) toggle.click();
-        });
       });
     }
 
