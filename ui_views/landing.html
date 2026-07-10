@@ -207,17 +207,23 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     margin-bottom: 14px;
   }
   .skill-card-icon {
-    width: 40px; height: 40px; flex: 0 0 40px; border-radius: 11px;
+    width: 40px; height: 40px; flex: 0 0 40px; border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-display); font-size: 15px; font-weight: 700;
-    color: #fff; letter-spacing: -.3px;
-    background: var(--grad);
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,.12);
+    color: rgba(255,255,255,.92);
+    background: rgba(255,255,255,.08);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
   }
-  .skill-card-icon[data-tone="1"] { background: linear-gradient(135deg, #FF9569 0%, #E85A3C 100%); }
-  .skill-card-icon[data-tone="2"] { background: linear-gradient(135deg, #DD344D 0%, #9B1D3A 100%); }
-  .skill-card-icon[data-tone="3"] { background: linear-gradient(135deg, #FFB088 0%, #FF9569 55%, #DD344D 100%); }
-  .skill-card-icon[data-tone="4"] { background: linear-gradient(135deg, #E85A3C 0%, #DD344D 100%); }
+  .skill-card-icon svg {
+    width: 20px; height: 20px; display: block;
+    stroke: currentColor; fill: none;
+    stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round;
+  }
+  .skill-card-icon[data-tone="1"] { background: rgba(166, 120, 78, .38); color: #f0e2d2; }
+  .skill-card-icon[data-tone="2"] { background: rgba(62, 130, 128, .40); color: #d5efed; }
+  .skill-card-icon[data-tone="3"] { background: rgba(78, 128, 92, .40); color: #d8eedc; }
+  .skill-card-icon[data-tone="4"] { background: rgba(110, 108, 128, .42); color: #e4e2ef; }
+  .skill-card-icon[data-tone="5"] { background: rgba(140, 96, 110, .40); color: #f0dde4; }
+  .skill-card-icon[data-tone="6"] { background: rgba(88, 112, 148, .42); color: #dce6f5; }
   .skill-card-tag {
     font-size: 11px; font-weight: 700; letter-spacing: 1.1px; text-transform: uppercase;
     color: var(--acc-1);
@@ -1613,6 +1619,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     const SKILLS = [
       {
         tag: 'Video',
+        icon: 'film',
         title: 'Video prompt craft',
         desc: 'Camera language, physics cues, and negative prompts that hold up in Seedance and Kling takes.',
         body:
@@ -1625,6 +1632,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       },
       {
         tag: 'Video',
+        icon: 'list',
         title: 'Shot list',
         desc: 'Turn one product or scene brief into ordered shots with framing, duration, and end-card notes.',
         body:
@@ -1637,6 +1645,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       },
       {
         tag: 'Website',
+        icon: 'rotate',
         title: 'Hero turntable',
         desc: 'Keyframe → seamless 360° loop → 4K upscale — the expensive-looking landing hero from one still.',
         body:
@@ -1649,6 +1658,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       },
       {
         tag: 'Gamedev',
+        icon: 'character',
         title: 'Character turntable',
         desc: 'Lock RPG hero identity across stills, then spin and export a clean 3D-ready turntable.',
         body:
@@ -1661,6 +1671,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       },
       {
         tag: 'Video',
+        icon: 'phone',
         title: 'UGC pipeline',
         desc: 'AI actor, product-in-hand stills, then short Kling clips — mass-produce UGC from one photo.',
         body:
@@ -1673,6 +1684,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       },
       {
         tag: 'Website',
+        icon: 'layers',
         title: 'Landing motion',
         desc: 'Hero loops, scroll parallax, and GSAP ScrollTrigger patterns used in cinematic landings.',
         body:
@@ -1685,6 +1697,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       },
       {
         tag: 'Music',
+        icon: 'music',
         title: 'Music sync',
         desc: 'Suno beds with tempo, instruments, and cut points that sit under montage or UGC edits.',
         body:
@@ -1697,6 +1710,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       },
       {
         tag: 'Design',
+        icon: 'image',
         title: 'Poster design',
         desc: 'One-shot crossover posters and cursor-reactive particle frames from a single photo.',
         body:
@@ -1709,6 +1723,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       },
       {
         tag: 'Workflow',
+        icon: 'upload',
         title: 'Publish guide',
         desc: 'Upload media to Vercel Blob and ship a case with publish_case so it lands in guides.json.',
         body:
@@ -1787,18 +1802,55 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     let skelSkillsT0 = 0;
 
     const SKILL_TONE_BY_TAG = {
-      Video: 1, Website: 2, Gamedev: 3, Music: 4, Design: 1, Workflow: 2
+      Video: 1, Website: 2, Gamedev: 3, Music: 5, Design: 6, Workflow: 4
     };
 
-    function skillInitials(title) {
-      const parts = String(title || '').trim().split(/\s+/).filter(Boolean);
-      if (!parts.length) return 'S';
-      if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
-      return (parts[0][0] + parts[1][0]).toUpperCase();
-    }
+    const SKILL_ICON_PATHS = {
+      film:
+        '<rect x="3" y="5" width="18" height="14" rx="2"/>' +
+        '<path d="M7 5v14M17 5v14M3 9.5h18M3 14.5h18"/>',
+      list:
+        '<path d="M10 7h10M10 12h10M10 17h10"/>' +
+        '<path d="M4.2 7l1.3 1.3L8 5.8"/>' +
+        '<path d="M4.2 12l1.3 1.3L8 10.8"/>' +
+        '<path d="M4.2 17l1.3 1.3L8 15.8"/>',
+      rotate:
+        '<path d="M21 12a9 9 0 1 1-2.6-6.3"/>' +
+        '<path d="M21 4v6h-6"/>',
+      character:
+        '<circle cx="12" cy="8" r="3.5"/>' +
+        '<path d="M5.5 19.5c1.6-3.2 4-4.8 6.5-4.8s4.9 1.6 6.5 4.8"/>',
+      phone:
+        '<rect x="7" y="2.5" width="10" height="19" rx="2.5"/>' +
+        '<path d="M11 18.5h2"/>',
+      layers:
+        '<path d="M12 3.5 21 9l-9 5.5L3 9l9-5.5z"/>' +
+        '<path d="M21 13.5 12 19 3 13.5"/>',
+      music:
+        '<path d="M9 18V6.5l11-2V16"/>' +
+        '<circle cx="6.5" cy="18" r="2.5"/>' +
+        '<circle cx="17.5" cy="16" r="2.5"/>',
+      image:
+        '<rect x="3.5" y="4.5" width="17" height="15" rx="2"/>' +
+        '<circle cx="9" cy="10" r="1.6"/>' +
+        '<path d="M3.5 15.5 8 12l4 3 3-2.5 5.5 4"/>',
+      upload:
+        '<path d="M12 16V6"/>' +
+        '<path d="M8 9.5 12 5.5 16 9.5"/>' +
+        '<path d="M5 19h14"/>',
+      spark:
+        '<path d="M12 3v4M12 17v4M3 12h4M17 12h4"/>' +
+        '<path d="M6.2 6.2 9 9M15 15l2.8 2.8M17.8 6.2 15 9M9 15l-2.8 2.8"/>'
+    };
 
     function skillTone(tag) {
-      return SKILL_TONE_BY_TAG[tag] || 1;
+      return SKILL_TONE_BY_TAG[tag] || 4;
+    }
+
+    function skillIconHtml(s) {
+      const key = (s && s.icon) || 'spark';
+      const paths = SKILL_ICON_PATHS[key] || SKILL_ICON_PATHS.spark;
+      return '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' + paths + '</svg>';
     }
 
     function skillBodyText(s) {
@@ -1941,7 +1993,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         const delay = doEnter ? ' style="animation-delay:' + (idx * 45) + 'ms"' : '';
         return '<article class="skill-card' + enterCls + '"' + delay + ' data-skill-card="' + i + '">' +
           '<div class="skill-card-top">' +
-            '<div class="skill-card-icon" data-tone="' + tone + '" aria-hidden="true">' + escapeHtml(skillInitials(s.title)) + '</div>' +
+            '<div class="skill-card-icon" data-tone="' + tone + '" aria-hidden="true">' + skillIconHtml(s) + '</div>' +
             '<span class="skill-card-tag">' + escapeHtml(s.tag) + '</span>' +
           '</div>' +
           '<h3 class="skill-card-title">' + escapeHtml(s.title) + '</h3>' +
@@ -1960,7 +2012,11 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         btn.onclick = (e) => {
           e.stopPropagation();
           const skill = SKILLS[+btn.getAttribute('data-skill-install')];
-          if (skill) openInQuadcode(skillInstallPrompt(skill));
+          if (!skill) return;
+          openInQuadcode(skillInstallPrompt(skill), {
+            shortDescription: 'Install skill: ' + skill.title,
+            agentName: 'Cody'
+          });
         };
       });
       skillsList.querySelectorAll('[data-skill-toggle]').forEach(btn => {
@@ -2944,11 +3000,33 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       const s = (g.steps || []).find(st => st && st.prompt && st.prompt.trim());
       return s ? s.prompt : '';
     }
-    // copy the prompt, then open the product (with ?prompt= as best-effort prefill)
-    function openInQuadcode(promptText) {
+    // Prefer IDE chat (ToolAskAgent) when running inside Quadcode;
+    // otherwise copy + open web with ?prompt= prefill.
+    function openInQuadcode(promptText, opts) {
+      const text = String(promptText || '').trim();
+      const short = (opts && opts.shortDescription) || 'Open in Quadcode';
+      const agent = (opts && opts.agentName) || 'Cody';
+
+      if (text && window.QC && QC.actions && typeof QC.actions.ToolAskAgent === 'function') {
+        showToast('Sending prompt to Quadcode…');
+        QC.actions.ToolAskAgent({
+          agent_name: agent,
+          question: text,
+          short_description: short.slice(0, 80)
+        }).catch(err => {
+          console.error(err);
+          showToast('Could not send to agent — copied prompt');
+          fallbackOpenQuadcode(text);
+        });
+        return;
+      }
+      fallbackOpenQuadcode(text);
+    }
+
+    function fallbackOpenQuadcode(promptText) {
       let url = CTA_URL;
       if (promptText) {
-        url += (url.indexOf('?') >= 0 ? '&' : '?') + 'prompt=' + encodeURIComponent(promptText.slice(0, 600));
+        url += (url.indexOf('?') >= 0 ? '&' : '?') + 'prompt=' + encodeURIComponent(promptText.slice(0, 1800));
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(promptText).catch(() => {});
         }
