@@ -402,13 +402,38 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   }
   .sk-get-link:hover { color: var(--acc-1); }
   .m-cta-actions {
-    display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+    gap: 10px;
   }
-  .m-cta .get-qc {
-    font-size: 13px; font-weight: 600; color: var(--muted);
-    text-decoration: none;
+  .m-cta .cta {
+    min-height: 44px; padding: 0 22px;
+    display: inline-flex; align-items: center; justify-content: center;
   }
-  .m-cta .get-qc:hover { color: var(--acc-1); }
+  .m-cta .m-cta-secondary {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 44px; padding: 0 18px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.14);
+    color: var(--white);
+    font-family: inherit; font-size: 14px; font-weight: 600;
+    border-radius: 999px; cursor: pointer;
+    transition: border-color .18s ease, background .18s ease, transform .16s var(--ease);
+  }
+  .m-cta .m-cta-secondary:hover {
+    border-color: rgba(255,149,105,.45);
+    background: rgba(255,149,105,.08);
+  }
+  .m-cta .m-cta-secondary:active { transform: scale(.97); }
+  .m-cta-foot {
+    margin-top: 14px;
+    font-size: 12.5px; color: var(--muted-2); line-height: 1.4;
+  }
+  .m-cta-foot a {
+    color: var(--muted); font-weight: 600; text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,.18);
+    transition: color .18s ease, border-color .18s ease;
+  }
+  .m-cta-foot a:hover { color: var(--acc-1); border-color: rgba(255,149,105,.5); }
   .sk-section { margin-top: 28px; }
   .sk-section-label {
     font-size: 13px; font-weight: 500; color: var(--muted-2);
@@ -1297,18 +1322,25 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 
   /* ---------- Guide bottom CTA ---------- */
   .m-cta {
-    margin-top: 30px; padding: 26px; border-radius: 16px;
+    margin-top: 36px; padding: 28px 28px 24px; border-radius: 18px;
     background:
-      radial-gradient(120% 140% at 100% 0%, rgba(255,149,105,.14), transparent 55%),
-      radial-gradient(120% 140% at 0% 100%, rgba(221,52,77,.12), transparent 55%),
+      radial-gradient(90% 120% at 85% -10%, rgba(255,149,105,.18), transparent 52%),
+      radial-gradient(90% 120% at 10% 110%, rgba(221,52,77,.14), transparent 50%),
+      linear-gradient(180deg, rgba(255,255,255,.03), transparent 40%),
       var(--bg-2);
-    border: 1px solid rgba(255,149,105,.22);
+    border: 1px solid rgba(255,149,105,.24);
+    box-shadow: 0 18px 40px -28px rgba(221,52,77,.45);
     text-align: center;
   }
-  .m-cta b { display: block; font-family: var(--font-display); font-size: 21px; font-weight: 700; letter-spacing: -.4px; margin-bottom: 6px; }
-  .m-cta span { display: block; font-size: 14px; color: var(--muted); margin-bottom: 18px; }
+  .m-cta b {
+    display: block; font-family: var(--font-display);
+    font-size: 22px; font-weight: 700; letter-spacing: -.45px; margin-bottom: 8px;
+  }
+  .m-cta > span {
+    display: block; font-size: 14.5px; color: var(--muted);
+    margin: 0 auto 20px; max-width: 34em; line-height: 1.45;
+  }
   .m-cta .cta { font-size: 15px; }
-  .m-cta-note { margin-top: 12px; font-size: 12.5px; color: var(--muted-2); }
 
   /* per-step prompt actions: Copy + Open in Quadcode */
   .m-prompt-actions { display: inline-flex; align-items: center; gap: 8px; }
@@ -3230,18 +3262,16 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         html += '<div class="m-result"><span>Result</span><p>' + esc(g.result) + '</p></div>';
       }
       // primary conversion path: take them into the product to actually make it
-      const note = g.level || '';
       html += '<div class="m-cta">' +
         '<b>Ready to make this?</b>' +
-        '<span>Opens Quadcode with the prompt ready — or copies it if the app isn’t installed.</span>' +
+        '<span>Open Quadcode with the prompt ready — or copy it and paste in chat.</span>' +
         '<div class="m-cta-actions">' +
-          '<button class="cta" data-qc-open type="button">Open in Quadcode.ai &rarr;</button>' +
-          '<a class="get-qc" href="' + CTA_URL + '" target="_blank" rel="noopener">Get Quadcode</a>' +
+          '<button class="cta" data-qc-open type="button">Open in Quadcode &rarr;</button>' +
           (allPrompts.length
-            ? '<button class="share-btn" data-copy-all-prompts type="button">Copy all prompts</button>'
+            ? '<button class="m-cta-secondary" data-copy-all-prompts type="button">Copy all prompts</button>'
             : '') +
         '</div>' +
-        (note ? '<div class="m-cta-note">' + esc(note) + '</div>' : '') +
+        '<div class="m-cta-foot">No app yet? <a href="' + CTA_URL + '" target="_blank" rel="noopener">Get Quadcode</a></div>' +
         '</div>';
       // keep them in the catalog: 3 related guides (same category first)
       const rel = relatedGuides(g, 3);
