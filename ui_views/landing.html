@@ -1154,12 +1154,49 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     color: var(--white); border-color: rgba(255,149,105,.4);
   }
   .m-made {
-    margin-top: 18px; padding: 18px 20px; border-radius: 14px;
-    border: 1px dashed rgba(255,255,255,.14); background: rgba(255,255,255,.02);
-    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;
+    margin-top: 20px; padding: 16px 18px;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    background:
+      linear-gradient(105deg, rgba(255,149,105,.08), transparent 42%),
+      var(--bg-2);
+    display: flex; flex-wrap: wrap; align-items: center;
+    justify-content: space-between; gap: 14px 18px;
   }
-  .m-made p { margin: 0; font-size: 14px; color: var(--muted); max-width: 36em; }
-  .m-made b { color: var(--white); }
+  .m-made-copy { min-width: 0; flex: 1 1 220px; }
+  .m-made-kicker {
+    display: block; margin: 0 0 4px;
+    font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--acc-1);
+  }
+  .m-made p {
+    margin: 0; font-size: 14.5px; line-height: 1.4; color: var(--muted); max-width: 34em;
+  }
+  .m-made p b {
+    color: var(--white); font-family: var(--font-display); font-weight: 700; letter-spacing: -.2px;
+  }
+  .m-made-btn {
+    flex: 0 0 auto;
+    display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+    min-height: 40px; padding: 0 16px;
+    font-family: inherit; font-size: 13.5px; font-weight: 600;
+    color: var(--white);
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 999px; cursor: pointer;
+    transition: border-color .18s ease, background .18s ease, transform .16s var(--ease);
+  }
+  .m-made-btn:hover {
+    border-color: rgba(255,149,105,.45);
+    background: rgba(255,149,105,.1);
+  }
+  .m-made-btn:active { transform: scale(.97); }
+  .m-made-btn .sh-i {
+    width: 14px; height: 14px; background: currentColor;
+    -webkit-mask-position: center; mask-position: center;
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+    -webkit-mask-size: contain; mask-size: contain;
+  }
   .search-skill-hint {
     margin: 10px 0 0; font-size: 13px; color: var(--muted);
   }
