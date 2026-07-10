@@ -77,8 +77,14 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .topbar {
     display: flex; align-items: center; justify-content: space-between;
     gap: 16px;
-    max-width: 1120px; margin: 0 auto; padding: 18px 28px;
-    position: relative; z-index: 60;
+    position: sticky; top: 0; z-index: 70;
+    width: 100%;
+    min-height: var(--topbar-h);
+    margin: 0; padding: 12px max(28px, calc(50vw - 560px));
+    background: rgba(14,14,20,.78);
+    -webkit-backdrop-filter: blur(16px) saturate(1.2);
+    backdrop-filter: blur(16px) saturate(1.2);
+    border-bottom: 1px solid var(--line);
   }
   .topbar-right {
     display: flex; align-items: center; gap: 18px; flex: 0 0 auto;
@@ -1378,7 +1384,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 
   /* ---------- Guide sticky bar (scroll) ---------- */
   .guide-sticky {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 55;
+    position: fixed; top: var(--topbar-h); left: 0; right: 0; z-index: 55;
     display: flex; align-items: center; gap: 14px;
     padding: 10px max(28px, calc(50vw - 540px));
     background: rgba(19,19,30,.82); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
