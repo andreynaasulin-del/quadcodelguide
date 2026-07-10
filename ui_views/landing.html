@@ -392,12 +392,34 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     background: var(--acc-1); flex: 0 0 8px;
   }
   .sk-prompt {
+    position: relative;
     background: #1c1b1a;
     border: 1px solid rgba(255,255,255,.06);
     border-radius: 12px;
-    padding: 18px 20px;
+    padding: 18px 44px 18px 20px;
     font-size: 13.5px; line-height: 1.55; color: var(--muted);
     white-space: pre-wrap; word-break: break-word;
+  }
+  .sk-prompt-copy {
+    position: absolute; top: 12px; right: 12px;
+    width: 30px; height: 30px; padding: 0; border: 0; cursor: pointer;
+    border-radius: 8px; background: transparent; color: var(--muted-2);
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: color .15s ease, background .15s ease, transform .12s ease;
+  }
+  .sk-prompt-copy::before {
+    content: ''; width: 15px; height: 15px; background: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M16 1H4a2 2 0 00-2 2v14h2V3h12V1zm3 4H8a2 2 0 00-2 2v14a2 2 0 002 2h11a2 2 0 002-2V7a2 2 0 00-2-2zm0 16H8V7h11v14z'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M16 1H4a2 2 0 00-2 2v14h2V3h12V1zm3 4H8a2 2 0 00-2 2v14a2 2 0 002 2h11a2 2 0 002-2V7a2 2 0 00-2-2zm0 16H8V7h11v14z'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
+  .sk-prompt-copy:hover {
+    color: var(--white); background: rgba(255,255,255,.06);
+  }
+  .sk-prompt-copy:active { transform: scale(.94); }
+  .sk-prompt-copy.copied { color: #7ee787; }
+  .sk-prompt-copy.copied::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.2l-3.5-3.5-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.2l-3.5-3.5-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E");
   }
   .sk-prompt .sk-p-h {
     display: block; margin: 14px 0 6px;
@@ -3242,7 +3264,10 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         '</section>' +
         '<section class="sk-section">' +
           '<h2 class="sk-section-label">Prompt</h2>' +
-          '<div class="sk-prompt">' + formatSkillPromptHtml(skillBodyText(s)) + '</div>' +
+          '<div class="sk-prompt">' +
+            '<button type="button" class="sk-prompt-copy" data-skill-copy aria-label="Copy prompt" title="Copy prompt"></button>' +
+            formatSkillPromptHtml(skillBodyText(s)) +
+          '</div>' +
         '</section>' +
         (tools.length
           ? '<section class="sk-section">' +
@@ -3259,6 +3284,27 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
             shortDescription: 'Try skill: ' + s.title,
             agentName: 'Cody'
           });
+        };
+      }
+      const copyBtn = skillBodyEl.querySelector('[data-skill-copy]');
+      if (copyBtn) {
+        copyBtn.onclick = () => {
+          const text = skillBodyText(s);
+          if (!text) return;
+          const done = () => {
+            copyBtn.classList.add('copied');
+            copyBtn.setAttribute('aria-label', 'Copied');
+            showToast('Prompt copied');
+            setTimeout(() => {
+              copyBtn.classList.remove('copied');
+              copyBtn.setAttribute('aria-label', 'Copy prompt');
+            }, 1600);
+          };
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+          } else {
+            fallbackCopy(text, done);
+          }
         };
       }
       homeEl.hidden = true;
