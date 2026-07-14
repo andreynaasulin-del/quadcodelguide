@@ -185,6 +185,103 @@
       "result": "A fully working, awwwards-tier cinematic logistics landing page — recorded here as a 12-second scroll-through of the real page in the browser. The AI-generated hero and interlude clips are wired in as section backgrounds, wrapped in a hand-coded GSAP site: a scroll-driven truck parallax scene with living motion (spinning wheels, motion blur, dust, dynamic headlight pool), a real animated world route map, a fake-live tracker and dashboard, and a quote CTA — all a single static page with zero backend."
     },
     {
+      "id": "boss-fight-model-battle",
+      "cat": "Video",
+      "sub": "Model Battle",
+      "title": "Boss fight: one brief, two AI models",
+      "desc": "Give the same boss-fight brief to two video models and cut the takes side by side — the split-screen format that starts arguments in the comments.",
+      "time": "8 min",
+      "date": "2026-07-14",
+      "level": "Middle",
+      "models": "Claude Fable, GPT-5.6 Sol",
+      "trending": true,
+      "video": "/ui_views/assets/video-fable-vs-sol.mp4",
+      "poster": "/ui_views/assets/video-fable-vs-sol-poster.jpg",
+      "steps": [
+        {
+          "title": "Write one brief both models get",
+          "text": "The comparison only works if the brief is identical. Describe the fight beats — approach, dodge, counter — but leave the world open, so each model shows its own taste in setting and monster design.",
+          "prompt": "Cinematic dark-fantasy boss fight, game-cinematic quality: a lone armored hero faces a towering monstrous boss, the hero approaches weapon drawn, dodges a massive strike, and counters. Dynamic camera following the action, dramatic lighting, volumetric atmosphere, photoreal detail, 18 seconds"
+        },
+        {
+          "title": "Generate a take on each model",
+          "text": "Run the exact same prompt on both models. In this run one staged a plague abomination in a flooded gothic cathedral, the other a horned demon in a torch-lit colosseum — same beats, totally different directors.",
+          "prompt": ""
+        },
+        {
+          "title": "Cut the split-screen with labels",
+          "text": "Place the takes side by side, label each half with the model name, and let them run in sync. Viewers pick a winner themselves — that's the engagement hook. Play the clip above to see the result.",
+          "prompt": "",
+          "result_video": "/ui_views/assets/video-fable-vs-sol.mp4"
+        }
+      ],
+      "result": "An 18-second labeled split-screen where two AI models direct the same boss fight — a format built for 'left or right?' comment wars."
+    },
+    {
+      "id": "mutation-serum-vfx",
+      "cat": "Video",
+      "sub": "VFX Shot",
+      "title": "Shoot a movie-grade mutation VFX scene",
+      "desc": "A syringe of glowing serum, a burst of pink energy, and a crystalline monster towering over fleeing scientists — one continuous lab-horror shot.",
+      "time": "6 min",
+      "date": "2026-07-14",
+      "level": "Junior",
+      "models": "Seedance",
+      "video": "/ui_views/assets/video-substance-lab.mp4",
+      "poster": "/ui_views/assets/video-substance-lab-poster.jpg",
+      "steps": [
+        {
+          "title": "Open on a macro detail",
+          "text": "Start tight and quiet: a needle piercing a specimen fills the frame. A macro close-up buys believability before the chaos — viewers lean in before the scene turns.",
+          "prompt": "Extreme macro close-up in a research lab: a syringe filled with glowing neon-pink serum slowly injects into a small yellow gelatinous specimen on a teal lab table, clinical lighting, shallow depth of field, cinematic film look"
+        },
+        {
+          "title": "Detonate the transformation",
+          "text": "Describe the energy burst as a physical event — light, particles, shockwave shaking the room. The camera should get 'hit' by it too: motion blur and grain sell that something went very wrong.",
+          "prompt": "The specimen erupts in a blinding surge of pink energy, particles and plasma flooding the laboratory, equipment silhouetted against the blast, handheld camera shaken by the shockwave, heavy motion blur and film grain, VFX-heavy cinematic sequence"
+        },
+        {
+          "title": "Reveal the creature",
+          "text": "End wide: the monster standing in the wrecked lab while people run. Naming 'scientists fleeing in panic' gives the creature scale and turns a VFX test into a movie scene. Play the clip above to see the result.",
+          "prompt": "A towering crystalline monster with glowing pink translucent skin stands in the wrecked laboratory, smoke and pink mist around it, scientists in lab coats fleeing in panic, wide cinematic shot, dramatic overhead lighting, photoreal creature VFX",
+          "result_video": "/ui_views/assets/video-substance-lab.mp4"
+        }
+      ],
+      "result": "A 10-second lab-horror VFX sequence — macro injection, energy blast, creature reveal — that reads like a blockbuster teaser."
+    },
+    {
+      "id": "drowned-king-model-battle",
+      "cat": "Video",
+      "sub": "Model Battle",
+      "title": "Drowned king colossus: two models, one legend",
+      "desc": "A viking longship meets a crowned colossus rising from the sea — the same epic prompt rendered by two AI models, cut into one split-screen.",
+      "time": "8 min",
+      "date": "2026-07-14",
+      "level": "Middle",
+      "models": "Claude Fable, GPT-5.6 Terra",
+      "video": "/ui_views/assets/video-drowned-king.mp4",
+      "poster": "/ui_views/assets/video-drowned-king-poster.jpg",
+      "steps": [
+        {
+          "title": "Script the scene in three beats",
+          "text": "Big prompts fall apart without structure. Lock three beats — the colossus looms over the ship, the ship capsizes underwater, an extreme close-up of the giant's eye — and both models have to hit the same marks.",
+          "prompt": "Epic dark-fantasy sequence in three beats: 1) a viking longship with shields and torn sail sails toward a colossal drowned king — a mountain-sized ancient giant with a crown, seaweed beard and waterfalls pouring off his stone-like skin, storm sky; 2) underwater shot of the capsized longship sinking, vikings and shields drifting down in green murky water; 3) extreme close-up of the colossus' enormous pale eye opening underwater. Cinematic photoreal detail, 18 seconds"
+        },
+        {
+          "title": "Run it on both models",
+          "text": "Same prompt, two models, no cherry-picking edits inside a take. The differences you keep — crown design, water physics, how the eye opens — are exactly what makes the comparison worth watching.",
+          "prompt": ""
+        },
+        {
+          "title": "Sync the halves and label them",
+          "text": "Line both takes up beat-for-beat in a split-screen and put the model names on top. Matching beats side by side is what makes quality differences impossible to miss. Play the clip above to see the result.",
+          "prompt": "",
+          "result_video": "/ui_views/assets/video-drowned-king.mp4"
+        }
+      ],
+      "result": "An 18-second split-screen epic where two AI models raise the same drowned king from the sea — beat-synced so the differences do the talking."
+    },
+    {
       "id": "walk-on-water-viral",
       "cat": "Video",
       "sub": "Viral Video",
