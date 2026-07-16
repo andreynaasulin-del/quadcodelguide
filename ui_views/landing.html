@@ -996,6 +996,27 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
     -webkit-mask-size: contain; mask-size: contain;
   }
+  /* top-right flag stack: New + Trending live together without overlap */
+  .cover-flags {
+    position: absolute; top: 10px; right: 10px; z-index: 2;
+    display: flex; gap: 6px; align-items: center;
+    pointer-events: none;
+  }
+  .cover-flags .cover-trend { position: static; top: auto; right: auto; }
+  .cover-new {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 10.5px; font-weight: 700; letter-spacing: .3px; color: #0b2416;
+    padding: 4px 10px 4px 8px; border-radius: 999px;
+    background: linear-gradient(100deg, rgba(126,231,135,.95), rgba(52,199,123,.95));
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,.25); pointer-events: none;
+    text-transform: uppercase;
+  }
+  .cover-new::before {
+    content: ''; width: 11px; height: 11px; flex: 0 0 11px; background: #0b2416;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
   .cover-trend {
     position: absolute; top: 10px; right: 10px; z-index: 2;
     display: inline-flex; align-items: center; gap: 5px;
@@ -3275,7 +3296,8 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           return score(b) - score(a);
         });
       }
-      return list;
+      // "new"-flagged guides always float to the top, whatever the sort (stable within groups)
+      return list.filter(g => g.new).concat(list.filter(g => !g.new));
     }
 
     function cardEl(g, i, swap, opts) {
@@ -3297,7 +3319,12 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           : '');
       const coverOverlay =
         (mediaChips ? '<div class="cover-chips">' + mediaChips + '</div>' : '') +
-        (g.trending && !(opts && opts.hideTrend) ? '<span class="cover-trend">Trending</span>' : '') +
+        ((g.new || (g.trending && !(opts && opts.hideTrend)))
+          ? '<span class="cover-flags">' +
+              (g.new ? '<span class="cover-new">New</span>' : '') +
+              (g.trending && !(opts && opts.hideTrend) ? '<span class="cover-trend">Trending</span>' : '') +
+            '</span>'
+          : '') +
         (g.time ? '<span class="time-badge">' + esc(g.time) + '</span>' : '');
       const st = guideState(g.id);
       const totalSteps = (g.steps || []).length;
