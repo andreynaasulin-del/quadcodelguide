@@ -46,38 +46,6 @@
       "result": "A seamless, loopable purple liquid-metal AI orb you can autoplay behind any hero headline — generated in two steps: Nanobanana for the frame, Veo 3 for the motion."
     },
     {
-      "id": "plug-dynamic-ui-panel-qcai-ide",
-      "cat": "Design",
-      "sub": "IDE Tooling",
-      "title": "Add a Live Panel to the Quadcode.ai IDE Sidebar",
-      "desc": "Build a small notes widget that lives in the IDE sidebar and saves straight to a project file — no server, no rebuild, just one HTML file and one config line.",
-      "time": "5 min",
-      "level": "Middle",
-      "models": "None — pure Quadcode.ai IDE bridge (window.QC) + vanilla HTML/JS",
-      "poster": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/plug-dynamic-ui-panel-qcai-ide/0716_174707924_brw_ss-ima4eDTBT8NvIqfdNjlku74OLMxKaV.png",
-      "steps": [
-        {
-          "title": "What this actually is",
-          "text": "A sticky-notes widget that shows up as a tab in the IDE sidebar. Every note you add or delete is saved for real into a project file (ui_views/demo_notes_data.json) — instantly, no save button, no reload. Same idea works for any small tool: a task tracker, a checklist, a live status board.",
-          "prompt": "",
-          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/plug-dynamic-ui-panel-qcai-ide/0716_174707924_brw_ss-bfi81vPeVFPF9N7olWZr9KgZRmnsJJ.png"
-        },
-        {
-          "title": "How it's built — 2 files, no backend",
-          "text": "File 1: ui_views/demo_notes_panel.html — the widget itself (HTML/CSS/JS), styled to match the IDE's own theme automatically (light/dark, colors, fonts — for free). File 2: one entry in .quadcodeai/dynamic_widgets.yaml telling the IDE 'show this file as a right-side panel called Notes'. Save the config, the tab appears — nothing to restart.",
-          "prompt": "dynamic_widgets:\n- description: Live sticky-notes panel wired to project data.\n  name: Notes\n  panel: right\n  source: ui_views/demo_notes_panel.html",
-          "result_image": ""
-        },
-        {
-          "title": "Proof it's really live, not a mockup",
-          "text": "Typed a note, picked the cyan color dot, hit Add note — the badge count went from 3 to 4 instantly, and the exact text landed in the project's JSON file on disk (checked directly). Deleting a note removes it from the file the same way. That round-trip is the whole point: the panel and the project are the same data, always in sync.",
-          "prompt": "",
-          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/plug-dynamic-ui-panel-qcai-ide/0716_174636991_brw_ss-OKLNX6Ab45suj9SY8PJGekJT5IvZKu.png"
-        }
-      ],
-      "result": "A working sidebar panel, wired to a real project file, styled to match the IDE automatically — built from a single HTML file and one YAML line, no backend and no build step."
-    },
-    {
       "id": "quadcode-ui-workflow-optimize",
       "cat": "Interfaces",
       "sub": "Workflow",
@@ -262,7 +230,7 @@
       "level": "Middle",
       "models": "Claude Fable, GPT-5.6 Sol",
       "trending": true,
-      "video": "/ui_views/assets/video-fable-vs-sol.mp4",
+      "video": "https://quadcodeguide.vercel.app/ui_views/assets/video-fable-vs-sol.mp4",
       "poster": "/ui_views/assets/video-fable-vs-sol-poster.jpg",
       "steps": [
         {
@@ -279,7 +247,7 @@
           "title": "Cut the split-screen with labels",
           "text": "Place the takes side by side, label each half with the model name, and let them run in sync. Viewers pick a winner themselves — that's the engagement hook. Play the clip above to see the result.",
           "prompt": "",
-          "result_video": "/ui_views/assets/video-fable-vs-sol.mp4"
+          "result_video": "https://quadcodeguide.vercel.app/ui_views/assets/video-fable-vs-sol.mp4"
         }
       ],
       "result": "An 18-second labeled split-screen where two AI models direct the same boss fight — a format built for 'left or right?' comment wars."
@@ -294,7 +262,7 @@
       "date": "2026-07-14",
       "level": "Junior",
       "models": "Seedance",
-      "video": "/ui_views/assets/video-substance-lab.mp4",
+      "video": "https://quadcodeguide.vercel.app/ui_views/assets/video-substance-lab.mp4",
       "poster": "/ui_views/assets/video-substance-lab-poster.jpg",
       "steps": [
         {
@@ -311,7 +279,7 @@
           "title": "Reveal the creature",
           "text": "End wide: the monster standing in the wrecked lab while people run. Naming 'scientists fleeing in panic' gives the creature scale and turns a VFX test into a movie scene. Play the clip above to see the result.",
           "prompt": "A towering crystalline monster with glowing pink translucent skin stands in the wrecked laboratory, smoke and pink mist around it, scientists in lab coats fleeing in panic, wide cinematic shot, dramatic overhead lighting, photoreal creature VFX",
-          "result_video": "/ui_views/assets/video-substance-lab.mp4"
+          "result_video": "https://quadcodeguide.vercel.app/ui_views/assets/video-substance-lab.mp4"
         }
       ],
       "result": "A 10-second lab-horror VFX sequence — macro injection, energy blast, creature reveal — that reads like a blockbuster teaser."
@@ -326,7 +294,7 @@
       "date": "2026-07-14",
       "level": "Middle",
       "models": "Claude Fable, GPT-5.6 Terra",
-      "video": "/ui_views/assets/video-drowned-king.mp4",
+      "video": "https://quadcodeguide.vercel.app/ui_views/assets/video-drowned-king.mp4",
       "poster": "/ui_views/assets/video-drowned-king-poster.jpg",
       "steps": [
         {
@@ -343,7 +311,7 @@
           "title": "Sync the halves and label them",
           "text": "Line both takes up beat-for-beat in a split-screen and put the model names on top. Matching beats side by side is what makes quality differences impossible to miss. Play the clip above to see the result.",
           "prompt": "",
-          "result_video": "/ui_views/assets/video-drowned-king.mp4"
+          "result_video": "https://quadcodeguide.vercel.app/ui_views/assets/video-drowned-king.mp4"
         }
       ],
       "result": "An 18-second split-screen epic where two AI models raise the same drowned king from the sea — beat-synced so the differences do the talking."
@@ -359,7 +327,7 @@
       "level": "Junior",
       "models": "Seedance",
       "trending": true,
-      "video": "/ui_views/assets/video-ocean-walk.mp4",
+      "video": "https://quadcodeguide.vercel.app/ui_views/assets/video-ocean-walk.mp4",
       "poster": "/ui_views/assets/video-ocean-walk-poster.jpg",
       "steps": [
         {
@@ -376,7 +344,7 @@
           "title": "Keep the take that fools people",
           "text": "Generate a few takes and keep the one where the feet actually read as striking the surface — one bad footstep breaks the whole illusion. Play the clip above to see the result.",
           "prompt": "",
-          "result_video": "/ui_views/assets/video-ocean-walk.mp4"
+          "result_video": "https://quadcodeguide.vercel.app/ui_views/assets/video-ocean-walk.mp4"
         }
       ],
       "result": "An 11-second walking-on-water clip that looks like real bystander footage — built to stop the scroll and start the 'how is this possible' comments."
@@ -392,7 +360,7 @@
       "level": "Middle",
       "models": "Seedance",
       "trending": true,
-      "video": "/ui_views/assets/video-macbook-bird-flyout.mp4",
+      "video": "https://quadcodeguide.vercel.app/ui_views/assets/video-macbook-bird-flyout.mp4",
       "poster": "/ui_views/assets/video-macbook-bird-poster.jpg",
       "steps": [
         {
@@ -409,7 +377,7 @@
           "title": "Ship it as your landing hero",
           "text": "Keep the take where the screen-exit reads clean and the landing feels weighty. Drop it into your page hero with autoplay, mute and loop — the first three seconds do all the selling. Play the clip above to see the result.",
           "prompt": "",
-          "result_video": "/ui_views/assets/video-macbook-bird-flyout.mp4"
+          "result_video": "https://quadcodeguide.vercel.app/ui_views/assets/video-macbook-bird-flyout.mp4"
         }
       ],
       "result": "A 10-second screen-to-reality hero video in 4K — the kind of opening shot that makes visitors stop scrolling and watch your landing page."
@@ -424,7 +392,7 @@
       "date": "2026-07-09",
       "level": "Middle",
       "models": "GPT-Image, Seedance, Topaz",
-      "video": "/ui_views/assets/video-sakura-turntable.mp4",
+      "video": "https://quadcodeguide.vercel.app/ui_views/assets/video-sakura-turntable.mp4",
       "poster": "/ui_views/assets/video-sakura-turntable-poster.jpg",
       "steps": [
         {
@@ -441,7 +409,7 @@
           "title": "Upscale to 4K and ship it",
           "text": "Run the finished loop through the upscaler for a crisp 4K master, then drop it into your landing page hero with autoplay, mute and loop. Play the clip above to see the result.",
           "prompt": "",
-          "result_video": "/ui_views/assets/video-sakura-turntable.mp4"
+          "result_video": "https://quadcodeguide.vercel.app/ui_views/assets/video-sakura-turntable.mp4"
         }
       ],
       "result": "A seamless 16-second 360° product turntable in 4K — the hero video that turns a static landing page into a premium storefront."
@@ -457,7 +425,7 @@
       "level": "Middle",
       "models": "Claude Sonnet",
       "trending": true,
-      "video": "/ui_views/assets/video-bloomcare-landing.mp4",
+      "video": "https://quadcodeguide.vercel.app/ui_views/assets/video-bloomcare-landing.mp4",
       "poster": "/ui_views/assets/video-bloomcare-poster.jpg",
       "steps": [
         {
@@ -474,7 +442,7 @@
           "title": "Polish and record",
           "text": "Finish with the details that sell the premium feel: micro-animations, a benefits marquee, hover states. Then scroll the live page and screen-record it for your portfolio or client.",
           "prompt": "Add finishing touches: a slim scrolling marquee strip with offers (free samples, cruelty-free, 30-day guarantee, free shipping), subtle fade-up animations on scroll, soft hover lift on product cards, and a typing caret effect on the hero headline. Keep every animation quiet and smooth — premium, never flashy.",
-          "result_video": "/ui_views/assets/video-bloomcare-landing.mp4"
+          "result_video": "https://quadcodeguide.vercel.app/ui_views/assets/video-bloomcare-landing.mp4"
         }
       ],
       "result": "A complete luxury skincare landing page coded by the agent — recorded here as a 12-second scroll-through, ready to ship or hand to a client."
@@ -490,7 +458,7 @@
       "level": "Middle",
       "models": "GPT-Image, Seedance",
       "trending": true,
-      "video": "/ui_views/assets/gamedev-rpg-character.mp4",
+      "video": "https://quadcodeguide.vercel.app/ui_views/assets/gamedev-rpg-character.mp4",
       "poster": "/ui_views/assets/gamedev-rpg-poster.jpg",
       "steps": [
         {
@@ -515,7 +483,7 @@
           "title": "Spin, check and export",
           "text": "Rotate the model to check it from every side, fix anything off, then export. Play the clip above to see the final turntable.",
           "prompt": "",
-          "result_video": "/ui_views/assets/gamedev-rpg-character.mp4"
+          "result_video": "https://quadcodeguide.vercel.app/ui_views/assets/gamedev-rpg-character.mp4"
         }
       ],
       "result": "You now have a unique, fully rotatable 3D RPG character, ready to animate and drop straight into your game."
@@ -587,7 +555,7 @@
       "date": "2026-07-08",
       "level": "Junior",
       "models": "Seedance",
-      "video": "/ui_views/assets/video-minidv-alley.mp4",
+      "video": "https://quadcodeguide.vercel.app/ui_views/assets/video-minidv-alley.mp4",
       "poster": "/ui_views/assets/video-minidv-poster.jpg",
       "steps": [
         {
@@ -619,7 +587,7 @@
       "level": "Middle",
       "models": "Claude, Kling, GPT-Image",
       "trending": true,
-      "video": "/ui_views/assets/video-ugc-ads-workflow.mp4",
+      "video": "https://quadcodeguide.vercel.app/ui_views/assets/video-ugc-ads-workflow.mp4",
       "poster": "/ui_views/assets/video-ugc-ads-poster.jpg",
       "steps": [
         {
@@ -650,7 +618,7 @@
       "date": "2026-07-09",
       "level": "Middle",
       "models": "Claude Sonnet",
-      "video": "/ui_views/assets/video-shellgraphic.mp4",
+      "video": "https://quadcodeguide.vercel.app/ui_views/assets/video-shellgraphic.mp4",
       "poster": "/ui_views/assets/video-shellgraphic-poster.jpg",
       "steps": [
         {
@@ -667,7 +635,7 @@
           "title": "Frame it like a poster",
           "text": "Finish with an editorial typography layer around the artwork so the page reads as a premium poster, not a tech demo. Then record the page as a video to share.",
           "prompt": "Add an editorial typography layer: large serif logotype top-left, small uppercase spaced labels — a tagline top-right, a collection label bottom-left, a \"MOVE CURSOR TO DISSOLVE\" hint bottom-right, and a small date tag rotated on the left edge. Premium editorial poster look, all text crisp.",
-          "result_video": "/ui_views/assets/video-shellgraphic.mp4"
+          "result_video": "https://quadcodeguide.vercel.app/ui_views/assets/video-shellgraphic.mp4"
         }
       ],
       "result": "An interactive particle-poster web page that dissolves under the cursor — recorded here as a 13-second clip, ready for your portfolio or socials."
@@ -683,7 +651,7 @@
       "level": "Middle+",
       "models": "GPT-Image, Seedance",
       "trending": true,
-      "video": "/ui_views/assets/video-airpods-max-montage.mp4",
+      "video": "https://quadcodeguide.vercel.app/ui_views/assets/video-airpods-max-montage.mp4",
       "poster": "/ui_views/assets/video-airpods-max-poster.jpg",
       "steps": [
         {
@@ -696,25 +664,25 @@
           "title": "Shot 1 — the reveal",
           "text": "Feed the storyboard frame into Seedance and generate the opening clip. One box, one light, nothing else.",
           "prompt": "A pristine white product box on a dark reflective floor under one soft spotlight. The lid slowly lifts and warm light blooms from inside, revealing silver over-ear headphones nested in the packaging. Slow overhead push-in, quiet and premium, dark studio, no text.",
-          "result_video": "/ui_views/assets/video-airpods-clip-unboxing.mp4"
+          "result_video": "https://quadcodeguide.vercel.app/ui_views/assets/video-airpods-clip-unboxing.mp4"
         },
         {
           "title": "Shot 2 — the hero",
           "text": "Now the money shot: the product alone on black with light doing all the work.",
           "prompt": "Silver over-ear headphones float centered on a pure black background. A single specular light streak sweeps across the aluminium ear cups as the product slowly rotates. Slow drifting camera, high-contrast studio lighting, shallow depth of field, premium ad style, no text.",
-          "result_video": "/ui_views/assets/video-airpods-clip-hero.mp4"
+          "result_video": "https://quadcodeguide.vercel.app/ui_views/assets/video-airpods-clip-hero.mp4"
         },
         {
           "title": "Shot 3 — real life",
           "text": "One lifestyle clip so the product lives outside the studio. Keep it moody and cinematic.",
           "prompt": "A young man wearing silver over-ear headphones walks away from camera through a neon-lit city street at night, wet asphalt reflecting the signs, cinematic bokeh from car lights, smooth forward tracking shot, moody, immersive and premium.",
-          "result_video": "/ui_views/assets/video-airpods-clip-lifestyle.mp4"
+          "result_video": "https://quadcodeguide.vercel.app/ui_views/assets/video-airpods-clip-lifestyle.mp4"
         },
         {
           "title": "Shot 4 — the end card",
           "text": "Close on the brand, then stitch all four clips together in any editor.",
           "prompt": "Silver over-ear headphones stand centered on a glossy black floor with a soft mirror reflection. The camera pushes in slowly while the light gently dims to black. Minimal premium brand end-card mood, elegant and calm, no text.",
-          "result_video": "/ui_views/assets/video-airpods-clip-endcard.mp4"
+          "result_video": "https://quadcodeguide.vercel.app/ui_views/assets/video-airpods-clip-endcard.mp4"
         }
       ],
       "result": "A slick, ad-style product montage ready to post or use as a promo video."
