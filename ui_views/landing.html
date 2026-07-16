@@ -1327,6 +1327,14 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     transition: transform .55s var(--ease-out);
   }
   .card:hover .cover-video { transform: scale(1.03); }
+  /* lazy poster placeholder: sits behind the video, browser defers its fetch
+     until near-viewport (unlike a native <video poster> which loads eagerly) */
+  .cover-video-poster {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: top center;
+    border-radius: inherit; z-index: 0;
+  }
+  .card .cover-video { position: relative; z-index: 1; }
   .play-badge {
     position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
     width: 52px; height: 52px; border-radius: 999px;
@@ -2784,8 +2792,33 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       const wrap = media.closest('.cover-wrap, .m-step-media');
       (wrap || media).classList.add('ready');
     }
+    // A video that's still stalled 8s after 'waiting'/'stalled' fired is not
+    // "buffering", it's dead (bad edge, throttled connection, broken file).
+    // Stop the spinner from spinning forever and drop back to a plain poster.
+    function stallFallback(v) {
+      if (!v || !v.isConnected) return;
+      const wrap = v.closest('.cover-wrap, .m-cover-wrap, .m-step-media');
+      if (wrap) wrap.classList.remove('buffering');
+      if (v.readyState >= 3) return; // it recovered on its own, leave it alone
+      const poster = v.getAttribute('poster') || v.getAttribute('data-poster') || '';
+      if (!poster || !wrap || wrap.querySelector('img.media-fallback')) return;
+      const img = document.createElement('img');
+      img.className = (v.classList.contains('m-cover') ? 'm-cover' : 'cover') + ' media-fade media-fallback ready';
+      img.src = poster;
+      img.alt = '';
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      v.replaceWith(img);
+      markReady(img);
+    }
     function ensureVideoSrc(v) {
       if (!v) return v;
+      // native poster only fetched now (near-viewport/on intent), never eagerly at parse time
+      const posterUrl = v.getAttribute('data-poster');
+      if (posterUrl && !v.getAttribute('poster')) {
+        v.setAttribute('poster', posterUrl);
+        v.removeAttribute('data-poster');
+      }
       if (v.getAttribute('src')) return v;
       const url = v.getAttribute('data-src');
       if (!url) return v;
@@ -2836,14 +2869,20 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           // when src eventually loads, keep buffering UX
           const wrap = v.closest('.cover-wrap, .m-step-media');
           if (wrap) {
-            let bufT = 0;
-            const showBuf = () => { clearTimeout(bufT); bufT = setTimeout(() => wrap.classList.add('buffering'), 150); };
-            const hideBuf = () => { clearTimeout(bufT); wrap.classList.remove('buffering'); };
+            let bufT = 0, stuckT = 0;
+            const showBuf = () => {
+              clearTimeout(bufT); clearTimeout(stuckT);
+              bufT = setTimeout(() => wrap.classList.add('buffering'), 150);
+              // never spin forever: a real stall (dead CDN edge, throttled network,
+              // corrupt file) must fall back to the static poster after 8s, not hang
+              stuckT = setTimeout(() => stallFallback(v), 8000);
+            };
+            const hideBuf = () => { clearTimeout(bufT); clearTimeout(stuckT); wrap.classList.remove('buffering'); };
             ['waiting', 'stalled', 'seeking'].forEach(e => v.addEventListener(e, showBuf));
             ['playing', 'canplay', 'pause', 'seeked', 'error', 'emptied'].forEach(e => v.addEventListener(e, hideBuf));
           }
           v.addEventListener('error', () => {
-            const poster = v.getAttribute('poster') || '';
+            const poster = v.getAttribute('poster') || v.getAttribute('data-poster') || '';
             const wrapEl = v.closest('.cover-wrap, .m-cover-wrap, .m-step-media');
             if (poster && wrapEl && !wrapEl.querySelector('img.media-fallback')) {
               const img = document.createElement('img');
@@ -2862,9 +2901,13 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         // buffering spinner: show ring if playback stalls for >150ms
         const wrap = v.closest('.cover-wrap, .m-step-media');
         if (wrap) {
-          let bufT = 0;
-          const showBuf = () => { clearTimeout(bufT); bufT = setTimeout(() => wrap.classList.add('buffering'), 150); };
-          const hideBuf = () => { clearTimeout(bufT); wrap.classList.remove('buffering'); };
+          let bufT = 0, stuckT = 0;
+          const showBuf = () => {
+            clearTimeout(bufT); clearTimeout(stuckT);
+            bufT = setTimeout(() => wrap.classList.add('buffering'), 150);
+            stuckT = setTimeout(() => stallFallback(v), 8000);
+          };
+          const hideBuf = () => { clearTimeout(bufT); clearTimeout(stuckT); wrap.classList.remove('buffering'); };
           ['waiting', 'stalled', 'seeking'].forEach(e => v.addEventListener(e, showBuf));
           ['playing', 'canplay', 'pause', 'seeked', 'error', 'emptied'].forEach(e => v.addEventListener(e, hideBuf));
         }
@@ -3270,7 +3313,9 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         : '';
       c.innerHTML =
         (g.video
-          ? '<div class="cover-wrap"><video class="cover-video media-fade ready" data-src="' + esc(g.video) + '"' + (g.poster ? ' poster="' + esc(g.poster) + '"' : '') + ' muted loop playsinline preload="none"></video><div class="play-badge"></div>' + coverOverlay + progressUi + '</div>'
+          ? '<div class="cover-wrap">' +
+              (g.poster ? '<img class="cover-video-poster" src="' + esc(g.poster) + '" alt="" loading="lazy" decoding="async">' : '') +
+              '<video class="cover-video media-fade ready" data-src="' + esc(g.video) + '"' + (g.poster ? ' data-poster="' + esc(g.poster) + '"' : '') + ' muted loop playsinline preload="none"></video><div class="play-badge"></div>' + coverOverlay + progressUi + '</div>'
           : (thumb ? '<div class="cover-wrap"><img class="cover" src="' + esc(thumb) + '" alt="" loading="lazy" decoding="async">' + coverOverlay + progressUi + '</div>'
             : (progressUi ? '<div class="cover-wrap" style="min-height:12px">' + progressUi + '</div>' : ''))) +
         '<div class="cat-label">' + catIconHtml(g.cat) + '<span>' + esc(g.cat) + '</span>' + (g.sub ? '<span class="sub-label">' + esc(g.sub) + '</span>' : '') + '</div>' +
