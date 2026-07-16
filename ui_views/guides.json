@@ -14,19 +14,19 @@
       "id": "screenshot-to-pixel-perfect-ui",
       "cat": "Interfaces",
       "sub": "Pixel-Perfect",
-      "title": "Turn a Screenshot into Pixel-Perfect Working Code",
-      "desc": "Hand the agent one UI screenshot — get back real, responsive HTML/CSS/JS that matches it down to the spacing and gradient, not just 'looks kinda like it'.",
-      "time": "9 min",
-      "level": "Middle",
+      "title": "Screenshot to Pixel-Perfect UI — Now with a Premium Redesign",
+      "desc": "Hand the agent one UI screenshot — get back real, responsive, interactive code. Then push it further: living animated cover art, full playback states, draggable waveform, and a premium glass-and-gold visual pass.",
+      "time": "14 min",
+      "level": "Middle+",
       "models": "None — Quadcode.ai IDE agent (canvas pixel-sampling + browser screenshot verification loop)",
       "trending": true,
-      "poster": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/screenshot-to-pixel-perfect-ui/music_player_card-Z37QKbm0X8bOP83uYbxwGXzddx7zng.png",
+      "poster": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/screenshot-to-pixel-perfect-ui/0716_191633146_brw_ss-3VCHW4EicRtHYUb6dzClib22y7Tetc.png",
       "steps": [
         {
           "title": "1. Start from one screenshot — that's the whole spec",
           "text": "No Figma file, no design tokens. Just a single UI screenshot of a 'Now Playing' music widget. The image itself becomes the style guide: every color, radius and gap gets pulled straight from its pixels instead of guessed.",
           "prompt": "",
-          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/screenshot-to-pixel-perfect-ui/music_player_card-7iqlkVKuPlBUGy6fanQdih7qw0Uz3a.png"
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/screenshot-to-pixel-perfect-ui/music_player_card-WMAl9m20k6hrhMCIwLniW4GmV2uZr7.png"
         },
         {
           "title": "2. Measure the reference, don't eyeball it",
@@ -34,19 +34,49 @@
           "prompt": "const ctx = canvas.getContext('2d');\nctx.drawImage(img, 0, 0);\n// sample any pixel for its exact color\nconst [r, g, b] = ctx.getImageData(x, y, 1, 1).data;\n// scan a line to find where a UI element's edge actually is\nfor (let x = 0; x < width; x++) { /* compare brightness deltas */ }"
         },
         {
-          "title": "3. Build the real component — HTML/CSS + minimal JS",
-          "text": "Recreate the card as one responsive file: flexbox layout, CSS gradients for the accent color and album art, clamp() for fluid sizing across screen widths, plus a few lines of vanilla JS for the interactive bits — draggable progress and volume bars, play/pause and like toggles. No framework, no build step.",
+          "title": "3. Build the base component — HTML/CSS + minimal JS",
+          "text": "Recreate the card as one responsive file: flexbox layout, CSS gradients for the accent color and album art, clamp() for fluid sizing, plus vanilla JS for the interactive bits. No framework, no build step — verified with a side-by-side against the source until proportions matched exactly.",
           "prompt": "",
-          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/screenshot-to-pixel-perfect-ui/0716_190640803_brw_ss-xKyNfsp94K5a4AmW9MZk6CC0ZJVe37.png"
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/screenshot-to-pixel-perfect-ui/0716_190559860_brw_ss-EO53VMsb6G92b9vXK5sVkGkAHD92vG.png"
         },
         {
-          "title": "4. Verify with a side-by-side, not a guess",
-          "text": "Screenshot the rendered component at the same scale as the source and compare proportions directly. First pass had the space below the album art too generous, throwing off the card's aspect ratio — tightened the margins, re-measured, matched. Then confirmed it's a real working component, not a static image: play toggles to pause, the heart fills in, both bars are actually draggable.",
+          "title": "4. Round 2: a living album cover, not a static swatch",
+          "text": "Swapped the flat gradient square for a layered composition — drifting radial gradients that slowly shift and breathe, plus a soft diagonal shine sweep that passes over the art every few seconds. It reacts to state: motion pauses the instant playback pauses, no separate toggle needed.",
           "prompt": "",
-          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/screenshot-to-pixel-perfect-ui/0716_190559860_brw_ss-JIrsNr9MWU0vp1Icx1mO9mrjYkS0hy.png"
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/screenshot-to-pixel-perfect-ui/0716_191600670_brw_ss-Rcqyt9R4lWAkXdKyEEGQiTZebkjYfz.png"
+        },
+        {
+          "title": "5. Real playback states, not just play/pause",
+          "text": "Added a proper state machine: idle → loading → playing → paused. Switching tracks (via Next/Prev or the queue) triggers a short loading state — spinner over the play button, title/artist cross-fade, cover art swaps gradient — before the new track starts, instead of an instant unrealistic cut.",
+          "prompt": "",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/screenshot-to-pixel-perfect-ui/0716_191611081_brw_ss-29LVMwUi4v4paS4XKRn4jvB5eZC8HE.png"
+        },
+        {
+          "title": "6. Draggable waveform progress + smart volume",
+          "text": "Replaced the plain progress line with a 46-bar waveform (two identical bar sets layered — one gray, one gradient-filled and width-clipped to the progress %). Fully draggable with a live time tooltip, and the timer auto-advances every second while playing. Volume follows the same drag pattern, with a mute button that remembers your last level and swaps its icon between muted/low/high.",
+          "prompt": "",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/screenshot-to-pixel-perfect-ui/0716_191713352_brw_ss-7rpqwx78Ybi9qbvicsydLg67AVit3K.png"
+        },
+        {
+          "title": "7. Like button with a real micro-interaction",
+          "text": "Tapping like doesn't just flip a color — it pops the button (scale bounce) and bursts 8 tiny heart/spark particles outward that fade over ~0.85s, generated and cleaned up on the fly with no extra assets.",
+          "prompt": "",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/screenshot-to-pixel-perfect-ui/0716_191600670_brw_ss-0L5KSZ7PAEwKxAhevkrLCgFgJnelK5.png"
+        },
+        {
+          "title": "8. Shuffle, repeat, and an 'Up Next' queue",
+          "text": "Added shuffle and repeat toggles (gold accent + dot indicator when active) and a scrollable queue below the player showing the next tracks with mini cover swatches — click any of them to jump straight to that track, triggering the same loading transition.",
+          "prompt": "",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/screenshot-to-pixel-perfect-ui/0716_191722413_brw_ss-OzP8vtvDQfGhpX42V8bkilsUKhn7T1.png"
+        },
+        {
+          "title": "9. The premium visual pass",
+          "text": "Final polish layer: a slowly rotating conic-gradient border (purple → blue → gold) around the whole card, a gold 'PREMIUM' badge and 'Lossless' chip, an animated equalizer indicator, Fraunces serif italic for the track title, blurred ambient color blobs drifting behind the card, a subtle film-grain overlay, and a soft 3D tilt that follows the cursor. Same layout and logic underneath — just dressed up.",
+          "prompt": "",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/screenshot-to-pixel-perfect-ui/0716_191633146_brw_ss-dfEIUeJgQQ1v1o1shmz3GnaE1x6XiJ.png"
         }
       ],
-      "result": "A fully responsive, interactive HTML/CSS/JS music player component pixel-matched to its source screenshot — draggable progress & volume bars, working play/pause and like toggle, one file, zero dependencies."
+      "result": "A fully responsive, interactive premium music player component: animated cover art, real loading/playing/paused states, draggable waveform + volume, shuffle/repeat, an up-next queue, and a rotating gold-and-gradient visual finish — one file, zero dependencies."
     },
     {
       "id": "liquid-ai-essence-orb",
