@@ -11,6 +11,38 @@
   ],
   "guides": [
     {
+      "id": "plug-dynamic-ui-panel-qcai-ide",
+      "cat": "Design",
+      "sub": "IDE Tooling",
+      "title": "Plug a Live Data Panel into the Quadcode.ai IDE",
+      "desc": "Turn any project HTML page into a persistent, two-way IDE sidebar panel that reads and writes real project files — no build step, no restart.",
+      "time": "5 min",
+      "level": "Middle",
+      "models": "None — pure Quadcode.ai IDE bridge (window.QC) + vanilla HTML/JS",
+      "poster": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/plug-dynamic-ui-panel-qcai-ide/0716_173301854_brw_ss-zqmF2IocHINu9WippnScNKfZrBdiVk.png",
+      "steps": [
+        {
+          "title": "Build the panel page",
+          "text": "Create a small HTML/JS page in ui_views/ that follows the IDE bridge pattern: FOUC guard, QC.ready(), QC.style.applyMainCss(), then load live state with fetch() from a project-relative JSON file. Here it's a sticky-notes widget reading ui_views/demo_notes_data.json.",
+          "prompt": "Create a live sticky-notes panel in ui_views/demo_notes_panel.html that reads/writes ui_views/demo_notes_data.json using the Quadcode.ai IDE bridge (QC), following skill dev_create_meta_ui_to_work_with_project_data_using_html_js.",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/plug-dynamic-ui-panel-qcai-ide/0716_173301854_brw_ss-SRswwMoK0UclvmGYEYJZdlUAxIJcAf.png"
+        },
+        {
+          "title": "Register it as an IDE panel",
+          "text": "Add one entry to .quadcodeai/dynamic_widgets.yaml with the panel side (left/center/bottom/right), a name and a description. Save the file — the new tab appears live in the IDE sidebar instantly, no restart needed.",
+          "prompt": "dynamic_widgets:\n- description: Live sticky-notes panel wired to project data — add/delete notes, read/write ui_views/demo_notes_data.json in real time, no restart needed.\n  name: Notes\n  panel: right\n  source: ui_views/demo_notes_panel.html",
+          "result_image": ""
+        },
+        {
+          "title": "Use it live — two-way data sync",
+          "text": "Type a note, pick a color and hit Add. The panel calls QC.ui.requestPermission() then QC.actions.ToolTextFileEdit() to write straight to ui_views/demo_notes_data.json on disk — verified instantly, no page reload, no server. Delete works the same way in reverse.",
+          "prompt": "",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/plug-dynamic-ui-panel-qcai-ide/0716_173346769_brw_ss-r4GzNJHHehX8GDI4ttuGZXm4DhahGX.png"
+        }
+      ],
+      "result": "A fully working, git-trackable IDE panel wired to real project files — live two-way sync, zero backend, appears in the sidebar the moment the YAML entry is saved."
+    },
+    {
       "id": "quadcode-ui-workflow-optimize",
       "cat": "Interfaces",
       "sub": "Workflow",
