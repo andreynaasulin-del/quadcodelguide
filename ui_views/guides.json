@@ -11,6 +11,63 @@
   ],
   "guides": [
     {
+      "id": "flowforge-monochrome-workflow-editor",
+      "cat": "Design",
+      "sub": "Product / Web App",
+      "title": "FlowForge: a monochrome workflow-diagram editor, built from scratch",
+      "desc": "A full black-and-white SaaS build: animated landing page, node-based diagram editor, a systemized logo/brand kit, and pixel-exact favicon/OG assets, all vanilla JS with zero dependencies.",
+      "time": "60 min",
+      "level": "Middle+",
+      "models": "Nanobanana (brand illustrations), HTML/canvas render (favicon & OG rasterization)",
+      "trending": true,
+      "image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/flowforge-monochrome-workflow-editor/0717_002621416_brw_ss-M5z2TLpsEDUVY1waxjQi89GgEY01kZ.png",
+      "steps": [
+        {
+          "title": "1. Lock the design tokens before anything else",
+          "text": "Start with a single tokens.css file: a strict two-color palette (#0a0a0a ink / #ffffff paper, plus muted greys, no color accent anywhere), Inter for UI type and JetBrains Mono for code/labels, and named easing curves (--ease-out, --ease-in-out, --ease-spring) with duration tokens instead of magic numbers scattered across files. This single source of truth is what keeps every later screen, illustration and animation feeling like one product. Also bake in prefers-reduced-motion support globally from day one.",
+          "prompt": "",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/flowforge-monochrome-workflow-editor/logo_system-fkTC97sYQH4g6Pf6px0Hocbblftjn6.png"
+        },
+        {
+          "title": "2. Build the hero with a live animated diagram, not a static screenshot",
+          "text": "The hero's centerpiece is a real inline SVG workflow (Start -> Send welcome / Verify email -> Active? -> Done) with CSS-driven entrance animation and a traveling pulse dot that runs along the actual connector path (offset-path), so the very first thing a visitor sees is the product's core interaction, not a mockup. Nodes fade/scale in with staggered delays; the pulse loops continuously at a slow, calm pace to match the monochrome, unhurried brand tone.",
+          "prompt": "",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/flowforge-monochrome-workflow-editor/0717_002621416_brw_ss-eV9EO2Nr3fzwgRMRNIaNicWUkLg1c7.png"
+        },
+        {
+          "title": "3. Ship the feature grid with a real editorial art band",
+          "text": "Instead of another row of flat icon cards, each major section (Features, Logic) opens with a full-bleed black-and-white editorial illustration, generated to match the brand's exact visual language: fine halftone grain, raking studio light, one small open-node/filled-node motif echoing the logomark. This turns a generic SaaS feature list into something with an actual point of view. Underneath, six feature cards cover node canvas, bezier links, logic templates, export, autosave and keyboard-first controls.",
+          "prompt": "Editorial black-and-white illustration, precision engineering close-up: clean geometric mechanical parts (gears, pins, calipers) mid-assembly, fine halftone/print-grain texture, strong raking studio light, deep blacks, no color anywhere, generous negative space for text overlay.",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/flowforge-monochrome-workflow-editor/0717_002629872_brw_ss-sRDYECRMzZLSKpcVqWUX4NSm550o1Z.png"
+        },
+        {
+          "title": "4. Build the node-based canvas: drag, drop, connect",
+          "text": "The editor (app.html) has a real pan/zoom canvas with six node types (start, action, condition, loop, parallel, end), each dragged in from a left palette. Edges are smooth SVG bezier curves drawn live while connecting two ports, including backward-loop routing so retry/rollback arrows curve around instead of overlapping nodes. Node position lives on a transform-only wrapper (GPU-accelerated), decoupled from the node's own entrance-scale animation, so dragging never fights the mount animation.",
+          "prompt": "",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/flowforge-monochrome-workflow-editor/0717_002613388_brw_ss-VOBx1pOpeLIGe5zB3qGaPhRKKrWg1S.png"
+        },
+        {
+          "title": "5. Ship four ready-made logic templates, not a blank canvas",
+          "text": "A blank canvas is intimidating. FlowForge ships four one-click templates that cover the four core branching patterns any workflow tool needs to demonstrate: Approval chain (sequential sign-off with escalation branches), CI/CD pipeline (linear stages with a retry loop), User onboarding (parallel fan-out) and ETL / data flow (merge + quality-gate routing). Each template card on the landing page previews its own miniature diagram so the pattern is recognizable before you even open the editor.",
+          "prompt": "Editorial black-and-white illustration, architectural branching motif: thin rigid lines diverging from one origin point and reconverging, like a railway switchyard or split optical fibers, fine halftone grain, strong directional light, no color.",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/flowforge-monochrome-workflow-editor/0717_002639031_brw_ss-Bb0rB6UU37gcKKgpWochtg3ehWRhhn.png"
+        },
+        {
+          "title": "6. Close with pricing and a brand-illustration CTA band",
+          "text": "Pricing stays true to the 'two colors, three plans' promise: a free Sketch tier, a Studio team tier, and a Forge enterprise tier, no fourth color, no exceptions. The final CTA band uses the same node/edge editorial illustration as a real background image (dark gradient overlay for text contrast) instead of a flat solid block, so even the last screen before conversion reinforces the brand world rather than defaulting to a plain color rectangle.",
+          "prompt": "",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/flowforge-monochrome-workflow-editor/0717_002648414_brw_ss-0Az3hm1hCKqVnhlJ2htOC7ew1nX6Hi.png"
+        },
+        {
+          "title": "7. Systemize the logo into a real favicon + OG asset pipeline",
+          "text": "The logomark (rounded tile, one open node, one filled node, one diagonal edge) is defined once as an exact SVG and never redrawn or reinterpreted. Favicons (32px, 192px, 180px apple-touch-icon) and the 1200x630 Open Graph banner are produced via deterministic HTML/canvas rendering of that same SVG, not AI regeneration, so the tab icon and the social-share card are pixel-identical to the logo in the navbar. Gotcha worth documenting: rendering directly at very small canvas sizes (32-192px) corrupted the output; rendering at 512x512 first and downscaling fixed it completely. A full brandbook overview board and a standalone editorial illustration round out the identity kit.",
+          "prompt": "Premium brand guidelines overview board, 3x3 grid: logomark construction, digital app usage, brand essence, color system (strict monochrome), typography, physical/print application, image direction, UI system. Black-and-white, gallery-quality, no color accents.",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/flowforge-monochrome-workflow-editor/brandbook_overview-MrT7hUQ9ww7iCGdZK4eo8uXhhpUR1Y.png"
+        }
+      ],
+      "result": "A complete, deployable monochrome SaaS: an animated marketing site, a working node-based diagram editor with JSON/SVG export and localStorage autosave, a systemized logo/brand kit, and a pixel-exact favicon/OG pipeline, all in vanilla HTML/CSS/JS with no build step and no dependencies."
+    },
+    {
       "id": "screenshot-to-pixel-perfect-ui",
       "cat": "Interfaces",
       "sub": "Pixel-Perfect",
