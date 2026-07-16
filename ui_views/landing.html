@@ -2344,6 +2344,22 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           '3) Run publish_case (or the project publish script) so the entry lands in guides.json.\n' +
           '4) Validate required fields and that media URLs resolve before go-live.\n' +
           'Do not invent Blob credentials; follow the repo publish flow and report the new guide id.'
+      },
+      {
+        id: 'project-roadmap-tracker',
+        tag: 'Workflow',
+        icon: 'chart',
+        title: 'Project roadmap tracker',
+        desc: 'Turn a feature brief into a phased Gantt plan with owners and an at-risk flag, kept live in the Plan tab.',
+        trigger: 'When you ask in Quadcode chat',
+        tools: ['Plan', 'Team & Tasks'],
+        body:
+          'When invoked, turn a feature or product brief into a live phased plan in the Quadcode Plan tab.\n' +
+          '1) Break the brief into phases (e.g. Foundation, Core Development, Integrations, Beta, Launch), each with a target completion date.\n' +
+          '2) List concrete tasks per phase — one owner, one status (Done / In progress / To do), one date range each.\n' +
+          '3) Build the Gantt timeline from those dates; flag any phase under ~50% done as "at risk" and surface the next milestone.\n' +
+          '4) Mirror the same tasks into Team & Tasks per teammate so nobody has an empty or overloaded queue.\n' +
+          'Do not invent dates, owners, or headcount — ask for the real team and milestones before locking the plan.'
       }
     ];
 
@@ -2398,6 +2414,11 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         '<path d="M9 18V6.5l11-2V16"/>' +
         '<circle cx="6.5" cy="18" r="2.5"/>' +
         '<circle cx="17.5" cy="16" r="2.5"/>',
+      chart:
+        '<rect x="3" y="5" width="9" height="3" rx="1"/>' +
+        '<rect x="3" y="10.5" width="15" height="3" rx="1"/>' +
+        '<rect x="3" y="16" width="6" height="3" rx="1"/>' +
+        '<path d="M17.5 8v10.5" stroke-dasharray="1.5 2"/>',
       image:
         '<rect x="3.5" y="4.5" width="17" height="15" rx="2"/>' +
         '<circle cx="9" cy="10" r="1.6"/>' +
