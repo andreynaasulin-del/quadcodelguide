@@ -651,6 +651,118 @@
         }
       ],
       "result": "A slick, ad-style product montage ready to post or use as a promo video."
+    },
+    {
+      "id": "velvet-hour-ad-instrumental",
+      "cat": "Music",
+      "sub": "Neo-Soul Jazz",
+      "title": "Score a premium ad instrumental with Suno",
+      "desc": "A logo-safe neo-soul jazz R&B bed for ads — a clean 4-bar intro and edit points built into the prompt, no vocals.",
+      "time": "6 min",
+      "date": "2026-07-16",
+      "level": "Junior",
+      "models": "Suno, GPT-Image",
+      "image": "/ui_views/assets/music-velvet-hour-2-cover.png",
+      "audio": "/ui_views/assets/music-velvet-hour-2.mp3",
+      "steps": [
+        {
+          "title": "Set the genre and instrumentation",
+          "text": "Name the exact instruments and mood in one line — Suno reads this as the song's DNA. Real instrument names like 'Rhodes' and 'upright bass' beat vague words like 'jazzy'.",
+          "prompt": "smooth neo-soul jazz R&B ad instrumental, warm Rhodes electric piano, brushed drums, walking upright bass, muted trumpet, elegant and luxurious late-evening lounge, relaxed 85 BPM"
+        },
+        {
+          "title": "Write the ad structure into the prompt",
+          "text": "Ads get cut at random timestamps, so build the cut points into the brief. A clean instrument-only intro before the groove locks in gives editors a logo-safe opening every time.",
+          "prompt": "Premium ad instrumental, smooth neo-soul jazz R&B at 85 BPM. Structure for ads: 4-bar clean intro (Rhodes only, logo-safe), full groove enters at bar 5, gentle brushed drums, walking upright bass, lush Rhodes chords, tasteful muted trumpet melody, soft dynamic lift in the middle, calm resolved ending with a short natural tail. Clear 4-bar edit points throughout, no vocals, refined, warm, upscale and understated."
+        },
+        {
+          "title": "Design a cover that sounds like the track",
+          "text": "Skip literal instrument photos. Describe a surreal scene that matches the mood — velvet fabric, slow motion, gold light — and GPT-Image turns the feeling into an image.",
+          "prompt": "An experimental surreal album cover artwork for a smooth neo-soul jazz R&B instrumental called \"Velvet Hour II\", wide 16:10 composition, high-end editorial art photography. Core idea: a brass trumpet half-submerged in a slow-motion ocean of flowing liquid velvet fabric — deep wine-red and burnt-orange silk waves frozen mid-ripple, the trumpet sinking into the fabric like into thick honey. Lighting: single dramatic golden spotlight from upper left, deep wine-red shadow falloff, rich chiaroscuro, photorealistic render with editorial fashion-campaign polish.",
+          "result_image": "/ui_views/assets/music-velvet-hour-2-cover.png"
+        },
+        {
+          "title": "Generate a few takes and pick the cleanest",
+          "text": "Suno gives you several versions per prompt. Keep the take with the tightest 4-bar intro and the smoothest mid-track lift — that's the one editors can actually cut around. Press play above to hear the result.",
+          "prompt": ""
+        }
+      ],
+      "result": "A 90-second ad-ready instrumental with a logo-safe intro and clean 4-bar edit points, paired with a matching surreal cover — ready to drop under any premium product spot."
+    },
+    {
+      "id": "brass-marble-ad-instrumental",
+      "cat": "Music",
+      "sub": "Jazz-Funk Groove",
+      "title": "Cut a rhythm-driven ad groove with built-in edit points",
+      "desc": "An uptempo jazz-funk groove where brass stabs every 2 bars double as ready-made cut points for fast product montages.",
+      "time": "6 min",
+      "date": "2026-07-16",
+      "level": "Junior",
+      "models": "Suno, GPT-Image",
+      "trending": true,
+      "image": "/ui_views/assets/music-brass-marble-cover.png",
+      "audio": "/ui_views/assets/music-brass-marble.mp3",
+      "steps": [
+        {
+          "title": "Lock the groove and instrumentation",
+          "text": "State the tempo and the instruments that carry the rhythm. A punchy bass line plus brass stabs is what makes a track feel expensive instead of generic funk.",
+          "prompt": "uptempo jazz-funk R&B groove ad instrumental, tight punchy bass line, staccato brass section stabs, clean electric guitar, finger snaps, confident luxurious energy, polished studio production, 105 BPM"
+        },
+        {
+          "title": "Turn brass stabs into edit points",
+          "text": "Ask for accents on a fixed bar count — 'every 2 bars' — so every stab lands on a clean cut. That single instruction is what makes the track editable instead of just danceable.",
+          "prompt": "Confident premium ad instrumental, uptempo jazz-funk R&B groove at 105 BPM. Tight punchy bass line drives throughout, staccato brass stabs (sax and trumpet) accenting every 2 bars as natural cut points for video editing, clean funky electric guitar comping, finger snaps on backbeat. Structure: 2-bar drum-and-snap intro, groove locks in, brass hook, breakdown to bass and snaps mid-track, full hook returns, hard clean ending on a downbeat. No vocals, polished, energetic but expensive-sounding."
+        },
+        {
+          "title": "Design a cover with attitude",
+          "text": "Match the track's confidence with a scene that has tension in it — something breaking open, not just sitting still. A calm product shot would undersell a groove this punchy.",
+          "prompt": "An experimental surreal album cover artwork for an uptempo jazz-funk R&B groove instrumental called \"Brass & Marble\", wide 16:10 composition, high-end sculptural art photography. Core idea: a classical white marble statue bust cracked open across the chest — and from inside the cracks, polished brass is bursting out: a gleaming tenor saxophone bell erupting through the shattered marble chest, fragments of marble suspended mid-explosion. Lighting: hard-edged studio spotlight from the right, warm golden key on the brass, cool neutral fill on the marble, dark charcoal-to-black background, glossy floor reflection, photorealistic.",
+          "result_image": "/ui_views/assets/music-brass-marble-cover.png"
+        },
+        {
+          "title": "Generate and pick the punchiest take",
+          "text": "Run it a few times and keep the version where the brass stabs actually land tight on the 2-bar grid — a lazy stab kills the whole edit-point idea. Press play above to hear the result.",
+          "prompt": ""
+        }
+      ],
+      "result": "A 90-second jazz-funk ad groove with brass stabs every 2 bars, ready-cut for fast product montages, plus a cover that matches its energy."
+    },
+    {
+      "id": "after-midnight-ad-instrumental",
+      "cat": "Music",
+      "sub": "Downtempo Soul",
+      "title": "Build a VO-safe soul bed for voiceover ads",
+      "desc": "A sparse downtempo R&B instrumental that deliberately leaves the vocal range open — built to sit under a voiceover, not fight it.",
+      "time": "6 min",
+      "date": "2026-07-16",
+      "level": "Junior",
+      "models": "Suno, GPT-Image",
+      "image": "/ui_views/assets/music-after-midnight-cover.png",
+      "audio": "/ui_views/assets/music-after-midnight.mp3",
+      "steps": [
+        {
+          "title": "Set a deliberately sparse mood",
+          "text": "Ask for space between the notes, not just 'slow'. Sparse piano with room to breathe reads as premium; a full arrangement at this tempo just reads as slow and dull.",
+          "prompt": "slow-burn downtempo R&B soul ad instrumental, sparse lonely piano, deep sub bass, minimal slow beat, breathy tenor saxophone phrases, vinyl crackle warmth, intimate minimalist late-night mood, 70 BPM"
+        },
+        {
+          "title": "Leave room for a voiceover",
+          "text": "Say the frequency range out loud — '1-4 kHz open' — so the arrangement stays out of the way of a narrator. This one line is the difference between a VO track and a track that competes with the VO.",
+          "prompt": "Intimate minimalist ad instrumental, slow-burn downtempo R&B soul at 70 BPM. Sparse lonely piano chords with space between them, deep soft sub bass, minimal laid-back beat, occasional breathy tenor saxophone phrases, subtle vinyl crackle texture. Arrangement stays open and uncluttered in the 1-4 kHz range so a voiceover can sit on top. Gentle swell in the middle, fades to piano and vinyl noise at the end. No vocals, seductive, calm, expensive."
+        },
+        {
+          "title": "Design a cover built on negative space",
+          "text": "Mirror the music in the image: mostly empty, one warm point of light. A busy cover would contradict a track built entirely around silence.",
+          "prompt": "An experimental minimal surreal album cover artwork for a slow-burn downtempo R&B soul instrumental called \"After Midnight\", wide 16:10 composition, fine-art night photography. Core idea: a vinyl record hanging in a pitch-black night sky as a full moon — its grooves glowing with a thin cold silver rim light, one warm amber beam from the record's center falling down like moonlight onto a vast dark ocean below made of glossy black piano keys stretching to the horizon like water. Lighting: near-total darkness, cold silver rim light on the vinyl moon, one single warm amber light beam as the only warm accent, deep black dominating 70% of the frame, photorealistic, cinematic.",
+          "result_image": "/ui_views/assets/music-after-midnight-cover.png"
+        },
+        {
+          "title": "Generate and pick the take with the most space",
+          "text": "Run a few takes and keep the one where the piano actually leaves gaps — some takes fill every bar out of habit, which defeats the point. Press play above to hear the result.",
+          "prompt": ""
+        }
+      ],
+      "result": "A 90-second VO-safe downtempo soul instrumental with an intentionally open midrange, paired with a cover built on the same idea: silence as the main character."
     }
   ]
 }
