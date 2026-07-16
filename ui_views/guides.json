@@ -11,6 +11,44 @@
   ],
   "guides": [
     {
+      "id": "screenshot-to-pixel-perfect-ui",
+      "cat": "Interfaces",
+      "sub": "Pixel-Perfect",
+      "title": "Turn a Screenshot into Pixel-Perfect Working Code",
+      "desc": "Hand the agent one UI screenshot — get back real, responsive HTML/CSS/JS that matches it down to the spacing and gradient, not just 'looks kinda like it'.",
+      "time": "9 min",
+      "level": "Middle",
+      "models": "None — Quadcode.ai IDE agent (canvas pixel-sampling + browser screenshot verification loop)",
+      "trending": true,
+      "poster": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/screenshot-to-pixel-perfect-ui/music_player_card-Z37QKbm0X8bOP83uYbxwGXzddx7zng.png",
+      "steps": [
+        {
+          "title": "1. Start from one screenshot — that's the whole spec",
+          "text": "No Figma file, no design tokens. Just a single UI screenshot of a 'Now Playing' music widget. The image itself becomes the style guide: every color, radius and gap gets pulled straight from its pixels instead of guessed.",
+          "prompt": "",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/screenshot-to-pixel-perfect-ui/music_player_card-7iqlkVKuPlBUGy6fanQdih7qw0Uz3a.png"
+        },
+        {
+          "title": "2. Measure the reference, don't eyeball it",
+          "text": "Load the screenshot into a browser <canvas> and sample real pixel data: background vs card-surface color, exact border-radius by scanning where colors change, content padding, and the accent gradient's hex values. That turns 'looks about right' into numbers you can actually build from.",
+          "prompt": "const ctx = canvas.getContext('2d');\nctx.drawImage(img, 0, 0);\n// sample any pixel for its exact color\nconst [r, g, b] = ctx.getImageData(x, y, 1, 1).data;\n// scan a line to find where a UI element's edge actually is\nfor (let x = 0; x < width; x++) { /* compare brightness deltas */ }"
+        },
+        {
+          "title": "3. Build the real component — HTML/CSS + minimal JS",
+          "text": "Recreate the card as one responsive file: flexbox layout, CSS gradients for the accent color and album art, clamp() for fluid sizing across screen widths, plus a few lines of vanilla JS for the interactive bits — draggable progress and volume bars, play/pause and like toggles. No framework, no build step.",
+          "prompt": "",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/screenshot-to-pixel-perfect-ui/0716_190640803_brw_ss-xKyNfsp94K5a4AmW9MZk6CC0ZJVe37.png"
+        },
+        {
+          "title": "4. Verify with a side-by-side, not a guess",
+          "text": "Screenshot the rendered component at the same scale as the source and compare proportions directly. First pass had the space below the album art too generous, throwing off the card's aspect ratio — tightened the margins, re-measured, matched. Then confirmed it's a real working component, not a static image: play toggles to pause, the heart fills in, both bars are actually draggable.",
+          "prompt": "",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/screenshot-to-pixel-perfect-ui/0716_190559860_brw_ss-JIrsNr9MWU0vp1Icx1mO9mrjYkS0hy.png"
+        }
+      ],
+      "result": "A fully responsive, interactive HTML/CSS/JS music player component pixel-matched to its source screenshot — draggable progress & volume bars, working play/pause and like toggle, one file, zero dependencies."
+    },
+    {
       "id": "liquid-ai-essence-orb",
       "cat": "Motion Design",
       "sub": "AI Substance",
