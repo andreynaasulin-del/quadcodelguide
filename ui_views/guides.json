@@ -49,33 +49,33 @@
       "id": "plug-dynamic-ui-panel-qcai-ide",
       "cat": "Design",
       "sub": "IDE Tooling",
-      "title": "Plug a Live Data Panel into the Quadcode.ai IDE",
-      "desc": "Turn any project HTML page into a persistent, two-way IDE sidebar panel that reads and writes real project files — no build step, no restart.",
+      "title": "Add a Live Panel to the Quadcode.ai IDE Sidebar",
+      "desc": "Build a small notes widget that lives in the IDE sidebar and saves straight to a project file — no server, no rebuild, just one HTML file and one config line.",
       "time": "5 min",
       "level": "Middle",
       "models": "None — pure Quadcode.ai IDE bridge (window.QC) + vanilla HTML/JS",
-      "poster": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/plug-dynamic-ui-panel-qcai-ide/0716_173301854_brw_ss-zqmF2IocHINu9WippnScNKfZrBdiVk.png",
+      "poster": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/plug-dynamic-ui-panel-qcai-ide/0716_174707924_brw_ss-ima4eDTBT8NvIqfdNjlku74OLMxKaV.png",
       "steps": [
         {
-          "title": "Build the panel page",
-          "text": "Create a small HTML/JS page in ui_views/ that follows the IDE bridge pattern: FOUC guard, QC.ready(), QC.style.applyMainCss(), then load live state with fetch() from a project-relative JSON file. Here it's a sticky-notes widget reading ui_views/demo_notes_data.json.",
-          "prompt": "Create a live sticky-notes panel in ui_views/demo_notes_panel.html that reads/writes ui_views/demo_notes_data.json using the Quadcode.ai IDE bridge (QC), following skill dev_create_meta_ui_to_work_with_project_data_using_html_js.",
-          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/plug-dynamic-ui-panel-qcai-ide/0716_173301854_brw_ss-SRswwMoK0UclvmGYEYJZdlUAxIJcAf.png"
+          "title": "What this actually is",
+          "text": "A sticky-notes widget that shows up as a tab in the IDE sidebar. Every note you add or delete is saved for real into a project file (ui_views/demo_notes_data.json) — instantly, no save button, no reload. Same idea works for any small tool: a task tracker, a checklist, a live status board.",
+          "prompt": "",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/plug-dynamic-ui-panel-qcai-ide/0716_174707924_brw_ss-bfi81vPeVFPF9N7olWZr9KgZRmnsJJ.png"
         },
         {
-          "title": "Register it as an IDE panel",
-          "text": "Add one entry to .quadcodeai/dynamic_widgets.yaml with the panel side (left/center/bottom/right), a name and a description. Save the file — the new tab appears live in the IDE sidebar instantly, no restart needed.",
-          "prompt": "dynamic_widgets:\n- description: Live sticky-notes panel wired to project data — add/delete notes, read/write ui_views/demo_notes_data.json in real time, no restart needed.\n  name: Notes\n  panel: right\n  source: ui_views/demo_notes_panel.html",
+          "title": "How it's built — 2 files, no backend",
+          "text": "File 1: ui_views/demo_notes_panel.html — the widget itself (HTML/CSS/JS), styled to match the IDE's own theme automatically (light/dark, colors, fonts — for free). File 2: one entry in .quadcodeai/dynamic_widgets.yaml telling the IDE 'show this file as a right-side panel called Notes'. Save the config, the tab appears — nothing to restart.",
+          "prompt": "dynamic_widgets:\n- description: Live sticky-notes panel wired to project data.\n  name: Notes\n  panel: right\n  source: ui_views/demo_notes_panel.html",
           "result_image": ""
         },
         {
-          "title": "Use it live — two-way data sync",
-          "text": "Type a note, pick a color and hit Add. The panel calls QC.ui.requestPermission() then QC.actions.ToolTextFileEdit() to write straight to ui_views/demo_notes_data.json on disk — verified instantly, no page reload, no server. Delete works the same way in reverse.",
+          "title": "Proof it's really live, not a mockup",
+          "text": "Typed a note, picked the cyan color dot, hit Add note — the badge count went from 3 to 4 instantly, and the exact text landed in the project's JSON file on disk (checked directly). Deleting a note removes it from the file the same way. That round-trip is the whole point: the panel and the project are the same data, always in sync.",
           "prompt": "",
-          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/plug-dynamic-ui-panel-qcai-ide/0716_173346769_brw_ss-r4GzNJHHehX8GDI4ttuGZXm4DhahGX.png"
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/plug-dynamic-ui-panel-qcai-ide/0716_174636991_brw_ss-OKLNX6Ab45suj9SY8PJGekJT5IvZKu.png"
         }
       ],
-      "result": "A fully working, git-trackable IDE panel wired to real project files — live two-way sync, zero backend, appears in the sidebar the moment the YAML entry is saved."
+      "result": "A working sidebar panel, wired to a real project file, styled to match the IDE automatically — built from a single HTML file and one YAML line, no backend and no build step."
     },
     {
       "id": "quadcode-ui-workflow-optimize",
