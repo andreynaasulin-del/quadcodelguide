@@ -11,6 +11,41 @@
   ],
   "guides": [
     {
+      "id": "liquid-ai-essence-orb",
+      "cat": "Motion Design",
+      "sub": "AI Substance",
+      "title": "Make a liquid AI \"essence\" orb (Siri/Gemini-style)",
+      "desc": "Create a glossy purple liquid-metal blob that morphs and flows in place — the kind of living AI voice-orb you see in ChatGPT and Yandex Music.",
+      "time": "6 min",
+      "date": "2026-04-14",
+      "level": "Middle",
+      "models": "Nanobanana, Veo 3",
+      "trending": true,
+      "video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/liquid-ai-essence-orb/sub-liquid-q3X4nrUk8MCsGVdRuuEUuwtSDiXtTg.mp4",
+      "poster": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/liquid-ai-essence-orb/sub-liquid-JuGoKONYaalGUydnlZ6qA4LN0Uptlp.png",
+      "image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/liquid-ai-essence-orb/sub-liquid-yvR5gRDDjACze7xZkdUaDOgSXrn9z8.png",
+      "steps": [
+        {
+          "title": "1. Generate the still keyframe (Nanobanana)",
+          "text": "First make one strong static frame of the substance. Use Nanobanana at 16:9, 1K. Keep it perfectly centered on pure black with lots of negative space — that black background is what makes it loop and blend into any dark UI later.",
+          "prompt": "A single glossy liquid mercury blob made of glowing violet and magenta chrome, floating centered on a pure black background. Smooth reflective metallic surface with soft internal glow, organic rounded droplet shape with gentle surface tension, subtle bloom. Studio product look, high detail, centered composition, lots of black negative space around it. No text, no logo.",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/liquid-ai-essence-orb/sub-liquid-urGlz76lamh2u6NzCMxWM9F8d572SX.png"
+        },
+        {
+          "title": "2. Animate it into a living loop (Veo 3)",
+          "text": "Feed that still into Veo 3 as the input image. Ask for slow, cyclical, in-place motion only — no camera movement, no cuts — so it can be looped seamlessly in the UI. Duration 6s (Veo 3 accepts 4-8s).",
+          "prompt": "The purple liquid mercury blob slowly morphs and flows in place, surface ripples with viscous liquid-metal waves, gentle undulation, highlight glides across the chrome surface, soft inner glow pulses. Static locked camera, blob stays centered, pure black background. Smooth continuous cyclical motion, no cuts, no text.",
+          "result_video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/liquid-ai-essence-orb/sub-liquid-u3CUJLsPiyMxaZqstFlKFoYNEbAS3N.mp4"
+        },
+        {
+          "title": "3. Drop it into your product",
+          "text": "Because the background is pure black and the motion is centered and cyclical, you can place the clip behind a headline with a <video autoplay muted loop playsinline> tag and mix-blend-mode: screen (or just on a dark section). It reads as a native, expensive-looking AI essence. Tip: keep the export compressed to ~5-10MB h264 1080p.",
+          "prompt": ""
+        }
+      ],
+      "result": "A seamless, loopable purple liquid-metal AI orb you can autoplay behind any hero headline — generated in two steps: Nanobanana for the frame, Veo 3 for the motion."
+    },
+    {
       "id": "plug-dynamic-ui-panel-qcai-ide",
       "cat": "Design",
       "sub": "IDE Tooling",
