@@ -11,6 +11,47 @@
   ],
   "guides": [
     {
+      "id": "compare-interior-directions",
+      "cat": "Design",
+      "sub": "Interior Visualization",
+      "title": "Compare three interior directions before you commit",
+      "desc": "Use the same real-estate brief to compare a Baroque cottage, an industrial loft and a modern studio — then choose a direction with a clear point of view.",
+      "time": "8 min",
+      "date": "2026-07-18",
+      "level": "Middle+",
+      "models": "GPT-Image",
+      "new": true,
+      "trending": true,
+      "image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/compare-interior-directions/baroque_cottage_final-Inm5BDlQ7qbrVup4ZVoK6aMpfS7k7r.png",
+      "steps": [
+        {
+          "title": "1. Lock what must stay the same",
+          "text": "Start with one comparable brief: room size, daylight direction, camera height and the buyer profile. If those change between renders, you are comparing different apartments rather than different interior directions.",
+          "prompt": "Create three high-end real-estate interior concepts for the exact same compact urban living room. Keep the architecture, camera angle, daylight direction and room proportions identical in every version. The comparison must show only the interior direction changing: furniture, material palette, lighting mood and decorative language. Editorial property-photography quality, realistic scale, no people, no text.",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/compare-interior-directions/baroque_cottage_final-aABbO1Whu1Qm57KbnFqvTP3bG0pFKP.png"
+        },
+        {
+          "title": "2. Push the Baroque cottage direction",
+          "text": "For a character-led property, use dark timber, aged brass, velvet and framed art. The goal is not random luxury props; it is a warm, layered room that sells atmosphere at first glance.",
+          "prompt": "Using the locked room brief, create the Baroque cottage direction: dark walnut joinery, muted olive walls, aged brass details, a deep plum velvet sofa, antique framed oil paintings, patterned wool rug, warm late-afternoon window light and restrained candle-like practical lamps. Rich but lived-in, high-end property editorial photography, no text.",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/compare-interior-directions/baroque_cottage_final-puKKs9TyWPlAjpRy9nj7HLimsWA0B0.png"
+        },
+        {
+          "title": "3. Switch to an industrial loft",
+          "text": "For a sharper, city-facing listing, replace decoration with material contrast: concrete, black steel, reclaimed wood and one strong leather piece. Keep the room functional — buyers still need to see where they would sit, work and eat.",
+          "prompt": "Using the locked room brief, create the industrial loft direction: exposed concrete, black steel-framed glass, reclaimed oak, a cognac leather sofa, graphite textiles, sculptural pendant lights and clear daylight. Keep the space warm enough to live in, not like an empty warehouse. Premium real-estate editorial photography, no text.",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/compare-interior-directions/industrial_loft_final-SjWyrstkxru4QGB8LQni3V7LOd5W9j.png"
+        },
+        {
+          "title": "4. Strip it back into a modern studio",
+          "text": "For the broadest buyer appeal, use a quiet palette and fewer objects. A modern studio succeeds when the layout reads instantly and every piece earns its place.",
+          "prompt": "Using the locked room brief, create the modern studio direction: warm white walls, pale oak, a modular cream sofa, brushed aluminium accents, one large abstract artwork, soft indirect lighting and discreet storage. Calm, spacious, design-led and practical. Premium real-estate editorial photography, no text.",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/compare-interior-directions/modern_studio_final-xxbEEKEL8KuFc42XGiFQ6obYcEy71x.png"
+        }
+      ],
+      "result": "Three coherent directions for the same property, ready to show a client or test in a listing: character-rich Baroque cottage, urban industrial loft and calm modern studio."
+    },
+    {
       "id": "rolex-4k-before-after-upscale",
       "cat": "Video",
       "sub": "Before/After",
