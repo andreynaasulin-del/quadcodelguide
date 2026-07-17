@@ -20,19 +20,19 @@
       "date": "2026-07-17",
       "level": "Junior",
       "models": "Nanobanana, GPT-Image",
-      "image": "category-banners/music-vinyl-groove-hero-16x10.png",
+      "image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/vinyl-groove-macro-banner/music-vinyl-groove-hero-16x10-fafviABGn7h7Ds4j1y1vbwTuxPu6gB.png",
       "steps": [
         {
           "title": "Shoot the macro hero",
           "text": "Describe the object, not a mood word. A spinning record with a tonearm lowering onto the groove reads as \"music\" instantly — no abstract metaphor needed.",
           "prompt": "Extreme macro studio photograph, wide 3:2 landscape composition, shot on a medium-format camera with a 100mm macro lens, razor-shallow depth of field. A spinning black vinyl record fills most of the frame at a low raking angle so the concentric grooves catch the light. A chrome tonearm with a diamond stylus enters from the upper right, tip lowering onto the groove, caught mid-motion with a faint motion blur. Warm amber-gold key light raking low from the left, cool blue-white rim light on the tonearm's chrome edge, deep black background, rich analog film grain, warm cinematic color grade. No text, no logos, no people.",
-          "result_image": "category-banners/music-vinyl-groove-hero-16x10.png"
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/vinyl-groove-macro-banner/music-vinyl-groove-hero-16x10-P32M6tqKVqAndGEVf4dTAABrOxO4Qo.png"
         },
         {
           "title": "Recompose into a branded banner",
           "text": "Feed the hero shot back into GPT-Image and ask it to extend the frame to 16:10 with a caption zone on the dark side. Naming exact colors and the exact title text keeps the typography clean and on-brand.",
           "prompt": "Recompose this photo to fill a full 16:10 landscape frame, keeping the vinyl record, tonearm and lighting exactly as in the reference. Outpaint the black background on the right into calm dark negative space, then add a caption there: a coral-to-red gradient accent bar, bold condensed all-caps title \"MUSIC\", and a smaller subtitle \"Turn one prompt into a track.\" in white and light gray, with a thin corner-bracket frame around the caption zone. Near-black navy background, not pure black. No watermark, no extra text.",
-          "result_image": "category-banners/music-vinyl-groove-preview.png"
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/vinyl-groove-macro-banner/music-vinyl-groove-preview-mTG2tpCOK7DbP8KkMJdZSY7Iz4mPYp.png"
         }
       ],
       "result": "A clean cover shot plus a branded 16:10 promo banner for the Music category, built from one macro photo."
