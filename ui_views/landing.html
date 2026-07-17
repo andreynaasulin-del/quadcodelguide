@@ -3434,11 +3434,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     ];
     const SHELVES = [
       {
-        title: 'Continue', ico: 'ico-trend',
-        pick: () => continueCandidates().map(r => r.g),
-        viewAll: null
-      },
-      {
         title: 'Start here', ico: 'ico-school',
         pick: list => {
           const byId = new Map(list.map(g => [g.id, g]));

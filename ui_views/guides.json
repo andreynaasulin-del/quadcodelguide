@@ -276,6 +276,76 @@
       "result": "A coherent three-screen mobile UI kit — onboarding, home, detail — ready to extend or hand off."
     },
     {
+      "id": "atlas-freight-cinematic-logistics",
+      "cat": "Design",
+      "sub": "Landing Page",
+      "title": "Atlas Freight — Cinematic Logistics Landing",
+      "desc": "Build an awwwards-tier dark cinematic freight landing page with an AI-generated hero video, a scroll-driven truck parallax scene and a live route map, using a GPT-Image → Kling → Topaz pipeline.",
+      "time": "15 min",
+      "level": "Middle+",
+      "models": "GPT-Image, Kling, Topaz",
+      "video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/atlas-freight-cinematic-logistics/site-scrollcast-fqeQFEgS4xJEO2kYWSZvfdaYNupnvF.mp4",
+      "poster": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/atlas-freight-cinematic-logistics/site-hero-ZD6lRyaw9m4DFDo6hJaKVZTN9hyDnp.png",
+      "trending": true,
+      "steps": [
+        {
+          "title": "Generate the cinematic hero keyframe",
+          "text": "Use GPT-Image to create a photorealistic 16:9 aerial keyframe of a container seaport at golden hour. This still becomes the mobile poster and the source frame for the hero video.",
+          "prompt": "Cinematic aerial hero plate, sprawling container seaport at golden hour, stacked containers in rows, ship-to-shore gantry cranes, container ship at berth, atmospheric haze + low sun flare, warm amber raking light, teal-and-orange cinematic grade, high aerial drone view, strong leading lines, 24mm, deep DOF, photorealistic, film grain. No text/logos/people.",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/atlas-freight-cinematic-logistics/hero-port-sunset-HTIwWWZZNcKusoUrfD1n8HQuRkqRKT.png"
+        },
+        {
+          "title": "Generate the night-loading interlude keyframe",
+          "text": "A second GPT-Image keyframe — a moody night loading scene — drives a mid-page cinematic interlude with multi-layer parallax.",
+          "prompt": "Cinematic night plate, containers loaded onto a cargo ship, gantry crane silhouettes vs deep blue-black sky, spreader lifting a container, floodlights + sodium lamps, harbor-light bokeh, industrial fog, moody teal-and-amber low-key grade, wide frame, crane silhouette foreground-left, dark negative space upper for overlay, 35mm, shallow DOF. No text/logos.",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/atlas-freight-cinematic-logistics/interlude-night-loading-z2UVkNO3ZriLbkX958jrGAafXUV1G0.png"
+        },
+        {
+          "title": "Generate service card photography",
+          "text": "Four square GPT-Image stills — ocean, air, road & rail, warehouse — feed the services grid. Keep the same teal-and-amber grade and leave deep shadow area for text legibility.",
+          "prompt": "Low-angle photoreal container ship at sea, teal-and-amber cinematic grade, deep shadow area lower third for text overlay, no text/logos. (Repeat with matching grade for: cargo freighter loading at sunset / night truck with light trails beside a parallel train / automated high-bay warehouse with AGVs.)",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/atlas-freight-cinematic-logistics/service-ocean-OwT8Y2y8toiW9RXGXJIBrMfJ8tGofJ.jpg"
+        },
+        {
+          "title": "Animate the hero keyframe into video",
+          "text": "Feed the hero keyframe into Kling image-to-video (5s, pro) with slow, steady camera language — no cuts, no shake — so it loops seamlessly behind the fold.",
+          "prompt": "Very slow dolly-in / Ken Burns push, drifting haze, sun flare, water shimmer, distant crane trolley inches along, extremely smooth steady drone motion, 24mm, deep DOF, single continuous shot. Negative: text, watermark, fast motion, camera shake, cuts, distortion.",
+          "result_video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/atlas-freight-cinematic-logistics/hero-loop-voLrsLG2pg25kHmmWyfvokngQuUffr.mp4"
+        },
+        {
+          "title": "Animate the interlude keyframe into video",
+          "text": "Same Kling pipeline on the night-loading keyframe, tuned for a slow lateral drift so it reads well under a 3-layer ScrollTrigger parallax.",
+          "prompt": "Spreader slowly lowers a container, slow lateral parallax drift, floodlights, twinkling harbor bokeh, rolling fog, rim light on steel, smooth slow motion, single shot.",
+          "result_video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/atlas-freight-cinematic-logistics/interlude-loop-v7VtmhdsEqBYmfLfkjEakjyY6rv5no.mp4"
+        },
+        {
+          "title": "Upscale both clips",
+          "text": "Run both Kling clips through Topaz video_upscale (Proteus model, 2x, forced H.264) for crisp full-screen playback and guaranteed <video> compatibility.",
+          "prompt": "",
+          "result_video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/atlas-freight-cinematic-logistics/interlude-loop-2wJuGUl9ISRSgfhfUi6KxLKZ9diExH.mp4"
+        },
+        {
+          "title": "Generate the road-journey parallax assets",
+          "text": "For the scroll-driven 'trucks physically drive forward' scene, generate the truck and roadside layers with GPT-Image on a flat white background (transparent background isn't supported directly), then key out the white and auto-crop.",
+          "prompt": "Photoreal semi-truck with container, side profile facing right, graphite-blue metallic body with reflections, glowing headlight bloom, red taillights, amber brand stripe, real tire tread detail, dusk teal-and-amber grade matching a cinematic seaport scene, on a flat pure white background, no shadow, no text/logos.",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/atlas-freight-cinematic-logistics/truck-a-TwdrqkA5fJLJaLAwKuiG9driaKGF8P.png"
+        },
+        {
+          "title": "Wire it all together with GSAP ScrollTrigger",
+          "text": "Hand-code the page in vanilla HTML/CSS/JS with GSAP + ScrollTrigger + MotionPathPlugin (CDN, no build step): hero Ken-Burns scrub, 3-layer interlude parallax, SVG world-map route movers, scroll-scrubbed truck MotionPath with velocity-driven wheel spin/motion-blur/dust, animated counters, a fake-live tracker/dashboard via setInterval, and prefers-reduced-motion + mobile poster fallback throughout.",
+          "prompt": "",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/atlas-freight-cinematic-logistics/site-road-T9oRnqc0qLv1r5oSUQIaY60ExIAO1q.png"
+        },
+        {
+          "title": "Preview the finished site",
+          "text": "Here is the actual page in the browser — a real, scrollable single-page site. The AI clips now live inside it as the hero and interlude backgrounds, while GSAP drives the scroll-through: hero headline, the four-mode services grid, the scroll-driven road parallax scene, the live world route map + tracker, the fake-live dashboard, and the quote CTA. Scroll it top to bottom to see every section animate.",
+          "prompt": "",
+          "result_video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/atlas-freight-cinematic-logistics/site-scrollcast-QIll93t9jE4mOTWPn3hucRbJ2dcCKP.mp4"
+        }
+      ],
+      "result": "A fully working, awwwards-tier cinematic logistics landing page — recorded here as a 12-second scroll-through of the real page in the browser. The AI-generated hero and interlude clips are wired in as section backgrounds, wrapped in a hand-coded GSAP site: a scroll-driven truck parallax scene with living motion (spinning wheels, motion blur, dust, dynamic headlight pool), a real animated world route map, a fake-live tracker and dashboard, and a quote CTA — all a single static page with zero backend."
+    },
+    {
       "id": "boss-fight-model-battle",
       "cat": "Video",
       "sub": "Model Battle",
