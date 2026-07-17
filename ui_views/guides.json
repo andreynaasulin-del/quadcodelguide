@@ -11,6 +11,47 @@
   ],
   "guides": [
     {
+      "id": "business-visuals-that-explain-work",
+      "cat": "Design",
+      "sub": "Business Visuals",
+      "title": "Turn business problems into visuals people understand",
+      "desc": "Make four clear business visuals: recurring revenue, AI onboarding, faster landing pages and a CRM that replaces spreadsheet chaos.",
+      "time": "12 min",
+      "date": "2026-07-18",
+      "level": "Middle+",
+      "models": "GPT-Image",
+      "new": true,
+      "trending": true,
+      "image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/business-visuals-that-explain-work/revenue_24_7-pY4iO6PbXCRdPgAG01knUPcfRZ9mdG.png",
+      "steps": [
+        {
+          "title": "1. Show recurring revenue as a system",
+          "text": "A revenue visual should make the mechanism visible in one glance: payment happens, the service continues, the customer returns. Avoid vague arrows and fake dashboard numbers.",
+          "prompt": "Create a clear premium business illustration explaining recurring revenue. Show a simple continuous loop between customer, payment and active service, with a readable 24/7 operating rhythm. Use a clean editorial SaaS style, strong hierarchy, restrained palette, real interface fragments rather than generic arrows, no fake statistics, no illegible microtext.",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/business-visuals-that-explain-work/revenue_24_7-N8uvbLXNZsau8jNagBepNHaaGWksH8.png"
+        },
+        {
+          "title": "2. Contrast manual onboarding with AI onboarding",
+          "text": "The visual needs one contrast only: a slow hand-built process on one side, an automated flow on the other. People should understand the time saving before reading a caption.",
+          "prompt": "Create a split business visual comparing manual onboarding versus AI onboarding. Left: fragmented handoffs, repeated data entry, waiting and confusion. Right: one guided automated flow, instant setup and clear next steps. Professional editorial SaaS art direction, readable contrast, few elements, no decorative clutter, no fake logos.",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/business-visuals-that-explain-work/manual_ai_onboarding-LbRMv9OtqpXx5ZQ48KKoiSF7A7NMCE.png"
+        },
+        {
+          "title": "3. Make a landing page's speed visible",
+          "text": "Do not render a generic browser mockup. Show the commercial consequence: a page that takes a week to ship versus a focused flow that gets the message and call-to-action live fast.",
+          "prompt": "Create a crisp business visual about shipping a landing page in one week. Show a focused sequence from brief to launch: message, page structure, build and live result. Make speed readable through progress and momentum, not flames or racing cars. Premium product-design editorial style, clear hierarchy, no fake analytics, no tiny unreadable text.",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/business-visuals-that-explain-work/landing_week-FzkAI5d1hUmYO6x5eAL5mL3ZgSjzYD.png"
+        },
+        {
+          "title": "4. Replace spreadsheet chaos with a CRM view",
+          "text": "The before-and-after must be practical: scattered rows and lost follow-ups become one shared pipeline with owners, stages and next actions. That is what a CRM actually fixes.",
+          "prompt": "Create a business before-and-after visual: an overloaded spreadsheet with duplicate customer rows, unclear ownership and missed follow-ups transforms into a clean CRM pipeline with visible stages, owner avatars and next actions. Product-led editorial design, strong information hierarchy, realistic but minimal interface detail, no brand names, no illegible text.",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/business-visuals-that-explain-work/excel_crm-NQ7XAxMt16egayjs07vjt7We7Y78XY.png"
+        }
+      ],
+      "result": "Four business visuals that explain a real operational change in seconds — useful for landing pages, investor decks, sales posts and internal presentations."
+    },
+    {
       "id": "compare-interior-directions",
       "cat": "Design",
       "sub": "Interior Visualization",
