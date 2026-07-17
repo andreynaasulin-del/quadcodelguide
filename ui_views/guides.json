@@ -11,6 +11,63 @@
   ],
   "guides": [
     {
+      "id": "quadcode-platform-one-workspace-to-ship-software",
+      "cat": "Design",
+      "sub": "Platform Showcase",
+      "title": "Quadcode Platform — One Workspace to Build, Ship & Scale",
+      "desc": "See how a single Quadcode workspace turns one chat request into a full product loop: plan the build, run agents in parallel, wire integrations, and deploy globally — all from one screen.",
+      "time": "6 min",
+      "date": "2025-02-14",
+      "level": "Middle",
+      "models": "None — Quadcode Platform agents (parallel sub-agent orchestration, live modules, one-click deploy)",
+      "trending": true,
+      "video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/quadcode-platform-one-workspace-to-ship-software/ide_scenario_1784299927880-jXh4dVAtjpp58lqoID6eJ6UHSKXve6.mp4",
+      "poster": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/quadcode-platform-one-workspace-to-ship-software/platform_poster-LuHL0np4YOF7gGe4L7BtrAqLqN7mNq.png",
+      "steps": [
+        {
+          "title": "1. One workspace, every module in reach",
+          "text": "The whole product lives on one screen. The right-hand Platform panel is the map: Workspaces (Production / Staging), Projects, Integrations, Deployments, Team, Billing, Analytics and API — each a live module you can open, not a static menu. Instead of stitching five dashboards together, you drive the entire product from a single, coherent surface.",
+          "prompt": ""
+        },
+        {
+          "title": "2. Ask in plain language — get a plan, not just an answer",
+          "text": "You describe the outcome in the chat: 'Scale our platform for the launch — add billing, refresh the dashboard, wire analytics.' The platform doesn't dump a wall of code — it first turns the request into an explicit, ordered plan of tasks, so you can see exactly what will happen before anything runs.",
+          "prompt": "Scale our Quadcode Platform for launch week: enable metered billing on the Payments module, refresh the Analytics dashboard with real-time charts, connect the analytics data pipeline, and prepare a global one-click deploy. Show me the plan first, then execute."
+        },
+        {
+          "title": "3. Turn the plan into a task dashboard",
+          "text": "Each item in the plan becomes a tracked task with its own status: queued, running, done. This is the control tower — at a glance you know what's finished, what's in flight, and what's blocked. No guessing, no hidden background work: every unit of the build is visible and accountable.",
+          "prompt": ""
+        },
+        {
+          "title": "4. Run agents in parallel — without them colliding",
+          "text": "This is the core move: independent tasks fire at the same time on separate sub-agents. Payments scaling, dashboard refresh, analytics migration and an onboarding voiceover all run concurrently, each in its own sandbox with its own status row — spinner while working, checkmark when done. Because the platform isolates their workspaces, parallel work never steps on shared state, so four things ship in the time one used to take.",
+          "prompt": "Split this into independent tasks and run them in parallel on separate agents: (1) scale Payments module, (2) refresh Analytics dashboard, (3) migrate analytics events, (4) generate onboarding voiceover. Keep each isolated so they don't conflict."
+        },
+        {
+          "title": "5. Live modules react in real time",
+          "text": "As the agents work, the platform panel updates itself: services flip to healthy green, the Analytics module fills with fresh charts, Integrations light up as they connect, and the status bar streams progress. You're watching a product assemble itself live — every module reflecting the true, current state of the system rather than a cached screenshot.",
+          "prompt": ""
+        },
+        {
+          "title": "6. Wire integrations without leaving the workspace",
+          "text": "Payments, analytics, storage and auth connect as first-class modules. Instead of copy-pasting keys across separate provider consoles, you approve a connection and the platform provisions it, stores the secret securely, and marks the integration active — keeping the entire wiring step inside one audited flow.",
+          "prompt": "Connect the Payments and Analytics integrations for this workspace, store the credentials securely as workspace secrets, and mark them active. Don't expose keys in code."
+        },
+        {
+          "title": "7. One-click global deploy",
+          "text": "When the tasks land, deployment is a single action. The globe module lights its edge nodes across regions and the Deployments module goes live — the same workspace that planned and built the release also ships it worldwide, with rollout status visible the whole way. No handoff, no separate CI dashboard.",
+          "prompt": "Deploy the updated workspace to production across all edge regions with one click, run health checks, and report the rollout status per region."
+        },
+        {
+          "title": "8. The full loop, in one place",
+          "text": "Plan → parallel build → live modules → integrations → global deploy — the entire product lifecycle happened on a single screen, driven by one conversation. That's the point of the platform: not a faster editor, but one unified workspace where an idea becomes a shipped, running, scaling product without ever leaving it.",
+          "prompt": ""
+        }
+      ],
+      "result": "A single Quadcode workspace that takes one plain-language request and drives the whole loop — an ordered plan, a live task dashboard, four agents running in parallel without conflict, self-updating platform modules, securely wired integrations, and a one-click global deploy. One screen, one conversation, a shipped and scaling product."
+    },
+    {
       "id": "business-visuals-that-explain-work",
       "cat": "Design",
       "sub": "Business Visuals",
