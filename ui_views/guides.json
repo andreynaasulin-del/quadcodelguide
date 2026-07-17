@@ -11,6 +11,36 @@
   ],
   "guides": [
     {
+      "id": "irondrone-flying-ironer",
+      "cat": "Video",
+      "sub": "Product Ads",
+      "title": "Pitch a flying ironing-drone concept ad",
+      "desc": "Turn a wild what-if into a punchy product-ad concept: a hovering drone that steam-irons your shirt mid-air.",
+      "time": "6 min",
+      "date": "2026-07-17",
+      "level": "Middle",
+      "models": "Seedance",
+      "video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/irondrone-flying-ironer/irondron-YqB3NNUWjuFY0REeWmqy9Jg1wdqx0z.mp4",
+      "steps": [
+        {
+          "title": "Invent the product in one line",
+          "text": "Name the object and the twist in a single sentence — a compact drone with a heated glide bar is a small enough leap to feel plausible, but strange enough to stop the scroll.",
+          "prompt": "A sleek white quadcopter drone about the size of a dinner plate hovers beside a hanging crisp white dress shirt on a wooden hanger, a thin heated glide bar mounted under its body gliding down the fabric like a flatiron, wisps of steam rising from the contact point, dark charcoal studio background, dramatic side lighting, moody premium product-ad photography, no text."
+        },
+        {
+          "title": "Direct the ironing pass and the captions",
+          "text": "Script it like a real spec ad: name each beat and give the exact caption text for each one, so the render stays on-message instead of drifting into generic footage.",
+          "prompt": "The drone glides slowly down each panel of the shirt, steam trailing behind its heated bar, wrinkles visibly smoothing wherever it passes. Cut between beats with these on-screen captions, small caps, bottom-center, clean sans-serif: \"THIS IS IRONDRONE\" then \"GLIDING STEAM\" then \"LASER PRECISION\" then \"EVERY CREASE — ERASED, MID-AIR\" then \"CRUMPLED — TO FLAWLESS\". End on the shirt hanging perfectly flat and crease-free. Same dark studio, same lighting throughout, no extra text."
+        },
+        {
+          "title": "Generate and keep the cleanest pass",
+          "text": "Run it and pick the take where the steam reads as heat, not fog, and the crease actually disappears on camera — that's the shot that sells the fake product. Press play above to see the result.",
+          "prompt": ""
+        }
+      ],
+      "result": "A 10-second concept ad for a product that doesn't exist yet — proof that a strong enough \"what if\" beats a real product shoot."
+    },
+    {
       "id": "vinyl-groove-macro-banner",
       "cat": "Music",
       "sub": "Category Art",
