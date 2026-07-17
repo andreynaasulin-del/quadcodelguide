@@ -11,6 +11,37 @@
   ],
   "guides": [
     {
+      "id": "rolex-4k-before-after-upscale",
+      "cat": "Video",
+      "sub": "Before/After",
+      "title": "Upscale real product footage to true 4K",
+      "desc": "Turn a soft handheld watch shoot into a crisp 4K before/after with one Topaz pass.",
+      "time": "4 min",
+      "date": "2026-07-17",
+      "level": "Junior",
+      "models": "Topaz",
+      "video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/rolex-4k-before-after-upscale/rolex-before-after-final-DxZ6OnQ2oi2zcIT9mKvW2YpzpfB67a.mp4",
+      "steps": [
+        {
+          "title": "Match the model to your footage",
+          "text": "Real product photography isn't heavily compressed or synthetic, so skip the specialty models and start with the general-purpose one — it sharpens detail without over-smoothing metal reflections and skin-tone gemstones into plastic.",
+          "prompt": "UTILITY: topaz\nVIDEO-INPUT: rolex-source.mp4\nMODEL: Proteus\nTARGET_FPS: 30"
+        },
+        {
+          "title": "Keep the upscale factor and noise conservative",
+          "text": "For footage that's already reasonably sharp, 2x beats 4x — pushing harder just amplifies grain instead of adding real detail. Keep noise and compression in the 0.1-0.3 range so the case metal and dial texture stay crisp.",
+          "prompt": "UTILITY: topaz\nVIDEO-INPUT: rolex-source.mp4\nMODEL: Proteus\nUPSCALE_FACTOR: 2\nNOISE: 0.2\nCOMPRESSION: 0.2\nH264_OUTPUT: true"
+        },
+        {
+          "title": "Render and cut the before/after",
+          "text": "Run the pass, then cut between the original and the upscaled clip on the same shot so the sharpness gain is obvious at a glance, not just claimed in a caption. Play the clip above to see the result.",
+          "prompt": "",
+          "result_video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/rolex-4k-before-after-upscale/rolex-before-after-final-jaHiQv5tsLf70MNVL7nmk5s0JkMR8A.mp4"
+        }
+      ],
+      "result": "A real handheld watch shoot turned into a crisp, true-4K before/after comparison — one Topaz pass, no reshoot needed."
+    },
+    {
       "id": "irondrone-flying-ironer",
       "cat": "Video",
       "sub": "Product Ads",
