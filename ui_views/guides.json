@@ -11,6 +11,42 @@
   ],
   "guides": [
     {
+      "id": "cherry-blossom-boss-cinematic",
+      "cat": "Video",
+      "sub": "Cinematic",
+      "title": "Direct an epic boss-reveal cinematic shot",
+      "desc": "One warrior, one colossal tree-golem, a single glowing slash — build a AAA game-trailer beat in 15 seconds flat.",
+      "time": "6 min",
+      "date": "2026-07-18",
+      "level": "Middle+",
+      "models": "Veo 3",
+      "video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/cherry-blossom-boss-cinematic/left_gpt56sol-pab07ksXWWloIL7adop0f0GZwV9OOB.mp4",
+      "steps": [
+        {
+          "title": "1. Design a boss silhouette you've never seen before",
+          "text": "Skip generic dragons. A living, cracked tree given a rough humanoid stance instantly reads as ancient and hostile without a single line of backstory — the cherry blossoms softening a threat make it feel like a cursed god of the forest, not a monster-of-the-week.",
+          "prompt": "A colossal ancient tree given a hulking humanoid silhouette — thick root-legs planted wide, gnarled bark skin split by glowing molten-orange cracks across its chest, branches heavy with pink cherry blossoms, a faint carved face buried in its trunk. Towering scale against a small human figure below. Cinematic realism, volumetric god-rays through blossom petals, dust and pollen drifting in the air, epic AAA game-trailer lighting."
+        },
+        {
+          "title": "2. Block the shot like a director, not a slideshow",
+          "text": "One continuous 15-second beat, not three cuts: open low and wide on the boss to sell scale, hold on the lone armored swordsman squaring up beneath it, then push into the exchange. Naming the camera behavior explicitly is what stops the model from defaulting to a static wide shot for the whole clip.",
+          "prompt": "Cinematic single continuous shot, low wide-angle framing a giant tree-golem boss against cherry blossom trees and a misty stream, warrior in white lamellar armor with twin swords standing small in the foreground. Slow creeping push-in toward the confrontation, natural handheld micro-shake, warm late-afternoon backlight, shallow depth on foreground petals, 15 seconds, no cuts."
+        },
+        {
+          "title": "3. Give the impact one clear VFX signature",
+          "text": "A single golden energy arc on the sword slash is the whole payoff of the shot — it needs to read instantly against the dark bark, so keep every other light source warm and secondary. One bright, legible effect beats five competing particle systems.",
+          "prompt": "The warrior lunges and slashes upward with a katana, leaving one bright golden energy arc trailing the blade that cracks against the tree-golem's molten chest fissure, sparks and bark fragments scattering, camera holds steady through the impact, cherry blossom petals knocked loose drifting past frame, warm rim light, no text, no logos."
+        },
+        {
+          "title": "4. Cut it, don't trim it",
+          "text": "Rendered clips run long and often drift in the last second or two — pick the exact in/out points where the wind-up starts and the impact settles, instead of publishing the raw output. Press play above for the final 15-second cut.",
+          "prompt": "",
+          "result_video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/cherry-blossom-boss-cinematic/left_gpt56sol-RFVBmzRjNRryXnasNo73TmrbPJZiOm.mp4"
+        }
+      ],
+      "result": "A 15-second AAA-style boss-reveal cinematic — one creature design, one directed camera move, one clean VFX hit, no cuts needed to sell the scale."
+    },
+    {
       "id": "headphones-retouch-color-grade",
       "cat": "Design",
       "sub": "Product Retouch",
