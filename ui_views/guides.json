@@ -11,6 +11,52 @@
   ],
   "guides": [
     {
+      "id": "jeweled-brand-icons-carousel",
+      "cat": "Design",
+      "sub": "Brand Icon Series",
+      "title": "Rebrand carousel: five jeweled brand icons with one prompt formula",
+      "desc": "Turn five familiar brand marks — YouTube, X, Quadcode, ChatGPT and Apple — into one luxury object series: glossy inflated metal, crystal detailing, black studio background. One reusable material formula, five swappable silhouettes.",
+      "time": "20 min",
+      "date": "2026-07-18",
+      "level": "Middle",
+      "models": "GPT-Image",
+      "new": true,
+      "image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/jeweled-brand-icons-carousel/museum_00_rebrand_promo_banner-8KInOpnIq1vUeuWS8WjORW6iwSaCZ4.png",
+      "steps": [
+        {
+          "title": "1. Lock the material formula once — then only swap the silhouette",
+          "text": "The series works because every icon shares one physical recipe: an inflated glossy-metal body, jewel/crystal accents, a pure black studio background and controlled rim lighting. Write that recipe as a fixed block and reuse it verbatim in all five prompts — the only variables are the brand silhouette and its signature color. Icon 01 tests the formula on the YouTube play button: a rounded red jeweled slab with the triangle read as a cut gem.",
+          "prompt": "Premium 3D brand icon, square 1:1, luxury product photography on a pure black studio background. Subject: the YouTube play-button icon reimagined as a physical jeweled object — a rounded-square slab of glossy inflated red metal, surface like polished automotive lacquer, with the white play triangle inset as a faceted crystal gem catching the light. Fine details: soft balloon-like inflation of the edges, crisp specular highlights, subtle red light bloom on the black floor, micro-scratches absent, showroom-clean. Lighting: one key light from upper left, cool rim light from the right, controlled reflections. Tangible and physical, NOT flat vector art, NOT a UI screenshot. Hard constraints: single object centered, generous negative space, no text, no watermark, no extra logos.",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/jeweled-brand-icons-carousel/youtube_icon_v2_upscaled-ubIbJ6ckxRmH2Rkfxr0o06LF58zD3H.png"
+        },
+        {
+          "title": "2. X — let black-on-black carry the drama",
+          "text": "The hardest slide: a black object on a black background. The trick is to spell out the separation mechanism — rim light and crystal facets do all the work. Describe the mark as cut obsidian with jeweled edges so the silhouette reads purely through highlights, not through color contrast.",
+          "prompt": "Premium 3D brand icon, square 1:1, luxury product photography on a pure black studio background. Subject: the X (Twitter) logomark reimagined as a physical jeweled object — a bold glossy black obsidian X with beveled crystal-cut edges, like a gem carved from dark glass, faint smoky depth inside the material. Separation from the background comes entirely from bright white rim lighting tracing every edge and sharp specular sparkles on the facets. Fine details: inflated rounded body, mirror-grade polish, subtle cool reflection pooled beneath the object. Tangible and physical, NOT flat vector art. Hard constraints: single object centered, generous negative space, no text, no watermark, no extra logos.",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/jeweled-brand-icons-carousel/x_icon_v2_upscaled-lYzXdqswo8GgxDiaHeCCtJZfMag2xZ.png"
+        },
+        {
+          "title": "3. Quadcode sparkle — the warm focal point of the set",
+          "text": "Every curated set needs one warm anchor. The Quadcode sparkle takes the brand gradient (#FF9569 → #DD344D) as its actual material color, so it becomes the emotional center of the carousel while still obeying the same formula: inflated gloss, crystal accents, black void around it.",
+          "prompt": "Premium 3D brand icon, square 1:1, luxury product photography on a pure black studio background. Subject: a four-pointed sparkle/star mark reimagined as a physical jeweled object — glossy inflated metal with a coral-to-crimson gradient finish flowing from #FF9569 at the top points to #DD344D at the base, like anodized liquid metal. A small crystal core glows softly at the center where the four points meet. Fine details: balloon-smooth inflation, razor-clean point tips, warm coral light spill on the black floor, restrained bloom. Lighting: warm key light, cool rim accents. Tangible and physical, NOT flat vector art. Hard constraints: single object centered, generous negative space, no text, no watermark, no extra logos.",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/jeweled-brand-icons-carousel/quadcode_icon_sparkle-UnG3SyV126j838VgNVWH29OYudLI5n.png"
+        },
+        {
+          "title": "4. ChatGPT knot — sell the geometry, not the gloss",
+          "text": "The knot's interlaced geometry is the whole recognition value, so the prompt protects it explicitly: 'keep every strand separate and readable'. Green gets stated as a material (jade-like metal), not a lighting gel — otherwise the model floods the whole frame green and kills the black background.",
+          "prompt": "Premium 3D brand icon, square 1:1, luxury product photography on a pure black studio background. Subject: the interlaced hexagonal knot mark reimagined as a physical jeweled object — six interwoven rounded strands of glossy jade-green metal, each strand inflated and balloon-smooth, weaving over and under each other with every strand separate and readable. Crystal-like highlights run along the strand curves; the weave casts soft internal shadows on itself. Fine details: showroom polish, faint green reflection beneath the object, background stays pure black. Lighting: key light from above, thin white rim light tracing the outer strands. Tangible and physical, NOT flat vector art. Hard constraints: single object centered, generous negative space, no text, no watermark, no extra logos.",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/jeweled-brand-icons-carousel/chatgpt_icon_v2_upscaled_1-rUKxvVw6lRhFQ4Pv8qFwM9LOQswINk.png"
+        },
+        {
+          "title": "5. Apple — close the set with restraint",
+          "text": "The finale goes quiet on purpose: brushed silver, minimal sparkle, maximum surface quality. After four louder objects, restraint is what makes the set read as curated instead of repetitive. Then assemble all five into one 16:10 promo banner — feed the five finished icons back into GPT-Image as references and ask for a single editorial arrangement (that's exactly how the cover of this guide was made).",
+          "prompt": "Premium 3D brand icon, square 1:1, luxury product photography on a pure black studio background. Subject: the Apple logomark reimagined as a physical jeweled object — glossy inflated silver metal with a soft brushed-chrome finish, the leaf as a separate polished piece with a faint crystal edge. Understated elegance: fewer sparkles than a gem, more mirror-like surface perfection, cool neutral reflections. Fine details: balloon-smooth inflation, immaculate surface, subtle silver glow pooled on the black floor. Lighting: soft key light, crisp white rim light on the silhouette. Tangible and physical, NOT flat vector art. Hard constraints: single object centered, generous negative space, no text, no watermark, no extra logos.",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/jeweled-brand-icons-carousel/apple_icon_v2_upscaled_1-OjUab2pB6ht5ZoCWmFCr5RTVy9nxPs.png"
+        }
+      ],
+      "result": "Five brand marks rendered as one luxury object family — same inflated glossy-metal material, same black studio, same lighting system, five different silhouettes. Finish by compositing the five icons into a single 16:10 promo banner with GPT-Image using the icons themselves as references. Reuse the formula: keep the material block fixed, swap the silhouette, state the brand color as a material."
+    },
+    {
       "id": "cherry-blossom-boss-cinematic",
       "cat": "Video",
       "sub": "Cinematic",
