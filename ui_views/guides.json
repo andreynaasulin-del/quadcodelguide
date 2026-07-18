@@ -11,6 +11,53 @@
   ],
   "guides": [
     {
+      "id": "headphones-retouch-color-grade",
+      "cat": "Design",
+      "sub": "Product Retouch",
+      "title": "Retouch and color grade a product photo into a full ad set",
+      "desc": "Take one raw headphone photo and turn it into a commercial hero, a clean e-comm shot and a vertical detail — without killing the metal and leather textures.",
+      "time": "18 min",
+      "date": "2026-07-18",
+      "level": "Middle+",
+      "models": "Flux, GPT-Image, SeedVR2",
+      "new": true,
+      "trending": true,
+      "image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/headphones-retouch-color-grade/banner-preview-gYsleFZmIkN1PDveN2yFFvhEnAa2vR.png",
+      "steps": [
+        {
+          "title": "1. Shoot (or generate) an honest raw source",
+          "text": "The whole exercise starts from a photo with real-world flaws — flat lighting, fingerprints and fine scratches on the metal, slight wear on the leather. Do not start from a perfect render; you need something to actually retouch. Keep materials detailed and lighting soft so you have room to push the grade later.",
+          "prompt": "Photorealistic product photograph of premium over-ear headphones on a clean dark studio background. Silver metal ear cups with visible fine scratches, smudges and fingerprints. Black leather ear cushions with natural texture and slight wear. Soft even studio lighting, no dramatic shadows, slightly flat color. Shot on 85mm lens, eye-level, centered composition, clean but imperfect — ready for retouch. High detail on materials, realistic reflections, no text, no logos, no watermark.",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/headphones-retouch-color-grade/raw-source_flux-79FG7IwEB6ClmVTVGwrkdhQlB3Coum.png"
+        },
+        {
+          "title": "2. Retouch and grade the commercial hero",
+          "text": "This is the controlled edit — not a redesign. You remove scratches and smudges from the metal but keep it brushed and real (no plastic gloss, no chrome mirror). The leather keeps every bit of its grain; you clean dust, not texture. Then you re-light it into a premium hero and apply the cinematic grade. Reframe to 16:9 with breathing room on one side for a future headline.",
+          "prompt": "Retouch and re-light this exact headphone product photo into a premium commercial hero shot. Keep the same headphones, same materials, same identity — controlled edit only, no redesign. Retouch pass: remove fine scratches, smudges and fingerprints from the silver metal ear cups and yokes. Keep the metal brushed and real — no plastic gloss, no chrome mirror look. Preserve the leather grain on the headband and ear cushions exactly; clean only dust, not texture. Lighting and grade: dramatic premium studio lighting, large soft key from upper-left, cool rim light tracing the metal edges, deep charcoal background with a subtle warm gradient falloff. Rich cinematic color grade: deep blacks, lifted metal highlights, slightly warm silver tone, controlled reflections on the cups — elegant streaks, not chaos. Composition: reframe to a wide 16:9 hero crop, headphones slightly right of center with breathing room on the left for future headline text. Shot on 85mm, shallow depth of field, tack-sharp ear cups. No text, no logos, no watermark, no extra objects, no CGI plastic look.",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/headphones-retouch-color-grade/hero-16x9_flux-lWccsuApm6dgxPvbvcKbo54ephXxlr.png"
+        },
+        {
+          "title": "3. Cut the clean e-comm catalog shot",
+          "text": "Same retouch rules, totally different light. Marketplaces need honesty: bright even lighting, a neutral seamless background, true-to-life color and the product centered and symmetrical. No stylized grade here — the goal is an accurate, trustworthy listing photo, not a mood piece.",
+          "prompt": "Retouch this exact headphone product photo into a clean e-commerce catalog shot. Same headphones, same materials, same identity — controlled edit only, no redesign. Retouch pass: remove fine scratches, smudges and fingerprints from the silver metal ear cups and yokes. Keep the metal brushed and real. Preserve leather grain on headband and ear cushions; clean only dust. Lighting and grade: bright, even, neutral catalog lighting — large soft frontal key, gentle fill, no harsh shadows, clean light-grey seamless background (#EDEDED). True-to-life color, no stylized grade: natural silver, deep natural black leather, balanced contrast for marketplaces. Composition: perfectly centered 1:1 square, headphones upright and symmetrical, generous even margins on all sides, product fills ~70% of frame height. Sharp focus across the whole product (f/8 look). No text, no badges, no price tags, no logos, no watermark, no props.",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/headphones-retouch-color-grade/ecomm-1x1_flux-fFr74iFgGIt9L7FT4otrEtFGBdMLo8.png"
+        },
+        {
+          "title": "4. Pull the vertical texture detail",
+          "text": "The 9:16 detail sells the materials. Go macro on the seam where brushed metal meets leather — that tactile contrast is the whole shot. Raking light makes the texture cast micro-shadows. Match the hero's grade so the set reads as one shoot. Texture is the hero here; protect it above everything.",
+          "prompt": "Create a vertical macro detail shot from this exact headphone product photo. Same headphones, same materials — controlled edit only, no redesign. Subject: extreme close-up of one ear cup where the brushed silver metal meets the black leather cushion — the yoke hinge, the metal ring edge and the leather grain in one frame. Retouch pass: remove scratches, smudges and fingerprints from the metal. Keep the brushed texture and machining lines visible. Preserve leather grain exactly — every pore readable, no smoothing. Lighting and grade: moody macro lighting, raking key light skimming across the metal surface so texture casts micro-shadows, soft fill in the leather, deep dark background falling to black. Rich cinematic grade matching the hero shot: deep blacks, warm-leaning silver highlights, controlled specular streak along the metal edge. Composition: vertical 9:16, macro lens (100mm), shallow depth of field with the metal-leather seam in razor focus. No text, no logos, no watermark, no CGI look, no plastic metal, no blurred-out leather texture.",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/headphones-retouch-color-grade/detail-9x16_flux-dZZrrC5PETqjPrARoMzcNV08YcmG10.png"
+        },
+        {
+          "title": "5. Upscale the whole set to 4K",
+          "text": "Finish by upscaling every deliverable to 4K. The rule: only add resolution, never reinterpret. A low-strength, quality-first upscaler (SeedVR2 4K) keeps the metal brushed and the leather grain intact instead of smoothing them into plastic. Run the same upscale pass across the set so the resolution jump is consistent.",
+          "prompt": "Upscale this product photo 2x. Preserve exactly: brushed silver metal texture, black leather grain, the lighting and the color grade. Only add real resolution and crisp micro-detail — do not change lighting, grade, composition or materials. Texture fidelity is everything; no smoothing, no hallucinated detail.",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/headphones-retouch-color-grade/banner-preview-J2RC4jKYYX9pFm3ZaElC2ulwwruFEO.png"
+        }
+      ],
+      "result": "A complete, coherent product set from one raw photo: a cinematic 16:9 hero, an honest 1:1 e-comm catalog shot and a vertical 9:16 texture detail — all retouched, graded and upscaled to 4K with the metal and leather textures fully intact."
+    },
+    {
       "id": "ugc-creator-studio-consistent-ai-influencer",
       "cat": "Design",
       "sub": "UGC & Social",
