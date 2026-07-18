@@ -3434,17 +3434,17 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     ];
     const SHELVES = [
       {
+        title: 'Trending', ico: 'ico-trend', hideTrend: true,
+        pick: list => list.filter(g => g.trending),
+        viewAll: () => { trendingOnly = true; }
+      },
+      {
         title: 'Start here', ico: 'ico-school',
         pick: list => {
           const byId = new Map(list.map(g => [g.id, g]));
           return START_HERE_IDS.map(id => byId.get(id)).filter(Boolean);
         },
         viewAll: null
-      },
-      {
-        title: 'Trending', ico: 'ico-trend', hideTrend: true,
-        pick: list => list.filter(g => g.trending),
-        viewAll: () => { trendingOnly = true; }
       },
       {
         title: 'For beginners', ico: 'ico-school',
@@ -3458,7 +3458,13 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       shelvesEl.innerHTML = '';
       refreshContinueHero();
       SHELVES.forEach(def => {
-        const items = def.pick(GUIDES);
+        // Keep New guides first in every discovery shelf as well as in the full catalog.
+        // Date is only a tie-breaker; it must never push a New guide below an older one.
+        const items = def.pick(GUIDES).slice().sort((a, b) => {
+          const newRank = Number(Boolean(b.new)) - Number(Boolean(a.new));
+          if (newRank) return newRank;
+          return String(b.date || '').localeCompare(String(a.date || ''));
+        });
         if (!items.length) return;
         const sec = document.createElement('section');
         sec.className = 'shelf';
