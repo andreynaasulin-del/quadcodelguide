@@ -11,6 +11,57 @@
   ],
   "guides": [
     {
+      "id": "dictly-voice-to-text-app",
+      "cat": "Design",
+      "sub": "Productivity",
+      "title": "Dictly — hold-to-talk voice typing that runs offline",
+      "desc": "Build and use a cross-platform dictation app: hold a key, speak, and your words are typed at the cursor — locally, with no API key.",
+      "time": "6 min",
+      "level": "Middle",
+      "models": "faster-whisper (local), OpenAI Whisper (optional)",
+      "image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/dictly-voice-to-text-app/hero-bcXipGo9ie9nP31cJ2DuMGZs6YqOMz.png",
+      "poster": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/dictly-voice-to-text-app/hero-H4eAl1si3xJV0ZI5SEYeryX1Xl3mWj.png",
+      "steps": [
+        {
+          "title": "Open the dashboard",
+          "text": "Dictly lives in the system tray (Windows) or menu bar (macOS). Click its icon to open the Apple-style dashboard. You'll see your usage cards — minutes dictated, lines, words — plus a live text preview and quick controls.",
+          "prompt": "",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/dictly-voice-to-text-app/dashboard-OESiJ384JbicA1QdzExkTRksGwdSqO.png"
+        },
+        {
+          "title": "Pick your engine and model",
+          "text": "Open Settings. Choose the engine: Local (faster-whisper) runs fully offline and free — no API key, no internet after the first model download. For local, pick a model size: Small is the sweet spot; Medium or Large-v3 are more accurate but heavier. Prefer the cloud? Switch to OpenAI API and paste your key.",
+          "prompt": "",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/dictly-voice-to-text-app/settings-sWxO9c1jyy0zfUe4bSQnWqOMkgL6XY.png"
+        },
+        {
+          "title": "Set your hold-to-talk key",
+          "text": "In Settings, set the Hold-to-talk key. Default is Caps Lock — hold it to record, release to stop. You can change it to right Ctrl/Alt/Shift or an F-key. Keep 'Type text at cursor' on so text is injected into whatever app is focused. On macOS, remap Caps Lock in System Settings to avoid toggling caps while dictating.",
+          "prompt": "",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/dictly-voice-to-text-app/settings-7SSXGyAeIHqmIRG5PTWPLmmG8U7gpy.png"
+        },
+        {
+          "title": "Choose a mode",
+          "text": "Back on the dashboard, pick a Mode. 'Native language' transcribes what you say as-is. 'Russian → English' translates on the fly — you speak Russian, English text is typed. Both modes work on the local engine too, using Whisper's built-in translate task.",
+          "prompt": "",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/dictly-voice-to-text-app/mode-AkuPBvGxBIyD4EH28g70pQFAQ17z8u.png"
+        },
+        {
+          "title": "Hold the key and dictate",
+          "text": "Focus any text field, hold your key, and speak. A 'Recording' indicator lights up while you talk. Release the key and your speech is transcribed and typed at the cursor in real time. Everything runs locally — nothing leaves your machine.",
+          "prompt": "",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/dictly-voice-to-text-app/recording-UyxkJx7JyJM4jh52wmPRXBD7EV7IJi.png"
+        },
+        {
+          "title": "Track your usage",
+          "text": "The dashboard keeps score: total minutes dictated, lines and words, plus a 'today' summary. Use it to see how much writing you've offloaded to your voice. Hit Clear to reset the live preview whenever you like.",
+          "prompt": "",
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/dictly-voice-to-text-app/dashboard-UPOpaNfdEiaKeJnmlfKByhmWqMi4PO.png"
+        }
+      ],
+      "result": "A working hold-to-talk dictation app that types your speech at the cursor on Windows and macOS — offline by default, with optional Russian→English translation and usage stats."
+    },
+    {
       "id": "building-autopsy-boutique-hotel",
       "cat": "Design",
       "sub": "Architecture",
