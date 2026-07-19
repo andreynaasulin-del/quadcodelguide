@@ -22,72 +22,72 @@
       "models": "GPT-Image 2.0, SVG/HTML drawing system",
       "new": true,
       "trending": true,
-      "image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/building-autopsy-boutique-hotel/promo-banner-16x10-ll3yd2v0avtzMppKKui5tD5IhCKS43.png",
+      "image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/building-autopsy-boutique-hotel/promo-banner-16x10-8rjIDHYQcwg01LXbG7rcCwN02jeCLI.png",
       "steps": [
         {
           "title": "1. Fix the facts before making a gesture",
           "text": "Start with one measured base file. If the grid moves now, every later view will contradict it.",
           "prompt": "Create a concept-level measured as-built plan for a fictional 1912 textile factory. Footprint: 54.0 m × 24.0 m. Grid: 6 bays at 9.0 m in the long direction and 4 bays at 6.0 m in the short direction. Keep the brick perimeter, every cast-iron column, and two existing stairs in opposite corners. Draw as a precise architectural survey sheet, not a mood board. Include grid labels 1–7 and A–E, a north arrow, dimensions, and a 1:200 scale bar.",
-          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/building-autopsy-boutique-hotel/as-built-survey-Dppha4ADuTZYVvcWIDiqWyHR9LuV8I.png"
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/building-autopsy-boutique-hotel/as-built-survey-Fh3nfOUYRM0YvXZhpxk35QFa0Zzu0G.png"
         },
         {
           "title": "2. Make removal specific",
           "text": "The void is one measured cut, not a vague instruction to open the centre.",
           "prompt": "From the 54 × 24 m as-built plan, create a keep/remove/add intervention diagram. KEEP: brick perimeter, cast-iron grid, end stairs and all atrium-edge columns. REMOVE: floor plates at levels +4.50 and +9.00 plus roof directly over bays 3–4 / B–C; remove only the column at grid 4/C. ADD: a bronze independent frame around the 18.0 × 12.0 m void, two glass lifts, 2.0 m galleries and a roof lantern set back 1.5 m from the roof cut. Use charcoal for keep, coral hatch for remove, mint and bronze for add. Give every operation a clear legend.",
-          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/building-autopsy-boutique-hotel/keep-remove-add-ntPOv3Za1R0Z0Tp1RKRiOfgVLu66gf.png"
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/building-autopsy-boutique-hotel/keep-remove-add-b2SO1cWvCRSkFGTZlTutEzAAzgVb6U.png"
         },
         {
           "title": "3. Program the ground floor around the void",
           "text": "Public life belongs at ground level. Service stays in one corner; the atrium stays a public room.",
           "prompt": "Create a proposed ground-floor plan for the factory hotel using the fixed 6 × 4 grid. Keep the 18.0 × 12.0 m atrium at bays 3–4 / B–C empty above ground level. Place reception and entry south-west; restaurant and kitchen north-east; back-of-house and staff south-east; two accessible rooms north-west; two retained stairs in opposite corners. Place a lounge bar and two glass lifts inside the atrium perimeter, without turning the void into enclosed rooms. Show the grid, program labels and a short note explaining circulation.",
-          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/building-autopsy-boutique-hotel/proposed-ground-7dUmrsFWdjXEAoqYl0PigJE2j2eITN.png"
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/building-autopsy-boutique-hotel/proposed-ground-qlGo7AyB6tgBLL9vxCthggy052i5UQ.png"
         },
         {
           "title": "4. Stack keys without invading the atrium",
           "text": "Each upper floor holds 20 keys while keeping the opening and a 2.0 m gallery loop intact.",
           "prompt": "Create a typical upper-floor plan for levels +4.50 and +9.00 using the exact same 54 × 24 m grid and 18 × 12 m atrium void. Place 20 keys on each floor: 10 north-facing rooms, 10 south-facing rooms, with housekeeping and one suite at the east end. Keep the two existing stairs. Add a 2.0 m gallery all around the void. No room, bathroom or service enclosure may enter the atrium. Show level labels, grid, gallery width and room count.",
-          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/building-autopsy-boutique-hotel/proposed-upper-fjeGS1BVEU1TR6y2u2yloW24TTJxep.png"
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/building-autopsy-boutique-hotel/proposed-upper-nNP2V6Zcix9vbOvr6PU1vB6OY6JHo7.png"
         },
         {
           "title": "5. Use a section to prove the spatial claim",
           "text": "A plan can hide impossible ideas. The section has to prove the lantern, galleries and retained roof work together.",
           "prompt": "Draw a longitudinal architectural section through the centre of the atrium. Show ground +0.00, level 1 +4.50, level 2 +9.00 and eaves +13.50. Retain the sawtooth roof outside the atrium. Cut the roof over the 18 m void and add a low-iron glass lantern set back 1.5 m from its edges. Show an independent dark bronze frame carrying the new lantern and gallery loads. Keep the existing brick shell separate from new steel. Add a concept-only engineering note that licensed structural and fire review is required.",
-          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/building-autopsy-boutique-hotel/longitudinal-section-1728B80nBgE2d0czMvUBZ5BESzSKHT.png"
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/building-autopsy-boutique-hotel/longitudinal-section-ZhZkQGU931QWRj37ZEz3u0v9yAD3qr.png"
         },
         {
           "title": "6. Explain the assembly, not just the silhouette",
           "text": "The exploded axon exposes what is retained, cut, framed and glazed.",
           "prompt": "Create an exploded axonometric diagram of the factory conversion in four layers. 01 RETAIN: brick shell and cast-iron grid. 02 CUT: floor plates at levels 1 and 2, and the roof, only over bays 3–4 / B–C. 03 FRAME: independent dark bronze steel around the void. 04 LANTERN: a low-iron glazed roof set back 1.5 m. Keep the 18 × 12 m opening aligned in every layer and identify the single removed column at 4/C.",
-          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/building-autopsy-boutique-hotel/exploded-axon-4cIVh2MXLBN9zYixEXM5wNgC7gDKzo.png"
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/building-autopsy-boutique-hotel/exploded-axon-1W2ry4H7aCq5YJrDxfrhkifmlwz6bj.png"
         },
         {
           "title": "7. Keep the façade calm",
           "text": "The new work shows at the roofline; it does not erase the industrial identity.",
           "prompt": "Create a before/after north façade sheet for a red-brick 1912 textile factory. Retain the arched window rhythm and sawtooth profile. In the after view, add only a restrained glazed lantern over bays 3–4, visibly set back behind the parapet. Do not reclad the façade, add oversized signs, or replace historic windows with curtain wall. Use a clear comparison layout and label exactly what is retained and what is added.",
-          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/building-autopsy-boutique-hotel/facades-before-after-NPiXzjB7FH6UkUGo5WG4957cEdvIYT.png"
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/building-autopsy-boutique-hotel/facades-before-after-UTv6jmVeOU3pXwLv5ZTqJJpOjOVOlL.png"
         },
         {
           "title": "8. Give materials jobs",
           "text": "Brick carries history. Bronze identifies new structure. Glass delivers light. Oak and wool make the public room usable.",
           "prompt": "Create a restrained material palette for an adaptive-reuse boutique hotel. Include: repaired existing red brick; dark bronze independent steel; low-iron glass; oak and moss-green wool for lounge interiors. Add one construction-facing rule: all new metal and glass stop 25–50 mm short of historic brick, creating a visible shadow gap. Use large samples, short labels and no generic trend names.",
-          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/building-autopsy-boutique-hotel/material-palette-6qr4iVNPA693gLu8XLmyuJgiOhRPHt.png"
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/building-autopsy-boutique-hotel/material-palette-gu3GG9wJLfvbCUJfOEiIRyJ1NBY7gY.png"
         },
         {
           "title": "9. Generate one render that obeys the drawings",
           "text": "The final render is a coordination check: the shell, two galleries, lifts and 18 × 12 m void must match the drawings.",
           "prompt": "Deliverable: a single photorealistic architectural interior visualization, landscape 16:10. Eye-level view from the reception side into an 18 m × 12 m central atrium in a converted 1912 textile factory. Retain red brick, tall cast-iron columns and sawtooth roof profile. Add a dark bronze independent frame, two glass lift enclosures, 2.0 m galleries at levels +4.50 and +9.00, and a low-iron roof lantern set back 1.5 m from the cut roof edges. Add a quiet lounge bar with oak, moss-green wool seating, restrained plants and a few guests. Use a 35 mm lens, balanced verticals, soft overcast daylight, real material wear and physically plausible contact shadows. No signage, text, logos, neon, cyberpunk styling, marble lobby, or extra floors.",
-          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/building-autopsy-boutique-hotel/atrium-render-wkaeTdGnahyTv1ujWQTIhuXVd8lQeR.png"
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/building-autopsy-boutique-hotel/atrium-render-Jvc5jKxIHwnaQndxqkXboXXEJ7D5dQ.png"
         }
       ],
       "result": "A coordinated senior concept package: 9 linked steps, an annotated final render, SVG sources and a 9933 × 7016 px A1 presentation board. Concept study only; site survey and licensed structural, fire, access, MEP and conservation review are required before construction.",
       "downloads": [
         {
           "label": "Download A1 presentation board (9933 × 7016 PNG)",
-          "file": "../../assets/building-autopsy/a1-presentation-sheet.png"
+          "file": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/building-autopsy-boutique-hotel/a1-presentation-sheet-kKiHQrOFTI4Z5EIikbpdJnYy22xysF.png"
         },
         {
           "label": "View annotated final render",
-          "file": "../../assets/building-autopsy/annotated-atrium-render.png"
+          "file": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/building-autopsy-boutique-hotel/annotated-atrium-render-rZlyV2rwROlBHDEaSlPK4ggajTxP6k.png"
         }
       ]
     },
