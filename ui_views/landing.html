@@ -1489,6 +1489,14 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     border-radius: 12px; padding: 18px 20px;
   }
   .m-result p { margin: 0; font-size: 15px; font-weight: 500; }
+  .m-downloads { margin: 26px 0; padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.025); }
+  .m-downloads-kicker { display: block; color: var(--acc-1); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+  .m-downloads h3 { margin: 4px 0 14px; font-family: var(--font-display); font-size: 18px; }
+  .m-download-list { display: grid; gap: 8px; }
+  .m-download { display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid var(--line); border-radius: 10px; color: var(--white); text-decoration: none; font-size: 14px; font-weight: 600; transition: border-color .18s ease, background .18s ease, transform .18s var(--ease); }
+  .m-download:hover { border-color: rgba(255,149,105,.5); background: rgba(255,149,105,.06); transform: translateY(-1px); }
+  .m-download-icon { color: var(--acc-1); font-size: 19px; line-height: 1; }
+  .m-download-arrow { margin-left: auto; color: var(--muted); }
 
   /* cover "Final result" badge */
   .m-cover-wrap { position: relative; margin-bottom: 20px; }
@@ -3759,6 +3767,15 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       }
       if (g.result) {
         html += '<div class="m-result"><span>Result</span><p>' + esc(g.result) + '</p></div>';
+      }
+      if (Array.isArray(g.downloads) && g.downloads.length) {
+        html += '<section class="m-downloads"><span class="m-downloads-kicker">Project files</span><h3>Final materials</h3><div class="m-download-list">';
+        g.downloads.forEach(item => {
+          if (!item || !item.file) return;
+          html += '<a class="m-download" href="' + esc(item.file) + '" target="_blank" rel="noopener" download>' +
+            '<span class="m-download-icon" aria-hidden="true">↧</span><span>' + esc(item.label || 'Open file') + '</span><span class="m-download-arrow" aria-hidden="true">↗</span></a>';
+        });
+        html += '</div></section>';
       }
       const skillsRel = relatedSkillsForGuide(g);
       if (skillsRel.length) {

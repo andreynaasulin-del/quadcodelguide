@@ -161,6 +161,9 @@ export async function rewriteGuideMedia(guide, {
   for (const step of guide.steps || []) {
     for (const f of STEP_MEDIA) await maybeRewrite(step, f);
   }
+  for (const item of guide.downloads || []) {
+    if (item && typeof item === 'object') await maybeRewrite(item, 'file');
+  }
   return rewritten;
 }
 
