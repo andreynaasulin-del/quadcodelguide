@@ -21,8 +21,8 @@
       "level": "Middle",
       "models": "Canvas render engine + FFmpeg (no external model) — one agent per visual, run in parallel",
       "trending": true,
-      "video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/purple-loader-orb-brand-asset-pack/heroorb-Q8Q5KkqTiQLDIH61ScCAkeQhKQWrh8.mp4",
-      "poster": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/purple-loader-orb-brand-asset-pack/pack_poster-NAvoa9LUqFeRziqj3tz5VK3nOzQUgT.jpg",
+      "video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/purple-loader-orb-brand-asset-pack/heroorb-vdWugieB249woxgQn0E7Nmn8a29HWK.mp4",
+      "poster": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/purple-loader-orb-brand-asset-pack/pack_poster-u30CCuB1YXl180tiMiliZ7DY2k99r4.jpg",
       "steps": [
         {
           "title": "1. Lock the brand: one gradient, one canvas",
@@ -33,43 +33,43 @@
           "title": "2. Make the motion seamless by design",
           "text": "The trick to a flawless loop is math, not trimming: drive every animation from a phase value p = (time mod LOOP) / LOOP and move things with sin/cos of p. Because those functions return to their start, the last frame lands exactly on the first — no jump, no stutter. Here's a breathing cloud proving the loop.",
           "prompt": "Breathing cloud loader: rounded multi-lobe cloud silhouette filled with the purple gradient, soft outer glow, scale pulses +/-6% and floats up/down driven by sin(phase*2PI). Transparent background, 512x512, 60fps, seamless.",
-          "result_video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/purple-loader-orb-brand-asset-pack/cloud01-e25fgl5TFSfTudWFeal666afMUOzU4.mp4"
+          "result_video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/purple-loader-orb-brand-asset-pack/cloud01-M1RZZp3yMliOpDcujTXyOOUgU5sASm.mp4"
         },
         {
           "title": "3. One agent per visual, all in parallel",
           "text": "Instead of drawing ten loaders one after another, each visual is its own job: same engine, different id, rendered and encoded independently. That means ten distinct motions — spinner, radar, liquid, atom, equalizer, comet — come back at once. Below: the conic spinner (cloud04).",
           "prompt": "Rotating spinner loader: 60 gradient arc segments around a ring, opacity ramps from faint to solid along the sweep, bright white head dot with glow, whole ring rotates once per loop. Purple gradient, transparent, 512x512, high-FPS, seamless.",
-          "result_video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/purple-loader-orb-brand-asset-pack/cloud04-cUL9uVLMPCsfI9635EI5SYzUt31ksQ.mp4"
+          "result_video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/purple-loader-orb-brand-asset-pack/cloud04-2CRBTiQgyDJvHTj4hkL9GA9VLvvx44.mp4"
         },
         {
           "title": "4. Ten cloud loaders, ten personalities",
           "text": "Variety keeps a loader from feeling robotic across a whole product. The pack ships ten: breathing cloud, orbiting dots, typing dots, spinner, radar pulse, liquid morph, atom orbit, equalizer bars, comet trail and sparkle float. This is the liquid-morph blob (cloud06).",
           "prompt": "Liquid morph loader: a blob whose radius is modulated by sin(angle*3 + phase) + cos(angle*2 - phase) so the outline gently melts and reforms over one seamless loop. Purple gradient fill, soft shadow, transparent 512x512.",
-          "result_video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/purple-loader-orb-brand-asset-pack/cloud06-4Of34N9g1aaIiB3ifqO4gJyBRadT4J.mp4"
+          "result_video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/purple-loader-orb-brand-asset-pack/cloud06-PvChB7JZRGUAQ4iwmrAOwOiUoSyJJz.mp4"
         },
         {
           "title": "5. The Hero Orb — the centerpiece",
           "text": "Part B is the brand's signature: a glossy 'atomic' sphere with a bright highlight, inner swirling rings and electrons orbiting on tilted paths. It's the loader for the home hero and auth screen — premium, alive, unmistakably the brand.",
           "prompt": "Hero orb: glossy purple sphere (radial highlight top-left), two faint white inner ellipse swirls rotating opposite directions, three white electrons orbiting on tilted elliptical paths with glow, soft outer halo. Transparent 512x512, seamless, high-FPS.",
-          "result_video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/purple-loader-orb-brand-asset-pack/heroorb-lXz3W0yt5PgiwELCxtvRMocJFOtNuW.mp4"
+          "result_video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/purple-loader-orb-brand-asset-pack/heroorb-EcRNHVDsqYho9t0lYNgSdvKm3U3CPA.mp4"
         },
         {
           "title": "6. Orb variants: glow and mini",
           "text": "One orb isn't enough for a real system. orb-glow is a soft pulsing halo for backgrounds; orb-mini is a compact gradient avatar for the chat agent indicator. Each shipped in two variants so designers can pick the mood. Shown: the pulsing orb-glow.",
           "prompt": "Orb glow: layered soft radial halos in the purple gradient, gently pulsing scale +/-12% over one seamless loop, no hard edges — pure light. Transparent 512x512 so it composites over any background.",
-          "result_video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/purple-loader-orb-brand-asset-pack/orbglow-d5MqnIckRficIb0BlMbxxpjOt8KH2y.mp4"
+          "result_video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/purple-loader-orb-brand-asset-pack/orbglow-eqXzglfpRMCpVeG5ALFLsGviS9RwXP.mp4"
         },
         {
           "title": "7. Ship three formats per visual",
           "text": "Each visual is encoded three ways from the same source: WebM with a real alpha channel (VP9 yuva420p) for transparent web use, an MP4 preview flattened on dark for universal playback, and an animated WebP with alpha as a lightweight fallback. One render, every surface covered.",
           "prompt": "For each visual output: (1) WebM VP9 yuva420p with alpha, (2) MP4 h264 composited over #0d0b1a as a preview, (3) animated WebP with alpha. Keep all at 512x512, loop=0 (infinite).",
-          "result_video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/purple-loader-orb-brand-asset-pack/cloud07-yDDWTiGGIU1XkyuHUgL4puFDzamBbj.mp4"
+          "result_video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/purple-loader-orb-brand-asset-pack/cloud07-aCa5m81ACGOgTElzaMJLK5ZQed8qrm.mp4"
         },
         {
           "title": "8. Part C: the SVG logo & icon system",
           "text": "Motion needs a static counterpart. The pack closes with vector assets: an Atomus orbit logo (horizontal, stacked and icon lockups), six tool icons (sheet, terminal, browser, editor, search, files) and product marks (sparkle, gem, file, key) — all on the same purple gradient, crisp at any size.",
           "prompt": "SVG brand set on gradient #be9bf4 to #7040db: orbit-mark logo in horizontal / stacked / rounded-square icon lockups; six 24px outline tool icons (sheet, terminal, browser, editor, search, files) at stroke ~1.9; filled product icons sparkle, gem, file, key.",
-          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/purple-loader-orb-brand-asset-pack/pack_poster-QYDPpgMVARxseWGYPjGLbnJNl9HEBO.jpg"
+          "result_image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/purple-loader-orb-brand-asset-pack/pack_poster-ptMyL0eqxLlbEtYRk1bFZ09Co4PwFy.jpg"
         }
       ],
       "result": "A complete, on-brand purple asset pack: 10 seamless transparent cloud loaders, a Hero Orb with glow and mini variants (2 each), and a full SVG logo + icon system — every animation delivered as WebM (alpha), MP4 preview and WebP, all 512x512 and high-FPS, ready to drop into a product."
