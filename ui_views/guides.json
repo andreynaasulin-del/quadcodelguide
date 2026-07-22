@@ -11,48 +11,6 @@
   ],
   "guides": [
     {
-      "id": "brief01-messy-brief-to-visual-system",
-      "cat": "Design",
-      "sub": "Product Strategy",
-      "title": "BRIEF/01 — Decision Model for Messy Client Briefs",
-      "desc": "Turn a chaotic client wishlist into a defensible Decision Contract (GOAL, AUDIENCE, RULES, OUTPUT) with weighted criteria scoring, conflict elimination, and a downloadable JSON contract.",
-      "time": "25 min",
-      "date": "2026-07-22",
-      "level": "Senior",
-      "models": "GPT-Image",
-      "new": true,
-      "trending": true,
-      "image": "/ui_views/assets/brief01-03-pedagogical-test.png",
-      "poster": "/ui_views/assets/brief01-03-pedagogical-test.png",
-      "steps": [
-        {
-          "title": "1. Capture raw statements without interpreting",
-          "text": "Record client statements verbatim as evidence rows before design execution. Categorize inputs into PREFERENCE, GOAL_INPUT, AUDIENCE_INPUT, CONSTRAINT, and OUTPUT_SPEC.",
-          "prompt": "GOAL: Educational layout mapping 8 raw client statements into classified categories.",
-          "result_image": "/ui_views/assets/brief01-03-pedagogical-test.png"
-        },
-        {
-          "title": "2. Expose conflicts with weighted decision rules",
-          "text": "Pair contradictory demands (KEEP IT SIMPLE vs ADD MORE DETAIL) and calculate weighted scores across clarity, scanning speed, and delivery speed.",
-          "prompt": "GOAL: Educational decision sheet calculating weighted scores.",
-          "result_image": "/ui_views/assets/brief01-04-weighted-decision-test.png"
-        },
-        {
-          "title": "3. Lock the decision contract and ship",
-          "text": "Assemble the 4 core pillars: GOAL (under 5 sec recognition), AUDIENCE (founders on mobile), RULES (mobile-first + Friday lock), and OUTPUT (1 page + 3D embed).",
-          "prompt": "GOAL: Clean decision contract summary layout showing GOAL, AUDIENCE, RULES, and OUTPUT fields.",
-          "result_image": "/ui_views/assets/brief01-03-pedagogical-test.png"
-        }
-      ],
-      "result": "A structured 3-step decision pipeline turning messy client briefs into a binding Decision Contract. Eliminates subjective rework and protects production timelines.",
-      "downloads": [
-        {
-          "label": "Download Decision Contract JSON Schema",
-          "file": "/ui_views/assets/brief01-decision-contract.json"
-        }
-      ]
-    },
-    {
       "id": "npc01-dark-fantasy-deceiver",
       "cat": "Gamedev",
       "sub": "Character Design",
@@ -123,50 +81,46 @@
       ]
     },
     {
-      "id": "cloud-catcher-cinematic",
-      "cat": "Video",
-      "sub": "Cinematic Design",
-      "title": "Cloud Catcher — Direct a Cinematic Atmospheric Shot",
-      "desc": "Turn a simple visual idea into a polished atmospheric video through composition, scale, light, and controlled movement.",
-      "time": "15 min",
+      "id": "brief01-messy-brief-to-visual-system",
+      "cat": "Design",
+      "sub": "Product Strategy",
+      "title": "BRIEF/01 — Decision Model for Messy Client Briefs",
+      "desc": "Turn a chaotic client wishlist into a defensible Decision Contract (GOAL, AUDIENCE, RULES, OUTPUT) with weighted criteria scoring, conflict elimination, and a downloadable JSON contract.",
+      "time": "25 min",
       "date": "2026-07-22",
-      "level": "Junior",
-      "models": "Video generation, cinematic design",
+      "level": "Senior",
+      "models": "GPT-Image",
       "new": true,
       "trending": true,
-      "video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/cloud-catcher-cinematic/cloud_catcher-6CZDHvOouyhNu6Zrm5G0v0VTtXY4k4.mp4",
+      "image": "/ui_views/assets/brief01-03-pedagogical-test.png",
+      "poster": "/ui_views/assets/brief01-03-pedagogical-test.png",
       "steps": [
         {
-          "title": "Control atmosphere, scale, and motion",
-          "text": "Use the Cloud Catcher film as the target reference. Build the shot around a readable focal point, a strong sense of scale, layered atmosphere, and movement that supports the idea instead of competing with it. The final result should feel directed: every visual element needs a clear place and purpose.",
-          "prompt": "Recreate the visual direction of the supplied Cloud Catcher reference: cinematic atmosphere, strong depth, deliberate scale, controlled light, layered environmental detail, and smooth purposeful camera movement. Keep the composition readable and restrained. Avoid random objects, accidental text, watermarks, UI elements, and unrelated visual noise.",
-          "result_video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/cloud-catcher-cinematic/cloud_catcher-6CZDHvOouyhNu6Zrm5G0v0VTtXY4k4.mp4"
-        }
-      ],
-      "result": "A cinematic atmospheric video with a clear focal point, controlled depth, purposeful camera motion, and a finished visual hierarchy."
-    },
-    {
-      "id": "yuzu-scallops-4k-motion",
-      "cat": "Video",
-      "sub": "Food Cinematic",
-      "title": "Yuzu Scallops — Build a Premium Food Cinematic",
-      "desc": "Create a premium 4K food film with controlled composition, texture, light, and motion. This guide uses one finished video as the visual target.",
-      "time": "15 min",
-      "date": "2026-07-22",
-      "level": "Middle+",
-      "models": "Video generation, motion design",
-      "new": true,
-      "trending": true,
-      "video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/yuzu-scallops-4k-motion/yuzu_scallops_4k-373YkQ1nsEzLAEQpDeSLn4Lt9deTGp.mp4",
-      "steps": [
+          "title": "1. Capture raw statements without interpreting",
+          "text": "Record client statements verbatim as evidence rows before design execution. Categorize inputs into PREFERENCE, GOAL_INPUT, AUDIENCE_INPUT, CONSTRAINT, and OUTPUT_SPEC.",
+          "prompt": "GOAL: Educational layout mapping 8 raw client statements into classified categories.",
+          "result_image": "/ui_views/assets/brief01-03-pedagogical-test.png"
+        },
         {
-          "title": "Build the food-film reference",
-          "text": "Use the finished Yuzu Scallops film as the target for a premium food-cinematic treatment. Pay attention to the hero composition, controlled camera movement, surface texture, highlights, and the pacing of the final shot. Keep the frame intentional: one subject, one lighting idea, and no distracting interface elements.",
-          "prompt": "Recreate the visual direction of the supplied Yuzu Scallops reference: premium food cinematography, precise macro detail, controlled studio lighting, deliberate camera motion, rich texture, clean composition, and a polished commercial finish. Preserve a single clear subject and avoid clutter, random props, extra text, watermarks, or unrelated objects.",
-          "result_video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/yuzu-scallops-4k-motion/yuzu_scallops_4k-373YkQ1nsEzLAEQpDeSLn4Lt9deTGp.mp4"
+          "title": "2. Expose conflicts with weighted decision rules",
+          "text": "Pair contradictory demands (KEEP IT SIMPLE vs ADD MORE DETAIL) and calculate weighted scores across clarity, scanning speed, and delivery speed.",
+          "prompt": "GOAL: Educational decision sheet calculating weighted scores.",
+          "result_image": "/ui_views/assets/brief01-04-weighted-decision-test.png"
+        },
+        {
+          "title": "3. Lock the decision contract and ship",
+          "text": "Assemble the 4 core pillars: GOAL (under 5 sec recognition), AUDIENCE (founders on mobile), RULES (mobile-first + Friday lock), and OUTPUT (1 page + 3D embed).",
+          "prompt": "GOAL: Clean decision contract summary layout showing GOAL, AUDIENCE, RULES, and OUTPUT fields.",
+          "result_image": "/ui_views/assets/brief01-03-pedagogical-test.png"
         }
       ],
-      "result": "A polished 4K food-cinematic video built around one clear hero subject, controlled light, macro texture, and deliberate motion."
+      "result": "A structured 3-step decision pipeline turning messy client briefs into a binding Decision Contract. Eliminates subjective rework and protects production timelines.",
+      "downloads": [
+        {
+          "label": "Download Decision Contract JSON Schema",
+          "file": "/ui_views/assets/brief01-decision-contract.json"
+        }
+      ]
     },
     {
       "id": "savor01-evidence-of-food",
