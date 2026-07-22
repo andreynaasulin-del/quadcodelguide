@@ -18,7 +18,7 @@
       "desc": "Turn a simple visual idea into a polished atmospheric video through composition, scale, light, and controlled movement.",
       "time": "15 min",
       "date": "2026-07-22",
-      "level": "Senior",
+      "level": "Junior",
       "models": "Video generation, cinematic design",
       "new": true,
       "trending": true,
@@ -28,7 +28,7 @@
           "title": "Control atmosphere, scale, and motion",
           "text": "Use the Cloud Catcher film as the target reference. Build the shot around a readable focal point, a strong sense of scale, layered atmosphere, and movement that supports the idea instead of competing with it. The final result should feel directed: every visual element needs a clear place and purpose.",
           "prompt": "Recreate the visual direction of the supplied Cloud Catcher reference: cinematic atmosphere, strong depth, deliberate scale, controlled light, layered environmental detail, and smooth purposeful camera movement. Keep the composition readable and restrained. Avoid random objects, accidental text, watermarks, UI elements, and unrelated visual noise.",
-          "result_video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/cloud-catcher-cinematic/cloud_catcher-woElL5gpcYQkE9bVr5cAXlzI0KTAGE.mp4"
+          "result_video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/cloud-catcher-cinematic/cloud_catcher-6CZDHvOouyhNu6Zrm5G0v0VTtXY4k4.mp4"
         }
       ],
       "result": "A cinematic atmospheric video with a clear focal point, controlled depth, purposeful camera motion, and a finished visual hierarchy."
