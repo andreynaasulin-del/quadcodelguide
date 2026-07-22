@@ -11,6 +11,48 @@
   ],
   "guides": [
     {
+      "id": "brief01-messy-brief-to-visual-system",
+      "cat": "Design",
+      "sub": "Product Strategy",
+      "title": "BRIEF/01 — Decision Model for Messy Client Briefs",
+      "desc": "Turn a chaotic client wishlist into a defensible Decision Contract (GOAL, AUDIENCE, RULES, OUTPUT) with weighted criteria scoring, conflict elimination, and a downloadable JSON contract.",
+      "time": "25 min",
+      "date": "2026-07-22",
+      "level": "Senior",
+      "models": "GPT-Image",
+      "new": true,
+      "trending": true,
+      "image": "/ui_views/assets/brief01-03-pedagogical-test.png",
+      "poster": "/ui_views/assets/brief01-03-pedagogical-test.png",
+      "steps": [
+        {
+          "title": "1. Capture raw statements without interpreting",
+          "text": "Record client statements verbatim as evidence rows before design execution. Categorize inputs into PREFERENCE, GOAL_INPUT, AUDIENCE_INPUT, CONSTRAINT, and OUTPUT_SPEC.",
+          "prompt": "GOAL: Educational layout mapping 8 raw client statements into classified categories.",
+          "result_image": "/ui_views/assets/brief01-03-pedagogical-test.png"
+        },
+        {
+          "title": "2. Expose conflicts with weighted decision rules",
+          "text": "Pair contradictory demands (KEEP IT SIMPLE vs ADD MORE DETAIL) and calculate weighted scores across clarity, scanning speed, and delivery speed.",
+          "prompt": "GOAL: Educational decision sheet calculating weighted scores.",
+          "result_image": "/ui_views/assets/brief01-04-weighted-decision-test.png"
+        },
+        {
+          "title": "3. Lock the decision contract and ship",
+          "text": "Assemble the 4 core pillars: GOAL (under 5 sec recognition), AUDIENCE (founders on mobile), RULES (mobile-first + Friday lock), and OUTPUT (1 page + 3D embed).",
+          "prompt": "GOAL: Clean decision contract summary layout showing GOAL, AUDIENCE, RULES, and OUTPUT fields.",
+          "result_image": "/ui_views/assets/brief01-03-pedagogical-test.png"
+        }
+      ],
+      "result": "A structured 3-step decision pipeline turning messy client briefs into a binding Decision Contract. Eliminates subjective rework and protects production timelines.",
+      "downloads": [
+        {
+          "label": "Download Decision Contract JSON Schema",
+          "file": "/ui_views/assets/brief01-decision-contract.json"
+        }
+      ]
+    },
+    {
       "id": "npc01-dark-fantasy-deceiver",
       "cat": "Gamedev",
       "sub": "Character Design",
