@@ -41,7 +41,7 @@
       "desc": "Create a premium 4K food film with controlled composition, texture, light, and motion. This guide uses one finished video as the visual target.",
       "time": "15 min",
       "date": "2026-07-22",
-      "level": "Senior",
+      "level": "Middle+",
       "models": "Video generation, motion design",
       "new": true,
       "trending": true,
@@ -51,7 +51,7 @@
           "title": "Build the food-film reference",
           "text": "Use the finished Yuzu Scallops film as the target for a premium food-cinematic treatment. Pay attention to the hero composition, controlled camera movement, surface texture, highlights, and the pacing of the final shot. Keep the frame intentional: one subject, one lighting idea, and no distracting interface elements.",
           "prompt": "Recreate the visual direction of the supplied Yuzu Scallops reference: premium food cinematography, precise macro detail, controlled studio lighting, deliberate camera motion, rich texture, clean composition, and a polished commercial finish. Preserve a single clear subject and avoid clutter, random props, extra text, watermarks, or unrelated objects.",
-          "result_video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/yuzu-scallops-4k-motion/yuzu_scallops_4k-igEqMxXdOVkWtI9V4r7fOZpv2zIeC1.mp4"
+          "result_video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/yuzu-scallops-4k-motion/yuzu_scallops_4k-373YkQ1nsEzLAEQpDeSLn4Lt9deTGp.mp4"
         }
       ],
       "result": "A polished 4K food-cinematic video built around one clear hero subject, controlled light, macro texture, and deliberate motion."
