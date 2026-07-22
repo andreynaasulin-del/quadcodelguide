@@ -11,6 +11,83 @@
   ],
   "guides": [
     {
+      "id": "savor01-evidence-of-food",
+      "cat": "Motion Design",
+      "sub": "Motion Identity",
+      "title": "SAVOR/01 — The Evidence of Food: a 20-second motion identity from six stills",
+      "desc": "Turn scattered food evidence — receipts, printed dates, barcodes, notes — into a typographic decision system: USE FIRST / USE SOON / STABLE / CHECK. Six GPT-Image keyframes, one controlled 20-second sequence, zero fake freshness scores.",
+      "time": "45 min",
+      "date": "2026-07-20",
+      "level": "Senior",
+      "models": "GPT-Image, ElevenLabs voice",
+      "new": true,
+      "trending": true,
+      "image": "assets/savor01/06-final-lockup-crop.png",
+      "video": "assets/savor01/savor01-twitter-promo-v01.mp4",
+      "poster": "assets/savor01/06-final-lockup-crop.png",
+      "steps": [
+        {
+          "title": "1. Define what the system refuses to do",
+          "text": "Start with the negative brief, not the moodboard. SAVOR/01 never detects freshness, never labels food safe or unsafe, and never replaces package guidance. That constraint is the entire concept: the system organizes evidence the user already has — receipts, printed dates, opened dates, storage zones — instead of inventing an AI verdict. Write four plain-language states before touching visuals: USE FIRST, USE SOON, STABLE, CHECK.",
+          "prompt": "Lock the safety rule: this system organizes known information. It never claims to analyze food, never outputs a score, never uses medical or danger iconography. Every status must be readable as text + shape + color, so meaning never depends on color alone.",
+          "result_image": "assets/savor01/05-four-states-final.png"
+        },
+        {
+          "title": "2. Spill the evidence with physical inertia",
+          "text": "The opening is chaos on purpose: receipt fragments, barcode stripes, printed dates and halftone food crops enter from the frame edges at different speeds with slight rotational overshoot. The SAVOR/01 lockup stays dead still at center while the mess moves around it — the contrast between a fixed identity and uncontrolled evidence is the hook.",
+          "prompt": "Editorial collage frame, warm paper background #F2EEE5, near-black ink typography. Scattered food evidence fragments: thermal receipt strips with torn edges, barcode sections, printed date stamps, opened-product notes, halftone food photography crops. Fragments enter from frame edges with varied rotation and overlap, physically scattered not decoratively arranged. A small fixed typographic lockup 'SAVOR/01' holds still at the center. Condensed grotesk display type, tabular numerals, registration marks. 16:9, 1920x1080. No UI mockups, no app screens, no people, no gradients.",
+          "result_image": "assets/savor01/01-evidence-spill.png"
+        },
+        {
+          "title": "3. Make conflicting dates break the grid",
+          "text": "Food date language is genuinely broken: USE BY, BEST BEFORE, OPENED and purchase dates contradict each other in real kitchens. Show it as a typographic collision — one giant black date, three competing labels sliding and rotating into it, an 8-frame hold on the impact. This is the 'why' of the whole system in 3 seconds.",
+          "prompt": "Editorial typographic frame on warm paper #F2EEE5. One massive black date '21 JUN' in condensed grotesk dominates the grid. Three conflicting date labels collide with it: 'USE BY' sliding left to right, 'OPENED' rolling downward, 'BEST BEFORE' rotated 7 degrees into the collision. Ink texture like rubber date stamps, hard overlaps, registration marks at edges, barcode shutter closing from the sides. Near-black ink #20201E, tomato accent #C6382C. 16:9, 1920x1080. English text only, no UI, no icons, no people.",
+          "result_image": "assets/savor01/02-date-collision.png"
+        },
+        {
+          "title": "4. Register evidence with OCR logic",
+          "text": "The system earns trust by showing what it reads. Six registration boxes draw on clockwise around a yoghurt crop — product name, use-by date, opened date, storage zone, quantity — and each box overshoots its target by a few pixels before snapping into place. The seventh box says NO SAFETY VERDICT and stays neutral black: the system states its own limit inside the design.",
+          "prompt": "Editorial evidence-capture frame on warm paper. One halftone yoghurt cup crop at center, surrounded by six precise registration boxes drawn in near-black ink: PRODUCT, USE BY, OPENED, STORAGE, QTY, and a final neutral box reading 'NO SAFETY VERDICT'. Boxes have thin rule lines, corner ticks, small tabular metadata labels, OCR-style alignment marks. Dry scanner aesthetic, condensed grotesk labels, cobalt accent #1755A5 for active registration. 16:9, 1920x1080. No glossy UI, no holograms, no scan beams, no people.",
+          "result_image": "assets/savor01/03-evidence-capture.png"
+        },
+        {
+          "title": "5. Sort by position first, color second",
+          "text": "Exactly 12 evidence tiles enter from scattered positions and reorganize into four horizontal lanes. The motion rule matters: tiles sort by vertical position first, and status color appears only 4 frames later. Priority is expressed as physical order — color is a label, not the mechanism. Three tiles per lane, short stagger, small recoil at the settle point.",
+          "prompt": "Editorial system frame on warm paper, 12-column grid. Twelve evidence tiles — receipt fragments, date stamps, barcode pieces, food crops with metadata labels — reorganizing into four horizontal lanes. Lane headers in condensed grotesk: USE FIRST (tomato #C6382C), USE SOON (amber #C68A24), STABLE (cool grey #9A9B96), CHECK (cobalt #1755A5). Tiles mid-sort with visible position logic, tabular numerals, registration ticks. 16:9, 1920x1080. No app UI, no rounded cards, no drop shadows, no people.",
+          "result_image": "assets/savor01/04-triage-build.png"
+        },
+        {
+          "title": "6. Build the four-state typographic system",
+          "text": "The payoff frame: four vertical fields, one per state. Each state is text + shape + color — circle for USE FIRST, triangle for USE SOON, equals sign for STABLE, diagonal X for CHECK. Never a medical plus, never color alone. Words reveal bottom-to-top through hard masks; symbols stamp in like print cylinders. This single frame is the whole product.",
+          "prompt": "Editorial typographic system frame on warm paper #F2EEE5. Four equal vertical fields separated by hairline rules. Each field shows one food-triage state in condensed grotesk: USE FIRST with a circle in tomato #C6382C, USE SOON with a triangle in amber #C68A24, STABLE with an equals sign in cool grey #9A9B96, CHECK with a diagonal X in cobalt #1755A5. Symbols read as stamped print marks, small metadata labels under each state, tabular numerals. 16:9, 1920x1080. English only, no icons beyond the four symbols, no UI, no people, no gradients.",
+          "result_image": "assets/savor01/05-four-states-final.png"
+        },
+        {
+          "title": "7. Collapse everything into one lockup",
+          "text": "The finale is compression: the four fields fold into a single horizontal evidence strip, the barcode travels to center and stops dead, the four symbols reorder into one row. SAVOR/01 resolves with a 2-frame red misregistration before alignment — a small print-imperfection detail that makes the system feel physical, not rendered. Hold the final frame long enough to read.",
+          "prompt": "Editorial final-lockup frame on warm paper #F2EEE5. One horizontal evidence strip across the center combining receipt texture, barcode section and date stamps. Above it the condensed grotesk lockup 'SAVOR/01' in near-black ink with a subtle red misregistration offset, below it the line 'THE EVIDENCE OF FOOD'. The four state symbols — circle, triangle, equals, diagonal X — in one ordered row with their state colors. Registration marks at the corners, generous negative space. 16:9, 1920x1080. English only, no UI, no people.",
+          "result_image": "assets/savor01/06-final-lockup.png"
+        },
+        {
+          "title": "8. Animate with sound as the timing layer",
+          "text": "The 20-second cut runs 00–03 spill, 03–06 collision, 06–09 capture, 09–13 triage, 13–17 states, 17–20 lockup at 24 fps. Sound is dry foley, not music: paper feed, scanner ticks, three stamp impacts, six optical clicks, four print-cylinder hits, one low tonal pulse at the lockup. A calm English voiceover explains the logic in three sentences — the system organizes evidence instead of inventing a score. Add the brand watermark at 10% frame width, centered, flush to the bottom edge.",
+          "prompt": "",
+          "result_video": "assets/savor01/savor01-twitter-promo-v01.mp4"
+        }
+      ],
+      "result": "A complete 20-second motion identity: six GPT-Image keyframes on one warm-paper grid, a four-state typographic triage system (USE FIRST / USE SOON / STABLE / CHECK), dry foley sound design and a calm English voiceover. The system organizes food evidence the user already has — it never claims to detect freshness or safety.",
+      "downloads": [
+        {
+          "label": "View keyframe contact sheet",
+          "file": "assets/savor01/keyframes-contact-sheet.png"
+        },
+        {
+          "label": "Download system architecture board",
+          "file": "assets/savor01/system-architecture-board.png"
+        }
+      ]
+    },
+    {
       "id": "purple-loader-orb-brand-asset-pack",
       "cat": "Motion Design",
       "sub": "Brand Assets",
