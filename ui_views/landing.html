@@ -25,6 +25,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
 <style>
   :root {
     --bg:        #0E0E14;
@@ -1475,6 +1476,25 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .m-step-media .media-label {
     display: block; font-size: 11px; font-weight: 600; letter-spacing: 1.2px;
     text-transform: uppercase; color: var(--muted-2); margin: 8px 0 0;
+  }
+  .m-step-media-3d model-viewer {
+    display: block; width: 100%; height: 440px;
+    border-radius: 10px; border: 1px solid var(--line);
+    background: radial-gradient(120% 90% at 50% 20%, #1C1C28 0%, var(--bg-3) 70%);
+    --poster-color: transparent;
+    outline: none;
+  }
+  .m-step-media-3d .media-label { color: var(--acc-1); }
+  .m-step-media-3d .m-3d-hint {
+    position: absolute; top: 10px; right: 12px;
+    font-size: 11px; font-weight: 600; letter-spacing: .4px;
+    color: var(--muted-2); background: rgba(10,10,16,.62);
+    border: 1px solid var(--line); border-radius: 999px;
+    padding: 5px 10px; pointer-events: none;
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  }
+  @media (max-width: 640px) {
+    .m-step-media-3d model-viewer { height: 320px; }
   }
   .m-prompt span, .m-result span {
     display: block; font-size: 11px; font-weight: 600; letter-spacing: 1.2px;
@@ -3675,6 +3695,15 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     }
 
     function stepMediaHtml(s) {
+      if (s.result_model) {
+        return '<div class="m-step-media m-step-media-3d">' +
+          '<model-viewer src="' + esc(s.result_model) + '"' +
+          (s.result_poster ? ' poster="' + esc(s.result_poster) + '"' : '') +
+          ' camera-controls auto-rotate auto-rotate-delay="2500" rotation-per-second="18deg" interaction-prompt="auto" touch-action="pan-y" exposure="1.5" shadow-intensity="0.6" environment-image="neutral" loading="lazy" reveal="interaction" alt="Interactive 3D model — drag to orbit, scroll to zoom"></model-viewer>' +
+          '<span class="media-label">Interactive 3D</span>' +
+          '<span class="m-3d-hint">Drag to orbit · Scroll to zoom</span>' +
+          '</div>';
+      }
       if (s.result_video) {
         return '<div class="m-step-media"><video data-src="' + esc(s.result_video) + '"' +
           (s.result_poster ? ' poster="' + esc(s.result_poster) + '"' : '') +
