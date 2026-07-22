@@ -1,0 +1,60 @@
+{
+  "$schema": "https://quadcode.ai/schemas/brief-decision-contract.v1.json",
+  "contract_id": "BRIEF-01-2026-0722",
+  "project_name": "THE COURT PARASITE — Production Landing Page & Asset Kit",
+  "version": "1.0.0",
+  "metadata": {
+    "author": "Lumi (Lead Designer)",
+    "date": "2026-07-22",
+    "status": "APPROVED_LOCKED"
+  },
+  "raw_input_statements": [
+    { "id": "ST-01", "text": "MAKE IT PREMIUM", "type": "PREFERENCE", "action": "REJECTED_UNTESTABLE" },
+    { "id": "ST-02", "text": "KEEP IT FRIENDLY", "type": "PREFERENCE", "action": "REJECTED_CONTRADICTORY" },
+    { "id": "ST-03", "text": "KEEP IT SIMPLE", "type": "GOAL_INPUT", "action": "TRANSFORMED_TO_FIRST_SCREEN_VAL" },
+    { "id": "ST-04", "text": "ADD MORE DETAIL", "type": "PREFERENCE", "action": "REJECTED_NOISY" },
+    { "id": "ST-05", "text": "TARGET FOUNDERS", "type": "AUDIENCE_INPUT", "action": "TRANSFORMED_TO_EARLY_FOUNDERS" },
+    { "id": "ST-06", "text": "MOBILE FIRST", "type": "CONSTRAINT", "action": "LOCKED_RULE" },
+    { "id": "ST-07", "text": "LANDING PAGE", "type": "OUTPUT_SPEC", "action": "LOCKED_OUTPUT" },
+    { "id": "ST-08", "text": "LAUNCH FRIDAY", "type": "CONSTRAINT", "action": "LOCKED_RULE" }
+  ],
+  "conflict_resolution_matrix": {
+    "pair": ["KEEP IT SIMPLE", "ADD MORE DETAIL"],
+    "evaluation_criteria": [
+      { "name": "Clarity at 5 Seconds", "weight": 0.5, "score_simple": 5, "score_detail": 2 },
+      { "name": "Founder Scanning Speed", "weight": 0.3, "score_simple": 5, "score_detail": 3 },
+      { "name": "Implementation Speed (Friday Deadline)", "weight": 0.2, "score_simple": 4, "score_detail": 3 }
+    ],
+    "weighted_scores": {
+      "KEEP_IT_SIMPLE": 4.8,
+      "ADD_MORE_DETAIL": 2.5
+    },
+    "verdict": "LOCKED_KEEP_IT_SIMPLE",
+    "rejection_reason": "Excessive detail increases cognitive load and threatens Friday ship date."
+  },
+  "locked_decision_contract": {
+    "GOAL": {
+      "statement": "Explain core value proposition within first viewport fold (under 5 seconds).",
+      "metric": "5-second user test recognition rate >= 85%"
+    },
+    "AUDIENCE": {
+      "target": "Early-stage founders comparing three competitor tools on mobile devices.",
+      "primary_viewport": "Mobile portrait (390x844 px)"
+    },
+    "RULES": {
+      "constraints": [
+        "Mobile-first responsive architecture",
+        "Ship target: Friday end-of-day",
+        "Brand palette lock: Void #120F17, Acid Green #B7FF2A, Milky White #F2F0E8"
+      ]
+    },
+    "OUTPUT": {
+      "deliverable": "One 5-section responsive landing page + 3D interactive asset embed",
+      "acceptance_criteria": [
+        "Primary action visible above fold without scrolling",
+        "WCAG AA contrast compliant on all text layers",
+        "No unquantified adjectives used in production copy"
+      ]
+    }
+  }
+}
