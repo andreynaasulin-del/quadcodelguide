@@ -66,7 +66,7 @@
           "text": "The GLB mesh generated from the concept stack (35k tris budget). Drag to orbit, scroll to zoom. Check the collar volume from behind and the sleeve drape from the side — the two spots where 2D-to-3D translations usually break.",
           "prompt": "GOAL: Generate a production 3D character mesh from the locked identity render and turnaround. Budget 35k triangles, A-pose, watertight, ready for retopo and rigging. Export GLB.",
           "result_model": "/ui_views/assets/npc01-07-3d-model.glb",
-          "result_poster": "/ui_views/assets/npc01-03-identity-render.png"
+          "result_poster": "/ui_views/assets/npc01-07-3d-viewer-poster.png"
         },
         {
           "title": "8. Spec the technical A-pose, sockets and FACS targets",
