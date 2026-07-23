@@ -3699,7 +3699,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         return '<div class="m-step-media m-step-media-3d">' +
           '<model-viewer src="' + esc(s.result_model) + '"' +
           (s.result_poster ? ' poster="' + esc(s.result_poster) + '"' : '') +
-          ' camera-controls auto-rotate auto-rotate-delay="2500" rotation-per-second="18deg" interaction-prompt="auto" touch-action="pan-y" exposure="1.5" shadow-intensity="0.6" environment-image="neutral" loading="lazy" reveal="interaction" alt="Interactive 3D model — drag to orbit, scroll to zoom"></model-viewer>' +
+          ' camera-controls auto-rotate auto-rotate-delay="2500" rotation-per-second="18deg" interaction-prompt="auto" touch-action="pan-y" camera-orbit="0deg 78deg 105%" exposure="4.2" tone-mapping="neutral" shadow-intensity="0.2" shadow-softness="0.9" environment-image="neutral" loading="lazy" reveal="interaction" alt="Interactive 3D model — drag to orbit, scroll to zoom"></model-viewer>' +
           '<span class="media-label">Interactive 3D</span>' +
           '<span class="m-3d-hint">Drag to orbit · Scroll to zoom</span>' +
           '</div>';
