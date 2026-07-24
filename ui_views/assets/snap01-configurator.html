@@ -89,11 +89,14 @@
     font-family:Inter,sans-serif;}
   .snap-reset:hover{border-color:var(--signal);color:var(--text);}
   @media (max-width:640px){
-    .snap-body{flex-direction:column;}
+    .snap-wrap{height:auto;min-height:100%;}
+    .snap-body{flex-direction:column;flex-wrap:nowrap;}
     .snap-palette{width:100%;flex-direction:row;flex-wrap:wrap;}
     .snap-pal-item{width:calc(33% - 6px);}
-    .snap-side{width:100%;flex-direction:row;}
-    .snap-panel{flex:1;}
+    .snap-canvas-wrap{min-width:0;width:100%;}
+    .snap-canvas{max-width:100%;}
+    .snap-side{width:100%;flex-direction:row;flex-wrap:wrap;}
+    .snap-panel{flex:1;min-width:150px;}
   }
 </style>
 </head>
@@ -133,7 +136,7 @@
 <div class="snap-toast" id="toast"></div>
 <script>
 (function(){
-  var CELL = 44; // px per 300mm grid cell
+  var CELL = 44; // px per 300mm grid cell, recomputed responsively in renderCanvas()
   var MODULES = [
     { key:'base-cabinet', label:'Base Cabinet', dims:'600×600×720', w:2, h:2, price:420,
       color:'#C08A52', glb:'/ui_views/assets/snap01-05-base-cabinet.glb', poster:'/ui_views/assets/snap01-05-base-cabinet-poster.png' },
@@ -184,6 +187,8 @@
   }
 
   function renderCanvas(){
+    var avail = canvasEl.parentElement.clientWidth || 560;
+    CELL = Math.max(18, Math.min(44, Math.floor(avail/cols)));
     canvasEl.style.width = (cols*CELL)+'px';
     canvasEl.style.height = (rows*CELL)+'px';
     canvasEl.innerHTML = '';
@@ -292,6 +297,8 @@
     rows = newRows; rebuildOccupied(); renderCanvas(); renderBom();
   });
   resetBtn.addEventListener('click', function(){ placed=[]; occupied={}; selectedId=null; renderCanvas(); renderBom(); showInspector(null); });
+
+  window.addEventListener('resize', function(){ renderCanvas(); });
 
   renderPalette();
   init();
