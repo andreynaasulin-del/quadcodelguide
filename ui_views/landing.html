@@ -1520,6 +1520,18 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     .m-step-media-3d-grid { grid-template-columns: repeat(2, 1fr); }
     .m-step-media-3d-grid model-viewer { height: 170px; }
   }
+  .m-step-media-widget iframe {
+    display: block; width: 100%; height: 640px; border: 1px solid var(--line);
+    border-radius: 10px; background: #22262B;
+  }
+  .m-step-media-widget .media-label { color: var(--acc-1); }
+  .m-step-media-widget .m-3d-hint {
+    display: inline-block; margin-top: 8px; font-size: 11px; font-weight: 600;
+    letter-spacing: .4px; color: var(--muted-2);
+  }
+  @media (max-width: 640px) {
+    .m-step-media-widget iframe { height: 780px; }
+  }
   .m-prompt span, .m-result span {
     display: block; font-size: 11px; font-weight: 600; letter-spacing: 1.2px;
     text-transform: uppercase; color: var(--acc-1); margin-bottom: 6px;
@@ -3719,6 +3731,14 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     }
 
     function stepMediaHtml(s) {
+      if (s.widget_iframe) {
+        return '<div class="m-step-media m-step-media-widget">' +
+          '<iframe src="' + esc(s.widget_iframe) + '" loading="lazy" title="Interactive widget" ' +
+          'allow="fullscreen"></iframe>' +
+          '<span class="media-label">Live widget \u2014 drag to place, click to inspect in 3D</span>' +
+          '<span class="m-3d-hint">Real HTML/CSS/JS, embedded live \u2014 not a screen recording</span>' +
+        '</div>';
+      }
       if (Array.isArray(s.models) && s.models.length) {
         return '<div class="m-step-media m-step-media-3d-grid">' +
           s.models.map(function(m) {
