@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SNAP/01 — Kitchen Configurator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+<style>
+  :root{
+    --paper:#F3EDE1; --ink:#2B3A55; --oak:#C08A52; --signal:#FF6B35;
+    --graphite:#22262B; --graphite-2:#2A2F36; --graphite-3:#32383F;
+    --line:#3C434B; --text:#F3EDE1; --text-dim:#9AA6BE; --steel:#9AA3AC;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;height:100%;background:var(--graphite);color:var(--text);
+    font-family:Inter,system-ui,sans-serif;}
+  .snap-wrap{display:flex;flex-direction:column;height:100%;min-height:560px;}
+  .snap-head{display:flex;align-items:center;justify-content:space-between;
+    padding:14px 18px;border-bottom:1px solid var(--line);background:var(--graphite-2);
+    flex-wrap:wrap;gap:10px;}
+  .snap-title{font-family:'JetBrains Mono',monospace;font-size:15px;letter-spacing:.02em;font-weight:700;}
+  .snap-title span{color:var(--signal);}
+  .snap-title b{font-family:Inter,sans-serif;font-weight:600;color:var(--text-dim);
+    margin-left:8px;font-size:13px;}
+  .snap-room-inputs{display:flex;gap:14px;font-size:12px;color:var(--text-dim);}
+  .snap-room-inputs label{display:flex;align-items:center;gap:6px;}
+  .snap-room-inputs input{width:64px;background:var(--graphite);border:1px solid var(--line);
+    color:var(--text);font-family:'JetBrains Mono',monospace;font-size:12px;border-radius:4px;
+    padding:4px 6px;}
+  .snap-room-inputs input:focus{outline:2px solid var(--signal);outline-offset:1px;}
+  .snap-body{display:flex;flex:1;min-height:0;gap:14px;padding:14px;flex-wrap:wrap;}
+  .snap-palette{display:flex;flex-direction:column;gap:8px;width:150px;flex-shrink:0;}
+  .snap-pal-item{background:var(--graphite-2);border:1px solid var(--line);border-radius:8px;
+    padding:8px;cursor:grab;user-select:none;transition:border-color .15s,transform .15s;}
+  .snap-pal-item:hover{border-color:var(--signal);}
+  .snap-pal-item:active{cursor:grabbing;transform:scale(.97);}
+  .snap-pal-swatch{width:100%;height:34px;border-radius:5px;margin-bottom:6px;}
+  .snap-pal-label{font-size:11.5px;font-weight:600;line-height:1.25;}
+  .snap-pal-dims{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-dim);margin-top:2px;}
+  .snap-pal-price{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--signal);margin-top:4px;}
+  .snap-canvas-wrap{flex:1;min-width:280px;display:flex;flex-direction:column;gap:8px;}
+  .snap-canvas{position:relative;background:
+      repeating-linear-gradient(0deg, transparent, transparent 43px, rgba(255,107,53,.14) 43px, rgba(255,107,53,.14) 44px),
+      repeating-linear-gradient(90deg, transparent, transparent 43px, rgba(255,107,53,.14) 43px, rgba(255,107,53,.14) 44px),
+      var(--graphite-3);
+    border:1px solid var(--line);border-radius:8px;overflow:hidden;flex-shrink:0;}
+  .snap-canvas.drag-over{outline:2px solid var(--signal);outline-offset:-2px;}
+  .snap-rules{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--text-dim);
+    line-height:1.5;padding:0 2px;}
+  .snap-mod{position:absolute;border-radius:4px;border:1.5px solid rgba(0,0,0,.35);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;cursor:pointer;padding:2px;overflow:hidden;transition:outline-color .1s;
+    outline:2px solid transparent;outline-offset:-2px;}
+  .snap-mod.selected{outline-color:var(--signal);}
+  .snap-mod-label{font-size:9.5px;font-weight:700;color:#15171A;line-height:1.15;
+    text-shadow:0 1px 0 rgba(255,255,255,.15);}
+  .snap-mod-dims{font-family:'JetBrains Mono',monospace;font-size:8px;color:rgba(21,23,26,.72);}
+  .snap-mod-del{position:absolute;top:1px;right:2px;font-size:11px;line-height:1;color:#15171A;
+    opacity:0;background:rgba(255,255,255,.35);border-radius:3px;padding:0 3px;}
+  .snap-mod:hover .snap-mod-del{opacity:1;}
+  .snap-side{width:260px;flex-shrink:0;display:flex;flex-direction:column;gap:14px;}
+  .snap-panel{background:var(--graphite-2);border:1px solid var(--line);border-radius:8px;padding:10px;}
+  .snap-panel-h{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--text-dim);margin-bottom:8px;}
+  .snap-3d{padding-bottom:10px;}
+  .snap-3d-empty{height:190px;display:flex;align-items:center;justify-content:center;
+    text-align:center;font-size:11.5px;color:var(--text-dim);padding:0 14px;line-height:1.4;
+    background:var(--graphite-3);border-radius:6px;}
+  model-viewer#insp{width:100%;height:190px;border-radius:6px;background:var(--graphite-3);}
+  .snap-bom table{width:100%;border-collapse:collapse;font-size:11px;}
+  .snap-bom td{padding:4px 0;border-bottom:1px solid var(--line);}
+  .snap-bom td.q{color:var(--text-dim);text-align:right;font-family:'JetBrains Mono',monospace;}
+  .snap-bom td.p{text-align:right;font-family:'JetBrains Mono',monospace;color:var(--signal);}
+  .snap-bom-empty{color:var(--text-dim);font-size:11px;padding:6px 0;}
+  .snap-bom-total{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;
+    font-weight:700;font-size:13px;margin-top:8px;padding-top:8px;border-top:1px solid var(--line);}
+  .snap-bom-total b{color:var(--signal);}
+  .snap-bom-formula{font-size:9.5px;color:var(--text-dim);margin-top:6px;font-family:'JetBrains Mono',monospace;line-height:1.4;}
+  .snap-toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);
+    background:var(--signal);color:#15171A;font-weight:700;font-size:12px;padding:8px 14px;
+    border-radius:6px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;
+    font-family:'JetBrains Mono',monospace;z-index:99;}
+  .snap-toast.show{opacity:1;transform:translateX(-50%) translateY(-4px);}
+  .snap-reset{margin-top:8px;width:100%;background:transparent;border:1px solid var(--line);
+    color:var(--text-dim);font-size:11px;padding:6px;border-radius:6px;cursor:pointer;
+    font-family:Inter,sans-serif;}
+  .snap-reset:hover{border-color:var(--signal);color:var(--text);}
+  @media (max-width:640px){
+    .snap-body{flex-direction:column;}
+    .snap-palette{width:100%;flex-direction:row;flex-wrap:wrap;}
+    .snap-pal-item{width:calc(33% - 6px);}
+    .snap-side{width:100%;flex-direction:row;}
+    .snap-panel{flex:1;}
+  }
+</style>
+</head>
+<body>
+<div class="snap-wrap">
+  <header class="snap-head">
+    <div class="snap-title">SNAP<span>/01</span><b>Kitchen Configurator</b></div>
+    <div class="snap-room-inputs">
+      <label>Width <input type="number" id="roomW" value="3600" step="300" min="1800" max="6000">mm</label>
+      <label>Depth <input type="number" id="roomD" value="3000" step="300" min="1800" max="4800">mm</label>
+    </div>
+  </header>
+  <div class="snap-body">
+    <aside class="snap-palette" id="palette"></aside>
+    <div class="snap-canvas-wrap">
+      <div class="snap-canvas" id="canvas"></div>
+      <div class="snap-rules">GRID PITCH 300mm (= narrowest module) &middot; Corner Unit snaps to one of the 4 room corners only &middot; modules cannot overlap or cross the room boundary</div>
+      <button class="snap-reset" id="resetBtn" type="button">Clear all placed modules</button>
+    </div>
+    <aside class="snap-side">
+      <div class="snap-panel snap-3d">
+        <div class="snap-panel-h">3D Inspector</div>
+        <div class="snap-3d-empty" id="inspEmpty">Place a module on the grid, then click it to inspect in 3D — drag to orbit, scroll to zoom.</div>
+        <model-viewer id="insp" style="display:none" camera-controls exposure="4.2"
+          tone-mapping="neutral" shadow-intensity="0.2" shadow-softness="0.9"
+          environment-image="neutral" reveal="auto" camera-orbit="25deg 78deg 130%"></model-viewer>
+      </div>
+      <div class="snap-panel snap-bom">
+        <div class="snap-panel-h">Bill of Materials</div>
+        <table id="bomTable"><tbody></tbody></table>
+        <div class="snap-bom-total"><span>Total</span><b id="bomTotal">&euro;0</b></div>
+        <div class="snap-bom-formula">Total = &Sigma;(unit price &times; qty) &times; 1.08 hardware / install fee</div>
+      </div>
+    </aside>
+  </div>
+</div>
+<div class="snap-toast" id="toast"></div>
+<script>
+(function(){
+  var CELL = 44; // px per 300mm grid cell
+  var MODULES = [
+    { key:'base-cabinet', label:'Base Cabinet', dims:'600×600×720', w:2, h:2, price:420,
+      color:'#C08A52', glb:'/ui_views/assets/snap01-05-base-cabinet.glb', poster:'/ui_views/assets/snap01-05-base-cabinet-poster.png' },
+    { key:'wall-cabinet', label:'Wall Cabinet', dims:'600×350×720', w:2, h:2, price:260,
+      color:'#9AA3AC', glb:'/ui_views/assets/snap01-05-wall-cabinet.glb', poster:'/ui_views/assets/snap01-05-wall-cabinet-poster.png' },
+    { key:'drawer-stack', label:'Drawer Stack', dims:'300×600×720', w:1, h:2, price:340,
+      color:'#A9754A', glb:'/ui_views/assets/snap01-05-drawer-stack.glb', poster:'/ui_views/assets/snap01-05-drawer-stack-poster.png' },
+    { key:'corner-unit', label:'Corner Unit', dims:'900×900×720', w:3, h:3, price:610,
+      color:'#8A6C46', corner:true, glb:'/ui_views/assets/snap01-05-corner-unit.glb', poster:'/ui_views/assets/snap01-05-corner-unit-poster.png' },
+    { key:'island', label:'Island', dims:'1800×900×900', w:6, h:3, price:1450,
+      color:'#E4DED2', glb:'/ui_views/assets/snap01-05-island.glb', poster:'/ui_views/assets/snap01-05-island-poster.png' },
+    { key:'appliance-bay', label:'Appliance Bay', dims:'600×600×2100', w:2, h:2, price:890,
+      color:'#7C858D', glb:'/ui_views/assets/snap01-05-appliance-bay.glb', poster:'/ui_views/assets/snap01-05-appliance-bay-poster.png' }
+  ];
+  var byKey = {}; MODULES.forEach(function(m){ byKey[m.key] = m; });
+
+  var roomWEl = document.getElementById('roomW');
+  var roomDEl = document.getElementById('roomD');
+  var canvasEl = document.getElementById('canvas');
+  var paletteEl = document.getElementById('palette');
+  var bomTableEl = document.getElementById('bomTable').querySelector('tbody');
+  var bomTotalEl = document.getElementById('bomTotal');
+  var inspEl = document.getElementById('insp');
+  var inspEmptyEl = document.getElementById('inspEmpty');
+  var toastEl = document.getElementById('toast');
+  var resetBtn = document.getElementById('resetBtn');
+
+  var cols, rows, occupied, placed, selectedId, nextId, dragKey;
+  function init(){ cols=Math.round(+roomWEl.value/300); rows=Math.round(+roomDEl.value/300);
+    occupied={}; placed=[]; selectedId=null; nextId=1; dragKey=null; renderCanvas(); renderBom(); showInspector(null); }
+
+  function toast(msg){ toastEl.textContent = msg; toastEl.classList.add('show');
+    clearTimeout(toastEl._t); toastEl._t = setTimeout(function(){ toastEl.classList.remove('show'); }, 1800); }
+
+  function renderPalette(){
+    paletteEl.innerHTML = '';
+    MODULES.forEach(function(m){
+      var d = document.createElement('div');
+      d.className = 'snap-pal-item'; d.draggable = true; d.dataset.key = m.key;
+      d.innerHTML = '<div class="snap-pal-swatch" style="background:'+m.color+'"></div>' +
+        '<div class="snap-pal-label">'+m.label+'</div>' +
+        '<div class="snap-pal-dims">'+m.dims+' mm</div>' +
+        '<div class="snap-pal-price">&euro;'+m.price.toLocaleString()+'</div>';
+      d.addEventListener('dragstart', function(e){ dragKey = m.key; e.dataTransfer.effectAllowed='copy';
+        try{ e.dataTransfer.setData('text/plain', m.key); }catch(err){} });
+      paletteEl.appendChild(d);
+    });
+  }
+
+  function renderCanvas(){
+    canvasEl.style.width = (cols*CELL)+'px';
+    canvasEl.style.height = (rows*CELL)+'px';
+    canvasEl.innerHTML = '';
+    placed.forEach(function(p){ canvasEl.appendChild(buildModEl(p)); });
+  }
+
+  function buildModEl(p){
+    var m = byKey[p.key];
+    var d = document.createElement('div');
+    d.className = 'snap-mod' + (p.id===selectedId ? ' selected' : '');
+    d.style.left = (p.col*CELL)+'px'; d.style.top = (p.row*CELL)+'px';
+    d.style.width = (p.w*CELL-2)+'px'; d.style.height = (p.h*CELL-2)+'px';
+    d.style.background = m.color;
+    d.innerHTML = '<span class="snap-mod-del" data-del>&times;</span>' +
+      '<span class="snap-mod-label">'+m.label+'</span>' +
+      (p.w>1 ? '<span class="snap-mod-dims">'+m.dims+'</span>' : '');
+    d.addEventListener('click', function(e){
+      if (e.target.hasAttribute('data-del')) { removeModule(p.id); return; }
+      selectedId = p.id; renderCanvas(); showInspector(m);
+    });
+    return d;
+  }
+
+  function removeModule(id){
+    placed = placed.filter(function(p){ return p.id !== id; });
+    if (selectedId === id) selectedId = null;
+    rebuildOccupied(); renderCanvas(); renderBom();
+    if (selectedId===null) showInspector(null);
+  }
+
+  function rebuildOccupied(){
+    occupied = {};
+    placed.forEach(function(p){ forCells(p, function(k){ occupied[k]=true; }); });
+  }
+  function forCells(p, fn){
+    for (var c=p.col;c<p.col+p.w;c++) for (var r=p.row;r<p.row+p.h;r++) fn(c+','+r);
+  }
+
+  function cellFree(col,row,w,h){
+    if (col<0||row<0||col+w>cols||row+h>rows) return false;
+    for (var c=col;c<col+w;c++) for (var r=row;r<row+h;r++) if (occupied[c+','+r]) return false;
+    return true;
+  }
+  function isCorner(col,row,w,h){
+    return (col===0 && row===0) || (col+w===cols && row===0) ||
+           (col===0 && row+h===rows) || (col+w===cols && row+h===rows);
+  }
+
+  canvasEl.addEventListener('dragover', function(e){ e.preventDefault(); canvasEl.classList.add('drag-over'); });
+  canvasEl.addEventListener('dragleave', function(){ canvasEl.classList.remove('drag-over'); });
+  canvasEl.addEventListener('drop', function(e){
+    e.preventDefault(); canvasEl.classList.remove('drag-over');
+    var key = dragKey || e.dataTransfer.getData('text/plain');
+    var m = byKey[key]; if (!m) return;
+    var rect = canvasEl.getBoundingClientRect();
+    var col = Math.round((e.clientX-rect.left-(m.w*CELL)/2)/CELL);
+    var row = Math.round((e.clientY-rect.top-(m.h*CELL)/2)/CELL);
+    col = Math.max(0, Math.min(col, cols-m.w));
+    row = Math.max(0, Math.min(row, rows-m.h));
+    if (m.corner && !isCorner(col,row,m.w,m.h)){
+      toast('Corner Unit must sit in a room corner'); return;
+    }
+    if (!cellFree(col,row,m.w,m.h)){ toast('Blocked — overlaps another module'); return; }
+    var p = { id: nextId++, key:key, col:col, row:row, w:m.w, h:m.h };
+    placed.push(p); rebuildOccupied(); renderCanvas(); renderBom();
+    selectedId = p.id; renderCanvas(); showInspector(m);
+  });
+
+  function renderBom(){
+    bomTableEl.innerHTML = '';
+    if (!placed.length){
+      bomTableEl.innerHTML = '<tr><td class="snap-bom-empty" colspan="3">Drag modules onto the grid to build the BOM.</td></tr>';
+      bomTotalEl.textContent = '€0'; return;
+    }
+    var counts = {}; placed.forEach(function(p){ counts[p.key]=(counts[p.key]||0)+1; });
+    var subtotal = 0;
+    Object.keys(counts).forEach(function(key){
+      var m = byKey[key]; var qty = counts[key]; var line = m.price*qty; subtotal += line;
+      var tr = document.createElement('tr');
+      tr.innerHTML = '<td>'+m.label+'</td><td class="q">&times;'+qty+'</td><td class="p">&euro;'+line.toLocaleString()+'</td>';
+      bomTableEl.appendChild(tr);
+    });
+    var total = Math.round(subtotal*1.08);
+    bomTotalEl.textContent = '€'+total.toLocaleString();
+  }
+
+  function showInspector(m){
+    if (!m){ inspEl.style.display='none'; inspEmptyEl.style.display='flex'; return; }
+    inspEmptyEl.style.display='none'; inspEl.style.display='block';
+    inspEl.setAttribute('src', m.glb); inspEl.setAttribute('poster', m.poster);
+    inspEl.setAttribute('alt', m.label+' — drag to orbit');
+  }
+
+  roomWEl.addEventListener('change', function(){
+    roomWEl.value = Math.max(1800, Math.min(6000, Math.round(+roomWEl.value/300)*300));
+    var newCols = Math.round(+roomWEl.value/300);
+    if (placed.some(function(p){ return p.col+p.w>newCols; })) { toast('Some modules removed — no longer fit'); }
+    placed = placed.filter(function(p){ return p.col+p.w<=newCols; });
+    cols = newCols; rebuildOccupied(); renderCanvas(); renderBom();
+  });
+  roomDEl.addEventListener('change', function(){
+    roomDEl.value = Math.max(1800, Math.min(4800, Math.round(+roomDEl.value/300)*300));
+    var newRows = Math.round(+roomDEl.value/300);
+    if (placed.some(function(p){ return p.row+p.h>newRows; })) { toast('Some modules removed — no longer fit'); }
+    placed = placed.filter(function(p){ return p.row+p.h<=newRows; });
+    rows = newRows; rebuildOccupied(); renderCanvas(); renderBom();
+  });
+  resetBtn.addEventListener('click', function(){ placed=[]; occupied={}; selectedId=null; renderCanvas(); renderBom(); showInspector(null); });
+
+  renderPalette();
+  init();
+})();
+</script>
+</body>
+</html>
