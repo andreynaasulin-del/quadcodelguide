@@ -85,9 +85,24 @@
               "label": "Appliance Bay — 600×600×2100"
             }
           ]
+        },
+        {
+          "title": "6. Build the real configurator — hand-coded, not generated",
+          "text": "~300 lines of plain HTML/CSS/JS, no framework: a 6-item drag palette, a 300mm-pitch grid canvas (44px per cell — same pitch step 2 locked), a live BOM panel, and a 3D inspector reusing the exact 6 GLB files from step 5. Collision check is an AABB scan against an occupied-cell hash set; Corner Unit is only accepted if its 3×3-cell footprint lines up with one of the 4 room corners — 4 boolean comparisons, not a general polygon test, because a rectangular room only has 4 corners.",
+          "result_image": "/ui_views/assets/snap01-06-configurator-widget.png"
+        },
+        {
+          "title": "7. Ship it live — drag, snap and orbit right here",
+          "text": "Not a screen recording — the actual widget, embedded live below via iframe, running the same JS that produced the step-6 screenshot. Drag Corner Unit into a corner, drag Island into the open floor, then click any placed piece to orbit it in 3D. Resize the room and modules that no longer fit get dropped automatically.",
+          "widget_iframe": "/ui_views/assets/snap01-configurator.html"
+        },
+        {
+          "title": "8. Technical spec — BOM, pricing formula, collision rules",
+          "text": "BOM fields: module name, quantity, unit price, line total. Formula: Total = Σ(unit price × qty) × 1.08 — the 8% hardware/install fee is a visible multiplier, not a hidden markup. Prices locked per module: Base Cabinet €420, Wall Cabinet €260, Drawer Stack €340, Corner Unit €610, Island €1,450, Appliance Bay €890. Collision rule: zero clearance by design — the grid pitch already equals the narrowest module, so edge-to-edge snapping needs no gap. Corner rule: Corner Unit valid only at the 4 room-corner cells.",
+          "result_image": "/ui_views/assets/snap01-08-bom-panel.png"
         }
       ],
-      "result": "A locked 300mm-pitch module library (6 GLB meshes, all snap-compatible edge-to-edge) plus the 4 concept sheets that justify every dimension and every interaction rule behind it — ready to drop into a real-time 3D configurator.",
+      "result": "A locked 300mm-pitch module library (6 GLB meshes, all snap-compatible edge-to-edge), the 4 concept sheets that justify every dimension and interaction rule, and a real hand-coded configurator widget — drag-and-drop grid placement, live 3D inspection and a live-computed BOM — embedded and playable directly in this guide.",
       "downloads": [
         {
           "label": "Download Base Cabinet GLB (600×600×720)",
