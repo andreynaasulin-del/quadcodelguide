@@ -11,6 +11,45 @@
   ],
   "guides": [
     {
+      "id": "settings-preferences-panel",
+      "cat": "Interfaces",
+      "sub": "Settings",
+      "title": "Build a settings page with switches, danger zone and a save bar",
+      "desc": "Sidebar navigation, grouped preference rows with working toggles, a red danger section and a sticky unsaved-changes bar.",
+      "time": "12 min",
+      "level": "Middle",
+      "models": "Quadcode Agent, HTML/CSS/JS renderer",
+      "result": "A settings screen you can ship: a grouped sidebar with an active item, Appearance and Notifications sections built from label + description + control rows, real iOS-style switches and a segmented theme picker, a bordered danger zone, and a sticky dark save bar counting unsaved changes.",
+      "steps": [
+        {
+          "title": "Two-column shell with grouped sidebar",
+          "text": "Settings navigation needs groups, not a flat list. Small uppercase captions split it without adding boxes.",
+          "prompt": "Create a single self-contained index.html for a settings page on a light grey page (#f7f7f8), centered, max width 1000px, system sans-serif, no frameworks. Add a 23px title \"Settings\" with a muted subline \"Workspace preferences for Quadcode Studio · applies to 8 members\". Below it a two-column grid: a 212px sticky sidebar and a content column. Sidebar links with a 20px glyph column: General, Preferences (active — light grey pill, medium weight), Pipeline, then an uppercase \"Workspace\" caption with Members, Billing, API keys, then an \"Advanced\" caption with Audit log, Danger zone.",
+          "result_image": "https://iili.io/CkKoYYB.png"
+        },
+        {
+          "title": "Build the first settings section",
+          "text": "Every row is the same shape: bold label, one muted line of explanation, control on the right. Ship that shape once and reuse it everywhere.",
+          "prompt": "In the content column add a white card (14px radius, 1px #e6e6ea border) titled \"Appearance\" with the heading on its own row above a divider. Inside, three rows separated by hairlines, each with a 13.5px bold label, a muted 12.5px description capped at 520px and space reserved on the right for a control: \"Theme\" — \"Applies to this browser only. Team members keep their own choice.\"; \"Compact rows\" — \"Tighter tables and lists — fits about 40% more rows per screen.\"; \"Editor font size\" — \"Used in prompt editors and the JSON view.\"",
+          "result_image": "https://iili.io/CkKo1hg.png"
+        },
+        {
+          "title": "Add the controls and a second section",
+          "text": "Build the switch by hand: 40×23 track, 18px knob, transition on background and left. Two CSS states and it feels native.",
+          "prompt": "Fill the right side of each row: a segmented control Light / Dark / System with Dark active for Theme, a custom switch (40x23 rounded track, 18px white knob, near-black when on, animated) turned on for Compact rows, and a select showing \"14 px — default\". Make the switches and segments actually toggle on click. Then add a second card \"Notifications\" with three switch rows: \"Render finished\" on — \"One notification per batch, not per file.\"; \"Publish failures\" on — \"Always on for owners — the publish API returns the failing field.\"; \"Weekly digest\" off — \"Monday summary of renders, spend and published guides.\"",
+          "result_image": "https://iili.io/CkKoVEv.png"
+        },
+        {
+          "title": "Danger zone and the sticky save bar",
+          "text": "Destructive actions get their own red-bordered card, and unsaved state must follow the user down the page — otherwise changes get lost on scroll.",
+          "prompt": "Add a third card with a red-tinted border and header \"Danger zone\": two rows with outlined red buttons — \"Rotate the publish key\" / \"Existing scripts stop working until you paste the new key. Takes effect immediately.\" / Rotate key, and \"Delete workspace\" / \"Removes 42 projects, 1 240 renders and every published guide. Cannot be undone.\" / Delete…. Finish with a sticky dark bar at the bottom of the content column: an amber dot, the text \"3 unsaved changes — theme, compact rows, weekly digest\", and right-aligned Discard plus a white \"Save changes\" button.",
+          "result_image": "https://iili.io/CkKoh2p.png"
+        }
+      ],
+      "image": "https://iili.io/CkKoh2p.png",
+      "poster": "https://iili.io/CkKoh2p.png"
+    },
+    {
       "id": "pricing-tiers-billing-toggle",
       "cat": "Interfaces",
       "sub": "Pricing",
