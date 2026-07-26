@@ -11,6 +11,45 @@
   ],
   "guides": [
     {
+      "id": "website-team-grid",
+      "cat": "Website",
+      "sub": "Team",
+      "title": "Build a team grid that ends with a hiring card",
+      "desc": "Eight tiles: seven people with bios, links and locations, plus a dashed \"we are hiring\" card in the last slot.",
+      "time": "7 min",
+      "level": "Junior",
+      "models": "Quadcode",
+      "result": "An about-page team section with gradient avatars, one-line bios, social buttons, department filters and a recruiting tile.",
+      "steps": [
+        {
+          "title": "Header and the first row of people",
+          "text": "Four tiles per row, centered content. Initials in a gradient circle beat stock photos and never look stretched.",
+          "prompt": "Build a centered team section on white, max width 1100px: an uppercase grey eyebrow \"The team\", a 31px heading \"Twelve people, four time zones\" and a grey line \"Everyone here writes guides — including the two of us who mostly write invoices.\" Under it a four column grid with 16px gaps of white rounded bordered cards, centered text, 22px padding. Each card: a 74px circular gradient avatar with initials in 21px semibold, a 14.5px name and a 12.5px grey role. People: MR Marta Rusu, Docs lead; TL Tom Lindqvist, Platform engineer; JS Jia Sun, Product design; DB Diego Bravo, Solutions architect.",
+          "result_image": "https://iili.io/CkKLrTF.png"
+        },
+        {
+          "title": "One-line bios and social buttons",
+          "text": "A single specific sentence per person is worth more than a paragraph of adjectives. Then three tiny link buttons.",
+          "prompt": "In every card add a 12px grey bio line under the role and a centered row of 26px rounded square link buttons with light grey fills labelled in, X, gh. Bios: Marta — turned a 40-page wiki into 15 guides nobody complains about; Tom — owns the capture pipeline and the one script that publishes it all; Jia — draws the section specs the guides are generated from; Diego — onboards teams migrating from screenshot folders.",
+          "result_image": "https://iili.io/CkKLL4R.png"
+        },
+        {
+          "title": "Second row, locations and filters",
+          "text": "Add the rest of the team, a location line per person, and department chips above the grid.",
+          "prompt": "Add three more cards in the same style: AK Ana Kovacs, Support lead — answers before the status page finishes loading, Zagreb; EN Ella Novak, Content ops — keeps the ledger honest and the ids unique, Ljubljana; KP Kwame Prah, Infrastructure — made the media CDN boring again after the outage, Accra. Add an 11px grey location line with a pin emoji to every card, and above the grid a centered row of rounded chips Everyone, Engineering, Design, Support with Everyone filled near-black.",
+          "result_image": "https://iili.io/CkKQCu9.png"
+        },
+        {
+          "title": "Hiring card in the last slot",
+          "text": "The empty eighth tile is free recruiting space. Dashed border so it reads as a slot, not as a person.",
+          "prompt": "Fill the last grid cell with a card that has a dashed border instead of a solid one and centered content: a 14.5px bold line \"Your name here\", a 12px grey line \"Two open roles in engineering, one in support.\" and a small dark filled button \"See openings\".",
+          "result_image": "https://iili.io/CkKQ58B.png"
+        }
+      ],
+      "image": "https://iili.io/CkKQ58B.png",
+      "poster": "https://iili.io/CkKQ58B.png"
+    },
+    {
       "id": "website-metrics-band",
       "cat": "Website",
       "sub": "Metrics",
