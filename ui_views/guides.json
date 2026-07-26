@@ -11,6 +11,45 @@
   ],
   "guides": [
     {
+      "id": "empty-state-set",
+      "cat": "Interfaces",
+      "sub": "Empty States",
+      "title": "Build a set of empty states with CSS illustrations",
+      "desc": "Four honest empty states — first run, no results, load failed, no access — plus a compact inline variant.",
+      "time": "10 min",
+      "level": "Junior",
+      "models": "Quadcode Agent, HTML/CSS/JS renderer",
+      "result": "A reusable empty-state kit: one card layout with a pure-CSS stacked-sheets illustration recoloured per situation, specific copy and CTAs for first run, no search results, a failed load with a request id, a permission wall, plus a dashed inline variant for empty sections.",
+      "steps": [
+        {
+          "title": "One card, honest copy first",
+          "text": "Write the sentence before the drawing. \"No guides published yet\" plus a next action beats a clever illustration with vague text.",
+          "prompt": "Create a single self-contained index.html on a light grey page (#f6f6f8), centered, max width 1060px, system sans-serif, no frameworks. Add a 21px title \"Empty states, four of them\" and a muted subline \"One layout, four jobs: nothing yet, nothing found, nothing loaded, nothing allowed.\" Below it a two-column grid holding one white card (15px radius, 1px #e6e6ea border, 26px padding, centered text) with a 15.5px heading \"No guides published yet\" and a muted 13px line, max 340px wide: \"Publish your first case and it lands on the feed in about a minute — media included.\"",
+          "result_image": "https://iili.io/CkKndlV.png"
+        },
+        {
+          "title": "Draw the illustration in CSS and add the CTAs",
+          "text": "No image assets: three rotated rounded rectangles with two grey lines each read as \"documents\" instantly, and a badge tells you which state it is.",
+          "prompt": "Above the heading add a 120x78 illustration built only from CSS: three 74x52 rounded sheets stacked and rotated -7deg, 5deg and 0deg, each with two short grey lines inside, the front sheet with a darker border and a soft shadow, plus a 26px dark circular badge with a \"+\" glyph pinned to the bottom right. Add an uppercase muted \"First run\" pill above it. Under the text put a centered button row: a dark filled \"Publish a guide\" and an outlined \"Import case.json\", then a muted hint line \"Or run node publish_case.mjs case.json --dry-run first.\" with the command in a small code chip.",
+          "result_image": "https://iili.io/CkKnKR1.png"
+        },
+        {
+          "title": "Clone it for no-results and failure",
+          "text": "Same layout, different colour of badge and different promise. A no-results state must offer a way out; an error state must name the cause.",
+          "prompt": "Duplicate the card twice, reusing the layout and recolouring only the badge. Second card: pill \"No results\", blue badge with a magnifier, heading \"Nothing matches “comparison”\", text \"No guide in Interfaces uses that word. Try a broader term or clear the category filter.\", buttons \"Clear filters\" (dark) and \"Search all categories\", hint \"Searched 46 guides across 6 categories.\" Third card: pill \"Load failed\", red badge with \"!\", heading \"Could not load your renders\", text \"The media store answered 403. Your files are safe — this is a token problem, not a data problem.\", buttons \"Try again\" (dark) and \"Check status page\", hint \"Request id req_8f21c0 · retried twice\" with the id in a code chip.",
+          "result_image": "https://iili.io/CkKnIlp.png"
+        },
+        {
+          "title": "Add the permission wall and an inline variant",
+          "text": "Not every empty state deserves a whole card. For an empty section inside a page, a dashed one-line row is enough and keeps the page rhythm.",
+          "prompt": "Add a fourth card: pill \"No access\", dark badge, heading \"This workspace is private\", text \"Ask an owner for the Editor role — you will keep your drafts, they just move under the workspace.\", buttons \"Request access\" (dark) and \"Back to my workspace\", hint \"Owners: Mara Reyes, Anton K.\" Then add a full-width compact variant below the grid: a dashed-border row, left-aligned, with a 40px rounded icon tile, a 14px bold \"No steps in this guide yet\", a muted line \"A guide needs at least one step with a title and an instruction before it can be published.\" and a right-aligned dark \"Add first step\" button.",
+          "result_image": "https://iili.io/CkKnRRt.png"
+        }
+      ],
+      "image": "https://iili.io/CkKnRRt.png",
+      "poster": "https://iili.io/CkKnRRt.png"
+    },
+    {
       "id": "command-palette-overlay",
       "cat": "Interfaces",
       "sub": "Command Menu",
