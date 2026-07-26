@@ -11,6 +11,45 @@
   ],
   "guides": [
     {
+      "id": "website-metrics-band",
+      "cat": "Website",
+      "sub": "Metrics",
+      "title": "Build a dark metrics band with deltas and sparklines",
+      "desc": "Four KPIs in one divided panel, green and red delta pills, tiny bar sparklines and an honest methodology line.",
+      "time": "7 min",
+      "level": "Middle",
+      "models": "Quadcode",
+      "result": "A stats section that survives a skeptical reader: four numbers, trend pills, sparklines and a note saying where the data comes from.",
+      "steps": [
+        {
+          "title": "Four numbers in one panel",
+          "text": "Put the KPIs in a single bordered panel with vertical dividers instead of four separate cards — it reads as one claim.",
+          "prompt": "Build a centered metrics section on white, max width 1100px: an uppercase grey eyebrow \"By the numbers\", a 31px heading \"What the pipeline did last quarter\" and a grey line \"Pulled from the same ledger the publisher writes to — not from a slide.\" Under it a single rounded bordered panel split into four equal columns by thin vertical dividers, 24px padding per cell. Each cell: a 38px number with tight negative letter spacing and tabular figures, and a 12.5px grey label under it. Values: 1 400 teams publishing, 56 guides live on the site, 58s median publish time, 99.98% media uptime.",
+          "result_image": "https://iili.io/CkKLVp9.png"
+        },
+        {
+          "title": "Invert the section",
+          "text": "Numbers hit harder on a dark band, and it breaks up a long white page. Keep the panel one shade lighter than the page.",
+          "prompt": "Invert the whole section: near-black page background, white heading, grey eyebrow and paragraph. Make the KPI panel #15151a with a #26262d border and dividers in the same colour, keep the numbers pure white and the labels light grey.",
+          "result_image": "https://iili.io/CkKLXIe.png"
+        },
+        {
+          "title": "Delta pills",
+          "text": "A number without a direction is trivia. Add a small pill per KPI — green for improvement, red-tinted when the metric moved the wrong way.",
+          "prompt": "Under every label add a small rounded delta pill with a dark tinted background and a thin border: green text \"▲ 18% QoQ\", green \"▲ 15 this week\", and for the publish time a red-tinted pill \"▼ 12s vs last week\", green \"▲ 0.4 pts\" for uptime.",
+          "result_image": "https://iili.io/CkKLhhu.png"
+        },
+        {
+          "title": "Sparklines and the method note",
+          "text": "Six bars are enough to show a trend. Finish with where the numbers come from and when they were last synced.",
+          "prompt": "Under every delta pill add a 34px tall sparkline of six thin dark grey bars with rounded tops, the last bar white; make the publish-time sparkline descend instead of rise. Below the panel add a centered 12px grey note row: a 7px green dot with \"Live figures, refreshed hourly\", then \"· Last sync 4 minutes ago\" and \"· Method: median over all workspace publishes\".",
+          "result_image": "https://iili.io/CkKLerQ.png"
+        }
+      ],
+      "image": "https://iili.io/CkKLerQ.png",
+      "poster": "https://iili.io/CkKLerQ.png"
+    },
+    {
       "id": "website-mega-footer",
       "cat": "Website",
       "sub": "Footers",
