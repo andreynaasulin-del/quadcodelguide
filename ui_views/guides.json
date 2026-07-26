@@ -11,6 +11,45 @@
   ],
   "guides": [
     {
+      "id": "website-cookie-consent",
+      "cat": "Website",
+      "sub": "Consent",
+      "title": "Build a cookie banner and a preferences panel",
+      "desc": "An honest consent flow: a banner that names every cookie, equal-weight reject and accept buttons, then a per-category panel.",
+      "time": "8 min",
+      "level": "Middle",
+      "models": "Quadcode",
+      "result": "A GDPR-shaped consent flow: bottom banner over a dimmed page, three toggle categories with retention details and a logged consent id.",
+      "steps": [
+        {
+          "title": "Bottom banner over the page",
+          "text": "Say how many cookies there are and what they do. \"We value your privacy\" tells the reader nothing.",
+          "prompt": "Build a page on a light grey background with a 34px heading \"Documentation your team actually reads\", a grey line of copy and three white placeholder cards with grey bar lines. Fix a white rounded banner to the bottom with a thin border, a large soft shadow and 18px padding: bold \"We use three cookies, and one of them is optional\", a 12.5px grey paragraph saying two keep you signed in and remember your theme while the third measures which guide steps people abandon, with a link to the cookie policy, and on the right a dark filled \"Accept all\" button.",
+          "result_image": "https://iili.io/CkKbxRV.png"
+        },
+        {
+          "title": "Reject and Manage, plus the dim layer",
+          "text": "Reject must be as easy to hit as Accept — same size, same row. Dim the page so the choice is clearly blocking.",
+          "prompt": "Add two more buttons to the banner, left of Accept all and the same size: a bordered \"Reject optional\" and a bordered \"Manage\". Behind the banner add a semi-transparent near-black overlay covering the whole viewport so the page reads as dimmed.",
+          "result_image": "https://iili.io/CkKbRig.png"
+        },
+        {
+          "title": "Preferences panel",
+          "text": "Manage opens a narrower panel. The necessary category is locked, everything else is a real switch.",
+          "prompt": "Replace the banner with a narrower white rounded panel, max width 660px, fixed to the bottom with the same shadow: a bordered header with bold \"Cookie preferences\" and a 12px grey line \"Changes apply immediately. You can reopen this panel from the footer.\" Under it one category row: bold \"Strictly necessary\", an 11.5px grey description mentioning session, CSRF token and the publish API key holder, and on the right a 38px pill switch rendered in a locked grey state.",
+          "result_image": "https://iili.io/CkKb1ON.png"
+        },
+        {
+          "title": "All categories, retention and consent id",
+          "text": "Each category gets cookie count, party and lifetime. Finish with the consent id — that is what an auditor asks for.",
+          "prompt": "Add two more category rows: \"Preferences\" — theme, sidebar width and the last category you browsed — with the switch on in near-black; \"Analytics\" — aggregated step drop-off, no cross-site tracking, no advertising identifiers — with the switch off. Under every description add a 10.5px light grey detail line: \"2 cookies · first party · session\", \"1 cookie · first party · 12 months\", \"1 cookie · first party · 90 days\". Close the panel with a footer strip on a very light background: 11.5px grey \"Consent id 8f21c4 · logged 12 Mar 2025\" on the left, a small bordered \"Reject optional\" and a small dark filled \"Save choices\" on the right.",
+          "result_image": "https://iili.io/CkKbhfs.png"
+        }
+      ],
+      "image": "https://iili.io/CkKbhfs.png",
+      "poster": "https://iili.io/CkKbhfs.png"
+    },
+    {
       "id": "website-changelog-timeline",
       "cat": "Website",
       "sub": "Changelog",
