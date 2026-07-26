@@ -11,6 +11,45 @@
   ],
   "guides": [
     {
+      "id": "website-404-page",
+      "cat": "Website",
+      "sub": "Error Pages",
+      "title": "Build a 404 page that actually recovers the visit",
+      "desc": "A useful dead end: search, four popular guides, the failing URL and a report link with a trace id.",
+      "time": "6 min",
+      "level": "Junior",
+      "models": "Quadcode",
+      "result": "A 404 page with a gradient numeral, honest copy, recovery actions, suggested guides and a debuggable error footer.",
+      "steps": [
+        {
+          "title": "Numeral and honest copy",
+          "text": "Explain the cause instead of apologising. \"The id in your link is not in the registry\" tells the user what to change.",
+          "prompt": "Build a 404 page on white, content left-aligned, max width 820px with 56px top padding: a 96px \"404\" numeral in near-black with very tight negative letter spacing, a 29px heading \"That guide moved, or never existed\" and a 14.5px grey paragraph explaining the id in the link is not in the registry and that usually a step was renamed and the old slug went with it.",
+          "result_image": "https://iili.io/CkKbmLF.png"
+        },
+        {
+          "title": "Recovery buttons",
+          "text": "Two ways out: forward to the index, back to where they came from. Anything else is noise on an error page.",
+          "prompt": "Under the paragraph add a button row: a dark filled button \"Back to all guides\" and a white bordered button \"← Previous page\".",
+          "result_image": "https://iili.io/CkKm91a.png"
+        },
+        {
+          "title": "Search and popular guides",
+          "text": "The visitor wanted something specific. Give them search plus four real destinations with category and duration.",
+          "prompt": "Add a bordered rounded search field, max width 460px, with a magnifier, the text \"Search 56 published guides\" and a right-aligned ⌘ K hint. Under it a top-bordered block titled \"Popular right now\" in 12px bold, holding a two column grid of bordered rounded link rows. Each row: a 30px rounded icon tile with an emoji, a 13px title, an 11.5px grey line with category and reading time, and a grey ↗ arrow on the right. Rows: 💸 \"Pricing tiers with a billing toggle\" Interfaces · 8 min; ⌘ \"Command palette overlay\" Interfaces · 9 min; 📊 \"Admin data table with a toolbar\" Interfaces · 10 min; 🗂️ \"Kanban task board\" Interfaces · 9 min.",
+          "result_image": "https://iili.io/CkKm3ep.png"
+        },
+        {
+          "title": "Debug footer and gradient numeral",
+          "text": "Show the URL that failed and a trace id — support can then answer in one message instead of five.",
+          "prompt": "Add a top-bordered footer row in 12px grey: the text \"Think this is our fault?\", the failing request as inline code \"GET /#/guide/pricing-tiers-toggl\" with a light grey background, a small bordered button \"Report broken link\" and the text \"· Trace id 8f21c4\". Finally fill the 404 numeral with a vertical gradient from near-black to light grey using background-clip text.",
+          "result_image": "https://iili.io/CkKmfII.png"
+        }
+      ],
+      "image": "https://iili.io/CkKmfII.png",
+      "poster": "https://iili.io/CkKmfII.png"
+    },
+    {
       "id": "website-docs-layout",
       "cat": "Website",
       "sub": "Documentation",
