@@ -11,6 +11,45 @@
   ],
   "guides": [
     {
+      "id": "us-vs-them-comparison-section",
+      "cat": "Design",
+      "sub": "Comparison UI",
+      "title": "Design an us-vs-them landing section",
+      "desc": "Two side-by-side cards that make your workflow look inevitable and the old one look tiring.",
+      "time": "9 min",
+      "level": "Junior",
+      "models": "Quadcode Agent, HTML/CSS/JS renderer",
+      "image": "https://iili.io/CkFvexS.png",
+      "result": "A conversion-focused comparison section: a solid winning card with check rows and a full-width CTA next to a dashed, muted competitor card. Ships in light and dark with one stylesheet override.",
+      "steps": [
+        {
+          "title": "Write the header that frames the choice",
+          "text": "The headline does the persuading; the cards only supply evidence. Two-tone type keeps it from shouting.",
+          "prompt": "Create a single self-contained index.html for a marketing comparison section on a light grey page. Add a small pill eyebrow reading COMPARISON, a 38px headline \"Built differently, on purpose.\" where the second half is muted grey, and a 16px muted subline: \"Same brief, two workflows. Here is what actually changes for the team shipping the work.\" Max width 1040px, centered. System sans-serif, no frameworks.",
+          "result_image": "https://iili.io/CkFe5qg.png"
+        },
+        {
+          "title": "Build the winning card",
+          "text": "Solid background, dark border, real shadow. Visual weight is the argument — the eye lands here first.",
+          "prompt": "Add a two-column grid with 22px gap. The left card is the winner: white, 20px radius, near-black 1px border and a soft elevated shadow. Inside: a black pill badge \"✓ With Quadcode\", a 20px heading \"One workspace, end to end\", a muted caption, and five list rows. Each row is a 22px black circle with a white check plus a 15px line of text, separated by 1px hairlines, no line under the last row.",
+          "result_image": "https://iili.io/CkFvwOl.png"
+        },
+        {
+          "title": "Build the losing card and the CTA",
+          "text": "Dashed border, no shadow, grey icons. Never make the competitor card ugly — make it quiet.",
+          "prompt": "The right card is the competitor: transparent background, dashed 1px border, no shadow. Grey pill badge \"✕ The usual way\", heading \"Five tools, five exports\", muted caption, and five rows mirroring the winner's rows one for one, each with a light grey circle, grey cross and muted text. Back in the left card, add a full-width dark CTA button \"Start your first case\" with a 12px radius and a tiny centered note under it: \"No credit card. Ships in minutes.\"",
+          "result_image": "https://iili.io/CkFvNb2.png"
+        },
+        {
+          "title": "Add a dark variant",
+          "text": "Invert the tokens rather than the whole design: the winner card keeps its weight by staying the lightest surface on the page.",
+          "prompt": "Add a dark variant by overriding only the tokens: page #08080a, cards #111114, borders #26262b, text #fafafa, muted #8b8b93. Invert the winning card accents — white badge with dark text, white check circles, white CTA with dark label — and keep the competitor card dashed and dim. Screenshot both the light and the dark variant at 1440px wide.",
+          "result_image": "https://iili.io/CkFvexS.png"
+        }
+      ],
+      "poster": "https://iili.io/CkFvexS.png"
+    },
+    {
       "id": "tabbed-platform-comparison",
       "cat": "Design",
       "sub": "Comparison UI",
