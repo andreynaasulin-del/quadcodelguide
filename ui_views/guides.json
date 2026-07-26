@@ -11,6 +11,45 @@
   ],
   "guides": [
     {
+      "id": "website-feature-grid",
+      "cat": "Website",
+      "sub": "Features",
+      "title": "Build a feature grid that ends in a bento card",
+      "desc": "A centered section header, six icon cards and one wide card with a mini preview — the layout every SaaS page needs.",
+      "time": "8 min",
+      "level": "Junior",
+      "models": "Quadcode",
+      "result": "A features section with a centered header, six cards, status tags and a bento-style wide card with a CTA row.",
+      "steps": [
+        {
+          "title": "Centered section header",
+          "text": "The header carries the argument, the cards only support it. Uppercase eyebrow, one claim, one narrow paragraph.",
+          "prompt": "Build a marketing section on a light grey background, content centered, max width 1120px. Uppercase 11.5px grey eyebrow with wide letter spacing: \"Why teams switch\". Under it a 31px dark heading with tight negative letter spacing: \"Everything a guide needs, nothing it doesn't\". Under that a 15px grey paragraph, max 62 characters per line, saying six primitives cover 90% of published cases — no plugin zoo, no config files.",
+          "result_image": "https://iili.io/CkKsIDu.png"
+        },
+        {
+          "title": "First row of three cards",
+          "text": "Build one card properly, then repeat it. Icon tile, short title, two lines of copy — anything longer and nobody reads the grid.",
+          "prompt": "Under the header add a three column grid with 16px gaps of white rounded cards with a thin border and 20px padding. Each card: a 34px rounded square icon tile with a light grey fill and an emoji, a 15.5px title, and a 13.5px grey paragraph of at most two lines. Cards: ⚡ \"One-command publish\" — text, media and metadata go out in a single run; 🖼️ \"Per-step captures\" — every step renders its own frame so readers see progress; 🔁 \"Duplicate guard\" — a local ledger blocks ids that already exist on the site.",
+          "result_image": "https://iili.io/CkKsRix.png"
+        },
+        {
+          "title": "Second row and status tags",
+          "text": "Fill the grid to six and label maturity. A small Beta tag in the corner is more honest than a footnote nobody sees.",
+          "prompt": "Add a second row of three cards in the same style: ☁️ \"Media hosting\" — frames land on a CDN and get wired into the guide; 🧩 \"Reusable specs\" — describe a section once and reuse it across the batch; 📊 \"Live verification\" — after deploy we re-read production and check every image. In the top right corner of every card add a small rounded pill tag with a light grey fill: \"Core\" for the first three and the last one, \"Beta\" for media hosting and reusable specs.",
+          "result_image": "https://iili.io/CkKslHP.png"
+        },
+        {
+          "title": "Bento card and the footer CTA",
+          "text": "Let the strongest feature span two columns and show a hint of UI. Close with a quiet line plus one button.",
+          "prompt": "Make the first card span two grid columns and split it into two inner columns: the existing text on the left, and on the right a light grey rounded panel with four rounded bar placeholders, the first one dark and 52% wide. Below the grid add a top-bordered centered footer row: small grey text \"Need something else? The publish API is one POST.\" next to a small dark filled button \"Read the API docs\".",
+          "result_image": "https://iili.io/CkKsEDg.png"
+        }
+      ],
+      "image": "https://iili.io/CkKsEDg.png",
+      "poster": "https://iili.io/CkKsEDg.png"
+    },
+    {
       "id": "website-faq-accordion",
       "cat": "Website",
       "sub": "FAQ",
