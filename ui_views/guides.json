@@ -11,6 +11,45 @@
   ],
   "guides": [
     {
+      "id": "split-sign-in-screen",
+      "cat": "Interfaces",
+      "sub": "Auth",
+      "title": "Build a split sign-in screen with real error states",
+      "desc": "Form on the left, social proof on the right, plus the two states everyone forgets: invalid password and loading.",
+      "time": "9 min",
+      "level": "Junior",
+      "models": "Quadcode Agent, HTML/CSS/JS renderer",
+      "result": "A sign-in page that survives a design review: a 352px form column with email, password with a show toggle, remember-me and OAuth buttons, a testimonial panel with metrics and logos, and the failed-password plus submitting states rendered rather than described.",
+      "steps": [
+        {
+          "title": "Split the page in two",
+          "text": "Two equal columns, one hairline between them. Keep the form column white and tint the pitch column — that alone tells the eye where to start.",
+          "prompt": "Create a single self-contained index.html for a sign-in screen, system sans-serif, no frameworks: a two-column full-height grid. Left column white with 44px/56px padding, a brand row at the top (26px dark rounded square with a white \"Q\" plus \"Quadcode Studio\"), and a vertically centered 352px block containing a 28px headline \"Sign in to your workspace\" and a muted 14px subline \"Use your work email. Renders, prompts and published guides stay tied to the workspace, not the device.\" Right column filled #f5f5f7 with a 1px left border.",
+          "result_image": "https://iili.io/CkKCB6l.png"
+        },
+        {
+          "title": "Add the form fields",
+          "text": "Labels above inputs, 10px radius, one consistent 14px gap. The forgot-password link belongs on the checkbox row, not under the button.",
+          "prompt": "In the left column add the form: a \"Work email\" label with an input prefilled ak@studio.dev, a \"Password\" label with a password input showing ten dots, placeholder \"At least 10 characters\" and a muted \"show\" toggle pinned inside the right edge. Under them a row with a checked dark 15px checkbox \"Keep me signed in\" and a right-aligned \"Forgot password?\" link. Then a full-width near-black \"Sign in\" button with 10px radius.",
+          "result_image": "https://iili.io/CkKCoaS.png"
+        },
+        {
+          "title": "OAuth options and the social-proof panel",
+          "text": "The right column is not decoration — a quote plus three hard numbers answers \"why this product\" while the user is already typing.",
+          "prompt": "Under the button add a centered \"or continue with\" divider made of two hairlines, then two equal outlined buttons \"◆ Google\" and \"⌘ GitHub\", and a muted footnote \"No workspace yet? Create one — free for 14 days.\" Fill the right column: a 19px quote \"We publish twelve client guides a week from one workspace. The queue never asks who rendered what — it already knows.\", an attribution row with a 36px monogram avatar MR, \"Mara Reyes\", \"Design lead, Halcyon Labs\", three white stat cards (42k renders shipped last month, 1.8s median queue wait, 99.9% publish success rate) and a row of five outlined logo chips: Northwind, Orbital, Kova, Atlas, Fenwick.",
+          "result_image": "https://iili.io/CkKCI99.png"
+        },
+        {
+          "title": "Render the failure and loading states",
+          "text": "Most sign-in mockups only show the happy path. Draw the red state and the pending button — those are the screens users actually meet.",
+          "prompt": "Above the fields add an error banner: #fef3f2 background, #fecdca border, dark red text, a ⚠ glyph and the copy \"That password does not match. Two attempts left before a 10-minute cooldown.\" with the first sentence bold. Tint the password input's border #fda29b with a #fffbfa fill. Switch the submit button to its pending state: label \"Signing in…\", disabled, slightly reduced opacity and a progress cursor.",
+          "result_image": "https://iili.io/CkKC5nj.png"
+        }
+      ],
+      "image": "https://iili.io/CkKC5nj.png",
+      "poster": "https://iili.io/CkKC5nj.png"
+    },
+    {
       "id": "settings-preferences-panel",
       "cat": "Interfaces",
       "sub": "Settings",
