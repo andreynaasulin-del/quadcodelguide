@@ -11,6 +11,45 @@
   ],
   "guides": [
     {
+      "id": "admin-data-table-toolbar",
+      "cat": "Interfaces",
+      "sub": "Data Tables",
+      "title": "Build an admin table with filters, selection and sorting",
+      "desc": "An invoices table that behaves: filter chips, row selection with a bulk bar, real sorting and pagination.",
+      "time": "12 min",
+      "level": "Middle",
+      "models": "Quadcode Agent, HTML/CSS/JS renderer",
+      "result": "An admin table you can drop into a real product: search and filter chips, status badges, checkbox selection with a bulk-action bar, a sortable amount column that actually reorders rows, and a pagination footer.",
+      "steps": [
+        {
+          "title": "Frame the page and the toolbar",
+          "text": "Tables live inside one card. Build the frame and the controls first — they define the width every column has to live with.",
+          "prompt": "Create a single self-contained index.html for an admin screen on a light grey page (#f7f7f8), centered, max width 1120px, system sans-serif, no frameworks. Add a header row: 24px title \"Invoices\", a 13px muted subline \"42 invoices this quarter — 6 need attention.\" and a right-aligned dark \"New invoice\" button. Under it a white card with 14px radius and 1px #e7e7ea border containing only a toolbar: a 260px search field with a magnifier and placeholder \"Search customer or invoice…\", filter chips All / Paid / Due / Failed with All active in dark fill, and a right-aligned muted \"Showing 6 of 42\".",
+          "result_image": "https://iili.io/CkKBMB4.png"
+        },
+        {
+          "title": "Add the table with real rows",
+          "text": "Uppercase 11px headers on a faintly tinted strip, tabular numbers on the amount column, and one hairline per row — that is the whole trick.",
+          "prompt": "Inside the card add a full-width table with columns: checkbox, Invoice, Customer, Status, Amount (right-aligned, tabular-nums), Issued. Header cells are 11.5px uppercase muted on a #fbfbfc strip. Six rows: INV-2041 Northwind Studio billing@northwind.co $1,240.00 12 Jun 2025; INV-2040 Halcyon Labs ap@halcyon.io $480.00 11 Jun 2025; INV-2039 Orbital Retail finance@orbital.com $7,320.00 09 Jun 2025; INV-2038 Kova Interiors hello@kova.design $960.00 07 Jun 2025; INV-2037 Fenwick & Sons accounts@fenwick.uk $2,145.00 05 Jun 2025; INV-2036 Atlas Freight pay@atlasfreight.com $315.00 03 Jun 2025. Render each customer as a 26px round monogram avatar with the company on the first line and the muted email under it.",
+          "result_image": "https://iili.io/CkKBW42.png"
+        },
+        {
+          "title": "Status badges, checkboxes and the bulk bar",
+          "text": "Selection needs three signals at once: the checkbox, the tinted row and a bar that names the action. Miss one and users lose the state.",
+          "prompt": "Add pill status badges with a dot: green Paid, amber \"Due in 3 days\" / \"Due in 9 days\", red \"Card failed\". Put a 15px rounded checkbox in the header and in every row; when checked it fills near-black with a white tick and the row background turns #f7f8ff. Mark two rows selected and add a light indigo bar (#f0f1ff) above the table: a checked box, \"2 selected on this page\" and right-aligned buttons Send reminder / Export CSV / Mark paid.",
+          "result_image": "https://iili.io/CkKBwv9.png"
+        },
+        {
+          "title": "Make the Amount column sort, add the pager",
+          "text": "Store the sortable value on the row as a data attribute — the header handler then reorders DOM nodes and never touches formatting.",
+          "prompt": "Give every row a data-amount attribute and make the Amount header clickable: on click sort rows descending by that value, turn the header text near-black and reveal a ▼ arrow next to it. Show the table already sorted by amount. Add a footer row inside the card: muted \"Rows per page: 6\" on the left and pagination buttons ‹ 1 2 3 … 7 › on the right, with page 1 as a dark filled square.",
+          "result_image": "https://iili.io/CkKBkhb.png"
+        }
+      ],
+      "image": "https://iili.io/CkKBkhb.png",
+      "poster": "https://iili.io/CkKBkhb.png"
+    },
+    {
       "id": "us-vs-them-comparison-section",
       "cat": "Design",
       "sub": "Comparison UI",
