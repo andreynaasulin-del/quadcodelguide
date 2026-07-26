@@ -11,6 +11,39 @@
   ],
   "guides": [
     {
+      "id": "8bit-comparison-cta-block",
+      "cat": "Design",
+      "sub": "Comparison UI",
+      "title": "Make an 8-bit us-vs-them CTA block",
+      "desc": "A retro pixel card with a three-column feature table and a chunky Press Start button.",
+      "time": "8 min",
+      "level": "Junior",
+      "models": "Quadcode Agent, HTML/CSS/JS renderer",
+      "result": "A pixel-perfect retro comparison CTA: hard 8-bit borders built from box-shadows, a Press Start 2P headline, six us-vs-them rows and a start button that presses down on click. Recolours to any CRT palette by changing two variables.",
+      "steps": [
+        {
+          "title": "Build the pixel frame",
+          "text": "The 8-bit look is all in the border. Never use border-radius; stack four hard box-shadows instead so the corners stay square and the edge reads as pixels.",
+          "prompt": "Create a single self-contained index.html for a retro 8-bit CTA card. Load the Press Start 2P font from Google Fonts with a monospace fallback. Background near-black, card slightly lighter. Build the card border WITHOUT border-radius: use four hard box-shadows (0 -6px, 0 6px, -6px 0, 6px 0, all spread 0) in the foreground colour plus one 6px outline in the card colour, so the frame looks like a stepped pixel border. Card max width 940px, generous padding, centered vertically and horizontally. No frameworks."
+        },
+        {
+          "title": "Add the comparison table",
+          "text": "Three columns: feature, us, them. Keep the type tiny — a 10px pixel font reads bigger than it measures.",
+          "prompt": "Inside the card add a headline \"WHY_US?\" in the pixel font, a small dim subline \"LEVEL UP YOUR STACK\" with a blinking underscore animated in steps(1), and a three-column table: FEATURE, 8BIT UI, OTHERS. Six rows: vector icons, customizable, dependencies, dark mode, pixel borders, free forever. Our column is green and prefixed with +, the competitor column is dim grey and prefixed with -. Header underlined with a 4px solid rule, rows separated by 2px dashed lines. Font size 10px, line height 1.9, letter spacing 1px."
+        },
+        {
+          "title": "Ship the chunky CTA button",
+          "text": "Same box-shadow trick as the frame, plus a 4px downward nudge on :active — that tiny travel is what sells the arcade feel.",
+          "prompt": "Add a centered call-to-action button labelled \"PRESS START >\". Same pixel border technique as the card but in the dark ink colour, green fill, dark text, no border-radius, 18px by 34px padding, font size 11px. On :active translate it 4px down with a 60ms transition so it feels like a physical arcade key."
+        },
+        {
+          "title": "Reskin it to an amber CRT",
+          "text": "Because every colour lives in a variable, a whole new arcade palette is a two-line change. Great for A/B testing a landing page.",
+          "prompt": "Recolour the whole block to an amber CRT palette by overriding only the CSS variables: accent and border become #fbbf24, page background #140f02, card #1b1403. Keep the competitor column dim grey. Confirm the pixel border and the button shadow still read correctly against the warm background, then screenshot the variant at 1440px wide."
+        }
+      ]
+    },
+    {
       "id": "snap01-parametric-kitchen-configurator",
       "cat": "Product Design",
       "sub": "Parametric Configurator",
