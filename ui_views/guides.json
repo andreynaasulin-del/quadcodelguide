@@ -11,6 +11,45 @@
   ],
   "guides": [
     {
+      "id": "kanban-task-board",
+      "cat": "Interfaces",
+      "sub": "Task Boards",
+      "title": "Build a kanban board with a drag state and WIP limits",
+      "desc": "Four columns, labelled task cards with progress bars, a lifted card mid-drag and a drop placeholder.",
+      "time": "11 min",
+      "level": "Middle",
+      "models": "Quadcode Agent, HTML/CSS/JS renderer",
+      "result": "A sprint board that reads at a glance: four columns with counts, colour-coded task cards with progress bars and assignee avatars, a WIP-limit warning on the busy column, and a card shown mid-drag with a dashed drop placeholder in the target column.",
+      "steps": [
+        {
+          "title": "Board header and four empty columns",
+          "text": "Columns are containers, not cards — a flat grey fill with one border keeps the white task cards readable on top.",
+          "prompt": "Create a single self-contained index.html for a kanban board on a light grey page (#f5f5f7), system sans-serif, no frameworks. Header: 22px title \"Sprint 24 — Publish pipeline\", muted \"12 tasks · ends Friday\", a right-aligned overlapping avatar stack (AK, MR, TL, +4) and a dark \"New task\" button. Under it a four-column grid, 14px gap, each column a #eeeef1 panel with 14px radius and a 1px #e2e2e7 border, containing a header with a 13px bold name and a white rounded count pill: Backlog 4, In progress 3, Review 2, Shipped 3.",
+          "result_image": "https://iili.io/CkKBiyF.png"
+        },
+        {
+          "title": "Fill the columns with task cards",
+          "text": "Cards carry one line of text and nothing else at this stage. If the titles do not read cleanly at 13px, no amount of decoration will save the board.",
+          "prompt": "Add white task cards (11px radius, 1px border, subtle shadow, 12px padding) with a 13.5px title. Backlog: \"Bulk re-publish from the guides ledger\", \"Empty state for a project with no renders\", \"Rotate the storage token quarterly\". In progress: \"Step images 404 when the store is suspended\", \"Per-step progress frames in every guide\", \"Card preview falls back to the last frame\". Review: \"Duplicate guard on the publish runner\". Shipped: \"Headless batch capture for case pages\", \"Yearly prices rounded down by a cent\". Add a muted 11.5px footer line per card: Est. 3d, Est. 1d, Est. 2h, 2 of 3 checks, Review next, Est. 1d, Waiting on AK, Shipped Tue, Shipped Mon.",
+          "result_image": "https://iili.io/CkKBLTg.png"
+        },
+        {
+          "title": "Add labels, progress bars and assignees",
+          "text": "Four tinted label colours are enough for a whole board. Pair each with a 4px progress bar so status is readable without opening a card.",
+          "prompt": "Add a small uppercase label chip on top of every card: red Bug, blue Feature, green Ops, purple UX in soft tinted backgrounds. Under the title add a 4px rounded progress bar on a #ececef track with a near-black fill: 15%, 0%, 0%, 70%, 85%, 40%, 100%, 100%, 100% in card order. Put a 22px round monogram avatar at the right end of each card footer (MR, TL, AK, AK, MR, TL, MR, AK, TL).",
+          "result_image": "https://iili.io/CkKBQja.png"
+        },
+        {
+          "title": "Show the drag state and the WIP limit",
+          "text": "A drag needs two halves: the lifted card and the hole it will land in. Rotation plus a deep shadow sells the lift; a dashed block sells the target.",
+          "prompt": "Show one card being dragged: the second card in \"In progress\" gets rotate(-2deg) scale(1.02), a near-black border and a heavy 0 18px 40px shadow. In the Review column, above its card, add a dashed drop placeholder — 1.5px #b9b9c2 dashed border, 11px radius, 78px tall, translucent white fill. Add an amber \"WIP 3/3\" pill to the right of the \"In progress\" column header to flag the limit.",
+          "result_image": "https://iili.io/CkKBbGR.png"
+        }
+      ],
+      "image": "https://iili.io/CkKBbGR.png",
+      "poster": "https://iili.io/CkKBbGR.png"
+    },
+    {
       "id": "file-uploader-dropzone",
       "cat": "Interfaces",
       "sub": "File Upload",
