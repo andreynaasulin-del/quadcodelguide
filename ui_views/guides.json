@@ -11,6 +11,45 @@
   ],
   "guides": [
     {
+      "id": "command-palette-overlay",
+      "cat": "Interfaces",
+      "sub": "Command Menu",
+      "title": "Build a ⌘K command palette overlay",
+      "desc": "A dark floating palette over a dimmed app: grouped results, shortcut hints and a keyboard-active row.",
+      "time": "11 min",
+      "level": "Middle",
+      "models": "Quadcode Agent, HTML/CSS/JS renderer",
+      "result": "A dark command palette that reads like Linear or Raycast: blurred scrim over the host app, a search field with an esc chip, grouped Actions / Recent / Docs results with icons and shortcuts, an active row for keyboard navigation, and a footer with hints and a result count.",
+      "steps": [
+        {
+          "title": "Fake the host app first",
+          "text": "A palette only looks like a palette when something sits behind it. A skeleton layout is enough — and it keeps the focus on the overlay.",
+          "prompt": "Create a single self-contained index.html on a near-black page (#0b0b0e), light text, system sans-serif, no frameworks. Fill it with a fake app underneath: a top bar with three grey window dots, a muted breadcrumb \"Workspace / Renders / June\" and a right-aligned bordered chip \"Press ⌘K\". Under it a two-column skeleton — a 200px sidebar of five short rounded grey bars and a content column of three larger blocks (96px, 220px, 96px) using #1e1e25 fills with #26262d borders.",
+          "result_image": "https://iili.io/CkKBvQj.png"
+        },
+        {
+          "title": "Drop the scrim and the palette shell",
+          "text": "Scrim plus blur separates layers better than a shadow alone. Centre the card horizontally but pin it near the top — that is where the eye expects a palette.",
+          "prompt": "Add a full-page scrim rgba(6,6,9,.62) with a 3px backdrop blur, and above it a 620px palette card: background #15151a, 1px #26262d border, 16px radius, a heavy 0 32px 80px rgba(0,0,0,.6) shadow, positioned 96px from the top and horizontally centered. Inside put only the search row: a muted magnifier glyph, a borderless transparent input with placeholder \"Search commands, projects, docs…\", and a small monospace \"esc\" key chip on the right, all above a 1px divider.",
+          "result_image": "https://iili.io/CkKBSCx.png"
+        },
+        {
+          "title": "Fill in grouped results",
+          "text": "Group labels are what make a palette scannable. Keep rows one line each, with the shortcut pushed to the right edge.",
+          "prompt": "Type \"ren\" into the input and add a scrollable result list (max height 340px) with uppercase muted group labels. Actions: \"Render current shot\" ⌘ ⏎, \"Duplicate render preset\" ⌘ D, \"Re-run last prompt\" ⌘ R. Recent projects: \"Renders / June / teaser-04\" 2h ago, \"Renders / June / hero-loop\" yesterday. Docs: \"Rendering: queue and priorities\" guide. Every row is a 26px rounded icon tile, a 14px label and a muted right-aligned meta value, with 10px radius on hover.",
+          "result_image": "https://iili.io/CkKB43B.png"
+        },
+        {
+          "title": "Show the keyboard state and footer",
+          "text": "The selected row is the whole promise of a palette: hands stay on the keyboard. Make it obvious with a filled icon tile, not just a background.",
+          "prompt": "Mark the first result as the keyboard-active row: soft #1e1e25 background, 1px inset ring, and an icon tile filled with the accent colour #6d5efc. Add a footer bar above the card's bottom edge with key chips — ↑ ↓ navigate, ⏎ run, ⌘ K toggle — and a right-aligned muted counter \"6 of 42 commands\".",
+          "result_image": "https://iili.io/CkKBPv1.png"
+        }
+      ],
+      "image": "https://iili.io/CkKBPv1.png",
+      "poster": "https://iili.io/CkKBPv1.png"
+    },
+    {
       "id": "admin-data-table-toolbar",
       "cat": "Interfaces",
       "sub": "Data Tables",
