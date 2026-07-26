@@ -11,6 +11,45 @@
   ],
   "guides": [
     {
+      "id": "pricing-tiers-billing-toggle",
+      "cat": "Interfaces",
+      "sub": "Pricing",
+      "title": "Build a pricing table with a billing toggle",
+      "desc": "Three tiers, one highlighted plan and a monthly/yearly switch that rewrites every price in place.",
+      "time": "10 min",
+      "level": "Junior",
+      "models": "Quadcode Agent, HTML/CSS/JS renderer",
+      "result": "A production-ready pricing section: three tiers, a highlighted plan with a badge, feature lists with check bullets, and a segmented monthly/yearly control that updates amounts, period labels and billing notes without a reload.",
+      "steps": [
+        {
+          "title": "Set the header and the price grid rhythm",
+          "text": "Pricing pages fail on rhythm, not on copy. Lock the container width and the vertical spacing before any card exists.",
+          "prompt": "Create a single self-contained index.html for a pricing section on a light grey page (#f6f6f7), centered, max width 1060px, system sans-serif, no frameworks. Add a centered header: a 36px headline \"Simple pricing, no surprises.\" where the second half is muted grey, and a 15px muted subline max 520px wide: \"Every plan includes the full editor, unlimited projects and the publish API. You only pay for render volume.\"",
+          "result_image": "https://iili.io/CkKBm4p.png"
+        },
+        {
+          "title": "Lay out three tier cards",
+          "text": "Build the skeleton first: name, one-line audience, price. Equal-height captions stop the prices from dancing.",
+          "prompt": "Add a three-column grid with an 18px gap. Each card is white, 18px radius, 1px #e6e6ea border, 26px padding, and contains a 15px bold plan name, a 13px muted caption with a 36px min-height so all captions align, and a price row with a 38px tabular-nums amount plus a muted \"/ month\" label and a small \"Billed monthly\" note. Plans: Starter $12 \"For one person testing the workflow end to end.\", Studio $39 \"For a small team shipping client work every week.\", Scale $99 \"For studios with review gates and audit needs.\" Add a centered 12px muted footnote: \"Prices in USD. Cancel any time — unused renders roll over for one cycle.\"",
+          "result_image": "https://iili.io/CkKC9aI.png"
+        },
+        {
+          "title": "Add feature lists, CTA and the highlighted plan",
+          "text": "One plan must win visually. Border, shadow and inverted check bullets do it without a louder colour.",
+          "prompt": "Inside every card add a feature list: rows with an 18px circular check bullet and 14px text — Starter: 1 workspace unlimited projects, 500 renders per month, prompt history 30 days, community support. Studio: 5 seats with shared asset library, 5 000 renders per month, publish API and CLI access, per-asset cost reporting, priority queue on busy hours. Scale: unlimited seats and roles, 25 000 renders per month, SSO and audit log, private model endpoints. Add a full-width button per card (\"Start free trial\", \"Start free trial\", \"Talk to sales\"). Promote the middle card: near-black border, soft elevated shadow, dark filled button, dark check bullets and an overlapping uppercase pill badge \"Most picked\" sitting on its top edge.",
+          "result_image": "https://iili.io/CkKC2un.png"
+        },
+        {
+          "title": "Wire the monthly/yearly switch",
+          "text": "Keep both amounts on the element as data attributes — the toggle then edits text, never layout, so nothing shifts.",
+          "prompt": "Above the grid add a centered segmented control with Monthly and Yearly pills inside a rounded grey track, plus a small green \"Save 20%\" pill next to it. Store both prices on each amount as data-m and data-y (yearly: 115, 374, 950). Clicking a segment sets aria-selected on the pills, swaps every amount, changes the period label to \"/ year\" and the note to \"Billed yearly — two months free\". Show the yearly state selected.",
+          "result_image": "https://iili.io/CkKCfnf.png"
+        }
+      ],
+      "image": "https://iili.io/CkKCfnf.png",
+      "poster": "https://iili.io/CkKCfnf.png"
+    },
+    {
       "id": "onboarding-stepper-wizard",
       "cat": "Interfaces",
       "sub": "Onboarding",
