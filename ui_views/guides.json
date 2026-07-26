@@ -11,6 +11,45 @@
   ],
   "guides": [
     {
+      "id": "website-hero-split-cta",
+      "cat": "Website",
+      "sub": "Hero Sections",
+      "title": "Build a split hero with a product shot and social proof",
+      "desc": "Copy on the left, a framed dashboard on the right, plus the trust row that makes the CTA believable.",
+      "time": "9 min",
+      "level": "Junior",
+      "models": "Quadcode",
+      "result": "A landing hero that fits above the fold: nav, headline, two CTAs, a product screenshot and a review row.",
+      "steps": [
+        {
+          "title": "Nav bar and the headline",
+          "text": "Start with the frame: a thin top bar and one short promise. Keep the headline under eleven words so it stays two lines wide.",
+          "prompt": "Build a landing page header on white. Top bar: 24px dark rounded logo mark with the letter Q plus the word Quadflow, then text links Product, Templates, Pricing, Docs, and on the right a Sign in link with a dark rounded Start free button. Below it, a 47px headline with tight negative letter spacing: \"Ship guides, not screenshots\" where \"not screenshots\" is grey. Under the headline, a 15px grey paragraph, max 46 characters per line, about rendering every step and publishing with one command.",
+          "result_image": "https://iili.io/CkKshfR.png"
+        },
+        {
+          "title": "Eyebrow badge and the CTA pair",
+          "text": "Add the announcement pill above the headline and the action row below it. One filled button, one quiet button, then a reassurance line so nobody has to guess about the card.",
+          "prompt": "Above the headline add a rounded pill with a light grey background and a thin border: a dark rounded \"New\" badge followed by the text \"Batch publishing — 15 guides in one run\". Under the paragraph add a button row: a dark filled button \"Start free — no card\" and a white bordered button \"▶ Watch a 90s demo\", and below them a small grey line \"Free for 14 days · 1 GB media included · cancel anytime\".",
+          "result_image": "https://iili.io/CkKsOJI.png"
+        },
+        {
+          "title": "Product shot in the right column",
+          "text": "Turn the hero into two columns and put a browser-framed screenshot on the right. Fake data is fine, but make it specific — round numbers read as placeholder.",
+          "prompt": "Split the hero into two columns, 1.05fr for copy and 0.95fr for the visual. On the right place a white rounded card with a big soft shadow, styled like a browser window: a title bar with three grey dots and a small address field showing app.quadflow.dev/publish. Inside, two bordered stat tiles — \"Guides published 56, +15 this week\" and \"Median publish time 58s, −12s vs last week\" with the deltas in green — and below them a full-width bordered chart card titled \"Publishes per day\" with 12 grey bars of varying height, the second to last one dark.",
+          "result_image": "https://iili.io/CkKLddB.png"
+        },
+        {
+          "title": "Social proof row",
+          "text": "Close the hero with proof. Overlapping avatars, a customer count and a star rating do more than another paragraph of copy.",
+          "prompt": "Under the CTA row add a top-bordered trust row: five overlapping 31px circular avatars with white rings and the initials MR, AK, TL, JS, +9, then two lines of 12.5px text — \"1 400 teams publish with Quadflow\" with the number in dark bold, and below it five gold stars with \"4.9 from 260 reviews\" in grey.",
+          "result_image": "https://iili.io/CkKLo1R.png"
+        }
+      ],
+      "image": "https://iili.io/CkKLo1R.png",
+      "poster": "https://iili.io/CkKLo1R.png"
+    },
+    {
       "id": "website-feature-grid",
       "cat": "Website",
       "sub": "Features",
