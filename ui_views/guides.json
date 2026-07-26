@@ -11,6 +11,39 @@
   ],
   "guides": [
     {
+      "id": "pros-cons-review-block",
+      "cat": "Design",
+      "sub": "Comparison UI",
+      "title": "Build a pros and cons review block",
+      "desc": "A balanced two-column block that argues both sides of one option and ends with a verdict.",
+      "time": "7 min",
+      "level": "Junior",
+      "models": "Quadcode Agent, HTML/CSS/JS renderer",
+      "result": "A reusable review block: a green pros column, a red cons column with matching row counts, and a scored verdict card underneath. Swaps to a neutral editorial palette with a four-token override.",
+      "steps": [
+        {
+          "title": "Set the editorial header",
+          "text": "Pros and cons only work when the reader knows what is being judged. Kicker, title, one line of context — nothing more.",
+          "prompt": "Create a single self-contained index.html with a pros and cons review block on a white page, max width 920px, centered. Header: an uppercase muted kicker \"HONEST REVIEW\", a 30px title \"AI-generated video for social ads\", and one muted 15px line: \"One option, both sides of it. Read the trade-offs before you commit a campaign budget.\" System sans-serif, no frameworks, no CDN."
+        },
+        {
+          "title": "Build the two tinted columns",
+          "text": "Same padding, same radius, same number of rows on both sides. Any imbalance reads as bias.",
+          "prompt": "Add a two-column grid with a 20px gap. Left box: very light green background, light green border, 16px radius, a bold green header row with a rounded green chip containing a plus sign and the label Pros. Right box: very light red background, light red border, same radius, bold red header with a red chip containing a minus sign and the label Cons. Give each box exactly four list rows: an 18px filled circle marker (check on the left, cross on the right) plus 15px text at 1.55 line height, 14px gap between rows."
+        },
+        {
+          "title": "Write honest content, not marketing",
+          "text": "Concrete numbers beat adjectives. Name the real weak spots — that is what makes the pros credible.",
+          "prompt": "Fill the block with honest content about AI-generated video for social ads. Pros: a finished 15-second cut in under an hour, ten variants for the price of one shoot, no crew or location dependencies, same-day iteration from campaign feedback. Cons: faces and hands need a human pass, product geometry drifts between shots, takes over 10 seconds lose temporal consistency, licensing rules differ per model. Keep every line under about 70 characters and use plain English."
+        },
+        {
+          "title": "Add the verdict and a neutral variant",
+          "text": "The verdict card is what people screenshot. Then prove the block survives a palette where colour cannot carry the meaning.",
+          "prompt": "Under the grid add a verdict card: 1px light border, 14px radius, a dark rounded score badge reading \"8.5 / 10\" on the left, then a bold \"Verdict\" label and a two-line muted summary. Then produce a neutral editorial variant by overriding only four tokens so both boxes become light grey with the cons box keeping a dashed border — the icons and labels must still make the pros and cons obvious without colour. Screenshot both variants at 1440px wide."
+        }
+      ]
+    },
+    {
       "id": "comparison-table-row-selection",
       "cat": "Design",
       "sub": "Comparison UI",
