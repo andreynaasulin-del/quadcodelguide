@@ -11,6 +11,45 @@
   ],
   "guides": [
     {
+      "id": "website-faq-accordion",
+      "cat": "Website",
+      "sub": "FAQ",
+      "title": "Build an FAQ accordion with filters and a help card",
+      "desc": "A two column FAQ: sticky intro with category chips on the left, expandable answers and a search field on the right.",
+      "time": "7 min",
+      "level": "Junior",
+      "models": "Quadcode",
+      "result": "An FAQ section with six real answers, open and closed states, category chips, a search field and a support card.",
+      "steps": [
+        {
+          "title": "Two column shell and the question list",
+          "text": "Left column explains, right column answers. Write the questions as users ask them, not as your feature names.",
+          "prompt": "Build a two column FAQ section on white, max width 960px, columns 0.8fr and 1.2fr with a 44px gap, aligned to the top. Left: an uppercase grey eyebrow \"Support\", a 27px heading \"Questions we get every week\" and a 14px grey line \"If the answer is not here, a human replies within one business day.\" Right: a white rounded bordered list of four collapsed rows separated by thin lines, each row 14px medium text with a grey plus sign on the right: \"How long does a publish take?\", \"Where are images and videos stored?\", \"What happens if I reuse an existing id?\", \"Can I publish without the CLI?\"",
+          "result_image": "https://iili.io/CkKsJNn.png"
+        },
+        {
+          "title": "Open state for the first row",
+          "text": "Expanded rows need a visible difference: a slightly tinted background and the plus rotated into a cross.",
+          "prompt": "Open the first row: rotate its plus sign 45 degrees into a cross, tint the row background very slightly and reveal a 13.5px grey answer under the question — text lands in the repository instantly and production rebuilds in about a minute, median end-to-end time is 58s, with 58s shown as inline code with a light grey background and a thin border.",
+          "result_image": "https://iili.io/CkKsFVf.png"
+        },
+        {
+          "title": "All questions and the category chips",
+          "text": "Six answers cover the real support load. Chips let people jump to their area without reading everything.",
+          "prompt": "Add two more rows in the same style: \"Is there a file size limit?\" — 200MB per file but keep videos near 5–10MB at 1080p h264 because storage is shared; \"How do I roll a leaked API key?\" — generate a new key, overwrite the environment variable and redeploy, old keys stop working on the next deploy. In the left column under the intro add a row of rounded filter chips: All, Billing, Media, API, Teams, with All filled near-black and white text and the rest bordered grey.",
+          "result_image": "https://iili.io/CkKsqKl.png"
+        },
+        {
+          "title": "Search field and the support card",
+          "text": "Finish with the two escape hatches: search over all answers and a way to reach a person.",
+          "prompt": "Above the list add a bordered rounded search field with a magnifier, the placeholder \"Search 42 answers\" and a right-aligned small ⌘ K key hint. In the left column under the chips add a light grey rounded card: bold \"Still stuck?\", a 12.5px grey line \"Send the guide id and the failing step — that is usually enough to reproduce.\" and a small dark filled button \"Contact support\". Also show a second row expanded so both open and closed states are visible at once.",
+          "result_image": "https://iili.io/CkKsoH7.png"
+        }
+      ],
+      "image": "https://iili.io/CkKsoH7.png",
+      "poster": "https://iili.io/CkKsoH7.png"
+    },
+    {
       "id": "website-404-page",
       "cat": "Website",
       "sub": "Error Pages",
