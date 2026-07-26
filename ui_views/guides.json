@@ -11,6 +11,45 @@
   ],
   "guides": [
     {
+      "id": "website-mega-footer",
+      "cat": "Website",
+      "sub": "Footers",
+      "title": "Build a mega footer with a CTA banner and status row",
+      "desc": "Four link columns, a brand block, a newsletter box, a legal bar with a live status dot and a dark CTA banner on top.",
+      "time": "8 min",
+      "level": "Junior",
+      "models": "Quadcode",
+      "result": "A production-grade site footer: link columns, socials, newsletter capture, legal row and an above-footer conversion banner.",
+      "steps": [
+        {
+          "title": "Four link columns",
+          "text": "Group links the way people look for them, not by your org chart. Four columns of four to five links is the sweet spot.",
+          "prompt": "Build a website footer on a light grey background with a thin top border, content max width 1180px and 40px padding. Add a four column grid with 28px gaps. Each column: a 12px bold title and under it 12.5px grey text links with 8px spacing. Product: Overview, Templates, Publish API, Pricing, Changelog. Resources: Documentation, Guide gallery, Status page, Support. Company: About, Careers, Blog, Press kit. Legal: Terms, Privacy, DPA, Security. Add a tiny rounded pill \"New\" next to Publish API and \"3\" next to Careers.",
+          "result_image": "https://iili.io/CkKLAmX.png"
+        },
+        {
+          "title": "Brand column and social buttons",
+          "text": "Add a wider first column with the logo, one sentence of positioning and small square social buttons.",
+          "prompt": "Add a wider first column before the link columns, 1.4fr against 1fr each: a 24px dark rounded logo mark with the letter Q next to the word Quadflow in 15px semibold, then a 12.5px grey sentence of at most 30 characters per line — the publishing pipeline for teams that document what they build — and a row of four 29px white rounded square buttons with thin borders holding the labels X, in, gh, yt.",
+          "result_image": "https://iili.io/CkKLYLG.png"
+        },
+        {
+          "title": "Legal bar with a status dot",
+          "text": "Separate the legal row with a border. A green dot with \"All systems operational\" belongs here — it is the cheapest trust signal on the page.",
+          "prompt": "Under the columns add a top-bordered legal row, 12px grey text, vertically centered: \"© 2025 Quadflow Labs\" on the left, next to it a 7px green dot with \"All systems operational\", and right-aligned links \"Cookie settings\", \"Sitemap\" and the text \"English (US)\".",
+          "result_image": "https://iili.io/CkKL0rl.png"
+        },
+        {
+          "title": "Newsletter box and CTA banner",
+          "text": "Two conversion slots: a quiet email capture inside the footer and one dark banner right above it.",
+          "prompt": "Above the legal row add a white rounded bordered box: bold \"Release notes, once a month\" with a 12.5px grey line \"Two minutes of reading. No product marketing.\" underneath, and right-aligned a bordered email input with the placeholder you@company.com plus a small dark filled \"Subscribe\" button. Above the whole footer add a near-black rounded banner with white text: a 20px heading \"Publish your first guide today\", a grey line \"Free for 14 days. No card, no sales call, cancel from the dashboard.\" and a right-aligned white button \"Start free\".",
+          "result_image": "https://iili.io/CkKLE22.png"
+        }
+      ],
+      "image": "https://iili.io/CkKLE22.png",
+      "poster": "https://iili.io/CkKLE22.png"
+    },
+    {
       "id": "website-newsletter-block",
       "cat": "Website",
       "sub": "Lead Capture",
