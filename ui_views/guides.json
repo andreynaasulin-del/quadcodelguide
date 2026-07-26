@@ -11,6 +11,45 @@
   ],
   "guides": [
     {
+      "id": "website-logo-cloud",
+      "cat": "Website",
+      "sub": "Social Proof",
+      "title": "Build a bordered logo cloud with a customer quote",
+      "desc": "Ten customer logos in a divided grid, one highlighted in colour, a quote card under it and a compliance badge strip.",
+      "time": "6 min",
+      "level": "Junior",
+      "models": "Quadcode",
+      "result": "A trust section: grid of grayscale logos, one accent logo, a named quote with company attribution and SOC 2 / GDPR badges.",
+      "steps": [
+        {
+          "title": "First row of logos",
+          "text": "Put logos in a bordered grid instead of floating them in space — a divided panel looks intentional even with placeholder marks.",
+          "prompt": "Build a centered social proof section on white, max width 1080px: an uppercase grey eyebrow \"Social proof\" and a 31px heading \"Documentation teams you already know\". Under it a rounded bordered panel split into five equal columns with thin dividers. Each cell, 22px padding, centered: a 20px light grey rounded square mark next to a 14px semibold company name in grey, rendered grayscale at 72% opacity. Names: Northwind, Helioscale, Orbit, Midlayer, Ferroline.",
+          "result_image": "https://iili.io/CkKmo1s.png"
+        },
+        {
+          "title": "Second row and the context line",
+          "text": "Ten logos read as a roster, five as a coincidence. Add a line saying who actually uses the product.",
+          "prompt": "Add a second row of five logos in the same style — Papertrail, Cobalt, Sandbar, Verity, Lumen — with no bottom border on the last row. Between the heading and the panel add a centered 12.5px grey line \"Used daily by support, platform and developer relations teams in 34 countries.\"",
+          "result_image": "https://iili.io/CkKmI2f.png"
+        },
+        {
+          "title": "Customer quote card",
+          "text": "One quote turns a logo wall into evidence. Name, role, company size — vague praise from \"a customer\" convinces nobody.",
+          "prompt": "Under the logo panel add a white rounded bordered card laid out as a row: a 34px circular grey avatar with the initials MR, then a 14.5px quote \"We replaced three internal wikis with one guide feed. Nobody asked for the wikis back.\" with a 12px grey attribution line \"Marta Rusu · Docs lead at Northwind · 240 engineers\" underneath, and right-aligned 11.5px grey text \"NORTHWIND\" with \"customer since 2023\" on the next line.",
+          "result_image": "https://iili.io/CkKmYQ9.png"
+        },
+        {
+          "title": "Compliance badges and the accent logo",
+          "text": "Close with the badges procurement asks about, and bring one logo back to full colour so the grid does not read as decoration.",
+          "prompt": "Under the quote add a top-bordered centered strip of bordered light grey badges: \"🔒 SOC 2 Type II\", \"🇪🇺 GDPR ready\", \"⏱️ 99.98% uptime\", followed by the grey line \"1 400 teams · 56 public guides · 34 countries\" with the numbers in dark bold. Remove the grayscale filter from the first logo only and make its square mark blue.",
+          "result_image": "https://iili.io/CkKmE2j.png"
+        }
+      ],
+      "image": "https://iili.io/CkKmE2j.png",
+      "poster": "https://iili.io/CkKmE2j.png"
+    },
+    {
       "id": "website-hero-split-cta",
       "cat": "Website",
       "sub": "Hero Sections",
