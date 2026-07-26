@@ -11,6 +11,45 @@
   ],
   "guides": [
     {
+      "id": "file-uploader-dropzone",
+      "cat": "Interfaces",
+      "sub": "File Upload",
+      "title": "Build a file dropzone with a live upload queue",
+      "desc": "Idle and drag-over states, per-file progress rows, and the uploaded / failed states with a retry button.",
+      "time": "11 min",
+      "level": "Middle",
+      "models": "Quadcode Agent, HTML/CSS/JS renderer",
+      "result": "An uploader that covers the whole flow: a dashed dropzone that lights up on drag-over, a queue of file rows with type thumbnails, progress bars and status lines, a green completed row, a red over-limit row with Retry, and a footer with totals and actions.",
+      "steps": [
+        {
+          "title": "Card and the idle dropzone",
+          "text": "State the limits inside the zone. \"Up to 200 MB each\" prevents the failure you would otherwise have to design an error for.",
+          "prompt": "Create a single self-contained index.html on a light grey page (#f6f6f8), centered, max width 640px, system sans-serif, no frameworks. Add a white card (16px radius, 1px #e6e6ea border, 24px padding) with an 18px heading \"Upload render assets\" and a muted 13px line \"Video, posters and step images for one guide. Compress video to ~8 MB before uploading — the shared store is 1 GB.\" Under it a dropzone: 1.5px dashed #d3d3da border, 14px radius, #fbfbfc fill, centered content — a 44px rounded icon tile with an upload glyph, a 14.5px bold \"Drag files here\", a muted line \"mp4, webm, mov · jpg, png, webp · up to 200 MB each\" and an outlined \"Choose files\" button.",
+          "result_image": "https://iili.io/CkKn5OX.png"
+        },
+        {
+          "title": "Add the drag-over state",
+          "text": "Drop targets need an unmistakable hover. Change border colour, background and the icon fill at once, and count the files being dragged.",
+          "prompt": "Add an active drag state to the dropzone: blue #3b5bfd dashed border, #f3f5ff background, the icon tile filled blue with a white glyph and the headline turned blue and switched to \"Drop 3 files to upload\", with a 150ms transition. Wire real dragenter/dragover/dragleave/drop handlers that add and remove that state. Show the zone in its active state.",
+          "result_image": "https://iili.io/CkKncWG.png"
+        },
+        {
+          "title": "Build the upload queue",
+          "text": "One row per file: type chip, name, size, a 5px progress bar and a status line. That is all people need while bytes move.",
+          "prompt": "Under the dropzone add a queue of file rows, each a 12px-radius bordered row with a 38px rounded type chip (MP4, PNG, MOV), the file name with a muted size next to it, a 5px rounded progress track with a blue fill, a muted 11.5px status line, and a dismiss ✕ on the right. Rows: final_teaser.mp4 7.8 MB at 92% \"Uploading · 92% · 1s left\", step_02_result.png 1.2 MB at 64% \"Uploading · 64% · 3s left\", raw_capture.mov 240 MB at 12% \"Queued · waiting for a slot\".",
+          "result_image": "https://iili.io/CkKn1f4.png"
+        },
+        {
+          "title": "Finish with success, failure and totals",
+          "text": "The failed row is the important one: say what went wrong, in the row, and put Retry where the dismiss button was.",
+          "prompt": "Turn the first row into its completed state: green progress fill, a green tick after the name and the status \"Uploaded · stored as guides/pricing/final_teaser.mp4\". Turn the third row into a failure: red-tinted border and background, red progress fill, red status \"Failed · over the 200 MB limit, compress and retry\" and an outlined red \"Retry\" button instead of the ✕. Close the card with a footer above a hairline: muted \"2 of 3 files · 9.0 MB uploaded\" on the left, \"Cancel all\" and a dark \"Attach to guide\" button on the right.",
+          "result_image": "https://iili.io/CkKnE0l.png"
+        }
+      ],
+      "image": "https://iili.io/CkKnE0l.png",
+      "poster": "https://iili.io/CkKnE0l.png"
+    },
+    {
       "id": "empty-state-set",
       "cat": "Interfaces",
       "sub": "Empty States",
