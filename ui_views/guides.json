@@ -11,6 +11,45 @@
   ],
   "guides": [
     {
+      "id": "website-testimonial-wall",
+      "cat": "Website",
+      "sub": "Testimonials",
+      "title": "Build a masonry testimonial wall with a featured quote",
+      "desc": "Six quote cards in a masonry layout, one inverted hero quote and a stats band under it.",
+      "time": "8 min",
+      "level": "Junior",
+      "models": "Quadcode",
+      "result": "A social proof section: masonry quotes with avatars and company names, one dark featured quote and four summary metrics.",
+      "steps": [
+        {
+          "title": "Section header",
+          "text": "Say where the quotes come from. \"Unedited quotes from the last two release cycles\" beats a vague headline about love.",
+          "prompt": "Build a centered testimonials section header on white, max width 1140px: an uppercase 11.5px grey eyebrow \"Customer voices\", a 31px dark heading with tight letter spacing \"Teams stopped writing docs by hand\", and one 15px grey line \"Unedited quotes from the last two release cycles.\"",
+          "result_image": "https://iili.io/CkKQG6v.png"
+        },
+        {
+          "title": "First three quote cards",
+          "text": "One card = one quote, one face, one company. Keep quotes to two lines so the wall stays scannable.",
+          "prompt": "Add three white rounded quote cards with a thin border and 20px padding in a three column layout. Each card: a 13.5px quote in curly quotes, then a row with a 34px circular grey avatar with initials, the person's name at 12.5px bold with their role in 11.5px grey underneath, and the company name right-aligned in 11px uppercase grey. Use: \"We published 15 guides in one afternoon. The old way took a sprint.\" — Marta Rusu, Docs lead, NORTHWIND; \"Per-step screenshots killed the 'it doesn't look like that for me' thread.\" — Ana Kovacs, Support manager, HELIOSCALE; \"The duplicate guard saved us from overwriting a live guide twice.\" — Tom Lindqvist, Platform engineer, ORBIT.",
+          "result_image": "https://iili.io/CkKQX8N.png"
+        },
+        {
+          "title": "Fill the wall to six",
+          "text": "Switch the container to CSS columns so cards of different heights stack without gaps, and add three more voices from other roles.",
+          "prompt": "Turn the container into a CSS masonry wall: three columns with a 16px column gap and cards that never break inside. Add three more quote cards in the same style: \"Onboarding time for new hires dropped from two weeks to four days.\" — Jia Sun, Head of people, MIDLAYER; \"I write the spec, the pipeline renders the proof. That's the whole job now.\" — Diego Bravo, Solutions architect, FERROLINE; \"Media hosting alone paid for the seat. No more broken image reports.\" — Ella Novak, Content ops, PAPERTRAIL.",
+          "result_image": "https://iili.io/CkKQOtn.png"
+        },
+        {
+          "title": "Featured quote and the stats band",
+          "text": "Invert the strongest quote so the eye lands there first, add star rows to two cards, then close the section with hard numbers.",
+          "prompt": "Make the first quote card inverted: near-black background, white text, a 16px quote, grey role and company text and a dark avatar. Add a row of five gold stars above the quote text in two other cards. Under the wall add a top-bordered centered band of four metrics, each a 24px bold number with an 11.5px grey label: 4.9 average rating, 1 400 teams publishing, 58s median publish, 96% would recommend.",
+          "result_image": "https://iili.io/CkKQUF4.png"
+        }
+      ],
+      "image": "https://iili.io/CkKQUF4.png",
+      "poster": "https://iili.io/CkKQUF4.png"
+    },
+    {
       "id": "website-team-grid",
       "cat": "Website",
       "sub": "Team",
