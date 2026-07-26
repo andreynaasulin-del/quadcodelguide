@@ -11,6 +11,45 @@
   ],
   "guides": [
     {
+      "id": "website-changelog-timeline",
+      "cat": "Website",
+      "sub": "Changelog",
+      "title": "Build a changelog timeline with Added, Fixed and Breaking labels",
+      "desc": "A dated rail of releases with version pills, colour-coded change labels, an inline chart and author credits.",
+      "time": "9 min",
+      "level": "Middle",
+      "models": "Quadcode",
+      "result": "A public changelog page: timeline rail with dots, three releases, labelled change lists, an embedded chart and an RSS/email subscribe row.",
+      "steps": [
+        {
+          "title": "Timeline rail and the latest release",
+          "text": "Dates go outside the rail, content inside. The newest release gets a filled dot so the eye starts at the top.",
+          "prompt": "Build a changelog page on white, max width 920px: a grey uppercase eyebrow \"Changelog\", a 31px heading \"Every release, in plain language\" and a grey line saying releases ship continuously and breaking changes are labelled. Under it a timeline: a vertical 1px line with entries padded to its right. The first entry has the date \"Mar 12\" in dark 12.5px with \"2025\" in grey underneath, right-aligned to the left of the rail, a filled near-black 11px dot on the rail, a 17px title \"Batch publishing\" with small pills \"v2.4.0\" and \"Latest\" next to it, and a 13.5px paragraph about publishing a whole category in one run.",
+          "result_image": "https://iili.io/CkKD69p.png"
+        },
+        {
+          "title": "Colour-coded change list",
+          "text": "Every bullet gets a label chip: green Added, blue Fixed, red Breaking. Readers scan the chips, not the sentences.",
+          "prompt": "Under the release paragraph add a list where every row starts with a fixed-width label chip followed by the change text at 13px. Chips: green \"Added\" on a light green background, blue \"Fixed\" on a light blue background, red \"Breaking\" on a light red background. Rows: Added — the --only flag accepts a comma separated list of case folders; Added — the ledger check runs before publishing and blocks duplicate ids; Fixed — step captures no longer inherit state from the previous stage.",
+          "result_image": "https://iili.io/CkKDbKG.png"
+        },
+        {
+          "title": "Two older releases and author credits",
+          "text": "Older entries use hollow dots. A name and commit count under each release makes the log feel like a team, not a robot.",
+          "prompt": "Add two more timeline entries with hollow grey dots: \"Mar 4 2025 — Media hosting moved to a CDN, v2.3.1\" with a Fixed row about uploads retrying three times and a Breaking row about local media paths being rejected without --remote-media; and \"Feb 21 2025 — Per-step progress images, v2.3.0\" with an Added row about a stage query parameter and a Fixed row about card previews using the final frame. Under every release add a credit row: a 22px circular avatar with initials and 11.5px grey text such as \"Tom Lindqvist · 4 commits\", \"Kwame Prah · 9 commits\", \"Jia Sun · 6 commits\".",
+          "result_image": "https://iili.io/CkKb9Hl.png"
+        },
+        {
+          "title": "Inline chart and subscribe row",
+          "text": "Show the impact of the headline release, then give people a way to follow along without checking the page.",
+          "prompt": "In the latest release add a bordered rounded panel: a caption bar reading \"Publishes per day after the release\" and under it six grey bars with rounded tops, the last one near-black. At the bottom of the page add a light grey bordered row: bold \"Follow the changelog\" with a 12px grey line \"RSS, or one email per release. No digests.\" and right-aligned small buttons \"RSS feed\" and a dark filled \"Email me releases\".",
+          "result_image": "https://iili.io/CkKbKiu.png"
+        }
+      ],
+      "image": "https://iili.io/CkKbKiu.png",
+      "poster": "https://iili.io/CkKbKiu.png"
+    },
+    {
       "id": "website-blog-index",
       "cat": "Website",
       "sub": "Blog",
