@@ -11,6 +11,45 @@
   ],
   "guides": [
     {
+      "id": "website-docs-layout",
+      "cat": "Website",
+      "sub": "Documentation",
+      "title": "Build a three column docs page with a code block",
+      "desc": "Sidebar navigation, article column with a dark copyable snippet and a callout, plus a sticky table of contents.",
+      "time": "10 min",
+      "level": "Middle",
+      "models": "Quadcode",
+      "result": "A documentation page: grouped sidebar with search, breadcrumbs, prose, a code block with a copy bar, a warning callout, prev/next cards and page feedback.",
+      "steps": [
+        {
+          "title": "Sidebar and the article column",
+          "text": "Two columns first: navigation on the left, prose on the right. Group the links — a flat list of twenty items is unreadable.",
+          "prompt": "Build a documentation page as a two column grid: a 212px sidebar with a light grey background and a right border, and the article column. Sidebar: a 22px dark rounded logo mark with the letter Q next to \"Quadflow docs\", then uppercase 10.5px grey group labels with 12.5px links under them — \"Getting started\" with Introduction, Install the CLI, Your first guide, and \"Publishing\" with Publish a batch, Media hosting, Duplicate guard. Mark \"Publish a batch\" as active with a white background, a thin border and darker text, and put a tiny \"New\" pill next to Duplicate guard. Article column, 26px by 34px padding: a 12px grey breadcrumb \"Docs / Publishing / Publish a batch\", a 28px h1 \"Publish a batch\", a 14.5px grey intro paragraph about sending many guides in one run, then an 18px h2 \"Run the publisher\" and a 13.5px paragraph of body copy.",
+          "result_image": "https://iili.io/CkKbke2.png"
+        },
+        {
+          "title": "Sidebar search and a reference group",
+          "text": "Docs are searched, not browsed. Add the search field at the top and one more link group so the sidebar reads as a real tree.",
+          "prompt": "At the top of the sidebar under the logo add a white bordered rounded search field with a magnifier, the text \"Search docs\" and a right-aligned ⌘K hint. Under the existing groups add a third group labelled \"Reference\" with the links REST API, Guide schema and Error codes.",
+          "result_image": "https://iili.io/CkKbgse.png"
+        },
+        {
+          "title": "Code block and warning callout",
+          "text": "Snippets get a dark block with a language bar and a Copy button. Anything destructive gets an amber callout right after it.",
+          "prompt": "Under the body paragraph add a dark rounded code block: a top bar with a slightly lighter background reading \"bash\" on the left and a bordered \"Copy\" button on the right, then monospace 12.5px content — a grey comment \"# upload media, then publish every case in the batch\", the command \"node publish_all.mjs --remote-media --only=hero-split,feature-grid\" with the flags in light blue, and a second grey comment \"# 15 guides · 60 frames · one commit\". Under it an amber callout with a light yellow background and border: bold \"Reusing an id overwrites the live guide\" and a line telling the reader to run node db/db.mjs check first because the publisher refuses existing ids unless --force is passed.",
+          "result_image": "https://iili.io/CkKbsdx.png"
+        },
+        {
+          "title": "Table of contents, pager and feedback",
+          "text": "Add the third column and close the page the way good docs do: where to go next, and a way to say the page was useless.",
+          "prompt": "Add a third 176px column on the right with a left border: an uppercase 10.5px grey label \"On this page\" and 12px anchor links Run the publisher, Verify the deploy, Batch limits, Troubleshooting, with the first one active in dark text and a 2px left bar. At the end of the article add a top-bordered row of two bordered cards: \"← Previous / Install the CLI\" and right-aligned \"Next → / Media hosting\". Under it a 12px grey feedback row: \"Was this page helpful?\" with small bordered \"👍 Yes\" and \"👎 No\" buttons and the text \"· Edited 2 days ago by TL\".",
+          "result_image": "https://iili.io/CkKbZmB.png"
+        }
+      ],
+      "image": "https://iili.io/CkKbZmB.png",
+      "poster": "https://iili.io/CkKbZmB.png"
+    },
+    {
       "id": "website-cookie-consent",
       "cat": "Website",
       "sub": "Consent",
