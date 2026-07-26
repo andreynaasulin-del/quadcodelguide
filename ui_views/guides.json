@@ -11,6 +11,45 @@
   ],
   "guides": [
     {
+      "id": "notification-inbox-panel",
+      "cat": "Interfaces",
+      "sub": "Notifications",
+      "title": "Build a notification inbox with tabs and inline actions",
+      "desc": "A notification panel with filter tabs, unread markers, day grouping and buttons that resolve the item without leaving.",
+      "time": "10 min",
+      "level": "Middle",
+      "models": "Quadcode Agent, HTML/CSS/JS renderer",
+      "result": "A notification centre that people can actually clear: filter tabs with an unread count, avatar and system rows with quoted context, blue unread dots and tint, inline Retry / Open / Reply actions, day group headers and a footer with mark-all-as-read.",
+      "steps": [
+        {
+          "title": "Panel shell with filter tabs",
+          "text": "An inbox needs filters from the start — All, Unread, Mentions and one product-specific tab keep it usable at 24 items.",
+          "prompt": "Create a single self-contained index.html on a light grey page (#f6f6f8), system sans-serif, no frameworks. Center a 480px white panel at the top of the page: 16px radius, 1px #e6e6ea border, a soft 0 18px 50px shadow, clipped corners. Inside add a header row with a 16px \"Inbox\" title, a blue rounded \"4 new\" count pill and a muted gear glyph pushed to the right. Under it a tab row — All, Unread, Mentions, Publishing — where the active tab is near-black, medium weight, with a 2px underline, sitting on a full-width divider. Make the tabs switch on click.",
+          "result_image": "https://iili.io/CkKnVJS.png"
+        },
+        {
+          "title": "Add the notification rows",
+          "text": "Two row types cover almost everything: a person with initials, and the system with a branded square. Both keep one meta line.",
+          "prompt": "Add a scrollable list of rows, each with a 32px round monogram avatar, a 13.2px message with bold names and entities, and a muted 11.5px meta line. Rows: \"Mara Reyes requested review on pricing-tiers-billing-toggle\" with the quote “Prices look off on the yearly toggle — check the Scale tier.” / \"12 minutes ago · Review\"; system \"Publish failed for admin-data-table-toolbar — media store returned 403.\" / \"40 minutes ago · Publishing\"; \"Anton K. mentioned you in #renders\" with the quote “@you the headless capture is 4× faster, want it on the batch?” / \"2 hours ago · Mention\"; system \"28 renders finished in Client guides — weekly. 9.4 MB total, all under the size limit.\" / \"Yesterday, 02:04 · Renders\"; \"Tara L. approved kanban-task-board and moved it to Shipped.\" / \"Yesterday, 18:20 · Review\". Give the system rows a dark filled avatar with a white Q.",
+          "result_image": "https://iili.io/CkKnXe9.png"
+        },
+        {
+          "title": "Mark what is unread and add inline actions",
+          "text": "A dot alone is too quiet, a full colour block too loud. Pair a 6px blue dot with a barely-tinted row, then let the row be resolved in place.",
+          "prompt": "Mark the first four rows unread: a very light blue #f7f9ff background and a 6px blue dot pinned near the left edge of the row. Add inline action buttons under the message for the two rows that need a decision: \"Open guide\" (dark filled) plus \"Reply\" on the review request, and \"Retry publish\" (dark filled) plus \"View log\" on the failure. Buttons are 8px radius, 12px text.",
+          "result_image": "https://iili.io/CkKnkqx.png"
+        },
+        {
+          "title": "Group by day and close with a footer",
+          "text": "Date groups on a faint strip give the list a spine, and mark-all-as-read is the one action every inbox owes the user.",
+          "prompt": "Insert uppercase muted day headers on a #fbfbfc strip: \"Today\" above the first three rows and \"Yesterday\" above the last two. Close the panel with a footer on the same tint: a \"Mark all as read\" link on the left and muted \"Showing 5 of 24 · See all\" on the right.",
+          "result_image": "https://iili.io/CkKng5P.png"
+        }
+      ],
+      "image": "https://iili.io/CkKng5P.png",
+      "poster": "https://iili.io/CkKng5P.png"
+    },
+    {
       "id": "kanban-task-board",
       "cat": "Interfaces",
       "sub": "Task Boards",
