@@ -11,6 +11,46 @@
   ],
   "guides": [
     {
+      "id": "comparison-table-row-selection",
+      "cat": "Design",
+      "sub": "Comparison UI",
+      "title": "Build a comparison table with row selection",
+      "desc": "A dark-first data table where every row can be toggled into a comparison set with one click.",
+      "time": "10 min",
+      "level": "Junior",
+      "models": "Quadcode Agent, HTML/CSS/JS renderer",
+      "trending": true,
+      "image": "https://iili.io/CkFvBAQ.png",
+      "result": "A self-contained page with a searchable, filterable comparison table. Each row toggles between Compare and a red Remove state, the footer counts the current selection, and the whole thing works in both dark and light themes.",
+      "steps": [
+        {
+          "title": "Describe the component and its data",
+          "text": "Start a new page and let the agent scaffold the markup, the design tokens and the sample dataset in one pass. Keep every colour behind a CSS variable so the theme switch later costs nothing.",
+          "prompt": "Create a single self-contained index.html file with a product comparison table. Dark theme by default, all colours defined as CSS variables on :root plus a light override on html[data-theme=\"light\"]. Card container: 980px max width, 16px radius, 1px border, soft shadow, centered on the page. Inside: a title \"Comparison Table\", a toolbar with a search input, a category select and a Reset button, then a table with columns Category, Price ($), Rating, Stock, Select. Seed it with 6 rows of demo products (laptops, tablets, smartphone, monitor). No frameworks, no CDN, plain HTML, CSS and JS only.",
+          "result_image": "https://iili.io/CkFvFcb.png"
+        },
+        {
+          "title": "Add the Compare / Remove toggle",
+          "text": "The whole point of the component is the toggle. Keep the selection in a Set, re-render the rows from state, and make the selected state impossible to miss.",
+          "prompt": "Add row selection. Keep selected row indexes in a JavaScript Set and re-render the table body from that state. An unselected row shows an outline button labelled Compare. A selected row shows a bold red destructive button labelled Remove, white text, and the row itself gets a subtle red background tint. Clicking the button toggles the row. Update a footer line to read \"N of 6 rows selected\" and swap a hint pill between \"Pick 2+ rows to compare\" and \"Ready — compare side by side\".",
+          "result_image": "https://iili.io/CkFvKSj.png"
+        },
+        {
+          "title": "Wire search, filter and reset",
+          "text": "Filtering must never lose the selection — that is the detail most implementations get wrong. Filter the view, not the state.",
+          "prompt": "Wire the toolbar. The search input filters rows by category name, case insensitive. The select filters by exact category with an All option. The Reset button clears the search, sets the select back to All and clears every selected row. Important: filtering must only change which rows are visible, it must never drop rows that are already selected. Re-render on every input and change event.",
+          "result_image": "https://iili.io/CkFvqHx.png"
+        },
+        {
+          "title": "Check both themes and ship",
+          "text": "Flip the theme attribute and screenshot both states. If the red destructive button still reads clearly on white, the token set is correct.",
+          "prompt": "Verify the light theme by setting document.documentElement.dataset.theme = 'light'. Check contrast of the destructive Remove button, the muted footer text and the row tint on the light background. Fix any token that drops below comfortable contrast, then export a screenshot of both the dark and the light state at 1440px wide.",
+          "result_image": "https://iili.io/CkFvBAQ.png"
+        }
+      ],
+      "poster": "https://iili.io/CkFvBAQ.png"
+    },
+    {
       "id": "8bit-comparison-cta-block",
       "cat": "Design",
       "sub": "Comparison UI",
