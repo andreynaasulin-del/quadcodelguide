@@ -11,6 +11,39 @@
   ],
   "guides": [
     {
+      "id": "tabbed-platform-comparison",
+      "cat": "Design",
+      "sub": "Comparison UI",
+      "title": "Build a tabbed platform comparison block",
+      "desc": "One comparison panel, three competitor tabs, all driven from a single data array.",
+      "time": "12 min",
+      "level": "Middle",
+      "models": "Quadcode Agent, HTML/CSS/JS renderer",
+      "result": "A light, marketing-ready comparison panel. Pill tabs switch the rival, the capability rows and the score line re-render from data, and adding a fourth competitor is one object in an array.",
+      "steps": [
+        {
+          "title": "Model the data before the markup",
+          "text": "Everything on screen is derived from one array. Get that shape right and the UI writes itself.",
+          "prompt": "Create a single self-contained index.html for a \"Compare design platforms\" section. Define the content as one JavaScript array called RIVALS. Each entry has: id, name, brand colour, a one or two letter logo mark, and a rows array of [capability, our answer, their answer] triples. Seed it with three rivals — Figma, Canva and Framer — four capability rows each. Light theme, system sans-serif stack, no frameworks and no CDN."
+        },
+        {
+          "title": "Render pill tabs from the array",
+          "text": "Tabs are buttons with aria-selected, not divs. You get keyboard and screen-reader support for free.",
+          "prompt": "Render one pill tab per rival, labelled \"Quadcode vs <name>\", each with a small dot in the rival brand colour. Use real buttons with role=\"tab\" and aria-selected. The active tab is filled near-black with white text; the inactive tabs are white with a 1px border and muted text, and lighten their border on hover. Clicking a tab sets the active index and re-renders the panel."
+        },
+        {
+          "title": "Lay out the three-column panel",
+          "text": "A CSS grid with the same 1.3fr 1fr 1fr template on the header and on every row keeps the columns locked together without a table element.",
+          "prompt": "Below the tabs add a white panel, 18px radius, 1px border, soft shadow. Header grid of 1.3fr 1fr 1fr: the label \"Capability\", then our brand with a black rounded logo mark, then the rival with its own coloured mark. Each capability row uses the identical grid template: muted label, our answer with a green check prefix in medium weight, their answer with a grey cross prefix in muted colour. Separate rows with 1px borders, no border on the last row."
+        },
+        {
+          "title": "Add the score footer and verify every tab",
+          "text": "The footer closes the argument and gives the CTA somewhere to live. Then click through all tabs and check nothing shifts.",
+          "prompt": "Add a tinted footer inside the panel with a generated line \"Quadcode wins N of N capabilities vs <rival>\" on the left and a solid dark \"Start free\" button on the right. Then switch through every tab and confirm the panel height and column widths stay stable, no text wraps awkwardly, and the rival logo colour updates correctly. Screenshot the first and the last tab at 1440px wide."
+        }
+      ]
+    },
+    {
       "id": "pros-cons-review-block",
       "cat": "Design",
       "sub": "Comparison UI",
