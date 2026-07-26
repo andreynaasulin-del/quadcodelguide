@@ -11,6 +11,45 @@
   ],
   "guides": [
     {
+      "id": "website-newsletter-block",
+      "cat": "Website",
+      "sub": "Lead Capture",
+      "title": "Build a newsletter block with validation and a success state",
+      "desc": "Email capture that shows all three states: empty, invalid with an inline reason, and confirmed with a double opt-in notice.",
+      "time": "7 min",
+      "level": "Middle",
+      "models": "Quadcode",
+      "result": "A lead capture card with a consent checkbox, an inline error that explains itself, a green success panel and a trust footer.",
+      "steps": [
+        {
+          "title": "Card with the form row",
+          "text": "Say what lands in the inbox and how often. Then one field and one button — extra fields cost conversions.",
+          "prompt": "Build a newsletter card centered on a light grey page, max width 900px: a white rounded bordered card with 30px padding, a 26px heading \"Release notes without the marketing\", a 14px grey paragraph of at most 52 characters per line saying every Thursday you get what shipped, what broke and the one number the team watched. Under it a row: a bordered rounded email input with the placeholder you@company.com taking the remaining width, and a dark filled \"Subscribe\" button next to it.",
+          "result_image": "https://iili.io/CkKmyjS.png"
+        },
+        {
+          "title": "Frequency pill and consent line",
+          "text": "A pill above the heading sets expectations, the consent row handles the legal part without a wall of text.",
+          "prompt": "Above the heading add a small rounded pill with a light grey fill: \"📬 Weekly · 2 minute read\". Under the form add a consent row: a 15px checked checkbox with a near-black fill and a white tick, next to 11.5px grey text \"Send me the weekly digest. I can unsubscribe from any email in one click, and the list is never shared.\"",
+          "result_image": "https://iili.io/CkKpF3b.png"
+        },
+        {
+          "title": "Invalid state with a real reason",
+          "text": "Never say \"invalid email\". Show the value the user typed and what exactly is missing from it.",
+          "prompt": "Show the error state: the input holds the value marta@northwind with a red border and a very light red background, and under it an 11.5px red hint \"Add a domain — marta@northwind is missing the top-level part.\"",
+          "result_image": "https://iili.io/CkKpnwB.png"
+        },
+        {
+          "title": "Success panel and the trust footer",
+          "text": "Double opt-in means the job is not done at submit. Say a confirmation is waiting, then close with subscriber proof.",
+          "prompt": "Switch to the success state: the input now holds marta@northwind.com with a normal border and a grey hint \"Looks good — confirmation sent.\" Under the form add a green panel with a light green border and background: a 30px circular light green badge with a tick, bold dark green \"Almost there — confirm your address\" and a green line \"We sent a one-click confirmation to marta@northwind.com.\" At the bottom of the card add a top-bordered footer strip with a very light grey fill and 11.5px grey items: \"👥 8 400 subscribers\", \"📄 Archive of 62 issues\", \"🚫 No sponsors, ever\", \"🔒 GDPR compliant · double opt-in\".",
+          "result_image": "https://iili.io/CkKpT6g.png"
+        }
+      ],
+      "image": "https://iili.io/CkKpT6g.png",
+      "poster": "https://iili.io/CkKpT6g.png"
+    },
+    {
       "id": "website-mega-menu-navbar",
       "cat": "Website",
       "sub": "Navigation",
