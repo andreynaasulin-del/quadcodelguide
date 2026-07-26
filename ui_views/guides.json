@@ -11,6 +11,45 @@
   ],
   "guides": [
     {
+      "id": "website-mega-menu-navbar",
+      "cat": "Website",
+      "sub": "Navigation",
+      "title": "Build a navbar with an open mega menu",
+      "desc": "Top bar, a three column dropdown with descriptions, a featured article card and an announcement strip above it all.",
+      "time": "9 min",
+      "level": "Middle",
+      "models": "Quadcode",
+      "result": "A site header with an active nav item, an open mega menu of nine described links, a promo card and a keyboard hint bar.",
+      "steps": [
+        {
+          "title": "Top bar",
+          "text": "Logo left, items centre, actions right. Add a caret to the items that open something — silent dropdowns annoy people.",
+          "prompt": "Build a website top bar on white with a thin bottom border and 15px by 40px padding: a 24px dark rounded logo mark with the letter Q next to \"Quadflow\", then 13.5px nav items Product, Solutions, Docs, Pricing where Product and Solutions have a small grey caret, and on the right a small bordered \"Sign in\" button plus a small dark filled \"Start free\" button. Mark Product as active with darker, slightly heavier text. Under the bar add a page heading \"Documentation your team actually reads\" and one grey line of copy.",
+          "result_image": "https://iili.io/CkKmhhP.png"
+        },
+        {
+          "title": "Open the first menu column",
+          "text": "The dropdown is a panel, not a list: a group label, then links with one line of description each.",
+          "prompt": "Under the bar add an open mega menu panel with a very light background and top and bottom borders, inner content max width 1180px with 22px by 40px padding. Put one column in it: an uppercase 10.5px grey group label \"Publish\" and three link rows, each with a 28px rounded icon tile, a 12.5px bold title and an 11.5px grey description — ⚡ \"Batch publisher\" ship a whole category in one run; 🖼️ \"Step captures\" render the state after every instruction; ☁️ \"Media hosting\" frames go to a CDN automatically.",
+          "result_image": "https://iili.io/CkKmv3J.png"
+        },
+        {
+          "title": "Three columns of links",
+          "text": "Group by what the user wants to do. Nine links with descriptions beat twenty bare words.",
+          "prompt": "Turn the menu into three equal columns and add two more groups in the same style. \"Manage\": 🔁 Duplicate guard — ledger blocks ids that already exist; 👥 Team workspaces — roles, review and publish rights; 📊 Read analytics — see which steps people drop on. \"Build with us\": 🔌 Publish API — one POST, key in a header; 🧩 Section templates — twelve specs ready to fill in; 🧪 Dry run mode — validate without committing.",
+          "result_image": "https://iili.io/CkKmrTN.png"
+        },
+        {
+          "title": "Promo card, announcement and hints",
+          "text": "The fourth column sells one thing. Then add the announcement strip on top and a quiet accessibility hint row.",
+          "prompt": "Add a fourth 250px column holding a white bordered card: an 82px dark gradient artwork block, then bold \"How we render 60 frames\", a grey line \"One headless process, no browser farm.\" and a small bordered button \"Read the write-up\". Above the whole header add a near-black announcement strip with centered 12px white text: a bordered \"Changelog\" pill, the text \"Batch publishing is out of beta — 15 guides in one command\" and a link \"Read the notes →\". Under the menu add a light hint row in 11.5px grey: \"⌘ K to search\", \"· Esc closes the menu\", \"· Keyboard navigable, focus visible, ARIA labelled\".",
+          "result_image": "https://iili.io/CkKmtaf.png"
+        }
+      ],
+      "image": "https://iili.io/CkKmtaf.png",
+      "poster": "https://iili.io/CkKmtaf.png"
+    },
+    {
       "id": "website-logo-cloud",
       "cat": "Website",
       "sub": "Social Proof",
