@@ -11,6 +11,45 @@
   ],
   "guides": [
     {
+      "id": "website-blog-index",
+      "cat": "Website",
+      "sub": "Blog",
+      "title": "Build a blog index with a featured post and pagination",
+      "desc": "A three column post grid, one split featured card, category chips and a pager — the whole /blog page in four steps.",
+      "time": "9 min",
+      "level": "Middle",
+      "models": "Quadcode",
+      "result": "A blog listing page: header, featured article card, six post cards with gradient thumbnails, filters and pagination.",
+      "steps": [
+        {
+          "title": "Header and the first post row",
+          "text": "Start with three cards so you can judge the rhythm. Thumbnail, title, one line of summary, date and reading time.",
+          "prompt": "Build a blog index page on white, max width 1120px. Header: an uppercase grey eyebrow \"Journal\", a 31px heading \"Notes from the publishing pipeline\" and a 14px grey line about engineering write-ups, release notes and the occasional postmortem. Under it a three column grid with 18px gaps of post cards. Each card: a 118px tall rounded thumbnail with a soft two-colour gradient and a thin border, a 15px title, a 13px grey summary line and an 11.5px grey footer with date and reading time. Posts: \"Batch publishing is out of beta\" — fifteen guides, one command, one commit — Mar 9 · 4 min read; \"A tiny ledger that prevents overwrites\" — why we stopped trusting ids in filenames — Mar 4 · 6 min read; \"Our media store was suspended for 9 hours\" — what broke, what we changed, what we kept — Feb 27 · 7 min read.",
+          "result_image": "https://iili.io/CkKiiwg.png"
+        },
+        {
+          "title": "Featured article card",
+          "text": "One post gets the wide treatment. Split the card: dark artwork on the left, headline and author on the right.",
+          "prompt": "Above the grid add a full-width white rounded bordered card split into two columns, 1.15fr and 0.85fr, with no padding and clipped corners. Left: a 236px tall dark diagonal gradient panel with a small translucent \"Deep dive\" badge in the bottom left corner. Right, with 24px padding: a small grey \"Engineering\" pill, a 23px headline \"How we render 60 step screenshots without a browser farm\", a 13.5px grey paragraph about one headless process, a stage query parameter and a deterministic viewport, and a meta row with a 27px circular avatar reading TL and the text \"Tom Lindqvist · Mar 12 · 9 min read\".",
+          "result_image": "https://iili.io/CkKitPR.png"
+        },
+        {
+          "title": "Second row and category chips",
+          "text": "Fill the grid to six and label each post. Chips in the header let readers narrow the list without a search box.",
+          "prompt": "Add a second row of three post cards with different pastel gradient thumbnails: \"Guides now show progress per step\" — readers see the state after every instruction — Feb 21 · 3 min read; \"Compressing screenshots without artefacts\" — where we landed after four encoder tests — Feb 14 · 5 min read; \"Templates for the twelve common sections\" — start from a spec instead of a blank page — Feb 6 · 4 min read. Add a small rounded category pill above every card title: Product, Engineering or Postmortems. In the header, right-aligned, add rounded filter chips All, Engineering, Product, Postmortems with All filled near-black.",
+          "result_image": "https://iili.io/CkKimcN.png"
+        },
+        {
+          "title": "Pagination row",
+          "text": "Say where the reader is. \"Page 1 of 7 · 42 posts\" between two arrows is enough — infinite scroll hides the archive.",
+          "prompt": "Under the grid add a top-bordered centered pagination row: a small bordered button \"‹ Newer\", the 12.5px grey text \"Page 1 of 7 · 42 posts\" in the middle, and a small bordered button \"Older ›\" on the right.",
+          "result_image": "https://iili.io/CkKs99t.png"
+        }
+      ],
+      "image": "https://iili.io/CkKs99t.png",
+      "poster": "https://iili.io/CkKs99t.png"
+    },
+    {
       "id": "split-sign-in-screen",
       "cat": "Interfaces",
       "sub": "Auth",
