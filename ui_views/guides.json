@@ -11,6 +11,43 @@
   ],
   "guides": [
     {
+      "id": "gta-surf-stunt",
+      "cat": "Video",
+      "sub": "Game Cinematic",
+      "title": "Direct a GTA-style surf stunt with a playable HUD",
+      "desc": "Build a 15-second open-world surf clip where the wave physics, chase camera and game interface all sell the same playable moment.",
+      "time": "8 min",
+      "date": "2026-07-27",
+      "level": "Middle",
+      "models": "AI video generation",
+      "new": true,
+      "video": "https://quadcodeguide.vercel.app/assets/gta-surf-stunt.mp4",
+      "poster": "https://quadcodeguide.vercel.app/assets/gta-surf-stunt-poster.jpg",
+      "steps": [
+        {
+          "title": "1. Frame it like gameplay",
+          "text": "Use a stable third-person chase camera behind the surfer. A beautiful drone angle would weaken the idea because the clip needs to feel controllable, not observed.",
+          "prompt": "Third-person open-world game footage of a male surfer riding a turquoise wave through a rocky tropical cove at sunset. Camera follows two metres behind and slightly above the character, wide 16:9 frame, realistic game-engine lighting, continuous shot."
+        },
+        {
+          "title": "2. Give the wave one readable line",
+          "text": "The surfer should carve across a single breaking face with a visible spray trail. Do not ask for several tricks—the body mechanics fail when the model has to solve too many direction changes in 15 seconds.",
+          "prompt": "The surfer shifts weight naturally, cuts across the wave face and throws a clean fan of white spray. Board stays attached to both feet, knees absorb the water movement, wave direction remains consistent and the shoreline advances smoothly."
+        },
+        {
+          "title": "3. Add HUD elements that react",
+          "text": "A minimap, speed value and trick score make the shot read as a game only when the numbers respond to motion. Keep them in safe corners and protect the rider silhouette.",
+          "prompt": "Add a restrained open-world game HUD: circular minimap bottom-left, speed and score bottom-right, small location label top-left. Interface stays sharp and stable while speed and score update during the carve. No large menu panels over the action."
+        },
+        {
+          "title": "4. Keep the best continuous take",
+          "text": "Reject takes where the board clips into the water or the HUD swims across the frame. Publish the take with stable feet, one continuous wave and readable interface placement.",
+          "prompt": "Deliver a 15-second 1920 × 1080 H.264 clip at 24 fps with stereo audio and web fast-start."
+        }
+      ],
+      "result": "A compact gameplay-style surf stunt with coherent water motion, chase-camera framing and a HUD that supports the action instead of covering it."
+    },
+    {
       "id": "wushu-ink-dragon-cinematic",
       "cat": "Video",
       "sub": "Art Direction",
