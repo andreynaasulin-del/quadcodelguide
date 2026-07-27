@@ -3436,11 +3436,14 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       const progressUi = progBadge
         ? '<div class="card-progress">' + progBadge + '</div>'
         : '';
+      // A video record with no poster (and no image) used to render an empty black
+      // header until the user hovered. Always paint something: poster -> image -> placeholder.
+      const vidPoster = g.poster || g.image || MISSING_COVER;
       c.innerHTML =
         (g.video
           ? '<div class="cover-wrap">' +
-              (g.poster ? '<img class="cover-video-poster" src="' + esc(g.poster) + '"' + (coverAltSrc(g, g.poster) ? ' data-fallback-src="' + esc(coverAltSrc(g, g.poster)) + '"' : '') + ' alt="" loading="lazy" decoding="async">' : '') +
-              '<video class="cover-video media-fade ready" data-src="' + esc(g.video) + '"' + (g.poster ? ' data-poster="' + esc(g.poster) + '"' : '') + ' muted loop playsinline preload="none"></video><div class="play-badge"></div>' + coverOverlay + progressUi + '</div>'
+              '<img class="cover-video-poster" src="' + esc(vidPoster) + '"' + (coverAltSrc(g, vidPoster) ? ' data-fallback-src="' + esc(coverAltSrc(g, vidPoster)) + '"' : '') + ' alt="" loading="lazy" decoding="async">' +
+              '<video class="cover-video media-fade ready" data-src="' + esc(g.video) + '" data-poster="' + esc(vidPoster) + '" muted loop playsinline preload="none"></video><div class="play-badge"></div>' + coverOverlay + progressUi + '</div>'
           : (thumb ? '<div class="cover-wrap"><img class="cover" src="' + esc(thumb) + '"' + (coverAltSrc(g, thumb) ? ' data-fallback-src="' + esc(coverAltSrc(g, thumb)) + '"' : '') + ' alt="" loading="lazy" decoding="async">' + coverOverlay + progressUi + '</div>'
             : (progressUi ? '<div class="cover-wrap" style="min-height:12px">' + progressUi + '</div>' : ''))) +
         '<div class="cat-label">' + catIconHtml(g.cat) + '<span>' + esc(g.cat) + '</span>' + (g.sub ? '<span class="sub-label">' + esc(g.sub) + '</span>' : '') + '</div>' +
