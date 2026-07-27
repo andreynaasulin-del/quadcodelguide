@@ -13,6 +13,9 @@ const missing = [...local].filter(p => !fs.existsSync('.' + p));
 const blob = new Set();
 for (const m of raw.matchAll(/"(https:\/\/[^"]*blob\.vercel-storage\.com[^"]+)"/g)) blob.add(m[1]);
 
-console.log(`records=${list.length} localRefs=${local.size} missingLocal=${missing.length} blobRefs=${blob.size}`);
+const noCover = list.filter(g => !g.image && !g.poster);
+
+console.log(`records=${list.length} localRefs=${local.size} missingLocal=${missing.length} blobRefs=${blob.size} noCover=${noCover.length}`);
 missing.forEach(p => console.log('MISSING', p));
+noCover.forEach(g => console.log('NO_COVER', g.id, '|', g.video ? 'video' : 'no-media'));
 process.exit(missing.length ? 1 : 0);
