@@ -11,6 +11,43 @@
   ],
   "guides": [
     {
+      "id": "wushu-ink-dragon-cinematic",
+      "cat": "Video",
+      "sub": "Art Direction",
+      "title": "Turn a wushu performance into a living ink painting",
+      "desc": "Direct one 15-second martial-arts shot where the fighter’s movement paints a black ink ring and resolves into a Chinese dragon mural.",
+      "time": "10 min",
+      "date": "2026-07-27",
+      "level": "Middle+",
+      "models": "AI video generation",
+      "new": true,
+      "video": "https://quadcodeguide.vercel.app/assets/wushu-ink-dragon-cinematic.mp4",
+      "poster": "https://quadcodeguide.vercel.app/assets/wushu-ink-dragon-cinematic-poster.jpg",
+      "steps": [
+        {
+          "title": "1. Lock one visual rule",
+          "text": "The fighter, floor and background stay monochrome. Only the moving ink changes shape. This prevents the shot from becoming a pile of unrelated effects.",
+          "prompt": "A cinematic wushu performance inside a vast white ink-wash studio. One female martial artist in a white top and flowing black trousers. Monochrome palette, wet black sumi ink, soft grey mountains in the distance, locked wide camera, realistic fabric and body mechanics."
+        },
+        {
+          "title": "2. Make movement generate the graphic",
+          "text": "Tie the ink to the body: the arm sweep pulls a broad brush stroke while the low stance closes it into a circular ring. The effect follows momentum instead of floating independently.",
+          "prompt": "As she pivots into a low wushu stance, a thick ribbon of wet black ink follows her arms and circles her body. The stroke has visible bristle texture, splatter at direction changes and believable liquid inertia. Keep her face, costume and scale consistent."
+        },
+        {
+          "title": "3. Resolve the motion into one payoff",
+          "text": "The final dragon works because it grows from the same ring rather than appearing as a separate cut. Hold the last composition long enough to read the fighter’s scale against the mural.",
+          "prompt": "The circular ink stroke expands behind the fighter and resolves into a monumental hand-painted Chinese dragon mural. The dragon remains painted ink on paper, not a 3D creature. End on a balanced wide tableau with the fighter centered below it, no text and no camera cut."
+        },
+        {
+          "title": "4. Remove drift from the final seconds",
+          "text": "Trim after the dragon composition settles. A clean 15-second arc needs a readable setup, one transformation and a held final image—not another effect after the payoff.",
+          "prompt": "Export a 15-second 16:9 master. Preserve the original sound design, remove unstable tail frames and encode H.264 with web fast-start."
+        }
+      ],
+      "result": "A controlled 15-second art film: one performer, one ink-motion system and one dragon reveal that grows directly from the choreography."
+    },
+    {
       "id": "website-testimonial-wall",
       "cat": "Website",
       "sub": "Testimonials",
