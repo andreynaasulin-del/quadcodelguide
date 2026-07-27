@@ -1083,6 +1083,11 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z'/%3E%3C/svg%3E");
             mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z'/%3E%3C/svg%3E");
   }
+  .sh-ico.ico-new {
+    background: #7ee787;
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z'/%3E%3C/svg%3E");
+  }
   .sh-ico.ico-school {
     -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z'/%3E%3C/svg%3E");
             mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z'/%3E%3C/svg%3E");
@@ -2714,6 +2719,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     let activeModels = new Set(); // multi-select, empty = all models
     let searchQ = '';        // debounced search query
     let trendingOnly = false; // "View all" on the Trending shelf
+    let newOnly = false;      // "View all" on the New shelf
     let sortByNew = 0;       // 0 = off, 1 = newest first
     let sortByViews = 0;     // 0 = off, 1 = most viewed first
     const PAGE_SIZE = 12;
@@ -3324,7 +3330,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 
     // idle = nothing searched/filtered/sorted -> show discovery shelves
     function isIdleCatalog() {
-      return !searchQ && !trendingOnly &&
+      return !searchQ && !trendingOnly && !newOnly &&
         activeCat === 'All' && activeLevel === 'All' && !activeModels.size &&
         !sortByLevel && !sortByCost && !sortByNew && !sortByViews;
     }
@@ -3339,6 +3345,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       if (activeLevel !== 'All') list = list.filter(g => g.level === activeLevel);
       if (activeModels.size) list = list.filter(g => parseModels(g).some(m => activeModels.has(m)));
       if (trendingOnly) list = list.filter(g => g.trending);
+      if (newOnly) list = list.filter(g => g.new);
       const q = searchQ.toLowerCase();
       if (q) list = list.filter(g => searchScore(g, q) > 0);
       if (sortByLevel) {
@@ -3373,7 +3380,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       //   BODY  = difficulty only (the level pill) — "how hard is this"
       //   COVER = media chips + trending + time — "what is this"
       const levelPill = g.level ? '<span class="pill ' + levelClass(g.level) + '">' + esc(g.level) + '</span>' : '';
-      const thumb = coverSrc(g);
+      const thumb = (opts && opts.thumb) || coverSrc(g);
       const mediaChips =
         (g.video ? '<span class="cover-chip pm-video">Video</span>' : '') +
         (g.video && g.sound !== false ? '<span class="cover-chip pm-sound">Sound</span>' : '') +
@@ -3503,6 +3510,12 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         viewAll: () => { trendingOnly = true; }
       },
       {
+        title: 'New', ico: 'ico-new', hideTrend: true,
+        firstThumb: '/ui_views/assets/quadcode-guide-new-thumbnail.jpg',
+        pick: list => list.filter(g => g.new),
+        viewAll: () => { newOnly = true; }
+      },
+      {
         title: 'Start here', ico: 'ico-school',
         pick: list => {
           const byId = new Map(list.map(g => [g.id, g]));
@@ -3541,7 +3554,10 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           '</div>' +
           '<div class="grid"></div>';
         const grid = sec.querySelector('.grid');
-        items.slice(0, SHELF_CAP).forEach((g, i) => grid.appendChild(cardEl(g, i, swap, { hideTrend: def.hideTrend })));
+        items.slice(0, SHELF_CAP).forEach((g, i) => grid.appendChild(cardEl(g, i, swap, {
+          hideTrend: def.hideTrend,
+          thumb: i === 0 ? def.firstThumb : ''
+        })));
         const link = sec.querySelector('.shelf-link');
         if (link && showViewAll) {
           link.onclick = () => {
@@ -3560,18 +3576,21 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       if (searchQ) html += ' for <span class="rb-q">“' + esc(searchQ) + '”</span>';
       html += '</span>';
       if (trendingOnly) html += '<button class="chip chip-sm active" id="rbTrend" type="button">Trending &#215;</button>';
+      if (newOnly) html += '<button class="chip chip-sm active" id="rbNew" type="button">New &#215;</button>';
       // when the grid is empty its own reset button owns the action
       if (n > 0) html += '<button class="chip chip-sm" id="rbClear" type="button">Reset all</button>';
       resultsBarEl.innerHTML = html;
       resultsBarEl.hidden = false;
       const tb = document.getElementById('rbTrend');
       if (tb) tb.onclick = () => { trendingOnly = false; renderGrid(true); };
+      const nb = document.getElementById('rbNew');
+      if (nb) nb.onclick = () => { newOnly = false; renderGrid(true); };
       const rb = document.getElementById('rbClear');
       if (rb) rb.onclick = clearAllFilters;
     }
 
     function clearAllFilters() {
-      searchQ = ''; trendingOnly = false;
+      searchQ = ''; trendingOnly = false; newOnly = false;
       activeCat = 'All'; activeSub = 'All'; activeLevel = 'All'; activeModels.clear();
       sortByLevel = 0; sortByCost = 0; sortByNew = 0; sortByViews = 0;
       if (searchInputEl) { searchInputEl.value = ''; searchClearEl.hidden = true; }
