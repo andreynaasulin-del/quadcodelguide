@@ -11,6 +11,43 @@
   ],
   "guides": [
     {
+      "id": "gta-skate-stunt",
+      "cat": "Video",
+      "sub": "Game Cinematic",
+      "title": "Direct a GTA-style skate line in one continuous shot",
+      "desc": "Create a 15-second night skate run with grounded board physics, a close chase camera and a reactive trick HUD.",
+      "time": "8 min",
+      "date": "2026-07-27",
+      "level": "Middle",
+      "models": "AI video generation",
+      "new": true,
+      "video": "https://quadcodeguide.vercel.app/assets/gta-skate-stunt.mp4",
+      "poster": "https://quadcodeguide.vercel.app/assets/gta-skate-stunt-poster.jpg",
+      "steps": [
+        {
+          "title": "1. Build a line, not a montage",
+          "text": "Choose one route through the skate spot and keep the camera behind the rider. Continuous geography makes the result feel playable and gives every trick a clear approach and landing.",
+          "prompt": "Third-person open-world game footage at a wet industrial skate plaza at night. Male skater in a red tracksuit rides toward a low concrete ledge. Close chase camera behind and slightly below shoulder height, city lights reflecting on wet ground, one continuous 16:9 shot."
+        },
+        {
+          "title": "2. Protect board-to-foot contact",
+          "text": "The critical failure is feet detaching from the deck. Ask for one ollie and a clean landing, with the board rotating only as much as the body can plausibly control.",
+          "prompt": "The skater compresses, pops one clean ollie over the ledge and lands with both feet planted over the trucks. Board remains rigid and connected to the rider, wheels contact the ground together, knees absorb impact, no impossible flips or limb distortion."
+        },
+        {
+          "title": "3. Let the HUD confirm the trick",
+          "text": "The interface should register the move after landing, not before it. Use a small trick label, score increment and balance meter while keeping the ledge and feet unobstructed.",
+          "prompt": "Add a restrained game HUD: circular minimap bottom-left, trick name and score top-right, small balance or speed indicator. The score updates immediately after the landing and all UI remains locked to screen coordinates."
+        },
+        {
+          "title": "4. Cut on the roll-away",
+          "text": "End after two seconds of stable riding. The roll-away proves the landing; cutting at peak height would hide whether the generated physics actually worked.",
+          "prompt": "Deliver a 15-second 1920 × 1080 H.264 clip at 24 fps with stereo audio and web fast-start."
+        }
+      ],
+      "result": "A readable skate line with one grounded trick, a verified roll-away and game UI timed to the landing."
+    },
+    {
       "id": "gta-surf-stunt",
       "cat": "Video",
       "sub": "Game Cinematic",
