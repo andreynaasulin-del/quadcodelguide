@@ -21,8 +21,8 @@
       "level": "Middle",
       "models": "AI video generation",
       "new": true,
-      "video": "https://quadcodeguide.vercel.app/assets/gta-skate-stunt.mp4",
-      "poster": "https://quadcodeguide.vercel.app/assets/gta-skate-stunt-poster.jpg",
+      "video": "/ui_views/assets/gta-skate-stunt.mp4",
+      "poster": "/ui_views/assets/gta-skate-stunt-poster.jpg",
       "steps": [
         {
           "title": "1. Build a line, not a montage",
@@ -58,8 +58,8 @@
       "level": "Middle",
       "models": "AI video generation",
       "new": true,
-      "video": "https://quadcodeguide.vercel.app/assets/gta-surf-stunt.mp4",
-      "poster": "https://quadcodeguide.vercel.app/assets/gta-surf-stunt-poster.jpg",
+      "video": "/ui_views/assets/gta-surf-stunt.mp4",
+      "poster": "/ui_views/assets/gta-surf-stunt-poster.jpg",
       "steps": [
         {
           "title": "1. Frame it like gameplay",
@@ -95,8 +95,8 @@
       "level": "Middle+",
       "models": "AI video generation",
       "new": true,
-      "video": "https://quadcodeguide.vercel.app/assets/wushu-ink-dragon-cinematic.mp4",
-      "poster": "https://quadcodeguide.vercel.app/assets/wushu-ink-dragon-cinematic-poster.jpg",
+      "video": "/ui_views/assets/wushu-ink-dragon-cinematic.mp4",
+      "poster": "/ui_views/assets/wushu-ink-dragon-cinematic-poster.jpg",
       "steps": [
         {
           "title": "1. Lock one visual rule",
@@ -1501,9 +1501,9 @@
       "models": "GPT-Image, ElevenLabs voice",
       "new": true,
       "trending": true,
-      "image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/savor01-evidence-of-food/06-final-lockup-crop-PYterCW1Z4eKiW0BYjHWeGEG9ftzlN.png",
+      "image": "/ui_views/assets/cover-savor01-lockup.png",
       "video": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/savor01-evidence-of-food/savor01-twitter-promo-v01-qDKQKlKZIQ30w3s0zSyHiPZufl817b.mp4",
-      "poster": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/savor01-evidence-of-food/06-final-lockup-crop-RasG3P7AQFEuHUaIkidjI8HtWjxFnZ.png",
+      "poster": "/ui_views/assets/cover-savor01-lockup.png",
       "steps": [
         {
           "title": "1. Define what the system refuses to do",
@@ -1693,7 +1693,7 @@
       "models": "GPT-Image 2.0, SVG/HTML drawing system",
       "new": true,
       "trending": true,
-      "image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/building-autopsy-boutique-hotel/promo-banner-16x10-8rjIDHYQcwg01LXbG7rcCwN02jeCLI.png",
+      "image": "/ui_views/assets/cover-building-autopsy.png",
       "steps": [
         {
           "title": "1. Fix the facts before making a gesture",
@@ -1856,7 +1856,7 @@
       "models": "Flux, GPT-Image, SeedVR2",
       "new": true,
       "trending": true,
-      "image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/headphones-retouch-color-grade/banner-preview-Cmu08g0iN2AIbGDssYqYonlEJPeF4H.png",
+      "image": "/ui_views/assets/cover-headphones-retouch.png",
       "steps": [
         {
           "title": "1. Shoot (or generate) an honest raw source",
@@ -2013,7 +2013,7 @@
       "models": "GPT-Image",
       "new": true,
       "trending": true,
-      "image": "https://7hm6dalhtxs7fwqc.public.blob.vercel-storage.com/guides/business-visuals-that-explain-work/revenue_24_7-pY4iO6PbXCRdPgAG01knUPcfRZ9mdG.png",
+      "image": "/ui_views/assets/cover-business-visuals.png",
       "steps": [
         {
           "title": "1. Show recurring revenue as a system",
