@@ -20,12 +20,33 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 <meta name="twitter:description" content="Interfaces, video, music, gamedev, design — step-by-step guides. One prompt, one result.">
 <meta name="twitter:image" content="https://quadcodeguide.vercel.app/ui_views/assets/quadcode-guide-social-preview.png?v=20260722">
 <meta name="theme-color" content="#13131E">
-<link rel="icon" href="/ui_views/assets/logo.png" type="image/png">
+<!-- Original quadcode.ai app icon (same file the product ships) -->
+<link rel="icon" href="/ui_views/assets/qcai-icon.webp" type="image/webp">
+<link rel="icon" href="/ui_views/assets/qcai-icon.png" type="image/png">
+<link rel="apple-touch-icon" href="/ui_views/assets/qcai-icon.png">
 <style id="__qc-fouc-guard">body{visibility:hidden!important}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+<!-- Lexend 500 = the typeface quadcode.ai sets its own "Quadcode.ai" wordmark in -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Lexend:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="/ui_views/assets/qcai-logo-lockup.webp" fetchpriority="high">
+<script>
+  /* model-viewer is ~350 KB of module JS and is used by exactly two guides.
+     Loading it in <head> taxed every visit, including the home grid that has no
+     3D at all. Fetch it the first time a <model-viewer> element is actually
+     inserted into the DOM. */
+  (function () {
+    var SRC = 'https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js';
+    var loaded = false;
+    window.ensureModelViewer = function () {
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.type = 'module'; s.src = SRC;
+      document.head.appendChild(s);
+    };
+  })();
+</script>
 <style>
   :root {
     --bg:        #0E0E14;
@@ -149,13 +170,30 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .logo:hover { opacity: .85; }
   .logo:active { transform: scale(.97); }
   .logo:focus-visible { outline: 2px solid var(--acc-1); outline-offset: 3px; }
+  .logo { gap: 10px; }
   .logo .mark {
-    width: 30px; height: 30px; flex: 0 0 30px;
-    display: block; overflow: visible;
+    /* official lockup: 1069x254 source, locked to 26px tall */
+    height: 26px; width: auto; flex: 0 0 auto;
+    display: block;
     transition: transform .25s var(--ease-out);
   }
-  .logo:hover .mark { transform: rotate(-6deg) scale(1.06); }
-  .logo b { font-family: var(--font-display); font-size: 17px; font-weight: 700; letter-spacing: -.2px; }
+  .logo:hover .mark { transform: scale(1.03); }
+  .logo-sep {
+    width: 1px; height: 18px; flex: 0 0 1px;
+    background: rgba(255,255,255,.2);
+  }
+  /* Lexend 500 — same face quadcode.ai uses for its wordmark, so "Guide"
+     reads as part of the logo instead of a bolted-on label. */
+  .logo b {
+    font-family: 'Lexend', 'Manrope', system-ui, sans-serif;
+    font-size: 19px; font-weight: 500; letter-spacing: -.1px;
+    color: rgba(255,255,255,.92);
+  }
+  @media (max-width: 540px) {
+    .logo .mark { height: 22px; }
+    .logo b { font-size: 16px; }
+    .logo-sep { height: 15px; }
+  }
   .nav { display: flex; gap: 26px; }
   .nav a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; }
   .nav a:hover { color: var(--white); }
@@ -539,7 +577,11 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   }
 
   /* ---------- Hero ---------- */
-  .hero { text-align: center; padding: 70px 0 44px; position: relative; }
+  /* margin-top: the top-left red bracket sits at the hero's own top edge, and the
+     hero used to start at y=0 right under the sticky topbar — the bracket touched
+     the header border. 28px gives it air. */
+  .hero { text-align: center; margin-top: 28px; padding: 70px 0 44px; position: relative; }
+  @media (max-width: 640px) { .hero { margin-top: 18px; } }
   .kicker {
     display: inline-block; font-size: 12px; font-weight: 600;
     letter-spacing: 2.4px; text-transform: uppercase;
@@ -1994,21 +2036,12 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 <body>
   <header class="topbar">
     <div class="logo" id="brandHome" role="button" tabindex="0" aria-label="Quadcode Guide — go to home">
-      <svg class="mark" viewBox="0 0 32 32" width="30" height="30" aria-hidden="true" focusable="false">
-        <defs>
-          <linearGradient id="qcMarkGrad" x1="3" y1="3" x2="29" y2="29" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#FF9569"/>
-            <stop offset="1" stop-color="#DD344D"/>
-          </linearGradient>
-        </defs>
-        <g fill="none" stroke="url(#qcMarkGrad)" stroke-width="2.35" stroke-linejoin="round">
-          <rect x="4.2" y="4.2" width="19.6" height="19.6" rx="5.2"/>
-          <rect x="9.4" y="9.4" width="9.2" height="9.2" rx="2.4"/>
-        </g>
-        <rect x="14.1" y="14.1" width="3.8" height="3.8" rx=".6" fill="url(#qcMarkGrad)"/>
-        <rect x="22.4" y="22.4" width="5.2" height="5.2" rx="1" fill="url(#qcMarkGrad)"/>
-      </svg>
-      <b>Quadcode Guide</b>
+      <!-- Official lockup straight off quadcode.ai (/landing/qcai_logo_white_text.png),
+           served as a 6 KB webp instead of the hand-redrawn SVG that used to sit here. -->
+      <img class="mark" src="/ui_views/assets/qcai-logo-lockup.webp" width="151" height="36"
+           alt="quadcode.ai" decoding="async" fetchpriority="high">
+      <span class="logo-sep" aria-hidden="true"></span>
+      <b>Guide</b>
     </div>
     <div class="topbar-right">
       <nav class="nav" aria-label="Primary">
@@ -3072,6 +3105,15 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       im.src = url;
       if (im.decode) im.decode().catch(() => {});
     }
+    // Metered / 2G / "data saver" clients must never receive speculative video.
+    // A guide video is 2-13 MB; prefetching it on a hover the user didn't mean is
+    // the single most expensive mistake this page can make.
+    function cheapNetwork() {
+      const c = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      if (!c) return false;
+      if (c.saveData) return true;
+      return /(^|-)(2g|slow-2g)$/.test(String(c.effectiveType || ''));
+    }
     function prefetchFile(url) {
       if (!url || _preloaded.has(url)) return;
       _preloaded.add(url);
@@ -3095,13 +3137,19 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       preloadImg(g.image);
       preloadImg(g.poster);
     }
-    // full: images now + low-priority prefetch of the heavy media behind the click
+    // full: images now + low-priority prefetch of the ONE video behind the click.
+    //
+    // This used to also prefetch every step's result_video. On a guide with 8 video
+    // steps that is ~40 MB queued from a single mouseenter, and sweeping the cursor
+    // across the grid multiplied it by the number of cards touched. Step videos are
+    // already lazy (data-src + IntersectionObserver), so speculating on them buys
+    // nothing. Cover stills stay eager — they're the part you actually see.
     function prefetchGuideMedia(g) {
       if (!g) return;
       preloadGuideImages(g);
+      if (cheapNetwork()) return;
       prefetchFile(g.video);
       prefetchFile(g.audio);
-      (g.steps || []).forEach(s => { if (s) prefetchFile(s.result_video); });
     }
     // background: after first paint settles, warm cover stills only (not every step asset)
     function warmAllGuideImages() {
@@ -3495,12 +3543,22 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
             else onOk();
           }
         };
-        c.addEventListener('mouseenter', startPreview);
-        c.addEventListener('mouseleave', stopPreview);
+        // Dwell gate: the cursor has to rest on the card for 180ms before we touch
+        // the network. Without it, dragging the mouse diagonally across the grid
+        // started ~10 video fetches, all of them abandoned a frame later.
+        let dwellT = 0;
+        c.addEventListener('mouseenter', () => {
+          clearTimeout(dwellT);
+          dwellT = setTimeout(startPreview, 180);
+        });
+        c.addEventListener('mouseleave', () => { clearTimeout(dwellT); stopPreview(); });
       }
       // preload this guide's media on intent so opening it feels instant
+      let intentT = 0;
       const prefetch = () => prefetchGuideMedia(g);
-      c.addEventListener('mouseenter', prefetch, { once: true });
+      const prefetchSoon = () => { clearTimeout(intentT); intentT = setTimeout(prefetch, 180); };
+      c.addEventListener('mouseenter', prefetchSoon);
+      c.addEventListener('mouseleave', () => clearTimeout(intentT));
       c.addEventListener('focus', prefetch, { once: true });
       c.addEventListener('touchstart', prefetch, { once: true, passive: true });
       c.onclick = () => {
@@ -3789,6 +3847,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         '</div>';
       }
       if (Array.isArray(s.models) && s.models.length) {
+        if (window.ensureModelViewer) window.ensureModelViewer();
         return '<div class="m-step-media m-step-media-3d-grid">' +
           s.models.map(function(m) {
             return '<div class="m-3d-tile">' +
@@ -3807,6 +3866,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         '</div>';
       }
       if (s.result_model) {
+        if (window.ensureModelViewer) window.ensureModelViewer();
         return '<div class="m-step-media m-step-media-3d">' +
           '<model-viewer src="' + esc(s.result_model) + '"' +
           (s.result_poster ? ' poster="' + esc(s.result_poster) + '"' : '') +

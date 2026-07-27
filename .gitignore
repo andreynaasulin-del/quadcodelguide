@@ -4,10 +4,29 @@
 production/
 .DS_Store
 
-# Large media — host on Vercel Blob, not in git
+# Large media — keep scratch/working renders out of git...
 *.mp4
 *.webm
 *.mov
+
+# ...but ui_views/assets IS the site's public media root and must ship.
+# Vercel Blob silently dropped 116 objects (2025 audit), so everything the site
+# actually serves is now self-hosted here and has to be tracked. Without these
+# negations a new /ui_views/assets/<guide>/clip.mp4 is committed as a dead link.
+!ui_views/assets/**/*.mp4
+!ui_views/assets/**/*.webm
+!ui_views/assets/**/*.mov
+
+# NOTE (2025-audit): scratch/working guide-production root folders (npc01/,
+# snap01/, savor01/, museum/, assets/, cars/, category-banners/,
+# editorial-spread/, headphones-retouch/, real-estate-sales-kit/, brief01/)
+# are duplicates of what's served from ui_views/assets/ or Blob, and were
+# never referenced by ui_views/guides.json. Deliberately NOT gitignored here:
+# this project's file tools match ignore rules by bare folder name anywhere
+# in the path (not root-anchored like real git), so a rule like "/npc01/"
+# also silently blocks meta/files/npc01/... (breaks the meta-section
+# workflow). Leave these untracked-but-not-ignored; just don't `git add` them
+# blindly.
 
 # Vercel
 .vercel/
