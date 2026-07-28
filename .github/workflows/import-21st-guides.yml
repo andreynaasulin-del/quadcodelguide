@@ -1,0 +1,42 @@
+name: Import 21st.dev guides
+
+on:
+  schedule:
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: Guides to import
+        required: false
+        default: '15'
+
+concurrency:
+  group: import-21st-guides
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci
+      - name: Import and publish public projects
+        env:
+          GUIDES_API_KEY: ${{ secrets.GUIDES_API_KEY }}
+          IMPORT_LIMIT: ${{ github.event.inputs.limit || '15' }}
+        run: node scripts/import_21st_guides.mjs --limit "$IMPORT_LIMIT" --publish
+      - name: Save preview report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 21st-guides-preview-${{ github.run_id }}
+          path: .temp/21st-guides-preview.json
+          if-no-files-found: ignore
+          retention-days: 14
