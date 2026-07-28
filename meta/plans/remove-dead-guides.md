@@ -1,7 +1,7 @@
 ---
 SECTION_ID: plans.remove-dead-guides
 TYPE: plan
-STATUS: in_progress
+STATUS: completed
 PRIORITY: critical
 ---
 
@@ -24,7 +24,7 @@ GOAL: Fully remove eight guides whose assets no longer exist from the production
 - [x] Delete the eight records from `ui_views/guides.json`.
 - [x] Remove any local asset folders or route-specific references (none existed for these IDs).
 - [x] Validate zero guide entries, asset references, or static files remain.
-- [ ] Commit and deploy the deletion.
+- [x] Commit and deploy the deletion (`62a02b0`).
 
 ## Acceptance criteria
 - Production dataset has no matching IDs.
