@@ -11,6 +11,28 @@
   ],
   "guides": [
     {
+      "id": "21st-22247-sectors-donut",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build Sectors Donut",
+      "desc": "Allocation donut ring with a centered symbol and legend cross-highlight — hovering a legend row or arc dims the rest so one weight reads at a time.",
+      "time": "12 min",
+      "date": "2026-07-27",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "https://cdn.21st.dev/ssicevs/sectors-donut/default/preview.1785193802846-5496b83d-cf57-42d9-9a01-d38eb532d8b2.png",
+      "poster": "https://cdn.21st.dev/ssicevs/sectors-donut/default/preview.1785193802846-5496b83d-cf57-42d9-9a01-d38eb532d8b2.png",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement Sectors Donut with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “Sectors Donut” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "https://cdn.21st.dev/ssicevs/sectors-donut/default/preview.1785193802846-5496b83d-cf57-42d9-9a01-d38eb532d8b2.png"
+        }
+      ],
+      "result": "A site-native version of Sectors Donut with responsive layout and complete interaction states."
+    },
+    {
       "id": "21st-22246-news-card",
       "cat": "Interfaces",
       "sub": "Components",
