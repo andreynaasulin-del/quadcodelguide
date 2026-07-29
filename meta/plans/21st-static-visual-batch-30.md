@@ -1,7 +1,7 @@
 ---
 SECTION_ID: plans.21st-static-visual-batch-30
 TYPE: plan
-STATUS: in_progress
+STATUS: complete
 PRIORITY: high
 ---
 
@@ -27,5 +27,5 @@ Publish 30 additional distinct static visual guides sourced from current public 
 - [x] Download and convert previews to local WebP
 - [x] Merge 30 guide records
 - [x] Validate unique IDs, schema, local assets and attribution
-- [ ] Commit and push only the batch files
-- [ ] Verify production count and all 30 IDs
+- [x] Commit and push only the batch files
+- [x] Verify production count and all 30 IDs
