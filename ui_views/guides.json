@@ -11,6 +11,351 @@
   ],
   "guides": [
     {
+      "id": "21st-14681-pixel-perfect-hero",
+      "cat": "Design",
+      "sub": "Typography",
+      "title": "Pixel Ripple Typography",
+      "desc": "Build restrained editorial typography over a pixel-ripple field; preserve contrast and quiet negative space.",
+      "time": "12 min",
+      "date": "2026-06-11",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-preview/01-pixel-ripple.webp",
+      "poster": "/ui_views/assets/21st-static-preview/01-pixel-ripple.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual",
+          "text": "Build restrained editorial typography over a pixel-ripple field; preserve contrast and quiet negative space.",
+          "prompt": "Recreate the reference as a finished typographic composition. Use the supplied image as the only visual reference. Build restrained editorial typography over a pixel-ripple field; preserve contrast and quiet negative space. Match its hierarchy, framing, colour relationships, type scale and negative space at 1440 px. Keep all copy in English, remove product names and external attribution, and return one complete final composition rather than invented intermediate frames.",
+          "result_image": "/ui_views/assets/21st-static-preview/01-pixel-ripple.webp"
+        }
+      ],
+      "result": "A finished pixel ripple typography composition with the reference hierarchy and visual logic preserved."
+    },
+    {
+      "id": "21st-9912-energy-beam",
+      "cat": "Design",
+      "sub": "Poster",
+      "title": "Energy Beam Key Visual",
+      "desc": "Compose a single luminous vertical event with controlled bloom, deep blacks and a stable focal axis.",
+      "time": "12 min",
+      "date": "2026-01-19",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-preview/02-energy-beam.webp",
+      "poster": "/ui_views/assets/21st-static-preview/02-energy-beam.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual",
+          "text": "Compose a single luminous vertical event with controlled bloom, deep blacks and a stable focal axis.",
+          "prompt": "Recreate the reference as a finished key visual or poster. Use the supplied image as the only visual reference. Compose a single luminous vertical event with controlled bloom, deep blacks and a stable focal axis. Match its hierarchy, framing, colour relationships, type scale and negative space at 1440 px. Keep all copy in English, remove product names and external attribution, and return one complete final composition rather than invented intermediate frames.",
+          "result_image": "/ui_views/assets/21st-static-preview/02-energy-beam.webp"
+        }
+      ],
+      "result": "A finished energy beam key visual composition with the reference hierarchy and visual logic preserved."
+    },
+    {
+      "id": "21st-2189-vapour-text-effect",
+      "cat": "Design",
+      "sub": "Typography",
+      "title": "Vapour Type Treatment",
+      "desc": "Disintegrate a word into particles while keeping the letterform readable at the transition boundary.",
+      "time": "12 min",
+      "date": "2025-05-18",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-preview/03-vapour-type.webp",
+      "poster": "/ui_views/assets/21st-static-preview/03-vapour-type.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual",
+          "text": "Disintegrate a word into particles while keeping the letterform readable at the transition boundary.",
+          "prompt": "Recreate the reference as a finished typographic composition. Use the supplied image as the only visual reference. Disintegrate a word into particles while keeping the letterform readable at the transition boundary. Match its hierarchy, framing, colour relationships, type scale and negative space at 1440 px. Keep all copy in English, remove product names and external attribution, and return one complete final composition rather than invented intermediate frames.",
+          "result_image": "/ui_views/assets/21st-static-preview/03-vapour-type.webp"
+        }
+      ],
+      "result": "A finished vapour type treatment composition with the reference hierarchy and visual logic preserved."
+    },
+    {
+      "id": "21st-2439-shuffle-grid",
+      "cat": "Design",
+      "sub": "Editorial",
+      "title": "Shuffle Image Grid",
+      "desc": "Balance a 4-column image rhythm against a short editorial text block without turning the composition into a dashboard.",
+      "time": "12 min",
+      "date": "2025-05-25",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-preview/04-shuffle-grid.webp",
+      "poster": "/ui_views/assets/21st-static-preview/04-shuffle-grid.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual",
+          "text": "Balance a 4-column image rhythm against a short editorial text block without turning the composition into a dashboard.",
+          "prompt": "Recreate the reference as a finished editorial composition. Use the supplied image as the only visual reference. Balance a 4-column image rhythm against a short editorial text block without turning the composition into a dashboard. Match its hierarchy, framing, colour relationships, type scale and negative space at 1440 px. Keep all copy in English, remove product names and external attribution, and return one complete final composition rather than invented intermediate frames.",
+          "result_image": "/ui_views/assets/21st-static-preview/04-shuffle-grid.webp"
+        }
+      ],
+      "result": "A finished shuffle image grid composition with the reference hierarchy and visual logic preserved."
+    },
+    {
+      "id": "21st-5816-siri-orb",
+      "cat": "Design",
+      "sub": "Branding",
+      "title": "Chromatic Orb Identity",
+      "desc": "Create one recognizable identity asset using soft cyan-magenta lighting and a controlled neutral field.",
+      "time": "12 min",
+      "date": "2025-08-21",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-preview/05-chromatic-orb.webp",
+      "poster": "/ui_views/assets/21st-static-preview/05-chromatic-orb.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual",
+          "text": "Create one recognizable identity asset using soft cyan-magenta lighting and a controlled neutral field.",
+          "prompt": "Recreate the reference as a finished visual identity asset. Use the supplied image as the only visual reference. Create one recognizable identity asset using soft cyan-magenta lighting and a controlled neutral field. Match its hierarchy, framing, colour relationships, type scale and negative space at 1440 px. Keep all copy in English, remove product names and external attribution, and return one complete final composition rather than invented intermediate frames.",
+          "result_image": "/ui_views/assets/21st-static-preview/05-chromatic-orb.webp"
+        }
+      ],
+      "result": "A finished chromatic orb identity composition with the reference hierarchy and visual logic preserved."
+    },
+    {
+      "id": "21st-7745-swirl",
+      "cat": "Design",
+      "sub": "Poster",
+      "title": "Dither Swirl Poster",
+      "desc": "Use density, direction and two-color contrast to turn a shader field into a graphic poster rather than a generic background.",
+      "time": "12 min",
+      "date": "2025-09-17",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-preview/06-dither-swirl.webp",
+      "poster": "/ui_views/assets/21st-static-preview/06-dither-swirl.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual",
+          "text": "Use density, direction and two-color contrast to turn a shader field into a graphic poster rather than a generic background.",
+          "prompt": "Recreate the reference as a finished key visual or poster. Use the supplied image as the only visual reference. Use density, direction and two-color contrast to turn a shader field into a graphic poster rather than a generic background. Match its hierarchy, framing, colour relationships, type scale and negative space at 1440 px. Keep all copy in English, remove product names and external attribution, and return one complete final composition rather than invented intermediate frames.",
+          "result_image": "/ui_views/assets/21st-static-preview/06-dither-swirl.webp"
+        }
+      ],
+      "result": "A finished dither swirl poster composition with the reference hierarchy and visual logic preserved."
+    },
+    {
+      "id": "21st-1936-3d-hero-section-boxes",
+      "cat": "Design",
+      "sub": "3D Composition",
+      "title": "Spatial Box Composition",
+      "desc": "Build a deep black spatial scene where small modular forms support the headline instead of competing with it.",
+      "time": "12 min",
+      "date": "2025-05-06",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-preview/07-spatial-boxes.webp",
+      "poster": "/ui_views/assets/21st-static-preview/07-spatial-boxes.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual",
+          "text": "Build a deep black spatial scene where small modular forms support the headline instead of competing with it.",
+          "prompt": "Recreate the reference as a finished spatial composition. Use the supplied image as the only visual reference. Build a deep black spatial scene where small modular forms support the headline instead of competing with it. Match its hierarchy, framing, colour relationships, type scale and negative space at 1440 px. Keep all copy in English, remove product names and external attribution, and return one complete final composition rather than invented intermediate frames.",
+          "result_image": "/ui_views/assets/21st-static-preview/07-spatial-boxes.webp"
+        }
+      ],
+      "result": "A finished spatial box composition composition with the reference hierarchy and visual logic preserved."
+    },
+    {
+      "id": "21st-5156-modern-hero-section",
+      "cat": "Design",
+      "sub": "Editorial",
+      "title": "Editorial Product Collage",
+      "desc": "Arrange mixed-aspect imagery into a coherent product collage with intentional overlap, depth and edge alignment.",
+      "time": "12 min",
+      "date": "2025-08-11",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-preview/08-editorial-collage.webp",
+      "poster": "/ui_views/assets/21st-static-preview/08-editorial-collage.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual",
+          "text": "Arrange mixed-aspect imagery into a coherent product collage with intentional overlap, depth and edge alignment.",
+          "prompt": "Recreate the reference as a finished editorial composition. Use the supplied image as the only visual reference. Arrange mixed-aspect imagery into a coherent product collage with intentional overlap, depth and edge alignment. Match its hierarchy, framing, colour relationships, type scale and negative space at 1440 px. Keep all copy in English, remove product names and external attribution, and return one complete final composition rather than invented intermediate frames.",
+          "result_image": "/ui_views/assets/21st-static-preview/08-editorial-collage.webp"
+        }
+      ],
+      "result": "A finished editorial product collage composition with the reference hierarchy and visual logic preserved."
+    },
+    {
+      "id": "21st-5583-animated-shader-hero",
+      "cat": "Design",
+      "sub": "Branding",
+      "title": "Fluid Shader Identity",
+      "desc": "Turn an amber fluid field into a brand stage with readable type and disciplined highlight placement.",
+      "time": "12 min",
+      "date": "2025-08-16",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-preview/09-fluid-shader.webp",
+      "poster": "/ui_views/assets/21st-static-preview/09-fluid-shader.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual",
+          "text": "Turn an amber fluid field into a brand stage with readable type and disciplined highlight placement.",
+          "prompt": "Recreate the reference as a finished visual identity asset. Use the supplied image as the only visual reference. Turn an amber fluid field into a brand stage with readable type and disciplined highlight placement. Match its hierarchy, framing, colour relationships, type scale and negative space at 1440 px. Keep all copy in English, remove product names and external attribution, and return one complete final composition rather than invented intermediate frames.",
+          "result_image": "/ui_views/assets/21st-static-preview/09-fluid-shader.webp"
+        }
+      ],
+      "result": "A finished fluid shader identity composition with the reference hierarchy and visual logic preserved."
+    },
+    {
+      "id": "21st-11605-globe-analytics",
+      "cat": "Design",
+      "sub": "Data Visual",
+      "title": "Globe Analytics Display",
+      "desc": "Layer two compact metrics onto a globe without masking geography or reducing the data to decoration.",
+      "time": "12 min",
+      "date": "2026-03-23",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-preview/10-globe-analytics.webp",
+      "poster": "/ui_views/assets/21st-static-preview/10-globe-analytics.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual",
+          "text": "Layer two compact metrics onto a globe without masking geography or reducing the data to decoration.",
+          "prompt": "Recreate the reference as a finished data-led visual. Use the supplied image as the only visual reference. Layer two compact metrics onto a globe without masking geography or reducing the data to decoration. Match its hierarchy, framing, colour relationships, type scale and negative space at 1440 px. Keep all copy in English, remove product names and external attribution, and return one complete final composition rather than invented intermediate frames.",
+          "result_image": "/ui_views/assets/21st-static-preview/10-globe-analytics.webp"
+        }
+      ],
+      "result": "A finished globe analytics display composition with the reference hierarchy and visual logic preserved."
+    },
+    {
+      "id": "21st-8905-hero-ascii-one",
+      "cat": "Design",
+      "sub": "Poster",
+      "title": "ASCII Image Poster",
+      "desc": "Translate photographic volume into a monochrome character field and preserve a clear editorial reading order.",
+      "time": "12 min",
+      "date": "2025-10-14",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-preview/11-ascii-poster.webp",
+      "poster": "/ui_views/assets/21st-static-preview/11-ascii-poster.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual",
+          "text": "Translate photographic volume into a monochrome character field and preserve a clear editorial reading order.",
+          "prompt": "Recreate the reference as a finished key visual or poster. Use the supplied image as the only visual reference. Translate photographic volume into a monochrome character field and preserve a clear editorial reading order. Match its hierarchy, framing, colour relationships, type scale and negative space at 1440 px. Keep all copy in English, remove product names and external attribution, and return one complete final composition rather than invented intermediate frames.",
+          "result_image": "/ui_views/assets/21st-static-preview/11-ascii-poster.webp"
+        }
+      ],
+      "result": "A finished ascii image poster composition with the reference hierarchy and visual logic preserved."
+    },
+    {
+      "id": "21st-14896-card-fan-carousel",
+      "cat": "Design",
+      "sub": "Editorial",
+      "title": "Fanned Card Composition",
+      "desc": "Construct a symmetrical fan from seven images using controlled rotation, overlap and focal hierarchy.",
+      "time": "12 min",
+      "date": "2026-06-17",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-preview/12-card-fan.webp",
+      "poster": "/ui_views/assets/21st-static-preview/12-card-fan.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual",
+          "text": "Construct a symmetrical fan from seven images using controlled rotation, overlap and focal hierarchy.",
+          "prompt": "Recreate the reference as a finished editorial composition. Use the supplied image as the only visual reference. Construct a symmetrical fan from seven images using controlled rotation, overlap and focal hierarchy. Match its hierarchy, framing, colour relationships, type scale and negative space at 1440 px. Keep all copy in English, remove product names and external attribution, and return one complete final composition rather than invented intermediate frames.",
+          "result_image": "/ui_views/assets/21st-static-preview/12-card-fan.webp"
+        }
+      ],
+      "result": "A finished fanned card composition composition with the reference hierarchy and visual logic preserved."
+    },
+    {
+      "id": "21st-994-wavy-background",
+      "cat": "Design",
+      "sub": "Poster",
+      "title": "Chromatic Wave Field",
+      "desc": "Shape a soft horizontal wave into a poster field with sufficient dead space for copy and no muddy color transitions.",
+      "time": "12 min",
+      "date": "2024-12-03",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-preview/13-wave-field.webp",
+      "poster": "/ui_views/assets/21st-static-preview/13-wave-field.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual",
+          "text": "Shape a soft horizontal wave into a poster field with sufficient dead space for copy and no muddy color transitions.",
+          "prompt": "Recreate the reference as a finished key visual or poster. Use the supplied image as the only visual reference. Shape a soft horizontal wave into a poster field with sufficient dead space for copy and no muddy color transitions. Match its hierarchy, framing, colour relationships, type scale and negative space at 1440 px. Keep all copy in English, remove product names and external attribution, and return one complete final composition rather than invented intermediate frames.",
+          "result_image": "/ui_views/assets/21st-static-preview/13-wave-field.webp"
+        }
+      ],
+      "result": "A finished chromatic wave field composition with the reference hierarchy and visual logic preserved."
+    },
+    {
+      "id": "21st-5296-cosmos-spectrum",
+      "cat": "Design",
+      "sub": "Data Visual",
+      "title": "Cosmos Spectrum System",
+      "desc": "Present a spectrum as one clean luminous stack, with a precise baseline and a limited explanatory layer.",
+      "time": "12 min",
+      "date": "2025-08-14",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-preview/14-spectrum.webp",
+      "poster": "/ui_views/assets/21st-static-preview/14-spectrum.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual",
+          "text": "Present a spectrum as one clean luminous stack, with a precise baseline and a limited explanatory layer.",
+          "prompt": "Recreate the reference as a finished data-led visual. Use the supplied image as the only visual reference. Present a spectrum as one clean luminous stack, with a precise baseline and a limited explanatory layer. Match its hierarchy, framing, colour relationships, type scale and negative space at 1440 px. Keep all copy in English, remove product names and external attribution, and return one complete final composition rather than invented intermediate frames.",
+          "result_image": "/ui_views/assets/21st-static-preview/14-spectrum.webp"
+        }
+      ],
+      "result": "A finished cosmos spectrum system composition with the reference hierarchy and visual logic preserved."
+    },
+    {
+      "id": "21st-8275-digitalloombackground",
+      "cat": "Design",
+      "sub": "Branding",
+      "title": "Digital Loom Pattern",
+      "desc": "Create a repeatable woven line language that can work as a brand texture without visible tiling seams.",
+      "time": "12 min",
+      "date": "2025-09-28",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-preview/15-digital-loom.webp",
+      "poster": "/ui_views/assets/21st-static-preview/15-digital-loom.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual",
+          "text": "Create a repeatable woven line language that can work as a brand texture without visible tiling seams.",
+          "prompt": "Recreate the reference as a finished visual identity asset. Use the supplied image as the only visual reference. Create a repeatable woven line language that can work as a brand texture without visible tiling seams. Match its hierarchy, framing, colour relationships, type scale and negative space at 1440 px. Keep all copy in English, remove product names and external attribution, and return one complete final composition rather than invented intermediate frames.",
+          "result_image": "/ui_views/assets/21st-static-preview/15-digital-loom.webp"
+        }
+      ],
+      "result": "A finished digital loom pattern composition with the reference hierarchy and visual logic preserved."
+    },
+    {
       "id": "21st-22175-column-visibility-table",
       "cat": "Interfaces",
       "sub": "Components",
