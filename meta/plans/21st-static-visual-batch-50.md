@@ -1,7 +1,7 @@
 ---
 SECTION_ID: plans.21st-static-visual-batch-50
 TYPE: plan
-STATUS: in_progress
+STATUS: complete
 PRIORITY: high
 ---
 
@@ -27,5 +27,5 @@ Publish 50 new visual guides sourced from current public 21st.dev projects witho
 - [x] Convert and self-host 50 WebP previews
 - [x] Merge exactly 50 records
 - [x] Validate schema, uniqueness, assets and attribution
-- [ ] Commit and push only batch files
-- [ ] Verify production has 196 records and all 50 assets return 200
+- [x] Commit and push only batch files
+- [x] Verify production has 196 records and all 50 assets return 200
