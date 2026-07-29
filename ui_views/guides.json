@@ -11,6 +11,466 @@
   ],
   "guides": [
     {
+      "id": "21st-11608-globe-polaroids",
+      "cat": "Design",
+      "sub": "Visual Systems",
+      "title": "Globe Polaroids",
+      "desc": "A WebGL globe with polaroid-style photo cards anchored to city markers. Photos rotate slightly for a scrapbook feel.",
+      "time": "12 min",
+      "date": "2026-03-23",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-20/01-globe-polaroids.webp",
+      "poster": "/ui_views/assets/21st-static-20/01-globe-polaroids.webp",
+      "steps": [
+        {
+          "title": "1. Reconstruct the finished visual",
+          "text": "Study the reference as a complete composition. Lock hierarchy, scale, rhythm and colour relationships before adapting the crop for smaller screens.",
+          "prompt": "Recreate the supplied Globe Polaroids reference as one finished visual composition. Preserve its framing, hierarchy, depth, colour relationships, typography and negative space. Keep all copy in English. Remove names, source links and external attribution. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-20/01-globe-polaroids.webp"
+        }
+      ],
+      "result": "A finished Globe Polaroids composition with the reference hierarchy and visual character preserved."
+    },
+    {
+      "id": "21st-11603-globe-flights",
+      "cat": "Design",
+      "sub": "Visual Systems",
+      "title": "Globe Flights",
+      "desc": "A WebGL globe with flight route arcs and airplane emoji markers positioned along the arc paths.",
+      "time": "12 min",
+      "date": "2026-03-23",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-20/02-globe-flights.webp",
+      "poster": "/ui_views/assets/21st-static-20/02-globe-flights.webp",
+      "steps": [
+        {
+          "title": "1. Reconstruct the finished visual",
+          "text": "Study the reference as a complete composition. Lock hierarchy, scale, rhythm and colour relationships before adapting the crop for smaller screens.",
+          "prompt": "Recreate the supplied Globe Flights reference as one finished visual composition. Preserve its framing, hierarchy, depth, colour relationships, typography and negative space. Keep all copy in English. Remove names, source links and external attribution. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-20/02-globe-flights.webp"
+        }
+      ],
+      "result": "A finished Globe Flights composition with the reference hierarchy and visual character preserved."
+    },
+    {
+      "id": "21st-9993-halide-topo-hero",
+      "cat": "Design",
+      "sub": "Visual Systems",
+      "title": "Halide Topo Hero",
+      "desc": "A monochrome 3D hero component with topographical parallax layers and film grain effects.",
+      "time": "12 min",
+      "date": "2026-02-04",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-20/03-halide-topo-hero.webp",
+      "poster": "/ui_views/assets/21st-static-20/03-halide-topo-hero.webp",
+      "steps": [
+        {
+          "title": "1. Reconstruct the finished visual",
+          "text": "Study the reference as a complete composition. Lock hierarchy, scale, rhythm and colour relationships before adapting the crop for smaller screens.",
+          "prompt": "Recreate the supplied Halide Topo Hero reference as one finished visual composition. Preserve its framing, hierarchy, depth, colour relationships, typography and negative space. Keep all copy in English. Remove names, source links and external attribution. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-20/03-halide-topo-hero.webp"
+        }
+      ],
+      "result": "A finished Halide Topo Hero composition with the reference hierarchy and visual character preserved."
+    },
+    {
+      "id": "21st-9635-expand-map",
+      "cat": "Design",
+      "sub": "Visual Systems",
+      "title": "Expand Map",
+      "desc": "Click on this component to get a clean map street view with some details.",
+      "time": "12 min",
+      "date": "2025-12-09",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-20/04-expand-map.webp",
+      "poster": "/ui_views/assets/21st-static-20/04-expand-map.webp",
+      "steps": [
+        {
+          "title": "1. Reconstruct the finished visual",
+          "text": "Study the reference as a complete composition. Lock hierarchy, scale, rhythm and colour relationships before adapting the crop for smaller screens.",
+          "prompt": "Recreate the supplied Expand Map reference as one finished visual composition. Preserve its framing, hierarchy, depth, colour relationships, typography and negative space. Keep all copy in English. Remove names, source links and external attribution. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-20/04-expand-map.webp"
+        }
+      ],
+      "result": "A finished Expand Map composition with the reference hierarchy and visual character preserved."
+    },
+    {
+      "id": "21st-8390-anomalousmatterhero",
+      "cat": "Design",
+      "sub": "Visual Systems",
+      "title": "AnomalousMatterHero",
+      "desc": "A full-screen hero section layered over a generative 3D shader background. Features animated Perlin-displaced geometry, dynamic lighting, and customizable overlay content. Ideal for immersive landing pages, sci-fi themes, or experimental UI.",
+      "time": "12 min",
+      "date": "2025-10-02",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-20/05-anomalousmatterhero.webp",
+      "poster": "/ui_views/assets/21st-static-20/05-anomalousmatterhero.webp",
+      "steps": [
+        {
+          "title": "1. Reconstruct the finished visual",
+          "text": "Study the reference as a complete composition. Lock hierarchy, scale, rhythm and colour relationships before adapting the crop for smaller screens.",
+          "prompt": "Recreate the supplied AnomalousMatterHero reference as one finished visual composition. Preserve its framing, hierarchy, depth, colour relationships, typography and negative space. Keep all copy in English. Remove names, source links and external attribution. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-20/05-anomalousmatterhero.webp"
+        }
+      ],
+      "result": "A finished AnomalousMatterHero composition with the reference hierarchy and visual character preserved."
+    },
+    {
+      "id": "21st-8309-cybercore-section-hero",
+      "cat": "Design",
+      "sub": "Visual Systems",
+      "title": "Cybercore Section hero",
+      "desc": "A full-screen animated background component featuring rising light beams, a glowing grid floor, and a pulsing central column. Designed for immersive hero sections and futuristic UI layouts. Theme-aware, accessible, and prop-driven for remix flexibility.",
+      "time": "12 min",
+      "date": "2025-09-29",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-20/06-cybercore-section-hero.webp",
+      "poster": "/ui_views/assets/21st-static-20/06-cybercore-section-hero.webp",
+      "steps": [
+        {
+          "title": "1. Reconstruct the finished visual",
+          "text": "Study the reference as a complete composition. Lock hierarchy, scale, rhythm and colour relationships before adapting the crop for smaller screens.",
+          "prompt": "Recreate the supplied Cybercore Section hero reference as one finished visual composition. Preserve its framing, hierarchy, depth, colour relationships, typography and negative space. Keep all copy in English. Remove names, source links and external attribution. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-20/06-cybercore-section-hero.webp"
+        }
+      ],
+      "result": "A finished Cybercore Section hero composition with the reference hierarchy and visual character preserved."
+    },
+    {
+      "id": "21st-6563-3d-animation",
+      "cat": "Design",
+      "sub": "Visual Systems",
+      "title": "3D Animation",
+      "desc": "A responsive and cinematic hero section component that displays text scrolling along the walls of a 3D animated hallway. It includes a reflection, parallax effects, and customizable imagery.",
+      "time": "12 min",
+      "date": "2025-08-31",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-20/07-3d-animation.webp",
+      "poster": "/ui_views/assets/21st-static-20/07-3d-animation.webp",
+      "steps": [
+        {
+          "title": "1. Reconstruct the finished visual",
+          "text": "Study the reference as a complete composition. Lock hierarchy, scale, rhythm and colour relationships before adapting the crop for smaller screens.",
+          "prompt": "Recreate the supplied 3D Animation reference as one finished visual composition. Preserve its framing, hierarchy, depth, colour relationships, typography and negative space. Keep all copy in English. Remove names, source links and external attribution. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-20/07-3d-animation.webp"
+        }
+      ],
+      "result": "A finished 3D Animation composition with the reference hierarchy and visual character preserved."
+    },
+    {
+      "id": "21st-5808-liquid-metal-hero",
+      "cat": "Design",
+      "sub": "Visual Systems",
+      "title": "Liquid Metal Hero",
+      "desc": "Liquid metal hero section with nice animations and perfect for any website.",
+      "time": "12 min",
+      "date": "2025-08-21",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-20/08-liquid-metal-hero.webp",
+      "poster": "/ui_views/assets/21st-static-20/08-liquid-metal-hero.webp",
+      "steps": [
+        {
+          "title": "1. Reconstruct the finished visual",
+          "text": "Study the reference as a complete composition. Lock hierarchy, scale, rhythm and colour relationships before adapting the crop for smaller screens.",
+          "prompt": "Recreate the supplied Liquid Metal Hero reference as one finished visual composition. Preserve its framing, hierarchy, depth, colour relationships, typography and negative space. Keep all copy in English. Remove names, source links and external attribution. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-20/08-liquid-metal-hero.webp"
+        }
+      ],
+      "result": "A finished Liquid Metal Hero composition with the reference hierarchy and visual character preserved."
+    },
+    {
+      "id": "21st-5509-arc-gallery-hero-component",
+      "cat": "Design",
+      "sub": "Visual Systems",
+      "title": "Arc Gallery Hero Component",
+      "desc": "\"Arc Gallery - Interactive Image Showcase\": A stunning interactive image gallery featuring a curved arc layout with smooth animations and responsive design",
+      "time": "12 min",
+      "date": "2025-08-15",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-20/09-arc-gallery-hero-component.webp",
+      "poster": "/ui_views/assets/21st-static-20/09-arc-gallery-hero-component.webp",
+      "steps": [
+        {
+          "title": "1. Reconstruct the finished visual",
+          "text": "Study the reference as a complete composition. Lock hierarchy, scale, rhythm and colour relationships before adapting the crop for smaller screens.",
+          "prompt": "Recreate the supplied Arc Gallery Hero Component reference as one finished visual composition. Preserve its framing, hierarchy, depth, colour relationships, typography and negative space. Keep all copy in English. Remove names, source links and external attribution. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-20/09-arc-gallery-hero-component.webp"
+        }
+      ],
+      "result": "A finished Arc Gallery Hero Component composition with the reference hierarchy and visual character preserved."
+    },
+    {
+      "id": "21st-2820-clip-path-image",
+      "cat": "Design",
+      "sub": "Visual Systems",
+      "title": "Clip-Path Image",
+      "desc": "An image component with a custom clip-path, creating unique shapes and dynamic visual effects",
+      "time": "12 min",
+      "date": "2025-06-15",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-20/10-clip-path-image.webp",
+      "poster": "/ui_views/assets/21st-static-20/10-clip-path-image.webp",
+      "steps": [
+        {
+          "title": "1. Reconstruct the finished visual",
+          "text": "Study the reference as a complete composition. Lock hierarchy, scale, rhythm and colour relationships before adapting the crop for smaller screens.",
+          "prompt": "Recreate the supplied Clip-Path Image reference as one finished visual composition. Preserve its framing, hierarchy, depth, colour relationships, typography and negative space. Keep all copy in English. Remove names, source links and external attribution. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-20/10-clip-path-image.webp"
+        }
+      ],
+      "result": "A finished Clip-Path Image composition with the reference hierarchy and visual character preserved."
+    },
+    {
+      "id": "21st-2517-dynamic-wave-canvas-background",
+      "cat": "Design",
+      "sub": "Visual Systems",
+      "title": "Dynamic Wave Canvas Background",
+      "desc": "Component that creates a dynamic, colorful wave animation as a canvas background. Ideal for visually captivating hero sections, blending smooth animations with deep blues, purples, and gray tones for an engaging dark theme.",
+      "time": "12 min",
+      "date": "2025-06-01",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-20/11-dynamic-wave-canvas-background.webp",
+      "poster": "/ui_views/assets/21st-static-20/11-dynamic-wave-canvas-background.webp",
+      "steps": [
+        {
+          "title": "1. Reconstruct the finished visual",
+          "text": "Study the reference as a complete composition. Lock hierarchy, scale, rhythm and colour relationships before adapting the crop for smaller screens.",
+          "prompt": "Recreate the supplied Dynamic Wave Canvas Background reference as one finished visual composition. Preserve its framing, hierarchy, depth, colour relationships, typography and negative space. Keep all copy in English. Remove names, source links and external attribution. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-20/11-dynamic-wave-canvas-background.webp"
+        }
+      ],
+      "result": "A finished Dynamic Wave Canvas Background composition with the reference hierarchy and visual character preserved."
+    },
+    {
+      "id": "21st-1914-interactive-3d-robot",
+      "cat": "Design",
+      "sub": "Visual Systems",
+      "title": "Interactive 3D Robot",
+      "desc": "3D Interative scene with robot Whobee using Spline scene",
+      "time": "12 min",
+      "date": "2025-05-05",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-20/12-interactive-3d-robot.webp",
+      "poster": "/ui_views/assets/21st-static-20/12-interactive-3d-robot.webp",
+      "steps": [
+        {
+          "title": "1. Reconstruct the finished visual",
+          "text": "Study the reference as a complete composition. Lock hierarchy, scale, rhythm and colour relationships before adapting the crop for smaller screens.",
+          "prompt": "Recreate the supplied Interactive 3D Robot reference as one finished visual composition. Preserve its framing, hierarchy, depth, colour relationships, typography and negative space. Keep all copy in English. Remove names, source links and external attribution. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-20/12-interactive-3d-robot.webp"
+        }
+      ],
+      "result": "A finished Interactive 3D Robot composition with the reference hierarchy and visual character preserved."
+    },
+    {
+      "id": "21st-1849-hero-gallery-scroll-animation",
+      "cat": "Design",
+      "sub": "Visual Systems",
+      "title": "Hero Gallery Scroll Animation",
+      "desc": "ℹ️ Hero section with scroll trigger animation, that animate images on scroll, 🧩 <ContainerScroll /> : React html attributes🧩 <BentoCell /> : variants: default: 5 cells | threeCells | fourCells 🧩 <BentoCell /> : motion attributes <ContainerScale /> : scale back and fade out fourCells ✅ Fully responsive",
+      "time": "12 min",
+      "date": "2025-04-30",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-20/13-hero-gallery-scroll-animation.webp",
+      "poster": "/ui_views/assets/21st-static-20/13-hero-gallery-scroll-animation.webp",
+      "steps": [
+        {
+          "title": "1. Reconstruct the finished visual",
+          "text": "Study the reference as a complete composition. Lock hierarchy, scale, rhythm and colour relationships before adapting the crop for smaller screens.",
+          "prompt": "Recreate the supplied Hero Gallery Scroll Animation reference as one finished visual composition. Preserve its framing, hierarchy, depth, colour relationships, typography and negative space. Keep all copy in English. Remove names, source links and external attribution. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-20/13-hero-gallery-scroll-animation.webp"
+        }
+      ],
+      "result": "A finished Hero Gallery Scroll Animation composition with the reference hierarchy and visual character preserved."
+    },
+    {
+      "id": "21st-1018-image-trail",
+      "cat": "Design",
+      "sub": "Visual Systems",
+      "title": "Image Trail",
+      "desc": "A component that creates a trail effect on cursor/touch movement. Works also with videos, svgs, or any type of html elements.",
+      "time": "12 min",
+      "date": "2024-12-30",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-20/14-image-trail.webp",
+      "poster": "/ui_views/assets/21st-static-20/14-image-trail.webp",
+      "steps": [
+        {
+          "title": "1. Reconstruct the finished visual",
+          "text": "Study the reference as a complete composition. Lock hierarchy, scale, rhythm and colour relationships before adapting the crop for smaller screens.",
+          "prompt": "Recreate the supplied Image Trail reference as one finished visual composition. Preserve its framing, hierarchy, depth, colour relationships, typography and negative space. Keep all copy in English. Remove names, source links and external attribution. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-20/14-image-trail.webp"
+        }
+      ],
+      "result": "A finished Image Trail composition with the reference hierarchy and visual character preserved."
+    },
+    {
+      "id": "21st-1218-canvas-reveal-effect",
+      "cat": "Design",
+      "sub": "Visual Systems",
+      "title": "Canvas Reveal Effect",
+      "desc": "A dot background that expands on hover, as seen on Clerk's website Features: - Animated Reveal: Smooth animations grab users' attention as content pops up. - Customizable Speed: Tweak the animation speed to match the vibe you want. - Color and Opacity Control: Play around with colors and opacities for cool visual effects. - Dot Matrix Effect: Add a modern, techy look with a dot matrix pattern. - Gradient Overlay: Use an optional gradient overlay for extra visual depth. - Responsive Design: Fits perfectly on any screen size for a consistent experience. Example Use Cases: - Call to Action on Landing Page: Use fun animations to highlight important actions or offers. - Cards on Landing Page: Make card displays pop with dynamic reveal effects to showcase key info.",
+      "time": "12 min",
+      "date": "2024-12-02",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-20/15-canvas-reveal-effect.webp",
+      "poster": "/ui_views/assets/21st-static-20/15-canvas-reveal-effect.webp",
+      "steps": [
+        {
+          "title": "1. Reconstruct the finished visual",
+          "text": "Study the reference as a complete composition. Lock hierarchy, scale, rhythm and colour relationships before adapting the crop for smaller screens.",
+          "prompt": "Recreate the supplied Canvas Reveal Effect reference as one finished visual composition. Preserve its framing, hierarchy, depth, colour relationships, typography and negative space. Keep all copy in English. Remove names, source links and external attribution. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-20/15-canvas-reveal-effect.webp"
+        }
+      ],
+      "result": "A finished Canvas Reveal Effect composition with the reference hierarchy and visual character preserved."
+    },
+    {
+      "id": "21st-10625-glowy-waves-hero",
+      "cat": "Design",
+      "sub": "Visual Systems",
+      "title": "Glowy Waves Hero",
+      "desc": "Hero section with glowy waves effect",
+      "time": "12 min",
+      "date": "2026-03-12",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-20/16-glowy-waves-hero.webp",
+      "poster": "/ui_views/assets/21st-static-20/16-glowy-waves-hero.webp",
+      "steps": [
+        {
+          "title": "1. Reconstruct the finished visual",
+          "text": "Study the reference as a complete composition. Lock hierarchy, scale, rhythm and colour relationships before adapting the crop for smaller screens.",
+          "prompt": "Recreate the supplied Glowy Waves Hero reference as one finished visual composition. Preserve its framing, hierarchy, depth, colour relationships, typography and negative space. Keep all copy in English. Remove names, source links and external attribution. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-20/16-glowy-waves-hero.webp"
+        }
+      ],
+      "result": "A finished Glowy Waves Hero composition with the reference hierarchy and visual character preserved."
+    },
+    {
+      "id": "21st-9738-3d-folder",
+      "cat": "Design",
+      "sub": "Visual Systems",
+      "title": "3D Folder",
+      "desc": "A reusable 3D Folder component",
+      "time": "12 min",
+      "date": "2025-12-31",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-20/17-3d-folder.webp",
+      "poster": "/ui_views/assets/21st-static-20/17-3d-folder.webp",
+      "steps": [
+        {
+          "title": "1. Reconstruct the finished visual",
+          "text": "Study the reference as a complete composition. Lock hierarchy, scale, rhythm and colour relationships before adapting the crop for smaller screens.",
+          "prompt": "Recreate the supplied 3D Folder reference as one finished visual composition. Preserve its framing, hierarchy, depth, colour relationships, typography and negative space. Keep all copy in English. Remove names, source links and external attribution. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-20/17-3d-folder.webp"
+        }
+      ],
+      "result": "A finished 3D Folder composition with the reference hierarchy and visual character preserved."
+    },
+    {
+      "id": "21st-2825-image-masking",
+      "cat": "Design",
+      "sub": "Visual Systems",
+      "title": "Image Masking",
+      "desc": "Here is image masking componen",
+      "time": "12 min",
+      "date": "2025-06-15",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-20/18-image-masking.webp",
+      "poster": "/ui_views/assets/21st-static-20/18-image-masking.webp",
+      "steps": [
+        {
+          "title": "1. Reconstruct the finished visual",
+          "text": "Study the reference as a complete composition. Lock hierarchy, scale, rhythm and colour relationships before adapting the crop for smaller screens.",
+          "prompt": "Recreate the supplied Image Masking reference as one finished visual composition. Preserve its framing, hierarchy, depth, colour relationships, typography and negative space. Keep all copy in English. Remove names, source links and external attribution. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-20/18-image-masking.webp"
+        }
+      ],
+      "result": "A finished Image Masking composition with the reference hierarchy and visual character preserved."
+    },
+    {
+      "id": "21st-5644-image-cursor-trail",
+      "cat": "Design",
+      "sub": "Visual Systems",
+      "title": "Image Cursor Trail",
+      "desc": "A unique interactive component",
+      "time": "12 min",
+      "date": "2025-08-18",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-20/19-image-cursor-trail.webp",
+      "poster": "/ui_views/assets/21st-static-20/19-image-cursor-trail.webp",
+      "steps": [
+        {
+          "title": "1. Reconstruct the finished visual",
+          "text": "Study the reference as a complete composition. Lock hierarchy, scale, rhythm and colour relationships before adapting the crop for smaller screens.",
+          "prompt": "Recreate the supplied Image Cursor Trail reference as one finished visual composition. Preserve its framing, hierarchy, depth, colour relationships, typography and negative space. Keep all copy in English. Remove names, source links and external attribution. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-20/19-image-cursor-trail.webp"
+        }
+      ],
+      "result": "A finished Image Cursor Trail composition with the reference hierarchy and visual character preserved."
+    },
+    {
+      "id": "21st-524-shape-landing-hero",
+      "cat": "Design",
+      "sub": "Visual Systems",
+      "title": "Shape Landing Hero",
+      "desc": "A nicely landing with shapes and color.",
+      "time": "12 min",
+      "date": "2025-01-23",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-20/20-shape-landing-hero.webp",
+      "poster": "/ui_views/assets/21st-static-20/20-shape-landing-hero.webp",
+      "steps": [
+        {
+          "title": "1. Reconstruct the finished visual",
+          "text": "Study the reference as a complete composition. Lock hierarchy, scale, rhythm and colour relationships before adapting the crop for smaller screens.",
+          "prompt": "Recreate the supplied Shape Landing Hero reference as one finished visual composition. Preserve its framing, hierarchy, depth, colour relationships, typography and negative space. Keep all copy in English. Remove names, source links and external attribution. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-20/20-shape-landing-hero.webp"
+        }
+      ],
+      "result": "A finished Shape Landing Hero composition with the reference hierarchy and visual character preserved."
+    },
+    {
       "id": "21st-22404-embroidered-word-patches",
       "cat": "Design",
       "sub": "Visual Systems",
