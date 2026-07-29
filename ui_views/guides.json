@@ -11,29 +11,6 @@
   ],
   "guides": [
     {
-      "id": "21st-22491-letter-morph",
-      "cat": "Design",
-      "sub": "Visual Systems",
-      "title": "Letter Morph",
-      "desc": "Letter Morph Motoko UI",
-      "time": "12 min",
-      "date": "2026-07-29",
-      "level": "Middle",
-      "models": "Quadcode, HTML/CSS/Canvas",
-      "new": true,
-      "image": "/ui_views/assets/21st-static-50/01-letter-morph.webp",
-      "poster": "/ui_views/assets/21st-static-50/01-letter-morph.webp",
-      "steps": [
-        {
-          "title": "1. Reconstruct the finished visual",
-          "text": "Study the reference as a complete composition. Match its hierarchy, scale, rhythm and colour relationships before tuning responsive behaviour.",
-          "prompt": "Recreate the supplied Letter Morph reference as one finished visual composition. Preserve the central concept, framing, depth, colour relationships, typography and negative space. Keep all copy in English. Use neutral copy with no third-party references. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
-          "result_image": "/ui_views/assets/21st-static-50/01-letter-morph.webp"
-        }
-      ],
-      "result": "A finished Letter Morph composition with the reference hierarchy and visual character preserved."
-    },
-    {
       "id": "21st-22404-embroidered-word-patches",
       "cat": "Design",
       "sub": "Visual Systems",
@@ -55,75 +32,6 @@
         }
       ],
       "result": "A finished Embroidered Word Patches composition with the reference hierarchy and visual character preserved."
-    },
-    {
-      "id": "21st-21703-border-beam",
-      "cat": "Design",
-      "sub": "Visual Systems",
-      "title": "Border Beam",
-      "desc": "Animated border beam effect for React.",
-      "time": "12 min",
-      "date": "2026-07-23",
-      "level": "Middle",
-      "models": "Quadcode, HTML/CSS/Canvas",
-      "new": true,
-      "image": "/ui_views/assets/21st-static-50/03-border-beam.webp",
-      "poster": "/ui_views/assets/21st-static-50/03-border-beam.webp",
-      "steps": [
-        {
-          "title": "1. Reconstruct the finished visual",
-          "text": "Study the reference as a complete composition. Match its hierarchy, scale, rhythm and colour relationships before tuning responsive behaviour.",
-          "prompt": "Recreate the supplied Border Beam reference as one finished visual composition. Preserve the central concept, framing, depth, colour relationships, typography and negative space. Keep all copy in English. Use neutral copy with no third-party references. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
-          "result_image": "/ui_views/assets/21st-static-50/03-border-beam.webp"
-        }
-      ],
-      "result": "A finished Border Beam composition with the reference hierarchy and visual character preserved."
-    },
-    {
-      "id": "21st-21537-thinking-orbs",
-      "cat": "Design",
-      "sub": "Visual Systems",
-      "title": "Thinking Orbs",
-      "desc": "Animated thinking/agent orb — six hand-tuned canvas states (working, searching, solving, listening, composing, shaping) in two tuned size presets (64px avatar / 20px inline).",
-      "time": "12 min",
-      "date": "2026-07-23",
-      "level": "Middle",
-      "models": "Quadcode, HTML/CSS/Canvas",
-      "new": true,
-      "image": "/ui_views/assets/21st-static-50/04-thinking-orbs.webp",
-      "poster": "/ui_views/assets/21st-static-50/04-thinking-orbs.webp",
-      "steps": [
-        {
-          "title": "1. Reconstruct the finished visual",
-          "text": "Study the reference as a complete composition. Match its hierarchy, scale, rhythm and colour relationships before tuning responsive behaviour.",
-          "prompt": "Recreate the supplied Thinking Orbs reference as one finished visual composition. Preserve the central concept, framing, depth, colour relationships, typography and negative space. Keep all copy in English. Use neutral copy with no third-party references. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
-          "result_image": "/ui_views/assets/21st-static-50/04-thinking-orbs.webp"
-        }
-      ],
-      "result": "A finished Thinking Orbs composition with the reference hierarchy and visual character preserved."
-    },
-    {
-      "id": "21st-7208-magnetic-dock",
-      "cat": "Design",
-      "sub": "Visual Systems",
-      "title": "Magnetic Dock",
-      "desc": "A fluid, interactive icon dock that “magnetically” expands icons as the cursor approaches, built with React and Framer Motion for smooth, springy hover effects.",
-      "time": "12 min",
-      "date": "2025-09-11",
-      "level": "Middle",
-      "models": "Quadcode, HTML/CSS/Canvas",
-      "new": true,
-      "image": "/ui_views/assets/21st-static-50/05-magnetic-dock.webp",
-      "poster": "/ui_views/assets/21st-static-50/05-magnetic-dock.webp",
-      "steps": [
-        {
-          "title": "1. Reconstruct the finished visual",
-          "text": "Study the reference as a complete composition. Match its hierarchy, scale, rhythm and colour relationships before tuning responsive behaviour.",
-          "prompt": "Recreate the supplied Magnetic Dock reference as one finished visual composition. Preserve the central concept, framing, depth, colour relationships, typography and negative space. Keep all copy in English. Use neutral copy with no third-party references. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
-          "result_image": "/ui_views/assets/21st-static-50/05-magnetic-dock.webp"
-        }
-      ],
-      "result": "A finished Magnetic Dock composition with the reference hierarchy and visual character preserved."
     },
     {
       "id": "21st-7027-dotted-surface",
@@ -193,29 +101,6 @@
         }
       ],
       "result": "A finished Etheral Shadow composition with the reference hierarchy and visual character preserved."
-    },
-    {
-      "id": "21st-16-smoke-effect",
-      "cat": "Design",
-      "sub": "Visual Systems",
-      "title": "Smoke Effect",
-      "desc": "Brings interactive smoke effects to life.",
-      "time": "12 min",
-      "date": "2025-01-16",
-      "level": "Middle",
-      "models": "Quadcode, HTML/CSS/Canvas",
-      "new": true,
-      "image": "/ui_views/assets/21st-static-50/09-smoke-effect.webp",
-      "poster": "/ui_views/assets/21st-static-50/09-smoke-effect.webp",
-      "steps": [
-        {
-          "title": "1. Reconstruct the finished visual",
-          "text": "Study the reference as a complete composition. Match its hierarchy, scale, rhythm and colour relationships before tuning responsive behaviour.",
-          "prompt": "Recreate the supplied Smoke Effect reference as one finished visual composition. Preserve the central concept, framing, depth, colour relationships, typography and negative space. Keep all copy in English. Use neutral copy with no third-party references. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
-          "result_image": "/ui_views/assets/21st-static-50/09-smoke-effect.webp"
-        }
-      ],
-      "result": "A finished Smoke Effect composition with the reference hierarchy and visual character preserved."
     },
     {
       "id": "21st-1086-reveal-images",
@@ -701,29 +586,6 @@
       "result": "A finished Not Found 06 composition with the reference hierarchy and visual character preserved."
     },
     {
-      "id": "21st-10270-special-text",
-      "cat": "Design",
-      "sub": "Visual Systems",
-      "title": "Special Text",
-      "desc": "Animated text with scramble effect.",
-      "time": "12 min",
-      "date": "2026-03-09",
-      "level": "Middle",
-      "models": "Quadcode, HTML/CSS/Canvas",
-      "new": true,
-      "image": "/ui_views/assets/21st-static-50/31-special-text.webp",
-      "poster": "/ui_views/assets/21st-static-50/31-special-text.webp",
-      "steps": [
-        {
-          "title": "1. Reconstruct the finished visual",
-          "text": "Study the reference as a complete composition. Match its hierarchy, scale, rhythm and colour relationships before tuning responsive behaviour.",
-          "prompt": "Recreate the supplied Special Text reference as one finished visual composition. Preserve the central concept, framing, depth, colour relationships, typography and negative space. Keep all copy in English. Use neutral copy with no third-party references. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
-          "result_image": "/ui_views/assets/21st-static-50/31-special-text.webp"
-        }
-      ],
-      "result": "A finished Special Text composition with the reference hierarchy and visual character preserved."
-    },
-    {
       "id": "21st-6000-wave-path",
       "cat": "Design",
       "sub": "Visual Systems",
@@ -816,29 +678,6 @@
       "result": "A finished Stacked Cards Interaction composition with the reference hierarchy and visual character preserved."
     },
     {
-      "id": "21st-215-animated-shiny-text",
-      "cat": "Design",
-      "sub": "Visual Systems",
-      "title": "Animated Shiny Text",
-      "desc": "Animated Shiny Text",
-      "time": "12 min",
-      "date": "2025-01-20",
-      "level": "Middle",
-      "models": "Quadcode, HTML/CSS/Canvas",
-      "new": true,
-      "image": "/ui_views/assets/21st-static-50/36-animated-shiny-text.webp",
-      "poster": "/ui_views/assets/21st-static-50/36-animated-shiny-text.webp",
-      "steps": [
-        {
-          "title": "1. Reconstruct the finished visual",
-          "text": "Study the reference as a complete composition. Match its hierarchy, scale, rhythm and colour relationships before tuning responsive behaviour.",
-          "prompt": "Recreate the supplied Animated Shiny Text reference as one finished visual composition. Preserve the central concept, framing, depth, colour relationships, typography and negative space. Keep all copy in English. Use neutral copy with no third-party references. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
-          "result_image": "/ui_views/assets/21st-static-50/36-animated-shiny-text.webp"
-        }
-      ],
-      "result": "A finished Animated Shiny Text composition with the reference hierarchy and visual character preserved."
-    },
-    {
       "id": "21st-108-hand-writing-text",
       "cat": "Design",
       "sub": "Visual Systems",
@@ -885,98 +724,6 @@
       "result": "A finished Line Shadow Text composition with the reference hierarchy and visual character preserved."
     },
     {
-      "id": "21st-61-animated-underline-text",
-      "cat": "Design",
-      "sub": "Visual Systems",
-      "title": "Animated Underline Text",
-      "desc": "Animated Underline Text",
-      "time": "12 min",
-      "date": "2025-01-17",
-      "level": "Middle",
-      "models": "Quadcode, HTML/CSS/Canvas",
-      "new": true,
-      "image": "/ui_views/assets/21st-static-50/39-animated-underline-text.webp",
-      "poster": "/ui_views/assets/21st-static-50/39-animated-underline-text.webp",
-      "steps": [
-        {
-          "title": "1. Reconstruct the finished visual",
-          "text": "Study the reference as a complete composition. Match its hierarchy, scale, rhythm and colour relationships before tuning responsive behaviour.",
-          "prompt": "Recreate the supplied Animated Underline Text reference as one finished visual composition. Preserve the central concept, framing, depth, colour relationships, typography and negative space. Keep all copy in English. Use neutral copy with no third-party references. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
-          "result_image": "/ui_views/assets/21st-static-50/39-animated-underline-text.webp"
-        }
-      ],
-      "result": "A finished Animated Underline Text composition with the reference hierarchy and visual character preserved."
-    },
-    {
-      "id": "21st-49-typewriter-text",
-      "cat": "Design",
-      "sub": "Visual Systems",
-      "title": "Typewriter Text",
-      "desc": "Animated Text component that types itself out like a typewriter.",
-      "time": "12 min",
-      "date": "2025-01-17",
-      "level": "Middle",
-      "models": "Quadcode, HTML/CSS/Canvas",
-      "new": true,
-      "image": "/ui_views/assets/21st-static-50/40-typewriter-text.webp",
-      "poster": "/ui_views/assets/21st-static-50/40-typewriter-text.webp",
-      "steps": [
-        {
-          "title": "1. Reconstruct the finished visual",
-          "text": "Study the reference as a complete composition. Match its hierarchy, scale, rhythm and colour relationships before tuning responsive behaviour.",
-          "prompt": "Recreate the supplied Typewriter Text reference as one finished visual composition. Preserve the central concept, framing, depth, colour relationships, typography and negative space. Keep all copy in English. Use neutral copy with no third-party references. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
-          "result_image": "/ui_views/assets/21st-static-50/40-typewriter-text.webp"
-        }
-      ],
-      "result": "A finished Typewriter Text composition with the reference hierarchy and visual character preserved."
-    },
-    {
-      "id": "21st-56-text-roll",
-      "cat": "Design",
-      "sub": "Visual Systems",
-      "title": "Text Roll",
-      "desc": "A text roll component that rotates each character, fully customizable for nice text animations.",
-      "time": "12 min",
-      "date": "2025-01-17",
-      "level": "Middle",
-      "models": "Quadcode, HTML/CSS/Canvas",
-      "new": true,
-      "image": "/ui_views/assets/21st-static-50/41-text-roll.webp",
-      "poster": "/ui_views/assets/21st-static-50/41-text-roll.webp",
-      "steps": [
-        {
-          "title": "1. Reconstruct the finished visual",
-          "text": "Study the reference as a complete composition. Match its hierarchy, scale, rhythm and colour relationships before tuning responsive behaviour.",
-          "prompt": "Recreate the supplied Text Roll reference as one finished visual composition. Preserve the central concept, framing, depth, colour relationships, typography and negative space. Keep all copy in English. Use neutral copy with no third-party references. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
-          "result_image": "/ui_views/assets/21st-static-50/41-text-roll.webp"
-        }
-      ],
-      "result": "A finished Text Roll composition with the reference hierarchy and visual character preserved."
-    },
-    {
-      "id": "21st-57-glow-effect",
-      "cat": "Design",
-      "sub": "Visual Systems",
-      "title": "Glow Effect",
-      "desc": "A customizable glow effect with animation modes, colors, blur, and transitions",
-      "time": "12 min",
-      "date": "2025-01-17",
-      "level": "Middle",
-      "models": "Quadcode, HTML/CSS/Canvas",
-      "new": true,
-      "image": "/ui_views/assets/21st-static-50/42-glow-effect.webp",
-      "poster": "/ui_views/assets/21st-static-50/42-glow-effect.webp",
-      "steps": [
-        {
-          "title": "1. Reconstruct the finished visual",
-          "text": "Study the reference as a complete composition. Match its hierarchy, scale, rhythm and colour relationships before tuning responsive behaviour.",
-          "prompt": "Recreate the supplied Glow Effect reference as one finished visual composition. Preserve the central concept, framing, depth, colour relationships, typography and negative space. Keep all copy in English. Use neutral copy with no third-party references. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
-          "result_image": "/ui_views/assets/21st-static-50/42-glow-effect.webp"
-        }
-      ],
-      "result": "A finished Glow Effect composition with the reference hierarchy and visual character preserved."
-    },
-    {
       "id": "21st-35-animated-glitch-text",
       "cat": "Design",
       "sub": "Visual Systems",
@@ -998,29 +745,6 @@
         }
       ],
       "result": "A finished Animated Glitch Text composition with the reference hierarchy and visual character preserved."
-    },
-    {
-      "id": "21st-5-text-rewind",
-      "cat": "Design",
-      "sub": "Visual Systems",
-      "title": "Text Rewind",
-      "desc": "Rebuild the Text Rewind interface from a concrete visual reference.",
-      "time": "12 min",
-      "date": "2025-01-14",
-      "level": "Middle",
-      "models": "Quadcode, HTML/CSS/Canvas",
-      "new": true,
-      "image": "/ui_views/assets/21st-static-50/44-text-rewind.webp",
-      "poster": "/ui_views/assets/21st-static-50/44-text-rewind.webp",
-      "steps": [
-        {
-          "title": "1. Reconstruct the finished visual",
-          "text": "Study the reference as a complete composition. Match its hierarchy, scale, rhythm and colour relationships before tuning responsive behaviour.",
-          "prompt": "Recreate the supplied Text Rewind reference as one finished visual composition. Preserve the central concept, framing, depth, colour relationships, typography and negative space. Keep all copy in English. Use neutral copy with no third-party references. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
-          "result_image": "/ui_views/assets/21st-static-50/44-text-rewind.webp"
-        }
-      ],
-      "result": "A finished Text Rewind composition with the reference hierarchy and visual character preserved."
     },
     {
       "id": "21st-1153-feature-with-image-comparison",
@@ -1113,52 +837,6 @@
         }
       ],
       "result": "A finished Animated Background composition with the reference hierarchy and visual character preserved."
-    },
-    {
-      "id": "21st-1169-text-shimmer",
-      "cat": "Design",
-      "sub": "Visual Systems",
-      "title": "Text Shimmer",
-      "desc": "Shimmer effect on text.",
-      "time": "12 min",
-      "date": "2024-10-24",
-      "level": "Middle",
-      "models": "Quadcode, HTML/CSS/Canvas",
-      "new": true,
-      "image": "/ui_views/assets/21st-static-50/49-text-shimmer.webp",
-      "poster": "/ui_views/assets/21st-static-50/49-text-shimmer.webp",
-      "steps": [
-        {
-          "title": "1. Reconstruct the finished visual",
-          "text": "Study the reference as a complete composition. Match its hierarchy, scale, rhythm and colour relationships before tuning responsive behaviour.",
-          "prompt": "Recreate the supplied Text Shimmer reference as one finished visual composition. Preserve the central concept, framing, depth, colour relationships, typography and negative space. Keep all copy in English. Use neutral copy with no third-party references. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
-          "result_image": "/ui_views/assets/21st-static-50/49-text-shimmer.webp"
-        }
-      ],
-      "result": "A finished Text Shimmer composition with the reference hierarchy and visual character preserved."
-    },
-    {
-      "id": "21st-1336-particles",
-      "cat": "Design",
-      "sub": "Visual Systems",
-      "title": "Particles",
-      "desc": "Particles are a fun way to add some visual flair to your website.",
-      "time": "12 min",
-      "date": "2024-10-10",
-      "level": "Middle",
-      "models": "Quadcode, HTML/CSS/Canvas",
-      "new": true,
-      "image": "/ui_views/assets/21st-static-50/50-particles.webp",
-      "poster": "/ui_views/assets/21st-static-50/50-particles.webp",
-      "steps": [
-        {
-          "title": "1. Reconstruct the finished visual",
-          "text": "Study the reference as a complete composition. Match its hierarchy, scale, rhythm and colour relationships before tuning responsive behaviour.",
-          "prompt": "Recreate the supplied Particles reference as one finished visual composition. Preserve the central concept, framing, depth, colour relationships, typography and negative space. Keep all copy in English. Use neutral copy with no third-party references. Deliver a responsive 1440 px composition with a deliberate mobile crop. Do not invent intermediate result images.",
-          "result_image": "/ui_views/assets/21st-static-50/50-particles.webp"
-        }
-      ],
-      "result": "A finished Particles composition with the reference hierarchy and visual character preserved."
     },
     {
       "id": "21st-11611-globe-interactive",
