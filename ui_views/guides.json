@@ -11,6 +11,696 @@
   ],
   "guides": [
     {
+      "id": "21st-11611-globe-interactive",
+      "cat": "Design",
+      "sub": "Data Visual",
+      "title": "Interactive Globe Signal Map",
+      "desc": "A WebGL globe with clickable markers that expand to show user counts.",
+      "time": "12 min",
+      "date": "2026-03-23",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/01-interactive-globe-signal-map.webp",
+      "poster": "/ui_views/assets/21st-static-30/01-interactive-globe-signal-map.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished interactive globe signal map. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/01-interactive-globe-signal-map.webp"
+        }
+      ],
+      "result": "A finished interactive globe signal map with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-5727-webgl-shader",
+      "cat": "Design",
+      "sub": "Shader Art",
+      "title": "Iridescent WebGL Field",
+      "desc": "Now the WebGL shader component is properly imported and rendered on the main page.",
+      "time": "12 min",
+      "date": "2025-08-20",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/02-iridescent-webgl-field.webp",
+      "poster": "/ui_views/assets/21st-static-30/02-iridescent-webgl-field.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished iridescent webgl field. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/02-iridescent-webgl-field.webp"
+        }
+      ],
+      "result": "A finished iridescent webgl field with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-5698-shader-lines",
+      "cat": "Design",
+      "sub": "Shader Art",
+      "title": "Chromatic Shader Lines",
+      "desc": "The component dynamically loads Three.js, sets up the WebGL renderer with your custom shaders, and creates the colorful mosaic effect with animated lines.",
+      "time": "12 min",
+      "date": "2025-08-19",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/03-chromatic-shader-lines.webp",
+      "poster": "/ui_views/assets/21st-static-30/03-chromatic-shader-lines.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished chromatic shader lines. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/03-chromatic-shader-lines.webp"
+        }
+      ],
+      "result": "A finished chromatic shader lines with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-5625-shader-animation",
+      "cat": "Design",
+      "sub": "Shader Art",
+      "title": "Concentric Ripple Study",
+      "desc": "The page will now show the beautiful animated ripple effect that fills the entire screen with the mesmerizing concentric circles and color gradients from your original Three.js shader code.",
+      "time": "12 min",
+      "date": "2025-08-18",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/04-concentric-ripple-study.webp",
+      "poster": "/ui_views/assets/21st-static-30/04-concentric-ripple-study.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished concentric ripple study. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/04-concentric-ripple-study.webp"
+        }
+      ],
+      "result": "A finished concentric ripple study with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-2626-spooky-smoke-animation",
+      "cat": "Design",
+      "sub": "Atmospheric Visual",
+      "title": "Volumetric Smoke Field",
+      "desc": "A customizable animated smoke background component for React, built with WebGL for high performance.",
+      "time": "12 min",
+      "date": "2025-06-07",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/05-volumetric-smoke-field.webp",
+      "poster": "/ui_views/assets/21st-static-30/05-volumetric-smoke-field.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished volumetric smoke field. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/05-volumetric-smoke-field.webp"
+        }
+      ],
+      "result": "A finished volumetric smoke field with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-2510-shader-background",
+      "cat": "Design",
+      "sub": "Shader Art",
+      "title": "Full-Frame Shader Surface",
+      "desc": "Component that renders a full-screen WebGL canvas behind all other content.",
+      "time": "12 min",
+      "date": "2025-05-31",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/06-full-frame-shader-surface.webp",
+      "poster": "/ui_views/assets/21st-static-30/06-full-frame-shader-surface.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished full-frame shader surface. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/06-full-frame-shader-surface.webp"
+        }
+      ],
+      "result": "A finished full-frame shader surface with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-2455-animated-shader-background",
+      "cat": "Design",
+      "sub": "Shader Art",
+      "title": "GLSL Motion Texture",
+      "desc": "a real-time animated shader background built with Three.js and GLSL",
+      "time": "12 min",
+      "date": "2025-05-28",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/07-glsl-motion-texture.webp",
+      "poster": "/ui_views/assets/21st-static-30/07-glsl-motion-texture.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished glsl motion texture. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/07-glsl-motion-texture.webp"
+        }
+      ],
+      "result": "A finished glsl motion texture with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-6-canvas",
+      "cat": "Design",
+      "sub": "Generative Art",
+      "title": "Canvas Particle Study",
+      "desc": "Canvas effect",
+      "time": "12 min",
+      "date": "2025-01-14",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/08-canvas-particle-study.webp",
+      "poster": "/ui_views/assets/21st-static-30/08-canvas-particle-study.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished canvas particle study. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/08-canvas-particle-study.webp"
+        }
+      ],
+      "result": "A finished canvas particle study with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-1166-spline-scene",
+      "cat": "Design",
+      "sub": "3D Composition",
+      "title": "Spline Spatial Object",
+      "desc": "A React component that integrates Spline 3D scenes.",
+      "time": "12 min",
+      "date": "2025-01-05",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/09-spline-spatial-object.webp",
+      "poster": "/ui_views/assets/21st-static-30/09-spline-spatial-object.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished spline spatial object. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/09-spline-spatial-object.webp"
+        }
+      ],
+      "result": "A finished spline spatial object with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-1081-container-scroll-animation",
+      "cat": "Design",
+      "sub": "3D Composition",
+      "title": "Perspective Scroll Stage",
+      "desc": "A scroll animation that rotates in 3d on scroll.",
+      "time": "12 min",
+      "date": "2024-12-03",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/10-perspective-scroll-stage.webp",
+      "poster": "/ui_views/assets/21st-static-30/10-perspective-scroll-stage.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished perspective scroll stage. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/10-perspective-scroll-stage.webp"
+        }
+      ],
+      "result": "A finished perspective scroll stage with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-10280-text-marquee",
+      "cat": "Design",
+      "sub": "Typography",
+      "title": "Vertical Type Marquee",
+      "desc": "Animated text marquee component with vertical scrolling.",
+      "time": "12 min",
+      "date": "2026-03-10",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/11-vertical-type-marquee.webp",
+      "poster": "/ui_views/assets/21st-static-30/11-vertical-type-marquee.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished vertical type marquee. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/11-vertical-type-marquee.webp"
+        }
+      ],
+      "result": "A finished vertical type marquee with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-9609-the-infinite-grid",
+      "cat": "Design",
+      "sub": "Generative Art",
+      "title": "Infinite Cursor Grid",
+      "desc": "Grid cursor infinity grid",
+      "time": "12 min",
+      "date": "2025-12-09",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/12-infinite-cursor-grid.webp",
+      "poster": "/ui_views/assets/21st-static-30/12-infinite-cursor-grid.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished infinite cursor grid. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/12-infinite-cursor-grid.webp"
+        }
+      ],
+      "result": "A finished infinite cursor grid with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-9240-image-loading",
+      "cat": "Design",
+      "sub": "Image Treatment",
+      "title": "Pixelated Image Reveal",
+      "desc": "A customizable image loader component that displays an animated grid overlay while the image loads.",
+      "time": "12 min",
+      "date": "2025-10-20",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/13-pixelated-image-reveal.webp",
+      "poster": "/ui_views/assets/21st-static-30/13-pixelated-image-reveal.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished pixelated image reveal. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/13-pixelated-image-reveal.webp"
+        }
+      ],
+      "result": "A finished pixelated image reveal with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-7763-image-comparison-slider",
+      "cat": "Design",
+      "sub": "Editorial",
+      "title": "Split Image Comparison",
+      "desc": "Image Comparison Slider.",
+      "time": "12 min",
+      "date": "2025-09-18",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/14-split-image-comparison.webp",
+      "poster": "/ui_views/assets/21st-static-30/14-split-image-comparison.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished split image comparison. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/14-split-image-comparison.webp"
+        }
+      ],
+      "result": "A finished split image comparison with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-5429-gradient-dots",
+      "cat": "Design",
+      "sub": "Generative Art",
+      "title": "Chromatic Dot Matrix",
+      "desc": "A lively field of tiny, colorful dots that shimmer, shift, and cycle through the rainbow.",
+      "time": "12 min",
+      "date": "2025-08-15",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/15-chromatic-dot-matrix.webp",
+      "poster": "/ui_views/assets/21st-static-30/15-chromatic-dot-matrix.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished chromatic dot matrix. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/15-chromatic-dot-matrix.webp"
+        }
+      ],
+      "result": "A finished chromatic dot matrix with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-2882-liquid-glass",
+      "cat": "Design",
+      "sub": "Material Study",
+      "title": "Liquid Glass Refraction",
+      "desc": "A liquid glass effect with a dynamic background feat.",
+      "time": "12 min",
+      "date": "2025-06-17",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/16-liquid-glass-refraction.webp",
+      "poster": "/ui_views/assets/21st-static-30/16-liquid-glass-refraction.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished liquid glass refraction. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/16-liquid-glass-refraction.webp"
+        }
+      ],
+      "result": "A finished liquid glass refraction with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-2522-image-reveal",
+      "cat": "Design",
+      "sub": "Image Treatment",
+      "title": "Circular Image Reveal",
+      "desc": "A responsive image hover component that creates a smooth circular reveal effect with a blurred overlay mask that follows the mouse cursor.",
+      "time": "12 min",
+      "date": "2025-06-01",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/17-circular-image-reveal.webp",
+      "poster": "/ui_views/assets/21st-static-30/17-circular-image-reveal.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished circular image reveal. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/17-circular-image-reveal.webp"
+        }
+      ],
+      "result": "A finished circular image reveal with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-2196-animated-slideshow",
+      "cat": "Design",
+      "sub": "Editorial",
+      "title": "Editorial Slideshow Frame",
+      "desc": "- Animated hover slider",
+      "time": "12 min",
+      "date": "2025-05-18",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/18-editorial-slideshow-frame.webp",
+      "poster": "/ui_views/assets/21st-static-30/18-editorial-slideshow-frame.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished editorial slideshow frame. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/18-editorial-slideshow-frame.webp"
+        }
+      ],
+      "result": "A finished editorial slideshow frame with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-1823-wave-background",
+      "cat": "Design",
+      "sub": "Atmospheric Visual",
+      "title": "Soft Wave Atmosphere",
+      "desc": "Inspired by antoine",
+      "time": "12 min",
+      "date": "2025-04-29",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/19-soft-wave-atmosphere.webp",
+      "poster": "/ui_views/assets/21st-static-30/19-soft-wave-atmosphere.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished soft wave atmosphere. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/19-soft-wave-atmosphere.webp"
+        }
+      ],
+      "result": "A finished soft wave atmosphere with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-1637-beams-background",
+      "cat": "Design",
+      "sub": "Atmospheric Visual",
+      "title": "Chromatic Beam Field",
+      "desc": "Beams Bacground animated with colors",
+      "time": "12 min",
+      "date": "2025-02-25",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/20-chromatic-beam-field.webp",
+      "poster": "/ui_views/assets/21st-static-30/20-chromatic-beam-field.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished chromatic beam field. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/20-chromatic-beam-field.webp"
+        }
+      ],
+      "result": "A finished chromatic beam field with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-692-gallery-with-image-cards",
+      "cat": "Design",
+      "sub": "Editorial",
+      "title": "Full-Height Image Narrative",
+      "desc": "A carousel gallery of full height image cards with case study text on top.",
+      "time": "12 min",
+      "date": "2025-02-05",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/21-full-height-image-narrative.webp",
+      "poster": "/ui_views/assets/21st-static-30/21-full-height-image-narrative.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished full-height image narrative. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/21-full-height-image-narrative.webp"
+        }
+      ],
+      "result": "A finished full-height image narrative with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-682-gallery-6",
+      "cat": "Design",
+      "sub": "Editorial",
+      "title": "Off-Canvas Gallery Rhythm",
+      "desc": "A full-width, off-screen gallery with the carousel component.",
+      "time": "12 min",
+      "date": "2025-02-04",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/22-off-canvas-gallery-rhythm.webp",
+      "poster": "/ui_views/assets/21st-static-30/22-off-canvas-gallery-rhythm.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished off-canvas gallery rhythm. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/22-off-canvas-gallery-rhythm.webp"
+        }
+      ],
+      "result": "A finished off-canvas gallery rhythm with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-675-background-paths",
+      "cat": "Design",
+      "sub": "Atmospheric Visual",
+      "title": "Gradient Path Composition",
+      "desc": "Landing Background paths with Gradient Title",
+      "time": "12 min",
+      "date": "2025-01-31",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/23-gradient-path-composition.webp",
+      "poster": "/ui_views/assets/21st-static-30/23-gradient-path-composition.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished gradient path composition. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/23-gradient-path-composition.webp"
+        }
+      ],
+      "result": "A finished gradient path composition with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-664-background-circles",
+      "cat": "Design",
+      "sub": "Generative Art",
+      "title": "Concentric Circle Field",
+      "desc": "Rebuild the Background Circles interface from a concrete visual reference.",
+      "time": "12 min",
+      "date": "2025-01-29",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/24-concentric-circle-field.webp",
+      "poster": "/ui_views/assets/21st-static-30/24-concentric-circle-field.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished concentric circle field. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/24-concentric-circle-field.webp"
+        }
+      ],
+      "result": "A finished concentric circle field with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-549-animated-gradient-background",
+      "cat": "Design",
+      "sub": "Atmospheric Visual",
+      "title": "Animated Gradient Field",
+      "desc": "An animated Gradient Background",
+      "time": "12 min",
+      "date": "2025-01-24",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/25-animated-gradient-field.webp",
+      "poster": "/ui_views/assets/21st-static-30/25-animated-gradient-field.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished animated gradient field. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/25-animated-gradient-field.webp"
+        }
+      ],
+      "result": "A finished animated gradient field with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-318-circular-reveal-heading",
+      "cat": "Design",
+      "sub": "Typography",
+      "title": "Circular Type Reveal",
+      "desc": "Circular Reveal Heading",
+      "time": "12 min",
+      "date": "2025-01-20",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/26-circular-type-reveal.webp",
+      "poster": "/ui_views/assets/21st-static-30/26-circular-type-reveal.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished circular type reveal. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/26-circular-type-reveal.webp"
+        }
+      ],
+      "result": "A finished circular type reveal with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-1120-aurora-background",
+      "cat": "Design",
+      "sub": "Atmospheric Visual",
+      "title": "Subtle Aurora Field",
+      "desc": "A subtle Aurora or Southern Lights background for your website.",
+      "time": "12 min",
+      "date": "2024-12-23",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/27-subtle-aurora-field.webp",
+      "poster": "/ui_views/assets/21st-static-30/27-subtle-aurora-field.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished subtle aurora field. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/27-subtle-aurora-field.webp"
+        }
+      ],
+      "result": "A finished subtle aurora field with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-1250-animated-gradient-text",
+      "cat": "Design",
+      "sub": "Typography",
+      "title": "Chromatic Gradient Type",
+      "desc": "An animated gradient background which transitions between colors for text.",
+      "time": "12 min",
+      "date": "2024-12-04",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/28-chromatic-gradient-type.webp",
+      "poster": "/ui_views/assets/21st-static-30/28-chromatic-gradient-type.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished chromatic gradient type. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/28-chromatic-gradient-type.webp"
+        }
+      ],
+      "result": "A finished chromatic gradient type with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-1176-sparkles",
+      "cat": "Design",
+      "sub": "Generative Art",
+      "title": "Particle Spark Field",
+      "desc": "A configurable sparkles component that can be used as a background or as a standalone component.",
+      "time": "12 min",
+      "date": "2024-12-03",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/29-particle-spark-field.webp",
+      "poster": "/ui_views/assets/21st-static-30/29-particle-spark-field.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished particle spark field. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/29-particle-spark-field.webp"
+        }
+      ],
+      "result": "A finished particle spark field with the reference composition and visual hierarchy preserved."
+    },
+    {
+      "id": "21st-1515-gooey-text-morphing",
+      "cat": "Design",
+      "sub": "Typography",
+      "title": "Gooey Type Morph",
+      "desc": "A fluid text morphing component that creates smooth, gooey transitions between words.",
+      "time": "12 min",
+      "date": "2024-11-27",
+      "level": "Middle",
+      "models": "Quadcode, HTML/CSS/Canvas",
+      "new": true,
+      "image": "/ui_views/assets/21st-static-30/30-gooey-type-morph.webp",
+      "poster": "/ui_views/assets/21st-static-30/30-gooey-type-morph.webp",
+      "steps": [
+        {
+          "title": "1. Build the complete visual system",
+          "text": "Use the reference to reconstruct the composition, then tune scale, contrast and negative space until the visual reads as one controlled system.",
+          "prompt": "Recreate the supplied reference as a finished gooey type morph. Preserve the central visual idea, framing, depth, colour relationships and typographic hierarchy. Keep all copy in English. Remove product names and external attribution. Deliver one complete responsive composition at 1440 px with a deliberate mobile crop; do not invent intermediate result images.",
+          "result_image": "/ui_views/assets/21st-static-30/30-gooey-type-morph.webp"
+        }
+      ],
+      "result": "A finished gooey type morph with the reference composition and visual hierarchy preserved."
+    },
+    {
       "id": "21st-14681-pixel-perfect-hero",
       "cat": "Design",
       "sub": "Typography",
