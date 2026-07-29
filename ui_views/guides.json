@@ -11,6 +11,336 @@
   ],
   "guides": [
     {
+      "id": "21st-809-typewriter-effect",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build Typewriter Effect",
+      "desc": "Text generates as if it is being typed on the screen.",
+      "time": "12 min",
+      "date": "2024-12-03",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "/ui_views/assets/21st/21st-809-typewriter-effect.png",
+      "poster": "/ui_views/assets/21st/21st-809-typewriter-effect.png",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement Typewriter Effect with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “Typewriter Effect” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "/ui_views/assets/21st/21st-809-typewriter-effect.png"
+        }
+      ],
+      "result": "A site-native version of Typewriter Effect with responsive layout and complete interaction states."
+    },
+    {
+      "id": "21st-8308-aurora-section-hero",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build Aurora Section hero",
+      "desc": "A visually immersive animated background using CSS and React, featuring glowing floor grids, light beams, and a central column.",
+      "time": "12 min",
+      "date": "2025-09-29",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "/ui_views/assets/21st/21st-8308-aurora-section-hero.png",
+      "poster": "/ui_views/assets/21st/21st-8308-aurora-section-hero.png",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement Aurora Section hero with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “Aurora Section hero” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "/ui_views/assets/21st/21st-8308-aurora-section-hero.png"
+        }
+      ],
+      "result": "A site-native version of Aurora Section hero with responsive layout and complete interaction states."
+    },
+    {
+      "id": "21st-6809-wrap-shader",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build Wrap Shader",
+      "desc": "mesh type shaders paper design",
+      "time": "12 min",
+      "date": "2025-09-04",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "/ui_views/assets/21st/21st-6809-wrap-shader.png",
+      "poster": "/ui_views/assets/21st/21st-6809-wrap-shader.png",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement Wrap Shader with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “Wrap Shader” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "/ui_views/assets/21st/21st-6809-wrap-shader.png"
+        }
+      ],
+      "result": "A site-native version of Wrap Shader with responsive layout and complete interaction states."
+    },
+    {
+      "id": "21st-2733-dynamic-animated-hero-section-with-gradient",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build Dynamic Animated Hero Section with Gradient",
+      "desc": "A visually striking React hero section featuring a gradient-text animation that cycles through vibrant colors, SVG line-drawing effects for geometric shapes, subtle background pattern movement , and a pulsing interact...",
+      "time": "12 min",
+      "date": "2025-06-11",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "/ui_views/assets/21st/21st-2733-dynamic-animated-hero-section-with-gradient.png",
+      "poster": "/ui_views/assets/21st/21st-2733-dynamic-animated-hero-section-with-gradient.png",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement Dynamic Animated Hero Section with Gradient with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “Dynamic Animated Hero Section with Gradient” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "/ui_views/assets/21st/21st-2733-dynamic-animated-hero-section-with-gradient.png"
+        }
+      ],
+      "result": "A site-native version of Dynamic Animated Hero Section with Gradient with responsive layout and complete interaction states."
+    },
+    {
+      "id": "21st-13987-8bit-404-page",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build 8bit 404 Page",
+      "desc": "A retro 8-bit 404 not-found page with a large pixel headline, decorative pixel-art character, and a retro CTA button linking back home.",
+      "time": "12 min",
+      "date": "2026-06-01",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "/ui_views/assets/21st/21st-13987-8bit-404-page.png",
+      "poster": "/ui_views/assets/21st/21st-13987-8bit-404-page.png",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement 8bit 404 Page with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “8bit 404 Page” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "/ui_views/assets/21st/21st-13987-8bit-404-page.png"
+        }
+      ],
+      "result": "A site-native version of 8bit 404 Page with responsive layout and complete interaction states."
+    },
+    {
+      "id": "21st-3-button-colorful-with-hover-effect",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build Button Colorful with Hover Effect",
+      "desc": "Rebuild the Button Colorful with Hover Effect interface from a concrete visual reference.",
+      "time": "12 min",
+      "date": "2025-01-14",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "/ui_views/assets/21st/21st-3-button-colorful-with-hover-effect.png",
+      "poster": "/ui_views/assets/21st/21st-3-button-colorful-with-hover-effect.png",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement Button Colorful with Hover Effect with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “Button Colorful with Hover Effect” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "/ui_views/assets/21st/21st-3-button-colorful-with-hover-effect.png"
+        }
+      ],
+      "result": "A site-native version of Button Colorful with Hover Effect with responsive layout and complete interaction states."
+    },
+    {
+      "id": "21st-36-animated-reveal-text",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build Animated Reveal Text",
+      "desc": "Animated Reveal Text",
+      "time": "12 min",
+      "date": "2025-01-16",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "/ui_views/assets/21st/21st-36-animated-reveal-text.png",
+      "poster": "/ui_views/assets/21st/21st-36-animated-reveal-text.png",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement Animated Reveal Text with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “Animated Reveal Text” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "/ui_views/assets/21st/21st-36-animated-reveal-text.png"
+        }
+      ],
+      "result": "A site-native version of Animated Reveal Text with responsive layout and complete interaction states."
+    },
+    {
+      "id": "21st-9664-clean-testimonial",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build Clean Testimonial",
+      "desc": "Clean testimonial component with unique features.",
+      "time": "12 min",
+      "date": "2025-12-13",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "/ui_views/assets/21st/21st-9664-clean-testimonial.png",
+      "poster": "/ui_views/assets/21st/21st-9664-clean-testimonial.png",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement Clean Testimonial with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “Clean Testimonial” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "/ui_views/assets/21st/21st-9664-clean-testimonial.png"
+        }
+      ],
+      "result": "A site-native version of Clean Testimonial with responsive layout and complete interaction states."
+    },
+    {
+      "id": "21st-608-hero-115",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build Hero 115",
+      "desc": "A hero section with a radial circle background pattern",
+      "time": "12 min",
+      "date": "2025-01-27",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "/ui_views/assets/21st/21st-608-hero-115.png",
+      "poster": "/ui_views/assets/21st/21st-608-hero-115.png",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement Hero 115 with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “Hero 115” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "/ui_views/assets/21st/21st-608-hero-115.png"
+        }
+      ],
+      "result": "A site-native version of Hero 115 with responsive layout and complete interaction states."
+    },
+    {
+      "id": "21st-5794-full-screen-scroll-fx",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build Full Screen Scroll FX",
+      "desc": "React + GSAP full-screen scroll slideshow with animated sidebar navigation and smooth scroll triggered animations, fully customizable through props",
+      "time": "12 min",
+      "date": "2025-08-21",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "/ui_views/assets/21st/21st-5794-full-screen-scroll-fx.png",
+      "poster": "/ui_views/assets/21st/21st-5794-full-screen-scroll-fx.png",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement Full Screen Scroll FX with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “Full Screen Scroll FX” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "/ui_views/assets/21st/21st-5794-full-screen-scroll-fx.png"
+        }
+      ],
+      "result": "A site-native version of Full Screen Scroll FX with responsive layout and complete interaction states."
+    },
+    {
+      "id": "21st-8687-hover-footer",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build Hover Footer",
+      "desc": "Hover Footer animation to our modern React and Next.js-based UI component library!",
+      "time": "12 min",
+      "date": "2025-10-10",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "/ui_views/assets/21st/21st-8687-hover-footer.png",
+      "poster": "/ui_views/assets/21st/21st-8687-hover-footer.png",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement Hover Footer with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “Hover Footer” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "/ui_views/assets/21st/21st-8687-hover-footer.png"
+        }
+      ],
+      "result": "A site-native version of Hover Footer with responsive layout and complete interaction states."
+    },
+    {
+      "id": "21st-2505-animated-project-cards",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build Animated Project Cards",
+      "desc": "This component renders a list of animated, expandable project cards with smooth framer-motion transitions, hover/tap effects, dynamic chevron toggling, and staggered child animations for category tags, metadata, and d...",
+      "time": "12 min",
+      "date": "2025-05-31",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "/ui_views/assets/21st/21st-2505-animated-project-cards.png",
+      "poster": "/ui_views/assets/21st/21st-2505-animated-project-cards.png",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement Animated Project Cards with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “Animated Project Cards” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "/ui_views/assets/21st/21st-2505-animated-project-cards.png"
+        }
+      ],
+      "result": "A site-native version of Animated Project Cards with responsive layout and complete interaction states."
+    },
+    {
+      "id": "21st-944-dark-gradient-pricing",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build Dark Gradient Pricing",
+      "desc": "A pricing table component with a glass effect and animated cards, perfect for displaying tiered pricing plans and feature comparisons.",
+      "time": "12 min",
+      "date": "2025-01-11",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "/ui_views/assets/21st/21st-944-dark-gradient-pricing.png",
+      "poster": "/ui_views/assets/21st/21st-944-dark-gradient-pricing.png",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement Dark Gradient Pricing with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “Dark Gradient Pricing” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "/ui_views/assets/21st/21st-944-dark-gradient-pricing.png"
+        }
+      ],
+      "result": "A site-native version of Dark Gradient Pricing with responsive layout and complete interaction states."
+    },
+    {
+      "id": "21st-2487-spotlight-card",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build Spotlight Card",
+      "desc": "advanced React component designed to create an engaging and modern card interface.",
+      "time": "12 min",
+      "date": "2025-05-29",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "/ui_views/assets/21st/21st-2487-spotlight-card.png",
+      "poster": "/ui_views/assets/21st/21st-2487-spotlight-card.png",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement Spotlight Card with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “Spotlight Card” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "/ui_views/assets/21st/21st-2487-spotlight-card.png"
+        }
+      ],
+      "result": "A site-native version of Spotlight Card with responsive layout and complete interaction states."
+    },
+    {
+      "id": "21st-7785-tilted-dock",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build Tilted Dock",
+      "desc": "This 3D Tilted Dock with Depth Layers is a futuristic UI component that makes a simple dock feel alive and immersive.",
+      "time": "12 min",
+      "date": "2025-09-19",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "/ui_views/assets/21st/21st-7785-tilted-dock.png",
+      "poster": "/ui_views/assets/21st/21st-7785-tilted-dock.png",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement Tilted Dock with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “Tilted Dock” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "/ui_views/assets/21st/21st-7785-tilted-dock.png"
+        }
+      ],
+      "result": "A site-native version of Tilted Dock with responsive layout and complete interaction states."
+    },
+    {
       "id": "21st-22256-price-target-fan",
       "cat": "Interfaces",
       "sub": "Components",
