@@ -11,6 +11,28 @@
   ],
   "guides": [
     {
+      "id": "21st-23625-announcement-banner",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build Announcement Banner",
+      "desc": "A dismissible announcement banner alert with an icon, title, description and a call-to-action link.",
+      "time": "12 min",
+      "date": "2026-07-31",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "https://cdn.21st.dev/cnippet.dev/announcement-banner/default/preview.1785493882128-b4444249-c576-42fe-a621-e2151e5c4c79.png",
+      "poster": "https://cdn.21st.dev/cnippet.dev/announcement-banner/default/preview.1785493882128-b4444249-c576-42fe-a621-e2151e5c4c79.png",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement Announcement Banner with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “Announcement Banner” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "https://cdn.21st.dev/cnippet.dev/announcement-banner/default/preview.1785493882128-b4444249-c576-42fe-a621-e2151e5c4c79.png"
+        }
+      ],
+      "result": "A site-native version of Announcement Banner with responsive layout and complete interaction states."
+    },
+    {
       "id": "21st-23624-alert-with-actions-in-frame",
       "cat": "Interfaces",
       "sub": "Components",
