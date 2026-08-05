@@ -11,6 +11,28 @@
   ],
   "guides": [
     {
+      "id": "21st-23957-ai-model-select",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build AI Model Select",
+      "desc": "Cursor-style AI model picker with Effort, Context, Fast and Thinking controls plus a hover Edit flyout.",
+      "time": "12 min",
+      "date": "2026-08-02",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "https://cdn.21st.dev/user_39720J8FZrHCoGeL23ljF4x20L3/ai-model-select/default/preview.1785742081026.png",
+      "poster": "https://cdn.21st.dev/user_39720J8FZrHCoGeL23ljF4x20L3/ai-model-select/default/preview.1785742081026.png",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement AI Model Select with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “AI Model Select” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "https://cdn.21st.dev/user_39720J8FZrHCoGeL23ljF4x20L3/ai-model-select/default/preview.1785742081026.png"
+        }
+      ],
+      "result": "A site-native version of AI Model Select with responsive layout and complete interaction states."
+    },
+    {
       "id": "21st-23969-wave-text",
       "cat": "Interfaces",
       "sub": "Components",
