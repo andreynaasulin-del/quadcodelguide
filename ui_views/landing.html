@@ -1640,22 +1640,9 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   }
   .m-cta .cta { font-size: 15px; }
 
-  /* per-step prompt actions: Copy + Open in Quadcode */
+  /* per-step prompt actions: Copy only — the step-level "Open in Quadcode" button
+     was dropped, the guide-level CTA at the bottom covers launching */
   .m-prompt-actions { display: inline-flex; align-items: center; gap: 8px; }
-  .qc-open-btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: rgba(255,149,105,.1); border: 1px solid rgba(255,149,105,.35);
-    color: var(--acc-1); font-family: inherit; font-size: 11.5px; font-weight: 600;
-    padding: 5px 12px; border-radius: 999px; cursor: pointer;
-    transition: filter .18s ease, border-color .18s ease, transform .16s var(--ease);
-  }
-  .qc-open-btn::before {
-    content: ''; width: 12px; height: 12px; background: var(--acc-1);
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7zM19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z'/%3E%3C/svg%3E") center/contain no-repeat;
-            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7zM19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z'/%3E%3C/svg%3E") center/contain no-repeat;
-  }
-  .qc-open-btn:hover { filter: brightness(1.12); border-color: rgba(255,149,105,.6); }
-  .qc-open-btn:active { transform: scale(.94); }
 
   /* toast (prompt copied → opening Quadcode) */
   .qc-toast {
@@ -2008,6 +1995,54 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     .tw-caret { display: none; }
   }
 
+  /* ---------- Skills tab: hidden (product decision) ----------
+     Driven by SHOW_SKILLS in JS, which puts .no-skills on <body>. The #skills
+     section and #/skill/ routes still work, so any existing deep link keeps
+     resolving — Skills is just not advertised anywhere in the UI. */
+  body.no-skills [data-tab="skills"] { display: none !important; }
+
+  /* ---------- Per-prompt run instructions ---------- */
+  .m-prompt-head { flex-wrap: wrap; }
+  /* .m-prompt span is styled as an uppercase orange block label, so these two
+     have to out-specify it rather than merely follow it. */
+  .m-prompt .m-model {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 11px; font-weight: 600; letter-spacing: .2px;
+    text-transform: none; color: var(--white);
+    background: rgba(255,255,255,.05); border: 1px solid var(--line);
+    padding: 4px 10px; border-radius: 999px; margin: 0 auto 0 2px;
+  }
+  .m-prompt .m-model::before {
+    content: ''; width: 11px; height: 11px; flex: 0 0 11px; background: var(--acc-1);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l2.4 6.9L21 9.2l-5.4 4.2L17.6 21 12 16.9 6.4 21l2-7.6L3 9.2l6.6-.3z'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l2.4 6.9L21 9.2l-5.4 4.2L17.6 21 12 16.9 6.4 21l2-7.6L3 9.2l6.6-.3z'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
+  .m-prompt .m-model .m-model-k {
+    display: inline; margin: 0; font-size: 9.5px; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--muted-2);
+  }
+  /* Block, not flex: <b> and <kbd> inside a flex row become flex items and the
+     sentence gets shredded into columns. */
+  .m-prompt .m-run {
+    display: block; position: relative;
+    margin: 12px 0 0; padding: 11px 0 0 22px; border-top: 1px dashed var(--line);
+    font-size: 12.5px; line-height: 1.6; color: var(--muted); font-weight: 400;
+  }
+  .m-prompt .m-run::before {
+    content: ''; position: absolute; left: 1px; top: 14px;
+    width: 13px; height: 13px;
+    background: var(--acc-1);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
+  .m-run b { color: var(--white); font-weight: 600; }
+  .m-run kbd {
+    font-family: 'SF Mono', ui-monospace, monospace; font-size: 11px;
+    color: var(--white); background: var(--bg-2);
+    border: 1px solid var(--line); border-bottom-width: 2px;
+    border-radius: 5px; padding: 1px 6px; white-space: nowrap;
+  }
+
   @media (max-width: 860px) {
     .grid, .steps { grid-template-columns: repeat(2, 1fr); }
     .nav { display: none; }
@@ -2168,6 +2203,10 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   <script>
     // ---- Data loaded from guides.json ----
     const CTA_URL = 'https://quadcode.ai';   // where "Open in Quadcode" links
+    // Skills is parked, not deleted: flip to true to bring back the nav tab and the
+    // "Skills for this workflow" chips on guide pages.
+    const SHOW_SKILLS = false;
+    document.body.classList.toggle('no-skills', !SHOW_SKILLS);
     let CATEGORIES = ["All"];
     let GUIDES = [];
 
@@ -3151,19 +3190,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       prefetchFile(g.video);
       prefetchFile(g.audio);
     }
-    // background: after first paint settles, warm cover stills only (not every step asset)
-    function warmAllGuideImages() {
-      const ric = window.requestIdleCallback ||
-        (fn => setTimeout(() => fn({ timeRemaining: () => 8 }), 200));
-      let i = 0;
-      const step = (deadline) => {
-        while (i < GUIDES.length && (!deadline || deadline.timeRemaining() > 2)) {
-          preloadGuideCover(GUIDES[i++]);
-        }
-        if (i < GUIDES.length) ric(step);
-      };
-      setTimeout(() => ric(step), 1800);
-    }
+    // Covers remain native-lazy. Only the guide a user hovers or opens is prefetched.
 
     // ---- Hover sound preview: only one plays at a time, with a soft volume fade ----
     let _activePreview = null;
@@ -3842,8 +3869,15 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         return '<div class="m-step-media m-step-media-widget">' +
           '<iframe src="' + esc(s.widget_iframe) + '" loading="lazy" title="Interactive widget" ' +
           'allow="fullscreen"></iframe>' +
-          '<span class="media-label">Live widget \u2014 drag to place, click to inspect in 3D</span>' +
-          '<span class="m-3d-hint">Real HTML/CSS/JS, embedded live \u2014 not a screen recording</span>' +
+          // Labels are per-step. They used to be hardcoded to the kitchen
+          // configurator's wording, which told readers of every other widget to
+          // "drag to place" things that do not exist.
+          '<span class="media-label">' +
+            esc(s.widget_label || 'Live widget \u2014 drag to place, click to inspect in 3D') +
+          '</span>' +
+          '<span class="m-3d-hint">' +
+            esc(s.widget_hint || 'Real HTML/CSS/JS, embedded live \u2014 not a screen recording') +
+          '</span>' +
         '</div>';
       }
       if (Array.isArray(s.models) && s.models.length) {
@@ -3884,6 +3918,78 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         return '<div class="m-step-media"><img src="' + esc(s.result_image) + '" alt="Step result" loading="lazy" decoding="async"><span class="media-label">Result</span></div>';
       }
       return '';
+    }
+
+    // ---- Which model runs this particular prompt ----
+    // g.models is a free-text credits line, and most of it is NOT a model:
+    // "Quadcode" appears on 152 guides, "HTML/CSS/Canvas" on 101, plus "React",
+    // "Three.js", "AI video generation". Printing those as the model would be a lie,
+    // so a name only reaches the badge if it matches a real generator below.
+    const MODEL_KINDS = [
+      { kind: 'video', re: /seedance|veo|kling|runway|sora|luma|hailuo|\bwan\b|pika|topaz|seedvr/i },
+      { kind: 'audio', re: /suno|elevenlabs|udio|mmaudio/i },
+      { kind: 'mesh',  re: /meshy|trellis|hunyuan3d|rodin/i },
+      { kind: 'image', re: /gpt-image|flux|nanobanana|nano banana|midjourney|imagen|recraft|ideogram|qwen-image|seedream/i },
+      { kind: 'code',  re: /claude|sonnet|opus|gpt-5|gpt-4|gemini|grok|codex|deepseek|kimi|glm/i }
+    ];
+    // Fallbacks when the guide credits no real model for what the step produces.
+    // These are the project defaults, not guesses: video runs on Seedance, music on
+    // Suno, stills on GPT-Image, and agent coding on Claude Sonnet.
+    const MODEL_DEFAULT = {
+      video: 'Seedance', audio: 'Suno', image: 'GPT-Image',
+      mesh: 'Meshy v6',  code: 'Claude Sonnet'
+    };
+    function modelKind(name) {
+      const hit = MODEL_KINDS.find(m => m.re.test(String(name || '')));
+      return hit ? hit.kind : '';
+    }
+    // What the step asks the model for, judged by the artefact attached to it.
+    // Guides often park the payoff on the *next* step ("generate and ship it",
+    // empty prompt, result_video), so a step without media inherits from the one
+    // after it — otherwise the 360° turntable prompt gets labelled GPT-Image.
+    function mediaKind(s) {
+      if (!s) return '';
+      if (s.result_video) return 'video';
+      if (s.audio) return 'audio';
+      if (s.result_model || Array.isArray(s.models)) return 'mesh';
+      if (s.result_image) return 'image';
+      return '';
+    }
+    // Last resort for steps with no artefact attached at all (common in pipeline
+    // guides where step 2 just says "animate the still"): read what the prompt asks
+    // for. Only ever used to choose between models the guide already credits, so a
+    // false positive can't invent a model out of thin air.
+    const KIND_WORDS = [
+      { kind: 'video', re: /\bvideo\b|\bclip\b|i2v|image[- ]to[- ]video|animat|camera (?:move|push|orbit)|footage|\bshot list\b|seconds? of motion/i },
+      { kind: 'audio', re: /\btrack\b|\bmusic\b|\bsong\b|\bbpm\b|voice[- ]?over|\bsfx\b|\bstem\b/i },
+      { kind: 'image', re: /\bimage\b|\bstill\b|keyframe|\bposter\b|\bphoto|silhouette|\bsheet\b|reference frame/i }
+    ];
+    function stepKind(g, s, i) {
+      const own = mediaKind(s);
+      if (own) return own;
+      const next = mediaKind((g.steps || [])[i + 1]);
+      if (next) return next;
+      const words = [s && s.title, s && s.text, s && s.prompt].join(' ');
+      const hit = KIND_WORDS.find(k => k.re.test(words));
+      return hit ? hit.kind : 'code';
+    }
+    function stepModel(g, s, i) {
+      if (s && s.model) return String(s.model).trim();
+      const credited = parseModels(g).filter(n => modelKind(n));
+      // No generator credited → nothing was generated, the agent just wrote code.
+      // Screenshots of a coded widget live in result_image too, so trusting step
+      // media here would label a Three.js restyle guide as GPT-Image.
+      if (!credited.length) return MODEL_DEFAULT.code;
+      if (credited.length === 1) return credited[0];
+      const want = stepKind(g, s || {}, i);
+      return credited.find(n => modelKind(n) === want) || credited[0];
+    }
+    // One place to change the wording if the app renames the control.
+    function runHintHtml() {
+      // The model is already on the badge above, so the hint only answers the thing
+      // readers kept asking: which button actually fires the prompt.
+      return '<p class="m-run"><b>To run:</b> paste it into the Quadcode chat, pick the ' +
+        'model above in the selector, then press <b>Send</b>.</p>';
     }
 
     function guideHtml(g) {
@@ -3951,12 +4057,16 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
                 (s.prompt
                   ? '<div class="m-prompt">' +
                       '<div class="m-prompt-head"><span>Prompt</span>' +
+                        (stepModel(g, s, i)
+                          ? '<span class="m-model"><span class="m-model-k">model</span>' +
+                              esc(stepModel(g, s, i)) + '</span>'
+                          : '') +
                         '<div class="m-prompt-actions">' +
                           '<button class="copy-btn" data-copy-step="' + i + '">Copy prompt</button>' +
-                          '<button class="qc-open-btn" data-open-step="' + i + '" type="button">Open in Quadcode</button>' +
                         '</div>' +
                       '</div>' +
                       '<code>' + esc(s.prompt) + '</code>' +
+                      runHintHtml() +
                     '</div>'
                   : '') +
                 stepMediaHtml(s) +
@@ -3977,7 +4087,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         });
         html += '</div></section>';
       }
-      const skillsRel = relatedSkillsForGuide(g);
+      const skillsRel = SHOW_SKILLS ? relatedSkillsForGuide(g) : [];
       if (skillsRel.length) {
         html += '<div class="m-related"><h3>Skills for this workflow</h3><div class="m-skills-row">';
         skillsRel.forEach(sk => {
@@ -4466,14 +4576,9 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
             copyText(step.prompt, btn);
           };
         });
-        // "Open in Quadcode" — per step carries that step's prompt, CTA the primary one
+        // Steps no longer carry their own "Open in Quadcode" button — each prompt
+        // explains how to run it instead, and the bottom CTA handles the launch.
         const primaryPrompt = guidePrimaryPrompt(g);
-        guideBodyEl.querySelectorAll('[data-open-step]').forEach(btn => {
-          btn.onclick = () => {
-            const step = (g.steps || [])[parseInt(btn.dataset.openStep, 10)];
-            openInQuadcode(step && step.prompt ? step.prompt : primaryPrompt);
-          };
-        });
         guideBodyEl.querySelectorAll('[data-qc-open]').forEach(btn => {
           btn.onclick = () => openInQuadcode(primaryPrompt);
         });
@@ -5010,8 +5115,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       window.addEventListener('scroll', syncContinueScroll, { passive: true });
 
       router();
-      // warm every guide's still images in the background (instant navigation)
-      warmAllGuideImages();
     }
     init();
   </script>
