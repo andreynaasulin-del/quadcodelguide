@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Powderline</title>
+  <style>
+    /* Quadcode.ai guidebook chrome: ink panels, signal red, 2px radii, uppercase microtype. */
+    :root{
+      --qc-red:#ff3b30;--qc-ink:#171717;--qc-panel:rgba(20,20,20,.94);
+      --qc-line:rgba(255,255,255,.14);--qc-text:#f7f7f4;--qc-muted:rgba(247,247,244,.58);
+    }
+    *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#bcd8f4;font-family:Inter,ui-sans-serif,system-ui,-apple-system,sans-serif;color:var(--qc-text)}
+    #game{position:fixed;inset:0;width:100%;height:100%;display:block}
+    .hud{position:fixed;inset:0;pointer-events:none;transition:opacity .2s}
+    .hide-hud .hud{opacity:0}
+    .glass{background:var(--qc-panel);border:1px solid var(--qc-line);border-radius:2px;box-shadow:0 18px 50px rgba(0,0,0,.22)}
+    .top{position:absolute;left:24px;top:22px;display:flex;gap:10px;align-items:flex-start}
+    .speed{width:132px;padding:14px 16px 12px;border-left:4px solid var(--qc-red)}.speed b{font-size:42px;line-height:.88;letter-spacing:-.07em;font-weight:850}.speed small{font-size:10px;font-weight:700;letter-spacing:.14em;margin-left:6px;color:var(--qc-muted)}
+    .distance{padding:13px 18px;font-size:22px;font-weight:850;letter-spacing:-.04em}.distance small{display:block;font-size:9px;font-weight:700;letter-spacing:.16em;color:var(--qc-muted);text-transform:uppercase}
+    #surface-pill{position:absolute;top:25px;left:50%;transform:translateX(-50%);padding:8px 15px;border-radius:2px;background:var(--qc-panel);border:1px solid var(--qc-line);color:var(--qc-text);font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+    #leaders{position:absolute;right:22px;top:22px;width:224px;padding:14px 15px}.leader-state{font-size:9px;font-weight:700;letter-spacing:.14em;color:var(--qc-muted);margin-bottom:10px;text-transform:uppercase}.online-dot{display:inline-block;width:7px;height:7px;background:var(--qc-red);border-radius:50%;margin-right:7px;box-shadow:0 0 0 4px rgba(255,59,48,.16)}.leader-row{display:flex;justify-content:space-between;padding:5px 6px;border-radius:1px;font-size:12px;color:var(--qc-text)}.leader-row b{font-variant-numeric:tabular-nums}.leader-row.self{background:var(--qc-red);color:#fff}
+    .bottom{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);display:flex;align-items:flex-end;gap:12px}
+    .flow{width:270px;padding:12px 16px 14px}.flow-head{display:flex;justify-content:space-between;font-size:10px;font-weight:800;letter-spacing:.16em;margin-bottom:8px;text-transform:uppercase}.flow-head span:last-child{color:var(--qc-muted)}.flow-track{height:8px;background:rgba(255,255,255,.10);border-radius:1px;overflow:hidden}.flow-track:after{content:"";display:block;height:100%;width:var(--v,0%);background:var(--qc-red);transition:width .1s}
+    .stability{width:170px;padding:12px 15px 14px}.stability label{display:block;font-size:9px;font-weight:800;letter-spacing:.16em;margin-bottom:8px;text-transform:uppercase}.stability-track{height:8px;background:rgba(255,255,255,.10);border-radius:1px;overflow:hidden}.stability-track i{display:block;width:100%;height:100%;background:#f7f7f4;transition:width .08s,background .2s}.stability-track.danger i{background:var(--qc-red)}
+    #message{position:absolute;left:50%;top:27%;transform:translate(-50%,-10px) scale(.96);opacity:0;color:#fff;font-size:26px;font-weight:850;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;background:var(--qc-panel);border:1px solid var(--qc-line);border-left:4px solid var(--qc-red);border-radius:2px;transition:.18s}#message.show{opacity:1;transform:translate(-50%,0) scale(1)}
+    .controls{position:absolute;left:22px;bottom:22px;padding:10px 13px;font-size:10px;line-height:1.7;color:var(--qc-muted);letter-spacing:.04em}.controls b{color:var(--qc-text);font-weight:800}
+    .utilities{position:absolute;right:22px;bottom:22px;display:flex;gap:7px;pointer-events:auto}.utilities button{border:1px solid var(--qc-line);border-radius:2px;padding:9px 13px;background:var(--qc-ink);color:var(--qc-text);font:800 9px/1 Inter,system-ui;letter-spacing:.14em;cursor:pointer;text-transform:uppercase;transition:border-color .15s}.utilities button:hover{border-color:var(--qc-red)}
+    #fps{position:absolute;right:25px;bottom:64px;font-size:9px;color:var(--qc-muted);letter-spacing:.1em}
+    #start{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(120% 130% at 70% 12%,#2b2b2b 0%,#171717 58%,#0d0d0d 100%);z-index:10;transition:opacity .6s,visibility .6s}#start.gone{opacity:0;visibility:hidden}
+    .start-card{width:min(470px,calc(100vw - 32px));padding:36px 34px;text-align:left;border-left:4px solid var(--qc-red)}
+    .mark{font-size:9.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--qc-muted);margin-bottom:16px}.mark b{color:var(--qc-red)}
+    h1{font-size:52px;line-height:.88;letter-spacing:-.06em;margin:0 0 14px;font-weight:850;text-transform:uppercase;color:var(--qc-text)}h1 span{color:var(--qc-red)}
+    .tagline{font-size:13.5px;line-height:1.6;color:var(--qc-muted);margin:0 0 24px;max-width:360px}
+    .start-row{display:flex;gap:8px}
+    #name{min-width:0;flex:1;border:1px solid var(--qc-line);border-radius:2px;padding:13px 14px;background:#0f0f0f;font:700 14px Inter,system-ui;color:var(--qc-text);outline:none;transition:border-color .15s}#name:focus{border-color:var(--qc-red)}
+    #start-button{border:1px solid var(--qc-red);border-radius:2px;padding:0 20px;background:var(--qc-red);color:#fff;font:850 11px Inter,system-ui;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:filter .15s}#start-button:hover{filter:brightness(1.12)}#start-button:disabled{opacity:.6;cursor:default}
+    .micro{font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--qc-muted);margin:16px 0 0}
+    @media(max-width:700px){#leaders{display:none}.top{left:12px;top:12px}.speed{width:108px}.speed b{font-size:34px}.distance{font-size:17px}.bottom{bottom:14px}.flow{width:200px}.stability{width:130px}.controls{display:none}.utilities{right:12px;bottom:76px}#surface-pill{top:14px}.start-card{padding:26px}h1{font-size:42px}}
+  </style>
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"}}</script>
+</head>
+<body>
+  <canvas id="game"></canvas>
+  <div class="hud">
+    <div class="top"><div class="speed glass"><b id="speed-value">0</b><small>KM/H</small></div><div class="distance glass"><small>YOUR LINE</small><span id="distance-value">0 m</span></div></div>
+    <div id="surface-pill">GROOMER</div>
+    <div id="leaders" class="glass"><div class="leader-state">SOLO / CONNECTING</div></div>
+    <div id="message">CLEAN LANDING</div>
+    <div class="bottom"><div class="flow glass"><div class="flow-head"><span id="flow-label">FLOW</span><span>BUILD SPEED</span></div><div id="flow-fill" class="flow-track"></div></div><div class="stability glass"><label>STABILITY</label><div class="stability-track"><i id="stability-fill"></i></div></div></div>
+    <div class="controls glass"><b>A / D</b> carve &nbsp; <b>SHIFT</b> boost<br><b>W</b> tuck / backflip &nbsp; <b>S</b> brake / frontflip &nbsp; <b>SPACE</b> hold + release ollie</div>
+    <div id="fps">-- FPS</div><div class="utilities"><button id="quality">QUALITY AUTO</button><button id="mute">SOUND ON</button></div>
+  </div>
+  <div id="start"><div class="start-card glass"><div class="mark"><b>&#9632;</b> QUADCODE.AI &mdash; ARCADE</div><h1>POWDER<span>LINE</span></h1><p class="tagline">No missions. No timer. Hold a clean edge, find the rhythm, and see how far the mountain takes you.</p><div class="start-row"><input id="name" maxlength="20" aria-label="Rider name"><button id="start-button">DROP IN</button></div><p class="micro">All terrain, riders, sound and music are generated in code.</p></div></div>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
