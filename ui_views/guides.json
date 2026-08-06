@@ -11,6 +11,28 @@
   ],
   "guides": [
     {
+      "id": "21st-23970-voxel-matrix",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build Voxel Matrix",
+      "desc": "Dynamic 3D isometric heightmap grid oscillating with sine wave harmonics and interactive smooth mouse elevation fields.",
+      "time": "12 min",
+      "date": "2026-08-02",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "https://cdn.21st.dev/daiwiikharihar/voxel-matrix/default/preview.1785651422655-aaa5ab5e-f121-46e1-9ec5-6fff3f840a0c.webp",
+      "poster": "https://cdn.21st.dev/daiwiikharihar/voxel-matrix/default/preview.1785651422655-aaa5ab5e-f121-46e1-9ec5-6fff3f840a0c.webp",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement Voxel Matrix with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “Voxel Matrix” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "https://cdn.21st.dev/daiwiikharihar/voxel-matrix/default/preview.1785651422655-aaa5ab5e-f121-46e1-9ec5-6fff3f840a0c.webp"
+        }
+      ],
+      "result": "A site-native version of Voxel Matrix with responsive layout and complete interaction states."
+    },
+    {
       "id": "21st-23957-ai-model-select",
       "cat": "Interfaces",
       "sub": "Components",
