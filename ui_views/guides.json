@@ -11,6 +11,28 @@
   ],
   "guides": [
     {
+      "id": "21st-23982-2-gradient",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build 2 Gradient",
+      "desc": "Pure CSS gradient background in the Core Glow style, made with the 21st.dev Gradient Builder.",
+      "time": "12 min",
+      "date": "2026-08-03",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "https://cdn.21st.dev/viterna/2-gradient/default/preview.1785745556297-19427e63-b705-4f08-9c79-f6e0b69ce260.png",
+      "poster": "https://cdn.21st.dev/viterna/2-gradient/default/preview.1785745556297-19427e63-b705-4f08-9c79-f6e0b69ce260.png",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement 2 Gradient with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “2 Gradient” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "https://cdn.21st.dev/viterna/2-gradient/default/preview.1785745556297-19427e63-b705-4f08-9c79-f6e0b69ce260.png"
+        }
+      ],
+      "result": "A site-native version of 2 Gradient with responsive layout and complete interaction states."
+    },
+    {
       "id": "21st-23981-blue-viterna",
       "cat": "Interfaces",
       "sub": "Components",
