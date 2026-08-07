@@ -11,6 +11,28 @@
   ],
   "guides": [
     {
+      "id": "21st-24182-digit-stream",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build Digit Stream",
+      "desc": "A generative digit stream: hundreds of numbers flow along a winding snake path on black as you scroll, then dim and scatter when you stop — easing back onto the path when you scroll again.",
+      "time": "12 min",
+      "date": "2026-08-04",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "https://cdn.21st.dev/tkachukkateryna14/digit-stream/default/preview.1785841626551-7a737211-30a8-4d6c-86f9-2f8032bac4e5.png",
+      "poster": "https://cdn.21st.dev/tkachukkateryna14/digit-stream/default/preview.1785841626551-7a737211-30a8-4d6c-86f9-2f8032bac4e5.png",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement Digit Stream with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “Digit Stream” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "https://cdn.21st.dev/tkachukkateryna14/digit-stream/default/preview.1785841626551-7a737211-30a8-4d6c-86f9-2f8032bac4e5.png"
+        }
+      ],
+      "result": "A site-native version of Digit Stream with responsive layout and complete interaction states."
+    },
+    {
       "id": "21st-24094-brutalist-deck-loader",
       "cat": "Interfaces",
       "sub": "Components",
