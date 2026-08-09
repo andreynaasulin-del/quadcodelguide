@@ -11,6 +11,28 @@
   ],
   "guides": [
     {
+      "id": "21st-24288-baby-blue",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build baby blue",
+      "desc": "Pure CSS gradient background in the Axis Blend style, made with the 21st.dev Gradient Builder.",
+      "time": "12 min",
+      "date": "2026-08-06",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "https://cdn.21st.dev/prv.ctech/baby-blue/default/preview.1786038924546-99f94719-c0c5-44fc-bf5a-1e7c796d8b26.webp",
+      "poster": "https://cdn.21st.dev/prv.ctech/baby-blue/default/preview.1786038924546-99f94719-c0c5-44fc-bf5a-1e7c796d8b26.webp",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement baby blue with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “baby blue” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "https://cdn.21st.dev/prv.ctech/baby-blue/default/preview.1786038924546-99f94719-c0c5-44fc-bf5a-1e7c796d8b26.webp"
+        }
+      ],
+      "result": "A site-native version of baby blue with responsive layout and complete interaction states."
+    },
+    {
       "id": "21st-24287-sss",
       "cat": "Interfaces",
       "sub": "Components",
