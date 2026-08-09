@@ -11,6 +11,28 @@
   ],
   "guides": [
     {
+      "id": "21st-24331-aurora-credit-card-bento",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build Aurora Credit Card Bento",
+      "desc": "An interactive bento card carrying an animated credit card: colour bands, caustics and grain flow across the face, and the chip sits where ISO 7816 puts it on a real card.",
+      "time": "12 min",
+      "date": "2026-08-07",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "https://cdn.21st.dev/yura/aurora-credit-card-bento/default/preview.1786119852400-8e9c6084-0068-40cc-ae1d-89a598ec0510.webp",
+      "poster": "https://cdn.21st.dev/yura/aurora-credit-card-bento/default/preview.1786119852400-8e9c6084-0068-40cc-ae1d-89a598ec0510.webp",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement Aurora Credit Card Bento with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “Aurora Credit Card Bento” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "https://cdn.21st.dev/yura/aurora-credit-card-bento/default/preview.1786119852400-8e9c6084-0068-40cc-ae1d-89a598ec0510.webp"
+        }
+      ],
+      "result": "A site-native version of Aurora Credit Card Bento with responsive layout and complete interaction states."
+    },
+    {
       "id": "21st-24318-material-design-3-expressive-slider",
       "cat": "Interfaces",
       "sub": "Components",
