@@ -11,6 +11,28 @@
   ],
   "guides": [
     {
+      "id": "21st-24312-ai-response-text-generate-card",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build AI Response Text Generate Card",
+      "desc": "An AI assistant chat card that animates its response with a word-by-word text-generate effect and regenerates on demand.",
+      "time": "12 min",
+      "date": "2026-08-07",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "https://cdn.21st.dev/user_36Tbt0v8JdD4jEycmBFhR8tojnR/m-text-generate-effect-2/default/preview.1786118425307.webp",
+      "poster": "https://cdn.21st.dev/user_36Tbt0v8JdD4jEycmBFhR8tojnR/m-text-generate-effect-2/default/preview.1786118425307.webp",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement AI Response Text Generate Card with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “AI Response Text Generate Card” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "https://cdn.21st.dev/user_36Tbt0v8JdD4jEycmBFhR8tojnR/m-text-generate-effect-2/default/preview.1786118425307.webp"
+        }
+      ],
+      "result": "A site-native version of AI Response Text Generate Card with responsive layout and complete interaction states."
+    },
+    {
       "id": "21st-24297-toast",
       "cat": "Interfaces",
       "sub": "Components",
