@@ -11,6 +11,28 @@
   ],
   "guides": [
     {
+      "id": "21st-23864-blur-out-up",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build Blur Out Up",
+      "desc": "Words lift out of a soft blur and drift upward into place, staggered 28ms apart over a 0.56s ease-out.",
+      "time": "12 min",
+      "date": "2026-08-01",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "https://cdn.21st.dev/educalvolpz/blur-out-up/default/preview.1785772986870-d85cf12f-a93f-4e91-a5aa-2b8e1e1d8d84.png",
+      "poster": "https://cdn.21st.dev/educalvolpz/blur-out-up/default/preview.1785772986870-d85cf12f-a93f-4e91-a5aa-2b8e1e1d8d84.png",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement Blur Out Up with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “Blur Out Up” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "https://cdn.21st.dev/educalvolpz/blur-out-up/default/preview.1785772986870-d85cf12f-a93f-4e91-a5aa-2b8e1e1d8d84.png"
+        }
+      ],
+      "result": "A site-native version of Blur Out Up with responsive layout and complete interaction states."
+    },
+    {
       "id": "21st-23830-ai-suggestions",
       "cat": "Interfaces",
       "sub": "Components",
