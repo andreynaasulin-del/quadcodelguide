@@ -11,6 +11,28 @@
   ],
   "guides": [
     {
+      "id": "21st-23952-bloom-field-gradient",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build Bloom Field gradient",
+      "desc": "Pure CSS gradient background in the Bloom Field style, made with the 21st.dev Gradient Builder.",
+      "time": "12 min",
+      "date": "2026-08-01",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "https://cdn.21st.dev/m2vipin/bloom-field-gradient/default/preview.1785614146665-a80bf17b-b99b-4c5a-b974-017eb6a7394a.webp",
+      "poster": "https://cdn.21st.dev/m2vipin/bloom-field-gradient/default/preview.1785614146665-a80bf17b-b99b-4c5a-b974-017eb6a7394a.webp",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement Bloom Field gradient with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “Bloom Field gradient” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "https://cdn.21st.dev/m2vipin/bloom-field-gradient/default/preview.1785614146665-a80bf17b-b99b-4c5a-b974-017eb6a7394a.webp"
+        }
+      ],
+      "result": "A site-native version of Bloom Field gradient with responsive layout and complete interaction states."
+    },
+    {
       "id": "21st-23876-smoky-button",
       "cat": "Interfaces",
       "sub": "Components",
