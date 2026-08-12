@@ -11,6 +11,28 @@
   ],
   "guides": [
     {
+      "id": "21st-24367-axis-blend-gradient",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build Axis Blend gradient",
+      "desc": "Pure CSS gradient background in the Axis Blend style, made with the 21st.dev Gradient Builder.",
+      "time": "12 min",
+      "date": "2026-08-10",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "https://cdn.21st.dev/apearlsd/axis-blend-gradient/default/preview.1786346738590-8f662d31-a289-4af8-b02c-fc97f582cdc8.webp",
+      "poster": "https://cdn.21st.dev/apearlsd/axis-blend-gradient/default/preview.1786346738590-8f662d31-a289-4af8-b02c-fc97f582cdc8.webp",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement Axis Blend gradient with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “Axis Blend gradient” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "https://cdn.21st.dev/apearlsd/axis-blend-gradient/default/preview.1786346738590-8f662d31-a289-4af8-b02c-fc97f582cdc8.webp"
+        }
+      ],
+      "result": "A site-native version of Axis Blend gradient with responsive layout and complete interaction states."
+    },
+    {
       "id": "21st-24358-hover-terminal",
       "cat": "Interfaces",
       "sub": "Components",
