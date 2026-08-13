@@ -11,6 +11,28 @@
   ],
   "guides": [
     {
+      "id": "21st-24382-blerry-app",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build Blerry.app",
+      "desc": "Pure CSS gradient background in the Silk Blend style, made with the 21st.dev Gradient Builder.",
+      "time": "12 min",
+      "date": "2026-08-11",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "https://cdn.21st.dev/reuelaraujo7/blerry-app/default/preview.1786472746129-057472cb-a95e-4dee-b2a4-2aa78efc415a.webp",
+      "poster": "https://cdn.21st.dev/reuelaraujo7/blerry-app/default/preview.1786472746129-057472cb-a95e-4dee-b2a4-2aa78efc415a.webp",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement Blerry.app with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “Blerry.app” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "https://cdn.21st.dev/reuelaraujo7/blerry-app/default/preview.1786472746129-057472cb-a95e-4dee-b2a4-2aa78efc415a.webp"
+        }
+      ],
+      "result": "A site-native version of Blerry.app with responsive layout and complete interaction states."
+    },
+    {
       "id": "21st-24339-kanban-board",
       "cat": "Interfaces",
       "sub": "Components",
