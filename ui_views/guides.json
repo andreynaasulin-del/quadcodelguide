@@ -11,6 +11,28 @@
   ],
   "guides": [
     {
+      "id": "21st-24412-asd",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build asd",
+      "desc": "Pure CSS gradient background in the Axis Blend style, made with the 21st.dev Gradient Builder.",
+      "time": "12 min",
+      "date": "2026-08-12",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "https://cdn.21st.dev/w9ptt/asd/default/preview.1786557346291-c88e381e-6bb5-48dc-b5ad-0eed3b61705c.webp",
+      "poster": "https://cdn.21st.dev/w9ptt/asd/default/preview.1786557346291-c88e381e-6bb5-48dc-b5ad-0eed3b61705c.webp",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement asd with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “asd” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "https://cdn.21st.dev/w9ptt/asd/default/preview.1786557346291-c88e381e-6bb5-48dc-b5ad-0eed3b61705c.webp"
+        }
+      ],
+      "result": "A site-native version of asd with responsive layout and complete interaction states."
+    },
+    {
       "id": "21st-24404-target-2",
       "cat": "Interfaces",
       "sub": "Components",
