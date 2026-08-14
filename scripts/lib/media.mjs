@@ -17,6 +17,7 @@ export const MIME = {
   jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png',
   webp: 'image/webp', gif: 'image/gif',
   mp3: 'audio/mpeg', wav: 'audio/wav', m4a: 'audio/mp4',
+  zip: 'application/zip',
 };
 
 const __dirname = dirname(fileURLToPath(import.meta.url));

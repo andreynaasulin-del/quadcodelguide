@@ -9,6 +9,8 @@
     "migrate-videos:dry": "node scripts/migrate_assets_to_blob.mjs --dry-run",
     "migrate-direct": "node scripts/migrate_direct_blob.mjs",
     "migrate-direct:dry": "node scripts/migrate_direct_blob.mjs --dry-run",
+    "build-project": "node scripts/build_guide_project.mjs",
+    "build-project:dry": "node scripts/build_guide_project.mjs jerry01-quadcode-testimonials --dry-run",
     "import-21st": "node scripts/import_21st_guides.mjs --limit 15",
     "import-21st:publish": "node scripts/import_21st_guides.mjs --limit 15 --publish"
   },

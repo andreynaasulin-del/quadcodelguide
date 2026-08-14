@@ -56,6 +56,19 @@ function validateGuide(g) {
   if (isLocalVideoPath(g.video)) {
     errs.push('video must be a Vercel Blob https URL (use scripts/publish_case.mjs to upload)');
   }
+  // Optional downloadable project archive ("Open in IDE" button)
+  if (g.project !== undefined) {
+    if (typeof g.project !== 'object' || g.project === null) {
+      errs.push('project must be an object');
+    } else {
+      if (!g.project.zip || !/^https:\/\//.test(g.project.zip)) {
+        errs.push('project.zip must be an absolute https URL (upload the archive to Blob first)');
+      } else if (!/\.zip(\?|$)/i.test(g.project.zip)) {
+        errs.push('project.zip must point to a .zip file — the IDE unpacks it as an archive');
+      }
+      if (!g.project.name) errs.push('project.name is required (shown as the IDE project name)');
+    }
+  }
   return errs;
 }
 

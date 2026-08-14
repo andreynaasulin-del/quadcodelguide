@@ -469,6 +469,14 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     background: rgba(255,149,105,.08);
   }
   .m-cta .m-cta-secondary:active { transform: scale(.97); }
+  .m-cta .m-cta-ide.is-busy { pointer-events: none; opacity: .7; }
+  .m-cta-hint { margin-top: 12px; font-size: 12.5px; color: var(--muted-2); line-height: 1.45; }
+  /* .m-cta b is a display-size heading — override it inside the hint line */
+  .m-cta .m-cta-hint b { color: var(--muted); font-weight: 600; font-size: inherit;
+    font-family: inherit; letter-spacing: normal; display: inline; margin: 0; }
+  .m-cta-hint a { color: var(--muted); font-weight: 600; text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,.18); }
+  .m-cta-hint a:hover { color: var(--acc-1); border-color: rgba(255,149,105,.5); }
   .m-cta-foot {
     margin-top: 14px;
     font-size: 12.5px; color: var(--muted-2); line-height: 1.4;
@@ -4101,10 +4109,19 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         '<span>Open Quadcode with the prompt ready — or copy it and paste in chat.</span>' +
         '<div class="m-cta-actions">' +
           '<button class="cta" data-qc-open type="button">Open in Quadcode &rarr;</button>' +
+          (g.project && g.project.zip
+            ? '<button class="m-cta-secondary m-cta-ide" data-qc-ide type="button">Open in IDE</button>'
+            : '') +
           (allPrompts.length
             ? '<button class="m-cta-secondary" data-copy-all-prompts type="button">Copy all prompts</button>'
             : '') +
         '</div>' +
+        (g.project && g.project.zip
+          ? '<div class="m-cta-hint"><b>Open in IDE</b> hands the finished project to a running Quadcode IDE — ' +
+            'files, chat history and open tabs exactly as the author left them. ' +
+            '<a href="' + esc(g.project.zip) + '" target="_blank" rel="noopener" download>Download .zip</a>' +
+            (g.project.size ? ' &middot; ' + esc(g.project.size) : '') + '</div>'
+          : '') +
         '<div class="m-cta-foot">No app yet? <a href="' + CTA_URL + '" target="_blank" rel="noopener">Get Quadcode</a></div>' +
         '</div>';
       html += '<div class="m-made">' +
@@ -4156,6 +4173,35 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     // Keep deep links SHORT — stuffing long ?prompt= into the URL breaks Windows
     // protocol handlers (CreateProcess command-line limit).
     const DESKTOP_URL = 'quadcode://open';
+
+    // ---- Local IDE API (open-in-ide integration) ----
+    // The IDE runs a loopback HTTP server; a failing /ping is the only way to
+    // know it isn't running. Kept short-timeout so the button never hangs.
+    const IDE_API_URL = 'http://127.0.0.1:47823';
+
+    async function isIdeRunning(timeoutMs = 1500) {
+      try {
+        const ctl = new AbortController();
+        const timer = setTimeout(() => ctl.abort(), timeoutMs);
+        const resp = await fetch(IDE_API_URL + '/ping', { method: 'GET', signal: ctl.signal });
+        clearTimeout(timer);
+        if (!resp.ok) return false;
+        const data = await resp.json();
+        return !!data && data.app === 'quadcodeai-ide';
+      } catch (e) {
+        return false;   // connection refused / blocked -> treat as not running
+      }
+    }
+
+    async function openProjectInIde(name, downloadUrl) {
+      const resp = await fetch(IDE_API_URL + '/open-project', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name, download_url: downloadUrl }),
+      });
+      if (!resp.ok) throw new Error('IDE returned HTTP ' + resp.status);
+      return resp.json();   // 202 { status: "accepted" } — download continues in the IDE
+    }
 
     function copyPromptSilent(text) {
       if (!text) return Promise.resolve(false);
@@ -4581,6 +4627,33 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         const primaryPrompt = guidePrimaryPrompt(g);
         guideBodyEl.querySelectorAll('[data-qc-open]').forEach(btn => {
           btn.onclick = () => openInQuadcode(primaryPrompt);
+        });
+        // "Open in IDE": ping the local IDE API, then hand it the project zip.
+        const proj = g.project && g.project.zip ? g.project : null;
+        guideBodyEl.querySelectorAll('[data-qc-ide]').forEach(btn => {
+          btn.onclick = async () => {
+            if (!proj) return;
+            const label = btn.textContent;
+            const restore = () => { btn.classList.remove('is-busy'); btn.textContent = label; };
+            btn.classList.add('is-busy');
+            btn.textContent = 'Checking IDE…';
+            if (!(await isIdeRunning())) {
+              restore();
+              showToast('Quadcode IDE is not running — start it, then click again');
+              track('ide_open_blocked', { id: g.id });
+              return;
+            }
+            try {
+              await openProjectInIde(proj.name || g.title, proj.zip);
+              btn.textContent = 'Opening in IDE…';
+              showToast('Project sent — switch to the IDE');
+              track('ide_open', { id: g.id });
+            } catch (e) {
+              showToast('Could not send the project to the IDE: ' + e.message);
+              track('ide_open_fail', { id: g.id });
+            }
+            setTimeout(restore, 2600);
+          };
         });
         // share + copy link
         const shareUrl = location.href;

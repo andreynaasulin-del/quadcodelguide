@@ -9,7 +9,7 @@
  * Auth: x-api-key header (same GUIDES_API_KEY as /api/publish),
  *       timing-safe compared. Without a valid key no token is issued.
  *
- * Allowed content: video/*, image/*, audio/* up to 200MB.
+ * Allowed content: video/*, image/*, audio/*, .zip project archives up to 200MB.
  * Files land under guides/ prefix with a random suffix, public access.
  *
  * No secrets in this file — BLOB_READ_WRITE_TOKEN and GUIDES_API_KEY
@@ -58,6 +58,7 @@ module.exports = async (req, res) => {
           'video/mp4', 'video/webm', 'video/quicktime',
           'image/jpeg', 'image/png', 'image/webp', 'image/gif',
           'audio/mpeg', 'audio/wav', 'audio/mp4',
+          'application/zip', 'application/x-zip-compressed',
         ],
         maximumSizeInBytes: 200 * 1024 * 1024, // 200MB
         addRandomSuffix: true,
