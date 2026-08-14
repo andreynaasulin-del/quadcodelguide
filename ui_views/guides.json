@@ -11,6 +11,28 @@
   ],
   "guides": [
     {
+      "id": "21st-24345-1s1s",
+      "cat": "Interfaces",
+      "sub": "Components",
+      "title": "Build 1s1s",
+      "desc": "Animated (wave) ASCII art in the Dither style, made with the 21st ASCII editor and baked to a looping video.",
+      "time": "12 min",
+      "date": "2026-08-08",
+      "level": "Middle",
+      "models": "Quadcode, React",
+      "image": "https://cdn.21st.dev/pshopps04/1s1s/default/preview.1786206021027-f22fd05b-1421-43c6-a964-10dd383e8fef.webp",
+      "poster": "https://cdn.21st.dev/pshopps04/1s1s/default/preview.1786206021027-f22fd05b-1421-43c6-a964-10dd383e8fef.webp",
+      "steps": [
+        {
+          "title": "1. Rebuild and integrate the component",
+          "text": "Read the reference as a component system, then implement 1s1s with semantic structure, responsive layout, the primary interaction and complete interface states. Replace isolated visual values with the site's existing tokens.",
+          "prompt": "Recreate the “1s1s” interface shown in the reference image. Use production-ready React and CSS, preserve the core interaction, and adapt typography, spacing, colors and controls to the current site's design tokens. Keep the component responsive and keyboard accessible. Match the reference hierarchy, then finish the primary interaction, loading or empty state where relevant, keyboard focus, reduced-motion fallback and mobile behavior. Return the final integrated component, not a mockup.",
+          "result_image": "https://cdn.21st.dev/pshopps04/1s1s/default/preview.1786206021027-f22fd05b-1421-43c6-a964-10dd383e8fef.webp"
+        }
+      ],
+      "result": "A site-native version of 1s1s with responsive layout and complete interaction states."
+    },
+    {
       "id": "21st-24341-",
       "cat": "Interfaces",
       "sub": "Components",
