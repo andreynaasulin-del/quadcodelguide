@@ -11,6 +11,61 @@
   ],
   "guides": [
     {
+      "id": "jerry01-quadcode-testimonials",
+      "cat": "Interfaces",
+      "sub": "Interactive Components",
+      "title": "JERRY/01 — Restyle a physics-driven testimonial rig into the Quadcode system",
+      "desc": "Take a third-party Three.js testimonial widget (rope-physics puller, canvas-textured cards) and rebuild its whole visual language — CSS tokens, stage lighting, card typography and copy — to match the Quadcode dark UI, without touching the underlying rig.",
+      "time": "18 min",
+      "date": "2026-07-31",
+      "level": "Middle+",
+      "models": "Quadcode, Three.js",
+      "new": true,
+      "image": "/ui_views/assets/jerry01-testimonials-cover.webp",
+      "poster": "/ui_views/assets/jerry01-testimonials-cover.webp",
+      "steps": [
+        {
+          "title": "1. Audit the source before touching anything",
+          "text": "The original repo ships a warm cream/terracotta editorial theme: Georgia serif headline, #C2603C terracotta accent, paper-grain canvas cards. None of it is Quadcode — but the rig underneath (rope physics, drag-to-scroll, canvas-painted cards) is solid and worth keeping untouched.",
+          "prompt": "Clone the target repo, run it locally, and list every hardcoded visual value: CSS custom properties, font-family declarations, and any hex colors baked into the JS (canvas fill styles, Three.js material colors, light colors). Do not touch logic yet — only inventory."
+        },
+        {
+          "title": "2. Swap CSS tokens for the Quadcode dark system",
+          "text": "Replace the :root palette wholesale: cream/terracotta becomes bg #0E0E14 / bg-2 #1A1A24, text goes white with rgba-based muted tiers, and the single accent becomes the acc-1→acc-2 orange-to-red gradient (#FF9569 → #DD344D). Serif headline swaps for Space Grotesk, body for Manrope — both pulled from Google Fonts, matching the rest of the guide site.",
+          "prompt": "Rewrite the :root CSS variables to the Quadcode dark token set (bg, bg-2, ink, ink-soft, line, acc-1, acc-2). Replace the serif display font with Space Grotesk and the system-UI body font with Manrope. Re-point every button, pill, dot and progress indicator that referenced the old single terra color onto the new two-stop gradient instead of a flat fill.",
+          "result_image": "/ui_views/assets/jerry01-testimonials-cover.webp"
+        },
+        {
+          "title": "3. Repaint the canvas card texture and retune the stage lights",
+          "text": "The testimonial cards are canvas-drawn textures wrapped onto a 3D plane, not DOM elements — so the paper-cream gradient, grain, quote-serif and avatar-initial styling all had to be repainted directly in the paintCard() function. Stage lighting also needed a full pass: the original hemisphere/key/fill setup was tuned for a bright cream backdrop and looked flat and washed-out once the stage went dark, so the rim light became the accent-orange (#FF9569) separator instead of a neutral white.",
+          "prompt": "Inside the canvas-texture paint routine, replace the paper-gradient background, grain color and quote-serif font with the dark bg gradient, Space Grotesk headline font and Manrope body font. Recolor avatar rings and star ratings to the new accent palette. Retune HemisphereLight/DirectionalLight intensities and colors so the stage reads as a dark studio, with the rim light carrying the brand accent color."
+        },
+        {
+          "title": "4. Replace the testimonial copy — English, Quadcode-guide roles",
+          "text": "Swapped six generic marketing quotes for six English testimonials from people who actually use the guide site's own vocabulary: a Game Dev referencing the Dark Fantasy Deceiver NPC guide, a Product Designer, a Motion Designer referencing the Kitchen Configurator guide, a QA Engineer, a Founder, and a Design Lead. Every quote references something specific about a real guide step, not a vague compliment — kept the failure-story pattern from the original (crooked layout before the fix) instead of pure praise.",
+          "prompt": "Replace the DATA testimonials array with six English-language quotes attributed to roles relevant to a design/dev guide platform (Game Dev, Product Designer, Motion Designer, QA Engineer, Founder, Design Lead). Each quote must reference a concrete detail — a specific guide, a specific failure that was fixed, a specific number — not generic praise. Update the section eyebrow and headline to match."
+        },
+        {
+          "title": "5. Ship it live — drag the rope right here",
+          "text": "Not a screen recording — the actual restyled widget, embedded live below via iframe. Drag the rope down (or press the arrows) to pull the next card in; the physics, drag-to-scroll and card-swap logic are all untouched from the original repo — only the visual system and copy changed.",
+          "widget_iframe": "/ui_views/assets/jerry01-testimonials/index.html"
+        }
+      ],
+      "result": "The same rope-physics testimonial rig, now running the Quadcode dark visual system end to end — CSS tokens, canvas-painted card typography, stage lighting and six English testimonials tied to real guides on this site — embedded and playable directly in this guide.",
+      "downloads": [
+        {
+          "label": "Download restyled widget (index.html)",
+          "file": "/ui_views/assets/jerry01-testimonials/index.html"
+        }
+      ],
+      "project": {
+        "name": "JERRY01 — Quadcode Testimonials",
+        "zip": "https://pzppugfayde6tlqh.public.blob.vercel-storage.com/guides/jerry01-quadcode-testimonials/jerry01-quadcode-testimonials-project.zip",
+        "size": "6.3 MB",
+        "includes": "project files, a starter chat, open tabs — author history excluded"
+      }
+    },
+    {
       "id": "21st-24346-hero",
       "cat": "Interfaces",
       "sub": "Components",
