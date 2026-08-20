@@ -6,6 +6,7 @@
   "rewrites": [
     { "source": "/adminpanelqc", "destination": "/ui_views/admin.html" },
     { "source": "/ide-test", "destination": "/ui_views/qc-ide-test.html" },
+    { "source": "/guide/jerry01", "destination": "/ui_views/qc-guide-jerry01.html" },
     { "source": "/", "destination": "/ui_views/landing.html" },
     { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
     { "source": "/robots.txt", "destination": "/robots.txt" }
@@ -19,6 +20,13 @@
     },
     {
       "source": "/ide-test",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/guide/jerry01",
       "headers": [
         { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }

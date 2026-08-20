@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>JERRY/01 — Restyle a physics-driven testimonial rig into the Quadcode system</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E0E14; --bg2:#1A1A24; --line:rgba(255,255,255,.10);
+    --ink:#fff; --soft:rgba(255,255,255,.62); --dim:rgba(255,255,255,.38);
+    --acc1:#FF9569; --acc2:#DD344D; --ok:#38D39F; --warn:#FFC65C; --err:#FF6B6B;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 Manrope,system-ui,sans-serif;
+       -webkit-font-smoothing:antialiased}
+  a{color:var(--acc1)}
+  .top{border-bottom:1px solid var(--line);padding:14px 20px;display:flex;align-items:center;gap:10px}
+  .top b{font:700 16px/1 'Space Grotesk',sans-serif}
+  .top span{color:var(--dim);font-size:13px}
+  .top .sp{flex:1}
+  .top a{font:700 13px/1 'Space Grotesk',sans-serif;text-decoration:none}
+  .wrap{max-width:880px;margin:0 auto;padding:36px 20px 90px}
+  .cover-wrap{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);margin-bottom:22px}
+  .cover-wrap img{display:block;width:100%;height:auto}
+  .result-badge{position:absolute;top:14px;left:14px;background:rgba(10,10,16,.78);backdrop-filter:blur(6px);
+    border:1px solid var(--line);color:var(--ink);font:700 11px/1 'Space Grotesk',sans-serif;
+    letter-spacing:.1em;text-transform:uppercase;padding:8px 12px;border-radius:99px}
+  .cat{display:flex;gap:10px;align-items:center;font:700 12px/1 'Space Grotesk',sans-serif;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--acc1);margin-bottom:12px}
+  .cat .sub{color:var(--dim)}
+  h1{font:700 32px/1.18 'Space Grotesk',sans-serif;margin:0 0 12px;letter-spacing:-.01em}
+  .desc{color:var(--soft);font-size:16px;margin:0 0 16px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;color:var(--soft);font-size:13.5px;
+    padding-bottom:22px;border-bottom:1px solid var(--line);margin-bottom:26px}
+  .lvl{border:1px solid var(--acc1);color:var(--acc1);border-radius:99px;padding:4px 11px;
+    font:700 11.5px/1 'Space Grotesk',sans-serif;letter-spacing:.06em}
+  .meta b{color:var(--ink)}
+  .step{display:flex;gap:16px;margin-bottom:26px}
+  .n{flex:0 0 34px;height:34px;border-radius:50%;border:1px solid var(--line);display:flex;
+    align-items:center;justify-content:center;font:700 14px/1 'Space Grotesk',sans-serif;color:var(--acc1)}
+  .sb{flex:1;min-width:0}
+  .sb h3{font:700 18px/1.3 'Space Grotesk',sans-serif;margin:6px 0 8px}
+  .sb p{margin:0 0 12px;color:var(--soft)}
+  .prompt{background:var(--bg2);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:12px}
+  .p-head{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line)}
+  .p-head span{font:700 11px/1 'Space Grotesk',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+  .p-head .sp{flex:1}
+  .copy-btn{cursor:pointer;background:transparent;border:1px solid var(--line);color:var(--ink);
+    border-radius:9px;padding:7px 12px;font:700 12px/1 'Space Grotesk',sans-serif}
+  .copy-btn.copied{border-color:var(--ok);color:var(--ok)}
+  .prompt code{display:block;padding:14px;font:12.5px/1.65 ui-monospace,SFMono-Regular,Menlo,monospace;
+    color:#D8D8E4;white-space:pre-wrap;word-break:break-word}
+  .simg{display:block;width:100%;height:auto;border-radius:14px;border:1px solid var(--line);margin-top:4px}
+  .widget{width:100%;height:560px;border:1px solid var(--line);border-radius:14px;background:#0B0B11}
+  .result{background:var(--bg2);border:1px solid var(--line);border-left:3px solid var(--acc1);
+    border-radius:14px;padding:16px 18px;margin:8px 0 30px}
+  .result b{font:700 12px/1 'Space Grotesk',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--acc1)}
+  .result p{margin:8px 0 0;color:var(--soft)}
+  .cta-card{background:linear-gradient(160deg,rgba(255,149,105,.10),rgba(221,52,77,.06)),var(--bg2);
+    border:1px solid rgba(255,149,105,.30);border-radius:18px;padding:28px;text-align:center;margin:34px 0}
+  .cta-card b{display:block;font:700 22px/1.3 'Space Grotesk',sans-serif;margin-bottom:6px}
+  .cta-card .sub{color:var(--soft);margin-bottom:18px}
+  .cta-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+  button{transition:transform .12s ease,opacity .12s ease}
+  button:active{transform:translateY(1px)}
+  .cta{cursor:pointer;border:0;border-radius:12px;padding:14px 22px;
+    font:700 15px/1 'Space Grotesk',sans-serif;background:linear-gradient(90deg,var(--acc1),var(--acc2));color:#140A08}
+  .cta-sec{cursor:pointer;background:transparent;color:var(--ink);border:1px solid var(--line);
+    border-radius:12px;padding:14px 22px;font:700 15px/1 'Space Grotesk',sans-serif}
+  .cta-sec.is-busy{opacity:.6}
+  .cta-hint{color:var(--dim);font-size:13px;margin-top:16px}
+  .cta-hint b{display:inline;font:inherit;font-weight:700;color:var(--soft)}
+  /* --- tech toggle --- */
+  .tech-bar{display:flex;align-items:center;gap:14px;background:var(--bg2);border:1px solid var(--line);
+    border-radius:14px;padding:16px 18px;margin:40px 0 0}
+  .tech-bar .t-copy{flex:1}
+  .tech-bar .t-copy b{font:700 14px/1.3 'Space Grotesk',sans-serif}
+  .tech-bar .t-copy span{display:block;color:var(--dim);font-size:12.5px;margin-top:3px}
+  .switch{position:relative;width:52px;height:28px;flex:0 0 52px;cursor:pointer}
+  .switch input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer}
+  .knob{position:absolute;inset:0;border-radius:99px;background:#2A2A36;border:1px solid var(--line);
+    transition:background .18s ease}
+  .knob::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;
+    background:#fff;transition:transform .18s ease}
+  .switch input:checked + .knob{background:linear-gradient(90deg,var(--acc1),var(--acc2));border-color:transparent}
+  .switch input:checked + .knob::after{transform:translateX(24px)}
+  #techPanel{display:none;margin-top:14px}
+  #techPanel.on{display:block}
+  .tech-card{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:14px}
+  .tech-card h4{font:700 13px/1.3 'Space Grotesk',sans-serif;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--soft);margin:0 0 12px}
+  .tech-card ol,.tech-card ul{margin:0;padding-left:20px;color:var(--soft)}
+  .tech-card li{margin-bottom:9px}
+  .tech-card code{font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:#08080C;
+    border:1px solid var(--line);border-radius:6px;padding:2px 6px}
+  pre.snip{background:#08080C;border:1px solid var(--line);border-radius:12px;padding:16px;overflow:auto;
+    font:12.5px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;color:#D8D8E4;margin:0;white-space:pre-wrap;word-break:break-word}
+  .qc-toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(16px);
+    background:rgba(20,20,30,.94);border:1px solid var(--line);color:var(--ink);padding:12px 18px;
+    border-radius:12px;font:600 13.5px/1.3 Manrope,sans-serif;opacity:0;pointer-events:none;
+    transition:opacity .2s ease,transform .2s ease;z-index:99;max-width:88vw;text-align:center}
+  .qc-toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+  .foot{color:var(--dim);font-size:13px;border-top:1px solid var(--line);padding-top:18px;margin-top:44px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <b>quadcode.ai</b><span>| Guide</span>
+  <span class="sp"></span>
+  <a href="https://quadcodeguide.vercel.app/" rel="noopener">All guides →</a>
+</header>
+
+<main class="wrap">
+
+  <div class="cover-wrap">
+    <img src="/ui_views/assets/jerry01-testimonials-cover.webp" alt="Restyled testimonial rig — final result" decoding="async">
+    <span class="result-badge">Final result</span>
+  </div>
+
+  <div class="cat">Interfaces <span class="sub">· Interactive Components</span></div>
+  <h1>JERRY/01 — Restyle a physics-driven testimonial rig into the Quadcode system</h1>
+  <p class="desc">Take a third-party Three.js testimonial widget (rope-physics puller, canvas-textured
+    cards) and rebuild its whole visual language — CSS tokens, stage lighting, card typography and
+    copy — to match the Quadcode dark UI, without touching the underlying rig.</p>
+  <div class="meta">
+    <span class="lvl">Middle+</span>
+    <span>18 min</span>
+    <span><b>Models</b> Quadcode, Three.js</span>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="step">
+    <div class="n">1</div>
+    <div class="sb">
+      <h3>Audit the source before touching anything</h3>
+      <p>The original repo ships a warm cream/terracotta editorial theme: Georgia serif headline,
+        #C2603C terracotta accent, paper-grain canvas cards. None of it is Quadcode — but the rig
+        underneath (rope physics, drag-to-scroll, canvas-painted cards) is solid and worth keeping untouched.</p>
+      <div class="prompt">
+        <div class="p-head"><span>Prompt</span><span class="sp"></span>
+          <button class="copy-btn" data-copy="0" type="button">Copy prompt</button></div>
+        <code>Clone the target repo, run it locally, and list every hardcoded visual value: CSS custom properties, font-family declarations, and any hex colors baked into the JS (canvas fill styles, Three.js material colors, light colors). Do not touch logic yet — only inventory.</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step">
+    <div class="n">2</div>
+    <div class="sb">
+      <h3>Swap CSS tokens for the Quadcode dark system</h3>
+      <p>Replace the :root palette wholesale: cream/terracotta becomes bg #0E0E14 / bg-2 #1A1A24,
+        text goes white with rgba-based muted tiers, and the single accent becomes the acc-1→acc-2
+        orange-to-red gradient (#FF9569 → #DD344D). Serif headline swaps for Space Grotesk, body for
+        Manrope — both pulled from Google Fonts, matching the rest of the guide site.</p>
+      <div class="prompt">
+        <div class="p-head"><span>Prompt</span><span class="sp"></span>
+          <button class="copy-btn" data-copy="1" type="button">Copy prompt</button></div>
+        <code>Rewrite the :root CSS variables to the Quadcode dark token set (bg, bg-2, ink, ink-soft, line, acc-1, acc-2). Replace the serif display font with Space Grotesk and the system-UI body font with Manrope. Re-point every button, pill, dot and progress indicator that referenced the old single terra color onto the new two-stop gradient instead of a flat fill.</code>
+      </div>
+      <img class="simg" src="/ui_views/assets/jerry01-testimonials-cover.webp" alt="Dark token pass result" loading="lazy" decoding="async">
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step">
+    <div class="n">3</div>
+    <div class="sb">
+      <h3>Repaint the canvas card texture and retune the stage lights</h3>
+      <p>The testimonial cards are canvas-drawn textures wrapped onto a 3D plane, not DOM elements —
+        so the paper-cream gradient, grain, quote-serif and avatar-initial styling all had to be
+        repainted directly in the paintCard() function. Stage lighting also needed a full pass: the
+        original hemisphere/key/fill setup was tuned for a bright cream backdrop and looked flat once
+        the stage went dark, so the rim light became the accent-orange (#FF9569) separator.</p>
+      <div class="prompt">
+        <div class="p-head"><span>Prompt</span><span class="sp"></span>
+          <button class="copy-btn" data-copy="2" type="button">Copy prompt</button></div>
+        <code>Inside the canvas-texture paint routine, replace the paper-gradient background, grain color and quote-serif font with the dark bg gradient, Space Grotesk headline font and Manrope body font. Recolor avatar rings and star ratings to the new accent palette. Retune HemisphereLight/DirectionalLight intensities and colors so the stage reads as a dark studio, with the rim light carrying the brand accent color.</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step">
+    <div class="n">4</div>
+    <div class="sb">
+      <h3>Replace the testimonial copy — English, Quadcode-guide roles</h3>
+      <p>Swapped six generic marketing quotes for six English testimonials from people who actually
+        use the guide site's own vocabulary: a Game Dev, a Product Designer, a Motion Designer, a QA
+        Engineer, a Founder and a Design Lead. Every quote references something specific about a real
+        guide step, not a vague compliment.</p>
+      <div class="prompt">
+        <div class="p-head"><span>Prompt</span><span class="sp"></span>
+          <button class="copy-btn" data-copy="3" type="button">Copy prompt</button></div>
+        <code>Replace the DATA testimonials array with six English-language quotes attributed to roles relevant to a design/dev guide platform (Game Dev, Product Designer, Motion Designer, QA Engineer, Founder, Design Lead). Each quote must reference a concrete detail — a specific guide, a specific failure that was fixed, a specific number — not generic praise. Update the section eyebrow and headline to match.</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="step">
+    <div class="n">5</div>
+    <div class="sb">
+      <h3>Ship it live — drag the rope right here</h3>
+      <p>Not a screen recording — the actual restyled widget, embedded live below. Drag the rope down
+        (or press the arrows) to pull the next card in; the physics, drag-to-scroll and card-swap
+        logic are all untouched from the original repo — only the visual system and copy changed.</p>
+      <iframe class="widget" src="/ui_views/assets/jerry01-testimonials/index.html"
+        title="Restyled testimonial rig — live" loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <div class="result">
+    <b>Result</b>
+    <p>The same rope-physics testimonial rig, now running the Quadcode dark visual system end to end —
+      CSS tokens, canvas-painted card typography, stage lighting and six English testimonials tied to
+      real guides on this site — embedded and playable directly in this guide.</p>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-card">
+    <b>Ready to make this?</b>
+    <div class="sub">Open Quadcode with the prompt ready — or hand the finished project straight to a running IDE.</div>
+    <div class="cta-row">
+      <button class="cta" id="btnQcOpen" type="button">Open in Quadcode →</button>
+      <button class="cta-sec" id="btnIdeOpen" type="button">Open in IDE</button>
+    </div>
+    <div class="cta-hint"><b>Open in IDE</b> hands the finished project to a running Quadcode IDE —
+      files, chat history and open tabs exactly as the author left them.
+      <a href="https://pzppugfayde6tlqh.public.blob.vercel-storage.com/guides/jerry01-quadcode-testimonials/jerry01-quadcode-testimonials-project.zip"
+         target="_blank" rel="noopener" download>Download .zip</a> · 6.3 MB</div>
+    <div class="cta-hint">No app yet? <a href="https://quadcode.ai" target="_blank" rel="noopener">Get Quadcode</a></div>
+  </div>
+
+  <!-- TECH TOGGLE -->
+  <div class="tech-bar">
+    <div class="t-copy">
+      <b>Technical notes</b>
+      <span>How the buttons above work + a test checklist. Off by default — readers never see it.</span>
+    </div>
+    <label class="switch" aria-label="Toggle technical notes">
+      <input type="checkbox" id="techToggle">
+      <span class="knob"></span>
+    </label>
+  </div>
+
+  <div id="techPanel">
+    <div class="tech-card">
+      <h4>Что проверяем (чек-лист)</h4>
+      <ol>
+        <li>Запусти Quadcode IDE. Проверка что API жив: <code>curl http://127.0.0.1:47823/ping</code> →
+          ожидаем <code>{"status":"ok","app":"quadcodeai-ide"}</code>.</li>
+        <li>Жми <b>Open in IDE</b> выше. Страница делает <code>GET /ping</code>, затем
+          <code>POST /open-project</code> с телом <code>{"name":"JERRY01 — Quadcode Testimonials","download_url":"…zip"}</code>.
+          Ответ — <code>202 {"status":"accepted"}</code>: IDE сама качает zip (6.3 MB, Vercel Blob) и
+          открывает проект — файлы, стартовый чат, открытые табы.</li>
+        <li>Ожидаемый результат в IDE: проект открыт, чат содержит стартовое сообщение, фокус на
+          секции файлов. Если чат пустой — это то, что дебажим.</li>
+        <li><b>Open in Quadcode</b> — копирует промпт первого шага в буфер и дёргает
+          <code>quadcode://open</code>. Приложение открывается пустым, промпт вставляется вручную — так задумано.</li>
+        <li>IDE не запущена → страница покажет тост «IDE is not running», без зависаний
+          (таймаут ping — 1.5 c).</li>
+      </ol>
+    </div>
+    <div class="tech-card">
+      <h4>Ручная проверка без страницы (curl)</h4>
+      <pre class="snip">curl http://127.0.0.1:47823/ping
+
+curl -X POST http://127.0.0.1:47823/open-project \
+  -H "Content-Type: application/json" \
+  -d '{"name":"JERRY01 — Quadcode Testimonials","download_url":"https://pzppugfayde6tlqh.public.blob.vercel-storage.com/guides/jerry01-quadcode-testimonials/jerry01-quadcode-testimonials-project.zip"}'</pre>
+    </div>
+    <div class="tech-card">
+      <h4>Код кнопок (тот же, что на проде)</h4>
+      <pre class="snip" id="snippet">const IDE_API_URL = 'http://127.0.0.1:47823';
+const DESKTOP_URL = 'quadcode://open';
+
+async function isIdeRunning(timeoutMs = 1500) {
+  try {
+    const ctl = new AbortController();
+    const timer = setTimeout(() => ctl.abort(), timeoutMs);
+    const resp = await fetch(IDE_API_URL + '/ping', { method: 'GET', signal: ctl.signal });
+    clearTimeout(timer);
+    if (!resp.ok) return false;
+    const data = await resp.json();
+    return !!data && data.app === 'quadcodeai-ide';
+  } catch (e) { return false; }
+}
+
+async function openProjectInIde(name, downloadUrl) {
+  const resp = await fetch(IDE_API_URL + '/open-project', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: name, download_url: downloadUrl })
+  });
+  if (!resp.ok) throw new Error('IDE returned HTTP ' + resp.status);
+  return resp.json();  // 202 { status: "accepted" }
+}
+
+function launchProtocol(url) {
+  const a = document.createElement('a');
+  a.href = url; a.rel = 'noopener'; a.style.display = 'none';
+  document.body.appendChild(a); a.click(); a.remove();
+  const f = document.createElement('iframe');
+  f.style.cssText = 'position:fixed;width:0;height:0;border:0;opacity:0';
+  f.src = url; document.body.appendChild(f);
+  setTimeout(() => f.remove(), 2500);
+}</pre>
+      <div style="margin-top:12px">
+        <button class="copy-btn" id="btnCopySnip" type="button">Copy code</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    Source: <code>ui_views/qc-guide-jerry01.html</code> · route <code>/guide/jerry01</code> ·
+    repo <a href="https://github.com/andreynaasulin-del/quadcodelguide" target="_blank" rel="noopener">andreynaasulin-del/quadcodelguide</a>
+  </div>
+
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  // ---- guide data ----
+  const PROMPTS = Array.prototype.map.call(
+    document.querySelectorAll('.prompt code'),
+    function (el) { return el.textContent.trim(); }
+  );
+  const PRIMARY_PROMPT = PROMPTS[0] || '';
+  const PROJECT = {
+    name: 'JERRY01 — Quadcode Testimonials',
+    zip: 'https://pzppugfayde6tlqh.public.blob.vercel-storage.com/guides/jerry01-quadcode-testimonials/jerry01-quadcode-testimonials-project.zip'
+  };
+
+  // ---- integration constants (same as production landing) ----
+  const DESKTOP_URL = 'quadcode://open';
+  const IDE_API_URL = 'http://127.0.0.1:47823';
+
+  // ---- toast ----
+  let toastT = 0;
+  function showToast(msg) {
+    let el = document.getElementById('qcToast');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'qcToast'; el.className = 'qc-toast'; el.setAttribute('role', 'status');
+      document.body.appendChild(el);
+    }
+    el.textContent = msg;
+    el.classList.add('on');
+    clearTimeout(toastT);
+    toastT = setTimeout(function () { el.classList.remove('on'); }, 2600);
+  }
+
+  // ---- clipboard ----
+  function fallbackCopy(text, done) {
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); done(); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+  function copyPromptSilent(text) {
+    if (!text) return Promise.resolve(false);
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text).then(function () { return true; })
+        .catch(function () { fallbackCopy(text, function () {}); return true; });
+    }
+    fallbackCopy(text, function () {});
+    return Promise.resolve(true);
+  }
+
+  // ---- IDE API ----
+  async function isIdeRunning(timeoutMs) {
+    try {
+      const ctl = new AbortController();
+      const timer = setTimeout(function () { ctl.abort(); }, timeoutMs || 1500);
+      const resp = await fetch(IDE_API_URL + '/ping', { method: 'GET', signal: ctl.signal });
+      clearTimeout(timer);
+      if (!resp.ok) return false;
+      const data = await resp.json();
+      return !!data && data.app === 'quadcodeai-ide';
+    } catch (e) { return false; }
+  }
+  async function openProjectInIde(name, downloadUrl) {
+    const resp = await fetch(IDE_API_URL + '/open-project', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name, download_url: downloadUrl })
+    });
+    if (!resp.ok) throw new Error('IDE returned HTTP ' + resp.status);
+    return resp.json();
+  }
+
+  // ---- desktop protocol launch ----
+  function launchProtocol(url) {
+    try {
+      const a = document.createElement('a');
+      a.href = url; a.rel = 'noopener'; a.style.display = 'none';
+      document.body.appendChild(a); a.click(); a.remove();
+    } catch (e) {}
+    try {
+      const f = document.createElement('iframe');
+      f.setAttribute('aria-hidden', 'true');
+      f.style.cssText = 'position:fixed;width:0;height:0;border:0;opacity:0;pointer-events:none';
+      f.src = url; document.body.appendChild(f);
+      setTimeout(function () { try { f.remove(); } catch (e) {} }, 2500);
+    } catch (e) {}
+    try { if (typeof navigator.msLaunchUri === 'function') navigator.msLaunchUri(url); } catch (e) {}
+  }
+
+  function openDesktopQuadcode(promptText) {
+    copyPromptSilent(promptText);
+    showToast(promptText
+      ? 'Opening Quadcode — prompt copied (Ctrl+V in chat)'
+      : 'Opening Quadcode…');
+    let left = false;
+    const onHide = function () { left = true; };
+    document.addEventListener('visibilitychange', onHide, { once: true });
+    window.addEventListener('blur', onHide, { once: true });
+    launchProtocol(DESKTOP_URL);
+    setTimeout(function () {
+      if (left || document.hidden) return;
+      showToast('App not opening? Visit quadcode.ai — prompt is already copied');
+    }, 2000);
+  }
+
+  // ---- wire up ----
+  document.getElementById('btnQcOpen').onclick = function () {
+    openDesktopQuadcode(PRIMARY_PROMPT);
+  };
+
+  document.getElementById('btnIdeOpen').onclick = async function () {
+    const btn = this, label = btn.textContent;
+    const restore = function () { btn.classList.remove('is-busy'); btn.textContent = label; };
+    btn.classList.add('is-busy');
+    btn.textContent = 'Checking IDE…';
+    if (!(await isIdeRunning())) {
+      restore();
+      showToast('Quadcode IDE is not running — start it, then click again');
+      return;
+    }
+    try {
+      await openProjectInIde(PROJECT.name, PROJECT.zip);
+      btn.textContent = 'Opening in IDE…';
+      showToast('Project sent — switch to the IDE');
+    } catch (e) {
+      showToast('Could not send the project to the IDE: ' + e.message);
+    }
+    setTimeout(restore, 2600);
+  };
+
+  document.querySelectorAll('.copy-btn[data-copy]').forEach(function (btn) {
+    btn.onclick = function () {
+      const text = PROMPTS[parseInt(btn.dataset.copy, 10)];
+      if (!text) return;
+      const done = function () {
+        btn.classList.add('copied'); btn.textContent = 'Copied!';
+        setTimeout(function () { btn.classList.remove('copied'); btn.textContent = 'Copy prompt'; }, 1600);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(function () { fallbackCopy(text, done); });
+      } else fallbackCopy(text, done);
+    };
+  });
+
+  // ---- tech toggle ----
+  const techToggle = document.getElementById('techToggle');
+  const techPanel = document.getElementById('techPanel');
+  techToggle.addEventListener('change', function () {
+    techPanel.classList.toggle('on', techToggle.checked);
+  });
+
+  const copySnip = document.getElementById('btnCopySnip');
+  copySnip.onclick = function () {
+    const text = document.getElementById('snippet').textContent;
+    const done = function () {
+      copySnip.classList.add('copied'); copySnip.textContent = 'Copied!';
+      setTimeout(function () { copySnip.classList.remove('copied'); copySnip.textContent = 'Copy code'; }, 1600);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(function () { fallbackCopy(text, done); });
+    } else fallbackCopy(text, done);
+  };
+})();
+</script>
+</body>
+</html>
