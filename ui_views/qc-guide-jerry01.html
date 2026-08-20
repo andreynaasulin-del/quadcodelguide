@@ -24,11 +24,22 @@
   .top .sp{flex:1}
   .top a{font:700 13px/1 'Space Grotesk',sans-serif;text-decoration:none}
   .wrap{max-width:880px;margin:0 auto;padding:36px 20px 90px}
-  .cover-wrap{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);margin-bottom:22px}
-  .cover-wrap img{display:block;width:100%;height:auto}
-  .result-badge{position:absolute;top:14px;left:14px;background:rgba(10,10,16,.78);backdrop-filter:blur(6px);
+  /* live scaled stage — renders the widget at its native desktop width, then
+     scales the whole thing down to fit, so nothing is ever cropped */
+  .stage{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);
+    background:#0B0B11;margin-bottom:10px;height:520px;
+    width:min(1280px,100vw - 40px);max-width:min(1280px,100vw - 40px);
+    margin-left:50%;transform:translateX(-50%)}
+  .stage iframe{position:absolute;top:0;left:0;width:1280px;height:940px;border:0;
+    transform-origin:top left;display:block}
+  .stage-hint{color:var(--dim);font-size:12.5px;margin:0 0 22px;text-align:center}
+  .result-badge{position:absolute;top:14px;right:14px;background:rgba(10,10,16,.78);backdrop-filter:blur(6px);
     border:1px solid var(--line);color:var(--ink);font:700 11px/1 'Space Grotesk',sans-serif;
-    letter-spacing:.1em;text-transform:uppercase;padding:8px 12px;border-radius:99px}
+    letter-spacing:.1em;text-transform:uppercase;padding:8px 12px;border-radius:99px;z-index:2;
+    display:flex;align-items:center;gap:7px}
+  .result-badge i{width:7px;height:7px;border-radius:50%;background:var(--ok);display:block;
+    box-shadow:0 0 0 0 rgba(56,211,159,.6);animation:pulse 2s infinite}
+  @keyframes pulse{70%{box-shadow:0 0 0 7px rgba(56,211,159,0)}100%{box-shadow:0 0 0 0 rgba(56,211,159,0)}}
   .cat{display:flex;gap:10px;align-items:center;font:700 12px/1 'Space Grotesk',sans-serif;
     letter-spacing:.1em;text-transform:uppercase;color:var(--acc1);margin-bottom:12px}
   .cat .sub{color:var(--dim)}
@@ -117,10 +128,14 @@
 
 <main class="wrap">
 
-  <div class="cover-wrap">
-    <img src="/ui_views/assets/jerry01-testimonials-cover.webp" alt="Restyled testimonial rig — final result" decoding="async">
-    <span class="result-badge">Final result</span>
+  <div class="stage" id="stage">
+    <span class="result-badge"><i></i>Live result</span>
+    <iframe id="stageFrame" src="/ui_views/assets/jerry01-testimonials/index.html"
+      title="Restyled testimonial rig — live" scrolling="no"></iframe>
   </div>
+  <p class="stage-hint">Not a screenshot — the finished widget from this guide, running right here.
+    Drag the rope or use the arrows. ·
+    <a href="/ui_views/assets/jerry01-testimonials/index.html" target="_blank" rel="noopener">Open full-screen ↗</a></p>
 
   <div class="cat">Interfaces <span class="sub">· Interactive Components</span></div>
   <h1>JERRY/01 — Restyle a physics-driven testimonial rig into the Quadcode system</h1>
@@ -163,7 +178,6 @@
           <button class="copy-btn" data-copy="1" type="button">Copy prompt</button></div>
         <code>Rewrite the :root CSS variables to the Quadcode dark token set (bg, bg-2, ink, ink-soft, line, acc-1, acc-2). Replace the serif display font with Space Grotesk and the system-UI body font with Manrope. Re-point every button, pill, dot and progress indicator that referenced the old single terra color onto the new two-stop gradient instead of a flat fill.</code>
       </div>
-      <img class="simg" src="/ui_views/assets/jerry01-testimonials-cover.webp" alt="Dark token pass result" loading="lazy" decoding="async">
     </div>
   </div>
 
@@ -206,12 +220,12 @@
   <div class="step">
     <div class="n">5</div>
     <div class="sb">
-      <h3>Ship it live — drag the rope right here</h3>
-      <p>Not a screen recording — the actual restyled widget, embedded live below. Drag the rope down
-        (or press the arrows) to pull the next card in; the physics, drag-to-scroll and card-swap
-        logic are all untouched from the original repo — only the visual system and copy changed.</p>
-      <iframe class="widget" src="/ui_views/assets/jerry01-testimonials/index.html"
-        title="Restyled testimonial rig — live" loading="lazy"></iframe>
+      <h3>Ship it live — drag the rope at the top of this page</h3>
+      <p>Not a screen recording — the actual restyled widget is embedded at the top of this page.
+        Drag the rope down (or press the arrows) to pull the next card in; the physics,
+        drag-to-scroll and card-swap logic are all untouched from the original repo — only the
+        visual system and copy changed.</p>
+      <button class="cta-sec" id="btnToStage" type="button">↑ Back to the live widget</button>
     </div>
   </div>
 
@@ -240,8 +254,9 @@
   <!-- TECH TOGGLE -->
   <div class="tech-bar">
     <div class="t-copy">
-      <b>Technical notes</b>
-      <span>How the buttons above work + a test checklist. Off by default — readers never see it.</span>
+      <b>Technical notes · инструкция по-русски</b>
+      <span>Что это за ссылка, чем отличаются кнопки, как тестировать и код под капотом.
+        Выключено по умолчанию — обычный читатель гайда этого не видит.</span>
     </div>
     <label class="switch" aria-label="Toggle technical notes">
       <input type="checkbox" id="techToggle">
@@ -251,7 +266,53 @@
 
   <div id="techPanel">
     <div class="tech-card">
-      <h4>Что проверяем (чек-лист)</h4>
+      <h4>Что это за страница и зачем она нужна</h4>
+      <p style="color:var(--soft);margin:0 0 12px">Это настоящий гайд с каталога
+        <a href="https://quadcodeguide.vercel.app/" target="_blank" rel="noopener">quadcodeguide.vercel.app</a>,
+        вынесенный на отдельный адрес <code>/guide/jerry01</code>, чтобы можно было тестировать
+        механику «Open in Quadcode» на живой HTTPS-странице, а не на localhost. Верхний блок —
+        не картинка, а реально работающий результат гайда (Three.js виджет из проекта, который
+        отдаётся кнопкой ниже).</p>
+      <ul>
+        <li><b>Open in Quadcode</b> — «мягкий» вход: копирует промпт первого шага в буфер и дёргает
+          диплинк <code>quadcode://open</code>. Приложение просто открывается, промпт вставляется
+          вручную (Cmd/Ctrl+V в чат). Проекта тут нет — это точка входа для новичка.</li>
+        <li><b>Open in IDE</b> — «жёсткий» вход, то ради чего страница и сделана: страница напрямую
+          стучится в локальный HTTP-API запущенного Quadcode IDE
+          (<code>127.0.0.1:47823</code>) и передаёт ссылку на zip проекта. IDE сама скачивает архив и
+          открывает готовый проект — файлы, ассеты, история чата, открытые табы.</li>
+        <li>Разница простыми словами: первая кнопка открывает <i>пустое</i> приложение с промптом в
+          буфере, вторая — <i>конкретный проект автора</i> прямо в вашей IDE.</li>
+      </ul>
+    </div>
+    <div class="tech-card">
+      <h4>Как проверить за 30 секунд</h4>
+      <ol>
+        <li>Запусти десктопное приложение Quadcode. Важно: на API отвечает <b>только тот инстанс,
+          который стартовал первым</b> — если открыто несколько окон/копий, порт 47823 держит
+          первое из них.</li>
+        <li>Открой эту страницу и нажми <b>Open in IDE</b>.</li>
+        <li>Ожидаемое поведение: тост «Project sent — switch to the IDE», переключаешься в
+          приложение — проект <code>JERRY01 — Quadcode Testimonials</code> открыт.</li>
+        <li>Если приложение не запущено — страница честно скажет «Quadcode IDE is not running»
+          и ничего не подвиснет (таймаут ping — 1.5 c).</li>
+        <li>Затем нажми <b>Open in Quadcode</b> — проверяем, отрабатывает ли ОС диплинк
+          <code>quadcode://open</code> и открывается ли приложение.</li>
+      </ol>
+    </div>
+    <div class="tech-card">
+      <h4>Что именно ловим (баг-репорт по шагам)</h4>
+      <ol>
+        <li><b>Пустой чат.</b> Проект открывается, файлы на месте, но чат пустой — история из архива
+          не подхватывается. Это главный кейс на дебаг.</li>
+        <li><b>Диплинк.</b> Нужна регистрация схемы <code>quadcode://</code> в приложении, чтобы
+          браузер умел его открывать; пока сценарий «браузер → приложение» не гарантирован.</li>
+        <li><b>Мульти-инстанс.</b> Если закрыть первый инстанс, порт подхватывает следующий
+          запущенный — стоит зафиксировать ожидаемое поведение.</li>
+      </ol>
+    </div>
+    <div class="tech-card">
+      <h4>Чек-лист по HTTP (что делает страница под капотом)</h4>
       <ol>
         <li>Запусти Quadcode IDE. Проверка что API жив: <code>curl http://127.0.0.1:47823/ping</code> →
           ожидаем <code>{"status":"ok","app":"quadcodeai-ide"}</code>.</li>
@@ -342,6 +403,45 @@ function launchProtocol(url) {
   // ---- integration constants (same as production landing) ----
   const DESKTOP_URL = 'quadcode://open';
   const IDE_API_URL = 'http://127.0.0.1:47823';
+
+  // ---- live stage: scale the native-width widget down so nothing is cropped ----
+  const stage = document.getElementById('stage');
+  const frame = document.getElementById('stageFrame');
+  const BASE_W = 1280;
+  let baseH = 940;
+
+  function fitStage() {
+    // never crop: fit by width, and cap by height so the hero can't eat the viewport
+    const availW = Math.min(BASE_W, window.innerWidth - 40);
+    const maxH = Math.max(360, Math.min(660, window.innerHeight * 0.78));
+    const s = Math.min(availW / BASE_W, maxH / baseH);
+    frame.style.transform = 'scale(' + s + ')';
+    stage.style.width = Math.round(BASE_W * s) + 'px';
+    stage.style.height = Math.round(baseH * s) + 'px';
+  }
+  function measureStage() {
+    try {
+      const doc = frame.contentDocument;
+      if (doc && doc.body) {
+        const h = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight);
+        if (h > 200) baseH = h + 8;
+      }
+    } catch (e) { /* keep fallback height */ }
+    frame.style.height = baseH + 'px';
+    fitStage();
+  }
+  frame.addEventListener('load', function () {
+    measureStage();
+    setTimeout(measureStage, 600);
+    setTimeout(measureStage, 1800);
+  });
+  fitStage();
+  window.addEventListener('resize', fitStage);
+
+  const toStage = document.getElementById('btnToStage');
+  if (toStage) toStage.onclick = function () {
+    stage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   // ---- toast ----
   let toastT = 0;
