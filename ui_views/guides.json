@@ -77,7 +77,7 @@
       "models": "AI video generation",
       "new": true,
       "video": "/ui_views/assets/gta-skate-stunt.mp4",
-      "poster": "/ui_views/assets/gta-skate-stunt-poster.jpg",
+      "poster": "/ui_views/assets/gta-skate-stunt-poster.webp",
       "steps": [
         {
           "title": "1. Build a line, not a montage",
@@ -114,7 +114,7 @@
       "models": "AI video generation",
       "new": true,
       "video": "/ui_views/assets/gta-surf-stunt.mp4",
-      "poster": "/ui_views/assets/gta-surf-stunt-poster.jpg",
+      "poster": "/ui_views/assets/gta-surf-stunt-poster.webp",
       "steps": [
         {
           "title": "1. Frame it like gameplay",
@@ -151,7 +151,7 @@
       "models": "AI video generation",
       "new": true,
       "video": "/ui_views/assets/wushu-ink-dragon-cinematic.mp4",
-      "poster": "/ui_views/assets/wushu-ink-dragon-cinematic-poster.jpg",
+      "poster": "/ui_views/assets/wushu-ink-dragon-cinematic-poster.webp",
       "steps": [
         {
           "title": "1. Lock one visual rule",
@@ -195,25 +195,25 @@
           "title": "1. Lock the input-to-preview wireframe logic",
           "text": "Two-panel blueprint: a width/depth/height input form on the left, a live floor-plan preview on the right, connected by a \"LIVE SYNC\" link so every field edit redraws the plan immediately — no separate \"Generate\" button, no round-trip.",
           "prompt": "GOAL: Two-panel wireframe sheet — input form (left) driving a live floor-plan preview (right), orange dimension arrows, explicit LIVE SYNC connector between the two panels.",
-          "result_image": "/ui_views/assets/snap01-01-wireframe-form-logic.png"
+          "result_image": "/ui_views/assets/snap01-01-wireframe-form-logic.webp"
         },
         {
           "title": "2. Score the snapping model with a weighted matrix",
           "text": "Three snapping strategies scored on Trust (35%), Speed (20%), Error Rate (30%), Build Cost (15%): Grid-Snap 4.50, Rigid Presets 4.35, Freeform 2.50. Grid-Snap wins by only 0.15 over Rigid Presets — close enough that the rule gets written down, not left to memory: grid pitch = width of the narrowest module.",
           "prompt": "GOAL: Decision-matrix sheet comparing Grid-Snap / Freeform / Rigid Presets against 4 weighted criteria, with floor-plan icon per strategy and a locked scoring rule footer.",
-          "result_image": "/ui_views/assets/snap01-02-interaction-matrix.png"
+          "result_image": "/ui_views/assets/snap01-02-interaction-matrix.webp"
         },
         {
           "title": "3. Render the flagship identity kitchen",
           "text": "One L-shaped run + island, on a neutral graphite studio backdrop, with the material palette locked before any single module gets modeled: OAK #C08A52 for fronts, GRAPHITE #22262B for worktops, STEEL #9AA3AC for hardware. Six modules visible and separable in one shot: base run, wall run, corner unit, appliance tower, island, hood.",
           "prompt": "GOAL: Flagship L-kitchen + island identity render, neutral graphite studio background, OAK/GRAPHITE/STEEL material palette, all 6 module types clearly separable.",
-          "result_image": "/ui_views/assets/snap01-03-identity-render.png"
+          "result_image": "/ui_views/assets/snap01-03-identity-render.webp"
         },
         {
           "title": "4. Define the module library on a locked grid pitch",
           "text": "Six modules, one 300mm grid: Base Cabinet 600×600×720, Wall Cabinet 600×350×720, Drawer Stack 300×600×720 (the narrowest — sets the pitch), Corner Unit 900×900×720, Island 1800×900×900, Appliance Bay 600×600×2100. Every width is a multiple of 300mm, so any two modules snap edge-to-edge with zero gap or overlap.",
           "prompt": "GOAL: Orthographic module-library sheet, 3×2 grid, 6 kitchen modules with dimension lines and W×D×H spec line each, same OAK/GRAPHITE/STEEL palette as the identity render.",
-          "result_image": "/ui_views/assets/snap01-04-module-library.png"
+          "result_image": "/ui_views/assets/snap01-04-module-library.webp"
         },
         {
           "title": "5. Rebuild all 6 modules as production GLB meshes",
@@ -255,7 +255,7 @@
         {
           "title": "6. Build the real configurator — hand-coded, not generated",
           "text": "~300 lines of plain HTML/CSS/JS, no framework: a 6-item drag palette, a 300mm-pitch grid canvas (44px per cell — same pitch step 2 locked), a live BOM panel, and a 3D inspector reusing the exact 6 GLB files from step 5. Collision check is an AABB scan against an occupied-cell hash set; Corner Unit is only accepted if its 3×3-cell footprint lines up with one of the 4 room corners — 4 boolean comparisons, not a general polygon test, because a rectangular room only has 4 corners.",
-          "result_image": "/ui_views/assets/snap01-06-configurator-widget.png"
+          "result_image": "/ui_views/assets/snap01-06-configurator-widget.webp"
         },
         {
           "title": "7. Ship it live — drag, snap and orbit right here",
@@ -265,7 +265,7 @@
         {
           "title": "8. Technical spec — BOM, pricing formula, collision rules",
           "text": "BOM fields: module name, quantity, unit price, line total. Formula: Total = Σ(unit price × qty) × 1.08 — the 8% hardware/install fee is a visible multiplier, not a hidden markup. Prices locked per module: Base Cabinet €420, Wall Cabinet €260, Drawer Stack €340, Corner Unit €610, Island €1,450, Appliance Bay €890. Collision rule: zero clearance by design — the grid pitch already equals the narrowest module, so edge-to-edge snapping needs no gap. Corner rule: Corner Unit valid only at the 4 room-corner cells.",
-          "result_image": "/ui_views/assets/snap01-08-technical-spec.png"
+          "result_image": "/ui_views/assets/snap01-08-technical-spec.webp"
         }
       ],
       "result": "A locked 300mm-pitch module library (6 GLB meshes, all snap-compatible edge-to-edge), the 4 concept sheets that justify every dimension and interaction rule, and a real hand-coded configurator widget — drag-and-drop grid placement, live 3D inspection and a live-computed BOM — embedded and playable directly in this guide.",
@@ -315,50 +315,50 @@
           "title": "1. Force three distinct silhouette massings",
           "text": "Start with pure black shapes at 1:1 scale before any face or costume work. Variant A (Wing Collar), B (Relic Chain) and C (Moth Cloak) each test a different C-curve and collar height. If a silhouette does not read at 120 px, it is dead — no render saves it.",
           "prompt": "GOAL: Generate 3 distinct black silhouette massings for a dark-fantasy diplomat NPC. A: high bat-wing collar, hands hidden. B: heavy relic chain weighting the torso forward. C: moth-cloak shoulders dissolving into the coat. Pure black on light grey, 1:1, no faces, no costume detail. Judge only readability at small size.",
-          "result_image": "/ui_views/assets/npc01-01-silhouette-test.png"
+          "result_image": "/ui_views/assets/npc01-01-silhouette-test.webp"
         },
         {
           "title": "2. Score variants with a weighted decision matrix",
           "text": "Score every silhouette against Authority (30%), Threat (25%), Magic (20%), Readability at 120px (15%), Mobility (10%). Variant A wins at 4.25 weighted — the bat-wing collar is locked by numbers, not taste. This sheet is what you show a client when they ask \"why this one\".",
           "prompt": "GOAL: Senior game-concept decision sheet. Score the 3 silhouettes from step 1 against 5 weighted criteria (Authority 30, Threat 25, Magic 20, Readability 15, Mobility 10). Show per-criterion scores, weighted totals, and a verdict row declaring the winner. Swiss editorial layout, dark ink on bone paper.",
-          "result_image": "/ui_views/assets/npc01-02-variant-matrix.png"
+          "result_image": "/ui_views/assets/npc01-02-variant-matrix.webp"
         },
         {
           "title": "3. Lock face, materials and palette in the identity render",
           "text": "Render the canonical 3/4 full-body anchor. Palette lock: VOID #120F17, BLOOD #4A1830, BONE #C7B79B, STEEL #8A9199. High stiffened collar, concealed hands, signet cane. Every later sheet must match this render — it is the single source of truth.",
           "prompt": "GOAL: Full-body identity render for THE COURT PARASITE using silhouette A. 3/4 view, high stiffened wing collar hiding the jaw, long sleeves concealing hands, signet cane. Palette: void black #120F17 coat, dried-blood #4A1830 lining, bone #C7B79B face, steel #8A9199 accents. Flat neutral backdrop, concept-art finish.",
-          "result_image": "/ui_views/assets/npc01-03-identity-render.png"
+          "result_image": "/ui_views/assets/npc01-03-identity-render.webp"
         },
         {
           "title": "4. Produce the orthographic 4-view turnaround",
           "text": "FRONT / 3-4 / SIDE / BACK locked to the identity render on warm bone paper (#EDE8DF). The back view designs the collar rear plane without inventing a cape. Modelers build from this sheet — proportions here are law.",
           "prompt": "GOAL: Production turnaround sheet, 4 orthographic views (FRONT, 3/4, SIDE, BACK) of THE COURT PARASITE on warm bone paper #EDE8DF. Keep proportions identical across views, match the identity render palette and collar geometry. Clean line art with flat color fills, labeled view headers.",
-          "result_image": "/ui_views/assets/npc01-04-turnaround.png"
+          "result_image": "/ui_views/assets/npc01-04-turnaround.webp"
         },
         {
           "title": "5. Map expression range and prop logic",
           "text": "Six facial states (Neutral Court, Polite Smile, Predator Focus, Dialogue Tell, Spell Whisper, Mask Crack) plus 4 functional callouts: Wing Collar, Void Coat, Signet Cane, Court Ring. Animators and dialogue writers work from this sheet.",
           "prompt": "GOAL: Expression + accessory sheet. 6 head portraits of THE COURT PARASITE (Neutral Court, Polite Smile, Predator Focus, Dialogue Tell, Spell Whisper, Mask Crack) and 4 clean accessory callout panels (Wing Collar, Void Coat, Signet Cane, Court Ring). Keep the identity render face model consistent across all states.",
-          "result_image": "/ui_views/assets/npc01-05-expression-accessories.png"
+          "result_image": "/ui_views/assets/npc01-05-expression-accessories.webp"
         },
         {
           "title": "6. Define the key animation start poses",
           "text": "Four readable full-body start poses: 01 Idle, 02 Dialogue Tell, 03 Spell Cue, 04 Attack Anticipation. Each preserves the silhouette — no generic action-hero spread. These are the first frames animators key from.",
           "prompt": "GOAL: Animation handoff sheet with 4 key start poses (Idle, Dialogue Tell, Spell Cue, Attack Anticipation). Full body, same model and palette as the identity render. Poses must read as silhouettes and avoid superhero tropes — this character threatens with stillness.",
-          "result_image": "/ui_views/assets/npc01-06-animation-poses.png"
+          "result_image": "/ui_views/assets/npc01-06-animation-poses.webp"
         },
         {
           "title": "7. Inspect the production 3D model — drag to orbit",
           "text": "The GLB mesh generated from the concept stack (35k tris budget). Drag to orbit, scroll to zoom. Check the collar volume from behind and the sleeve drape from the side — the two spots where 2D-to-3D translations usually break.",
           "prompt": "GOAL: Generate a production 3D character mesh from the locked identity render and turnaround. Budget 35k triangles, A-pose, watertight, ready for retopo and rigging. Export GLB.",
           "result_model": "/ui_views/assets/npc01-07-3d-model.glb",
-          "result_poster": "/ui_views/assets/npc01-07-3d-viewer-poster.png"
+          "result_poster": "/ui_views/assets/npc01-07-3d-viewer-poster.webp"
         },
         {
           "title": "8. Spec the technical A-pose, sockets and FACS targets",
           "text": "The rigging contract: 45° A-pose blueprint with engine sockets (socket_hand_r, socket_collar_vfx, socket_ring_l, root_ground), 68-joint skeleton, 35k tris budget, 1024 px/m texel density, and FACS facial targets (AU1, AU2, AU4, AU12, AU15, AU25). This sheet ends design arguments — everything is measurable.",
           "prompt": "GOAL: Technical 3D rigging sheet in orthographic A-pose (45° arms). Annotate engine sockets (socket_hand_r, socket_collar_vfx, socket_ring_l, root_ground), joint count 68, poly budget 35k tris, texel density 1024 px/m, FACS targets AU1 AU2 AU4 AU12 AU15 AU25. Blueprint style, precise callouts, no decoration.",
-          "result_image": "/ui_views/assets/npc01-08-apose-technical.png"
+          "result_image": "/ui_views/assets/npc01-08-apose-technical.webp"
         }
       ],
       "result": "Full production-grade character bible for an original dark-fantasy NPC: 6 concept sheets, an inspectable 3D GLB mesh (35k tris), and a technical A-pose socket + FACS specification ready for engine handoff.",
@@ -393,43 +393,43 @@
           "title": "1. Define what the system refuses to do",
           "text": "Start with the negative brief, not the moodboard. SAVOR/01 never detects freshness, never labels food safe or unsafe, and never replaces package guidance. That constraint is the entire concept: the system organizes evidence the user already has — receipts, printed dates, opened dates, storage zones — instead of inventing an AI verdict. Write four plain-language states before touching visuals: USE FIRST, USE SOON, STABLE, CHECK.",
           "prompt": "Lock the safety rule: this system organizes known information. It never claims to analyze food, never outputs a score, never uses medical or danger iconography. Every status must be readable as text + shape + color, so meaning never depends on color alone.",
-          "result_image": "/ui_views/assets/savor01-evidence-of-food/05-four-states-final.png"
+          "result_image": "/ui_views/assets/savor01-evidence-of-food/05-four-states-final.webp"
         },
         {
           "title": "2. Spill the evidence with physical inertia",
           "text": "The opening is chaos on purpose: receipt fragments, barcode stripes, printed dates and halftone food crops enter from the frame edges at different speeds with slight rotational overshoot. The SAVOR/01 lockup stays dead still at center while the mess moves around it — the contrast between a fixed identity and uncontrolled evidence is the hook.",
           "prompt": "Editorial collage frame, warm paper background #F2EEE5, near-black ink typography. Scattered food evidence fragments: thermal receipt strips with torn edges, barcode sections, printed date stamps, opened-product notes, halftone food photography crops. Fragments enter from frame edges with varied rotation and overlap, physically scattered not decoratively arranged. A small fixed typographic lockup 'SAVOR/01' holds still at the center. Condensed grotesk display type, tabular numerals, registration marks. 16:9, 1920x1080. No UI mockups, no app screens, no people, no gradients.",
-          "result_image": "/ui_views/assets/savor01-evidence-of-food/01-evidence-spill.png"
+          "result_image": "/ui_views/assets/savor01-evidence-of-food/01-evidence-spill.webp"
         },
         {
           "title": "3. Make conflicting dates break the grid",
           "text": "Food date language is genuinely broken: USE BY, BEST BEFORE, OPENED and purchase dates contradict each other in real kitchens. Show it as a typographic collision — one giant black date, three competing labels sliding and rotating into it, an 8-frame hold on the impact. This is the 'why' of the whole system in 3 seconds.",
           "prompt": "Editorial typographic frame on warm paper #F2EEE5. One massive black date '21 JUN' in condensed grotesk dominates the grid. Three conflicting date labels collide with it: 'USE BY' sliding left to right, 'OPENED' rolling downward, 'BEST BEFORE' rotated 7 degrees into the collision. Ink texture like rubber date stamps, hard overlaps, registration marks at edges, barcode shutter closing from the sides. Near-black ink #20201E, tomato accent #C6382C. 16:9, 1920x1080. English text only, no UI, no icons, no people.",
-          "result_image": "/ui_views/assets/savor01-evidence-of-food/02-date-collision.png"
+          "result_image": "/ui_views/assets/savor01-evidence-of-food/02-date-collision.webp"
         },
         {
           "title": "4. Register evidence with OCR logic",
           "text": "The system earns trust by showing what it reads. Six registration boxes draw on clockwise around a yoghurt crop — product name, use-by date, opened date, storage zone, quantity — and each box overshoots its target by a few pixels before snapping into place. The seventh box says NO SAFETY VERDICT and stays neutral black: the system states its own limit inside the design.",
           "prompt": "Editorial evidence-capture frame on warm paper. One halftone yoghurt cup crop at center, surrounded by six precise registration boxes drawn in near-black ink: PRODUCT, USE BY, OPENED, STORAGE, QTY, and a final neutral box reading 'NO SAFETY VERDICT'. Boxes have thin rule lines, corner ticks, small tabular metadata labels, OCR-style alignment marks. Dry scanner aesthetic, condensed grotesk labels, cobalt accent #1755A5 for active registration. 16:9, 1920x1080. No glossy UI, no holograms, no scan beams, no people.",
-          "result_image": "/ui_views/assets/savor01-evidence-of-food/03-evidence-capture.png"
+          "result_image": "/ui_views/assets/savor01-evidence-of-food/03-evidence-capture.webp"
         },
         {
           "title": "5. Sort by position first, color second",
           "text": "Exactly 12 evidence tiles enter from scattered positions and reorganize into four horizontal lanes. The motion rule matters: tiles sort by vertical position first, and status color appears only 4 frames later. Priority is expressed as physical order — color is a label, not the mechanism. Three tiles per lane, short stagger, small recoil at the settle point.",
           "prompt": "Editorial system frame on warm paper, 12-column grid. Twelve evidence tiles — receipt fragments, date stamps, barcode pieces, food crops with metadata labels — reorganizing into four horizontal lanes. Lane headers in condensed grotesk: USE FIRST (tomato #C6382C), USE SOON (amber #C68A24), STABLE (cool grey #9A9B96), CHECK (cobalt #1755A5). Tiles mid-sort with visible position logic, tabular numerals, registration ticks. 16:9, 1920x1080. No app UI, no rounded cards, no drop shadows, no people.",
-          "result_image": "/ui_views/assets/savor01-evidence-of-food/04-triage-build.png"
+          "result_image": "/ui_views/assets/savor01-evidence-of-food/04-triage-build.webp"
         },
         {
           "title": "6. Build the four-state typographic system",
           "text": "The payoff frame: four vertical fields, one per state. Each state is text + shape + color — circle for USE FIRST, triangle for USE SOON, equals sign for STABLE, diagonal X for CHECK. Never a medical plus, never color alone. Words reveal bottom-to-top through hard masks; symbols stamp in like print cylinders. This single frame is the whole product.",
           "prompt": "Editorial typographic system frame on warm paper #F2EEE5. Four equal vertical fields separated by hairline rules. Each field shows one food-triage state in condensed grotesk: USE FIRST with a circle in tomato #C6382C, USE SOON with a triangle in amber #C68A24, STABLE with an equals sign in cool grey #9A9B96, CHECK with a diagonal X in cobalt #1755A5. Symbols read as stamped print marks, small metadata labels under each state, tabular numerals. 16:9, 1920x1080. English only, no icons beyond the four symbols, no UI, no people, no gradients.",
-          "result_image": "/ui_views/assets/savor01-evidence-of-food/05-four-states-final.png"
+          "result_image": "/ui_views/assets/savor01-evidence-of-food/05-four-states-final.webp"
         },
         {
           "title": "7. Collapse everything into one lockup",
           "text": "The finale is compression: the four fields fold into a single horizontal evidence strip, the barcode travels to center and stops dead, the four symbols reorder into one row. SAVOR/01 resolves with a 2-frame red misregistration before alignment — a small print-imperfection detail that makes the system feel physical, not rendered. Hold the final frame long enough to read.",
           "prompt": "Editorial final-lockup frame on warm paper #F2EEE5. One horizontal evidence strip across the center combining receipt texture, barcode section and date stamps. Above it the condensed grotesk lockup 'SAVOR/01' in near-black ink with a subtle red misregistration offset, below it the line 'THE EVIDENCE OF FOOD'. The four state symbols — circle, triangle, equals, diagonal X — in one ordered row with their state colors. Registration marks at the corners, generous negative space. 16:9, 1920x1080. English only, no UI, no people.",
-          "result_image": "/ui_views/assets/savor01-evidence-of-food/06-final-lockup.png"
+          "result_image": "/ui_views/assets/savor01-evidence-of-food/06-final-lockup.webp"
         },
         {
           "title": "8. Animate with sound as the timing layer",
@@ -468,55 +468,55 @@
           "title": "1. Fix the facts before making a gesture",
           "text": "Start with one measured base file. If the grid moves now, every later view will contradict it.",
           "prompt": "Create a concept-level measured as-built plan for a fictional 1912 textile factory. Footprint: 54.0 m × 24.0 m. Grid: 6 bays at 9.0 m in the long direction and 4 bays at 6.0 m in the short direction. Keep the brick perimeter, every cast-iron column, and two existing stairs in opposite corners. Draw as a precise architectural survey sheet, not a mood board. Include grid labels 1–7 and A–E, a north arrow, dimensions, and a 1:200 scale bar.",
-          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/as-built-survey.png"
+          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/as-built-survey.webp"
         },
         {
           "title": "2. Make removal specific",
           "text": "The void is one measured cut, not a vague instruction to open the centre.",
           "prompt": "From the 54 × 24 m as-built plan, create a keep/remove/add intervention diagram. KEEP: brick perimeter, cast-iron grid, end stairs and all atrium-edge columns. REMOVE: floor plates at levels +4.50 and +9.00 plus roof directly over bays 3–4 / B–C; remove only the column at grid 4/C. ADD: a bronze independent frame around the 18.0 × 12.0 m void, two glass lifts, 2.0 m galleries and a roof lantern set back 1.5 m from the roof cut. Use charcoal for keep, coral hatch for remove, mint and bronze for add. Give every operation a clear legend.",
-          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/keep-remove-add.png"
+          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/keep-remove-add.webp"
         },
         {
           "title": "3. Program the ground floor around the void",
           "text": "Public life belongs at ground level. Service stays in one corner; the atrium stays a public room.",
           "prompt": "Create a proposed ground-floor plan for the factory hotel using the fixed 6 × 4 grid. Keep the 18.0 × 12.0 m atrium at bays 3–4 / B–C empty above ground level. Place reception and entry south-west; restaurant and kitchen north-east; back-of-house and staff south-east; two accessible rooms north-west; two retained stairs in opposite corners. Place a lounge bar and two glass lifts inside the atrium perimeter, without turning the void into enclosed rooms. Show the grid, program labels and a short note explaining circulation.",
-          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/proposed-ground.png"
+          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/proposed-ground.webp"
         },
         {
           "title": "4. Stack keys without invading the atrium",
           "text": "Each upper floor holds 20 keys while keeping the opening and a 2.0 m gallery loop intact.",
           "prompt": "Create a typical upper-floor plan for levels +4.50 and +9.00 using the exact same 54 × 24 m grid and 18 × 12 m atrium void. Place 20 keys on each floor: 10 north-facing rooms, 10 south-facing rooms, with housekeeping and one suite at the east end. Keep the two existing stairs. Add a 2.0 m gallery all around the void. No room, bathroom or service enclosure may enter the atrium. Show level labels, grid, gallery width and room count.",
-          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/proposed-upper.png"
+          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/proposed-upper.webp"
         },
         {
           "title": "5. Use a section to prove the spatial claim",
           "text": "A plan can hide impossible ideas. The section has to prove the lantern, galleries and retained roof work together.",
           "prompt": "Draw a longitudinal architectural section through the centre of the atrium. Show ground +0.00, level 1 +4.50, level 2 +9.00 and eaves +13.50. Retain the sawtooth roof outside the atrium. Cut the roof over the 18 m void and add a low-iron glass lantern set back 1.5 m from its edges. Show an independent dark bronze frame carrying the new lantern and gallery loads. Keep the existing brick shell separate from new steel. Add a concept-only engineering note that licensed structural and fire review is required.",
-          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/longitudinal-section.png"
+          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/longitudinal-section.webp"
         },
         {
           "title": "6. Explain the assembly, not just the silhouette",
           "text": "The exploded axon exposes what is retained, cut, framed and glazed.",
           "prompt": "Create an exploded axonometric diagram of the factory conversion in four layers. 01 RETAIN: brick shell and cast-iron grid. 02 CUT: floor plates at levels 1 and 2, and the roof, only over bays 3–4 / B–C. 03 FRAME: independent dark bronze steel around the void. 04 LANTERN: a low-iron glazed roof set back 1.5 m. Keep the 18 × 12 m opening aligned in every layer and identify the single removed column at 4/C.",
-          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/exploded-axon.png"
+          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/exploded-axon.webp"
         },
         {
           "title": "7. Keep the façade calm",
           "text": "The new work shows at the roofline; it does not erase the industrial identity.",
           "prompt": "Create a before/after north façade sheet for a red-brick 1912 textile factory. Retain the arched window rhythm and sawtooth profile. In the after view, add only a restrained glazed lantern over bays 3–4, visibly set back behind the parapet. Do not reclad the façade, add oversized signs, or replace historic windows with curtain wall. Use a clear comparison layout and label exactly what is retained and what is added.",
-          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/facades-before-after.png"
+          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/facades-before-after.webp"
         },
         {
           "title": "8. Give materials jobs",
           "text": "Brick carries history. Bronze identifies new structure. Glass delivers light. Oak and wool make the public room usable.",
           "prompt": "Create a restrained material palette for an adaptive-reuse boutique hotel. Include: repaired existing red brick; dark bronze independent steel; low-iron glass; oak and moss-green wool for lounge interiors. Add one construction-facing rule: all new metal and glass stop 25–50 mm short of historic brick, creating a visible shadow gap. Use large samples, short labels and no generic trend names.",
-          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/material-palette.png"
+          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/material-palette.webp"
         },
         {
           "title": "9. Generate one render that obeys the drawings",
           "text": "The final render is a coordination check: the shell, two galleries, lifts and 18 × 12 m void must match the drawings.",
           "prompt": "Deliverable: a single photorealistic architectural interior visualization, landscape 16:10. Eye-level view from the reception side into an 18 m × 12 m central atrium in a converted 1912 textile factory. Retain red brick, tall cast-iron columns and sawtooth roof profile. Add a dark bronze independent frame, two glass lift enclosures, 2.0 m galleries at levels +4.50 and +9.00, and a low-iron roof lantern set back 1.5 m from the cut roof edges. Add a quiet lounge bar with oak, moss-green wool seating, restrained plants and a few guests. Use a 35 mm lens, balanced verticals, soft overcast daylight, real material wear and physically plausible contact shadows. No signage, text, logos, neon, cyberpunk styling, marble lobby, or extra floors.",
-          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/atrium-render.png"
+          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/atrium-render.webp"
         }
       ],
       "result": "A coordinated senior concept package: 9 linked steps, an annotated final render, SVG sources and a 9933 × 7016 px A1 presentation board. Concept study only; site survey and licensed structural, fire, access, MEP and conservation review are required before construction.",
@@ -548,31 +548,31 @@
           "title": "1. Lock the material formula once — then only swap the silhouette",
           "text": "The series works because every icon shares one physical recipe: an inflated glossy-metal body, jewel/crystal accents, a pure black studio background and controlled rim lighting. Write that recipe as a fixed block and reuse it verbatim in all five prompts — the only variables are the brand silhouette and its signature color. Icon 01 tests the formula on the YouTube play button: a rounded red jeweled slab with the triangle read as a cut gem.",
           "prompt": "Premium 3D brand icon, square 1:1, luxury product photography on a pure black studio background. Subject: the YouTube play-button icon reimagined as a physical jeweled object — a rounded-square slab of glossy inflated red metal, surface like polished automotive lacquer, with the white play triangle inset as a faceted crystal gem catching the light. Fine details: soft balloon-like inflation of the edges, crisp specular highlights, subtle red light bloom on the black floor, micro-scratches absent, showroom-clean. Lighting: one key light from upper left, cool rim light from the right, controlled reflections. Tangible and physical, NOT flat vector art, NOT a UI screenshot. Hard constraints: single object centered, generous negative space, no text, no watermark, no extra logos.",
-          "result_image": "/ui_views/assets/jeweled-brand-icons-carousel/youtube_icon_v2_upscaled.png"
+          "result_image": "/ui_views/assets/jeweled-brand-icons-carousel/youtube_icon_v2_upscaled.webp"
         },
         {
           "title": "2. X — let black-on-black carry the drama",
           "text": "The hardest slide: a black object on a black background. The trick is to spell out the separation mechanism — rim light and crystal facets do all the work. Describe the mark as cut obsidian with jeweled edges so the silhouette reads purely through highlights, not through color contrast.",
           "prompt": "Premium 3D brand icon, square 1:1, luxury product photography on a pure black studio background. Subject: the X (Twitter) logomark reimagined as a physical jeweled object — a bold glossy black obsidian X with beveled crystal-cut edges, like a gem carved from dark glass, faint smoky depth inside the material. Separation from the background comes entirely from bright white rim lighting tracing every edge and sharp specular sparkles on the facets. Fine details: inflated rounded body, mirror-grade polish, subtle cool reflection pooled beneath the object. Tangible and physical, NOT flat vector art. Hard constraints: single object centered, generous negative space, no text, no watermark, no extra logos.",
-          "result_image": "/ui_views/assets/jeweled-brand-icons-carousel/x_icon_v2_upscaled.png"
+          "result_image": "/ui_views/assets/jeweled-brand-icons-carousel/x_icon_v2_upscaled.webp"
         },
         {
           "title": "3. Quadcode sparkle — the warm focal point of the set",
           "text": "Every curated set needs one warm anchor. The Quadcode sparkle takes the brand gradient (#FF9569 → #DD344D) as its actual material color, so it becomes the emotional center of the carousel while still obeying the same formula: inflated gloss, crystal accents, black void around it.",
           "prompt": "Premium 3D brand icon, square 1:1, luxury product photography on a pure black studio background. Subject: a four-pointed sparkle/star mark reimagined as a physical jeweled object — glossy inflated metal with a coral-to-crimson gradient finish flowing from #FF9569 at the top points to #DD344D at the base, like anodized liquid metal. A small crystal core glows softly at the center where the four points meet. Fine details: balloon-smooth inflation, razor-clean point tips, warm coral light spill on the black floor, restrained bloom. Lighting: warm key light, cool rim accents. Tangible and physical, NOT flat vector art. Hard constraints: single object centered, generous negative space, no text, no watermark, no extra logos.",
-          "result_image": "/ui_views/assets/jeweled-brand-icons-carousel/quadcode_icon_sparkle.png"
+          "result_image": "/ui_views/assets/jeweled-brand-icons-carousel/quadcode_icon_sparkle.webp"
         },
         {
           "title": "4. ChatGPT knot — sell the geometry, not the gloss",
           "text": "The knot's interlaced geometry is the whole recognition value, so the prompt protects it explicitly: 'keep every strand separate and readable'. Green gets stated as a material (jade-like metal), not a lighting gel — otherwise the model floods the whole frame green and kills the black background.",
           "prompt": "Premium 3D brand icon, square 1:1, luxury product photography on a pure black studio background. Subject: the interlaced hexagonal knot mark reimagined as a physical jeweled object — six interwoven rounded strands of glossy jade-green metal, each strand inflated and balloon-smooth, weaving over and under each other with every strand separate and readable. Crystal-like highlights run along the strand curves; the weave casts soft internal shadows on itself. Fine details: showroom polish, faint green reflection beneath the object, background stays pure black. Lighting: key light from above, thin white rim light tracing the outer strands. Tangible and physical, NOT flat vector art. Hard constraints: single object centered, generous negative space, no text, no watermark, no extra logos.",
-          "result_image": "/ui_views/assets/jeweled-brand-icons-carousel/chatgpt_icon_v2_upscaled_1.png"
+          "result_image": "/ui_views/assets/jeweled-brand-icons-carousel/chatgpt_icon_v2_upscaled_1.webp"
         },
         {
           "title": "5. Apple — close the set with restraint",
           "text": "The finale goes quiet on purpose: brushed silver, minimal sparkle, maximum surface quality. After four louder objects, restraint is what makes the set read as curated instead of repetitive. Then assemble all five into one 16:10 promo banner — feed the five finished icons back into GPT-Image as references and ask for a single editorial arrangement (that's exactly how the cover of this guide was made).",
           "prompt": "Premium 3D brand icon, square 1:1, luxury product photography on a pure black studio background. Subject: the Apple logomark reimagined as a physical jeweled object — glossy inflated silver metal with a soft brushed-chrome finish, the leaf as a separate polished piece with a faint crystal edge. Understated elegance: fewer sparkles than a gem, more mirror-like surface perfection, cool neutral reflections. Fine details: balloon-smooth inflation, immaculate surface, subtle silver glow pooled on the black floor. Lighting: soft key light, crisp white rim light on the silhouette. Tangible and physical, NOT flat vector art. Hard constraints: single object centered, generous negative space, no text, no watermark, no extra logos.",
-          "result_image": "/ui_views/assets/jeweled-brand-icons-carousel/apple_icon_v2_upscaled_1.png"
+          "result_image": "/ui_views/assets/jeweled-brand-icons-carousel/apple_icon_v2_upscaled_1.webp"
         }
       ],
       "result": "Five brand marks rendered as one luxury object family — same inflated glossy-metal material, same black studio, same lighting system, five different silhouettes. Finish by compositing the five icons into a single 16:10 promo banner with GPT-Image using the icons themselves as references. Reuse the formula: keep the material block fixed, swap the silhouette, state the brand color as a material."
@@ -612,7 +612,7 @@
         }
       ],
       "result": "A 15-second AAA-style boss-reveal cinematic — one creature design, one directed camera move, one clean VFX hit, no cuts needed to sell the scale.",
-      "poster": "/ui_views/assets/poster-cherry-blossom-boss-cinematic.jpg"
+      "poster": "/ui_views/assets/poster-cherry-blossom-boss-cinematic.webp"
     },
     {
       "id": "headphones-retouch-color-grade",
@@ -632,31 +632,31 @@
           "title": "1. Shoot (or generate) an honest raw source",
           "text": "The whole exercise starts from a photo with real-world flaws — flat lighting, fingerprints and fine scratches on the metal, slight wear on the leather. Do not start from a perfect render; you need something to actually retouch. Keep materials detailed and lighting soft so you have room to push the grade later.",
           "prompt": "Photorealistic product photograph of premium over-ear headphones on a clean dark studio background. Silver metal ear cups with visible fine scratches, smudges and fingerprints. Black leather ear cushions with natural texture and slight wear. Soft even studio lighting, no dramatic shadows, slightly flat color. Shot on 85mm lens, eye-level, centered composition, clean but imperfect — ready for retouch. High detail on materials, realistic reflections, no text, no logos, no watermark.",
-          "result_image": "/ui_views/assets/headphones-retouch-color-grade/raw-source.png"
+          "result_image": "/ui_views/assets/headphones-retouch-color-grade/raw-source.webp"
         },
         {
           "title": "2. Retouch and grade the commercial hero",
           "text": "This is the controlled edit — not a redesign. You remove scratches and smudges from the metal but keep it brushed and real (no plastic gloss, no chrome mirror). The leather keeps every bit of its grain; you clean dust, not texture. Then you re-light it into a premium hero and apply the cinematic grade. Reframe to 16:9 with breathing room on one side for a future headline.",
           "prompt": "Retouch and re-light this exact headphone product photo into a premium commercial hero shot. Keep the same headphones, same materials, same identity — controlled edit only, no redesign. Retouch pass: remove fine scratches, smudges and fingerprints from the silver metal ear cups and yokes. Keep the metal brushed and real — no plastic gloss, no chrome mirror look. Preserve the leather grain on the headband and ear cushions exactly; clean only dust, not texture. Lighting and grade: dramatic premium studio lighting, large soft key from upper-left, cool rim light tracing the metal edges, deep charcoal background with a subtle warm gradient falloff. Rich cinematic color grade: deep blacks, lifted metal highlights, slightly warm silver tone, controlled reflections on the cups — elegant streaks, not chaos. Composition: reframe to a wide 16:9 hero crop, headphones slightly right of center with breathing room on the left for future headline text. Shot on 85mm, shallow depth of field, tack-sharp ear cups. No text, no logos, no watermark, no extra objects, no CGI plastic look.",
-          "result_image": "/ui_views/assets/headphones-retouch-color-grade/hero-16x9.png"
+          "result_image": "/ui_views/assets/headphones-retouch-color-grade/hero-16x9.webp"
         },
         {
           "title": "3. Cut the clean e-comm catalog shot",
           "text": "Same retouch rules, totally different light. Marketplaces need honesty: bright even lighting, a neutral seamless background, true-to-life color and the product centered and symmetrical. No stylized grade here — the goal is an accurate, trustworthy listing photo, not a mood piece.",
           "prompt": "Retouch this exact headphone product photo into a clean e-commerce catalog shot. Same headphones, same materials, same identity — controlled edit only, no redesign. Retouch pass: remove fine scratches, smudges and fingerprints from the silver metal ear cups and yokes. Keep the metal brushed and real. Preserve leather grain on headband and ear cushions; clean only dust. Lighting and grade: bright, even, neutral catalog lighting — large soft frontal key, gentle fill, no harsh shadows, clean light-grey seamless background (#EDEDED). True-to-life color, no stylized grade: natural silver, deep natural black leather, balanced contrast for marketplaces. Composition: perfectly centered 1:1 square, headphones upright and symmetrical, generous even margins on all sides, product fills ~70% of frame height. Sharp focus across the whole product (f/8 look). No text, no badges, no price tags, no logos, no watermark, no props.",
-          "result_image": "/ui_views/assets/headphones-retouch-color-grade/ecomm-1x1.png"
+          "result_image": "/ui_views/assets/headphones-retouch-color-grade/ecomm-1x1.webp"
         },
         {
           "title": "4. Pull the vertical texture detail",
           "text": "The 9:16 detail sells the materials. Go macro on the seam where brushed metal meets leather — that tactile contrast is the whole shot. Raking light makes the texture cast micro-shadows. Match the hero's grade so the set reads as one shoot. Texture is the hero here; protect it above everything.",
           "prompt": "Create a vertical macro detail shot from this exact headphone product photo. Same headphones, same materials — controlled edit only, no redesign. Subject: extreme close-up of one ear cup where the brushed silver metal meets the black leather cushion — the yoke hinge, the metal ring edge and the leather grain in one frame. Retouch pass: remove scratches, smudges and fingerprints from the metal. Keep the brushed texture and machining lines visible. Preserve leather grain exactly — every pore readable, no smoothing. Lighting and grade: moody macro lighting, raking key light skimming across the metal surface so texture casts micro-shadows, soft fill in the leather, deep dark background falling to black. Rich cinematic grade matching the hero shot: deep blacks, warm-leaning silver highlights, controlled specular streak along the metal edge. Composition: vertical 9:16, macro lens (100mm), shallow depth of field with the metal-leather seam in razor focus. No text, no logos, no watermark, no CGI look, no plastic metal, no blurred-out leather texture.",
-          "result_image": "/ui_views/assets/headphones-retouch-color-grade/detail-9x16.png"
+          "result_image": "/ui_views/assets/headphones-retouch-color-grade/detail-9x16.webp"
         },
         {
           "title": "5. Upscale the whole set to 4K",
           "text": "Finish by upscaling every deliverable to 4K. The rule: only add resolution, never reinterpret. A low-strength, quality-first upscaler (SeedVR2 4K) keeps the metal brushed and the leather grain intact instead of smoothing them into plastic. Run the same upscale pass across the set so the resolution jump is consistent.",
           "prompt": "Upscale this product photo 2x. Preserve exactly: brushed silver metal texture, black leather grain, the lighting and the color grade. Only add real resolution and crisp micro-detail — do not change lighting, grade, composition or materials. Texture fidelity is everything; no smoothing, no hallucinated detail.",
-          "result_image": "/ui_views/assets/headphones-retouch-color-grade/banner-preview.png"
+          "result_image": "/ui_views/assets/headphones-retouch-color-grade/banner-preview.webp"
         }
       ],
       "result": "A complete, coherent product set from one raw photo: a cinematic 16:9 hero, an honest 1:1 e-comm catalog shot and a vertical 9:16 texture detail — all retouched, graded and upscaled to 4K with the metal and leather textures fully intact."
@@ -679,25 +679,25 @@
           "title": "1. Show recurring revenue as a system",
           "text": "A revenue visual should make the mechanism visible in one glance: payment happens, the service continues, the customer returns. Avoid vague arrows and fake dashboard numbers.",
           "prompt": "Create a clear premium business illustration explaining recurring revenue. Show a simple continuous loop between customer, payment and active service, with a readable 24/7 operating rhythm. Use a clean editorial SaaS style, strong hierarchy, restrained palette, real interface fragments rather than generic arrows, no fake statistics, no illegible microtext.",
-          "result_image": "/ui_views/assets/business-visuals-that-explain-work/revenue_24_7.png"
+          "result_image": "/ui_views/assets/business-visuals-that-explain-work/revenue_24_7.webp"
         },
         {
           "title": "2. Contrast manual onboarding with AI onboarding",
           "text": "The visual needs one contrast only: a slow hand-built process on one side, an automated flow on the other. People should understand the time saving before reading a caption.",
           "prompt": "Create a split business visual comparing manual onboarding versus AI onboarding. Left: fragmented handoffs, repeated data entry, waiting and confusion. Right: one guided automated flow, instant setup and clear next steps. Professional editorial SaaS art direction, readable contrast, few elements, no decorative clutter, no fake logos.",
-          "result_image": "/ui_views/assets/business-visuals-that-explain-work/manual_ai_onboarding.png"
+          "result_image": "/ui_views/assets/business-visuals-that-explain-work/manual_ai_onboarding.webp"
         },
         {
           "title": "3. Make a landing page's speed visible",
           "text": "Do not render a generic browser mockup. Show the commercial consequence: a page that takes a week to ship versus a focused flow that gets the message and call-to-action live fast.",
           "prompt": "Create a crisp business visual about shipping a landing page in one week. Show a focused sequence from brief to launch: message, page structure, build and live result. Make speed readable through progress and momentum, not flames or racing cars. Premium product-design editorial style, clear hierarchy, no fake analytics, no tiny unreadable text.",
-          "result_image": "/ui_views/assets/business-visuals-that-explain-work/landing_week.png"
+          "result_image": "/ui_views/assets/business-visuals-that-explain-work/landing_week.webp"
         },
         {
           "title": "4. Replace spreadsheet chaos with a CRM view",
           "text": "The before-and-after must be practical: scattered rows and lost follow-ups become one shared pipeline with owners, stages and next actions. That is what a CRM actually fixes.",
           "prompt": "Create a business before-and-after visual: an overloaded spreadsheet with duplicate customer rows, unclear ownership and missed follow-ups transforms into a clean CRM pipeline with visible stages, owner avatars and next actions. Product-led editorial design, strong information hierarchy, realistic but minimal interface detail, no brand names, no illegible text.",
-          "result_image": "/ui_views/assets/business-visuals-that-explain-work/excel_crm.png"
+          "result_image": "/ui_views/assets/business-visuals-that-explain-work/excel_crm.webp"
         }
       ],
       "result": "Four business visuals that explain a real operational change in seconds — useful for landing pages, investor decks, sales posts and internal presentations."
@@ -720,25 +720,25 @@
           "title": "1. Lock what must stay the same",
           "text": "Start with one comparable brief: room size, daylight direction, camera height and the buyer profile. If those change between renders, you are comparing different apartments rather than different interior directions.",
           "prompt": "Create three high-end real-estate interior concepts for the exact same compact urban living room. Keep the architecture, camera angle, daylight direction and room proportions identical in every version. The comparison must show only the interior direction changing: furniture, material palette, lighting mood and decorative language. Editorial property-photography quality, realistic scale, no people, no text.",
-          "result_image": "/ui_views/assets/compare-interior-directions/baroque_cottage_final.png"
+          "result_image": "/ui_views/assets/compare-interior-directions/baroque_cottage_final.webp"
         },
         {
           "title": "2. Push the Baroque cottage direction",
           "text": "For a character-led property, use dark timber, aged brass, velvet and framed art. The goal is not random luxury props; it is a warm, layered room that sells atmosphere at first glance.",
           "prompt": "Using the locked room brief, create the Baroque cottage direction: dark walnut joinery, muted olive walls, aged brass details, a deep plum velvet sofa, antique framed oil paintings, patterned wool rug, warm late-afternoon window light and restrained candle-like practical lamps. Rich but lived-in, high-end property editorial photography, no text.",
-          "result_image": "/ui_views/assets/compare-interior-directions/baroque_cottage_final.png"
+          "result_image": "/ui_views/assets/compare-interior-directions/baroque_cottage_final.webp"
         },
         {
           "title": "3. Switch to an industrial loft",
           "text": "For a sharper, city-facing listing, replace decoration with material contrast: concrete, black steel, reclaimed wood and one strong leather piece. Keep the room functional — buyers still need to see where they would sit, work and eat.",
           "prompt": "Using the locked room brief, create the industrial loft direction: exposed concrete, black steel-framed glass, reclaimed oak, a cognac leather sofa, graphite textiles, sculptural pendant lights and clear daylight. Keep the space warm enough to live in, not like an empty warehouse. Premium real-estate editorial photography, no text.",
-          "result_image": "/ui_views/assets/compare-interior-directions/industrial_loft_final.png"
+          "result_image": "/ui_views/assets/compare-interior-directions/industrial_loft_final.webp"
         },
         {
           "title": "4. Strip it back into a modern studio",
           "text": "For the broadest buyer appeal, use a quiet palette and fewer objects. A modern studio succeeds when the layout reads instantly and every piece earns its place.",
           "prompt": "Using the locked room brief, create the modern studio direction: warm white walls, pale oak, a modular cream sofa, brushed aluminium accents, one large abstract artwork, soft indirect lighting and discreet storage. Calm, spacious, design-led and practical. Premium real-estate editorial photography, no text.",
-          "result_image": "/ui_views/assets/compare-interior-directions/modern_studio_final.png"
+          "result_image": "/ui_views/assets/compare-interior-directions/modern_studio_final.webp"
         }
       ],
       "result": "Three coherent directions for the same property, ready to show a client or test in a listing: character-rich Baroque cottage, urban industrial loft and calm modern studio."
@@ -773,7 +773,7 @@
         }
       ],
       "result": "A real handheld watch shoot turned into a crisp, true-4K before/after comparison — one Topaz pass, no reshoot needed.",
-      "poster": "/ui_views/assets/poster-rolex-4k-before-after-upscale.jpg"
+      "poster": "/ui_views/assets/poster-rolex-4k-before-after-upscale.webp"
     },
     {
       "id": "irondrone-flying-ironer",
@@ -804,7 +804,7 @@
         }
       ],
       "result": "A 10-second concept ad for a product that doesn't exist yet — proof that a strong enough \"what if\" beats a real product shoot.",
-      "poster": "/ui_views/assets/poster-irondrone-flying-ironer.jpg"
+      "poster": "/ui_views/assets/poster-irondrone-flying-ironer.webp"
     },
     {
       "id": "museum-of-impossible-things-carousel",
@@ -822,31 +822,31 @@
           "title": "1. Lock the scene formula once — then only swap the exhibit",
           "text": "The whole series rides on one fixed skeleton: a pitch-dark museum hall with black velvet walls, one hard spotlight, a charcoal velvet pedestal, and a graphite plaque with a gradient accent strip. Every prompt starts with the same camera line — 'Award-winning museum exhibition photograph, square 1:1, medium-format Hasselblad, 80mm lens, extremely fine micro-detail' — and ends with the same bans: no CGI plastic look, no stock blandness, no extra text. The only thing that changes between the five images is the impossible object on the pedestal and the plaque text. That's what makes five separate generations read as one exhibition. Exhibit 01 tests the formula: a trefoil knot tied from flowing water, hovering above the velvet with caustic light patterns underneath.",
           "prompt": "Award-winning museum exhibition photograph, square 1:1 composition, shot on medium-format Hasselblad, 80mm lens, razor-sharp focus on the exhibit, extremely fine micro-detail. Scene: a pitch-dark museum hall, walls of black velvet swallowing all light. One single hard spotlight beam cuts down through faint dust. Hero subject, filling most of the frame: a thick rope tied into a perfect trefoil knot — made entirely of living, flowing crystal-clear water. Visible surface tension skin, internal turbulence, strings of micro-bubbles racing through the loops, dozens of individual droplets frozen mid-orbit around the knot, each droplet acting as a tiny lens. The knot hovers above a round pedestal upholstered in deep charcoal velvet — velvet fiber texture clearly visible. Sharp bright caustic light patterns dance across the velvet under the knot. Color and light: deep glacial blue-white water against warm amber spill on the velvet, saturated punchy cinematic grade, crushed blacks, high dynamic range. Tangible and physical — a photograph of a real impossible object, NOT a 3D render, NOT smooth CGI plastic. In the lower portion of the frame: a museum plaque — matte graphite metal plate with a thin glowing gradient strip along its top edge running from coral orange (#FF9569) to crimson red (#DD344D). Plaque text painted white, upright regular sans-serif (NOT italic), perfectly sharp and legible, EXACTLY verbatim: \"WATER KNOT\" / \"Exhibit No. 01 — Fluid Dynamics Hall\" / \"Tied once. Never untied. The water has been flowing through itself since the day it was knotted.\" Hard constraints: no cyberpunk, no neon, no sci-fi props, no people, no watermarks, no logos, no extra text, no plastic CGI look.",
-          "result_image": "/ui_views/assets/museum-of-impossible-things-carousel/museum_01_water_knot.png"
+          "result_image": "/ui_views/assets/museum-of-impossible-things-carousel/museum_01_water_knot.webp"
         },
         {
           "title": "2. Frozen Lightning — make the impossible object the only light source",
           "text": "The trick that sells this frame: the exhibit itself lights the scene. The bolt is described as white-hot plasma (not a purple neon tube — ban that explicitly, or you'll get a lamp), and physicality comes from consequences: a scorched blackened ring on the velvet where the bolt touches it, glowing embers at its rim, a wisp of smoke. If your plaque text comes out italic, add 'upright regular sans-serif (NOT italic)' — that one line fixed it here.",
           "prompt": "Award-winning museum exhibition photograph, square 1:1 composition, shot on medium-format Hasselblad, 80mm lens, razor-sharp focus on the exhibit, extremely fine micro-detail. Scene: a pitch-dark museum hall, walls of black velvet swallowing all light. Hero subject, filling most of the frame: a real lightning bolt frozen solid mid-strike, displayed upright like a sculpture on a round pedestal upholstered in deep charcoal velvet (velvet fiber texture clearly visible). The bolt is a jagged branching column of blinding white-hot plasma, completely motionless — every filament crisp and separate, hair-thin secondary tendrils splitting off the main channel, dozens of tiny sparks suspended motionless in the air around it like insects trapped in amber. Where the bolt meets the velvet, the fabric is scorched into a delicate blackened ring with glowing orange embers at its rim, a thin wisp of smoke rising. Faint crackled glassy texture on the plasma surface, heat shimmer distortion in the air around it. Color and light: the bolt is the only light source — blinding white core with violet-blue falloff, hard shadows, crushed blacks, saturated punchy cinematic grade, high dynamic range. NOT a 3D render, NOT smooth CGI plastic, NOT a purple neon lamp. In the lower portion of the frame: a museum plaque — matte graphite metal plate with a thin glowing gradient strip along its top edge running from coral orange (#FF9569) to crimson red (#DD344D). Plaque text painted white, upright regular sans-serif (NOT italic), perfectly sharp and legible, EXACTLY verbatim: \"FROZEN LIGHTNING\" / \"Exhibit No. 02 — Storm Preservation Wing\" / \"Captured 0.003 seconds before impact. Still warm. Do not tap the glass.\" Hard constraints: no cyberpunk, no neon city, no sci-fi props, no people, no watermarks, no logos, no extra text.",
-          "result_image": "/ui_views/assets/museum-of-impossible-things-carousel/museum_02_frozen_lightning.png"
+          "result_image": "/ui_views/assets/museum-of-impossible-things-carousel/museum_02_frozen_lightning.webp"
         },
         {
           "title": "3. Ice with Fire — the color-clash hero of the series",
           "text": "This is the loudest slide, built on one violent contrast: blazing orange fire core versus glacial blue-cyan ice shell. Push both to maximum saturation and let the fire light travel through internal fractures so every crack becomes a glowing amber vein. Physicality anchors that keep it from looking CGI: frost bloom, cold droplets sweating down the faces, trapped air bubbles in ancient ice layers, and a glassy refrozen rim of meltwater on the velvet below.",
           "prompt": "Award-winning museum exhibition photograph, square 1:1 composition, shot on medium-format Hasselblad, 80mm lens, razor-sharp focus on the exhibit, extremely fine micro-detail. Scene: a pitch-dark museum hall, walls of black velvet swallowing all light. One single hard spotlight beam from above. Hero subject, filling most of the frame: a massive raw block of glacier ice on a round pedestal upholstered in deep charcoal velvet (velvet fiber texture clearly visible). Deep inside the crystal-clear ice a real campfire burns — sharp orange-gold flames with visible flame licks, glowing red embers and charred logs at its base, all fully sealed within the ice. The fire light travels through internal fractures, turning every crack into a glowing amber vein across the block. The ice exterior is hyper-detailed: frost bloom, sweating cold droplets running down the faces, tiny trapped air bubbles in ancient layers, razor-sharp chipped edges. Thin freezing mist rolls off the block and pools around the pedestal base. Below the block, melted water refreezes into a glassy rim on the velvet. Color and light: violent clash — blazing orange fire core versus deep glacial blue-cyan ice shell, saturated punchy cinematic grade, crushed blacks, high dynamic range. NOT a 3D render, NOT smooth CGI plastic. In the lower portion of the frame: a museum plaque — matte graphite metal plate with a thin glowing gradient strip along its top edge running from coral orange (#FF9569) to crimson red (#DD344D). Plaque text painted white, upright regular sans-serif (NOT italic), perfectly sharp and legible, EXACTLY verbatim: \"ICE WITH FIRE\" / \"Exhibit No. 03 — Thermodynamics Denial Hall\" / \"The fire refuses to melt it. The ice refuses to put it out. They have agreed to disagree.\" Hard constraints: no cyberpunk, no neon, no sci-fi props, no people, no watermarks, no logos, no extra text.",
-          "result_image": "/ui_views/assets/museum-of-impossible-things-carousel/museum_03_ice_fire.png"
+          "result_image": "/ui_views/assets/museum-of-impossible-things-carousel/museum_03_ice_fire.webp"
         },
         {
           "title": "4. Storm in a Bottle — change the scale, keep the system",
           "text": "Four monumental exhibits in a row get monotonous. Slide four drops to macro scale: a 40 cm antique bottle with a full thunderstorm inside. Ask for 'macro-level sharpness' instead of the standard focus line and load the prompt with tiny believable details — condensation streaks inside the glass, bubbles in the hand-blown glass itself, cracking wax on the cork, one wisp of cloud escaping the seal. The internal lightning flash does the lighting job again, carving the bottle silhouette out of the darkness.",
           "prompt": "Award-winning museum exhibition photograph, square 1:1 composition, shot on medium-format Hasselblad, 80mm lens, macro-level sharpness on the exhibit, extremely fine micro-detail. Scene: a pitch-dark museum hall, walls of black velvet swallowing all light. One single hard spotlight beam from above. Hero subject, filling most of the frame: an antique hand-blown glass bottle with a waxed cork, standing on a round pedestal upholstered in deep charcoal velvet (velvet fiber texture clearly visible). Inside the bottle rages a full miniature thunderstorm: dense churning storm clouds pressed flat against the inner glass, a brilliant forked lightning bolt flashing between cloud layers, sheets of miniature rain hammering a furious micro-ocean with breaking whitecap waves at the bottom. Condensation droplets and rain streaks running down the inside of the glass, salt-spray fog above the micro-waves, imperfections and bubbles in the antique glass itself, wax cracking on the cork, one thin escaping wisp of storm cloud curling out past the cork seal. The lightning flash inside throws stuttered blue-white light onto the velvet and carves the bottle silhouette out of the darkness. Color and light: cold electric blue-white storm light against the warm dark amber hall, saturated punchy cinematic grade, crushed blacks, high dynamic range. NOT a 3D render, NOT smooth CGI plastic. In the lower portion of the frame: a museum plaque — matte graphite metal plate with a thin glowing gradient strip along its top edge running from coral orange (#FF9569) to crimson red (#DD344D). Plaque text painted white, upright regular sans-serif (NOT italic), perfectly sharp and legible, EXACTLY verbatim: \"STORM IN A BOTTLE\" / \"Exhibit No. 04 — Contained Weather Collection\" / \"Category 5, corked in 1883. Uncorking voids the museum's insurance.\" Hard constraints: no cyberpunk, no neon, no sci-fi props, no people, no watermarks, no logos, no extra text.",
-          "result_image": "/ui_views/assets/museum-of-impossible-things-carousel/museum_04_storm_bottle.png"
+          "result_image": "/ui_views/assets/museum-of-impossible-things-carousel/museum_04_storm_bottle.webp"
         },
         {
           "title": "5. Folded Human Shadow — close on the concept, not the spectacle",
           "text": "The finale trades fireworks for a paradox: a human shadow folded like boutique silk, lying inside a bright spotlight yet staying absolute black. The prompt spells the contradiction out — 'it lies directly inside the bright spotlight yet remains total, light-devouring black, zero reflection'. Recognizability sells it: a face profile on the top layer, a folded arm, shadow fingers hanging over the edge. Two extra touches give it life: one corner curling up as if about to unfold, and the velvet subtly darker around the stack, as if the shadow stains what it touches. Plaque copy carries the storytelling — write it like a real museum label with one unsettling line.",
           "prompt": "Award-winning museum exhibition photograph, square 1:1 composition, shot on medium-format Hasselblad, 80mm lens, razor-sharp focus on the exhibit, extremely fine micro-detail. Scene: a pitch-dark museum hall, walls of black velvet swallowing all light. One single hard warm spotlight beam from above with faint dust drifting through it. Hero subject, filling most of the frame: a full-size human shadow — a flat, absolutely black silhouette of a standing person — carefully folded like fine silk fabric into a neat boutique-style stack, displayed on a round pedestal upholstered in deep charcoal velvet (velvet fiber texture clearly visible). The folded stack is instantly readable: the profile of a face on the top layer, a folded arm tucked into the second layer, slender shadow fingers spilling over the edge of the fold and hanging in the air. The shadow material is impossible: it lies directly inside the bright spotlight yet remains total, light-devouring black — zero reflection, deeper black than anything else in the frame. Its edges are soft and feathered exactly like a real cast shadow, yet it holds crisp fabric creases; one corner curls up slightly as if the shadow is about to unfold itself. Around the stack the velvet is subtly darker, as if the shadow slowly stains what it touches. Color and light: warm amber spotlight against charcoal darkness, the folded shadow reading as an absolute black hole in the image, saturated punchy cinematic grade, crushed blacks, high dynamic range. NOT a 3D render, NOT smooth CGI plastic. In the lower portion of the frame: a museum plaque — matte graphite metal plate with a thin glowing gradient strip along its top edge running from coral orange (#FF9569) to crimson red (#DD344D). Plaque text painted white, upright regular sans-serif (NOT italic), perfectly sharp and legible, EXACTLY verbatim: \"FOLDED HUMAN SHADOW\" / \"Exhibit No. 05 — Department of Lost Properties\" / \"Donor unknown. Folded, never claimed. Please do not stand too close — it remembers how to follow.\" Hard constraints: no cyberpunk, no neon, no sci-fi props, no people, no watermarks, no logos, no extra text.",
-          "result_image": "/ui_views/assets/museum-of-impossible-things-carousel/museum_05_folded_shadow.png"
+          "result_image": "/ui_views/assets/museum-of-impossible-things-carousel/museum_05_folded_shadow.webp"
         }
       ],
       "result": "A five-image carousel that reads as one exhibition: same hall, same velvet pedestal, same branded plaque system (graphite plate, coral-to-crimson gradient strip, readable sans-serif labels) — with five different impossible objects. All frames generated square 2880x2880 in GPT-Image, no upscaling needed. Reuse the formula: keep the scene skeleton, swap the exhibit, rewrite the plaque."
@@ -862,8 +862,8 @@
       "level": "Middle",
       "models": "Claude Fable, GPT-5.6 Sol",
       "trending": true,
-      "video": "https://quadcodeguide.vercel.app/ui_views/assets/video-fable-vs-sol.mp4",
-      "poster": "/ui_views/assets/video-fable-vs-sol-poster.jpg",
+      "video": "/ui_views/assets/video-fable-vs-sol.mp4",
+      "poster": "/ui_views/assets/video-fable-vs-sol-poster.webp",
       "steps": [
         {
           "title": "Write one brief both models get",
@@ -879,7 +879,7 @@
           "title": "Cut the split-screen with labels",
           "text": "Place the takes side by side, label each half with the model name, and let them run in sync. Viewers pick a winner themselves — that's the engagement hook. Play the clip above to see the result.",
           "prompt": "",
-          "result_video": "https://quadcodeguide.vercel.app/ui_views/assets/video-fable-vs-sol.mp4"
+          "result_video": "/ui_views/assets/video-fable-vs-sol.mp4"
         }
       ],
       "result": "An 18-second labeled split-screen where two AI models direct the same boss fight — a format built for 'left or right?' comment wars."
@@ -894,8 +894,8 @@
       "date": "2026-07-14",
       "level": "Junior",
       "models": "Seedance",
-      "video": "https://quadcodeguide.vercel.app/ui_views/assets/video-substance-lab.mp4",
-      "poster": "/ui_views/assets/video-substance-lab-poster.jpg",
+      "video": "/ui_views/assets/video-substance-lab.mp4",
+      "poster": "/ui_views/assets/video-substance-lab-poster.webp",
       "steps": [
         {
           "title": "Open on a macro detail",
@@ -911,7 +911,7 @@
           "title": "Reveal the creature",
           "text": "End wide: the monster standing in the wrecked lab while people run. Naming 'scientists fleeing in panic' gives the creature scale and turns a VFX test into a movie scene. Play the clip above to see the result.",
           "prompt": "A towering crystalline monster with glowing pink translucent skin stands in the wrecked laboratory, smoke and pink mist around it, scientists in lab coats fleeing in panic, wide cinematic shot, dramatic overhead lighting, photoreal creature VFX",
-          "result_video": "https://quadcodeguide.vercel.app/ui_views/assets/video-substance-lab.mp4"
+          "result_video": "/ui_views/assets/video-substance-lab.mp4"
         }
       ],
       "result": "A 10-second lab-horror VFX sequence — macro injection, energy blast, creature reveal — that reads like a blockbuster teaser."
@@ -926,8 +926,8 @@
       "date": "2026-07-14",
       "level": "Middle",
       "models": "Claude Fable, GPT-5.6 Terra",
-      "video": "https://quadcodeguide.vercel.app/ui_views/assets/video-drowned-king.mp4",
-      "poster": "/ui_views/assets/video-drowned-king-poster.jpg",
+      "video": "/ui_views/assets/video-drowned-king.mp4",
+      "poster": "/ui_views/assets/video-drowned-king-poster.webp",
       "steps": [
         {
           "title": "Script the scene in three beats",
@@ -943,7 +943,7 @@
           "title": "Sync the halves and label them",
           "text": "Line both takes up beat-for-beat in a split-screen and put the model names on top. Matching beats side by side is what makes quality differences impossible to miss. Play the clip above to see the result.",
           "prompt": "",
-          "result_video": "https://quadcodeguide.vercel.app/ui_views/assets/video-drowned-king.mp4"
+          "result_video": "/ui_views/assets/video-drowned-king.mp4"
         }
       ],
       "result": "An 18-second split-screen epic where two AI models raise the same drowned king from the sea — beat-synced so the differences do the talking."
@@ -959,8 +959,8 @@
       "level": "Junior",
       "models": "Seedance",
       "trending": true,
-      "video": "https://quadcodeguide.vercel.app/ui_views/assets/video-ocean-walk.mp4",
-      "poster": "/ui_views/assets/video-ocean-walk-poster.jpg",
+      "video": "/ui_views/assets/video-ocean-walk.mp4",
+      "poster": "/ui_views/assets/video-ocean-walk-poster.webp",
       "steps": [
         {
           "title": "Stage it like real phone footage",
@@ -976,7 +976,7 @@
           "title": "Keep the take that fools people",
           "text": "Generate a few takes and keep the one where the feet actually read as striking the surface — one bad footstep breaks the whole illusion. Play the clip above to see the result.",
           "prompt": "",
-          "result_video": "https://quadcodeguide.vercel.app/ui_views/assets/video-ocean-walk.mp4"
+          "result_video": "/ui_views/assets/video-ocean-walk.mp4"
         }
       ],
       "result": "An 11-second walking-on-water clip that looks like real bystander footage — built to stop the scroll and start the 'how is this possible' comments."
@@ -992,8 +992,8 @@
       "level": "Middle",
       "models": "Seedance",
       "trending": true,
-      "video": "https://quadcodeguide.vercel.app/ui_views/assets/video-macbook-bird-flyout.mp4",
-      "poster": "/ui_views/assets/video-macbook-bird-poster.jpg",
+      "video": "/ui_views/assets/video-macbook-bird-flyout.mp4",
+      "poster": "/ui_views/assets/video-macbook-bird-poster.webp",
       "steps": [
         {
           "title": "Stage the screen inside the scene",
@@ -1009,7 +1009,7 @@
           "title": "Ship it as your landing hero",
           "text": "Keep the take where the screen-exit reads clean and the landing feels weighty. Drop it into your page hero with autoplay, mute and loop — the first three seconds do all the selling. Play the clip above to see the result.",
           "prompt": "",
-          "result_video": "https://quadcodeguide.vercel.app/ui_views/assets/video-macbook-bird-flyout.mp4"
+          "result_video": "/ui_views/assets/video-macbook-bird-flyout.mp4"
         }
       ],
       "result": "A 10-second screen-to-reality hero video in 4K — the kind of opening shot that makes visitors stop scrolling and watch your landing page."
@@ -1024,8 +1024,8 @@
       "date": "2026-07-09",
       "level": "Middle",
       "models": "GPT-Image, Seedance, Topaz",
-      "video": "https://quadcodeguide.vercel.app/ui_views/assets/video-sakura-turntable.mp4",
-      "poster": "/ui_views/assets/video-sakura-turntable-poster.jpg",
+      "video": "/ui_views/assets/video-sakura-turntable.mp4",
+      "poster": "/ui_views/assets/video-sakura-turntable-poster.webp",
       "steps": [
         {
           "title": "Generate the hero keyframe",
@@ -1041,7 +1041,7 @@
           "title": "Upscale to 4K and ship it",
           "text": "Run the finished loop through the upscaler for a crisp 4K master, then drop it into your landing page hero with autoplay, mute and loop. Play the clip above to see the result.",
           "prompt": "",
-          "result_video": "https://quadcodeguide.vercel.app/ui_views/assets/video-sakura-turntable.mp4"
+          "result_video": "/ui_views/assets/video-sakura-turntable.mp4"
         }
       ],
       "result": "A seamless 16-second 360° product turntable in 4K — the hero video that turns a static landing page into a premium storefront."
@@ -1057,8 +1057,8 @@
       "level": "Middle",
       "models": "Claude Sonnet",
       "trending": true,
-      "video": "https://quadcodeguide.vercel.app/ui_views/assets/video-bloomcare-landing.mp4",
-      "poster": "/ui_views/assets/video-bloomcare-poster.jpg",
+      "video": "/ui_views/assets/video-bloomcare-landing.mp4",
+      "poster": "/ui_views/assets/video-bloomcare-poster.webp",
       "steps": [
         {
           "title": "Set the brand and mood",
@@ -1074,7 +1074,7 @@
           "title": "Polish and record",
           "text": "Finish with the details that sell the premium feel: micro-animations, a benefits marquee, hover states. Then scroll the live page and screen-record it for your portfolio or client.",
           "prompt": "Add finishing touches: a slim scrolling marquee strip with offers (free samples, cruelty-free, 30-day guarantee, free shipping), subtle fade-up animations on scroll, soft hover lift on product cards, and a typing caret effect on the hero headline. Keep every animation quiet and smooth — premium, never flashy.",
-          "result_video": "https://quadcodeguide.vercel.app/ui_views/assets/video-bloomcare-landing.mp4"
+          "result_video": "/ui_views/assets/video-bloomcare-landing.mp4"
         }
       ],
       "result": "A complete luxury skincare landing page coded by the agent — recorded here as a 12-second scroll-through, ready to ship or hand to a client."
@@ -1090,32 +1090,32 @@
       "level": "Middle",
       "models": "GPT-Image, Seedance",
       "trending": true,
-      "video": "https://quadcodeguide.vercel.app/ui_views/assets/gamedev-rpg-character.mp4",
-      "poster": "/ui_views/assets/gamedev-rpg-poster.jpg",
+      "video": "/ui_views/assets/gamedev-rpg-character.mp4",
+      "poster": "/ui_views/assets/gamedev-rpg-poster.webp",
       "steps": [
         {
           "title": "Describe your hero",
           "text": "Write one short line about who your character is: their class, vibe and one signature detail. Keep it simple and specific.",
           "prompt": "A mythical jade sorcerer, ancient guardian, standing hero pose, ornate carved gold armor over deep emerald jade scales, dragon-like crest helmet, glowing arcane engravings, fantasy RPG game character, stylized realism, full body",
-          "result_image": "/ui_views/assets/gamedev-rpg-step1-concept.png"
+          "result_image": "/ui_views/assets/gamedev-rpg-step1-concept.webp"
         },
         {
           "title": "Lock the look and details",
           "text": "Add color, material and mood so the character feels one-of-a-kind, not generic. Name real materials so it reads as game-ready art.",
           "prompt": "Polished emerald jade, weathered antique gold filigree, intricate ancient runes, subtle green subsurface glow, moody teal underground lighting, clean readable silhouette, relaxed hero stance on a round base, single character",
-          "result_image": "/ui_views/assets/gamedev-rpg-step2-concept.png"
+          "result_image": "/ui_views/assets/gamedev-rpg-step2-concept.webp"
         },
         {
           "title": "Turn it into a 3D model",
           "text": "Send the image to the 3D step to get a real, rotatable mesh with clean topology and baked textures.",
           "prompt": "Convert this character into a 3D model: full body, clean topology, textured, game-ready, T-pose friendly, consistent proportions, PBR materials",
-          "result_image": "/ui_views/assets/gamedev-rpg-step3-3dmodel.jpg"
+          "result_image": "/ui_views/assets/gamedev-rpg-step3-3dmodel.webp"
         },
         {
           "title": "Spin, check and export",
           "text": "Rotate the model to check it from every side, fix anything off, then export. Play the clip above to see the final turntable.",
           "prompt": "",
-          "result_video": "https://quadcodeguide.vercel.app/ui_views/assets/gamedev-rpg-character.mp4"
+          "result_video": "/ui_views/assets/gamedev-rpg-character.mp4"
         }
       ],
       "result": "You now have a unique, fully rotatable 3D RPG character, ready to animate and drop straight into your game."
@@ -1166,8 +1166,8 @@
       "date": "2026-07-08",
       "level": "Junior",
       "models": "Seedance",
-      "video": "https://quadcodeguide.vercel.app/ui_views/assets/video-minidv-alley.mp4",
-      "poster": "/ui_views/assets/video-minidv-poster.jpg",
+      "video": "/ui_views/assets/video-minidv-alley.mp4",
+      "poster": "/ui_views/assets/video-minidv-poster.webp",
       "steps": [
         {
           "title": "Pick the camera, not the style",
@@ -1198,8 +1198,8 @@
       "level": "Middle",
       "models": "Claude, Kling, GPT-Image",
       "trending": true,
-      "video": "https://quadcodeguide.vercel.app/ui_views/assets/video-ugc-ads-workflow.mp4",
-      "poster": "/ui_views/assets/video-ugc-ads-poster.jpg",
+      "video": "/ui_views/assets/video-ugc-ads-workflow.mp4",
+      "poster": "/ui_views/assets/video-ugc-ads-poster.webp",
       "steps": [
         {
           "title": "Create your AI actor",
@@ -1229,8 +1229,8 @@
       "date": "2026-07-09",
       "level": "Middle",
       "models": "Claude Sonnet",
-      "video": "https://quadcodeguide.vercel.app/ui_views/assets/video-shellgraphic.mp4",
-      "poster": "/ui_views/assets/video-shellgraphic-poster.jpg",
+      "video": "/ui_views/assets/video-shellgraphic.mp4",
+      "poster": "/ui_views/assets/video-shellgraphic-poster.webp",
       "steps": [
         {
           "title": "Turn the photo into dots",
@@ -1246,7 +1246,7 @@
           "title": "Frame it like a poster",
           "text": "Finish with an editorial typography layer around the artwork so the page reads as a premium poster, not a tech demo. Then record the page as a video to share.",
           "prompt": "Add an editorial typography layer: large serif logotype top-left, small uppercase spaced labels — a tagline top-right, a collection label bottom-left, a \"MOVE CURSOR TO DISSOLVE\" hint bottom-right, and a small date tag rotated on the left edge. Premium editorial poster look, all text crisp.",
-          "result_video": "https://quadcodeguide.vercel.app/ui_views/assets/video-shellgraphic.mp4"
+          "result_video": "/ui_views/assets/video-shellgraphic.mp4"
         }
       ],
       "result": "An interactive particle-poster web page that dissolves under the cursor — recorded here as a 13-second clip, ready for your portfolio or socials."
@@ -1262,38 +1262,38 @@
       "level": "Middle+",
       "models": "GPT-Image, Seedance",
       "trending": true,
-      "video": "https://quadcodeguide.vercel.app/ui_views/assets/video-airpods-max-montage.mp4",
-      "poster": "/ui_views/assets/video-airpods-max-poster.jpg",
+      "video": "/ui_views/assets/video-airpods-max-montage.mp4",
+      "poster": "/ui_views/assets/video-airpods-max-poster.webp",
       "steps": [
         {
           "title": "Plan the film with one image",
           "text": "Generate one storyboard sheet with GPT-Image. It locks the look of every shot before you spend a single video credit.",
           "prompt": "A professional film storyboard sheet for a 20-second premium headphones spec ad, dark cinematic layout on black. Eight 16:9 frames in a grid, each with a caption and timecode: box reveal under a single spotlight, hero product floating on black with a specular light sweep, macro of the dial and brushed metal, macro of the knit mesh cushion, person wearing the headphones in a neon city at night, night walk on a wet reflective street, brand end card with the product on a glossy floor, final slow push-in. Consistent silver over-ear headphones in every frame, Apple-style product cinematography, clean typography, high-end pitch deck look.",
-          "result_image": "/ui_views/assets/video-airpods-storyboard.jpg"
+          "result_image": "/ui_views/assets/video-airpods-storyboard.webp"
         },
         {
           "title": "Shot 1 — the reveal",
           "text": "Feed the storyboard frame into Seedance and generate the opening clip. One box, one light, nothing else.",
           "prompt": "A pristine white product box on a dark reflective floor under one soft spotlight. The lid slowly lifts and warm light blooms from inside, revealing silver over-ear headphones nested in the packaging. Slow overhead push-in, quiet and premium, dark studio, no text.",
-          "result_video": "https://quadcodeguide.vercel.app/ui_views/assets/video-airpods-clip-unboxing.mp4"
+          "result_video": "/ui_views/assets/video-airpods-clip-unboxing.mp4"
         },
         {
           "title": "Shot 2 — the hero",
           "text": "Now the money shot: the product alone on black with light doing all the work.",
           "prompt": "Silver over-ear headphones float centered on a pure black background. A single specular light streak sweeps across the aluminium ear cups as the product slowly rotates. Slow drifting camera, high-contrast studio lighting, shallow depth of field, premium ad style, no text.",
-          "result_video": "https://quadcodeguide.vercel.app/ui_views/assets/video-airpods-clip-hero.mp4"
+          "result_video": "/ui_views/assets/video-airpods-clip-hero.mp4"
         },
         {
           "title": "Shot 3 — real life",
           "text": "One lifestyle clip so the product lives outside the studio. Keep it moody and cinematic.",
           "prompt": "A young man wearing silver over-ear headphones walks away from camera through a neon-lit city street at night, wet asphalt reflecting the signs, cinematic bokeh from car lights, smooth forward tracking shot, moody, immersive and premium.",
-          "result_video": "https://quadcodeguide.vercel.app/ui_views/assets/video-airpods-clip-lifestyle.mp4"
+          "result_video": "/ui_views/assets/video-airpods-clip-lifestyle.mp4"
         },
         {
           "title": "Shot 4 — the end card",
           "text": "Close on the brand, then stitch all four clips together in any editor.",
           "prompt": "Silver over-ear headphones stand centered on a glossy black floor with a soft mirror reflection. The camera pushes in slowly while the light gently dims to black. Minimal premium brand end-card mood, elegant and calm, no text.",
-          "result_video": "https://quadcodeguide.vercel.app/ui_views/assets/video-airpods-clip-endcard.mp4"
+          "result_video": "/ui_views/assets/video-airpods-clip-endcard.mp4"
         }
       ],
       "result": "A slick, ad-style product montage ready to post or use as a promo video."
@@ -1325,7 +1325,7 @@
           "title": "Design a cover that sounds like the track",
           "text": "Skip literal instrument photos. Describe a surreal scene that matches the mood — velvet fabric, slow motion, gold light — and GPT-Image turns the feeling into an image.",
           "prompt": "An experimental surreal album cover artwork for a smooth neo-soul jazz R&B instrumental called \"Velvet Hour II\", wide 16:10 composition, high-end editorial art photography. Core idea: a brass trumpet half-submerged in a slow-motion ocean of flowing liquid velvet fabric — deep wine-red and burnt-orange silk waves frozen mid-ripple, the trumpet sinking into the fabric like into thick honey. Lighting: single dramatic golden spotlight from upper left, deep wine-red shadow falloff, rich chiaroscuro, photorealistic render with editorial fashion-campaign polish.",
-          "result_image": "/ui_views/assets/music-velvet-hour-2-cover.png"
+          "result_image": "/ui_views/assets/music-velvet-hour-2-cover.webp"
         },
         {
           "title": "Generate a few takes and pick the cleanest",
@@ -1363,7 +1363,7 @@
           "title": "Design a cover with attitude",
           "text": "Match the track's confidence with a scene that has tension in it — something breaking open, not just sitting still. A calm product shot would undersell a groove this punchy.",
           "prompt": "An experimental surreal album cover artwork for an uptempo jazz-funk R&B groove instrumental called \"Brass & Marble\", wide 16:10 composition, high-end sculptural art photography. Core idea: a classical white marble statue bust cracked open across the chest — and from inside the cracks, polished brass is bursting out: a gleaming tenor saxophone bell erupting through the shattered marble chest, fragments of marble suspended mid-explosion. Lighting: hard-edged studio spotlight from the right, warm golden key on the brass, cool neutral fill on the marble, dark charcoal-to-black background, glossy floor reflection, photorealistic.",
-          "result_image": "/ui_views/assets/music-brass-marble-cover.png"
+          "result_image": "/ui_views/assets/music-brass-marble-cover.webp"
         },
         {
           "title": "Generate and pick the punchiest take",
@@ -1400,7 +1400,7 @@
           "title": "Design a cover built on negative space",
           "text": "Mirror the music in the image: mostly empty, one warm point of light. A busy cover would contradict a track built entirely around silence.",
           "prompt": "An experimental minimal surreal album cover artwork for a slow-burn downtempo R&B soul instrumental called \"After Midnight\", wide 16:10 composition, fine-art night photography. Core idea: a vinyl record hanging in a pitch-black night sky as a full moon — its grooves glowing with a thin cold silver rim light, one warm amber beam from the record's center falling down like moonlight onto a vast dark ocean below made of glossy black piano keys stretching to the horizon like water. Lighting: near-total darkness, cold silver rim light on the vinyl moon, one single warm amber light beam as the only warm accent, deep black dominating 70% of the frame, photorealistic, cinematic.",
-          "result_image": "/ui_views/assets/music-after-midnight-cover.png"
+          "result_image": "/ui_views/assets/music-after-midnight-cover.webp"
         },
         {
           "title": "Generate and pick the take with the most space",

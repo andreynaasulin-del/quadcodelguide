@@ -5,6 +5,9 @@
   "description": "Quadcode Guide site + publish API",
   "scripts": {
     "publish-case": "node scripts/publish_case.mjs",
+    "media:check": "node scripts/normalize_media.mjs --check",
+    "media:dry": "node scripts/normalize_media.mjs --dry",
+    "media:apply": "node scripts/normalize_media.mjs --apply",
     "migrate-videos": "node scripts/migrate_assets_to_blob.mjs",
     "migrate-videos:dry": "node scripts/migrate_assets_to_blob.mjs --dry-run",
     "migrate-direct": "node scripts/migrate_direct_blob.mjs",

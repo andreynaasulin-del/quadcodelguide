@@ -22,6 +22,7 @@
 import { readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { rewriteGuideMedia, isRemoteUrl } from './lib/media.mjs';
+import { normalizeGuide, checkGuide } from './lib/normalize.mjs';
 
 const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
@@ -40,6 +41,23 @@ const baseDir = dirname(resolve(guideFile));
 
 async function main() {
   console.log(`Publishing case "${guide.id}" to ${SITE}${dryRun ? ' (dry run)' : ''}`);
+
+  // Gate: media must meet meta/rules/media-format.md before a single byte is uploaded.
+  // normalizeGuide() converts local PNG/JPG -> webp, caps dimensions, re-encodes
+  // over-budget video, generates missing posters and rewrites the refs in `guide`.
+  // With --dry-run we only report. --no-normalize skips conversion but still gates.
+  if (!args.includes('--no-normalize')) {
+    const { changed, log } = normalizeGuide(guide, { baseDir, dryRun });
+    if (log.length) { console.log(`  media normalize (${changed} field(s)):`); log.forEach((l) => console.log('   ', l)); }
+  }
+  const { errors, warnings } = checkGuide(guide, { baseDir });
+  warnings.forEach((w) => console.warn('  media warn:', w));
+  if (errors.length) {
+    console.error('  media standard violations — refusing to publish:');
+    errors.forEach((e) => console.error('   ', e));
+    console.error('  fix: node scripts/normalize_media.mjs --apply --case ' + guideFile);
+    process.exit(1);
+  }
 
   const n = await rewriteGuideMedia(guide, {
     site: SITE,

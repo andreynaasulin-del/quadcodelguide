@@ -22,7 +22,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
 <meta name="theme-color" content="#13131E">
 <!-- Original quadcode.ai app icon (same file the product ships) -->
 <link rel="icon" href="/ui_views/assets/qcai-icon.webp" type="image/webp">
-<link rel="icon" href="/ui_views/assets/qcai-icon.png" type="image/png">
+<link rel="icon" href="/ui_views/assets/qcai-icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/ui_views/assets/qcai-icon.png">
 <style id="__qc-fouc-guard">body{visibility:hidden!important}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -3170,15 +3170,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       l.href = url;
       document.head.appendChild(l);
     }
-    // light: still images only (cover + poster) — cheap, safe to run for every guide
-    function preloadGuideImages(g) {
-      if (!g) return;
-      preloadImg(g.image);
-      preloadImg(g.poster);
-      (g.steps || []).forEach(s => {
-        if (s) { preloadImg(s.result_image); preloadImg(s.result_poster); }
-      });
-    }
+    // cover + poster only. Do NOT add step images here — see prefetchGuideMedia().
     function preloadGuideCover(g) {
       if (!g) return;
       preloadImg(g.image);
@@ -3191,9 +3183,14 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     // across the grid multiplied it by the number of cards touched. Step videos are
     // already lazy (data-src + IntersectionObserver), so speculating on them buys
     // nothing. Cover stills stay eager — they're the part you actually see.
+    //
+    // Same lesson for step stills: preloadGuideImages() on hover pulled every
+    // steps[].result_image for the card under the cursor — a 5-step guide with
+    // 2880px PNG results was ~50 MB per mouseenter. Step media is lazy inside the
+    // guide view; hover only warms the cover + poster (what the card shows).
     function prefetchGuideMedia(g) {
       if (!g) return;
-      preloadGuideImages(g);
+      preloadGuideCover(g);
       if (cheapNetwork()) return;
       prefetchFile(g.video);
       prefetchFile(g.audio);
