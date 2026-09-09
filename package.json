@@ -4,6 +4,7 @@
   "private": true,
   "description": "Quadcode Guide site + publish API",
   "scripts": {
+    "dev": "node scripts/dev_server.mjs",
     "publish-case": "node scripts/publish_case.mjs",
     "media:check": "node scripts/normalize_media.mjs --check",
     "media:dry": "node scripts/normalize_media.mjs --dry",
