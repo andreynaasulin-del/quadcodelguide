@@ -1,28 +1,480 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://quadcodeguide.vercel.app/</loc>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://quadcodeguide.vercel.app/#skills</loc>
-    <changefreq>weekly</changefreq>
+    <loc>https://quadcodeguide.vercel.app/guide/castlevania-pixel-art-prompt-breakdown</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/castlevania-prompt-breakdown/cover.webp</image:loc>
+      <image:title>Castlevania pixel-art series: 8 prompts, line by line</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://quadcodeguide.vercel.app/#/guide/quadcode-ui-workflow-optimize</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://quadcodeguide.vercel.app/guide/winter-ops-fps-industrial</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/winter-ops-fps-poster.webp</image:loc>
+      <image:title>Winter ops: bunker to container yard — a 40-second FPS continuation</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://quadcodeguide.vercel.app/#/guide/saas-dashboard-interface</loc>
-    <changefreq>weekly</changefreq>
+    <loc>https://quadcodeguide.vercel.app/guide/anime-caramel-pudding-recipe</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/anime-caramel-pudding-poster.webp</image:loc>
+      <image:title>Anime caramel pudding: a recipe in eight cuts</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://quadcodeguide.vercel.app/#/guide/mobile-app-screens-kit</loc>
-    <changefreq>weekly</changefreq>
+    <loc>https://quadcodeguide.vercel.app/guide/fauxreal-gaussian-splat-loop</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/fauxreal-splat-loop-poster.webp</image:loc>
+      <image:title>Faux-real: a 10-second Gaussian-splat loop, four scans</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/graphics-lab-render-library</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/graphics-lab-render-library-poster.webp</image:loc>
+      <image:title>Graphics Lab: 37 procedural render scenes from one agent skill set</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/ps5-controller-configurator-page</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/ps5-controller-configurator-poster.webp</image:loc>
+      <image:title>Custom controller store: a 3D product hero that swaps skins live</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/seoul-arcade-minidv-tape</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/seoul-arcade-minidv-poster.webp</image:loc>
+      <image:title>Seoul arcade on MiniDV: a 15-second tape nobody meant to keep</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/rooftop-run-cel-shaded-trailer</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/rooftop-run-poster.webp</image:loc>
+      <image:title>Rooftop run: a cel-shaded action trailer in 30 seconds</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/blocky-world-photoreal-remaster</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/blocky-world-remaster-poster.webp</image:loc>
+      <image:title>Blocky world, photoreal remaster</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/metro-ruins-fps-walkthrough</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/metro-ruins-fps-poster.webp</image:loc>
+      <image:title>Metro ruins: first-person walkthrough with live fire</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/interior-render-model-battle</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/interior-model-battle-poster.webp</image:loc>
+      <image:title>Interior render battle: Fable 5.1 vs GPT-6 Astra</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/arcade-fighter-pixel-match</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/arcade-fighter-poster.webp</image:loc>
+      <image:title>Arcade fighter: one pixel-art round, full HUD</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/forest-ops-tactical-fps</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/forest-ops-poster.webp</image:loc>
+      <image:title>Forest ops: rain, river, bunker — a tactical FPS teaser</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/crimson-adventure-trailer</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/crimson-adventure-poster.webp</image:loc>
+      <image:title>Crimson: jungle, shark, fortress — a third-person adventure trailer</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/brazil-street-documentary</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/brazil-street-poster.webp</image:loc>
+      <image:title>Brazil street: a 10-second documentary walk</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/jerry01-quadcode-testimonials</loc>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/jerry01-testimonials-live-poster.webp</image:loc>
+      <image:title>Restyle a physics-driven testimonial widget</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/gta-skate-stunt</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/gta-skate-stunt-poster.webp</image:loc>
+      <image:title>Direct a GTA-style skate line in one continuous shot</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/gta-surf-stunt</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/gta-surf-stunt-poster.webp</image:loc>
+      <image:title>Direct a GTA-style surf stunt with a playable HUD</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/wushu-ink-dragon-cinematic</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/wushu-ink-dragon-cinematic-poster.webp</image:loc>
+      <image:title>Turn a wushu performance into a living ink painting</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/snap01-parametric-kitchen-configurator</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/snap01-03-identity-render.cover.webp</image:loc>
+      <image:title>Parametric kitchen configurator: form logic to 3D modules</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/npc01-dark-fantasy-deceiver</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/npc01-03-identity-render.cover.webp</image:loc>
+      <image:title>Dark-fantasy NPC: silhouette to 3D handoff</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/savor01-evidence-of-food</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/cover-savor01-lockup.cover.webp</image:loc>
+      <image:title>20-second food motion identity from six stills</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/building-autopsy-boutique-hotel</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/cover-building-autopsy.cover.webp</image:loc>
+      <image:title>Building Autopsy: Convert an Abandoned Factory into a Boutique Hotel</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/jeweled-brand-icons-carousel</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/jeweled-brand-icons-carousel/museum_00_rebrand_promo_banner.cover.webp</image:loc>
+      <image:title>Rebrand carousel: five jeweled brand icons with one prompt formula</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/cherry-blossom-boss-cinematic</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/poster-cherry-blossom-boss-cinematic.webp</image:loc>
+      <image:title>Direct an epic boss-reveal cinematic shot</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/headphones-retouch-color-grade</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/cover-headphones-retouch.cover.webp</image:loc>
+      <image:title>Retouch and color grade a product photo into a full ad set</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/business-visuals-that-explain-work</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/cover-business-visuals.cover.webp</image:loc>
+      <image:title>Turn business problems into visuals people understand</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/compare-interior-directions</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/compare-interior-directions/baroque_cottage_final.cover.webp</image:loc>
+      <image:title>Compare three interior directions before you commit</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/rolex-4k-before-after-upscale</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/poster-rolex-4k-before-after-upscale.webp</image:loc>
+      <image:title>Upscale real product footage to true 4K</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/irondrone-flying-ironer</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/poster-irondrone-flying-ironer.webp</image:loc>
+      <image:title>Pitch a flying ironing-drone concept ad</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/museum-of-impossible-things-carousel</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/museum-of-impossible-things-carousel/museum_00_promo_banner_16x10.cover.webp</image:loc>
+      <image:title>Museum of Impossible Things: a 5-image carousel with one prompt formula</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/boss-fight-model-battle</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/video-fable-vs-sol-poster.webp</image:loc>
+      <image:title>Boss fight: one brief, two AI models</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/mutation-serum-vfx</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/video-substance-lab-poster.webp</image:loc>
+      <image:title>Shoot a movie-grade mutation VFX scene</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/drowned-king-model-battle</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/video-drowned-king-poster.webp</image:loc>
+      <image:title>Drowned king colossus: two models, one legend</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/walk-on-water-viral</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/video-ocean-walk-poster.webp</image:loc>
+      <image:title>Fake a viral walking-on-water clip</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/screen-to-reality-hero</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/video-macbook-bird-poster.webp</image:loc>
+      <image:title>Make a screen-to-reality hero video</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/product-hero-turntable</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/video-sakura-turntable-poster.webp</image:loc>
+      <image:title>Spin a 360° product hero for your landing page</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/beauty-brand-landing</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/video-bloomcare-poster.webp</image:loc>
+      <image:title>Build a luxury beauty brand landing page</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/first-game-character</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/gamedev-rpg-poster.webp</image:loc>
+      <image:title>Create your own RPG character</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/jazz-rnb-restaurant-track</loc>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/music-jazz-restaurant-cover.cover.webp</image:loc>
+      <image:title>Make a jazz R&amp;B restaurant track</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/minidv-camcorder-memory</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/video-minidv-poster.webp</image:loc>
+      <image:title>Shoot a 2000s camcorder memory</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/ugc-ads-workflow</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/video-ugc-ads-poster.webp</image:loc>
+      <image:title>Mass-produce UGC ads from one product photo</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/photo-particle-poster</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/video-shellgraphic-poster.webp</image:loc>
+      <image:title>Turn a photo into a living particle poster</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/premium-product-montage</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/video-airpods-max-poster.webp</image:loc>
+      <image:title>Make a premium product montage</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/velvet-hour-ad-instrumental</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/music-velvet-hour-2-cover.cover.webp</image:loc>
+      <image:title>Score a premium ad instrumental with Suno</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/brass-marble-ad-instrumental</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/music-brass-marble-cover.cover.webp</image:loc>
+      <image:title>Cut a rhythm-driven ad groove with built-in edit points</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/after-midnight-ad-instrumental</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/music-after-midnight-cover.cover.webp</image:loc>
+      <image:title>Build a VO-safe soul bed for voiceover ads</image:title>
+    </image:image>
   </url>
 </urlset>

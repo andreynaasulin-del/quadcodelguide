@@ -7,6 +7,7 @@
     "dev": "node scripts/dev_server.mjs",
     "publish-case": "node scripts/publish_case.mjs",
     "media:check": "node scripts/normalize_media.mjs --check",
+    "sitemap": "node scripts/build_sitemap.mjs",
     "media:dry": "node scripts/normalize_media.mjs --dry",
     "media:apply": "node scripts/normalize_media.mjs --apply",
     "migrate-videos": "node scripts/migrate_assets_to_blob.mjs",

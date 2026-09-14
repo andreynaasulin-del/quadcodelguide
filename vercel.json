@@ -3,12 +3,18 @@
   "framework": null,
   "buildCommand": null,
   "trailingSlash": false,
+  "functions": {
+    "api/guide.mjs": {
+      "includeFiles": "{ui_views/landing.html,ui_views/guides.json}",
+      "maxDuration": 10
+    }
+  },
   "rewrites": [
     { "source": "/adminpanelqc", "destination": "/ui_views/admin.html" },
     { "source": "/ide-test", "destination": "/ui_views/qc-ide-test.html" },
     { "source": "/guide/jerry01", "destination": "/ui_views/qc-guide-jerry01.html" },
     { "source": "/jerry01", "destination": "/ui_views/qc-guide-jerry01.html" },
-    { "source": "/guide/(.*)", "destination": "/ui_views/qc-guide-jerry01.html" },
+    { "source": "/guide/:id", "destination": "/api/guide?id=:id" },
     { "source": "/", "destination": "/ui_views/landing.html" },
     { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
     { "source": "/robots.txt", "destination": "/robots.txt" }
@@ -28,7 +34,7 @@
       ]
     },
     {
-      "source": "/guide/(.*)",
+      "source": "/(guide/jerry01|jerry01)",
       "headers": [
         { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }

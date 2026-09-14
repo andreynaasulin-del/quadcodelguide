@@ -14,9 +14,10 @@
  * Node core only — no npm install, works on a bare checkout.
  */
 import { createServer } from 'node:http';
-import { createReadStream, existsSync, statSync } from 'node:fs';
+import { createReadStream, existsSync, statSync, readFileSync } from 'node:fs';
 import { extname, join, normalize, resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { renderGuideHead, renderNotFound } from '../lib/guide_page.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const PORT = Number(process.env.PORT || 9099);
@@ -52,9 +53,25 @@ const server = createServer((req, res) => {
     return send(res, 400, 'bad URL');
   }
 
-  if (pathname === '/' || pathname === '/index.html') {
-    res.writeHead(302, { Location: HOME });
-    return res.end();
+  // Mirror vercel.json rewrites so local == prod:
+  //   /                 -> landing.html (served, not redirected: clean-URL mode)
+  //   /guide/jerry01    -> the standalone IDE-handoff test page
+  //   /guide/<id>       -> landing.html with this guide's <head> (same code as api/guide.mjs)
+  if (pathname === '/' || pathname === '/index.html') pathname = HOME;
+  else if (pathname === '/guide/jerry01' || pathname === '/jerry01') pathname = '/ui_views/qc-guide-jerry01.html';
+  else if (/^\/guide\/[^/]+\/?$/.test(pathname)) {
+    const id = pathname.replace(/^\/guide\//, '').replace(/\/$/, '');
+    const origin = `http://localhost:${PORT}`;
+    try {
+      const html = readFileSync(join(ROOT, 'ui_views/landing.html'), 'utf8');
+      const raw = readFileSync(join(ROOT, 'ui_views/guides.json'), 'utf8');
+      const data = JSON.parse(raw.charCodeAt(0) === 0xFEFF ? raw.slice(1) : raw);
+      const g = (data.guides || []).find(x => x.id === id);
+      if (!g) return send(res, 404, renderNotFound(origin), { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' });
+      return send(res, 200, renderGuideHead(html, g, origin), { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' });
+    } catch (e) {
+      return send(res, 500, 'guide renderer: ' + e.message);
+    }
   }
 
   // Block path traversal: resolve, then require the result to stay under ROOT.

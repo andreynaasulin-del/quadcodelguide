@@ -2347,12 +2347,62 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     function saveStore(s) {
       try { localStorage.setItem(STORE_KEY, JSON.stringify(s)); } catch (e) {}
     }
+    // ---- Analytics sink ----
+    // Events were being written to localStorage only — i.e. nobody could see
+    // them. Now every track() also goes to whichever provider is configured:
+    //   • Vercel Web Analytics (default; enable once in Project → Analytics)
+    //   • Plausible — set ANALYTICS.plausible = 'quadcodeguide.vercel.app'
+    // Nothing loads on localhost / file:// / inside the IDE preview.
+    const ANALYTICS = { plausible: '' };
+    const ANALYTICS_ON = location.protocol.startsWith('http') && !/^(localhost|127\.|0\.0\.0\.0|\[::1\])/.test(location.hostname);
+    (function bootAnalytics() {
+      if (!ANALYTICS_ON) return;
+      const s = document.createElement('script');
+      s.defer = true;
+      if (ANALYTICS.plausible) {
+        s.src = 'https://plausible.io/js/script.manual.js';
+        s.setAttribute('data-domain', ANALYTICS.plausible);
+        window.plausible = window.plausible || function () { (window.plausible.q = window.plausible.q || []).push(arguments); };
+      } else {
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+        s.src = '/_vercel/insights/script.js';
+      }
+      document.head.appendChild(s);
+    })();
+    // Virtual URL for a hash-routed page, so /guide/<id> shows up as a page, not "/".
+    function analyticsPath() {
+      const m = location.hash.match(/^#\/guide\/(.+)$/) || (location.pathname.match(/^\/guide\/(.+)$/));
+      if (m) return '/guide/' + decodeURIComponent(m[1]);
+      const sk = location.hash.match(/^#\/skill\/(.+)$/);
+      if (sk) return '/skill/' + decodeURIComponent(sk[1]);
+      if (location.hash === '#skills') return '/skills';
+      return '/';
+    }
+    let _lastPv = '';
+    function pageview() {
+      const path = analyticsPath();
+      if (path === _lastPv) return;
+      _lastPv = path;
+      if (!ANALYTICS_ON) return;
+      try {
+        if (ANALYTICS.plausible) window.plausible('pageview', { u: location.origin + path });
+        else window.va('pageview', { route: path.startsWith('/guide/') ? '/guide/[id]' : path, path });
+      } catch (e) {}
+    }
     function track(event, data) {
       const s = loadStore();
       s.events = Array.isArray(s.events) ? s.events : [];
       s.events.push(Object.assign({ t: Date.now(), e: event }, data || {}));
       if (s.events.length > 200) s.events = s.events.slice(-120);
       saveStore(s);
+      if (!ANALYTICS_ON) return;
+      // flat, string/number-only payload — both providers reject nested objects
+      const props = {};
+      Object.entries(data || {}).forEach(([k, v]) => { if (v != null && typeof v !== 'object') props[k] = v; });
+      try {
+        if (ANALYTICS.plausible) window.plausible(event, { props });
+        else window.va('event', { name: event, data: props });
+      } catch (e) {}
     }
     function guideState(id) {
       const s = loadStore();
@@ -2408,7 +2458,8 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       if (desc) md.setAttribute('content', desc);
       const ogTitle = document.querySelector('meta[property="og:title"]');
       const ogDesc = document.querySelector('meta[property="og:description"]');
-      if (ogTitle) ogTitle.setAttribute('content', title);
+      // og:title = bare title; the site name lives in og:site_name, not repeated here
+      if (ogTitle) ogTitle.setAttribute('content', title.replace(/ — Quadcode Guide$/, ''));
       if (ogDesc && desc) ogDesc.setAttribute('content', desc);
     }
     function syncContinueScroll() {
@@ -3900,10 +3951,12 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     }
 
     // ---- Discovery shelves (idle catalog only) ----
+    // One per discipline, all Junior, all with a real final to watch.
+    // ('quadcode-ui-workflow-optimize' was removed in the v1 purge — dead id.)
     const START_HERE_IDS = [
       'ugc-ads-workflow',
       'beauty-brand-landing',
-      'quadcode-ui-workflow-optimize'
+      'arcade-fighter-pixel-match'
     ];
     const SHELVES = [
       {
@@ -4854,7 +4907,12 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       guideStepCount = steps.length;
       guideStickyTitleEl.textContent = g.title;
       guideStickyCtaEl.href = CTA_URL; // real link (focusable + fallback); onclick enriches with prompt
-      guideStickyCtaEl.onclick = (e) => { e.preventDefault(); openInQuadcode(guidePrimaryPrompt(g)); };
+      // Same decision as the bottom CTA: delegate to it so both buttons behave identically.
+      guideStickyCtaEl.onclick = (e) => {
+        e.preventDefault();
+        const primary = guideBodyEl.querySelector('[data-qc-open]');
+        if (primary) primary.click(); else openInQuadcode(guidePrimaryPrompt(g));
+      };
       stepRailEl.innerHTML = '';
       if (guideStepCount >= 2) {
         steps.forEach((s, i) => {
@@ -4927,11 +4985,38 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         // Steps no longer carry their own "Open in Quadcode" button — each prompt
         // explains how to run it instead, and the bottom CTA handles the launch.
         const primaryPrompt = guidePrimaryPrompt(g);
+        const proj = g.project && g.project.zip ? g.project : null;
+        // Primary CTA picks the strongest path that actually works right now:
+        //   1. guide ships a project AND the IDE answers /ping → hand the project
+        //      over (files + chat + tabs). This is the "opens with the guide" case.
+        //   2. otherwise → copy the prompt + quadcode:// deep link. The deep link
+        //      carries no payload (long URLs fail on Windows), so the chat opens
+        //      empty and the user pastes — the toast says exactly that.
         guideBodyEl.querySelectorAll('[data-qc-open]').forEach(btn => {
-          btn.onclick = () => openInQuadcode(primaryPrompt);
+          btn.onclick = async () => {
+            if (proj) {
+              const label = btn.textContent;
+              btn.classList.add('is-busy'); btn.textContent = 'Checking IDE…';
+              const ideUp = await isIdeRunning();
+              if (ideUp) {
+                try {
+                  await openProjectInIde(proj.name || g.title, proj.zip);
+                  btn.textContent = 'Opening in IDE…';
+                  showToast('Project sent — switch to the IDE');
+                  track('ide_open', { id: g.id, via: 'primary' });
+                  setTimeout(() => { btn.classList.remove('is-busy'); btn.textContent = label; }, 2600);
+                  return;
+                } catch (e) {
+                  track('ide_open_fail', { id: g.id, via: 'primary' });
+                  // fall through to prompt path
+                }
+              }
+              btn.classList.remove('is-busy'); btn.textContent = label;
+            }
+            openInQuadcode(primaryPrompt);
+          };
         });
         // "Open in IDE": ping the local IDE API, then hand it the project zip.
-        const proj = g.project && g.project.zip ? g.project : null;
         guideBodyEl.querySelectorAll('[data-qc-ide]').forEach(btn => {
           btn.onclick = async () => {
             if (!proj) return;
@@ -4958,7 +5043,9 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           };
         });
         // share + copy link
-        const shareUrl = location.href;
+        // Share the canonical URL — it is the one that unfurls with this guide's
+        // own title/poster in Telegram, X, Slack. Hash URLs unfurl as the homepage.
+        const shareUrl = CLEAN_URLS ? canonicalGuideUrl(g.id) : location.href;
         const shareData = { title: g.title + ' — Quadcode Guide', text: g.desc || '', url: shareUrl };
         guideBodyEl.querySelectorAll('[data-share]').forEach(btn => {
           btn.onclick = () => {
@@ -5199,8 +5286,18 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       }, 260);
     }
 
+    // Route source: the hash, or — on a clean /guide/<id> URL with no hash —
+    // the path. Lets a server-rendered guide URL boot straight into the guide.
+    function effectiveHash() {
+      if (location.hash) return location.hash;
+      const id = pathGuideId();
+      return id ? '#/guide/' + encodeURIComponent(id) : '';
+    }
+
     function applyRoute() {
-      const skillMatch = location.hash.match(/^#\/skill\/(.+)$/);
+      const hash = effectiveHash();
+      pageview();
+      const skillMatch = hash.match(/^#\/skill\/(.+)$/);
       if (skillMatch) {
         const id = decodeURIComponent(skillMatch[1]);
         const s = SKILLS.find(x => x.id === id);
@@ -5208,25 +5305,35 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         location.hash = '#skills';
         return;
       }
-      const m = location.hash.match(/^#\/guide\/(.+)$/);
+      const m = hash.match(/^#\/guide\/(.+)$/);
       if (m) {
         const id = decodeURIComponent(m[1]);
         const g = GUIDES.find(x => x.id === id);
-        if (g) { showGuidePage(g); return; }
+        if (g) { showGuidePage(g); syncAddressBar(hash); return; }
       }
       showHome();
+      syncAddressBar(m ? '' : hash); // unknown guide id → home, address bar back to /
     }
 
+    let _routeQueued = false;
     function router() {
-      const next = routeKind(location.hash);
-      const prev = visibleKind();
-      if (next === prev) { applyRoute(); return; }
-      // Home tab switch (guides <-> skills): light panel fade, keep hero
-      if (next.startsWith('home:') && prev.startsWith('home:')) {
-        showHomeTab(parseHomeTab(location.hash), { animate: true });
-        return;
-      }
-      runRouteTransition(applyRoute);
+      // hashchange + popstate can both fire for one navigation — run once per tick
+      if (_routeQueued) return;
+      _routeQueued = true;
+      queueMicrotask(() => {
+        _routeQueued = false;
+        const hash = effectiveHash();
+        const next = routeKind(hash);
+        const prev = visibleKind();
+        if (next === prev) { applyRoute(); return; }
+        // Home tab switch (guides <-> skills): light panel fade, keep hero
+        if (next.startsWith('home:') && prev.startsWith('home:')) {
+          showHomeTab(parseHomeTab(hash), { animate: true });
+          pageview();
+          return;
+        }
+        runRouteTransition(applyRoute);
+      });
     }
 
     // ---- Custom waveform audio player ----
@@ -5323,6 +5430,55 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       requestAnimationFrame(() => { draw(); computePeaks(); });
     }
 
+    // ---- Badge policy ----
+    // NEW is a fact, not an opinion: published within the last 14 days. Hand-set
+    // `new`/`trending` flags in guides.json are ignored — with 28/47 guides flagged
+    // NEW and 24 TRENDING, the badges meant nothing. TRENDING comes back only when
+    // it is driven by real analytics.
+    const NEW_WINDOW_DAYS = 14;
+    const NEW_MAX = 8; // a batch upload must not turn half the catalog "new"
+    function normalizeFlags(list) {
+      const now = Date.now();
+      const fresh = list
+        .map(g => ({ g, t: g.date ? Date.parse(g.date) : NaN }))
+        .filter(x => isFinite(x.t) && (now - x.t) / 86400000 <= NEW_WINDOW_DAYS)
+        .sort((a, b) => b.t - a.t)
+        .slice(0, NEW_MAX)
+        .map(x => x.g);
+      const newSet = new Set(fresh);
+      list.forEach(g => { g.new = newSet.has(g); g.trending = false; });
+      return list;
+    }
+
+    // ---- Canonical guide URLs ----
+    // /guide/<id> is the share/index format (server injects OG tags for it).
+    // Internally the SPA stays hash-routed; the address bar is normalised so a
+    // copied URL is always the canonical one.
+    function canonicalGuideUrl(id) {
+      return location.origin + '/guide/' + encodeURIComponent(id);
+    }
+    function pathGuideId() {
+      const m = location.pathname.match(/^\/guide\/([^/]+)\/?$/);
+      return m ? decodeURIComponent(m[1]) : null;
+    }
+    // Clean-URL hosting (Vercel, dev server at /) vs. a direct file path
+    // (/ui_views/landing.html in the IDE preview). Only the former gets rewritten.
+    const CLEAN_URLS = location.protocol.startsWith('http') && !/\.html$/i.test(location.pathname);
+    function syncAddressBar(routeHash) {
+      if (!CLEAN_URLS) return;
+      const m = String(routeHash || '').match(/^#\/guide\/(.+)$/);
+      try {
+        if (m) {
+          // on a guide: address bar shows /guide/<id>, hash dropped
+          const want = '/guide/' + m[1];
+          if (location.pathname !== want || location.hash) history.replaceState(null, '', want);
+        } else if (/^\/guide\//.test(location.pathname)) {
+          // left the guide: back to / + whatever home hash we have
+          history.replaceState(null, '', '/' + location.hash);
+        }
+      } catch (e) { /* sandboxed — leave URL alone */ }
+    }
+
     // ---- IDE bridge (theme) + FOUC guard ----
     function guidesJsonUrls() {
       const t = Date.now();
@@ -5347,7 +5503,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           let text = await res.text();
           if (text.charCodeAt(0) === 0xFEFF) text = text.slice(1);
           const data = JSON.parse(text);
-          if (Array.isArray(data.guides)) GUIDES = data.guides;
+          if (Array.isArray(data.guides)) GUIDES = normalizeFlags(data.guides);
           if (Array.isArray(data.categories) && data.categories.length) {
             const used = new Set(GUIDES.map(g => g.cat));
             CATEGORIES = data.categories.filter(c =>
@@ -5379,7 +5535,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       renderExtraCatalogs();
       renderSkeletonGrid(6);
       // deep link straight to a guide: show guide skeleton instead of home grid
-      if (/^#\/guide\//.test(location.hash)) renderSkeletonGuide();
+      if (/^#\/guide\//.test(effectiveHash())) renderSkeletonGuide();
       // deep link to Skills: show skills skeleton while home boots
       if (parseHomeTab(location.hash) === 'skills') renderSkillsSkeleton(6);
       await loadData();
@@ -5491,6 +5647,8 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       initHeaderAutoHide();
       // any route change lands at the top with the bar visible
       window.addEventListener('hashchange', showHeader);
+      // Back/Forward between /guide/<id> (hash stripped) and / fires popstate only
+      window.addEventListener('popstate', router);
 
       router();
     }
