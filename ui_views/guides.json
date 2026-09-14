@@ -583,8 +583,8 @@
       "id": "rooftop-run-cel-shaded-trailer",
       "cat": "Gamedev",
       "sub": "Game Trailer",
-      "title": "Rooftop run: a cel-shaded action trailer in 30 seconds",
-      "desc": "A green-tunic hero sprints, vaults and leaps across the tiled roofs of a storybook town and up a castle wall — one continuous chase, cel-shaded, cut to 30 seconds.",
+      "title": "Rooftop run: a 30-second chase trailer that came back in two takes",
+      "desc": "A red-haired hero sprints the roof ridges of a storybook town, leaps two alley gaps, slides down a market awning and climbs a castle wall. Thirty seconds, and a scene detector finds exactly one cut in it — the prompt asked for a five-shot cel-shaded cut list and got two long stylised takes instead.",
       "time": "12 min",
       "date": "2026-09-09",
       "level": "Middle+",
@@ -594,40 +594,40 @@
       "poster": "/ui_views/assets/showcase/rooftop-run-poster.webp",
       "steps": [
         {
-          "title": "Lock the hero and the palette before any motion",
-          "text": "Trailers fall apart when the hero changes between shots. Describe the character once — silhouette, colors, weapon — and the world once — terracotta roofs, teal shutters, midday sky. Every shot prompt reuses that block verbatim.",
+          "title": "The palette locks. The costume does not.",
+          "text": "One block, reused verbatim in every shot prompt, and the result splits cleanly in two. The world obeyed: terracotta tiles, cream stucco, teal shutters and midday cumulus hold for all thirty seconds. The character did not. The prompt asks for a blond swordsman in a pointed cap — what arrives is bare-headed, bright red-haired, and carries no sword at any point in the clip, only a round wooden shield. \"Clean toon outlines\" is in the prompt too; there is not one ink line in the render, which is why this page no longer calls the piece cel-shaded. Practical read: colour and architecture are cheap to lock with words, hair and headgear are not. If a specific face matters, lock it with a reference image, not adjectives.",
           "prompt": "Cel-shaded action-adventure game cinematic. Hero: young swordsman in a green tunic and pointed cap, brown boots, small shield on the back, blond hair. World: medieval storybook town — terracotta tiled roofs, cream stucco walls, teal shutters, cobblestone plaza with market stalls, bright midday sun, cumulus clouds. Clean toon outlines, saturated colors, stylized grass and foliage.",
           "result_image": "/ui_views/assets/evidence/rooftop-run-cel-shaded-trailer/step-1.webp",
-          "result_label": "Frame from the final render · 0:02",
-          "result_caption": "Hero, palette and ink outline fixed in frame one. Every later shot inherits exactly this.",
+          "result_label": "Two frames from the final render · 0:02 and 0:28",
+          "result_caption": "Twenty-six seconds apart: same red hair, same hooded green tunic with yellow sleeves, same round shield. Consistent — and consistently not what the prompt described.",
           "result_source": "final"
         },
         {
-          "title": "Direct the chase as a rooftop-to-castle route",
-          "text": "Give the model a route, not a mood. Roof ridge → gap jump → plaza overlook → drop into the square → castle wall climb. Each beat is 4–6 seconds; the camera stays behind and slightly above so parkour reads clearly.",
+          "title": "Name the bystanders and you get a reaction shot",
+          "text": "The route survived: roof ridge, two airborne gap jumps at 0:04 and 0:08, the awning slide, the castle wall. The line worth stealing is the smallest one — \"vendors look up\". Watch the clip: the fruit-seller in the green headscarf tips her head back, opens her mouth and raises a hand as he comes down the canopy, and the apples spill off her stall. Four words bought a crowd that reacts to the hero instead of standing there as scenery. Two things the prompt never mentioned also arrived: a cyan glow under him on landings, and the camera dropping below the roofline at each jump so he crosses the sky. Both are keepers.",
           "prompt": "Shot list, same hero and world block: (1) hero sprints along a roof ridge, camera chasing from behind. (2) Long jump across an alley gap, tiles crumble. (3) Slides down a roof into the market plaza, vendors look up. (4) Runs along the top of the castle curtain wall, blue banners with a gold crest. (5) Leaps toward a tower window, freeze on the jump. Continuous motion, no cuts inside a shot.",
           "result_video": "/ui_views/assets/evidence/rooftop-run-cel-shaded-trailer/step-2.mp4",
           "result_poster": "/ui_views/assets/evidence/rooftop-run-cel-shaded-trailer/step-2-poster.webp",
-          "result_label": "Excerpt from the final render · 0:13–0:17",
-          "result_caption": "Market rooftops into the castle wall. The chase is a route with a destination, not a loop.",
+          "result_label": "Excerpt from the final render · 0:12–0:15",
+          "result_caption": "The awning slide. She looks up, hand raised, and the fruit goes off the stall — the one crowd instruction in the prompt is the one the model nailed.",
           "result_source": "final"
         },
         {
-          "title": "Cut on the jumps, upscale to 4K, deliver at 1080p",
-          "text": "Cut each transition at the apex of a jump — motion hides the seam. Upscale the master to 4K for the archive, then encode a 1080p H.264 delivery under 12 MB for the web. Play the clip above.",
+          "title": "Count your cuts before you claim a cut list",
+          "text": "A five-shot brief came back as two takes. Run the render through a scene detector and the whole thirty seconds contains a single cut, at 15.08s — town on one side, castle on the other. It does not land on a jump apex the way the plan assumed; it lands mid-slide, halfway down the market awning, and it works anyway because his arms are still up and the motion carries across it. The lesson is the measurement, not the number: check where the model actually chose to cut before you write about your editing. Delivery is 1920×1080 H.264, 24 fps, 11.2 MB — small enough to autoplay on a phone. Play the clip above.",
           "prompt": "",
           "result_video": "/ui_views/assets/showcase/rooftop-run.mp4"
         }
       ],
-      "result": "A 30-second cel-shaded chase trailer with one hero, one town and one castle — consistent character, consistent light, no cut feels like a model switch.",
+      "result": "A 30-second chase trailer in two takes and one cut: the hero, the palette and the midday light hold from first frame to last, the market crowd reacts on cue — and the costume, the toon outlines and the five-shot cut list never showed up.",
       "trending": true
     },
     {
       "id": "blocky-world-photoreal-remaster",
       "cat": "Gamedev",
       "sub": "World Remaster",
-      "title": "Blocky world, photoreal remaster",
-      "desc": "Four iconic voxel biomes — vine-choked temple, red desert, glowing portal pool, oak-and-brick house — re-rendered as photoreal environments while the blocky character stays blocky.",
+      "title": "Blocky world, photoreal remaster — and the one thing it ruins",
+      "desc": "A voxel sandbox re-rendered with real materials: vine-choked temple, red desert, an obsidian portal over clear water, a villa with a garden. The cubes survive, the whole reel is first-person with a lava-textured block in hand — and the character's face is gone, replaced by carved gold ornament.",
       "time": "10 min",
       "date": "2026-09-09",
       "level": "Middle",
@@ -637,40 +637,40 @@
       "poster": "/ui_views/assets/showcase/blocky-world-remaster-poster.webp",
       "steps": [
         {
-          "title": "Pick four biomes people recognize instantly",
-          "text": "The joke lands only if the source is obvious. Jungle temple, desert with dead bushes, an obsidian portal by water, a starter house with a boxy character. Each gets one slow camera move, nothing else.",
+          "title": "Four biomes were ordered, three takes came back — joined by a door",
+          "text": "The joke only lands if the source is obvious, so the biome list is the easy part: jungle temple, red desert, obsidian portal, house. What the model did with it is the interesting part. A scene detector finds two cuts in the whole 30 seconds, at 12.83s and 20.21s — three takes, not four shots. Temple and desert are a single unbroken move: the camera walks down the mossy corridor and straight out through the doorway into the sand, so the biome change happens inside the shot instead of on a cut. Also unasked-for and worth keeping: it rendered the whole reel first-person, with a glowing lava-textured block held in the bottom-right corner of frame, exactly the way the source game holds an item. Nothing in the prompt requested a viewpoint at all.",
           "prompt": "Photoreal remaster of a voxel sandbox world. Keep every shape cubic — blocks, stairs, one-meter grid — but render with physically based materials: mossy sandstone, wind-blown sand, obsidian with purple portal glow, oak planks and cobblestone. Cinematic lighting, shallow depth of field, ray-traced reflections, 4K detail.",
           "result_video": "/ui_views/assets/evidence/blocky-world-photoreal-remaster/step-1.mp4",
           "result_poster": "/ui_views/assets/evidence/blocky-world-photoreal-remaster/step-1-poster.webp",
-          "result_label": "Excerpt from the final render · 0:10–0:14",
-          "result_caption": "Desert into water. Two of the four biomes, recognisable before the transition finishes.",
+          "result_label": "Excerpt from the final render · 0:02–0:06",
+          "result_caption": "Temple to desert with no cut — the camera just walks out the door. The lava block in the corner of frame is in every one of the three takes.",
           "result_source": "final"
         },
         {
-          "title": "Keep the geometry blocky, push everything else",
-          "text": "Tell the model explicitly what may not change: block grid, proportions, the character's cube head. Everything else — textures, light, atmosphere, foliage density — goes to maximum realism.",
+          "title": "\"Keep it cubic\" protects geometry, not identity",
+          "text": "On architecture and water the instruction is a total win: the lily pads are still flat squares, the pond is still a stepped cube pit, and the water on top of it reflects the purple portal like real water. Then a character walks past the lens at 0:24 and the same material pass destroys it. The body is perfectly cubic — cube head, cube arms, one-metre grid — but the surface has been re-skinned as carved gilt baroque ornament, so there is no face, no eyes, nothing readable as a person. Same for the house: the prompt says brick-and-oak with a hedge, the render gives a white plaster villa with terracotta roof tiles, a stone column, sunflowers and a garden bench. Takeaway: \"keep every shape cubic\" constrains silhouette only. If a character has to stay recognisable, its texture needs its own sentence that the realism pass is not allowed to touch.",
           "prompt": "Shot 1: slow push through a ruined jungle temple corridor, vines and light shafts. Shot 2: pan across a red desert with dry bushes and a distant plateau. Shot 3: obsidian portal frame beside a lily-pad pond, purple glow reflecting. Shot 4: a boxy character stands in front of a brick-and-oak house with a hedge; the character is low-poly cubic, the world around it photoreal.",
           "result_image": "/ui_views/assets/evidence/blocky-world-photoreal-remaster/step-2.webp",
-          "result_label": "Frame from the final render · 0:12",
-          "result_caption": "Cubic lily pads, photoreal water. Geometry stays blocky; light, texture and volume do not.",
+          "result_label": "Two frames from the final render · 0:14 and 0:24",
+          "result_caption": "Left: square lily pads on real-looking water — the idea working. Right: a cubic character whose head has become gold filigree — the same idea failing.",
           "result_source": "final"
         },
         {
-          "title": "Upscale and grade as one reel",
-          "text": "Run one color grade across all four so they read as one world. Upscale to 4K, deliver 1080p. Play the clip above.",
+          "title": "What actually holds the three takes together",
+          "text": "Not the grade — the props. The lava block in the corner of frame and the one-metre grid are what make three unrelated biomes read as one world, and both came from the model rather than from post. Worth noting what did not arrive: the prompt asks for shallow depth of field and the render is sharp front to back in all three takes, so if you need focus falloff, plan on adding it yourself. Delivery is 1920×1080 H.264, 24 fps, 30.3s, 12.1 MB. Play the clip above.",
           "prompt": "",
           "result_video": "/ui_views/assets/showcase/blocky-world-remaster.mp4"
         }
       ],
-      "result": "A 30-second remaster reel: photoreal light, materials and foliage on a world whose geometry is still cubes — the contrast is the whole idea.",
+      "result": "A 30-second remaster in three first-person takes: real light, real water and real foliage on geometry that is still cubes — and a clear boundary for the technique, drawn by the one character whose face the material pass erased.",
       "trending": true
     },
     {
       "id": "metro-ruins-fps-walkthrough",
       "cat": "Gamedev",
       "sub": "FPS Concept",
-      "title": "Metro ruins: first-person walkthrough with live fire",
-      "desc": "A first-person sweep through a bombed-out school and flooded corridor — weapon in frame, muzzle flash, dust in the light — the vertical-slice shot a shooter pitch needs.",
+      "title": "Metro ruins: 25 seconds in one take, and a rifle that redecorates itself",
+      "desc": "A first-person sweep through a flooded corridor, a wrecked classroom and out through a blown wall into a schoolyard — no cut anywhere in the first 21.8 seconds. The shooter pitch works. The weapon description did not survive it, and the muzzle flash the prompt ordered was never rendered at all.",
       "time": "12 min",
       "date": "2026-09-09",
       "level": "Middle+",
@@ -680,39 +680,43 @@
       "poster": "/ui_views/assets/showcase/metro-ruins-fps-poster.webp",
       "steps": [
         {
-          "title": "Describe the weapon as a fixed object in the frame",
-          "text": "First-person clips break when the gun morphs. Describe it as a prop bolted to the camera: position, finish, attachments. Repeat that block in every shot.",
+          "title": "\"Bolted to the camera\" holds the pose, not the parts",
+          "text": "The instruction works at the level it can: the weapon stays lower-right, same angle, same worn dark finish, for the whole 25 seconds. Below that it comes apart. Nothing matte-black-with-a-tan-foregrip arrived — the render invented a scavenged rifle and then kept changing what is mounted on the receiver. At 0:00 and 0:09 there is a round white pressure dial with a red needle and a yellow segment display reading 04:28. At 0:18, in the same slot, the dial is gone and a green holographic reticle is glowing there instead. The model clearly knew the genre better than the prompt did — post-apocalyptic Russia means pneumatic guns with pressure gauges — and it overrode the attachment list to get there. If exact hardware matters, a reference image beats four adjectives.",
           "prompt": "First-person shooter cinematic, photoreal. Weapon fixed lower-right in frame: modern assault rifle, matte black, holographic sight, tan foregrip, worn edges. Environment: abandoned Soviet-era school — peeling green paint, shattered windows, overturned desks, chalkboard, dust hanging in light shafts. Overcast daylight, muted palette, slight lens dirt.",
           "result_image": "/ui_views/assets/evidence/metro-ruins-fps-walkthrough/step-1.webp",
-          "result_label": "Frame from the final render · 0:12",
-          "result_caption": "Mid-burst and the rifle has not changed shape since the first frame. \"Prop bolted to the camera\" did that.",
+          "result_label": "Same crop of the receiver · 0:00, 0:09, 0:18",
+          "result_caption": "Pressure dial and yellow readout twice, then a green holo reticle in its place. Same gun, same position, different instruments — inside one unbroken take.",
           "result_source": "final"
         },
         {
-          "title": "Route the walkthrough room by room",
-          "text": "Corridor → classroom → stairwell → open yard. One direction of travel, one turn per shot. Put the single firefight in the widest room so the muzzle flash has something to light.",
+          "title": "A five-shot route came back as one continuous walk",
+          "text": "Write the level as a route and the model will honour the geography while ignoring your shot boundaries. The rooms all arrive in order — flooded corridor with lockers, classroom with desks and chalkboard, a long hall with a blown-out wall — but a scene detector finds nothing at all until 21.8s, so the first 88% of the clip is a single take. The exit is the part worth studying: the prompt asks for a collapsed stairwell climbed into daylight, and instead daylight comes through a hole in a ground-floor wall, straight out onto a schoolyard with a football goal. Reaching outdoors without a cut is the harder trick and nobody asked for it. What never appears: the courtyard overlook with a distant apartment block from shot 5.",
           "prompt": "Shot 1: advance down a flooded concrete corridor, flashlight beam. Shot 2: enter a classroom, sweep left across desks and blackboard. Shot 3: contact — three quick shots toward a doorway, muzzle flash lights the dust, casings eject. Shot 4: climb a collapsed stairwell into daylight. Shot 5: overlook a ruined courtyard with a distant apartment block.",
           "result_video": "/ui_views/assets/evidence/metro-ruins-fps-walkthrough/step-2.mp4",
           "result_poster": "/ui_views/assets/evidence/metro-ruins-fps-walkthrough/step-2-poster.webp",
-          "result_label": "Excerpt from the final render · 0:06–0:10",
-          "result_caption": "Classroom into stairwell. One direction of travel, one turn — the room-by-room route from step 2.",
+          "result_label": "Excerpt from the final render · 0:15–0:19",
+          "result_caption": "Interior to exterior with no cut: through the wall breach onto the schoolyard. The audio drops to −66 dB as he steps out — effectively silence.",
           "result_source": "final"
         },
         {
-          "title": "Cut tight, add a low-end mix, deliver",
-          "text": "Keep 4–5 seconds per shot and let the gunfire cut carry the edit. Deliver 1080p H.264. Play the clip above.",
+          "title": "The firefight never fires — and a HUD shows up uninvited",
+          "text": "Shot 3 ordered three quick shots, a muzzle flash lighting the dust, and ejecting casings. None of it is in the file, and that is provable rather than a matter of taste: per-frame luma across all 25 seconds has no single-frame spike anywhere, and the two brightest frames — 114 and 109 against a 74 average — are the classroom doorway at 0:09 and the wall breach at 0:16, each sustained over several frames. That is daylight, not gunfire. What the model substituted is stranger and more useful. From 22.0s an orange damage arc lights up along the top edge of frame, a white centre reticle and a square bracket flash in, the weapon lifts into aim-down-sights, and a large grey animal fills the frame at 23.5s and is on the floor by 24.4s. A HUD, a damage indicator and an enemy, none of them requested. Worth knowing: those four hits a scene detector reports between 21.8s and 23.1s are these overlays flashing, not edits.",
           "prompt": "",
-          "result_video": "/ui_views/assets/showcase/metro-ruins-fps.mp4"
+          "result_video": "/ui_views/assets/evidence/metro-ruins-fps-walkthrough/step-3.mp4",
+          "result_poster": "/ui_views/assets/evidence/metro-ruins-fps-walkthrough/step-3-poster.webp",
+          "result_label": "Excerpt from the final render · 0:21.6–0:24.8",
+          "result_caption": "The whole invented contact: orange damage arc across the top, reticle in, sights up, animal down. No flash, no casings, no shot fired.",
+          "result_source": "final"
         }
       ],
-      "result": "A 25-second first-person concept sequence with a consistent weapon model, readable level geometry and one clear moment of contact."
+      "result": "A 24.8-second first-person vertical slice that walks a whole level — corridor, classroom, hall, breach, yard — without a single cut, and hands back a HUD and an enemy the brief never mentioned while quietly dropping the gunfight it did."
     },
     {
       "id": "interior-render-model-battle",
       "cat": "Video",
       "sub": "Model Battle",
       "title": "Interior render battle: Fable 5.1 vs GPT-6 Astra",
-      "desc": "One architecture brief, two video models, split-screen with labels — exterior approach, entry, living room, kitchen. Same beats, two different interior designers.",
+      "desc": "One architecture brief, two video models, four synced beats — and a result neither side was asked for. Fable builds the Mediterranean villa in the prompt; Astra builds a flat-roofed modern house and never looks back. Both ignore \"end on the kitchen\" and finish in a bedroom.",
       "time": "8 min",
       "date": "2026-09-09",
       "level": "Middle",
@@ -722,40 +726,40 @@
       "poster": "/ui_views/assets/showcase/interior-model-battle-poster.webp",
       "steps": [
         {
-          "title": "Write one walkthrough brief both models receive",
-          "text": "The comparison is only honest if the prompt is identical. Fix the route and the camera; leave material and style choices to each model so their taste shows.",
+          "title": "One brief, and only one model builds the house you asked for",
+          "text": "The prompt is unambiguous about the building: single-storey Mediterranean villa, terracotta roof, white stucco, arched entry. Fable 5.1 delivers all four — clay tiles, a deep arched porch, a brick path. GPT-6 Astra delivers a flat-roofed contemporary house with black-framed glass doors, grey pavers and a lawn: no tiles, no arch, nothing Mediterranean about it. It then stays contemporary for the entire walkthrough, so the interiors diverge on style too — terracotta, leather and Persian rugs on the left against white walls, a green sofa and a striped rug on the right. That is the real output of a model battle. An identical brief does not buy you comparable footage; it buys you a measurement of how much each model will overrule you.",
           "prompt": "Architectural walkthrough, photoreal. Route: (1) slow approach to a single-storey Mediterranean villa, terracotta roof, white stucco, arched entry. (2) Push through the arched front door. (3) Reveal an open-plan living room with a low sofa, large black-framed windows, wood floor. (4) End on the kitchen island with pendant lights. Smooth gimbal motion, golden-hour light, 4K.",
           "result_image": "/ui_views/assets/evidence/interior-render-model-battle/step-1.webp",
-          "result_label": "Frame from the final render · 0:08",
-          "result_caption": "Same living room, same brief, two models side by side. Differences you see are the models', not the prompt's.",
+          "result_label": "Frame from the final render · 0:04",
+          "result_caption": "Terracotta roof and arched entry on the left, flat roof and dark glass on the right. Same sentence asked for both.",
           "result_source": "final"
         },
         {
-          "title": "Generate on both, do not cherry-pick",
-          "text": "Take the first clean run from each model. Re-rolling one side until it wins is the fastest way to make the format worthless.",
+          "title": "Both sides end in a room the brief never mentions",
+          "text": "The route asked for four beats and to end on the kitchen island. Run a scene detector on each half of the frame separately and both sides change at exactly the same three moments — 6.10s, 13.17s and 21.20s — so the sync claim holds to the frame. The last of those four segments is a bedroom. Neither side ends on the kitchen; both walk past it and finish at a bed under an arched window on the left, a low platform bed on the right. Two models, same brief, same invented fifth room. Read it as a warning about instruction order: \"end on X\" competes with the genre convention of a full property tour, and the convention won on both sides.",
           "prompt": "",
           "result_video": "/ui_views/assets/evidence/interior-render-model-battle/step-2.mp4",
           "result_poster": "/ui_views/assets/evidence/interior-render-model-battle/step-2-poster.webp",
-          "result_label": "Excerpt from the final render · 0:15–0:19",
-          "result_caption": "The kitchen pass on both. Neither take was regenerated — this is the first output each model returned.",
+          "result_label": "Excerpt from the final render · 0:20–0:23.6",
+          "result_caption": "Both halves cut on the same frame at 21.20s — out of the kitchens, into two bedrooms nobody asked for.",
           "result_source": "final"
         },
         {
-          "title": "Cut the split-screen with labels and one music bed",
-          "text": "Both takes in sync, model names bottom-left and bottom-right, one track across the whole thing. Play the clip above.",
+          "title": "Put the labels where the eye starts, not where it ends",
+          "text": "In the delivered cut the model names sit top-left and top-right, above the picture, on their own strip — not under it. That is the right call for a scroll feed: the viewer reads who is who before the footage pulls their attention, and the lower third stays free for the watermark. Delivery is 1920×1080 H.264 at 30fps, 26.0s, 8.4 MB, with a stereo AAC bed running the full length and no dialogue to protect. Play the clip above.",
           "prompt": "",
           "result_video": "/ui_views/assets/showcase/interior-model-battle.mp4"
         }
       ],
-      "result": "A 26-second labeled split-screen where two models walk the same house — the format that gets \"left or right?\" in the comments.",
+      "result": "A 26-second labelled split-screen, cut to four beats that match on both halves to the frame — and a genuine finding rather than a tie: one model followed the architecture brief, the other replaced it, and neither respected the ending.",
       "trending": true
     },
     {
       "id": "arcade-fighter-pixel-match",
       "cat": "Gamedev",
       "sub": "Pixel Art",
-      "title": "Arcade fighter: one pixel-art round, full HUD",
-      "desc": "A 15-second 2D fighting-game round — two fighters, sunset temple stage, health bars, timer, hit sparks — generated as if captured from a 90s arcade cabinet.",
+      "title": "Arcade fighter: the HUD that simulates, and the label that rots",
+      "desc": "A 15-second pixel-art round on a sunset temple stage, with a health bar that drains in step with the fight and four kanji on a signboard that stay pin-sharp for the whole take — while the player tag above the other fighter quietly changes from P2 to P1 and never changes back.",
       "time": "6 min",
       "date": "2026-09-09",
       "level": "Junior",
@@ -765,39 +769,42 @@
       "poster": "/ui_views/assets/showcase/arcade-fighter-poster.webp",
       "steps": [
         {
-          "title": "Specify the HUD as part of the image",
-          "text": "Models drop UI unless it is described as pixels on screen. Health bars, round timer, player tags — name them, place them, color them.",
+          "title": "The bar is simulated. The label is decoration.",
+          "text": "Name the UI as pixels on screen and it arrives — but not all of it works the same way. The right-hand health bar behaves like a real game: green with a red tip at 0:00, mostly yellow by 0:02, all red by 0:09, and visibly shorter again by 0:14, draining monotonically in step with the beating that fighter takes. Nobody described that progression; the model inferred it from the fight. Two pieces of the same HUD are pure ornament. The yellow round timer reads 99 in every frame of the clip and never counts down. And the tag above the right fighter reads P2 for the first two seconds, then flips to P1 at 0:03 and stays P1 to the end, so both players are labelled P1 for eleven of fifteen seconds. Practical read: ask for state and you may get simulation for free; ask for a specific string and check it frame by frame.",
           "prompt": "16-bit arcade fighting game, side view, pixel art. HUD: two green-to-red health bars top-left and top-right, yellow round timer \"99\" centered, \"P1\"/\"P2\" tags. Stage: Japanese temple courtyard at sunset, orange sky, purple clouds, paper lanterns. Fighters: left — orange gi, black hair, bare feet; right — purple vest, headband, dark trousers. Chunky pixels, limited palette, CRT-clean.",
           "result_image": "/ui_views/assets/evidence/arcade-fighter-pixel-match/step-1.webp",
-          "result_label": "Frame from the final render · 0:00",
-          "result_caption": "Health bars, timer, round counter — all rendered as part of the image, not overlaid.",
+          "result_label": "Same corner of the HUD · 0:00.5, 0:02, 0:06",
+          "result_caption": "The bar drains green → yellow → red exactly as it should. Underneath it, P2 becomes P1 between the second and third crop.",
           "result_source": "final"
         },
         {
-          "title": "Choreograph six hits, not a brawl",
-          "text": "Give the round a shape: poke, block, launcher, air juggle, fireball, KO. One exchange per shot, sprites always at the same scale.",
+          "title": "Six numbered beats buy you a round with a shape — minus the details",
+          "text": "The structure survived in full and in order: idle face-off, a dash met by a white spark at 0:03, a launcher that puts the right fighter airborne at 0:09, a charged projectile from 0:10.5, impact at 0:13.1, and that fighter flat on the stones by 0:13.5. That is the whole value of numbering beats — the model paces a fifteen-second round instead of producing fifteen seconds of flailing. Two specifics did not make it. The fireball is orange fire, not the blue the prompt asked for; it charges in his left palm for a full two seconds before release, which is better staging than the brief described. And the KO moment has no KO: the fighter drops, the round ends, no caption appears anywhere in the clip. If you need a word on screen at the climax, add it in post — the model will give you the knockdown, not the typography.",
           "prompt": "Sequence: (1) fighters face off, idle bounce. (2) Right fighter dashes in, left blocks — white spark. (3) Left uppercut launches right into the air. (4) Right recovers, jumping kick. (5) Left throws a blue fireball across the stage, big hit flash. (6) Right collapses, \"KO\" moment. Sprite scale constant, background static except lanterns swaying.",
           "result_video": "/ui_views/assets/evidence/arcade-fighter-pixel-match/step-2.mp4",
           "result_poster": "/ui_views/assets/evidence/arcade-fighter-pixel-match/step-2-poster.webp",
-          "result_label": "Excerpt from the final render · 0:01–0:05",
-          "result_caption": "The first two of six choreographed hits. Each has a wind-up and a landing you can count.",
+          "result_label": "Excerpt from the final render · 0:11.8–0:15.1",
+          "result_caption": "Release, travel, impact, knockdown — the last three beats in one unbroken run. Orange fire where the prompt said blue, and no KO caption at the end of it.",
           "result_source": "final"
         },
         {
-          "title": "Add the watermark and deliver at native 1080p",
-          "text": "Pixel art has no business being upscaled. Encode straight to 1080p H.264. Play the clip above.",
+          "title": "Four kanji it never dropped — while losing a two-letter label",
+          "text": "The signboard over the temple gate reads 一擊必勝 — \"one strike, certain victory\" — in four correct traditional characters, and it is identical at 0:01, 0:07 and 0:13.5, with the same pixel edges after a fireball has gone off in front of it. The prompt never asked for that text; it asked for a temple courtyard. Meanwhile \"P2\", which the prompt did specify, lasted two seconds. The difference is that the kanji are part of the stage art the model built once and kept, and the tag sits in the layer it re-renders every frame. If a string has to survive, put it on an object in the world, not in the interface. The rest is honest bookkeeping: no cuts at all in 15.09 seconds — the four hits a scene detector reports between 12.33s and 12.92s are the fireball flashes — delivered native 1920×1080 at 24 fps, 7.6 MB, with the watermark bottom-centre and CRT scanlines visible in the sky. Play the clip above.",
           "prompt": "",
-          "result_video": "/ui_views/assets/showcase/arcade-fighter.mp4"
+          "result_image": "/ui_views/assets/evidence/arcade-fighter-pixel-match/step-3.webp",
+          "result_label": "Same signboard · 0:01, 0:07, 0:13.5",
+          "result_caption": "一擊必勝, unchanged across the whole take — including the frame after the explosion. Text the prompt never requested outlasted text it did.",
+          "result_source": "final"
         }
       ],
-      "result": "A complete fighting-game round in pixel art with HUD, hit effects and a KO — the reference clip a retro-fighter pitch deck is missing."
+      "result": "A 15-second pixel-art round in one continuous take: six beats in order, a health bar that drains like real damage, stage kanji that never wobble — and a player tag that proves on-screen text is the first thing a video model forgets."
     },
     {
       "id": "forest-ops-tactical-fps",
       "cat": "Gamedev",
       "sub": "FPS Concept",
-      "title": "Forest ops: rain, river, bunker — a tactical FPS teaser",
-      "desc": "First-person tactical sequence through a wet pine forest: rifle low, rain on the lens, river crossing, then into a dark bunker and a light at the end — with a CTA card.",
+      "title": "Forest ops: the rain never arrived, and the model sent a second operator",
+      "desc": "A first-person tactical run through pine forest and a river, then straight into a dark building lit by one window — three takes, 27 seconds, ending on a Discord card. \"Heavy rain\" came back as floating bokeh with no streaks, the hillside bunker came back as a wooden cabin, and someone the prompt never mentioned is waiting in the doorway.",
       "time": "12 min",
       "date": "2026-09-09",
       "level": "Middle+",
@@ -807,39 +814,39 @@
       "poster": "/ui_views/assets/showcase/forest-ops-poster.webp",
       "steps": [
         {
-          "title": "Set the weather as the main character",
-          "text": "Rain is what makes this feel expensive. Specify it everywhere: drops on the lens, wet bark, mist between trunks, water sheeting off the rifle.",
+          "title": "\"Heavy rain\" is not a rendering instruction",
+          "text": "The prompt says heavy rain four times — drops on metal, streaks on the lens, low mist. What came back has no rain in it. Freeze any frame in the first eight seconds and you get airborne specks with no direction and no length; by 0:11 they are soft out-of-focus blobs drifting across the lens, the shape of dust close to glass, not water falling through a forest. The moss is matte, the rifle is dry, nothing sheets off anything. Rain reads on screen as streaks with a length, an angle and a speed — so write those numbers, or write wet surfaces instead: standing water in the ruts, drips off the barrel tip, spray when a boot lands. Ask for weather and you get particles; ask for what water does to a specific object and you get rain.",
           "prompt": "First-person tactical shooter, photoreal, heavy rain. Weapon fixed lower-center: modern carbine, olive-drab, red-dot sight, suppressor, rain beading on metal. Environment: dense pine forest, mossy boulders, ferns, low mist, overcast grey light, rain streaks on the lens.",
           "result_image": "/ui_views/assets/evidence/forest-ops-tactical-fps/step-1.webp",
-          "result_label": "Frame from the final render · 0:02",
-          "result_caption": "Rain and mist lead the frame; the operator is secondary. Weather was written first in the prompt.",
+          "result_label": "Same upper-left corner of frame · 0:03, 0:05, 0:11",
+          "result_caption": "Specks, then specks, then lens blobs — every particle round, none of them falling. This is what the model heard when the prompt said \"rain streaks\".",
           "result_source": "final"
         },
         {
-          "title": "Move from open forest into a confined space",
-          "text": "Contrast sells the cut. Wide forest → river rocks → bunker doorway → black interior with a single light. The end card goes on the black.",
+          "title": "Five shots, three takes, and a stranger in the doorway",
+          "text": "The geography holds: forest, then the rocky river, then a structure, then darkness with one square of light at the end — exactly the order asked for, and the light at the end really is there. Two things are not. First, a scene detector finds only two cuts in the whole 27 seconds, at 8.00s and 15.17s, so the last twelve seconds — approach, doorway, dark interior — run as one unbroken take; a five-shot list became three. Second, the concrete bunker in the hillside is a wooden cabin with a corrugated roof, a guard tower and a gravel road, and standing inside its doorway is a second operator in a helmet, balaclava and plate carrier, weapon shouldered, who walks toward the camera and steps past it. Nobody wrote him. Models fill a military compound with soldiers because that is what the training data does — if the shot must be empty, say empty, and if you want a squadmate, cast him deliberately.",
           "prompt": "Shot 1: advance through pines, rifle low-ready. Shot 2: aim down sight across a rocky river, water rushing. Shot 3: cross the river on boulders, camera bobbing. Shot 4: approach a concrete bunker entrance in the hillside. Shot 5: enter the dark corridor, a single square of light at the far end. Hold on the light.",
           "result_video": "/ui_views/assets/evidence/forest-ops-tactical-fps/step-2.mp4",
           "result_poster": "/ui_views/assets/evidence/forest-ops-tactical-fps/step-2-poster.webp",
-          "result_label": "Excerpt from the final render · 0:15–0:19",
-          "result_caption": "Open treeline into the cabin doorway. The space closes in — the only structural move in the piece.",
+          "result_label": "Excerpt from the final render · 0:15.2–0:19.2",
+          "result_caption": "Cut to the compound, and he is already in the doorway. He advances, passes the camera, and the take carries on into the dark without a shot fired.",
           "result_source": "final"
         },
         {
-          "title": "Conform 60 fps to 30, upscale, end on the CTA",
-          "text": "The source ran at 60 fps; at web bitrates 30 fps keeps more detail per frame. Upscale to 4K for the master, deliver 1080p. Play the clip above.",
+          "title": "60 → 30 is the real win; 4K was never in this file",
+          "text": "Check the master before you describe it. This one is 2560×1440 at 60 fps, 253 MB — 1440p, not 4K, whatever the filename says. Halving the frame rate to 30 is the change that pays: same 27.05s, same detail per frame, delivery down to 1920×1080 at 3.3 Mbit and 11.7 MB with AAC stereo, which autoplays on a phone without a spinner. The end card is built in layers on top of the dark interior rather than on black: the panel fades up at 22.2s, \"Want to build something like this?\" at 22.5s, FREE BUILD CREDITS at 22.8s, the Discord button and \"Link in the comments ↓\" at 23.5s, then it holds four seconds. Stacking it over the last frames of the shot instead of a black slate keeps the viewer in the world while the offer lands.",
           "prompt": "",
           "result_video": "/ui_views/assets/showcase/forest-ops.mp4"
         }
       ],
-      "result": "A 27-second tactical FPS teaser with a consistent rifle, wet-weather atmosphere and a real ending — not a loop."
+      "result": "A 27.07-second tactical teaser that keeps its route, its rifle and its ending — and shows exactly where the brief lost: no rain, a cabin instead of a bunker, an uncast operator in the doorway, and three takes where five shots were ordered."
     },
     {
       "id": "crimson-adventure-trailer",
       "cat": "Gamedev",
       "sub": "Game Trailer",
-      "title": "Crimson: jungle, shark, fortress — a third-person adventure trailer",
-      "desc": "A dark-haired adventurer crosses a jungle river, dives past a shark, scales a cliff and fights through a stone fortress — a 30-second third-person trailer with one consistent heroine.",
+      "title": "Crimson: the heroine never drifts — and she is not the woman in the prompt",
+      "desc": "Lagoon dive, a shark in submerged ruins, a sandstone gate, three guards down — and then eight seconds of a stone golem the brief never mentioned. The character block held from frame one to frame 728 without a wobble, wearing an outfit nobody wrote.",
       "time": "15 min",
       "date": "2026-09-09",
       "level": "Middle+",
@@ -849,40 +856,44 @@
       "poster": "/ui_views/assets/showcase/crimson-adventure-poster.webp",
       "steps": [
         {
-          "title": "Build the heroine as a reusable block",
-          "text": "One paragraph, reused verbatim in every shot: hair, outfit, gear, build. This is the only way a third-person character survives five environments.",
+          "title": "Perfect consistency, total non-compliance",
+          "text": "The paragraph was pasted verbatim into every shot and it worked better than almost anything else in this library: the same braid, the same single polished steel pauldron on her right shoulder, the same brass-domed shield at her hip, the same sword — identical at 0:00.5, at 0:14.5 and at 0:30, across three takes and two environment changes. Now read what was requested: olive tank top, brown leather harness with a rope, dark cargo trousers, climbing gloves. None of it is on screen. She arrived as a bronze-age warrior in a leather jerkin and armour, and then stayed that character with total discipline. Repetition buys you stability, not obedience — the model locks whatever it renders in the first take, so inspect take one before you commit, because from that point on you are stuck with it.",
           "prompt": "Third-person action-adventure game cinematic, photoreal. Heroine: athletic woman, long dark hair tied back, olive tank top, brown leather harness with a rope, dark cargo trousers, climbing gloves, dirt and sweat on skin. Camera over-the-shoulder, slightly low. Cinematic grade, warm highlights, teal shadows.",
           "result_image": "/ui_views/assets/evidence/crimson-adventure-trailer/step-1.webp",
-          "result_label": "Frame from the final render · 0:07",
-          "result_caption": "The heroine block: cloak, hair, silhouette. Pasted verbatim into every shot so she never drifts.",
+          "result_label": "Same crop of the heroine · 0:00.5, 0:14.5, 0:30",
+          "result_caption": "Thirty seconds apart: one steel pauldron, right shoulder, every time. No tank top, no rope harness, no gloves — and no drift either.",
           "result_source": "final"
         },
         {
-          "title": "Change environment every six seconds",
-          "text": "Trailers earn attention with variety, not length. Jungle river → underwater with a shark → cliff climb → fortress courtyard fight. Each is one shot, one action.",
+          "title": "Two environment changes in 30 seconds, not five",
+          "text": "The route arrived intact — overlook, dive, shark among submerged columns, surfacing, the rock, the sandstone gate, the courtyard — but the pacing did not. Hard cuts land at 2.58s and 7.71s only; after that the third environment runs for 22.6 seconds straight, including the walk through the gate, the three-guard fight and everything after it. Drop the scene threshold and you find six more low-contrast cuts inside that courtyard at 13.67s, 15.29s, 16.29s, 18.04s, 24.92s and 27.17s, which is the model editing the fight rather than changing location. So the variety a trailer needs was front-loaded into the first eight seconds and then abandoned. If you want a change every six seconds, generate each environment as its own render and cut them yourself — a single continuous prompt will always drift toward one long take.",
           "prompt": "Shot 1: heroine stands on a mossy bank overlooking a turquoise jungle river and waterfalls. Shot 2: underwater — she swims past a great white shark, sunlight rays, bubbles. Shot 3: she pulls herself onto a rock ledge above the river, dripping. Shot 4: sandstone fortress courtyard, she fights three guards with a curved sword, dust kicked up. Shot 5: she stands over the fallen guards, breathing hard.",
           "result_video": "/ui_views/assets/evidence/crimson-adventure-trailer/step-2.mp4",
           "result_poster": "/ui_views/assets/evidence/crimson-adventure-trailer/step-2-poster.webp",
-          "result_label": "Excerpt from the final render · 0:09–0:13",
-          "result_caption": "Lake to courtyard. Environments change on the six-second beat; she does not.",
+          "result_label": "Excerpt from the final render · 0:11.5–0:15.1",
+          "result_caption": "Lagoon to fortress courtyard with no cut — the camera simply follows her up the rock and through the gate. Shot 3 and shot 4 are the same take.",
           "result_source": "final"
         },
         {
-          "title": "Upscale, watermark, cut to music",
-          "text": "Cut on action — the dive, the ledge grab, the first sword hit. Upscale to 4K, deliver 1080p. Play the clip above.",
+          "title": "The best eight seconds are the ones nobody ordered",
+          "text": "Shot 5 asked for one thing: she stands over the fallen guards, breathing hard. That happens at 0:20. Then the model keeps going and invents a boss fight — a four-metre armoured golem with a glowing red core drops into the courtyard at 0:22, charges her, and she drives the sword into the core at 0:26 before it collapses into rubble and she rises out of the dust at 0:29. It is the strongest material in the file and no sentence in the brief produced it. The lesson is not \"let the model improvise\"; it is that a model handed a finished beat with seconds left on the clock will invent an ending, so either leave that room deliberately or make the last shot long enough to fill it. Delivery checks out: the master really is 3840×2160, the cut is 1920×1080 H.264 at 24 fps, 30.32s, 12.2 MB, with a 128 kbit AAC music bed and the quadcode.ai watermark bottom-centre in every frame.",
           "prompt": "",
-          "result_video": "/ui_views/assets/showcase/crimson-adventure.mp4"
+          "result_video": "/ui_views/assets/evidence/crimson-adventure-trailer/step-3.mp4",
+          "result_poster": "/ui_views/assets/evidence/crimson-adventure-trailer/step-3-poster.webp",
+          "result_label": "Excerpt from the final render · 0:25–0:29.6",
+          "result_caption": "Sword into the glowing core, the golem comes apart, she stands up in the dust. An unbriefed climax that ended up carrying the trailer.",
+          "result_source": "final"
         }
       ],
-      "result": "A 30-second third-person action-adventure trailer across four environments with the same character in every shot.",
+      "result": "A 30.32-second third-person trailer with the most stable character in this library — and two honest limits on the method: the outfit that was written never appeared, and the climax that carries the whole cut was never requested.",
       "trending": true
     },
     {
       "id": "brazil-street-documentary",
       "cat": "Video",
       "sub": "Documentary",
-      "title": "Brazil street: a 10-second documentary walk",
-      "desc": "Golden-hour handheld follow of a woman walking a narrow Brazilian street — parked cars, tangled wires, haze — the kind of b-roll a doc opener is built on.",
+      "title": "Brazil street: ten seconds, no cuts, and two glances nobody asked for",
+      "desc": "A golden-hour follow shot down a hazy Brazilian street — parked Gols, overhead wires, sun anchored at the far end for the whole take. A scene detector finds zero cuts in 10.1 seconds. It also turns out the model gave her something the prompt explicitly avoided: she looks back at the camera, twice.",
       "time": "5 min",
       "date": "2026-09-09",
       "level": "Junior",
@@ -892,32 +903,35 @@
       "poster": "/ui_views/assets/showcase/brazil-street-poster.webp",
       "steps": [
         {
-          "title": "Ask for documentary, not cinema",
-          "text": "The words matter: handheld, follow shot, natural light, no color push. Anything \"cinematic\" and the model adds crane moves and teal-orange.",
+          "title": "\"Documentary, not cinema\" is the one instruction that fully landed",
+          "text": "Everything asked for in the look is on screen and nothing cinematic crept in. The camera stays at one focal length and one height behind her shoulder for the full 10.1 seconds — no crane, no dolly push, no rack focus, and the sun never moves off the far end of the street, which is what tells you the camera never changed direction. The grade is warm end to end: no teal in the shadows, the haze is left thick enough to swallow the buildings four cars back, and the highlights on the parked Gols blow out slightly instead of being pulled back. The parked cars, the tangle of overhead wires and the low shopfronts all arrived as described. This is the cheapest guide in the library — five minutes, one prompt, one render — and the look is the part you can rely on.",
           "prompt": "Documentary handheld follow shot, 35mm look, natural golden-hour backlight with haze. Subject: young woman with long dark hair, white shirt, walking away from camera down a narrow street in a Brazilian city. Parked cars, low buildings, overhead power lines, warm dust in the air. Slight handheld sway, no stabilization.",
           "result_image": "/ui_views/assets/evidence/brazil-street-documentary/step-1.webp",
-          "result_label": "Frame from the final render · 0:00",
-          "result_caption": "Available light, over-the-shoulder, nobody posed. \"Documentary, not cinema\" is the difference.",
+          "result_label": "Frame from the final render · 0:04",
+          "result_caption": "One focal length, available light, sun parked at the end of the street. No teal shadows anywhere in the frame.",
           "result_source": "final"
         },
         {
-          "title": "Keep it to one shot",
-          "text": "Ten seconds, one subject, one direction. Do not ask for a turn or a reveal — that is where documentary footage starts looking generated.",
+          "title": "One shot means one shot — and she still turns around twice",
+          "text": "The cut discipline is real: run the file through a scene detector at any sane threshold and it returns nothing. Zero cuts, 10.1 seconds, one subject, one direction of travel. But the prompt says \"walking away from camera\" and that is not what she does. At 0:00.2 she is already looking back over her shoulder, face lit and fully readable; by 0:02.5 she has turned away; at 0:06.2 she looks back again and this time she smiles. Nobody wrote a glance, a smile or a reveal. Video models cast the camera as a person — a subject walking in front of a following lens will acknowledge it, because that is what the footage in the training data does. Plan for it: either make the acknowledgement intentional and time it, or put something in the frame ahead of her worth looking at instead.",
           "prompt": "",
-          "result_video": "/ui_views/assets/evidence/brazil-street-documentary/step-2.mp4",
-          "result_poster": "/ui_views/assets/evidence/brazil-street-documentary/step-2-poster.webp",
-          "result_label": "Excerpt from the final render · 0:03–0:07",
-          "result_caption": "Four seconds of the single continuous walk. There is no second shot to cut to.",
+          "result_image": "/ui_views/assets/evidence/brazil-street-documentary/step-2.webp",
+          "result_label": "Same crop of her head · 0:00.2, 0:02.5, 0:06.2",
+          "result_caption": "Looking back, then away, then back again with a smile — inside a single unbroken take, and none of it requested.",
           "result_source": "final"
         },
         {
-          "title": "Upscale and grade lightly",
-          "text": "Upscale to 4K for the archive, deliver 1080p, leave the haze alone. Play the clip above.",
+          "title": "The 4K claim checks out — and the glance is the shot",
+          "text": "This one survives inspection where other files in this library did not: the archived master really is 3840×2160, and the delivery is 1920×1080 H.264 at 24 fps, 10.10s, 3.4 MB with a 128 kbit AAC bed, small enough to preload instantly. No sharpening pass was added on the way down, which is why the haze still reads as air rather than as noise. And the editorial point: the second glance at 0:06 is the only moment in ten seconds where anything happens. If you are cutting this into a doc opener, that smile is your in-point — not the clean walk-away frames the brief was written to produce.",
           "prompt": "",
-          "result_video": "/ui_views/assets/showcase/brazil-street.mp4"
+          "result_video": "/ui_views/assets/evidence/brazil-street-documentary/step-3.mp4",
+          "result_poster": "/ui_views/assets/evidence/brazil-street-documentary/step-3-poster.webp",
+          "result_label": "Excerpt from the final render · 0:05.6–0:09",
+          "result_caption": "The turn, the smile, the walk away again. Three seconds of the only thing in the clip an editor can build on.",
+          "result_source": "final"
         }
       ],
-      "result": "Ten seconds of believable documentary b-roll: handheld, backlit, one subject, one street."
+      "result": "10.10 seconds of usable documentary b-roll in one unbroken take — the look delivered exactly as written, and a reminder that a following camera is never invisible to whoever the model puts in front of it."
     },
     {
       "id": "jerry01-quadcode-testimonials",

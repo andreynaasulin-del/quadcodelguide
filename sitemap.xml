@@ -74,7 +74,7 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/winter-ops-fps-poster.webp</image:loc>
-      <image:title>Winter ops: bunker to container yard — a 40-second FPS continuation</image:title>
+      <image:title>Winter ops: a 41-second FPS route that holds the world and loses the gun</image:title>
     </image:image>
   </url>
   <url>
@@ -84,7 +84,7 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/anime-caramel-pudding-poster.webp</image:loc>
-      <image:title>Anime caramel pudding: a recipe in eight cuts</image:title>
+      <image:title>Anime caramel pudding: a recipe told in ten shots</image:title>
     </image:image>
   </url>
   <url>
@@ -94,7 +94,7 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/fauxreal-splat-loop-poster.webp</image:loc>
-      <image:title>Faux-real: a 10-second Gaussian-splat loop, four scans</image:title>
+      <image:title>Faux-real: four scans, one 10-second loop, not a single cut</image:title>
     </image:image>
   </url>
   <url>
@@ -104,7 +104,7 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/graphics-lab-render-library-poster.webp</image:loc>
-      <image:title>Graphics Lab: 37 procedural render scenes from one agent skill set</image:title>
+      <image:title>Graphics Lab: 37 shader scenes that report their own physics</image:title>
     </image:image>
   </url>
   <url>
@@ -114,7 +114,7 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/ps5-controller-configurator-poster.webp</image:loc>
-      <image:title>Custom controller store: a 3D product hero that swaps skins live</image:title>
+      <image:title>Custom controller store: hide the skin swap inside a rotation</image:title>
     </image:image>
   </url>
   <url>
@@ -124,7 +124,7 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/seoul-arcade-minidv-poster.webp</image:loc>
-      <image:title>Seoul arcade on MiniDV: a 15-second tape nobody meant to keep</image:title>
+      <image:title>Seoul arcade on MiniDV: 14 seconds in one take, and no cut to black</image:title>
     </image:image>
   </url>
   <url>
@@ -134,7 +134,7 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/rooftop-run-poster.webp</image:loc>
-      <image:title>Rooftop run: a cel-shaded action trailer in 30 seconds</image:title>
+      <image:title>Rooftop run: a 30-second chase trailer that came back in two takes</image:title>
     </image:image>
   </url>
   <url>
@@ -144,7 +144,7 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/blocky-world-remaster-poster.webp</image:loc>
-      <image:title>Blocky world, photoreal remaster</image:title>
+      <image:title>Blocky world, photoreal remaster — and the one thing it ruins</image:title>
     </image:image>
   </url>
   <url>
@@ -154,7 +154,7 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/metro-ruins-fps-poster.webp</image:loc>
-      <image:title>Metro ruins: first-person walkthrough with live fire</image:title>
+      <image:title>Metro ruins: 25 seconds in one take, and a rifle that redecorates itself</image:title>
     </image:image>
   </url>
   <url>
@@ -174,7 +174,7 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/arcade-fighter-poster.webp</image:loc>
-      <image:title>Arcade fighter: one pixel-art round, full HUD</image:title>
+      <image:title>Arcade fighter: the HUD that simulates, and the label that rots</image:title>
     </image:image>
   </url>
   <url>
@@ -184,7 +184,7 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/forest-ops-poster.webp</image:loc>
-      <image:title>Forest ops: rain, river, bunker — a tactical FPS teaser</image:title>
+      <image:title>Forest ops: the rain never arrived, and the model sent a second operator</image:title>
     </image:image>
   </url>
   <url>
@@ -194,7 +194,7 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/crimson-adventure-poster.webp</image:loc>
-      <image:title>Crimson: jungle, shark, fortress — a third-person adventure trailer</image:title>
+      <image:title>Crimson: the heroine never drifts — and she is not the woman in the prompt</image:title>
     </image:image>
   </url>
   <url>
@@ -204,7 +204,7 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/brazil-street-poster.webp</image:loc>
-      <image:title>Brazil street: a 10-second documentary walk</image:title>
+      <image:title>Brazil street: ten seconds, no cuts, and two glances nobody asked for</image:title>
     </image:image>
   </url>
   <url>

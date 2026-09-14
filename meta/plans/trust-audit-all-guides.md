@@ -39,7 +39,18 @@ Batch = 5 guides. After each batch: commit, update this table, update pin.
 | seoul-arcade-minidv-tape | ✅ | ✅ | ✅ | "cuts to black" — blackdetect finds nothing; win/loss beat not in the render |
 | castlevania-pixel-art-prompt-breakdown | ✅ | ✅ | ✅ | "same hunter as step 01" is false; added step 9 showing the drift |
 
-## Batch C — 2026-09-09 (8)
+## Batch C — 2026-09-09 (8) ✅
+| id | T | S | V | what was wrong |
+|---|---|---|---|---|
+| rooftop-run-cel-shaded-trailer | ✅ | ✅ | ✅ | called cel-shaded — there are no ink lines; hero is red-haired and bare-headed, prompt asked for a blond swordsman in a pointed cap; "five shots" = one cut at 15.08s |
+| blocky-world-photoreal-remaster | ✅ | ✅ | ✅ | "four biomes, four shots" = 3 takes; temple→desert is one take through a doorway; whole reel is first-person holding a lava block; the character is re-skinned in gold and has no face |
+| metro-ruins-fps-walkthrough | ✅ | ✅ | ✅ | "weapon bolted to the camera" — its instruments swap mid-take (pressure gauge → digital counter); claimed a firefight: no muzzle flash in any frame, audio flat at ~-24 dB |
+| interior-render-model-battle | ✅ | ✅ | ✅ | claimed both models interpreted the brief; only one built the briefed house. Sync is real (both halves cut at 6.10/13.17/21.20) and the ending is a bedroom nobody asked for |
+| arcade-fighter-pixel-match | ✅ | ✅ | ✅ | "HUD as pixel art" — the health bar simulates correctly but the timer is frozen at 99 and the P2 tag turns into P1 |
+| forest-ops-tactical-fps | ✅ | ✅ | ✅ | rain was the selling point and there is none (round bokeh, no streaks); bunker came back as a wooden cabin; an uncast second operator waits in the doorway; master is 1440p, not 4K |
+| crimson-adventure-trailer | ✅ | ✅ | ✅ | character block held perfectly but the outfit is not the one written; "environment every six seconds" = 22.6s single take after 7.71s; the golem climax was never briefed |
+| brazil-street-documentary | ✅ | ✅ | ✅ | "do not ask for a turn" — she turns to camera at 0:00.2 and again at 0:06.2 with a smile, unprompted, inside a zero-cut take |
+
 ## Batch D–H — July (32), 5 per batch. Priority: 9 image-only, 4 audio first.
 
 ## Known dead steps (no media, no embed) — delete unless embed exists
@@ -55,3 +66,10 @@ Batch = 5 guides. After each batch: commit, update this table, update pin.
   seoul-arcade despite the prompt asking for one, and `signalstats` YAVG measured the
   door flare at 83 → 139 → 94. Verification scripts live in `.temp/` (sheet, zoom, pick,
   crop, black, facts, dump, ev, evimg, imgsheet, imgcrop) — see pin `trust-audit`.
+- 2026-09-14: Batch C verified and rewritten. 20/52 done. New verification tools:
+  `track.sh` (same crop region across timestamps — caught the metro weapon swapping
+  instruments and the arcade P2→P1 tag), `halfcuts.sh` (cuts inside one half of a
+  split-screen — proved the interior battle is genuinely synced), `spikes.sh` (per-frame
+  luma) and `loud.sh` (audio RMS), which together disproved the metro "firefight".
+  Note: full-range YUV sources crash the jpeg encoder — `sheet.sh` and `pick.sh` now
+  force `yuvj420p`, and `evtrack.sh` caps strips at 1920px for media:check.
