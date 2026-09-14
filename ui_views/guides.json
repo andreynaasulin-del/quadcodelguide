@@ -99,12 +99,21 @@
         {
           "title": "Fix the weapon and the weather before the route",
           "text": "Continuation breaks on two things: the gun morphs, or the sky changes. Lock both in one block and paste it at the top of every shot prompt. Snow is the weather here — it also hides seams, because everything is already desaturated.",
-          "prompt": "First-person shooter cinematic, photoreal, winter. Weapon fixed lower-right: modern carbine, black polymer, red-dot sight, foregrip, snow melting on the handguard. Weather: overcast, light snowfall, breath fog, flat grey light. Palette: concrete grey, rust orange, safety yellow, white snow."
+          "prompt": "First-person shooter cinematic, photoreal, winter. Weapon fixed lower-right: modern carbine, black polymer, red-dot sight, foregrip, snow melting on the handguard. Weather: overcast, light snowfall, breath fog, flat grey light. Palette: concrete grey, rust orange, safety yellow, white snow.",
+          "result_image": "/ui_views/assets/evidence/winter-ops-fps-industrial/step-1.webp",
+          "result_label": "Frame from the final render · 0:17",
+          "result_caption": "Same rifle, same snow, three shots apart — the weapon and weather were locked before any route was written.",
+          "result_source": "final"
         },
         {
           "title": "Chain rooms, not shots",
           "text": "Ask for a route through connected spaces — the model keeps geometry consistent when each shot exits where the previous one ended. Interior → threshold → exterior is the strongest chain because the light change reads as progress, not as an edit.",
-          "prompt": "Route, same weapon and weather block: (1) advance through a smoke-filled bunker room, dust in a light shaft. (2) Long wet concrete corridor, fluorescent strips, puddles. (3) Push through a steel door into daylight — snow-covered container yard, stacked shipping containers, a yellow forklift. (4) Sweep the yard, aim down sight toward a watchtower on the treeline. (5) Enter a warehouse: pallets, cable drums, a tracked vehicle under a skylight."
+          "prompt": "Route, same weapon and weather block: (1) advance through a smoke-filled bunker room, dust in a light shaft. (2) Long wet concrete corridor, fluorescent strips, puddles. (3) Push through a steel door into daylight — snow-covered container yard, stacked shipping containers, a yellow forklift. (4) Sweep the yard, aim down sight toward a watchtower on the treeline. (5) Enter a warehouse: pallets, cable drums, a tracked vehicle under a skylight.",
+          "result_video": "/ui_views/assets/evidence/winter-ops-fps-industrial/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/winter-ops-fps-industrial/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:06–0:10",
+          "result_caption": "Tunnel into corridor in one continuous pass. Rooms chain; there is no cut to hide behind.",
+          "result_source": "final"
         },
         {
           "title": "Extend from the last frame, then upscale once",
@@ -134,12 +143,21 @@
         {
           "title": "Write the recipe as the shot list",
           "text": "Food anime works because the process is the plot. Do not describe \"a cooking scene\" — list the actual steps of a caramel pudding in order and give each one a close-up. The model cannot invent a recipe, but it can illustrate one.",
-          "prompt": "Anime cooking sequence, clean cel-shaded 2D style, soft kitchen light, warm palette. Close-ups in order: (1) caramel swirling in a dark pan, amber to deep brown. (2) eggs and sugar whisked in a glass bowl. (3) custard poured through a fine sieve into a tin. (4) tin on the oven rack, door closing, orange glow. (5) top of the pudding turning golden. (6) tin flipped onto a white plate, caramel flooding down the sides. (7) spoon pressing the wobble."
+          "prompt": "Anime cooking sequence, clean cel-shaded 2D style, soft kitchen light, warm palette. Close-ups in order: (1) caramel swirling in a dark pan, amber to deep brown. (2) eggs and sugar whisked in a glass bowl. (3) custard poured through a fine sieve into a tin. (4) tin on the oven rack, door closing, orange glow. (5) top of the pudding turning golden. (6) tin flipped onto a white plate, caramel flooding down the sides. (7) spoon pressing the wobble.",
+          "result_video": "/ui_views/assets/evidence/anime-caramel-pudding-recipe/step-1.mp4",
+          "result_poster": "/ui_views/assets/evidence/anime-caramel-pudding-recipe/step-1-poster.webp",
+          "result_label": "Excerpt from the final render · 0:00–0:04",
+          "result_caption": "Caramel → pour → whisk: the shot list is literally the recipe order.",
+          "result_source": "final"
         },
         {
           "title": "Reveal the character last",
           "text": "Keep hands only for the first six cuts. The face at the end is the payoff — describe her once, precisely, so the final shot lands as a character and not as a generic anime girl.",
-          "prompt": "Final shot: a young woman with long lavender hair and red over-ear headphones, white shirt, eyes closed in delight, tasting a spoonful of caramel pudding in a bright kitchen with a window and hanging utensils. Same cel-shaded style, same kitchen."
+          "prompt": "Final shot: a young woman with long lavender hair and red over-ear headphones, white shirt, eyes closed in delight, tasting a spoonful of caramel pudding in a bright kitchen with a window and hanging utensils. Same cel-shaded style, same kitchen.",
+          "result_image": "/ui_views/assets/evidence/anime-caramel-pudding-recipe/step-2.webp",
+          "result_label": "Frame from the final render · 0:13",
+          "result_caption": "The character appears only in the last second. Everything before is hands and food.",
+          "result_source": "final"
         },
         {
           "title": "Upscale the master, deliver 1080p",
@@ -169,12 +187,21 @@
         {
           "title": "Scan with the edges in mind",
           "text": "Gaussian splats look best when the subject is dense and the periphery dissolves into cloud. Shoot each scene tight — one person, one object cluster — and stop walking before the room ends. The ragged edge is what makes it look \"faux real\".",
-          "prompt": ""
+          "prompt": "",
+          "result_image": "/ui_views/assets/evidence/fauxreal-gaussian-splat-loop/step-1.webp",
+          "result_label": "Frame from the final render · 0:00",
+          "result_caption": "Edges are ragged on purpose — the scan was framed so the splat falls apart where nobody looks.",
+          "result_source": "final"
         },
         {
           "title": "Orbit, do not fly",
           "text": "In the viewport, one slow orbit per scan, gizmo and bounding box left visible. The UI chrome tells the viewer this is a real 3D object, which is the entire point of the clip.",
-          "prompt": ""
+          "prompt": "",
+          "result_video": "/ui_views/assets/evidence/fauxreal-gaussian-splat-loop/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/fauxreal-gaussian-splat-loop/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:06–0:10",
+          "result_caption": "The camera orbits the fridge and drifts to the booth. No fly-through, no vertical move — that is what keeps the splat solid.",
+          "result_source": "final"
         },
         {
           "title": "Cut square, loop hard",
@@ -203,12 +230,21 @@
         {
           "title": "Give the agent a taxonomy, not a wish list",
           "text": "The library has categories because the brief had categories. \"Precipitation surfaces\", \"procedural materials\", \"procedural geometry\" — each is a skill the agent can be tested on. Without the taxonomy you get 37 random demos; with it you get a curriculum.",
-          "prompt": "Build a local Render Library web app (Three.js). Left rail: scene groups — Precipitation Surfaces, Procedural Architecture, Procedural Geometry, Procedural Materials, Procedural Planets, Procedural Vegetation. Main grid: one live WebGL card per scene with title and OPEN. Header: search \"find a system, effect or technique\", Rescan, Overview. Dark UI, Quadcode palette."
+          "prompt": "Build a local Render Library web app (Three.js). Left rail: scene groups — Precipitation Surfaces, Procedural Architecture, Procedural Geometry, Procedural Materials, Procedural Planets, Procedural Vegetation. Main grid: one live WebGL card per scene with title and OPEN. Header: search \"find a system, effect or technique\", Rescan, Overview. Dark UI, Quadcode palette.",
+          "result_image": "/ui_views/assets/evidence/graphics-lab-render-library/step-1.webp",
+          "result_label": "Frame from the final render · 0:20",
+          "result_caption": "The library grid. Categories on the left are the taxonomy from the brief — the agent filed every render into one.",
+          "result_source": "final"
         },
         {
           "title": "One scene, one technique, one file",
           "text": "Every card is a single self-contained scene file that demonstrates exactly one thing — snow accumulation, parallax occlusion, dispersion. That isolation is what makes the library rescannable and what lets a failure be traced to a skill.",
-          "prompt": "Add scenes: Snow Accumulation (height-based snow on a wrecked car), Wet Puddle Rain (ripples + reflections on a disc), Atmosphere and Aerial Perspective, Silhouette Relief POM (parallax-occlusion sci-fi corridor), Raytraced Diamond, Spectral Dispersive Glass, Lava Flow Surface, Hybrid PBR Soil & Moss, Formula One Race Car, Sport Motorcycle, Procedural Financial Tower, Procedural Planet Surface. Each in its own module, auto-discovered by Rescan."
+          "prompt": "Add scenes: Snow Accumulation (height-based snow on a wrecked car), Wet Puddle Rain (ripples + reflections on a disc), Atmosphere and Aerial Perspective, Silhouette Relief POM (parallax-occlusion sci-fi corridor), Raytraced Diamond, Spectral Dispersive Glass, Lava Flow Surface, Hybrid PBR Soil & Moss, Formula One Race Car, Sport Motorcycle, Procedural Financial Tower, Procedural Planet Surface. Each in its own module, auto-discovered by Rescan.",
+          "result_video": "/ui_views/assets/evidence/graphics-lab-render-library/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/graphics-lab-render-library/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:13–0:17",
+          "result_caption": "One scene, one technique: rain on a puddle, nothing else in frame. Each tile in the library is this focused.",
+          "result_source": "final"
         },
         {
           "title": "Record the walkthrough at 30 fps",
@@ -238,12 +274,21 @@
         {
           "title": "One mesh, many materials",
           "text": "Do not generate three controllers. Load one controller GLB and swap material sets — base color, roughness, emissive — per skin. Load time stays flat and the transitions can be animated.",
-          "prompt": "Build a product landing page for custom PS5 controllers. Hero: full-viewport 3D controller (Three.js, GLB), slow auto-rotate, drag to orbit, soft studio lighting, floor reflection. Skins as material sets: \"007 First Light\" — brushed gold with black grips; \"Genshin Impact\" — pearl white with cyan glow accents; \"God of War\" — matte crimson with white face plate. Right column: skin name as headline, short line, price $79.99, Add to cart."
+          "prompt": "Build a product landing page for custom PS5 controllers. Hero: full-viewport 3D controller (Three.js, GLB), slow auto-rotate, drag to orbit, soft studio lighting, floor reflection. Skins as material sets: \"007 First Light\" — brushed gold with black grips; \"Genshin Impact\" — pearl white with cyan glow accents; \"God of War\" — matte crimson with white face plate. Right column: skin name as headline, short line, price $79.99, Add to cart.",
+          "result_video": "/ui_views/assets/evidence/ps5-controller-configurator-page/step-1.mp4",
+          "result_poster": "/ui_views/assets/evidence/ps5-controller-configurator-page/step-1-poster.webp",
+          "result_label": "Excerpt from the final render · 0:03–0:07",
+          "result_caption": "Genshin → God of War skin swap. Watch the silhouette — one mesh, only the material changes.",
+          "result_source": "final"
         },
         {
           "title": "Make the skin rail do the work",
           "text": "A row of small controller thumbnails is the whole navigation. Clicking one crossfades the material set and updates the headline, copy and page tint. Keep the camera where the user left it.",
-          "prompt": "Below the price: horizontal thumbnail rail, one card per skin. On click: crossfade materials over 400 ms, headline and description update, background gradient shifts to the skin's accent color. Stats row: build time 12 hr, latency 1 ms, as small labels."
+          "prompt": "Below the price: horizontal thumbnail rail, one card per skin. On click: crossfade materials over 400 ms, headline and description update, background gradient shifts to the skin's accent color. Stats row: build time 12 hr, latency 1 ms, as small labels.",
+          "result_image": "/ui_views/assets/evidence/ps5-controller-configurator-page/step-2.webp",
+          "result_label": "Frame from the final render · 0:06",
+          "result_caption": "The skin rail on the right is the only control on the page. Everything else reacts to it.",
+          "result_source": "final"
         },
         {
           "title": "Capture at 60, deliver at 30",
@@ -273,12 +318,21 @@
         {
           "title": "Describe the camera as the main character",
           "text": "What sells MiniDV is not the location — it is the mistakes. Name every artifact you want: late follow, overexposure at the door, autofocus hunting between screens and faces, tape-style cut to black. If you write \"cinematic\" anywhere, you lose.",
-          "prompt": "Main Subject: Young Korean woman, 24, naturally attractive, realistic skin, minimal makeup, long blonde hair loosely tied back. Loose cream cardigan over a faded red T-shirt, relaxed blue jeans, white sneakers, thin silver necklace. Preserve her exact identity throughout. Location: small old-fashioned Seoul neighborhood arcade, early evening — dim fluorescent light, rows of aging cabinets, colorful screens, scratched floor, plastic stools, faded posters, coin machines, tangled cables, a few local teenagers in the background, warm street light through the entrance. Style: ultra-realistic early-2000s Sony MiniDV home video. Heavy handheld shake, awkward framing, autofocus hunting between bright screens and faces, exposure pumping, faded colors, soft contrast, DV compression, slight motion blur and microphone distortion. No stabilization, no modern cinematic movement."
+          "prompt": "Main Subject: Young Korean woman, 24, naturally attractive, realistic skin, minimal makeup, long blonde hair loosely tied back. Loose cream cardigan over a faded red T-shirt, relaxed blue jeans, white sneakers, thin silver necklace. Preserve her exact identity throughout. Location: small old-fashioned Seoul neighborhood arcade, early evening — dim fluorescent light, rows of aging cabinets, colorful screens, scratched floor, plastic stools, faded posters, coin machines, tangled cables, a few local teenagers in the background, warm street light through the entrance. Style: ultra-realistic early-2000s Sony MiniDV home video. Heavy handheld shake, awkward framing, autofocus hunting between bright screens and faces, exposure pumping, faded colors, soft contrast, DV compression, slight motion blur and microphone distortion. No stabilization, no modern cinematic movement.",
+          "result_video": "/ui_views/assets/evidence/seoul-arcade-minidv-tape/step-1.mp4",
+          "result_poster": "/ui_views/assets/evidence/seoul-arcade-minidv-tape/step-1-poster.webp",
+          "result_label": "Excerpt from the final render · 0:00–0:04",
+          "result_caption": "The handheld wobble on entry. The camera operator is a character — that came from the prompt, not post.",
+          "result_source": "final"
         },
         {
           "title": "Give it a timeline with one human beat",
           "text": "Fifteen seconds, five beats, timestamps in the prompt. The win-then-instant-loss at 00:09–00:12 is the moment — everything before it is setup, everything after is the tape running out.",
-          "prompt": "00:00–00:03: she pushes the arcade door and steps inside; the camera follows late, briefly overexposing from the bright street before adjusting. 00:03–00:06: she walks past machines deciding what to play; the camera wanders to other screens before finding her. 00:06–00:09: she sits at an old fighting-game cabinet and plays, competitive, leaning in, rapid button presses, camera shaking behind her. 00:09–00:12: she wins a round, small fist pump, proud grin to camera — then loses the next round instantly and bursts out laughing. 00:12–00:15: she stands and walks to another machine; the camera accidentally zooms tight onto a glowing screen, autofocus struggles against the pixels, and the recording cuts to black. Audio: arcade ambience only — buttons, joysticks, game sounds, coin mechanisms, fluorescent buzz, distant talk, footsteps, laughter. No music, no narration."
+          "prompt": "00:00–00:03: she pushes the arcade door and steps inside; the camera follows late, briefly overexposing from the bright street before adjusting. 00:03–00:06: she walks past machines deciding what to play; the camera wanders to other screens before finding her. 00:06–00:09: she sits at an old fighting-game cabinet and plays, competitive, leaning in, rapid button presses, camera shaking behind her. 00:09–00:12: she wins a round, small fist pump, proud grin to camera — then loses the next round instantly and bursts out laughing. 00:12–00:15: she stands and walks to another machine; the camera accidentally zooms tight onto a glowing screen, autofocus struggles against the pixels, and the recording cuts to black. Audio: arcade ambience only — buttons, joysticks, game sounds, coin mechanisms, fluorescent buzz, distant talk, footsteps, laughter. No music, no narration.",
+          "result_image": "/ui_views/assets/evidence/seoul-arcade-minidv-tape/step-2.webp",
+          "result_label": "Frame from the final render · 0:10",
+          "result_caption": "The one human beat: she turns to the lens after a win. The timeline was built around this second.",
+          "result_source": "final"
         },
         {
           "title": "Watermark low, upscale once, leave the grain",
@@ -307,12 +361,21 @@
         {
           "title": "Lock the hero and the palette before any motion",
           "text": "Trailers fall apart when the hero changes between shots. Describe the character once — silhouette, colors, weapon — and the world once — terracotta roofs, teal shutters, midday sky. Every shot prompt reuses that block verbatim.",
-          "prompt": "Cel-shaded action-adventure game cinematic. Hero: young swordsman in a green tunic and pointed cap, brown boots, small shield on the back, blond hair. World: medieval storybook town — terracotta tiled roofs, cream stucco walls, teal shutters, cobblestone plaza with market stalls, bright midday sun, cumulus clouds. Clean toon outlines, saturated colors, stylized grass and foliage."
+          "prompt": "Cel-shaded action-adventure game cinematic. Hero: young swordsman in a green tunic and pointed cap, brown boots, small shield on the back, blond hair. World: medieval storybook town — terracotta tiled roofs, cream stucco walls, teal shutters, cobblestone plaza with market stalls, bright midday sun, cumulus clouds. Clean toon outlines, saturated colors, stylized grass and foliage.",
+          "result_image": "/ui_views/assets/evidence/rooftop-run-cel-shaded-trailer/step-1.webp",
+          "result_label": "Frame from the final render · 0:02",
+          "result_caption": "Hero, palette and ink outline fixed in frame one. Every later shot inherits exactly this.",
+          "result_source": "final"
         },
         {
           "title": "Direct the chase as a rooftop-to-castle route",
           "text": "Give the model a route, not a mood. Roof ridge → gap jump → plaza overlook → drop into the square → castle wall climb. Each beat is 4–6 seconds; the camera stays behind and slightly above so parkour reads clearly.",
-          "prompt": "Shot list, same hero and world block: (1) hero sprints along a roof ridge, camera chasing from behind. (2) Long jump across an alley gap, tiles crumble. (3) Slides down a roof into the market plaza, vendors look up. (4) Runs along the top of the castle curtain wall, blue banners with a gold crest. (5) Leaps toward a tower window, freeze on the jump. Continuous motion, no cuts inside a shot."
+          "prompt": "Shot list, same hero and world block: (1) hero sprints along a roof ridge, camera chasing from behind. (2) Long jump across an alley gap, tiles crumble. (3) Slides down a roof into the market plaza, vendors look up. (4) Runs along the top of the castle curtain wall, blue banners with a gold crest. (5) Leaps toward a tower window, freeze on the jump. Continuous motion, no cuts inside a shot.",
+          "result_video": "/ui_views/assets/evidence/rooftop-run-cel-shaded-trailer/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/rooftop-run-cel-shaded-trailer/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:13–0:17",
+          "result_caption": "Market rooftops into the castle wall. The chase is a route with a destination, not a loop.",
+          "result_source": "final"
         },
         {
           "title": "Cut on the jumps, upscale to 4K, deliver at 1080p",
@@ -341,12 +404,21 @@
         {
           "title": "Pick four biomes people recognize instantly",
           "text": "The joke lands only if the source is obvious. Jungle temple, desert with dead bushes, an obsidian portal by water, a starter house with a boxy character. Each gets one slow camera move, nothing else.",
-          "prompt": "Photoreal remaster of a voxel sandbox world. Keep every shape cubic — blocks, stairs, one-meter grid — but render with physically based materials: mossy sandstone, wind-blown sand, obsidian with purple portal glow, oak planks and cobblestone. Cinematic lighting, shallow depth of field, ray-traced reflections, 4K detail."
+          "prompt": "Photoreal remaster of a voxel sandbox world. Keep every shape cubic — blocks, stairs, one-meter grid — but render with physically based materials: mossy sandstone, wind-blown sand, obsidian with purple portal glow, oak planks and cobblestone. Cinematic lighting, shallow depth of field, ray-traced reflections, 4K detail.",
+          "result_video": "/ui_views/assets/evidence/blocky-world-photoreal-remaster/step-1.mp4",
+          "result_poster": "/ui_views/assets/evidence/blocky-world-photoreal-remaster/step-1-poster.webp",
+          "result_label": "Excerpt from the final render · 0:10–0:14",
+          "result_caption": "Desert into water. Two of the four biomes, recognisable before the transition finishes.",
+          "result_source": "final"
         },
         {
           "title": "Keep the geometry blocky, push everything else",
           "text": "Tell the model explicitly what may not change: block grid, proportions, the character's cube head. Everything else — textures, light, atmosphere, foliage density — goes to maximum realism.",
-          "prompt": "Shot 1: slow push through a ruined jungle temple corridor, vines and light shafts. Shot 2: pan across a red desert with dry bushes and a distant plateau. Shot 3: obsidian portal frame beside a lily-pad pond, purple glow reflecting. Shot 4: a boxy character stands in front of a brick-and-oak house with a hedge; the character is low-poly cubic, the world around it photoreal."
+          "prompt": "Shot 1: slow push through a ruined jungle temple corridor, vines and light shafts. Shot 2: pan across a red desert with dry bushes and a distant plateau. Shot 3: obsidian portal frame beside a lily-pad pond, purple glow reflecting. Shot 4: a boxy character stands in front of a brick-and-oak house with a hedge; the character is low-poly cubic, the world around it photoreal.",
+          "result_image": "/ui_views/assets/evidence/blocky-world-photoreal-remaster/step-2.webp",
+          "result_label": "Frame from the final render · 0:12",
+          "result_caption": "Cubic lily pads, photoreal water. Geometry stays blocky; light, texture and volume do not.",
+          "result_source": "final"
         },
         {
           "title": "Upscale and grade as one reel",
@@ -375,12 +447,21 @@
         {
           "title": "Describe the weapon as a fixed object in the frame",
           "text": "First-person clips break when the gun morphs. Describe it as a prop bolted to the camera: position, finish, attachments. Repeat that block in every shot.",
-          "prompt": "First-person shooter cinematic, photoreal. Weapon fixed lower-right in frame: modern assault rifle, matte black, holographic sight, tan foregrip, worn edges. Environment: abandoned Soviet-era school — peeling green paint, shattered windows, overturned desks, chalkboard, dust hanging in light shafts. Overcast daylight, muted palette, slight lens dirt."
+          "prompt": "First-person shooter cinematic, photoreal. Weapon fixed lower-right in frame: modern assault rifle, matte black, holographic sight, tan foregrip, worn edges. Environment: abandoned Soviet-era school — peeling green paint, shattered windows, overturned desks, chalkboard, dust hanging in light shafts. Overcast daylight, muted palette, slight lens dirt.",
+          "result_image": "/ui_views/assets/evidence/metro-ruins-fps-walkthrough/step-1.webp",
+          "result_label": "Frame from the final render · 0:12",
+          "result_caption": "Mid-burst and the rifle has not changed shape since the first frame. \"Prop bolted to the camera\" did that.",
+          "result_source": "final"
         },
         {
           "title": "Route the walkthrough room by room",
           "text": "Corridor → classroom → stairwell → open yard. One direction of travel, one turn per shot. Put the single firefight in the widest room so the muzzle flash has something to light.",
-          "prompt": "Shot 1: advance down a flooded concrete corridor, flashlight beam. Shot 2: enter a classroom, sweep left across desks and blackboard. Shot 3: contact — three quick shots toward a doorway, muzzle flash lights the dust, casings eject. Shot 4: climb a collapsed stairwell into daylight. Shot 5: overlook a ruined courtyard with a distant apartment block."
+          "prompt": "Shot 1: advance down a flooded concrete corridor, flashlight beam. Shot 2: enter a classroom, sweep left across desks and blackboard. Shot 3: contact — three quick shots toward a doorway, muzzle flash lights the dust, casings eject. Shot 4: climb a collapsed stairwell into daylight. Shot 5: overlook a ruined courtyard with a distant apartment block.",
+          "result_video": "/ui_views/assets/evidence/metro-ruins-fps-walkthrough/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/metro-ruins-fps-walkthrough/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:06–0:10",
+          "result_caption": "Classroom into stairwell. One direction of travel, one turn — the room-by-room route from step 2.",
+          "result_source": "final"
         },
         {
           "title": "Cut tight, add a low-end mix, deliver",
@@ -408,12 +489,21 @@
         {
           "title": "Write one walkthrough brief both models receive",
           "text": "The comparison is only honest if the prompt is identical. Fix the route and the camera; leave material and style choices to each model so their taste shows.",
-          "prompt": "Architectural walkthrough, photoreal. Route: (1) slow approach to a single-storey Mediterranean villa, terracotta roof, white stucco, arched entry. (2) Push through the arched front door. (3) Reveal an open-plan living room with a low sofa, large black-framed windows, wood floor. (4) End on the kitchen island with pendant lights. Smooth gimbal motion, golden-hour light, 4K."
+          "prompt": "Architectural walkthrough, photoreal. Route: (1) slow approach to a single-storey Mediterranean villa, terracotta roof, white stucco, arched entry. (2) Push through the arched front door. (3) Reveal an open-plan living room with a low sofa, large black-framed windows, wood floor. (4) End on the kitchen island with pendant lights. Smooth gimbal motion, golden-hour light, 4K.",
+          "result_image": "/ui_views/assets/evidence/interior-render-model-battle/step-1.webp",
+          "result_label": "Frame from the final render · 0:08",
+          "result_caption": "Same living room, same brief, two models side by side. Differences you see are the models', not the prompt's.",
+          "result_source": "final"
         },
         {
           "title": "Generate on both, do not cherry-pick",
           "text": "Take the first clean run from each model. Re-rolling one side until it wins is the fastest way to make the format worthless.",
-          "prompt": ""
+          "prompt": "",
+          "result_video": "/ui_views/assets/evidence/interior-render-model-battle/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/interior-render-model-battle/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:15–0:19",
+          "result_caption": "The kitchen pass on both. Neither take was regenerated — this is the first output each model returned.",
+          "result_source": "final"
         },
         {
           "title": "Cut the split-screen with labels and one music bed",
@@ -442,12 +532,21 @@
         {
           "title": "Specify the HUD as part of the image",
           "text": "Models drop UI unless it is described as pixels on screen. Health bars, round timer, player tags — name them, place them, color them.",
-          "prompt": "16-bit arcade fighting game, side view, pixel art. HUD: two green-to-red health bars top-left and top-right, yellow round timer \"99\" centered, \"P1\"/\"P2\" tags. Stage: Japanese temple courtyard at sunset, orange sky, purple clouds, paper lanterns. Fighters: left — orange gi, black hair, bare feet; right — purple vest, headband, dark trousers. Chunky pixels, limited palette, CRT-clean."
+          "prompt": "16-bit arcade fighting game, side view, pixel art. HUD: two green-to-red health bars top-left and top-right, yellow round timer \"99\" centered, \"P1\"/\"P2\" tags. Stage: Japanese temple courtyard at sunset, orange sky, purple clouds, paper lanterns. Fighters: left — orange gi, black hair, bare feet; right — purple vest, headband, dark trousers. Chunky pixels, limited palette, CRT-clean.",
+          "result_image": "/ui_views/assets/evidence/arcade-fighter-pixel-match/step-1.webp",
+          "result_label": "Frame from the final render · 0:00",
+          "result_caption": "Health bars, timer, round counter — all rendered as part of the image, not overlaid.",
+          "result_source": "final"
         },
         {
           "title": "Choreograph six hits, not a brawl",
           "text": "Give the round a shape: poke, block, launcher, air juggle, fireball, KO. One exchange per shot, sprites always at the same scale.",
-          "prompt": "Sequence: (1) fighters face off, idle bounce. (2) Right fighter dashes in, left blocks — white spark. (3) Left uppercut launches right into the air. (4) Right recovers, jumping kick. (5) Left throws a blue fireball across the stage, big hit flash. (6) Right collapses, \"KO\" moment. Sprite scale constant, background static except lanterns swaying."
+          "prompt": "Sequence: (1) fighters face off, idle bounce. (2) Right fighter dashes in, left blocks — white spark. (3) Left uppercut launches right into the air. (4) Right recovers, jumping kick. (5) Left throws a blue fireball across the stage, big hit flash. (6) Right collapses, \"KO\" moment. Sprite scale constant, background static except lanterns swaying.",
+          "result_video": "/ui_views/assets/evidence/arcade-fighter-pixel-match/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/arcade-fighter-pixel-match/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:01–0:05",
+          "result_caption": "The first two of six choreographed hits. Each has a wind-up and a landing you can count.",
+          "result_source": "final"
         },
         {
           "title": "Add the watermark and deliver at native 1080p",
@@ -475,12 +574,21 @@
         {
           "title": "Set the weather as the main character",
           "text": "Rain is what makes this feel expensive. Specify it everywhere: drops on the lens, wet bark, mist between trunks, water sheeting off the rifle.",
-          "prompt": "First-person tactical shooter, photoreal, heavy rain. Weapon fixed lower-center: modern carbine, olive-drab, red-dot sight, suppressor, rain beading on metal. Environment: dense pine forest, mossy boulders, ferns, low mist, overcast grey light, rain streaks on the lens."
+          "prompt": "First-person tactical shooter, photoreal, heavy rain. Weapon fixed lower-center: modern carbine, olive-drab, red-dot sight, suppressor, rain beading on metal. Environment: dense pine forest, mossy boulders, ferns, low mist, overcast grey light, rain streaks on the lens.",
+          "result_image": "/ui_views/assets/evidence/forest-ops-tactical-fps/step-1.webp",
+          "result_label": "Frame from the final render · 0:02",
+          "result_caption": "Rain and mist lead the frame; the operator is secondary. Weather was written first in the prompt.",
+          "result_source": "final"
         },
         {
           "title": "Move from open forest into a confined space",
           "text": "Contrast sells the cut. Wide forest → river rocks → bunker doorway → black interior with a single light. The end card goes on the black.",
-          "prompt": "Shot 1: advance through pines, rifle low-ready. Shot 2: aim down sight across a rocky river, water rushing. Shot 3: cross the river on boulders, camera bobbing. Shot 4: approach a concrete bunker entrance in the hillside. Shot 5: enter the dark corridor, a single square of light at the far end. Hold on the light."
+          "prompt": "Shot 1: advance through pines, rifle low-ready. Shot 2: aim down sight across a rocky river, water rushing. Shot 3: cross the river on boulders, camera bobbing. Shot 4: approach a concrete bunker entrance in the hillside. Shot 5: enter the dark corridor, a single square of light at the far end. Hold on the light.",
+          "result_video": "/ui_views/assets/evidence/forest-ops-tactical-fps/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/forest-ops-tactical-fps/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:15–0:19",
+          "result_caption": "Open treeline into the cabin doorway. The space closes in — the only structural move in the piece.",
+          "result_source": "final"
         },
         {
           "title": "Conform 60 fps to 30, upscale, end on the CTA",
@@ -508,12 +616,21 @@
         {
           "title": "Build the heroine as a reusable block",
           "text": "One paragraph, reused verbatim in every shot: hair, outfit, gear, build. This is the only way a third-person character survives five environments.",
-          "prompt": "Third-person action-adventure game cinematic, photoreal. Heroine: athletic woman, long dark hair tied back, olive tank top, brown leather harness with a rope, dark cargo trousers, climbing gloves, dirt and sweat on skin. Camera over-the-shoulder, slightly low. Cinematic grade, warm highlights, teal shadows."
+          "prompt": "Third-person action-adventure game cinematic, photoreal. Heroine: athletic woman, long dark hair tied back, olive tank top, brown leather harness with a rope, dark cargo trousers, climbing gloves, dirt and sweat on skin. Camera over-the-shoulder, slightly low. Cinematic grade, warm highlights, teal shadows.",
+          "result_image": "/ui_views/assets/evidence/crimson-adventure-trailer/step-1.webp",
+          "result_label": "Frame from the final render · 0:07",
+          "result_caption": "The heroine block: cloak, hair, silhouette. Pasted verbatim into every shot so she never drifts.",
+          "result_source": "final"
         },
         {
           "title": "Change environment every six seconds",
           "text": "Trailers earn attention with variety, not length. Jungle river → underwater with a shark → cliff climb → fortress courtyard fight. Each is one shot, one action.",
-          "prompt": "Shot 1: heroine stands on a mossy bank overlooking a turquoise jungle river and waterfalls. Shot 2: underwater — she swims past a great white shark, sunlight rays, bubbles. Shot 3: she pulls herself onto a rock ledge above the river, dripping. Shot 4: sandstone fortress courtyard, she fights three guards with a curved sword, dust kicked up. Shot 5: she stands over the fallen guards, breathing hard."
+          "prompt": "Shot 1: heroine stands on a mossy bank overlooking a turquoise jungle river and waterfalls. Shot 2: underwater — she swims past a great white shark, sunlight rays, bubbles. Shot 3: she pulls herself onto a rock ledge above the river, dripping. Shot 4: sandstone fortress courtyard, she fights three guards with a curved sword, dust kicked up. Shot 5: she stands over the fallen guards, breathing hard.",
+          "result_video": "/ui_views/assets/evidence/crimson-adventure-trailer/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/crimson-adventure-trailer/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:09–0:13",
+          "result_caption": "Lake to courtyard. Environments change on the six-second beat; she does not.",
+          "result_source": "final"
         },
         {
           "title": "Upscale, watermark, cut to music",
@@ -542,12 +659,21 @@
         {
           "title": "Ask for documentary, not cinema",
           "text": "The words matter: handheld, follow shot, natural light, no color push. Anything \"cinematic\" and the model adds crane moves and teal-orange.",
-          "prompt": "Documentary handheld follow shot, 35mm look, natural golden-hour backlight with haze. Subject: young woman with long dark hair, white shirt, walking away from camera down a narrow street in a Brazilian city. Parked cars, low buildings, overhead power lines, warm dust in the air. Slight handheld sway, no stabilization."
+          "prompt": "Documentary handheld follow shot, 35mm look, natural golden-hour backlight with haze. Subject: young woman with long dark hair, white shirt, walking away from camera down a narrow street in a Brazilian city. Parked cars, low buildings, overhead power lines, warm dust in the air. Slight handheld sway, no stabilization.",
+          "result_image": "/ui_views/assets/evidence/brazil-street-documentary/step-1.webp",
+          "result_label": "Frame from the final render · 0:00",
+          "result_caption": "Available light, over-the-shoulder, nobody posed. \"Documentary, not cinema\" is the difference.",
+          "result_source": "final"
         },
         {
           "title": "Keep it to one shot",
           "text": "Ten seconds, one subject, one direction. Do not ask for a turn or a reveal — that is where documentary footage starts looking generated.",
-          "prompt": ""
+          "prompt": "",
+          "result_video": "/ui_views/assets/evidence/brazil-street-documentary/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/brazil-street-documentary/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:03–0:07",
+          "result_caption": "Four seconds of the single continuous walk. There is no second shot to cut to.",
+          "result_source": "final"
         },
         {
           "title": "Upscale and grade lightly",
@@ -575,7 +701,11 @@
         {
           "title": "1. Audit the source before touching anything",
           "text": "The original repo ships a warm cream/terracotta editorial theme: Georgia serif headline, #C2603C terracotta accent, paper-grain canvas cards. None of it is Quadcode — but the rig underneath (rope physics, drag-to-scroll, canvas-painted cards) is solid and worth keeping untouched.",
-          "prompt": "Clone the target repo, run it locally, and list every hardcoded visual value: CSS custom properties, font-family declarations, and any hex colors baked into the JS (canvas fill styles, Three.js material colors, light colors). Do not touch logic yet — only inventory."
+          "prompt": "Clone the target repo, run it locally, and list every hardcoded visual value: CSS custom properties, font-family declarations, and any hex colors baked into the JS (canvas fill styles, Three.js material colors, light colors). Do not touch logic yet — only inventory.",
+          "result_image": "/ui_views/assets/evidence/jerry01-quadcode-testimonials/step-1.webp",
+          "result_label": "Frame from the final render · 0:00",
+          "result_caption": "The starting state before any edit — this is what the audit was run against.",
+          "result_source": "final"
         },
         {
           "title": "2. Swap CSS tokens for the Quadcode dark system",
@@ -586,12 +716,21 @@
         {
           "title": "3. Repaint the canvas card texture and retune the stage lights",
           "text": "The testimonial cards are canvas-drawn textures wrapped onto a 3D plane, not DOM elements — so the paper-cream gradient, grain, quote-serif and avatar-initial styling all had to be repainted directly in the paintCard() function. Stage lighting also needed a full pass: the original hemisphere/key/fill setup was tuned for a bright cream backdrop and looked flat and washed-out once the stage went dark, so the rim light became the accent-orange (#FF9569) separator instead of a neutral white.",
-          "prompt": "Inside the canvas-texture paint routine, replace the paper-gradient background, grain color and quote-serif font with the dark bg gradient, Space Grotesk headline font and Manrope body font. Recolor avatar rings and star ratings to the new accent palette. Retune HemisphereLight/DirectionalLight intensities and colors so the stage reads as a dark studio, with the rim light carrying the brand accent color."
+          "prompt": "Inside the canvas-texture paint routine, replace the paper-gradient background, grain color and quote-serif font with the dark bg gradient, Space Grotesk headline font and Manrope body font. Recolor avatar rings and star ratings to the new accent palette. Retune HemisphereLight/DirectionalLight intensities and colors so the stage reads as a dark studio, with the rim light carrying the brand accent color.",
+          "result_image": "/ui_views/assets/evidence/jerry01-quadcode-testimonials/step-3.webp",
+          "result_label": "Frame from the final render · 0:15",
+          "result_caption": "Canvas grain on the cards and the retuned key light. Compare with the frame under step 1.",
+          "result_source": "final"
         },
         {
           "title": "4. Replace the testimonial copy — English, Quadcode-guide roles",
           "text": "Swapped six generic marketing quotes for six English testimonials from people who actually use the guide site's own vocabulary: a Game Dev referencing the Dark Fantasy Deceiver NPC guide, a Product Designer, a Motion Designer referencing the Kitchen Configurator guide, a QA Engineer, a Founder, and a Design Lead. Every quote references something specific about a real guide step, not a vague compliment — kept the failure-story pattern from the original (crooked layout before the fix) instead of pure praise.",
-          "prompt": "Replace the DATA testimonials array with six English-language quotes attributed to roles relevant to a design/dev guide platform (Game Dev, Product Designer, Motion Designer, QA Engineer, Founder, Design Lead). Each quote must reference a concrete detail — a specific guide, a specific failure that was fixed, a specific number — not generic praise. Update the section eyebrow and headline to match."
+          "prompt": "Replace the DATA testimonials array with six English-language quotes attributed to roles relevant to a design/dev guide platform (Game Dev, Product Designer, Motion Designer, QA Engineer, Founder, Design Lead). Each quote must reference a concrete detail — a specific guide, a specific failure that was fixed, a specific number — not generic praise. Update the section eyebrow and headline to match.",
+          "result_video": "/ui_views/assets/evidence/jerry01-quadcode-testimonials/step-4.mp4",
+          "result_poster": "/ui_views/assets/evidence/jerry01-quadcode-testimonials/step-4-poster.webp",
+          "result_label": "Excerpt from the final render · 0:06–0:10",
+          "result_caption": "Cards cycling with the new English copy and Quadcode-guide roles.",
+          "result_source": "final"
         },
         {
           "title": "5. Ship it live — drag the rope right here",
@@ -631,22 +770,40 @@
         {
           "title": "1. Build a line, not a montage",
           "text": "Choose one route through the skate spot and keep the camera behind the rider. Continuous geography makes the result feel playable and gives every trick a clear approach and landing.",
-          "prompt": "Third-person open-world game footage at a wet industrial skate plaza at night. Male skater in a red tracksuit rides toward a low concrete ledge. Close chase camera behind and slightly below shoulder height, city lights reflecting on wet ground, one continuous 16:9 shot."
+          "prompt": "Third-person open-world game footage at a wet industrial skate plaza at night. Male skater in a red tracksuit rides toward a low concrete ledge. Close chase camera behind and slightly below shoulder height, city lights reflecting on wet ground, one continuous 16:9 shot.",
+          "result_video": "/ui_views/assets/evidence/gta-skate-stunt/step-1.mp4",
+          "result_poster": "/ui_views/assets/evidence/gta-skate-stunt/step-1-poster.webp",
+          "result_label": "Excerpt from the final render · 0:00–0:04",
+          "result_caption": "Rail, landing, roll-out in one line. Nothing here is a cut between separate tricks.",
+          "result_source": "final"
         },
         {
           "title": "2. Protect board-to-foot contact",
           "text": "The critical failure is feet detaching from the deck. Ask for one ollie and a clean landing, with the board rotating only as much as the body can plausibly control.",
-          "prompt": "The skater compresses, pops one clean ollie over the ledge and lands with both feet planted over the trucks. Board remains rigid and connected to the rider, wheels contact the ground together, knees absorb impact, no impossible flips or limb distortion."
+          "prompt": "The skater compresses, pops one clean ollie over the ledge and lands with both feet planted over the trucks. Board remains rigid and connected to the rider, wheels contact the ground together, knees absorb impact, no impossible flips or limb distortion.",
+          "result_image": "/ui_views/assets/evidence/gta-skate-stunt/step-2.webp",
+          "result_label": "Frame from the final render · 0:06",
+          "result_caption": "Mid-flip and the feet still read as over the board. This is the contact rule holding.",
+          "result_source": "final"
         },
         {
           "title": "3. Let the HUD confirm the trick",
           "text": "The interface should register the move after landing, not before it. Use a small trick label, score increment and balance meter while keeping the ledge and feet unobstructed.",
-          "prompt": "Add a restrained game HUD: circular minimap bottom-left, trick name and score top-right, small balance or speed indicator. The score updates immediately after the landing and all UI remains locked to screen coordinates."
+          "prompt": "Add a restrained game HUD: circular minimap bottom-left, trick name and score top-right, small balance or speed indicator. The score updates immediately after the landing and all UI remains locked to screen coordinates.",
+          "result_image": "/ui_views/assets/evidence/gta-skate-stunt/step-3.webp",
+          "result_label": "Frame from the final render · 0:02",
+          "result_caption": "The HUD scores the trick as it lands. It confirms the move instead of decorating the frame.",
+          "result_source": "final"
         },
         {
           "title": "4. Cut on the roll-away",
           "text": "End after two seconds of stable riding. The roll-away proves the landing; cutting at peak height would hide whether the generated physics actually worked.",
-          "prompt": "Deliver a 15-second 1920 × 1080 H.264 clip at 24 fps with stereo audio and web fast-start."
+          "prompt": "Deliver a 15-second 1920 × 1080 H.264 clip at 24 fps with stereo audio and web fast-start.",
+          "result_video": "/ui_views/assets/evidence/gta-skate-stunt/step-4.mp4",
+          "result_poster": "/ui_views/assets/evidence/gta-skate-stunt/step-4-poster.webp",
+          "result_label": "Excerpt from the final render · 0:11–0:15",
+          "result_caption": "The roll-away. The cut lands here, not on the landing — the trick gets to finish.",
+          "result_source": "final"
         }
       ],
       "result": "A readable skate line with one grounded trick, a verified roll-away and game UI timed to the landing."
@@ -668,22 +825,40 @@
         {
           "title": "1. Frame it like gameplay",
           "text": "Use a stable third-person chase camera behind the surfer. A beautiful drone angle would weaken the idea because the clip needs to feel controllable, not observed.",
-          "prompt": "Third-person open-world game footage of a male surfer riding a turquoise wave through a rocky tropical cove at sunset. Camera follows two metres behind and slightly above the character, wide 16:9 frame, realistic game-engine lighting, continuous shot."
+          "prompt": "Third-person open-world game footage of a male surfer riding a turquoise wave through a rocky tropical cove at sunset. Camera follows two metres behind and slightly above the character, wide 16:9 frame, realistic game-engine lighting, continuous shot.",
+          "result_image": "/ui_views/assets/evidence/gta-surf-stunt/step-1.webp",
+          "result_label": "Frame from the final render · 0:00",
+          "result_caption": "Minimap, health, mission marker — framed exactly like a capture, which is why it reads as gameplay.",
+          "result_source": "final"
         },
         {
           "title": "2. Give the wave one readable line",
           "text": "The surfer should carve across a single breaking face with a visible spray trail. Do not ask for several tricks—the body mechanics fail when the model has to solve too many direction changes in 15 seconds.",
-          "prompt": "The surfer shifts weight naturally, cuts across the wave face and throws a clean fan of white spray. Board stays attached to both feet, knees absorb the water movement, wave direction remains consistent and the shoreline advances smoothly."
+          "prompt": "The surfer shifts weight naturally, cuts across the wave face and throws a clean fan of white spray. Board stays attached to both feet, knees absorb the water movement, wave direction remains consistent and the shoreline advances smoothly.",
+          "result_video": "/ui_views/assets/evidence/gta-surf-stunt/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/gta-surf-stunt/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:01–0:05",
+          "result_caption": "One wave, one readable line from lip to trough. No secondary swell to confuse the eye.",
+          "result_source": "final"
         },
         {
           "title": "3. Add HUD elements that react",
           "text": "A minimap, speed value and trick score make the shot read as a game only when the numbers respond to motion. Keep them in safe corners and protect the rider silhouette.",
-          "prompt": "Add a restrained open-world game HUD: circular minimap bottom-left, speed and score bottom-right, small location label top-left. Interface stays sharp and stable while speed and score update during the carve. No large menu panels over the action."
+          "prompt": "Add a restrained open-world game HUD: circular minimap bottom-left, speed and score bottom-right, small location label top-left. Interface stays sharp and stable while speed and score update during the carve. No large menu panels over the action.",
+          "result_image": "/ui_views/assets/evidence/gta-surf-stunt/step-3.webp",
+          "result_label": "Frame from the final render · 0:07",
+          "result_caption": "HUD state after the move: the score and marker changed with it.",
+          "result_source": "final"
         },
         {
           "title": "4. Keep the best continuous take",
           "text": "Reject takes where the board clips into the water or the HUD swims across the frame. Publish the take with stable feet, one continuous wave and readable interface placement.",
-          "prompt": "Deliver a 15-second 1920 × 1080 H.264 clip at 24 fps with stereo audio and web fast-start."
+          "prompt": "Deliver a 15-second 1920 × 1080 H.264 clip at 24 fps with stereo audio and web fast-start.",
+          "result_video": "/ui_views/assets/evidence/gta-surf-stunt/step-4.mp4",
+          "result_poster": "/ui_views/assets/evidence/gta-surf-stunt/step-4-poster.webp",
+          "result_label": "Excerpt from the final render · 0:10–0:14",
+          "result_caption": "Tail of the single continuous take that was kept. Other takes were dropped, not stitched.",
+          "result_source": "final"
         }
       ],
       "result": "A compact gameplay-style surf stunt with coherent water motion, chase-camera framing and a HUD that supports the action instead of covering it."
@@ -705,22 +880,40 @@
         {
           "title": "1. Lock one visual rule",
           "text": "The fighter, floor and background stay monochrome. Only the moving ink changes shape. This prevents the shot from becoming a pile of unrelated effects.",
-          "prompt": "A cinematic wushu performance inside a vast white ink-wash studio. One female martial artist in a white top and flowing black trousers. Monochrome palette, wet black sumi ink, soft grey mountains in the distance, locked wide camera, realistic fabric and body mechanics."
+          "prompt": "A cinematic wushu performance inside a vast white ink-wash studio. One female martial artist in a white top and flowing black trousers. Monochrome palette, wet black sumi ink, soft grey mountains in the distance, locked wide camera, realistic fabric and body mechanics.",
+          "result_image": "/ui_views/assets/evidence/wushu-ink-dragon-cinematic/step-1.webp",
+          "result_label": "Frame from the final render · 0:05",
+          "result_caption": "The one rule: motion leaves ink. Everything in the piece obeys it.",
+          "result_source": "final"
         },
         {
           "title": "2. Make movement generate the graphic",
           "text": "Tie the ink to the body: the arm sweep pulls a broad brush stroke while the low stance closes it into a circular ring. The effect follows momentum instead of floating independently.",
-          "prompt": "As she pivots into a low wushu stance, a thick ribbon of wet black ink follows her arms and circles her body. The stroke has visible bristle texture, splatter at direction changes and believable liquid inertia. Keep her face, costume and scale consistent."
+          "prompt": "As she pivots into a low wushu stance, a thick ribbon of wet black ink follows her arms and circles her body. The stroke has visible bristle texture, splatter at direction changes and believable liquid inertia. Keep her face, costume and scale consistent.",
+          "result_video": "/ui_views/assets/evidence/wushu-ink-dragon-cinematic/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/wushu-ink-dragon-cinematic/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:05–0:09",
+          "result_caption": "The sword arc drawing the stroke in real time. The graphic is a by-product of the movement.",
+          "result_source": "final"
         },
         {
           "title": "3. Resolve the motion into one payoff",
           "text": "The final dragon works because it grows from the same ring rather than appearing as a separate cut. Hold the last composition long enough to read the fighter’s scale against the mural.",
-          "prompt": "The circular ink stroke expands behind the fighter and resolves into a monumental hand-painted Chinese dragon mural. The dragon remains painted ink on paper, not a 3D creature. End on a balanced wide tableau with the fighter centered below it, no text and no camera cut."
+          "prompt": "The circular ink stroke expands behind the fighter and resolves into a monumental hand-painted Chinese dragon mural. The dragon remains painted ink on paper, not a 3D creature. End on a balanced wide tableau with the fighter centered below it, no text and no camera cut.",
+          "result_image": "/ui_views/assets/evidence/wushu-ink-dragon-cinematic/step-3.webp",
+          "result_label": "Frame from the final render · 0:11",
+          "result_caption": "The payoff: strokes resolve into the dragon. One image, not a montage.",
+          "result_source": "final"
         },
         {
           "title": "4. Remove drift from the final seconds",
           "text": "Trim after the dragon composition settles. A clean 15-second arc needs a readable setup, one transformation and a held final image—not another effect after the payoff.",
-          "prompt": "Export a 15-second 16:9 master. Preserve the original sound design, remove unstable tail frames and encode H.264 with web fast-start."
+          "prompt": "Export a 15-second 16:9 master. Preserve the original sound design, remove unstable tail frames and encode H.264 with web fast-start.",
+          "result_video": "/ui_views/assets/evidence/wushu-ink-dragon-cinematic/step-4.mp4",
+          "result_poster": "/ui_views/assets/evidence/wushu-ink-dragon-cinematic/step-4-poster.webp",
+          "result_label": "Excerpt from the final render · 0:11–0:15",
+          "result_caption": "Final seconds. The dragon holds without drift — the retake this step describes.",
+          "result_source": "final"
         }
       ],
       "result": "A controlled 15-second art film: one performer, one ink-motion system and one dragon reveal that grows directly from the choreography."
@@ -1141,17 +1334,30 @@
         {
           "title": "1. Design a boss silhouette you've never seen before",
           "text": "Skip generic dragons. A living, cracked tree given a rough humanoid stance instantly reads as ancient and hostile without a single line of backstory — the cherry blossoms softening a threat make it feel like a cursed god of the forest, not a monster-of-the-week.",
-          "prompt": "A colossal ancient tree given a hulking humanoid silhouette — thick root-legs planted wide, gnarled bark skin split by glowing molten-orange cracks across its chest, branches heavy with pink cherry blossoms, a faint carved face buried in its trunk. Towering scale against a small human figure below. Cinematic realism, volumetric god-rays through blossom petals, dust and pollen drifting in the air, epic AAA game-trailer lighting."
+          "prompt": "A colossal ancient tree given a hulking humanoid silhouette — thick root-legs planted wide, gnarled bark skin split by glowing molten-orange cracks across its chest, branches heavy with pink cherry blossoms, a faint carved face buried in its trunk. Towering scale against a small human figure below. Cinematic realism, volumetric god-rays through blossom petals, dust and pollen drifting in the air, epic AAA game-trailer lighting.",
+          "result_image": "/ui_views/assets/evidence/cherry-blossom-boss-cinematic/step-1.webp",
+          "result_label": "Frame from the final render · 0:01",
+          "result_caption": "The boss silhouette in full. Read it against the trees — it is not borrowed from any franchise.",
+          "result_source": "final"
         },
         {
           "title": "2. Block the shot like a director, not a slideshow",
           "text": "One continuous 15-second beat, not three cuts: open low and wide on the boss to sell scale, hold on the lone armored swordsman squaring up beneath it, then push into the exchange. Naming the camera behavior explicitly is what stops the model from defaulting to a static wide shot for the whole clip.",
-          "prompt": "Cinematic single continuous shot, low wide-angle framing a giant tree-golem boss against cherry blossom trees and a misty stream, warrior in white lamellar armor with twin swords standing small in the foreground. Slow creeping push-in toward the confrontation, natural handheld micro-shake, warm late-afternoon backlight, shallow depth on foreground petals, 15 seconds, no cuts."
+          "prompt": "Cinematic single continuous shot, low wide-angle framing a giant tree-golem boss against cherry blossom trees and a misty stream, warrior in white lamellar armor with twin swords standing small in the foreground. Slow creeping push-in toward the confrontation, natural handheld micro-shake, warm late-afternoon backlight, shallow depth on foreground petals, 15 seconds, no cuts.",
+          "result_video": "/ui_views/assets/evidence/cherry-blossom-boss-cinematic/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/cherry-blossom-boss-cinematic/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:03–0:07",
+          "result_caption": "Blocking: the boss approaches, camera holds, hero enters. Directed as a scene, not a slideshow.",
+          "result_source": "final"
         },
         {
           "title": "3. Give the impact one clear VFX signature",
           "text": "A single golden energy arc on the sword slash is the whole payoff of the shot — it needs to read instantly against the dark bark, so keep every other light source warm and secondary. One bright, legible effect beats five competing particle systems.",
-          "prompt": "The warrior lunges and slashes upward with a katana, leaving one bright golden energy arc trailing the blade that cracks against the tree-golem's molten chest fissure, sparks and bark fragments scattering, camera holds steady through the impact, cherry blossom petals knocked loose drifting past frame, warm rim light, no text, no logos."
+          "prompt": "The warrior lunges and slashes upward with a katana, leaving one bright golden energy arc trailing the blade that cracks against the tree-golem's molten chest fissure, sparks and bark fragments scattering, camera holds steady through the impact, cherry blossom petals knocked loose drifting past frame, warm rim light, no text, no logos.",
+          "result_image": "/ui_views/assets/evidence/cherry-blossom-boss-cinematic/step-3.webp",
+          "result_label": "Frame from the final render · 0:07",
+          "result_caption": "The impact signature — one golden arc. Every hit in the piece uses this and only this.",
+          "result_source": "final"
         },
         {
           "title": "4. Cut it, don't trim it",
@@ -1307,12 +1513,21 @@
         {
           "title": "Match the model to your footage",
           "text": "Real product photography isn't heavily compressed or synthetic, so skip the specialty models and start with the general-purpose one — it sharpens detail without over-smoothing metal reflections and skin-tone gemstones into plastic.",
-          "prompt": "UTILITY: topaz\nVIDEO-INPUT: rolex-source.mp4\nMODEL: Proteus\nTARGET_FPS: 30"
+          "prompt": "UTILITY: topaz\nVIDEO-INPUT: rolex-source.mp4\nMODEL: Proteus\nTARGET_FPS: 30",
+          "result_image": "/ui_views/assets/evidence/rolex-4k-before-after-upscale/step-1.webp",
+          "result_label": "Frame from the final render · 0:04",
+          "result_caption": "Dial macro, before and after. The model matched to this footage keeps engraving crisp without inventing texture.",
+          "result_source": "final"
         },
         {
           "title": "Keep the upscale factor and noise conservative",
           "text": "For footage that's already reasonably sharp, 2x beats 4x — pushing harder just amplifies grain instead of adding real detail. Keep noise and compression in the 0.1-0.3 range so the case metal and dial texture stay crisp.",
-          "prompt": "UTILITY: topaz\nVIDEO-INPUT: rolex-source.mp4\nMODEL: Proteus\nUPSCALE_FACTOR: 2\nNOISE: 0.2\nCOMPRESSION: 0.2\nH264_OUTPUT: true"
+          "prompt": "UTILITY: topaz\nVIDEO-INPUT: rolex-source.mp4\nMODEL: Proteus\nUPSCALE_FACTOR: 2\nNOISE: 0.2\nCOMPRESSION: 0.2\nH264_OUTPUT: true",
+          "result_video": "/ui_views/assets/evidence/rolex-4k-before-after-upscale/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/rolex-4k-before-after-upscale/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:05–0:09",
+          "result_caption": "Beach shot. Grain is still there after the upscale — the conservative noise setting from this step.",
+          "result_source": "final"
         },
         {
           "title": "Render and cut the before/after",
@@ -1339,17 +1554,30 @@
         {
           "title": "Invent the product in one line",
           "text": "Name the object and the twist in a single sentence — a compact drone with a heated glide bar is a small enough leap to feel plausible, but strange enough to stop the scroll.",
-          "prompt": "A sleek white quadcopter drone about the size of a dinner plate hovers beside a hanging crisp white dress shirt on a wooden hanger, a thin heated glide bar mounted under its body gliding down the fabric like a flatiron, wisps of steam rising from the contact point, dark charcoal studio background, dramatic side lighting, moody premium product-ad photography, no text."
+          "prompt": "A sleek white quadcopter drone about the size of a dinner plate hovers beside a hanging crisp white dress shirt on a wooden hanger, a thin heated glide bar mounted under its body gliding down the fabric like a flatiron, wisps of steam rising from the contact point, dark charcoal studio background, dramatic side lighting, moody premium product-ad photography, no text.",
+          "result_image": "/ui_views/assets/evidence/irondrone-flying-ironer/step-1.webp",
+          "result_label": "Frame from the final render · 0:00",
+          "result_caption": "The product exists from frame one. The single-line invention is the whole brief.",
+          "result_source": "final"
         },
         {
           "title": "Direct the ironing pass and the captions",
           "text": "Script it like a real spec ad: name each beat and give the exact caption text for each one, so the render stays on-message instead of drifting into generic footage.",
-          "prompt": "The drone glides slowly down each panel of the shirt, steam trailing behind its heated bar, wrinkles visibly smoothing wherever it passes. Cut between beats with these on-screen captions, small caps, bottom-center, clean sans-serif: \"THIS IS IRONDRONE\" then \"GLIDING STEAM\" then \"LASER PRECISION\" then \"EVERY CREASE — ERASED, MID-AIR\" then \"CRUMPLED — TO FLAWLESS\". End on the shirt hanging perfectly flat and crease-free. Same dark studio, same lighting throughout, no extra text."
+          "prompt": "The drone glides slowly down each panel of the shirt, steam trailing behind its heated bar, wrinkles visibly smoothing wherever it passes. Cut between beats with these on-screen captions, small caps, bottom-center, clean sans-serif: \"THIS IS IRONDRONE\" then \"GLIDING STEAM\" then \"LASER PRECISION\" then \"EVERY CREASE — ERASED, MID-AIR\" then \"CRUMPLED — TO FLAWLESS\". End on the shirt hanging perfectly flat and crease-free. Same dark studio, same lighting throughout, no extra text.",
+          "result_video": "/ui_views/assets/evidence/irondrone-flying-ironer/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/irondrone-flying-ironer/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:02–0:06",
+          "result_caption": "The ironing pass with captions riding along. Both were directed in the same prompt.",
+          "result_source": "final"
         },
         {
           "title": "Generate and keep the cleanest pass",
           "text": "Run it and pick the take where the steam reads as heat, not fog, and the crease actually disappears on camera — that's the shot that sells the fake product. Press play above to see the result.",
-          "prompt": ""
+          "prompt": "",
+          "result_image": "/ui_views/assets/evidence/irondrone-flying-ironer/step-3.webp",
+          "result_label": "Frame from the final render · 0:08",
+          "result_caption": "The cleanest pass: crumpled to flat with no seam artefacts. This is the take that was kept.",
+          "result_source": "final"
         }
       ],
       "result": "A 10-second concept ad for a product that doesn't exist yet — proof that a strong enough \"what if\" beats a real product shoot.",
@@ -1417,12 +1645,21 @@
         {
           "title": "Write one brief both models get",
           "text": "The comparison only works if the brief is identical. Describe the fight beats — approach, dodge, counter — but leave the world open, so each model shows its own taste in setting and monster design.",
-          "prompt": "Cinematic dark-fantasy boss fight, game-cinematic quality: a lone armored hero faces a towering monstrous boss, the hero approaches weapon drawn, dodges a massive strike, and counters. Dynamic camera following the action, dramatic lighting, volumetric atmosphere, photoreal detail, 18 seconds"
+          "prompt": "Cinematic dark-fantasy boss fight, game-cinematic quality: a lone armored hero faces a towering monstrous boss, the hero approaches weapon drawn, dodges a massive strike, and counters. Dynamic camera following the action, dramatic lighting, volumetric atmosphere, photoreal detail, 18 seconds",
+          "result_image": "/ui_views/assets/evidence/boss-fight-model-battle/step-1.webp",
+          "result_label": "Frame from the final render · 0:00",
+          "result_caption": "Both models, first frame, same brief. Any difference from here on is the model's decision.",
+          "result_source": "final"
         },
         {
           "title": "Generate a take on each model",
           "text": "Run the exact same prompt on both models. In this run one staged a plague abomination in a flooded gothic cathedral, the other a horned demon in a torch-lit colosseum — same beats, totally different directors.",
-          "prompt": ""
+          "prompt": "",
+          "result_video": "/ui_views/assets/evidence/boss-fight-model-battle/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/boss-fight-model-battle/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:04–0:08",
+          "result_caption": "The same beat on each model, side by side. One take each, no reroll.",
+          "result_source": "final"
         },
         {
           "title": "Cut the split-screen with labels",
@@ -1449,12 +1686,21 @@
         {
           "title": "Open on a macro detail",
           "text": "Start tight and quiet: a needle piercing a specimen fills the frame. A macro close-up buys believability before the chaos — viewers lean in before the scene turns.",
-          "prompt": "Extreme macro close-up in a research lab: a syringe filled with glowing neon-pink serum slowly injects into a small yellow gelatinous specimen on a teal lab table, clinical lighting, shallow depth of field, cinematic film look"
+          "prompt": "Extreme macro close-up in a research lab: a syringe filled with glowing neon-pink serum slowly injects into a small yellow gelatinous specimen on a teal lab table, clinical lighting, shallow depth of field, cinematic film look",
+          "result_image": "/ui_views/assets/evidence/mutation-serum-vfx/step-1.webp",
+          "result_label": "Frame from the final render · 0:00",
+          "result_caption": "The macro opener: needle in the yolk. Scale is established before anything moves.",
+          "result_source": "final"
         },
         {
           "title": "Detonate the transformation",
           "text": "Describe the energy burst as a physical event — light, particles, shockwave shaking the room. The camera should get 'hit' by it too: motion blur and grain sell that something went very wrong.",
-          "prompt": "The specimen erupts in a blinding surge of pink energy, particles and plasma flooding the laboratory, equipment silhouetted against the blast, handheld camera shaken by the shockwave, heavy motion blur and film grain, VFX-heavy cinematic sequence"
+          "prompt": "The specimen erupts in a blinding surge of pink energy, particles and plasma flooding the laboratory, equipment silhouetted against the blast, handheld camera shaken by the shockwave, heavy motion blur and film grain, VFX-heavy cinematic sequence",
+          "result_video": "/ui_views/assets/evidence/mutation-serum-vfx/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/mutation-serum-vfx/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:03–0:07",
+          "result_caption": "The detonation. It is one continuous transformation, not a cut to an after-state.",
+          "result_source": "final"
         },
         {
           "title": "Reveal the creature",
@@ -1481,12 +1727,21 @@
         {
           "title": "Script the scene in three beats",
           "text": "Big prompts fall apart without structure. Lock three beats — the colossus looms over the ship, the ship capsizes underwater, an extreme close-up of the giant's eye — and both models have to hit the same marks.",
-          "prompt": "Epic dark-fantasy sequence in three beats: 1) a viking longship with shields and torn sail sails toward a colossal drowned king — a mountain-sized ancient giant with a crown, seaweed beard and waterfalls pouring off his stone-like skin, storm sky; 2) underwater shot of the capsized longship sinking, vikings and shields drifting down in green murky water; 3) extreme close-up of the colossus' enormous pale eye opening underwater. Cinematic photoreal detail, 18 seconds"
+          "prompt": "Epic dark-fantasy sequence in three beats: 1) a viking longship with shields and torn sail sails toward a colossal drowned king — a mountain-sized ancient giant with a crown, seaweed beard and waterfalls pouring off his stone-like skin, storm sky; 2) underwater shot of the capsized longship sinking, vikings and shields drifting down in green murky water; 3) extreme close-up of the colossus' enormous pale eye opening underwater. Cinematic photoreal detail, 18 seconds",
+          "result_image": "/ui_views/assets/evidence/drowned-king-model-battle/step-1.webp",
+          "result_label": "Frame from the final render · 0:01",
+          "result_caption": "Beat one of three: surface, ship, king. The script gave both models the same three beats.",
+          "result_source": "final"
         },
         {
           "title": "Run it on both models",
           "text": "Same prompt, two models, no cherry-picking edits inside a take. The differences you keep — crown design, water physics, how the eye opens — are exactly what makes the comparison worth watching.",
-          "prompt": ""
+          "prompt": "",
+          "result_video": "/ui_views/assets/evidence/drowned-king-model-battle/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/drowned-king-model-battle/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:06–0:10",
+          "result_caption": "Beat two underwater on both models. Same words, visibly different readings.",
+          "result_source": "final"
         },
         {
           "title": "Sync the halves and label them",
@@ -1514,12 +1769,21 @@
         {
           "title": "Stage it like real phone footage",
           "text": "The trick is the witnesses. Put a crowd with phones on the pier — if bystanders are filming, viewers' brains read the clip as documentary, not CGI.",
-          "prompt": "Handheld phone footage at a tropical resort pier, a crowd of tourists in swimwear stands on the wooden dock filming with their phones, crystal-clear turquoise lagoon, a small boat anchored in the distance, bright midday sun, candid vertical-video energy, realistic colors, no cinematic grading"
+          "prompt": "Handheld phone footage at a tropical resort pier, a crowd of tourists in swimwear stands on the wooden dock filming with their phones, crystal-clear turquoise lagoon, a small boat anchored in the distance, bright midday sun, candid vertical-video energy, realistic colors, no cinematic grading",
+          "result_image": "/ui_views/assets/evidence/walk-on-water-viral/step-1.webp",
+          "result_label": "Frame from the final render · 0:00",
+          "result_caption": "A crowd holding phones, a pier, midday sun. The staging says \"someone filmed this\", not \"a studio lit this\".",
+          "result_source": "final"
         },
         {
           "title": "Direct the impossible moment",
           "text": "Describe one continuous action with real physics: she steps off the pier onto the water and runs. Name the splashes and the foam trail — believable water reaction is what sells the fake.",
-          "prompt": "A young woman in a white crop top and black shorts steps off the pier directly onto the ocean surface and walks on the water, then breaks into a run across the lagoon toward the beach, her feet slap the surface leaving splashes and a long white foam trail behind her, the crowd on the pier keeps filming in disbelief, camera follows her from behind, natural body mechanics, realistic water physics, 11 seconds"
+          "prompt": "A young woman in a white crop top and black shorts steps off the pier directly onto the ocean surface and walks on the water, then breaks into a run across the lagoon toward the beach, her feet slap the surface leaving splashes and a long white foam trail behind her, the crowd on the pier keeps filming in disbelief, camera follows her from behind, natural body mechanics, realistic water physics, 11 seconds",
+          "result_video": "/ui_views/assets/evidence/walk-on-water-viral/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/walk-on-water-viral/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:01–0:05",
+          "result_caption": "The impossible step off the pier. The camera keeps its phone-footage wobble through it.",
+          "result_source": "final"
         },
         {
           "title": "Keep the take that fools people",
@@ -1547,12 +1811,21 @@
         {
           "title": "Stage the screen inside the scene",
           "text": "Generate one keyframe where the laptop screen shows the exact subject that will break out of it. Matching light between screen and scene is what sells the trick later.",
-          "prompt": "Photorealistic shot of an open silver laptop on a dark wooden table on a tropical veranda at golden hour, the screen displays a vivid scarlet macaw parrot filling the frame, lush palm jungle bokeh behind the railing, warm low sun flaring through the trees, screen glow matching the ambient light, centered composition, 16:9"
+          "prompt": "Photorealistic shot of an open silver laptop on a dark wooden table on a tropical veranda at golden hour, the screen displays a vivid scarlet macaw parrot filling the frame, lush palm jungle bokeh behind the railing, warm low sun flaring through the trees, screen glow matching the ambient light, centered composition, 16:9",
+          "result_image": "/ui_views/assets/evidence/screen-to-reality-hero/step-1.webp",
+          "result_label": "Frame from the final render · 0:00",
+          "result_caption": "The laptop is a real object in a real scene before anything breaks out of it.",
+          "result_source": "final"
         },
         {
           "title": "Direct the breakout moment",
           "text": "Describe one continuous action: the subject leaves the screen and enters the real scene. Name the landing point — a hand entering the frame gives the camera somewhere to go.",
-          "prompt": "The scarlet macaw on the laptop screen comes alive and flies out of the screen into the real scene, wings spreading wide toward the camera, feathers catching the golden sunlight, then it gently lands on a person's outstretched hand in the foreground, camera pulls back smoothly to follow the flight, photorealistic motion, natural wing physics, seamless transition from screen to reality, 10 seconds"
+          "prompt": "The scarlet macaw on the laptop screen comes alive and flies out of the screen into the real scene, wings spreading wide toward the camera, feathers catching the golden sunlight, then it gently lands on a person's outstretched hand in the foreground, camera pulls back smoothly to follow the flight, photorealistic motion, natural wing physics, seamless transition from screen to reality, 10 seconds",
+          "result_video": "/ui_views/assets/evidence/screen-to-reality-hero/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/screen-to-reality-hero/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:03–0:07",
+          "result_caption": "The breakout. The parrot leaves the screen and lands on a hand — one move, no cut.",
+          "result_source": "final"
         },
         {
           "title": "Ship it as your landing hero",
@@ -1579,12 +1852,21 @@
         {
           "title": "Generate the hero keyframe",
           "text": "Start with one strong product shot — this single image locks the look of the whole loop. Match it to your brand palette so the video drops straight into your page.",
-          "prompt": "Photorealistic product shot of a frosted glass cosmetic jar labeled SAKURA GLOW CREAM 50ml with a rose-gold metallic lid, standing on a dark glossy reflective surface, soft cherry blossom petals drifting in the air and resting nearby, warm dusty-rose studio backdrop, premium beauty ad lighting, centered composition, 16:9"
+          "prompt": "Photorealistic product shot of a frosted glass cosmetic jar labeled SAKURA GLOW CREAM 50ml with a rose-gold metallic lid, standing on a dark glossy reflective surface, soft cherry blossom petals drifting in the air and resting nearby, warm dusty-rose studio backdrop, premium beauty ad lighting, centered composition, 16:9",
+          "result_image": "/ui_views/assets/evidence/product-hero-turntable/step-1.webp",
+          "result_label": "Frame from the final render · 0:06",
+          "result_caption": "The hero keyframe — label dead-on, petals frozen. The loop was built out from this single frame.",
+          "result_source": "final"
         },
         {
           "title": "Turn it into a seamless 360° loop",
           "text": "Feed the same image as both the start and end frame with transition mode on — that is what makes the loop invisible. Describe only the rotation, nothing else.",
-          "prompt": "The jar rotates slowly through a full 360° turntable spin on the glossy surface, camera locked, cherry blossom petals drifting gently in the background, soft studio reflections gliding across the rose-gold lid, smooth constant speed, seamless loop — first and last frame identical"
+          "prompt": "The jar rotates slowly through a full 360° turntable spin on the glossy surface, camera locked, cherry blossom petals drifting gently in the background, soft studio reflections gliding across the rose-gold lid, smooth constant speed, seamless loop — first and last frame identical",
+          "result_video": "/ui_views/assets/evidence/product-hero-turntable/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/product-hero-turntable/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:02–0:06",
+          "result_caption": "Rotation with a slow push-in. The loop returns to the keyframe without a visible join.",
+          "result_source": "final"
         },
         {
           "title": "Upscale to 4K and ship it",
@@ -1612,12 +1894,21 @@
         {
           "title": "Set the brand and mood",
           "text": "Give the agent one clear brief: brand name, product, aesthetic and audience. Name a real design direction — 'Japanese minimalism' works harder than 'make it pretty'.",
-          "prompt": "Build a single-page landing site for BLOOM CARE — a premium Japanese skincare brand built around sakura extract. Aesthetic: Japanese minimalism, soft blush-pink and cream palette, elegant serif headlines, generous whitespace. The page should feel like a quiet luxury boutique, calm and editorial, not a loud e-commerce store."
+          "prompt": "Build a single-page landing site for BLOOM CARE — a premium Japanese skincare brand built around sakura extract. Aesthetic: Japanese minimalism, soft blush-pink and cream palette, elegant serif headlines, generous whitespace. The page should feel like a quiet luxury boutique, calm and editorial, not a loud e-commerce store.",
+          "result_image": "/ui_views/assets/evidence/beauty-brand-landing/step-1.webp",
+          "result_label": "Frame from the final render · 0:01",
+          "result_caption": "Hero section typing in: serif, sakura pink, one product shot. The mood was set here before any layout.",
+          "result_source": "final"
         },
         {
           "title": "Structure the page",
           "text": "List the sections in order so the page tells one story: hook, products, hero product, proof, full collection. The agent builds every section with real layout and copy.",
-          "prompt": "Page structure, top to bottom: (1) sticky header with logo, nav and cart; (2) hero — headline \"The art of timeless beauty\", one-line subcopy, two buttons, product photo on the right; (3) bestsellers row — three product cards with prices and add-to-cart; (4) hero product spotlight — Sakura Repair Serum with key actives listed in a spec table; (5) formulation story — cherry blossom imagery with short claims; (6) full collection grid. Write all copy in polished brand English."
+          "prompt": "Page structure, top to bottom: (1) sticky header with logo, nav and cart; (2) hero — headline \"The art of timeless beauty\", one-line subcopy, two buttons, product photo on the right; (3) bestsellers row — three product cards with prices and add-to-cart; (4) hero product spotlight — Sakura Repair Serum with key actives listed in a spec table; (5) formulation story — cherry blossom imagery with short claims; (6) full collection grid. Write all copy in polished brand English.",
+          "result_video": "/ui_views/assets/evidence/beauty-brand-landing/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/beauty-brand-landing/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:03–0:07",
+          "result_caption": "Scrolling the structure — collection, hero product, philosophy. The order came from step 2.",
+          "result_source": "final"
         },
         {
           "title": "Polish and record",
@@ -1685,22 +1976,38 @@
         {
           "title": "Set the vibe",
           "text": "Say the mood and place in one line. For a premium restaurant, keep it smooth and classy.",
-          "prompt": "Sophisticated jazz R&B instrumental for an upscale fine-dining restaurant lounge, smooth, elegant and relaxed"
+          "prompt": "Sophisticated jazz R&B instrumental for an upscale fine-dining restaurant lounge, smooth, elegant and relaxed",
+          "result_audio": "/ui_views/assets/evidence/jazz-rnb-restaurant-track/step-1.mp3",
+          "result_label": "Excerpt from the final track · 0:00–0:12",
+          "result_caption": "Intro. The room tone — brushed drums, low keys — is the \"vibe\" line from the prompt, verbatim.",
+          "result_source": "final"
         },
         {
           "title": "Name the instruments",
           "text": "List a few real instruments so it sounds live and warm, not synthetic.",
-          "prompt": "Warm Rhodes electric piano, soft brushed drums, walking upright bass, mellow muted trumpet and tenor saxophone, lush jazz chords"
+          "prompt": "Warm Rhodes electric piano, soft brushed drums, walking upright bass, mellow muted trumpet and tenor saxophone, lush jazz chords",
+          "result_audio": "/ui_views/assets/evidence/jazz-rnb-restaurant-track/step-2.mp3",
+          "result_label": "Excerpt from the final track · 0:40–0:52",
+          "result_caption": "Guitar and Rhodes enter. Naming instruments is why these two are here and nothing else is.",
+          "result_source": "final"
         },
         {
           "title": "Set tempo and finish",
           "text": "Add a slow tempo and keep it instrumental so it never gets in the way of conversation.",
-          "prompt": "Relaxed 85 BPM, subtle vinyl warmth, smooth dynamics, tasteful and understated, no vocals"
+          "prompt": "Relaxed 85 BPM, subtle vinyl warmth, smooth dynamics, tasteful and understated, no vocals",
+          "result_audio": "/ui_views/assets/evidence/jazz-rnb-restaurant-track/step-3.mp3",
+          "result_label": "Excerpt from the final track · 3:20–3:32",
+          "result_caption": "The finish. Tempo holds to the end and the track resolves instead of fading.",
+          "result_source": "final"
         },
         {
           "title": "Generate and pick your take",
           "text": "Run it, listen, and keep the version that feels the most refined. Press play below to hear the result.",
-          "prompt": ""
+          "prompt": "",
+          "result_audio": "/ui_views/assets/evidence/jazz-rnb-restaurant-track/step-4.mp3",
+          "result_label": "Excerpt from the final track · 1:30–1:42",
+          "result_caption": "The hook from the take that was kept. Compare against your own generations at the same point.",
+          "result_source": "final"
         }
       ],
       "result": "A polished jazz R&B instrumental ready to loop in a restaurant, cafe, or lounge."
@@ -1721,17 +2028,30 @@
         {
           "title": "Pick the camera, not the style",
           "text": "The trick is to describe the device that filmed it. Name a real 2000s camcorder look and the AI stops making glossy footage.",
-          "prompt": "Footage filmed on a 2004 MiniDV handycam with a fisheye lens attachment, slight barrel distortion, soft focus, washed-out colors, mild tape noise, white date-time stamp in the corner reading 2004. 5.29 AM 10:47, 4:3 home-video framing"
+          "prompt": "Footage filmed on a 2004 MiniDV handycam with a fisheye lens attachment, slight barrel distortion, soft focus, washed-out colors, mild tape noise, white date-time stamp in the corner reading 2004. 5.29 AM 10:47, 4:3 home-video framing",
+          "result_image": "/ui_views/assets/evidence/minidv-camcorder-memory/step-1.webp",
+          "result_label": "Frame from the final render · 0:01",
+          "result_caption": "Fisheye vignette, DV colour, burned-in date. The camera was specified, not the style.",
+          "result_source": "final"
         },
         {
           "title": "Direct one small, real moment",
           "text": "Big scenes look fake on old tape. One quiet everyday moment sells the illusion — say exactly who does what.",
-          "prompt": "A quiet back alley in Seoul on a sunny morning, a young woman with a loose ponytail crouches on the cracked pavement and slowly reaches her open hand toward a stray tabby cat, the cat sniffs her fingers, old tires and a dark green metal gate behind them, candid handheld moment"
+          "prompt": "A quiet back alley in Seoul on a sunny morning, a young woman with a loose ponytail crouches on the cracked pavement and slowly reaches her open hand toward a stray tabby cat, the cat sniffs her fingers, old tires and a dark green metal gate behind them, candid handheld moment",
+          "result_video": "/ui_views/assets/evidence/minidv-camcorder-memory/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/minidv-camcorder-memory/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:01–0:05",
+          "result_caption": "The one small moment: a stray cat, a hand held out. Nothing else happens, and nothing else needs to.",
+          "result_source": "final"
         },
         {
           "title": "Generate and keep the honest take",
           "text": "Run both parts as one prompt in Seedance, 15 seconds. Pick the take with natural motion — small pauses and imperfect framing are what make it believable. Play the clip above to see the result.",
-          "prompt": ""
+          "prompt": "",
+          "result_image": "/ui_views/assets/evidence/minidv-camcorder-memory/step-3.webp",
+          "result_label": "Frame from the final render · 0:12",
+          "result_caption": "The glance back. This is the honest take — the one that was kept over prettier, stiffer ones.",
+          "result_source": "final"
         }
       ],
       "result": "A 15-second retro camcorder clip that looks like a real memory from 2004 — ready for reels, moodboards or a music video."
@@ -1753,17 +2073,30 @@
         {
           "title": "Create your AI actor",
           "text": "Generate one consistent, believable creator with GPT-Image. Keep the look casual and trustworthy — this face will front all your ads.",
-          "prompt": "Photorealistic portrait of a female UGC creator in her early 30s, natural blonde hair, soft daylight, beige wool coat over a cream turtleneck, neutral warm background, looking at camera with a calm friendly expression, shot on a mirrorless camera, 85mm, realistic skin texture, no retouching look"
+          "prompt": "Photorealistic portrait of a female UGC creator in her early 30s, natural blonde hair, soft daylight, beige wool coat over a cream turtleneck, neutral warm background, looking at camera with a calm friendly expression, shot on a mirrorless camera, 85mm, realistic skin texture, no retouching look",
+          "result_image": "/ui_views/assets/evidence/ugc-ads-workflow/step-1.webp",
+          "result_label": "Frame from the final render · 0:00",
+          "result_caption": "The pipeline: actor → prompt → product → output. The actor tile is the same in every frame.",
+          "result_source": "final"
         },
         {
           "title": "Put the product in her hands",
           "text": "Combine the actor and your product photo into one natural shot. Name the product and the action — the AI does the compositing.",
-          "prompt": "The same woman naturally holds and presents a black leather tote bag to the camera, fingers resting on the top edge of the bag, soft indoor daylight, candid UGC style, product clearly visible and in focus, realistic hands, no studio look"
+          "prompt": "The same woman naturally holds and presents a black leather tote bag to the camera, fingers resting on the top edge of the bag, soft indoor daylight, candid UGC style, product clearly visible and in focus, realistic hands, no studio look",
+          "result_image": "/ui_views/assets/evidence/ugc-ads-workflow/step-2.webp",
+          "result_label": "Frame from the final render · 0:08",
+          "result_caption": "Bag in hand, consistent with the product tile. The compositing step is what puts it there.",
+          "result_source": "final"
         },
         {
           "title": "Bring it to life with video",
           "text": "Send the composite shot to Kling and describe one simple creator movement. Short, natural motion sells it — repeat with new angles for endless variations.",
-          "prompt": "The UGC creator presents and shows the bag to camera: she lifts it slightly, turns it to show the front, and smiles — natural handheld framing, soft motion, realistic lighting, 5 seconds"
+          "prompt": "The UGC creator presents and shows the bag to camera: she lifts it slightly, turns it to show the front, and smiles — natural handheld framing, soft motion, realistic lighting, 5 seconds",
+          "result_video": "/ui_views/assets/evidence/ugc-ads-workflow/step-3.mp4",
+          "result_poster": "/ui_views/assets/evidence/ugc-ads-workflow/step-3-poster.webp",
+          "result_label": "Excerpt from the final render · 0:10–0:14",
+          "result_caption": "The output panel in motion. Same actor, same bag, now video.",
+          "result_source": "final"
         }
       ],
       "result": "A repeatable pipeline: one AI actor + one product photo = a stream of ultra-realistic UGC ad clips, ready for TikTok, Reels and paid campaigns."
@@ -1784,12 +2117,21 @@
         {
           "title": "Turn the photo into dots",
           "text": "Ask the agent to build a page where your image is redrawn as a halftone grid — thousands of tiny circles, sized by brightness. Pick a photo with strong contrast on a dark background.",
-          "prompt": "Build a single-page hero section on a pure black background. Center: a photorealistic seashell image rendered as a halftone particle grid — thousands of small circular dots sampled from the image, dot size driven by pixel brightness. Smooth 60fps canvas rendering, subtle floor reflection under the shell."
+          "prompt": "Build a single-page hero section on a pure black background. Center: a photorealistic seashell image rendered as a halftone particle grid — thousands of small circular dots sampled from the image, dot size driven by pixel brightness. Smooth 60fps canvas rendering, subtle floor reflection under the shell.",
+          "result_image": "/ui_views/assets/evidence/photo-particle-poster/step-1.webp",
+          "result_label": "Frame from the final render · 0:00",
+          "result_caption": "The shell as a dot field. Still a photo — every dot samples one pixel.",
+          "result_source": "final"
         },
         {
           "title": "Make it react to the cursor",
           "text": "Add the hook: dots near the cursor fly away with soft physics and drift back when you leave. This one interaction is what makes people stop and play.",
-          "prompt": "Add interaction: when the cursor moves across the image, nearby dots scatter away with soft spring physics and slowly drift back into place when the cursor leaves. Keep the motion smooth and organic — no jitter, no lag."
+          "prompt": "Add interaction: when the cursor moves across the image, nearby dots scatter away with soft spring physics and slowly drift back into place when the cursor leaves. Keep the motion smooth and organic — no jitter, no lag.",
+          "result_video": "/ui_views/assets/evidence/photo-particle-poster/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/photo-particle-poster/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:04–0:08",
+          "result_caption": "Cursor moves across, dots scatter and settle. The reaction is what step 2 wired in.",
+          "result_source": "final"
         },
         {
           "title": "Frame it like a poster",
@@ -1863,12 +2205,20 @@
         {
           "title": "Set the genre and instrumentation",
           "text": "Name the exact instruments and mood in one line — Suno reads this as the song's DNA. Real instrument names like 'Rhodes' and 'upright bass' beat vague words like 'jazzy'.",
-          "prompt": "smooth neo-soul jazz R&B ad instrumental, warm Rhodes electric piano, brushed drums, walking upright bass, muted trumpet, elegant and luxurious late-evening lounge, relaxed 85 BPM"
+          "prompt": "smooth neo-soul jazz R&B ad instrumental, warm Rhodes electric piano, brushed drums, walking upright bass, muted trumpet, elegant and luxurious late-evening lounge, relaxed 85 BPM",
+          "result_audio": "/ui_views/assets/evidence/velvet-hour-ad-instrumental/step-1.mp3",
+          "result_label": "Excerpt from the final track · 0:00–0:12",
+          "result_caption": "Opening bars. Genre and instrumentation are audible in the first four.",
+          "result_source": "final"
         },
         {
           "title": "Write the ad structure into the prompt",
           "text": "Ads get cut at random timestamps, so build the cut points into the brief. A clean instrument-only intro before the groove locks in gives editors a logo-safe opening every time.",
-          "prompt": "Premium ad instrumental, smooth neo-soul jazz R&B at 85 BPM. Structure for ads: 4-bar clean intro (Rhodes only, logo-safe), full groove enters at bar 5, gentle brushed drums, walking upright bass, lush Rhodes chords, tasteful muted trumpet melody, soft dynamic lift in the middle, calm resolved ending with a short natural tail. Clear 4-bar edit points throughout, no vocals, refined, warm, upscale and understated."
+          "prompt": "Premium ad instrumental, smooth neo-soul jazz R&B at 85 BPM. Structure for ads: 4-bar clean intro (Rhodes only, logo-safe), full groove enters at bar 5, gentle brushed drums, walking upright bass, lush Rhodes chords, tasteful muted trumpet melody, soft dynamic lift in the middle, calm resolved ending with a short natural tail. Clear 4-bar edit points throughout, no vocals, refined, warm, upscale and understated.",
+          "result_audio": "/ui_views/assets/evidence/velvet-hour-ad-instrumental/step-2.mp3",
+          "result_label": "Excerpt from the final track · 0:30–0:42",
+          "result_caption": "The 30-second turn — an edit point written into the prompt as ad structure.",
+          "result_source": "final"
         },
         {
           "title": "Design a cover that sounds like the track",
@@ -1879,7 +2229,11 @@
         {
           "title": "Generate a few takes and pick the cleanest",
           "text": "Suno gives you several versions per prompt. Keep the take with the tightest 4-bar intro and the smoothest mid-track lift — that's the one editors can actually cut around. Press play above to hear the result.",
-          "prompt": ""
+          "prompt": "",
+          "result_audio": "/ui_views/assets/evidence/velvet-hour-ad-instrumental/step-4.mp3",
+          "result_label": "Excerpt from the final track · 1:00–1:12",
+          "result_caption": "The cleanest take, final third. No stray artefacts on the sustained notes.",
+          "result_source": "final"
         }
       ],
       "result": "A 90-second ad-ready instrumental with a logo-safe intro and clean 4-bar edit points, paired with a matching surreal cover — ready to drop under any premium product spot."
@@ -1901,12 +2255,20 @@
         {
           "title": "Lock the groove and instrumentation",
           "text": "State the tempo and the instruments that carry the rhythm. A punchy bass line plus brass stabs is what makes a track feel expensive instead of generic funk.",
-          "prompt": "uptempo jazz-funk R&B groove ad instrumental, tight punchy bass line, staccato brass section stabs, clean electric guitar, finger snaps, confident luxurious energy, polished studio production, 105 BPM"
+          "prompt": "uptempo jazz-funk R&B groove ad instrumental, tight punchy bass line, staccato brass section stabs, clean electric guitar, finger snaps, confident luxurious energy, polished studio production, 105 BPM",
+          "result_audio": "/ui_views/assets/evidence/brass-marble-ad-instrumental/step-1.mp3",
+          "result_label": "Excerpt from the final track · 0:00–0:12",
+          "result_caption": "The groove locks in immediately. Instrumentation was named, not described.",
+          "result_source": "final"
         },
         {
           "title": "Turn brass stabs into edit points",
           "text": "Ask for accents on a fixed bar count — 'every 2 bars' — so every stab lands on a clean cut. That single instruction is what makes the track editable instead of just danceable.",
-          "prompt": "Confident premium ad instrumental, uptempo jazz-funk R&B groove at 105 BPM. Tight punchy bass line drives throughout, staccato brass stabs (sax and trumpet) accenting every 2 bars as natural cut points for video editing, clean funky electric guitar comping, finger snaps on backbeat. Structure: 2-bar drum-and-snap intro, groove locks in, brass hook, breakdown to bass and snaps mid-track, full hook returns, hard clean ending on a downbeat. No vocals, polished, energetic but expensive-sounding."
+          "prompt": "Confident premium ad instrumental, uptempo jazz-funk R&B groove at 105 BPM. Tight punchy bass line drives throughout, staccato brass stabs (sax and trumpet) accenting every 2 bars as natural cut points for video editing, clean funky electric guitar comping, finger snaps on backbeat. Structure: 2-bar drum-and-snap intro, groove locks in, brass hook, breakdown to bass and snaps mid-track, full hook returns, hard clean ending on a downbeat. No vocals, polished, energetic but expensive-sounding.",
+          "result_audio": "/ui_views/assets/evidence/brass-marble-ad-instrumental/step-2.mp3",
+          "result_label": "Excerpt from the final track · 0:30–0:42",
+          "result_caption": "Brass stabs land on the grid — each one is a place a cut can sit.",
+          "result_source": "final"
         },
         {
           "title": "Design a cover with attitude",
@@ -1917,7 +2279,11 @@
         {
           "title": "Generate and pick the punchiest take",
           "text": "Run it a few times and keep the version where the brass stabs actually land tight on the 2-bar grid — a lazy stab kills the whole edit-point idea. Press play above to hear the result.",
-          "prompt": ""
+          "prompt": "",
+          "result_audio": "/ui_views/assets/evidence/brass-marble-ad-instrumental/step-4.mp3",
+          "result_label": "Excerpt from the final track · 1:00–1:12",
+          "result_caption": "The punchiest take, final third. Transients are sharp all the way through.",
+          "result_source": "final"
         }
       ],
       "result": "A 90-second jazz-funk ad groove with brass stabs every 2 bars, ready-cut for fast product montages, plus a cover that matches its energy."
@@ -1938,12 +2304,20 @@
         {
           "title": "Set a deliberately sparse mood",
           "text": "Ask for space between the notes, not just 'slow'. Sparse piano with room to breathe reads as premium; a full arrangement at this tempo just reads as slow and dull.",
-          "prompt": "slow-burn downtempo R&B soul ad instrumental, sparse lonely piano, deep sub bass, minimal slow beat, breathy tenor saxophone phrases, vinyl crackle warmth, intimate minimalist late-night mood, 70 BPM"
+          "prompt": "slow-burn downtempo R&B soul ad instrumental, sparse lonely piano, deep sub bass, minimal slow beat, breathy tenor saxophone phrases, vinyl crackle warmth, intimate minimalist late-night mood, 70 BPM",
+          "result_audio": "/ui_views/assets/evidence/after-midnight-ad-instrumental/step-1.mp3",
+          "result_label": "Excerpt from the final track · 0:00–0:12",
+          "result_caption": "Deliberately sparse from bar one. Space is the brief.",
+          "result_source": "final"
         },
         {
           "title": "Leave room for a voiceover",
           "text": "Say the frequency range out loud — '1-4 kHz open' — so the arrangement stays out of the way of a narrator. This one line is the difference between a VO track and a track that competes with the VO.",
-          "prompt": "Intimate minimalist ad instrumental, slow-burn downtempo R&B soul at 70 BPM. Sparse lonely piano chords with space between them, deep soft sub bass, minimal laid-back beat, occasional breathy tenor saxophone phrases, subtle vinyl crackle texture. Arrangement stays open and uncluttered in the 1-4 kHz range so a voiceover can sit on top. Gentle swell in the middle, fades to piano and vinyl noise at the end. No vocals, seductive, calm, expensive."
+          "prompt": "Intimate minimalist ad instrumental, slow-burn downtempo R&B soul at 70 BPM. Sparse lonely piano chords with space between them, deep soft sub bass, minimal laid-back beat, occasional breathy tenor saxophone phrases, subtle vinyl crackle texture. Arrangement stays open and uncluttered in the 1-4 kHz range so a voiceover can sit on top. Gentle swell in the middle, fades to piano and vinyl noise at the end. No vocals, seductive, calm, expensive.",
+          "result_audio": "/ui_views/assets/evidence/after-midnight-ad-instrumental/step-2.mp3",
+          "result_label": "Excerpt from the final track · 0:30–0:42",
+          "result_caption": "Midsection. Nothing sits in the voice range — the room left for a voiceover.",
+          "result_source": "final"
         },
         {
           "title": "Design a cover built on negative space",
@@ -1954,7 +2328,11 @@
         {
           "title": "Generate and pick the take with the most space",
           "text": "Run a few takes and keep the one where the piano actually leaves gaps — some takes fill every bar out of habit, which defeats the point. Press play above to hear the result.",
-          "prompt": ""
+          "prompt": "",
+          "result_audio": "/ui_views/assets/evidence/after-midnight-ad-instrumental/step-4.mp3",
+          "result_label": "Excerpt from the final track · 1:00–1:12",
+          "result_caption": "The take with the most space, final third. Fewest elements, longest gaps.",
+          "result_source": "final"
         }
       ],
       "result": "A 90-second VO-safe downtempo soul instrumental with an intentionally open midrange, paired with a cover built on the same idea: silence as the main character."

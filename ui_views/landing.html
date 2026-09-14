@@ -1595,6 +1595,59 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     display: block; font-size: 11px; font-weight: 600; letter-spacing: 1.2px;
     text-transform: uppercase; color: var(--muted-2); margin: 8px 0 0;
   }
+  /* Derived evidence: kicker gets a small "cut" mark so the eye learns the
+     pattern — this is a slice of the final, not a separate render */
+  .m-step-media .media-label-derived { color: var(--muted-2); }
+  .m-step-media .media-label-derived::before {
+    content: ''; display: inline-block; width: 8px; height: 8px; margin: 0 7px 1px 0;
+    border-radius: 2px; background: var(--acc-1); opacity: .85; vertical-align: middle;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath d='M0 0h8v8H0z M1.2 1.2v5.6h5.6V1.2z' fill-rule='evenodd'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath d='M0 0h8v8H0z M1.2 1.2v5.6h5.6V1.2z' fill-rule='evenodd'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
+  .m-step-media .media-caption {
+    margin: 6px 0 0; font-size: 14px; line-height: 1.5; color: var(--muted);
+    max-width: 62ch;
+  }
+  .m-step-media .media-caption::before { content: '\2192\00a0'; color: var(--acc-1); }
+
+  /* Audio excerpt — one row: play, bars, duration. Reuses the site's eq motion. */
+  .m-excerpt {
+    display: grid; grid-template-columns: 40px 1fr auto; align-items: center; gap: 14px;
+    width: 100%; padding: 12px 16px 12px 12px; border-radius: 10px; cursor: pointer;
+    border: 1px solid var(--line); background: var(--bg-3); color: inherit; font: inherit; text-align: left;
+    transition: border-color .2s ease, background .2s ease;
+  }
+  .m-excerpt:hover { border-color: var(--line-2); background: var(--bg-4, var(--bg-3)); }
+  .m-excerpt:focus-visible { outline: 2px solid var(--acc-1); outline-offset: 2px; }
+  .m-excerpt-btn {
+    width: 40px; height: 40px; border-radius: 50%; background: var(--acc-1); position: relative;
+  }
+  .m-excerpt-btn::before {
+    content: ''; position: absolute; inset: 0; margin: auto; width: 0; height: 0;
+    border-style: solid; border-width: 7px 0 7px 12px; border-color: transparent transparent transparent #0E0E14;
+    transform: translateX(2px);
+  }
+  .m-excerpt.playing .m-excerpt-btn::before {
+    width: 12px; height: 14px; border: 0; transform: none;
+    background: linear-gradient(90deg, #0E0E14 0 4px, transparent 4px 8px, #0E0E14 8px);
+  }
+  .m-excerpt-bars { display: flex; align-items: center; gap: 3px; height: 28px; overflow: hidden; }
+  .m-excerpt-bars i {
+    flex: 1 0 3px; height: 100%; border-radius: 2px; background: var(--muted-2); opacity: .5;
+    transform: scaleY(.28); transform-origin: center;
+  }
+  .m-excerpt.playing .m-excerpt-bars i {
+    background: var(--acc-1); opacity: .9;
+    animation: eq-bounce 1.1s ease-in-out infinite;
+  }
+  .m-excerpt.playing .m-excerpt-bars i:nth-child(3n) { animation-delay: -.35s; }
+  .m-excerpt.playing .m-excerpt-bars i:nth-child(3n+1) { animation-delay: -.7s; }
+  .m-excerpt.playing .m-excerpt-bars i:nth-child(4n) { animation-duration: .8s; }
+  .m-excerpt.playing .m-excerpt-bars i:nth-child(5n) { animation-duration: 1.4s; }
+  .m-excerpt-time { font-size: 12px; font-variant-numeric: tabular-nums; color: var(--muted-2); }
+  @media (prefers-reduced-motion: reduce) {
+    .m-excerpt.playing .m-excerpt-bars i { animation: none; transform: scaleY(.7); }
+  }
   .m-step-media-3d model-viewer {
     display: block; width: 100%; height: 440px;
     border-radius: 10px; border: 1px solid var(--line);
@@ -3280,6 +3333,42 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       const p = _activePreview; _activePreview = null; p.stop();
     }
 
+    // ---- Audio excerpts under music-guide steps ----
+    // User-initiated (a click), so they play audible regardless of the global
+    // preview mute. One at a time; leaving the guide kills it.
+    let _excerpt = null;   // { audio, btn }
+    function stopExcerpt() {
+      if (!_excerpt) return;
+      const e = _excerpt; _excerpt = null;
+      e.audio.pause(); e.audio.removeAttribute('src'); e.audio.load();
+      e.btn.classList.remove('playing');
+      e.btn.querySelector('.m-excerpt-time').textContent = e.total;
+    }
+    function bindExcerptPlayers(root) {
+      root.querySelectorAll('.m-excerpt').forEach(btn => {
+        const total = btn.querySelector('.m-excerpt-time').textContent;
+        btn.addEventListener('click', () => {
+          if (_excerpt && _excerpt.btn === btn) { stopExcerpt(); return; }
+          stopExcerpt();
+          const audio = new Audio(btn.dataset.src);
+          audio.preload = 'auto';
+          _excerpt = { audio, btn, total };
+          btn.classList.add('playing');
+          const t = btn.querySelector('.m-excerpt-time');
+          audio.addEventListener('timeupdate', () => {
+            if (_excerpt && _excerpt.audio === audio) {
+              const left = Math.max(0, (audio.duration || 12) - audio.currentTime);
+              t.textContent = '-' + Math.floor(left / 60) + ':' + String(Math.floor(left % 60)).padStart(2, '0');
+            }
+          });
+          audio.addEventListener('ended', () => { if (_excerpt && _excerpt.audio === audio) stopExcerpt(); });
+          audio.addEventListener('error', () => { if (_excerpt && _excerpt.audio === audio) stopExcerpt(); });
+          audio.play().catch(() => stopExcerpt());
+        });
+      });
+    }
+    window.addEventListener('hashchange', stopExcerpt);
+
     // ---- Sound policy ----
     // Default: silent. Hover previews, the guide cover and step videos all start
     // muted; one tap on a .sound-pill flips a site-wide switch that is remembered.
@@ -4107,13 +4196,30 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           '<span class="m-3d-hint">Drag to orbit · Scroll to zoom</span>' +
           '</div>';
       }
+      // Kicker says what the asset IS. Derived evidence (cut from the final
+      // render) is labelled as such with its timecode — never plain "Result".
+      const derived = s.result_source === 'final';
+      const kicker = '<span class="media-label' + (derived ? ' media-label-derived' : '') + '">' +
+        esc(s.result_label || 'Result') + '</span>';
+      const caption = s.result_caption
+        ? '<p class="media-caption">' + esc(s.result_caption) + '</p>' : '';
+      const cls = 'm-step-media' + (derived ? ' m-step-media-derived' : '');
       if (s.result_video) {
-        return '<div class="m-step-media"><video data-src="' + esc(s.result_video) + '"' +
+        return '<div class="' + cls + '"><video data-src="' + esc(s.result_video) + '"' +
           (s.result_poster ? ' poster="' + esc(s.result_poster) + '"' : '') +
-          ' controls muted loop playsinline preload="none"></video><span class="media-label">Result</span></div>';
+          ' controls muted loop playsinline preload="none"></video>' + kicker + caption + '</div>';
       }
       if (s.result_image) {
-        return '<div class="m-step-media"><img src="' + esc(s.result_image) + '" alt="Step result" loading="lazy" decoding="async"><span class="media-label">Result</span></div>';
+        return '<div class="' + cls + '"><img src="' + esc(s.result_image) + '" alt="' +
+          esc(s.result_label || 'Step result') + '" loading="lazy" decoding="async">' + kicker + caption + '</div>';
+      }
+      if (s.result_audio) {
+        return '<div class="' + cls + ' m-step-media-audio">' +
+          '<button class="m-excerpt" type="button" data-src="' + esc(s.result_audio) + '" aria-label="Play excerpt">' +
+            '<span class="m-excerpt-btn" aria-hidden="true"></span>' +
+            '<span class="m-excerpt-bars" aria-hidden="true">' + '<i></i>'.repeat(28) + '</span>' +
+            '<span class="m-excerpt-time">0:12</span>' +
+          '</button>' + kicker + caption + '</div>';
       }
       return '';
     }
@@ -4806,6 +4912,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         const coverVid = guideBodyEl.querySelector('video.m-cover');
         if (coverVid) bindCoverSound(coverVid);
         guideBodyEl.querySelectorAll('.m-step-media video').forEach(v => { v.muted = !soundOn; });
+        bindExcerptPlayers(guideBodyEl);
         revealGuideSteps();
         setupGuideChrome(g);
         const pl = guideBodyEl.querySelector('.qc-player');

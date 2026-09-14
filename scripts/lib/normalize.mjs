@@ -228,6 +228,7 @@ export function mediaFields(guide) {
     const s = steps[i];
     for (const f of ['result_image', 'result_poster']) list.push({ obj: s, key: f, kind: 'image', where: `steps[${i}].${f}`, isRoot: false });
     list.push({ obj: s, key: 'result_video', kind: 'video', where: `steps[${i}].result_video`, isRoot: false });
+    list.push({ obj: s, key: 'result_audio', kind: 'audio', where: `steps[${i}].result_audio`, isRoot: false });
   }
   return list;
 }

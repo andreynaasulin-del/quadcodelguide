@@ -1,0 +1,161 @@
+{
+  "_readme": "Per guide → per step index (1-based): type frame|clip|audio, at = seconds into the FINAL, caption = what to look at and why this step caused it. Hand-picked from contact sheets in .temp/evidence/sheets/.",
+
+  "winter-ops-fps-industrial": {
+    "1": { "type": "frame", "at": 17.0, "caption": "Same rifle, same snow, three shots apart — the weapon and weather were locked before any route was written." },
+    "2": { "type": "clip", "at": 6.8, "caption": "Tunnel into corridor in one continuous pass. Rooms chain; there is no cut to hide behind." }
+  },
+  "anime-caramel-pudding-recipe": {
+    "1": { "type": "clip", "at": 0.3, "caption": "Caramel → pour → whisk: the shot list is literally the recipe order." },
+    "2": { "type": "frame", "at": 13.8, "caption": "The character appears only in the last second. Everything before is hands and food." }
+  },
+  "fauxreal-gaussian-splat-loop": {
+    "1": { "type": "frame", "at": 0.2, "caption": "Edges are ragged on purpose — the scan was framed so the splat falls apart where nobody looks." },
+    "2": { "type": "clip", "at": 6.7, "caption": "The camera orbits the fridge and drifts to the booth. No fly-through, no vertical move — that is what keeps the splat solid." }
+  },
+  "graphics-lab-render-library": {
+    "1": { "type": "frame", "at": 20.6, "caption": "The library grid. Categories on the left are the taxonomy from the brief — the agent filed every render into one." },
+    "2": { "type": "clip", "at": 13.7, "caption": "One scene, one technique: rain on a puddle, nothing else in frame. Each tile in the library is this focused." }
+  },
+  "ps5-controller-configurator-page": {
+    "1": { "type": "clip", "at": 3.4, "caption": "Genshin → God of War skin swap. Watch the silhouette — one mesh, only the material changes." },
+    "2": { "type": "frame", "at": 6.8, "caption": "The skin rail on the right is the only control on the page. Everything else reacts to it." }
+  },
+  "seoul-arcade-minidv-tape": {
+    "1": { "type": "clip", "at": 0.5, "caption": "The handheld wobble on entry. The camera operator is a character — that came from the prompt, not post." },
+    "2": { "type": "frame", "at": 10.0, "caption": "The one human beat: she turns to the lens after a win. The timeline was built around this second." }
+  },
+  "rooftop-run-cel-shaded-trailer": {
+    "1": { "type": "frame", "at": 2.5, "caption": "Hero, palette and ink outline fixed in frame one. Every later shot inherits exactly this." },
+    "2": { "type": "clip", "at": 13.5, "caption": "Market rooftops into the castle wall. The chase is a route with a destination, not a loop." }
+  },
+  "blocky-world-photoreal-remaster": {
+    "1": { "type": "clip", "at": 10.1, "caption": "Desert into water. Two of the four biomes, recognisable before the transition finishes." },
+    "2": { "type": "frame", "at": 12.6, "caption": "Cubic lily pads, photoreal water. Geometry stays blocky; light, texture and volume do not." }
+  },
+  "metro-ruins-fps-walkthrough": {
+    "1": { "type": "frame", "at": 12.4, "caption": "Mid-burst and the rifle has not changed shape since the first frame. \"Prop bolted to the camera\" did that." },
+    "2": { "type": "clip", "at": 6.0, "caption": "Classroom into stairwell. One direction of travel, one turn — the room-by-room route from step 2." }
+  },
+  "interior-render-model-battle": {
+    "1": { "type": "frame", "at": 8.7, "caption": "Same living room, same brief, two models side by side. Differences you see are the models', not the prompt's." },
+    "2": { "type": "clip", "at": 15.0, "caption": "The kitchen pass on both. Neither take was regenerated — this is the first output each model returned." }
+  },
+  "arcade-fighter-pixel-match": {
+    "1": { "type": "frame", "at": 0.1, "caption": "Health bars, timer, round counter — all rendered as part of the image, not overlaid." },
+    "2": { "type": "clip", "at": 1.2, "caption": "The first two of six choreographed hits. Each has a wind-up and a landing you can count." }
+  },
+  "forest-ops-tactical-fps": {
+    "1": { "type": "frame", "at": 2.3, "caption": "Rain and mist lead the frame; the operator is secondary. Weather was written first in the prompt." },
+    "2": { "type": "clip", "at": 15.0, "caption": "Open treeline into the cabin doorway. The space closes in — the only structural move in the piece." }
+  },
+  "crimson-adventure-trailer": {
+    "1": { "type": "frame", "at": 7.6, "caption": "The heroine block: cloak, hair, silhouette. Pasted verbatim into every shot so she never drifts." },
+    "2": { "type": "clip", "at": 9.5, "caption": "Lake to courtyard. Environments change on the six-second beat; she does not." }
+  },
+  "brazil-street-documentary": {
+    "1": { "type": "frame", "at": 0.8, "caption": "Available light, over-the-shoulder, nobody posed. \"Documentary, not cinema\" is the difference." },
+    "2": { "type": "clip", "at": 3.0, "caption": "Four seconds of the single continuous walk. There is no second shot to cut to." }
+  },
+  "jerry01-quadcode-testimonials": {
+    "1": { "type": "frame", "at": 0.2, "caption": "The starting state before any edit — this is what the audit was run against." },
+    "3": { "type": "frame", "at": 15.0, "caption": "Canvas grain on the cards and the retuned key light. Compare with the frame under step 1." },
+    "4": { "type": "clip", "at": 6.0, "caption": "Cards cycling with the new English copy and Quadcode-guide roles." }
+  },
+  "gta-skate-stunt": {
+    "1": { "type": "clip", "at": 0.2, "caption": "Rail, landing, roll-out in one line. Nothing here is a cut between separate tricks." },
+    "2": { "type": "frame", "at": 6.3, "caption": "Mid-flip and the feet still read as over the board. This is the contact rule holding." },
+    "3": { "type": "frame", "at": 2.5, "caption": "The HUD scores the trick as it lands. It confirms the move instead of decorating the frame." },
+    "4": { "type": "clip", "at": 11.0, "caption": "The roll-away. The cut lands here, not on the landing — the trick gets to finish." }
+  },
+  "gta-surf-stunt": {
+    "1": { "type": "frame", "at": 0.1, "caption": "Minimap, health, mission marker — framed exactly like a capture, which is why it reads as gameplay." },
+    "2": { "type": "clip", "at": 1.0, "caption": "One wave, one readable line from lip to trough. No secondary swell to confuse the eye." },
+    "3": { "type": "frame", "at": 7.5, "caption": "HUD state after the move: the score and marker changed with it." },
+    "4": { "type": "clip", "at": 10.5, "caption": "Tail of the single continuous take that was kept. Other takes were dropped, not stitched." }
+  },
+  "wushu-ink-dragon-cinematic": {
+    "1": { "type": "frame", "at": 5.0, "caption": "The one rule: motion leaves ink. Everything in the piece obeys it." },
+    "2": { "type": "clip", "at": 5.0, "caption": "The sword arc drawing the stroke in real time. The graphic is a by-product of the movement." },
+    "3": { "type": "frame", "at": 11.3, "caption": "The payoff: strokes resolve into the dragon. One image, not a montage." },
+    "4": { "type": "clip", "at": 11.0, "caption": "Final seconds. The dragon holds without drift — the retake this step describes." }
+  },
+  "cherry-blossom-boss-cinematic": {
+    "1": { "type": "frame", "at": 1.25, "caption": "The boss silhouette in full. Read it against the trees — it is not borrowed from any franchise." },
+    "2": { "type": "clip", "at": 3.5, "caption": "Blocking: the boss approaches, camera holds, hero enters. Directed as a scene, not a slideshow." },
+    "3": { "type": "frame", "at": 7.5, "caption": "The impact signature — one golden arc. Every hit in the piece uses this and only this." }
+  },
+  "rolex-4k-before-after-upscale": {
+    "1": { "type": "frame", "at": 4.0, "caption": "Dial macro, before and after. The model matched to this footage keeps engraving crisp without inventing texture." },
+    "2": { "type": "clip", "at": 5.3, "caption": "Beach shot. Grain is still there after the upscale — the conservative noise setting from this step." }
+  },
+  "irondrone-flying-ironer": {
+    "1": { "type": "frame", "at": 0.4, "caption": "The product exists from frame one. The single-line invention is the whole brief." },
+    "2": { "type": "clip", "at": 2.5, "caption": "The ironing pass with captions riding along. Both were directed in the same prompt." },
+    "3": { "type": "frame", "at": 8.4, "caption": "The cleanest pass: crumpled to flat with no seam artefacts. This is the take that was kept." }
+  },
+  "boss-fight-model-battle": {
+    "1": { "type": "frame", "at": 0.1, "caption": "Both models, first frame, same brief. Any difference from here on is the model's decision." },
+    "2": { "type": "clip", "at": 4.5, "caption": "The same beat on each model, side by side. One take each, no reroll." }
+  },
+  "mutation-serum-vfx": {
+    "1": { "type": "frame", "at": 0.8, "caption": "The macro opener: needle in the yolk. Scale is established before anything moves." },
+    "2": { "type": "clip", "at": 3.2, "caption": "The detonation. It is one continuous transformation, not a cut to an after-state." }
+  },
+  "drowned-king-model-battle": {
+    "1": { "type": "frame", "at": 1.5, "caption": "Beat one of three: surface, ship, king. The script gave both models the same three beats." },
+    "2": { "type": "clip", "at": 6.0, "caption": "Beat two underwater on both models. Same words, visibly different readings." }
+  },
+  "walk-on-water-viral": {
+    "1": { "type": "frame", "at": 0.1, "caption": "A crowd holding phones, a pier, midday sun. The staging says \"someone filmed this\", not \"a studio lit this\"." },
+    "2": { "type": "clip", "at": 1.5, "caption": "The impossible step off the pier. The camera keeps its phone-footage wobble through it." }
+  },
+  "screen-to-reality-hero": {
+    "1": { "type": "frame", "at": 0.1, "caption": "The laptop is a real object in a real scene before anything breaks out of it." },
+    "2": { "type": "clip", "at": 3.5, "caption": "The breakout. The parrot leaves the screen and lands on a hand — one move, no cut." }
+  },
+  "product-hero-turntable": {
+    "1": { "type": "frame", "at": 6.7, "caption": "The hero keyframe — label dead-on, petals frozen. The loop was built out from this single frame." },
+    "2": { "type": "clip", "at": 2.0, "caption": "Rotation with a slow push-in. The loop returns to the keyframe without a visible join." }
+  },
+  "beauty-brand-landing": {
+    "1": { "type": "frame", "at": 1.0, "caption": "Hero section typing in: serif, sakura pink, one product shot. The mood was set here before any layout." },
+    "2": { "type": "clip", "at": 3.0, "caption": "Scrolling the structure — collection, hero product, philosophy. The order came from step 2." }
+  },
+  "minidv-camcorder-memory": {
+    "1": { "type": "frame", "at": 1.25, "caption": "Fisheye vignette, DV colour, burned-in date. The camera was specified, not the style." },
+    "2": { "type": "clip", "at": 1.5, "caption": "The one small moment: a stray cat, a hand held out. Nothing else happens, and nothing else needs to." },
+    "3": { "type": "frame", "at": 12.5, "caption": "The glance back. This is the honest take — the one that was kept over prettier, stiffer ones." }
+  },
+  "ugc-ads-workflow": {
+    "1": { "type": "frame", "at": 0.1, "caption": "The pipeline: actor → prompt → product → output. The actor tile is the same in every frame." },
+    "2": { "type": "frame", "at": 8.6, "caption": "Bag in hand, consistent with the product tile. The compositing step is what puts it there." },
+    "3": { "type": "clip", "at": 10.7, "caption": "The output panel in motion. Same actor, same bag, now video." }
+  },
+  "photo-particle-poster": {
+    "1": { "type": "frame", "at": 0.1, "caption": "The shell as a dot field. Still a photo — every dot samples one pixel." },
+    "2": { "type": "clip", "at": 4.4, "caption": "Cursor moves across, dots scatter and settle. The reaction is what step 2 wired in." }
+  },
+
+  "jazz-rnb-restaurant-track": {
+    "1": { "type": "audio", "at": 0, "caption": "Intro. The room tone — brushed drums, low keys — is the \"vibe\" line from the prompt, verbatim." },
+    "2": { "type": "audio", "at": 40, "caption": "Guitar and Rhodes enter. Naming instruments is why these two are here and nothing else is." },
+    "3": { "type": "audio", "at": 200, "caption": "The finish. Tempo holds to the end and the track resolves instead of fading." },
+    "4": { "type": "audio", "at": 90, "caption": "The hook from the take that was kept. Compare against your own generations at the same point." }
+  },
+  "velvet-hour-ad-instrumental": {
+    "1": { "type": "audio", "at": 0, "caption": "Opening bars. Genre and instrumentation are audible in the first four." },
+    "2": { "type": "audio", "at": 30, "caption": "The 30-second turn — an edit point written into the prompt as ad structure." },
+    "4": { "type": "audio", "at": 60, "caption": "The cleanest take, final third. No stray artefacts on the sustained notes." }
+  },
+  "brass-marble-ad-instrumental": {
+    "1": { "type": "audio", "at": 0, "caption": "The groove locks in immediately. Instrumentation was named, not described." },
+    "2": { "type": "audio", "at": 30, "caption": "Brass stabs land on the grid — each one is a place a cut can sit." },
+    "4": { "type": "audio", "at": 60, "caption": "The punchiest take, final third. Transients are sharp all the way through." }
+  },
+  "after-midnight-ad-instrumental": {
+    "1": { "type": "audio", "at": 0, "caption": "Deliberately sparse from bar one. Space is the brief." },
+    "2": { "type": "audio", "at": 30, "caption": "Midsection. Nothing sits in the voice range — the room left for a voiceover." },
+    "4": { "type": "audio", "at": 60, "caption": "The take with the most space, final third. Fewest elements, longest gaps." }
+  }
+}
