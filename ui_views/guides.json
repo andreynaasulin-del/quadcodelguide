@@ -963,8 +963,8 @@
           "result_image": "/ui_views/assets/jerry01-testimonials-cover.webp"
         },
         {
-          "title": "3. Repaint the canvas card texture and retune the stage lights",
-          "text": "The testimonial cards are canvas-drawn textures wrapped onto a 3D plane, not DOM elements — so the paper-cream gradient, grain, quote-serif and avatar-initial styling all had to be repainted directly in the paintCard() function. Stage lighting also needed a full pass: the original hemisphere/key/fill setup was tuned for a bright cream backdrop and looked flat and washed-out once the stage went dark, so the rim light became the accent-orange (#FF9569) separator instead of a neutral white.",
+          "title": "3. Repaint the canvas card texture — one instruction landed half right",
+          "text": "The testimonial cards are canvas-drawn textures wrapped onto a 3D plane, not DOM elements — so the paper-cream gradient, grain, quote-serif and avatar-initial styling all had to be repainted directly in the paintCard() function. Stage lighting got the full pass asked for: hemisphere/key/fill retuned for a dark studio, rim light now accent-orange (#FF9569). \"Recolor avatar rings and star ratings to the new accent palette\" split down the middle: star ratings are the accent orange as asked, but the avatar mark is a filled disc (no ring), and it keeps each person's own random tint — 12 different colors, only 2 of which are actually brand orange/red. A rainbow of arbitrary label colors reads as random, not branded — check it after the fact.",
           "prompt": "Inside the canvas-texture paint routine, replace the paper-gradient background, grain color and quote-serif font with the dark bg gradient, Space Grotesk headline font and Manrope body font. Recolor avatar rings and star ratings to the new accent palette. Retune HemisphereLight/DirectionalLight intensities and colors so the stage reads as a dark studio, with the rim light carrying the brand accent color.",
           "result_image": "/ui_views/assets/evidence/jerry01-quadcode-testimonials/step-3.webp",
           "result_label": "Frame from the final render · 0:15",
@@ -972,8 +972,8 @@
           "result_source": "final"
         },
         {
-          "title": "4. Replace the testimonial copy — English, Quadcode-guide roles",
-          "text": "Swapped six generic marketing quotes for six English testimonials from people who actually use the guide site's own vocabulary: a Game Dev referencing the Dark Fantasy Deceiver NPC guide, a Product Designer, a Motion Designer referencing the Kitchen Configurator guide, a QA Engineer, a Founder, and a Design Lead. Every quote references something specific about a real guide step, not a vague compliment — kept the failure-story pattern from the original (crooked layout before the fix) instead of pure praise.",
+          "title": "4. Replace the testimonial copy — asked for six, got twelve",
+          "text": "The prompt asks for six quotes across six named roles (Game Dev, Product Designer, Motion Designer, QA Engineer, Founder, Design Lead). What shipped is twelve — DATA has 12 entries, 12 dots on the rope. Only three of the six requested roles show up at all (Senior Game Developer, Senior Product Designer, Senior Motion Designer); QA Engineer, Founder and Design Lead never appear. The other nine slots are roles nobody asked for (Product Lead, Lead UI/UX Designer, Engineering Lead, Technical Artist, Senior Frontend Engineer, Brand Designer, a startup CTO, an ML Engineer, a Creative Director). The \"references a specific guide\" instruction also didn't survive contact: Marcus Chen's line just says \"last NPC went from brief to in-engine in an afternoon\" — no guide named — and Dev Raman's motion quote never mentions a guide at all. What's genuinely good: every quote still tells a concrete before/after story instead of generic praise, it just tells twice as many of them as briefed.",
           "prompt": "Replace the DATA testimonials array with six English-language quotes attributed to roles relevant to a design/dev guide platform (Game Dev, Product Designer, Motion Designer, QA Engineer, Founder, Design Lead). Each quote must reference a concrete detail — a specific guide, a specific failure that was fixed, a specific number — not generic praise. Update the section eyebrow and headline to match.",
           "result_video": "/ui_views/assets/evidence/jerry01-quadcode-testimonials/step-4.mp4",
           "result_poster": "/ui_views/assets/evidence/jerry01-quadcode-testimonials/step-4-poster.webp",
@@ -987,7 +987,7 @@
           "widget_iframe": "/ui_views/assets/jerry01-testimonials/index.html"
         }
       ],
-      "result": "The same rope-physics testimonial rig, now running the Quadcode dark visual system end to end — CSS tokens, canvas-painted card typography, stage lighting and six English testimonials tied to real guides on this site — embedded and playable directly in this guide.",
+      "result": "The same rope-physics testimonial rig, now running the Quadcode dark visual system end to end — CSS tokens, fonts, and stage lighting all match exactly as briefed, embedded and playable directly in this guide. Two spots where the model didn't follow instructions precisely: the avatar mark keeps a 12-color rainbow instead of the accent palette (stars did get recolored correctly), and the copy pass shipped 12 testimonials across 12 roles instead of the 6 requested — with 3 of the 6 named roles missing entirely. Worth a manual pass on both before calling either one done.",
       "downloads": [
         {
           "label": "Download restyled widget (index.html)",
@@ -1017,45 +1017,45 @@
       "poster": "/ui_views/assets/gta-skate-stunt-poster.webp",
       "steps": [
         {
-          "title": "1. Build a line, not a montage",
-          "text": "Choose one route through the skate spot and keep the camera behind the rider. Continuous geography makes the result feel playable and gives every trick a clear approach and landing.",
+          "title": "1. Build a line, not a montage — the wardrobe and the cut didn't listen",
+          "text": "The ground delivers: it's genuinely wet, and city lights reflect off the concrete in every frame. The rest of this prompt gets ignored. \"Red tracksuit\" comes back as a black crewneck top over dark maroon trousers — two unrelated colors, no tracksuit silhouette, and nothing red. \"One continuous 16:9 shot\" doesn't hold either: there's a hard scene cut at 13.9s (scene-detect score 0.12) where the camera jumps to a tighter, lower angle for the final 1.2 seconds. Wet ground and chase-camera geometry are the only two promises this line kept.",
           "prompt": "Third-person open-world game footage at a wet industrial skate plaza at night. Male skater in a red tracksuit rides toward a low concrete ledge. Close chase camera behind and slightly below shoulder height, city lights reflecting on wet ground, one continuous 16:9 shot.",
           "result_video": "/ui_views/assets/evidence/gta-skate-stunt/step-1.mp4",
           "result_poster": "/ui_views/assets/evidence/gta-skate-stunt/step-1-poster.webp",
           "result_label": "Excerpt from the final render · 0:00–0:04",
-          "result_caption": "Rail, landing, roll-out in one line. Nothing here is a cut between separate tricks.",
+          "result_caption": "Wet concrete, reflections, chase camera in position — and a black top over maroon trousers that is not the red tracksuit the prompt asked for.",
           "result_source": "final"
         },
         {
-          "title": "2. Protect board-to-foot contact",
-          "text": "The critical failure is feet detaching from the deck. Ask for one ollie and a clean landing, with the board rotating only as much as the body can plausibly control.",
+          "title": "2. Protect board-to-foot contact — it grinds, then it breaks",
+          "text": "The prompt asks for one clean ollie over a ledge. What's on screen through 0:02–0:06 is a rail grind: feet planted, board balanced flat along the top edge of a concrete ledge — a different trick entirely, never an airborne ollie. The real failure comes right after, at 6.8–7.8s, exactly the window this step exists to protect: the board detaches from the feet and, while it's floating free, changes color three times in one second — lime-green at 6.8s, magenta at 7.2s, dark purple at 7.4s, back to green at 7.6s, purple again at 7.8s. That's not just a physics miss, it's the renderer losing track of which object the board even is. By 8–9.6s it's recovered — single-colored board, feet back on it, knees compressing on landing — so the fix holds on touchdown, it just doesn't survive the trick itself.",
           "prompt": "The skater compresses, pops one clean ollie over the ledge and lands with both feet planted over the trucks. Board remains rigid and connected to the rider, wheels contact the ground together, knees absorb impact, no impossible flips or limb distortion.",
           "result_image": "/ui_views/assets/evidence/gta-skate-stunt/step-2.webp",
           "result_label": "Frame from the final render · 0:06",
-          "result_caption": "Mid-flip and the feet still read as over the board. This is the contact rule holding.",
+          "result_caption": "This is a rail grind, not the ollie the prompt asked for — feet are planted here, but the board detaches and flickers through three colors one second later, at 6.8–7.8s.",
           "result_source": "final"
         },
         {
-          "title": "3. Let the HUD confirm the trick",
-          "text": "The interface should register the move after landing, not before it. Use a small trick label, score increment and balance meter while keeping the ledge and feet unobstructed.",
+          "title": "3. Let the HUD confirm the trick — wrong corner, frozen number",
+          "text": "The minimap lands exactly where asked, bottom-left, with a speed readout the prompt didn't even request (\"31 KM/H · WET CONCRETE · TRACTION 82%\"). Everything about trick name and score is off. They sit bottom-right, not top-right, as a static \"BOARDSLIDE · KICKFLIP · WALLRIDE\" checklist that never names the move actually performed and never changes. Top-right — the corner that was supposed to hold the trick name and score — is spent on a TIME/CASH readout and, underneath it, an actual Grand Theft Auto VI logo, neither of which appears anywhere in the prompt. And the one instruction with a trigger condition fails outright: checked at twelve timestamps from 0s to 15s, including 9s where the landing happens, \"LINE SCORE\" reads 24,850 and the multiplier reads x4.0 in every single frame. Only a decorative combo bar creeps from 30% to 75% full and then drops back to 35% by the end — animated, but disconnected from the number sitting right next to it.",
           "prompt": "Add a restrained game HUD: circular minimap bottom-left, trick name and score top-right, small balance or speed indicator. The score updates immediately after the landing and all UI remains locked to screen coordinates.",
           "result_image": "/ui_views/assets/evidence/gta-skate-stunt/step-3.webp",
           "result_label": "Frame from the final render · 0:02",
-          "result_caption": "The HUD scores the trick as it lands. It confirms the move instead of decorating the frame.",
+          "result_caption": "Trick name and score sit bottom-right, not top-right — top-right instead holds an uninvited Grand Theft Auto VI logo. The score itself (24,850 x4.0) is identical in every frame of the clip.",
           "result_source": "final"
         },
         {
-          "title": "4. Cut on the roll-away",
-          "text": "End after two seconds of stable riding. The roll-away proves the landing; cutting at peak height would hide whether the generated physics actually worked.",
+          "title": "4. Cut on the roll-away — right idea, wrong duration",
+          "text": "Container specs are exact: 1920×1080, H.264, 24fps, stereo AAC at 44.1kHz, 15.046s total. The edit math is off, though. The board settles back under the rider around 9s, so the roll-away actually runs about six seconds, not the two the step describes — and it isn't even one continuous roll-away: a hard cut at 13.9s hands the last 1.2 seconds to a different, tighter shot. The clip does end past the trick instead of on it, which is the part worth keeping. The \"two seconds\" and \"one line\" framing overstates how clean the tail actually is.",
           "prompt": "Deliver a 15-second 1920 × 1080 H.264 clip at 24 fps with stereo audio and web fast-start.",
           "result_video": "/ui_views/assets/evidence/gta-skate-stunt/step-4.mp4",
           "result_poster": "/ui_views/assets/evidence/gta-skate-stunt/step-4-poster.webp",
           "result_label": "Excerpt from the final render · 0:11–0:15",
-          "result_caption": "The roll-away. The cut lands here, not on the landing — the trick gets to finish.",
+          "result_caption": "1920×1080/24fps/stereo AAC all check out — but this excerpt starts after a hard cut at 13.9s, inside a second shot, not the tail of one continuous take.",
           "result_source": "final"
         }
       ],
-      "result": "A readable skate line with one grounded trick, a verified roll-away and game UI timed to the landing."
+      "result": "The container spec, wet-ground look and landing recovery are real. The rest is staged: the \"ollie\" on screen is a rail grind, the actual airborne moment detaches the board and flickers it through three colors, the HUD's trick name and score sit in the wrong corner behind an uninvited Grand Theft Auto VI logo, and the score itself never updates from 24,850 across all 15 seconds."
     },
     {
       "id": "gta-surf-stunt",
@@ -1072,45 +1072,45 @@
       "poster": "/ui_views/assets/gta-surf-stunt-poster.webp",
       "steps": [
         {
-          "title": "1. Frame it like gameplay",
-          "text": "Use a stable third-person chase camera behind the surfer. A beautiful drone angle would weaken the idea because the clip needs to feel controllable, not observed.",
+          "title": "1. Frame it like gameplay — it delivered the drone angle it argued against",
+          "text": "This step's own case is that a \"beautiful drone angle would weaken the idea\" and asks instead for a chase camera two metres behind and slightly above the surfer. What's on screen is the opposite: a wide, elevated, distant establishing shot with the rider occupying a small fraction of the frame — closer to a cliff-top drone view of the cove than a close third-person chase. There's no minimap, no health bar and no mission marker in this footage at all — that HUD description belongs to a different guide's render, not this one.",
           "prompt": "Third-person open-world game footage of a male surfer riding a turquoise wave through a rocky tropical cove at sunset. Camera follows two metres behind and slightly above the character, wide 16:9 frame, realistic game-engine lighting, continuous shot.",
           "result_image": "/ui_views/assets/evidence/gta-surf-stunt/step-1.webp",
           "result_label": "Frame from the final render · 0:00",
-          "result_caption": "Minimap, health, mission marker — framed exactly like a capture, which is why it reads as gameplay.",
+          "result_caption": "This is the wide, elevated \"drone angle\" the step's own text argues against — not a close chase camera two metres behind the rider.",
           "result_source": "final"
         },
         {
-          "title": "2. Give the wave one readable line",
-          "text": "The surfer should carve across a single breaking face with a visible spray trail. Do not ask for several tricks—the body mechanics fail when the model has to solve too many direction changes in 15 seconds.",
+          "title": "2. Give the wave one readable line — the board leaves the rider mid-air",
+          "text": "\"Board stays attached to both feet\" is the one hard rule in this prompt, and it breaks at 8.0s: the surfer goes airborne off the wave around 7.6s, and by 8.0s the board is tumbling alone in frame with no rider visible anywhere near it, for a full 0.8 seconds (8.0–8.4s) before he reappears crouched on it in the water at 8.6s. That's not a wobble, it's a complete separation the model never explains — he isn't shown falling, swimming or being thrown; he simply isn't in the shot while his board is. The carve itself before and after that gap is genuinely clean: one wave face, one spray fan, no competing swell.",
           "prompt": "The surfer shifts weight naturally, cuts across the wave face and throws a clean fan of white spray. Board stays attached to both feet, knees absorb the water movement, wave direction remains consistent and the shoreline advances smoothly.",
           "result_video": "/ui_views/assets/evidence/gta-surf-stunt/step-2.mp4",
           "result_poster": "/ui_views/assets/evidence/gta-surf-stunt/step-2-poster.webp",
           "result_label": "Excerpt from the final render · 0:01–0:05",
-          "result_caption": "One wave, one readable line from lip to trough. No secondary swell to confuse the eye.",
+          "result_caption": "This excerpt ends before the failure: at 8.0–8.4s, just past this window, the board tumbles alone with the rider gone from frame entirely.",
           "result_source": "final"
         },
         {
-          "title": "3. Add HUD elements that react",
-          "text": "A minimap, speed value and trick score make the shot read as a game only when the numbers respond to motion. Keep them in safe corners and protect the rider silhouette.",
+          "title": "3. Add HUD elements that react — nothing does",
+          "text": "Placement is half right: the location label (\"VOLCANIC COVE · NORTH BREAK\") sits top-left as asked, and the score sits bottom-right as asked. But the bottom-left circle isn't a minimap — it's a speedometer dial labelled \"SURF SPEED\", no map, no location markers. And top-right, the corner the prompt never mentioned, carries a TIME/CASH readout and an actual Grand Theft Auto VI logo. None of it reacts: checked across eleven timestamps from 0s to 15s spanning the airborne trick at 7–8s, the speed dial reads exactly \"28 KM/H\" and the needle sits at the same angle in every frame, and \"LINE SCORE\" reads 18,750 with an x3.0 multiplier in every one of them too. The interface is sharp and stable, which was asked for — it's also completely static, which wasn't.",
           "prompt": "Add a restrained open-world game HUD: circular minimap bottom-left, speed and score bottom-right, small location label top-left. Interface stays sharp and stable while speed and score update during the carve. No large menu panels over the action.",
           "result_image": "/ui_views/assets/evidence/gta-surf-stunt/step-3.webp",
           "result_label": "Frame from the final render · 0:07",
-          "result_caption": "HUD state after the move: the score and marker changed with it.",
+          "result_caption": "Location label and score sit where asked. The bottom-left dial is a static speedometer, not a minimap, and reads the same \"28 KM/H\" here as at 0s and 15s.",
           "result_source": "final"
         },
         {
-          "title": "4. Keep the best continuous take",
-          "text": "Reject takes where the board clips into the water or the HUD swims across the frame. Publish the take with stable feet, one continuous wave and readable interface placement.",
+          "title": "4. Keep the best continuous take — this part actually holds",
+          "text": "Scene-detection across the full 15.046s finds no hard cut above noise level (highest score 0.09, all below the 0.10 cut threshold this project uses) — it genuinely is one uninterrupted take, unlike the skate guide's version of this same step. Container specs match too: 1920×1080, H.264, 24fps. The HUD does stay locked to its corners the whole time, so \"interface placement\" is fair. What this step's text doesn't mention is that \"stable feet\" isn't true for the whole take — the 0.8s mid-air board separation from step 2 happens inside this same continuous clip, it just isn't in the excerpt shown below.",
           "prompt": "Deliver a 15-second 1920 × 1080 H.264 clip at 24 fps with stereo audio and web fast-start.",
           "result_video": "/ui_views/assets/evidence/gta-surf-stunt/step-4.mp4",
           "result_poster": "/ui_views/assets/evidence/gta-surf-stunt/step-4-poster.webp",
           "result_label": "Excerpt from the final render · 0:10–0:14",
-          "result_caption": "Tail of the single continuous take that was kept. Other takes were dropped, not stitched.",
+          "result_caption": "Genuinely one continuous take — no cut in the full 15s. This excerpt is after the wipeout, once the rider is stable again.",
           "result_source": "final"
         }
       ],
-      "result": "A compact gameplay-style surf stunt with coherent water motion, chase-camera framing and a HUD that supports the action instead of covering it."
+      "result": "The one continuous take and correct container specs are real. Everything else undersells its own problems: the camera is the wide drone angle the brief argued against, the rider vanishes from frame for 0.8s while the board tumbles alone mid-air, and the HUD — Grand Theft Auto VI logo included, nobody asked for it — never updates a single number across all 15 seconds."
     },
     {
       "id": "wushu-ink-dragon-cinematic",
@@ -1127,45 +1127,45 @@
       "poster": "/ui_views/assets/wushu-ink-dragon-cinematic-poster.webp",
       "steps": [
         {
-          "title": "1. Lock one visual rule",
-          "text": "The fighter, floor and background stay monochrome. Only the moving ink changes shape. This prevents the shot from becoming a pile of unrelated effects.",
+          "title": "1. Lock one visual rule — the fighter breaks it herself",
+          "text": "\"The fighter... stay monochrome\" is the claim. From the first second she's on screen, she's wearing a bright orange-red sash at her waist — not in the prompt, not black or white, and visible in every frame through the whole performance. \"Locked wide camera\" doesn't hold either: there's a hard cut at 4.3s (scene-detect score 0.83, far above the 0.10 noise floor) from a full-body wide shot to an extreme close-up on the brush tip between two pagoda roofs. The grey mountains and wet-ink floor are genuinely there, and hold up through the whole piece.",
           "prompt": "A cinematic wushu performance inside a vast white ink-wash studio. One female martial artist in a white top and flowing black trousers. Monochrome palette, wet black sumi ink, soft grey mountains in the distance, locked wide camera, realistic fabric and body mechanics.",
           "result_image": "/ui_views/assets/evidence/wushu-ink-dragon-cinematic/step-1.webp",
           "result_label": "Frame from the final render · 0:05",
-          "result_caption": "The one rule: motion leaves ink. Everything in the piece obeys it.",
+          "result_caption": "Wet ink and grey mountains are genuinely monochrome. The orange-red sash at her waist, visible here and in every other frame, is not.",
           "result_source": "final"
         },
         {
-          "title": "2. Make movement generate the graphic",
-          "text": "Tie the ink to the body: the arm sweep pulls a broad brush stroke while the low stance closes it into a circular ring. The effect follows momentum instead of floating independently.",
+          "title": "2. Make movement generate the graphic — it's a brush, not her arms",
+          "text": "The prompt asks for ink following her bare arms as she pivots. What she's actually holding for the entire performance, from 1s onward, is a giant ink-loaded calligraphy brush the size of a staff — she wields it like a weapon and the ink trails from its bristle tip, not from her limbs. That's a real prop the prompt never mentions, and it's the thing actually generating the stroke. Once you accept the brush as the mechanism, the physics of it are convincing: bristle texture, splatter at direction changes, and a ring that closes cleanly on her low stance.",
           "prompt": "As she pivots into a low wushu stance, a thick ribbon of wet black ink follows her arms and circles her body. The stroke has visible bristle texture, splatter at direction changes and believable liquid inertia. Keep her face, costume and scale consistent.",
           "result_video": "/ui_views/assets/evidence/wushu-ink-dragon-cinematic/step-2.mp4",
           "result_poster": "/ui_views/assets/evidence/wushu-ink-dragon-cinematic/step-2-poster.webp",
           "result_label": "Excerpt from the final render · 0:05–0:09",
-          "result_caption": "The sword arc drawing the stroke in real time. The graphic is a by-product of the movement.",
+          "result_caption": "That's a giant calligraphy brush trailing the ink, not her bare arms as the prompt describes — she carries it the whole way through.",
           "result_source": "final"
         },
         {
-          "title": "3. Resolve the motion into one payoff",
-          "text": "The final dragon works because it grows from the same ring rather than appearing as a separate cut. Hold the last composition long enough to read the fighter’s scale against the mural.",
+          "title": "3. Resolve the motion into one payoff — the dragon isn't flat ink anymore",
+          "text": "The transformation itself works: the ring genuinely expands into the dragon with no cut in between, and it holds on a wide tableau with the fighter small below it, exactly as asked. \"Painted ink on paper, not a 3D creature\" doesn't survive the reveal — the dragon has glowing red-orange eyes, a lit mouth and ember-like highlights along its body, with volumetric shading that reads as a lit creature in space, not a flat brush painting. That also breaks step 1's monochrome rule a second time, this time in the final image the whole piece builds toward.",
           "prompt": "The circular ink stroke expands behind the fighter and resolves into a monumental hand-painted Chinese dragon mural. The dragon remains painted ink on paper, not a 3D creature. End on a balanced wide tableau with the fighter centered below it, no text and no camera cut.",
           "result_image": "/ui_views/assets/evidence/wushu-ink-dragon-cinematic/step-3.webp",
           "result_label": "Frame from the final render · 0:11",
-          "result_caption": "The payoff: strokes resolve into the dragon. One image, not a montage.",
+          "result_caption": "One continuous transformation, no cut — but the glowing red eyes and volumetric shading read as a lit 3D creature, not ink painted flat on paper.",
           "result_source": "final"
         },
         {
-          "title": "4. Remove drift from the final seconds",
-          "text": "Trim after the dragon composition settles. A clean 15-second arc needs a readable setup, one transformation and a held final image—not another effect after the payoff.",
+          "title": "4. Remove drift from the final seconds — this one checks out",
+          "text": "The container specs are exact: 1920×1080, H.264, 24fps, 15.07s total. The tail genuinely holds — frames from 13s to 15s show the same composition settled with no jitter, and the zoom from the dragon's head to the wide tableau in the seconds before it is one smooth continuous move, not a cut (scene-detect stays under 0.16 the whole way, versus 0.83 at the one real cut earlier in the piece). This is the most literally accurate step in the guide.",
           "prompt": "Export a 15-second 16:9 master. Preserve the original sound design, remove unstable tail frames and encode H.264 with web fast-start.",
           "result_video": "/ui_views/assets/evidence/wushu-ink-dragon-cinematic/step-4.mp4",
           "result_poster": "/ui_views/assets/evidence/wushu-ink-dragon-cinematic/step-4-poster.webp",
           "result_label": "Excerpt from the final render · 0:11–0:15",
-          "result_caption": "Final seconds. The dragon holds without drift — the retake this step describes.",
+          "result_caption": "The dragon holds steady with no drift from 13s to 15s — the one claim in this guide that measures exactly as described.",
           "result_source": "final"
         }
       ],
-      "result": "A controlled 15-second art film: one performer, one ink-motion system and one dragon reveal that grows directly from the choreography."
+      "result": "The transformation itself — ring into dragon, no cut, smooth zoom to the wide tableau — is genuinely well built. The monochrome rule it's built on breaks twice: an orange-red sash on the fighter from frame one, and glowing red eyes on the dragon at the payoff. The mechanism is a giant ink-brush, not her bare arms, and there's one hard cut at 4.3s the \"locked wide camera\" instruction didn't survive. Format and final-seconds stability are exactly as specified."
     },
     {
       "id": "snap01-parametric-kitchen-configurator",
@@ -1465,30 +1465,30 @@
       "steps": [
         {
           "title": "1. Design a boss silhouette you've never seen before",
-          "text": "Skip generic dragons. A living, cracked tree given a rough humanoid stance instantly reads as ancient and hostile without a single line of backstory — the cherry blossoms softening a threat make it feel like a cursed god of the forest, not a monster-of-the-week.",
+          "text": "Skip generic dragons. A living, cracked tree given a rough humanoid stance instantly reads as ancient and hostile without a single line of backstory — the cherry blossoms softening a threat make it feel like a cursed god of the forest, not a monster-of-the-week. Root-legs, molten-orange chest cracks, blossom-heavy branches and human-scale comparison all land as described. The one word that undersells its own result is \"faint\": the carved face isn't a subtle hint buried in bark, it's a fully legible skull with two glowing red-orange eyes sitting right above the chest crack — the single most eye-catching detail in the frame, not a background texture.",
           "prompt": "A colossal ancient tree given a hulking humanoid silhouette — thick root-legs planted wide, gnarled bark skin split by glowing molten-orange cracks across its chest, branches heavy with pink cherry blossoms, a faint carved face buried in its trunk. Towering scale against a small human figure below. Cinematic realism, volumetric god-rays through blossom petals, dust and pollen drifting in the air, epic AAA game-trailer lighting.",
           "result_image": "/ui_views/assets/evidence/cherry-blossom-boss-cinematic/step-1.webp",
           "result_label": "Frame from the final render · 0:01",
-          "result_caption": "The boss silhouette in full. Read it against the trees — it is not borrowed from any franchise.",
+          "result_caption": "The boss silhouette in full — including a carved face with two glowing eyes that reads far more \"faint\" in the prompt than it does on screen.",
           "result_source": "final"
         },
         {
-          "title": "2. Block the shot like a director, not a slideshow",
-          "text": "One continuous 15-second beat, not three cuts: open low and wide on the boss to sell scale, hold on the lone armored swordsman squaring up beneath it, then push into the exchange. Naming the camera behavior explicitly is what stops the model from defaulting to a static wide shot for the whole clip.",
+          "title": "2. Block the shot like a director, not a slideshow — \"no cuts\" is the one instruction it dropped",
+          "text": "The armor, foreground petals and warm backlight are all there, and the wide-to-close blocking idea is sound in principle. But \"no cuts\" and \"slow creeping push-in\" don't survive: at 2.875s the shot hard-cuts (scene-detect score 0.53, more than 5x the noise floor of the rest of the clip) straight from the wide establishing frame to an extreme close-up on the warrior's gloved hand gripping the sword hilt — a jump cut, not a push-in. It's a good cut, dramatically, but it's the exact thing this step's own prompt explicitly banned.",
           "prompt": "Cinematic single continuous shot, low wide-angle framing a giant tree-golem boss against cherry blossom trees and a misty stream, warrior in white lamellar armor with twin swords standing small in the foreground. Slow creeping push-in toward the confrontation, natural handheld micro-shake, warm late-afternoon backlight, shallow depth on foreground petals, 15 seconds, no cuts.",
           "result_video": "/ui_views/assets/evidence/cherry-blossom-boss-cinematic/step-2.mp4",
           "result_poster": "/ui_views/assets/evidence/cherry-blossom-boss-cinematic/step-2-poster.webp",
           "result_label": "Excerpt from the final render · 0:03–0:07",
-          "result_caption": "Blocking: the boss approaches, camera holds, hero enters. Directed as a scene, not a slideshow.",
+          "result_caption": "This excerpt starts just after the hard cut at 2.875s — the wide boss shot and this close-up on the hilt are two separate takes, not one continuous push-in.",
           "result_source": "final"
         },
         {
-          "title": "3. Give the impact one clear VFX signature",
-          "text": "A single golden energy arc on the sword slash is the whole payoff of the shot — it needs to read instantly against the dark bark, so keep every other light source warm and secondary. One bright, legible effect beats five competing particle systems.",
+          "title": "3. Give the impact one clear VFX signature — the effect held, the \"steady camera\" didn't",
+          "text": "The VFX instruction is the one clean win in this whole sequence: there's exactly one golden energy arc, it reads clearly against the dark bark, and it's the only bright accent in the frame — no competing particle systems. \"Camera holds steady through the impact\" is the part that doesn't match: sampled every second from 5s to 9s, each frame is a genuinely different composition — low silhouette, tight shoulder shot, wide sweeping arc, a completely different angle on the chest fissure — which reads as a rapid sequence of whip-pans and reframes, not a held shot. It's not a second hard cut by the numbers (every reading in that window stays under the 0.3 cut threshold), but it's the opposite of steady.",
           "prompt": "The warrior lunges and slashes upward with a katana, leaving one bright golden energy arc trailing the blade that cracks against the tree-golem's molten chest fissure, sparks and bark fragments scattering, camera holds steady through the impact, cherry blossom petals knocked loose drifting past frame, warm rim light, no text, no logos.",
           "result_image": "/ui_views/assets/evidence/cherry-blossom-boss-cinematic/step-3.webp",
           "result_label": "Frame from the final render · 0:07",
-          "result_caption": "The impact signature — one golden arc. Every hit in the piece uses this and only this.",
+          "result_caption": "The impact signature is genuinely one clean golden arc. The camera around it, though, reframes completely from one second to the next rather than holding steady.",
           "result_source": "final"
         },
         {
@@ -1498,7 +1498,7 @@
           "result_video": "/ui_views/assets/cherry-blossom-boss-cinematic/left_gpt56sol.mp4"
         }
       ],
-      "result": "A 15-second AAA-style boss-reveal cinematic — one creature design, one directed camera move, one clean VFX hit, no cuts needed to sell the scale.",
+      "result": "A striking boss design and a genuinely clean single VFX signature carry the piece. \"One directed camera move\" and \"no cuts\" oversell it, though: there's one real hard cut at 2.875s (wide shot straight to a hilt close-up) and the impact sequence at 5–9s is a rapid string of whip-pans and reframes rather than a held shot — closer to a fast-cut trailer than the single continuous take the brief called for.",
       "poster": "/ui_views/assets/poster-cherry-blossom-boss-cinematic.webp"
     },
     {
@@ -1634,8 +1634,8 @@
       "id": "rolex-4k-before-after-upscale",
       "cat": "Video",
       "sub": "Before/After",
-      "title": "Upscale real product footage to true 4K",
-      "desc": "Turn a soft handheld watch shoot into a crisp 4K before/after with one Topaz pass.",
+      "title": "Upscale real product footage — but check what resolution you actually shipped",
+      "desc": "Turn a soft handheld watch shoot into a crisp before/after with one Topaz pass. The delivered master measures 1920×1080 — sharper, not 4K, despite the on-screen \"AFTER 4K\" label.",
       "time": "4 min",
       "date": "2026-07-17",
       "level": "Junior",
@@ -1652,23 +1652,23 @@
           "result_source": "final"
         },
         {
-          "title": "Keep the upscale factor and noise conservative",
-          "text": "For footage that's already reasonably sharp, 2x beats 4x — pushing harder just amplifies grain instead of adding real detail. Keep noise and compression in the 0.1-0.3 range so the case metal and dial texture stay crisp.",
+          "title": "Keep the upscale factor and noise conservative — and do the math on where it lands you",
+          "text": "For footage that's already reasonably sharp, 2x beats 4x — pushing harder just amplifies grain instead of adding real detail. Keep noise and compression in the 0.1-0.3 range so the case metal and dial texture stay crisp. What this doesn't mention: a 2x factor only reaches true 4K (3840×2160) if your source is already 1920×1080. This render's final master is 1920×1080 total, split into two side-by-side halves — meaning the source going into this pass was well under 1080p, and 2x lands the output around standard HD, not 4K. The on-screen \"AFTER 4K\" label baked into every frame overstates the actual output by one full resolution tier.",
           "prompt": "UTILITY: topaz\nVIDEO-INPUT: rolex-source.mp4\nMODEL: Proteus\nUPSCALE_FACTOR: 2\nNOISE: 0.2\nCOMPRESSION: 0.2\nH264_OUTPUT: true",
           "result_video": "/ui_views/assets/evidence/rolex-4k-before-after-upscale/step-2.mp4",
           "result_poster": "/ui_views/assets/evidence/rolex-4k-before-after-upscale/step-2-poster.webp",
           "result_label": "Excerpt from the final render · 0:05–0:09",
-          "result_caption": "Beach shot. Grain is still there after the upscale — the conservative noise setting from this step.",
+          "result_caption": "Beach shot, cropped straight from the delivered master — which measures 1920×1080 despite the \"AFTER 4K\" caption printed on it.",
           "result_source": "final"
         },
         {
           "title": "Render and cut the before/after",
-          "text": "Run the pass, then cut between the original and the upscaled clip on the same shot so the sharpness gain is obvious at a glance, not just claimed in a caption. Play the clip above to see the result.",
+          "text": "Run the pass, then cut between the original and the upscaled clip on the same shot so the sharpness gain is obvious at a glance, not just claimed in a caption. That's the right instinct — which is exactly why it's worth noticing the on-screen caption in this render says something the pixels don't back up: \"AFTER 4K\" is printed on every frame of a video that measures 1920×1080 end to end. Play the clip above and judge the sharpness gain on its own; don't take the caption's resolution claim at face value.",
           "prompt": "",
           "result_video": "/ui_views/assets/rolex-4k-before-after-upscale/rolex-before-after-final.mp4"
         }
       ],
-      "result": "A real handheld watch shoot turned into a crisp, true-4K before/after comparison — one Topaz pass, no reshoot needed.",
+      "result": "The sharpness gain from before to after is real and visible. The \"4K\" part of the pitch isn't: the delivered master is 1920×1080, and the \"AFTER 4K\" caption baked into the video overstates the output by one full resolution tier. Judge this as a solid HD upscale, not a 4K delivery.",
       "poster": "/ui_views/assets/poster-rolex-4k-before-after-upscale.webp"
     },
     {
@@ -1703,16 +1703,16 @@
           "result_source": "final"
         },
         {
-          "title": "Generate and keep the cleanest pass",
-          "text": "Run it and pick the take where the steam reads as heat, not fog, and the crease actually disappears on camera — that's the shot that sells the fake product. Press play above to see the result.",
+          "title": "Generate and keep the cleanest pass — check both sleeves, not just the one the drone worked",
+          "text": "Steam reads as heat, not fog, and the near sleeve — the one the drone actually glides across — genuinely goes from crumpled to smooth by 5-6s. But the far sleeve (screen-left, on the side the drone never visits) is still visibly crumpled at 9.8s, one frame from the end of a 10.05s clip. \"Crumpled — to flawless\" is only true for half the shirt; the take that got kept has an un-ironed sleeve sitting right next to the perfectly pressed one it's supposed to demonstrate.",
           "prompt": "",
           "result_image": "/ui_views/assets/evidence/irondrone-flying-ironer/step-3.webp",
           "result_label": "Frame from the final render · 0:08",
-          "result_caption": "The cleanest pass: crumpled to flat with no seam artefacts. This is the take that was kept.",
+          "result_caption": "The near sleeve is smooth, but look at the far sleeve on the left — still crumpled here and still crumpled one frame before the clip ends.",
           "result_source": "final"
         }
       ],
-      "result": "A 10-second concept ad for a product that doesn't exist yet — proof that a strong enough \"what if\" beats a real product shoot.",
+      "result": "The strongest parts of this render are the parts nobody usually checks: all five on-screen captions match the prompt's exact wording, order and bottom-center placement, and the near sleeve genuinely goes from crumpled to smooth. The one miss is the payoff itself — the far sleeve is still visibly crumpled one frame before the clip ends, so \"crumpled to flawless\" only describes half the shirt.",
       "poster": "/ui_views/assets/poster-irondrone-flying-ironer.webp"
     },
     {
