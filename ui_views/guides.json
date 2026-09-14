@@ -283,12 +283,21 @@
         },
         {
           "title": "8. Throne room — victory lap",
-          "text": "Same hunter, same light as step 01 — plus an empty plaque that blocks fake text. Key move — asking for an empty plaque \"(no text inside it)\" pre-empts the model's favourite failure: inventing letters. Name the shape, then forbid its contents in the same breath.",
+          "text": "Ask for a banner shape and the model will fill it with invented letters unless you stop it in the same sentence. Key move — \"an ornate empty stone banner/plaque shape low in frame (no text inside it)\" names the shape and forbids its contents in one breath. It holds: there is no readable lettering anywhere in the eight images, plaque included.",
           "prompt": "A wide 16-bit pixel-art RPG victory scene in the style of classic Castlevania games. A vampire hunter stands triumphant on the steps of a grand throne room, holding a glowing ornate relic/artifact high above his head, coiled whip at his belt, one boot resting on a fallen bat-winged gargoyle statue fragment. Tall stained-glass windows behind him flood the hall with moonlight; a soft shower of pixel dust and golden light motes drifts down from above.\nStyle: classic Castlevania pixel art, chunky readable pixels, gothic throne room architecture, dithered shading, dramatic hero silhouette pose.\nLighting: warm golden light rays bursting from the raised relic, cool blue moonlight through stained glass, deep purple-black shadows in the corners.\nComposition: wide banner, hunter centered on a raised stone dais, an ornate empty stone banner/plaque shape low in frame (no text inside it).\nConstraints: no readable paragraph text anywhere, no logos, no watermark, no brand marks.",
           "result_image": "/ui_views/assets/castlevania-prompt-breakdown/08-throne-room.webp"
+        },
+        {
+          "title": "9. What the style block does not lock",
+          "text": "The world held across all eight images and the hunter did not. He leaves image 01 in a tattered dark-blue coat with short hair; by image 04 the coat is black with crimson lining, a long red cape has appeared that no prompt asked for, and the hair is past his shoulders. Look at the prompts above and the cause is obvious: the Style, Lighting, Composition and Constraints block was pasted into all eight word-for-word — the sentence describing the man was rewritten every time. A style block locks the architecture, the palette and the pixel size. It does not lock the cast. If the same character has to appear in every frame, treat his description as part of the style block and copy it verbatim, or feed image 01 back in as a reference and generate the rest from it.",
+          "prompt": "",
+          "result_image": "/ui_views/assets/evidence/castlevania-pixel-art-prompt-breakdown/step-9.webp",
+          "result_label": "Two images from the final pack · 01 castle gate and 04 equip altar",
+          "result_caption": "Same series, same style block, same hunter on paper. Dark-blue coat and short hair on the left; black-and-crimson coat, full red cape and long hair on the right.",
+          "result_source": "final"
         }
       ],
-      "result": "An eight-image RPG asset pack in a locked Castlevania style, plus the prompt anatomy behind it: how to render a list, a setting, a metaphor, a do/don't, a workflow and an error state without ever asking the model to write text.",
+      "result": "An eight-image RPG asset pack in a locked Castlevania style, plus the prompt anatomy behind it: how to render a list, a setting, a metaphor, a do/don't, a workflow and an error state without ever asking the model to write text — and one honest failure, a hero who changes clothes between frames because the style block never described him.",
       "downloads": [
         {
           "label": "Download the 8-slide prompt breakdown (PDF)",
@@ -300,8 +309,8 @@
       "id": "winter-ops-fps-industrial",
       "cat": "Gamedev",
       "sub": "FPS Concept",
-      "title": "Winter ops: bunker to container yard — a 40-second FPS continuation",
-      "desc": "One first-person route, no cuts that feel like a model switch: a smoke-filled bunker, a wet concrete corridor, then out into a snow-covered container yard with a forklift and a distant watchtower — rifle fixed in frame the whole way.",
+      "title": "Winter ops: a 41-second FPS route that holds the world and loses the gun",
+      "desc": "One first-person route through five spaces: a dusty bunker room, a pipe tunnel, a steel door into a wet container yard with a yellow forklift, a frosted ledge above the yard, and a hall with snow on the floor and a tracked vehicle. The world holds. The rifle does not — and that turns out to be the useful part.",
       "time": "14 min",
       "date": "2026-09-10",
       "level": "Middle+",
@@ -311,41 +320,41 @@
       "poster": "/ui_views/assets/showcase/winter-ops-fps-poster.webp",
       "steps": [
         {
-          "title": "Fix the weapon and the weather before the route",
-          "text": "Continuation breaks on two things: the gun morphs, or the sky changes. Lock both in one block and paste it at the top of every shot prompt. Snow is the weather here — it also hides seams, because everything is already desaturated.",
-          "prompt": "First-person shooter cinematic, photoreal, winter. Weapon fixed lower-right: modern carbine, black polymer, red-dot sight, foregrip, snow melting on the handguard. Weather: overcast, light snowfall, breath fog, flat grey light. Palette: concrete grey, rust orange, safety yellow, white snow.",
-          "result_image": "/ui_views/assets/evidence/winter-ops-fps-industrial/step-1.webp",
-          "result_label": "Frame from the final render · 0:17",
-          "result_caption": "Same rifle, same snow, three shots apart — the weapon and weather were locked before any route was written.",
+          "title": "Write the route as doors, not as shots",
+          "text": "Continuation holds when every space has a physical exit into the next one. Do not list five scenes — list one walk. The strongest link in this render is a steel door: the tunnel ends at it, the yard starts behind it, and the light change does the work an edit would normally do.",
+          "prompt": "First-person shooter cinematic, photoreal, overcast winter. One continuous walk: (1) dusty bunker room, light shaft through a broken window. (2) Down into a utility tunnel — pipe runs overhead, fluorescent strips, standing water. (3) Reach a steel door with a fire extinguisher beside it, push through into grey daylight. (4) A container yard: stacked shipping containers, a yellow forklift, wet asphalt, fog on the treeline.",
+          "result_video": "/ui_views/assets/evidence/winter-ops-fps-industrial/step-1.mp4",
+          "result_poster": "/ui_views/assets/evidence/winter-ops-fps-industrial/step-1-poster.webp",
+          "result_label": "Excerpt from the final render · 0:13–0:17",
+          "result_caption": "Tunnel, steel door, container yard in four seconds with no cut. The door swings outward and the camera never stops — the grey wall box beside the extinguisher is still on the left as the yard comes in.",
           "result_source": "final"
         },
         {
-          "title": "Chain rooms, not shots",
-          "text": "Ask for a route through connected spaces — the model keeps geometry consistent when each shot exits where the previous one ended. Interior → threshold → exterior is the strongest chain because the light change reads as progress, not as an edit.",
-          "prompt": "Route, same weapon and weather block: (1) advance through a smoke-filled bunker room, dust in a light shaft. (2) Long wet concrete corridor, fluorescent strips, puddles. (3) Push through a steel door into daylight — snow-covered container yard, stacked shipping containers, a yellow forklift. (4) Sweep the yard, aim down sight toward a watchtower on the treeline. (5) Enter a warehouse: pallets, cable drums, a tracked vehicle under a skylight.",
-          "result_video": "/ui_views/assets/evidence/winter-ops-fps-industrial/step-2.mp4",
-          "result_poster": "/ui_views/assets/evidence/winter-ops-fps-industrial/step-2-poster.webp",
-          "result_label": "Excerpt from the final render · 0:06–0:10",
-          "result_caption": "Tunnel into corridor in one continuous pass. Rooms chain; there is no cut to hide behind.",
+          "title": "Expect the weapon to drift, and plan the cut list around it",
+          "text": "The world survived the extension. The rifle did not: it leaves the bunker as a black carbine with a red-dot sight and arrives in the last room as an olive rifle with a different body and optic. No prompt wording fixed this. What works is editorial — keep the weapon out of frame across the joins, or cut on a reload, which is exactly what happens at 0:13 here.",
+          "prompt": "",
+          "result_image": "/ui_views/assets/evidence/winter-ops-fps-industrial/step-2.webp",
+          "result_label": "Two frames from the final render · 0:06 and 0:36",
+          "result_caption": "Same route, thirty seconds apart. Black polymer carbine with a red-dot on the left; olive rifle, different receiver and optic, on the right.",
           "result_source": "final"
         },
         {
-          "title": "Extend from the last frame, then upscale once",
-          "text": "Generate the first 15 seconds, then feed the final frame back as the start image for the next segment — the source clip is literally named segment_01_continuation. Upscale the stitched master to 2K, deliver 1080p under 12 MB. Play the clip above.",
+          "title": "Extend from the last frame, upscale once",
+          "text": "Each segment starts from the previous segment's final frame — the source file for this piece is named segment_01_continuation. The stitched master is 2560×1440, 184 MB; the page serves a 1080p H.264 cut instead. One note on the yard while you watch: it is wet asphalt and fog, not snow. Snow only turns up later, on the ledge above the containers and on the floor of the final hall.",
           "prompt": "",
           "result_video": "/ui_views/assets/showcase/winter-ops-fps.mp4",
           "result_poster": "/ui_views/assets/showcase/winter-ops-fps-poster.webp"
         }
       ],
-      "result": "A 40-second first-person sequence that holds one weapon, one weather and one location across four rooms — the \"continuation\" test most video models fail at 15 seconds.",
+      "result": "A 41-second first-person walk that keeps its geometry, its route and its grey winter light across five spaces — and loses the rifle twice along the way. Both halves of that are in the clip.",
       "trending": true
     },
     {
       "id": "anime-caramel-pudding-recipe",
       "cat": "Video",
       "sub": "Anime Recipe",
-      "title": "Anime caramel pudding: a recipe in eight cuts",
-      "desc": "Caramel swirling in a pan, eggs whisked, custard strained, the tin in the oven, the flip onto the plate — a 15-second anime cooking sequence that ends on a purple-haired girl with headphones taking the first spoonful.",
+      "title": "Anime caramel pudding: a recipe told in ten shots",
+      "desc": "Sugar melting in a pan, caramel into the tin, eggs whisked, custard through a sieve, the tin on the oven rack, the unmoulding, the spoon going in — ten shots in fifteen seconds, and only in the last two does a lavender-haired girl in red headphones get to taste it.",
       "time": "8 min",
       "date": "2026-09-10",
       "level": "Junior",
@@ -357,39 +366,39 @@
         {
           "title": "Write the recipe as the shot list",
           "text": "Food anime works because the process is the plot. Do not describe \"a cooking scene\" — list the actual steps of a caramel pudding in order and give each one a close-up. The model cannot invent a recipe, but it can illustrate one.",
-          "prompt": "Anime cooking sequence, clean cel-shaded 2D style, soft kitchen light, warm palette. Close-ups in order: (1) caramel swirling in a dark pan, amber to deep brown. (2) eggs and sugar whisked in a glass bowl. (3) custard poured through a fine sieve into a tin. (4) tin on the oven rack, door closing, orange glow. (5) top of the pudding turning golden. (6) tin flipped onto a white plate, caramel flooding down the sides. (7) spoon pressing the wobble.",
+          "prompt": "Anime cooking sequence, clean cel-shaded 2D style, soft kitchen light, warm palette. Close-ups in recipe order: (1) white sugar melting in a dark pan over a blue gas flame, one amber patch spreading. (2) the finished caramel poured into a round metal tin. (3) egg yolks and sugar whisked in a glass bowl. (4) custard strained through a fine mesh sieve into a second glass bowl. (5) custard poured into the tin on top of the set caramel. (6) the tin on an oven rack, element glowing orange. (7) hands lifting the tin away to unmould, caramel flooding down the sides onto a white plate. (8) a spoon pressing into the wobble, caramel pooling.",
           "result_video": "/ui_views/assets/evidence/anime-caramel-pudding-recipe/step-1.mp4",
           "result_poster": "/ui_views/assets/evidence/anime-caramel-pudding-recipe/step-1-poster.webp",
           "result_label": "Excerpt from the final render · 0:00–0:04",
-          "result_caption": "Caramel → pour → whisk: the shot list is literally the recipe order.",
+          "result_caption": "Three shots in four seconds — sugar melting, caramel into the tin, yolks whisked. Cuts land at 0:01.4 and 0:02.4, exactly where the recipe moves on.",
           "result_source": "final"
         },
         {
           "title": "Reveal the character last",
-          "text": "Keep hands only for the first six cuts. The face at the end is the payoff — describe her once, precisely, so the final shot lands as a character and not as a generic anime girl.",
+          "text": "Six shots of hands and food, then let her in gradually: at 0:09 you get a torso in a white shirt lifting the tin, and only at 0:13 a face. Describe her once, precisely, and reuse that sentence verbatim — otherwise the last shot arrives as a generic anime girl and the whole sequence reads as stock.",
           "prompt": "Final shot: a young woman with long lavender hair and red over-ear headphones, white shirt, eyes closed in delight, tasting a spoonful of caramel pudding in a bright kitchen with a window and hanging utensils. Same cel-shaded style, same kitchen.",
           "result_image": "/ui_views/assets/evidence/anime-caramel-pudding-recipe/step-2.webp",
           "result_label": "Frame from the final render · 0:13",
-          "result_caption": "The character appears only in the last second. Everything before is hands and food.",
+          "result_caption": "Her face gets 1.8 seconds of a 15-second clip. Lavender hair, red over-ear headphones, white shirt — same kitchen, same window, same hanging utensils as the shots before it.",
           "result_source": "final"
         },
         {
           "title": "Upscale the master, deliver 1080p",
-          "text": "The source was rendered at 4K HEVC; flat-shaded anime compresses extremely well, so 1080p H.264 comes in far under the 12 MB cap with zero visible loss. Play the clip above.",
+          "text": "The master is 3840×2160 HEVC, 91 MB. Flat cel shading is mostly large areas of one colour, so it compresses far harder than live action: the 1080p H.264 version on this page is 4.6 MB at 24 fps — about one twentieth the size. Grain-heavy footage never does that. Play the clip above.",
           "prompt": "",
           "result_video": "/ui_views/assets/showcase/anime-caramel-pudding.mp4",
           "result_poster": "/ui_views/assets/showcase/anime-caramel-pudding-poster.webp"
         }
       ],
-      "result": "A 15-second anime food clip with a real recipe order, consistent kitchen and one character reveal — the format that gets saved, not scrolled.",
+      "result": "A 15-second cel-shaded clip that follows a real caramel-pudding method in the right order — caramel first, custard strained before it goes in, unmould after baking — in one kitchen, ending on a face you only meet at 0:13.",
       "trending": true
     },
     {
       "id": "fauxreal-gaussian-splat-loop",
       "cat": "Motion Design",
       "sub": "3D Scan Loop",
-      "title": "Faux-real: a 10-second Gaussian-splat loop, four scans",
-      "desc": "Four photogrammetry scans in a raw 3D viewport — a girl at a phone booth, a kitchen with a dirt bike, a supermarket aisle from a shopping cart, a fridge — orbited and cut into one square loop that shows the scan falling apart at the edges on purpose.",
+      "title": "Faux-real: four scans, one 10-second loop, not a single cut",
+      "desc": "Four Gaussian-splat scans in a raw viewport — a girl at a green payphone, a kitchen with a dirt bike parked in it, a supermarket aisle, a girl kneeling at an open fridge. They are joined by collapsing each scan into a ball of points and rebuilding the next one out of it, so a scene-detector finds zero cuts in the whole clip.",
       "time": "10 min",
       "date": "2026-09-10",
       "level": "Middle",
@@ -399,40 +408,40 @@
       "poster": "/ui_views/assets/showcase/fauxreal-splat-loop-poster.webp",
       "steps": [
         {
-          "title": "Scan with the edges in mind",
-          "text": "Gaussian splats look best when the subject is dense and the periphery dissolves into cloud. Shoot each scene tight — one person, one object cluster — and stop walking before the room ends. The ragged edge is what makes it look \"faux real\".",
+          "title": "Leave the capture UI switched on",
+          "text": "Every scan here floats on flat grey as an island with a crumbling edge — shoot tight, one person and one object cluster, and stop walking before the room ends. Then resist cleaning up the viewport. The dashed bounding box, the white corner handles, the green pose skeleton, the dotted face-landmark mask and three or four stray mouse cursors are what sell this as captured data rather than a render. Remove them and it is just a grainy photo.",
           "prompt": "",
           "result_image": "/ui_views/assets/evidence/fauxreal-gaussian-splat-loop/step-1.webp",
           "result_label": "Frame from the final render · 0:00",
-          "result_caption": "Edges are ragged on purpose — the scan was framed so the splat falls apart where nobody looks.",
+          "result_caption": "One slab of pavement, a green payphone, a bollard, a girl on the handset — and over it the bounding box, the skeleton, the face dots and four cursors nobody bothered to move.",
           "result_source": "final"
         },
         {
-          "title": "Orbit, do not fly",
-          "text": "In the viewport, one slow orbit per scan, gizmo and bounding box left visible. The UI chrome tells the viewer this is a real 3D object, which is the entire point of the clip.",
+          "title": "Change scene by collapsing the cloud, never by cutting",
+          "text": "Each scan holds still for a slow orbit, then blows apart: the points rush the camera, gather into a rough sphere, and unfold into the next location. Nothing else in the clip moves fast. Run a scene-detector over the final file and it reports zero cuts across ten seconds — the transitions are inside the geometry, so there is no frame where two images sit next to each other.",
           "prompt": "",
           "result_video": "/ui_views/assets/evidence/fauxreal-gaussian-splat-loop/step-2.mp4",
           "result_poster": "/ui_views/assets/evidence/fauxreal-gaussian-splat-loop/step-2-poster.webp",
-          "result_label": "Excerpt from the final render · 0:06–0:10",
-          "result_caption": "The camera orbits the fridge and drifts to the booth. No fly-through, no vertical move — that is what keeps the splat solid.",
+          "result_label": "Excerpt from the final render · 0:01–0:05",
+          "result_caption": "Payphone collapses to a ball of points at 0:02, the kitchen builds itself out of the same points by 0:02.5, orbits for a second, then blows apart again into the supermarket aisle.",
           "result_source": "final"
         },
         {
-          "title": "Cut square, loop hard",
-          "text": "Four scans, 2.5 seconds each, hard cuts, first and last frame from the same scan so it loops. Capture at 1440×1440, deliver at 1080×1080 H.264. Play the clip above.",
+          "title": "Land back on the first scan",
+          "text": "Close the loop on the scene you opened with: the payphone island at 0:09.9 sits at almost the same camera angle as 0:00, so the restart is invisible. Note the supermarket breaks the pattern deliberately — the camera is inside that scan rather than orbiting an island, which is what stops four floating dioramas from feeling like a template. Master 1440×1440, delivered 1080×1080 H.264, 5.4 MB, 24 fps.",
           "prompt": "",
           "result_video": "/ui_views/assets/showcase/fauxreal-splat-loop.mp4",
           "result_poster": "/ui_views/assets/showcase/fauxreal-splat-loop-poster.webp"
         }
       ],
-      "result": "A square 10-second loop where the splat noise at the boundaries is the aesthetic, not the flaw — ready for a profile header or a reel bumper."
+      "result": "A 1080×1080 loop, 10.1 seconds, four scans, zero cuts — the point noise at every boundary is the transition mechanism rather than an artefact to clean up."
     },
     {
       "id": "graphics-lab-render-library",
       "cat": "Gamedev",
       "sub": "Procedural Rendering",
-      "title": "Graphics Lab: 37 procedural render scenes from one agent skill set",
-      "desc": "A screen walk through a local \"Render Library\": snow accumulation, wet-puddle rain, raytraced diamond, spectral glass, a procedural F1 car, planet surfaces, aurora — 37 WebGL scenes grouped by technique, every one written by the graphics agent.",
+      "title": "Graphics Lab: 37 shader scenes that report their own physics",
+      "desc": "A screen walk through a Render Library running on 127.0.0.1:4180 — snow accumulation, wet-puddle rain, a raytraced diamond, spectral glass, a procedural F1 car, planet surfaces, aurora. The header counts 37 scenes; the status bar under each one prints the grating pitch and diffraction orders it is actually solving.",
       "time": "20 min",
       "date": "2026-09-10",
       "level": "Senior",
@@ -443,40 +452,40 @@
       "steps": [
         {
           "title": "Give the agent a taxonomy, not a wish list",
-          "text": "The library has categories because the brief had categories. \"Precipitation surfaces\", \"procedural materials\", \"procedural geometry\" — each is a skill the agent can be tested on. Without the taxonomy you get 37 random demos; with it you get a curriculum.",
+          "text": "The library has categories because the brief had categories. Ask for named groups and the app builds a rail with a count against each one — Precipitation Surfaces 2, Procedural Architecture 1, Procedural Geometry 5, Procedural Materials 5, Procedural Planets 1, Procedural Vegetation 5, and more below the fold. Those counts are the point: 37 scenes in a flat list is a dump, 37 scenes with a 1 next to Architecture tells you exactly which skill is untested.",
           "prompt": "Build a local Render Library web app (Three.js). Left rail: scene groups — Precipitation Surfaces, Procedural Architecture, Procedural Geometry, Procedural Materials, Procedural Planets, Procedural Vegetation. Main grid: one live WebGL card per scene with title and OPEN. Header: search \"find a system, effect or technique\", Rescan, Overview. Dark UI, Quadcode palette.",
           "result_image": "/ui_views/assets/evidence/graphics-lab-render-library/step-1.webp",
           "result_label": "Frame from the final render · 0:20",
-          "result_caption": "The library grid. Categories on the left are the taxonomy from the brief — the agent filed every render into one.",
+          "result_caption": "37 SCENES and ENGINE READY in the rail header; the search box still carries the placeholder from the brief, \"find a system, effect or technique…\". Every card is a live WebGL view with an OPEN link, not a thumbnail.",
           "result_source": "final"
         },
         {
-          "title": "One scene, one technique, one file",
-          "text": "Every card is a single self-contained scene file that demonstrates exactly one thing — snow accumulation, parallax occlusion, dispersion. That isolation is what makes the library rescannable and what lets a failure be traced to a skill.",
-          "prompt": "Add scenes: Snow Accumulation (height-based snow on a wrecked car), Wet Puddle Rain (ripples + reflections on a disc), Atmosphere and Aerial Perspective, Silhouette Relief POM (parallax-occlusion sci-fi corridor), Raytraced Diamond, Spectral Dispersive Glass, Lava Flow Surface, Hybrid PBR Soil & Moss, Formula One Race Car, Sport Motorcycle, Procedural Financial Tower, Procedural Planet Surface. Each in its own module, auto-discovered by Rescan.",
+          "title": "Make each scene print the physics it is solving",
+          "text": "A demo that only looks right is untestable. Ask for a status bar that exposes the actual model parameters, not just frame rate. Open the diffraction grating and the bar reads FPS 17 · DRAWS 566 · TRIANGLES 21 · PITCHNM · STRIPSAMPLES 21 · ORDERS 1–3 at 1280 × 720 — grating pitch in nanometres and the diffraction orders being summed. That line is the difference between a rainbow texture and a rainbow that is being computed, and it is what turns the library into a regression suite you can read at a glance.",
+          "prompt": "Every scene opens in a viewer with: a resolution selector (1280×720 up to full frame), Pause, Reload, Capture, Full Frame. Fixed status bar along the bottom: READY state, FPS, DRAWS, TRIANGLES, then the scene's own physical parameters — for Physical Diffraction Grating expose grating pitch in nm, strip samples and diffraction orders. Print the render resolution at the right end.",
           "result_video": "/ui_views/assets/evidence/graphics-lab-render-library/step-2.mp4",
           "result_poster": "/ui_views/assets/evidence/graphics-lab-render-library/step-2-poster.webp",
-          "result_label": "Excerpt from the final render · 0:13–0:17",
-          "result_caption": "One scene, one technique: rain on a puddle, nothing else in frame. Each tile in the library is this focused.",
+          "result_label": "Excerpt from the final render · 0:30–0:34",
+          "result_caption": "A holographic card tilting under a diffraction shader. Watch the bottom bar, not the card: FPS, draw calls, grating pitch and orders 1–3 update as it turns.",
           "result_source": "final"
         },
         {
           "title": "Record the walkthrough at 30 fps",
-          "text": "Screen recordings come out at 60 fps; for a browsing demo 30 fps halves the bitrate with no visible cost and keeps the file under 12 MB. Play the clip above.",
+          "text": "Screen capture defaults to 60 fps, which is wasted on a clip that is mostly a static UI with one moving viewport. This walkthrough is 41 seconds at 1792×1080, 30 fps, 10.4 MB — half the bitrate, no visible cost, and it stays under the 12 MB budget. Note the honest number on screen while you watch: the diffraction scene runs at 17 fps. Play the clip above.",
           "prompt": "",
           "result_video": "/ui_views/assets/showcase/graphics-lab-render-library.mp4",
           "result_poster": "/ui_views/assets/showcase/graphics-lab-render-library-poster.webp"
         }
       ],
-      "result": "A browsable render library — 37 live scenes across precipitation, procedural geometry, PBR materials, planets and vegetation — that doubles as the regression suite for the agent's graphics skills.",
+      "result": "A browsable render library — 37 live WebGL scenes across precipitation, procedural geometry, PBR materials, planets and vegetation — where every scene reports its own frame rate, draw calls and physical parameters, so a broken skill shows up as a number rather than as a vibe.",
       "trending": true
     },
     {
       "id": "ps5-controller-configurator-page",
       "cat": "Website",
       "sub": "Product Configurator",
-      "title": "Custom controller store: a 3D product hero that swaps skins live",
-      "desc": "A PS5-controller landing page with a rotating 3D model in the hero — 007 First Light gold, Genshin Impact white-and-blue, God of War red — plus price, add-to-cart and a thumbnail rail that swaps the skin without a reload.",
+      "title": "Custom controller store: hide the skin swap inside a rotation",
+      "desc": "A PS5-controller landing page where the hero is a real 3D model — 007 First Light gold, Genshin Impact white-and-blue, God of War crimson. Arrows at the bottom change skin; the page turns the controller edge-on for a third of a second to do it, and re-themes the headline, copy, price panel, side cards and background tint in the same beat.",
       "time": "15 min",
       "date": "2026-09-10",
       "level": "Middle+",
@@ -486,41 +495,50 @@
       "poster": "/ui_views/assets/showcase/ps5-controller-configurator-poster.webp",
       "steps": [
         {
-          "title": "One mesh, many materials",
-          "text": "Do not generate three controllers. Load one controller GLB and swap material sets — base color, roughness, emissive — per skin. Load time stays flat and the transitions can be animated.",
-          "prompt": "Build a product landing page for custom PS5 controllers. Hero: full-viewport 3D controller (Three.js, GLB), slow auto-rotate, drag to orbit, soft studio lighting, floor reflection. Skins as material sets: \"007 First Light\" — brushed gold with black grips; \"Genshin Impact\" — pearl white with cyan glow accents; \"God of War\" — matte crimson with white face plate. Right column: skin name as headline, short line, price $79.99, Add to cart.",
-          "result_video": "/ui_views/assets/evidence/ps5-controller-configurator-page/step-1.mp4",
-          "result_poster": "/ui_views/assets/evidence/ps5-controller-configurator-page/step-1-poster.webp",
-          "result_label": "Excerpt from the final render · 0:03–0:07",
-          "result_caption": "Genshin → God of War skin swap. Watch the silhouette — one mesh, only the material changes.",
+          "title": "Re-theme the whole page, not just the model",
+          "text": "A configurator that only recolours the product looks like a demo. Specify the skin as a theme: headline, body copy, the colour of the Add to cart pill, the background tint, the trailer card in the corner and the two stacked cards of the other skins all change together. Keep the furniture identical — same nav, same $79.99, same battery and latency cards — so the eye reads one page in two states rather than two pages.",
+          "prompt": "Build a product landing page for custom PS5 controllers. Hero: full-viewport 3D controller (Three.js, GLB), slow auto-rotate, drag to orbit, soft studio lighting, floor reflection. Skins as material sets: \"007 First Light\" — brushed gold with black grips; \"Genshin Impact\" — pearl white with cyan glow accents; \"God of War\" — matte crimson with white face plate. Left column: eyebrow, skin name as a two-line headline, three lines of copy, Add to cart pill and $79.99. Right: the two other skins as stacked cards, nearest one larger. Bottom left: a trailer card with the skin name and a play button. Bottom right: two stat cards, 12 hr · Battery Life and 1 ms · Low Latency. Each skin is a theme — headline, copy, pill colour and background tint all change with it.",
+          "result_image": "/ui_views/assets/evidence/ps5-controller-configurator-page/step-1.webp",
+          "result_label": "Two frames from the final render · 0:03 and 0:08",
+          "result_caption": "Same layout, two skins. Headline, body copy, trailer card, background tint and the two side cards all swap; the nav, the $79.99 and the battery and latency cards stay put.",
           "result_source": "final"
         },
         {
-          "title": "Make the skin rail do the work",
-          "text": "A row of small controller thumbnails is the whole navigation. Clicking one crossfades the material set and updates the headline, copy and page tint. Keep the camera where the user left it.",
-          "prompt": "Below the price: horizontal thumbnail rail, one card per skin. On click: crossfade materials over 400 ms, headline and description update, background gradient shifts to the skin's accent color. Stats row: build time 12 hr, latency 1 ms, as small labels.",
-          "result_image": "/ui_views/assets/evidence/ps5-controller-configurator-page/step-2.webp",
-          "result_label": "Frame from the final render · 0:06",
-          "result_caption": "The skin rail on the right is the only control on the page. Everything else reacts to it.",
+          "title": "Turn the model edge-on to cover the swap",
+          "text": "Crossfading one controller into another shows you the crossfade. This page does something better: on the arrow press the UI fades out, the hero spins to edge-on — where it is a few pixels of silhouette and there is nothing left to see — and the new skin unfolds out of that rotation. The whole exchange takes about 0.6 s and there is no frame in which two controllers overlap.",
+          "prompt": "On next/previous: fade the text column, trailer card and stat cards to zero over ~200 ms while rotating the hero 90° to a side-on view. At the narrowest point switch the material set and the side cards, then rotate back and fade the new theme in. Total ~600 ms, eased, never linear.",
+          "result_video": "/ui_views/assets/evidence/ps5-controller-configurator-page/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/ps5-controller-configurator-page/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:04.6–0:08.6",
+          "result_caption": "Cursor hits the right arrow, the page empties, the controller narrows to a sliver at 0:05.7 — and comes back crimson as God of War.",
           "result_source": "final"
         },
         {
-          "title": "Capture at 60, deliver at 30",
-          "text": "Record the browser at native 60 fps for smooth orbit, then conform to 30 fps for the web deliverable. Play the clip above.",
+          "title": "Prove the model is real by showing its back",
+          "text": "Anyone can fake a product hero with three renders. One drag that carries the controller all the way round settles it — and it only works if the back is textured too. Here the orbit runs from 0:08 to 0:13 and passes through the rear shell, where the God of War omega sits between the grips. Record the browser at 60 fps for a smooth orbit and conform to 30 for delivery: this clip is 13.6 s at 1820×1080, 2.8 MB.",
+          "prompt": "",
+          "result_image": "/ui_views/assets/evidence/ps5-controller-configurator-page/step-3.webp",
+          "result_label": "Frame from the final render · 0:10.7",
+          "result_caption": "Mid-orbit, looking at the back of the controller: the omega mark, the grip seams and the rear shell are all modelled.",
+          "result_source": "final"
+        },
+        {
+          "title": "Watch the full clip",
+          "text": "Genshin state, arrow press, swap, then a full turn around the God of War shell. Play the clip above.",
           "prompt": "",
           "result_video": "/ui_views/assets/showcase/ps5-controller-configurator.mp4",
           "result_poster": "/ui_views/assets/showcase/ps5-controller-configurator-poster.webp"
         }
       ],
-      "result": "A shippable product-configurator hero: one GLB controller, three material sets, camera orbit, and a UI that reads like a real store page.",
+      "result": "A product-configurator hero where the skin change is hidden inside a 90° rotation and the whole page re-themes with it — and where one drag to the back of the shell proves there is a real model underneath, not three renders.",
       "trending": true
     },
     {
       "id": "seoul-arcade-minidv-tape",
       "cat": "Video",
       "sub": "Retro Camcorder",
-      "title": "Seoul arcade on MiniDV: a 15-second tape nobody meant to keep",
-      "desc": "A young woman pushes into a small neighborhood arcade, picks a fighting cabinet, wins a round, loses the next, and the tape cuts to black on a zoomed-in screen — shot as an early-2000s Sony MiniDV home video with all its faults left in.",
+      "title": "Seoul arcade on MiniDV: 14 seconds in one take, and no cut to black",
+      "desc": "A young woman pushes into a small neighbourhood arcade, drifts past the cabinets, sits down at a fighting machine and the tape runs out on a glowing screen. Written as an early-2000s Sony MiniDV home video with the faults kept in — and the faults are measurable: the auto-iris overshoots by 68% at the door, and a scene detector finds no hard cut anywhere in the first 14.3 seconds.",
       "time": "10 min",
       "date": "2026-09-10",
       "level": "Middle",
@@ -531,32 +549,35 @@
       "steps": [
         {
           "title": "Describe the camera as the main character",
-          "text": "What sells MiniDV is not the location — it is the mistakes. Name every artifact you want: late follow, overexposure at the door, autofocus hunting between screens and faces, tape-style cut to black. If you write \"cinematic\" anywhere, you lose.",
+          "text": "What sells MiniDV is not the location — it is the mistakes, and you have to name them one by one: late follow, auto-iris overshoot at the door, focus hunting between bright screens and faces, DV compression, mic distortion. It shows up in the signal, not just in the vibe: average luma runs 83 at the first frame, overshoots to 139 by 0:00.9 as the street light hits the sensor, and takes another 1.7 seconds to settle back to 94. Nobody graded that in — the prompt asked for exposure pumping and the render produced a real one. Write \"cinematic\" anywhere and you lose all of it.",
           "prompt": "Main Subject: Young Korean woman, 24, naturally attractive, realistic skin, minimal makeup, long blonde hair loosely tied back. Loose cream cardigan over a faded red T-shirt, relaxed blue jeans, white sneakers, thin silver necklace. Preserve her exact identity throughout. Location: small old-fashioned Seoul neighborhood arcade, early evening — dim fluorescent light, rows of aging cabinets, colorful screens, scratched floor, plastic stools, faded posters, coin machines, tangled cables, a few local teenagers in the background, warm street light through the entrance. Style: ultra-realistic early-2000s Sony MiniDV home video. Heavy handheld shake, awkward framing, autofocus hunting between bright screens and faces, exposure pumping, faded colors, soft contrast, DV compression, slight motion blur and microphone distortion. No stabilization, no modern cinematic movement.",
           "result_video": "/ui_views/assets/evidence/seoul-arcade-minidv-tape/step-1.mp4",
           "result_poster": "/ui_views/assets/evidence/seoul-arcade-minidv-tape/step-1-poster.webp",
           "result_label": "Excerpt from the final render · 0:00–0:04",
-          "result_caption": "The handheld wobble on entry. The camera operator is a character — that came from the prompt, not post.",
+          "result_caption": "Four seconds at the door. The frame blows out as she steps in and claws its way back — luma 83 → 139 → 94, all of it generated, none of it added afterwards.",
           "result_source": "final"
         },
         {
-          "title": "Give it a timeline with one human beat",
-          "text": "Fifteen seconds, five beats, timestamps in the prompt. The win-then-instant-loss at 00:09–00:12 is the moment — everything before it is setup, everything after is the tape running out.",
+          "title": "Write one beat where the camera stops moving",
+          "text": "Five timestamped beats, fifteen seconds — and the useful thing is what the model did with them. It did not cut five times; it delivered one unbroken take, and it varied the shake instead. Run a scene detector at a low threshold and it fires roughly every second frame while she is walking, then goes completely silent from 0:07.0 to 0:09.9 — the three seconds she is sat at the cabinet. That pause is the whole clip. Handheld footage that shakes uniformly for fifteen seconds reads as a filter; handheld footage that settles when the operator sits down reads as a person.",
           "prompt": "00:00–00:03: she pushes the arcade door and steps inside; the camera follows late, briefly overexposing from the bright street before adjusting. 00:03–00:06: she walks past machines deciding what to play; the camera wanders to other screens before finding her. 00:06–00:09: she sits at an old fighting-game cabinet and plays, competitive, leaning in, rapid button presses, camera shaking behind her. 00:09–00:12: she wins a round, small fist pump, proud grin to camera — then loses the next round instantly and bursts out laughing. 00:12–00:15: she stands and walks to another machine; the camera accidentally zooms tight onto a glowing screen, autofocus struggles against the pixels, and the recording cuts to black. Audio: arcade ambience only — buttons, joysticks, game sounds, coin mechanisms, fluorescent buzz, distant talk, footsteps, laughter. No music, no narration.",
-          "result_image": "/ui_views/assets/evidence/seoul-arcade-minidv-tape/step-2.webp",
-          "result_label": "Frame from the final render · 0:10",
-          "result_caption": "The one human beat: she turns to the lens after a win. The timeline was built around this second.",
+          "result_video": "/ui_views/assets/evidence/seoul-arcade-minidv-tape/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/seoul-arcade-minidv-tape/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:07–0:10",
+          "result_caption": "The quiet three seconds. She is at the cabinet, the operator has stopped walking, and this is the only stretch of the tape where the scene detector registers nothing at all.",
           "result_source": "final"
         },
         {
-          "title": "Watermark low, upscale once, leave the grain",
-          "text": "Brand mark bottom-center at 10% width, then a single 2× upscale. Do not denoise — the DV artifacts are the style. Play the clip above.",
+          "title": "Check the ending you asked for — this one did not arrive",
+          "text": "The prompt ends with \"the recording cuts to black\". It does not. Run a black-frame detector over the delivered file and it finds zero black segments: the last half-second flares instead, luma spiking to 173 as the lens swings onto a glowing cabinet, then dropping to 17 on the final two frames — dark, but never black. It happens to work, because a tape running out on a bright screen is more convincing than a clean fade. The lesson is the check, not the luck: verify the last beat of every render before you publish a claim about it. Then watermark bottom-centre at 10% width, upscale 2× once, and leave the grain alone — the DV artifacts are the style. Play the clip above.",
           "prompt": "",
-          "result_video": "/ui_views/assets/showcase/seoul-arcade-minidv.mp4",
-          "result_poster": "/ui_views/assets/showcase/seoul-arcade-minidv-poster.webp"
+          "result_image": "/ui_views/assets/evidence/seoul-arcade-minidv-tape/step-3.webp",
+          "result_label": "Frames from the final render · 0:14.85 and 0:15.00",
+          "result_caption": "The two frames the prompt called a cut to black: a blown-out flare at luma 173, then a dark-but-not-black final frame at 17. A black-frame detector finds nothing in the whole file.",
+          "result_source": "final"
         }
       ],
-      "result": "Fifteen seconds of believable found footage: handheld shake, autofocus hunting, exposure pumping, DV compression — and a real human beat in the middle."
+      "result": "15.07 seconds of believable found footage in a single take — measured exposure pumping at the door, three seconds of stillness at the cabinet, and an ending that ignored the instruction and came out better for it."
     },
     {
       "id": "rooftop-run-cel-shaded-trailer",
