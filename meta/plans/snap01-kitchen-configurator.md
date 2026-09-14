@@ -42,23 +42,29 @@ industrial).
   drafting-table cross-hatching — reused across every sheet for cohesion.
 
 ## Steps (8, mirrors NPC/01 step count/rhythm)
-1. [ ] Wireframe & form logic — room-size input form + live SVG floor-plan
+1. [x] Wireframe & form logic — room-size input form + live SVG floor-plan
    preview, blueprint annotation style. Text must argue WHY live preview
-   is mandatory (trust mechanism, not decoration).
-2. [ ] Interaction-pattern decision matrix — Grid-Snap vs Freeform vs Rigid
+   is mandatory (trust mechanism, not decoration). Asset verified v2 palette
+   at snap01/01-wireframe-form-logic.png (1920x1088).
+2. [x] Interaction-pattern decision matrix — Grid-Snap vs Freeform vs Rigid
    Presets scored on Trust / Speed / Error-rate / Build-cost (weighted).
-3. [ ] Identity render — flagship kitchen configuration, OAK/GRAPHITE/STEEL
+   Asset: snap01/02-interaction-matrix.png.
+3. [x] Identity render — flagship kitchen configuration, OAK/GRAPHITE/STEEL
    product material palette (distinct from the blueprint UI palette above).
-4. [ ] Module library orthographic sheet — 6 module types (base cabinet,
+   Asset: snap01/03-identity-render.png.
+4. [x] Module library orthographic sheet — 6 module types (base cabinet,
    wall cabinet, drawer stack, corner unit, island, appliance bay) with
-   locked dimensions.
-5. [ ] 3D mesh generation — GLB per module, production tris budget.
-6. [ ] Build the real configurator widget — hand-coded HTML/CSS/JS page,
-   screenshot of working state (this is code, not an AI image).
-7. [ ] Interactive 3D — live embed of the working widget directly in the
-   guide page (real drag/snap + orbit, not a passive viewer).
-8. [ ] Technical spec — BOM fields, per-module pricing formula, collision
-   rules (min clearance, corner logic).
+   locked dimensions. Asset: snap01/04-module-library.png.
+5. [x] 3D mesh generation — GLB per module, production tris budget.
+   Assets: snap01/05-*.glb (6) + posters, ui_views/assets/snap01-05-*.
+6. [x] Build the real configurator widget — hand-coded HTML/CSS/JS page.
+   Asset: ui_views/assets/snap01-configurator.html + snap01-06-configurator-widget.png.
+7. [x] Interactive 3D — live embed via widget_iframe in guides.json
+   (ui_views/assets/snap01-configurator.html).
+8. [x] Technical spec — BOM fields, per-module pricing formula, collision
+   rules. NEW sheet snap01/08-technical-spec.png replaces old BOM-panel
+   screenshot; copied to ui_views/assets/snap01-08-technical-spec.png and
+   guides.json step-8 result_image re-pointed (2026-07-23).
 
 ## Delegation rule
 All image/render generation for steps 1-5 → delegate to **Lumi** via
@@ -68,4 +74,7 @@ code — built directly, no image-gen tools.
 
 ## Current status
 - [x] Concept, naming, style guide locked
-- [ ] Step 1 asset generated (delegated to Lumi)
+- [x] Step 1 asset generated (delegated to Lumi) — verified v2 palette
+  (PAPER #F3EDE1-family / INK #2B3A55-family / SIGNAL #FF6B35 present),
+  header text + form fields + floor-plan + LIVE SYNC connector intact at
+  snap01/01-wireframe-form-logic.png (1920x1088)

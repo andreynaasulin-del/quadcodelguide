@@ -46,4 +46,8 @@ authored image guides. The 30 `iili.io` UI-series guides were ALSO dropped (PO c
 - [ ] Validate: unique IDs, every local path exists, no `21st-` IDs remain, landing.html renders.
 - [ ] Check category filters still make sense (some categories now near-empty, e.g. Interfaces=1).
 - [ ] Commit the purge + rollback snapshot.
-- [ ] Then: perf pass (image sizes/lazy for the 7 image guides + the video posters).
+- [x] Perf pass (commit 0483c5d): media standard + normalizer pipeline — see [#rules.media-format].
+  Images 179 MB → 11.6 MB (97 webp). Landing full load 596 KB. Museum guide 50 MB → <1 MB.
+  Hover-prefetch of all step images removed from landing.html. 15 self-URLs relativized.
+  3 missing mp4 restored; 3 over-budget videos re-encoded. `npm run media:check` = 0 errors.
+- [ ] Push to origin → Vercel redeploy (not done; PO to confirm).

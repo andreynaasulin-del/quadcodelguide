@@ -114,6 +114,22 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
     .topbar { background: rgba(14,14,20,.96); }
   }
+  /* Auto-hide: the bar slides away while you read down and returns the moment
+     you scroll back up. Same curve/timing as the quadcode.ai nav so the two
+     sites feel like one product. Driven by body.hdr-hidden (see initHeaderAutoHide). */
+  .topbar {
+    transform: translateY(0);
+    transition: transform .62s var(--ease-out), opacity .32s ease-out, filter .42s ease-out;
+    will-change: transform;
+  }
+  body.hdr-hidden .topbar {
+    transform: translateY(-100%); opacity: 0; filter: blur(3px);
+    pointer-events: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .topbar { transition: opacity .2s ease; }
+    body.hdr-hidden .topbar { transform: none; filter: none; }
+  }
   .topbar-right {
     display: flex; align-items: center; gap: 18px; flex: 0 0 auto;
   }
@@ -1464,6 +1480,53 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   .eq span:nth-child(3) { animation-delay: .34s; animation-duration: 1.06s; }
   .eq span:nth-child(4) { animation-delay: .11s; animation-duration: .83s; }
   @keyframes eq-bounce { 0%,100% { transform: scaleY(.28); } 50% { transform: scaleY(1); } }
+  /* equalizer only means something when audio is actually audible */
+  body:not(.sound-on) .eq { display: none; }
+
+  /* ---------- Sound pill: the ONE control that turns audio on ----------
+     Everything on the site starts muted. Hover previews, the guide cover and
+     step videos stay silent until the visitor taps this. State is site-wide
+     and remembered (localStorage), so it is a single decision, not a nag. */
+  .sound-pill {
+    position: absolute; z-index: 6;
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 7px 12px 7px 10px; border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.16);
+    background: rgba(11,13,21,.72);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    color: #fff; font-family: inherit; font-size: 12px; font-weight: 700; letter-spacing: .2px;
+    line-height: 1; cursor: pointer; white-space: nowrap;
+    box-shadow: 0 6px 18px -8px rgba(0,0,0,.6);
+    transition: opacity .22s ease, transform .3s var(--ease-out),
+                border-color .2s ease, background .2s ease, color .2s ease;
+  }
+  .sound-pill:hover { border-color: rgba(255,149,105,.55); background: rgba(11,13,21,.88); }
+  .sound-pill:active { transform: scale(.95) !important; }
+  .sound-pill .sp-ico {
+    width: 14px; height: 14px; flex: 0 0 14px; background: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M16.5 12A4.5 4.5 0 0014 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.8 8.8 0 0021 12a9 9 0 00-7-8.77v2.06A6.99 6.99 0 0119 12zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 003.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M16.5 12A4.5 4.5 0 0014 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.8 8.8 0 0021 12a9 9 0 00-7-8.77v2.06A6.99 6.99 0 0119 12zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.99 8.99 0 003.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
+  .sound-pill.on { color: var(--acc-1); border-color: rgba(255,149,105,.42); }
+  .sound-pill.on .sp-ico {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0014 7.97v8.05A4.5 4.5 0 0016.5 12zM14 3.23v2.06A7 7 0 0119 12a7 7 0 01-5 6.71v2.06A9 9 0 0021 12a9 9 0 00-7-8.77z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0014 7.97v8.05A4.5 4.5 0 0016.5 12zM14 3.23v2.06A7 7 0 0119 12a7 7 0 01-5 6.71v2.06A9 9 0 0021 12a9 9 0 00-7-8.77z'/%3E%3C/svg%3E");
+  }
+  /* cards: bottom-centre, rides in on hover (time badge owns bottom-left,
+     progress owns bottom-right) */
+  .card .sound-pill {
+    left: 50%; bottom: 10px;
+    opacity: 0; transform: translate(-50%, 8px); pointer-events: none;
+  }
+  .card:hover .sound-pill, .card.previewing .sound-pill, .card .sound-pill:focus-visible {
+    opacity: 1; transform: translate(-50%, 0); pointer-events: auto;
+  }
+  .card .sound-pill:active { transform: translate(-50%, 0) scale(.95) !important; }
+  /* guide cover: top-right, clear of the "Final result" badge and the native
+     controls strip along the bottom */
+  .m-cover-wrap .sound-pill { top: 12px; right: 12px; padding: 8px 14px 8px 11px; font-size: 12.5px; }
+  /* touch devices have no hover preview, so cards carry nothing to toggle */
+  @media (hover: none) { .card .sound-pill { display: none; } }
   .m-meta {
     display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px;
     margin: 12px 0 4px; padding-bottom: 14px; border-bottom: 1px solid var(--line);
@@ -1716,9 +1779,11 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     background: rgba(19,19,30,.82); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--line);
     transform: translateY(-100%); opacity: 0; pointer-events: none;
-    transition: transform .3s var(--ease-out), opacity .25s ease;
+    transition: transform .3s var(--ease-out), opacity .25s ease, top .62s var(--ease-out);
   }
   .guide-sticky.on { transform: none; opacity: 1; pointer-events: auto; }
+  /* when the main bar hides, the guide bar takes its slot at the very top */
+  body.hdr-hidden .guide-sticky { top: 0; }
   .gs-title {
     font-family: var(--font-display); font-size: 15px; font-weight: 600; letter-spacing: -.2px;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1 1 auto; min-width: 0;
@@ -3215,6 +3280,113 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       const p = _activePreview; _activePreview = null; p.stop();
     }
 
+    // ---- Sound policy ----
+    // Default: silent. Hover previews, the guide cover and step videos all start
+    // muted; one tap on a .sound-pill flips a site-wide switch that is remembered.
+    // Nothing on this site may produce audio without that tap.
+    const SOUND_KEY = 'qcg_sound';
+    let soundOn = false;
+    try { soundOn = localStorage.getItem(SOUND_KEY) === '1'; } catch (e) {}
+    document.body.classList.toggle('sound-on', soundOn);
+    function setSoundOn(on, src) {
+      soundOn = !!on;
+      try { localStorage.setItem(SOUND_KEY, soundOn ? '1' : '0'); } catch (e) {}
+      document.body.classList.toggle('sound-on', soundOn);
+      // every pill on the page reflects the one switch
+      document.querySelectorAll('.sound-pill').forEach(p => syncSoundPill(p, soundOn));
+      // media that is already on screen follows immediately
+      document.querySelectorAll('video.m-cover, .m-step-media video').forEach(v => { v.muted = !soundOn; });
+      const live = _activePreview && _activePreview.media;
+      if (live) {
+        if (soundOn) { live.muted = false; fadeVol(live, 1, 220); }
+        else fadeVol(live, 0, 160, () => { live.muted = true; });
+      }
+      track('sound_toggle', { on: soundOn, src: src || '' });
+    }
+    function syncSoundPill(btn, on) {
+      btn.classList.toggle('on', on);
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      btn.setAttribute('aria-label', on ? 'Mute' : 'Turn sound on');
+      const t = btn.querySelector('.sp-txt');
+      if (t) t.textContent = on ? 'Sound on' : 'Tap for sound';
+    }
+    function soundPillEl(onClick) {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'sound-pill';
+      b.innerHTML = '<span class="sp-ico" aria-hidden="true"></span><span class="sp-txt"></span>';
+      // the pill lives inside clickable cards: never let the tap bubble into "open guide"
+      b.addEventListener('click', e => { e.stopPropagation(); e.preventDefault(); onClick(e); });
+      b.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') e.stopPropagation(); });
+      syncSoundPill(b, soundOn);
+      return b;
+    }
+    // Guide cover: the pill mirrors THIS video's muted state (native controls can
+    // flip it too), and a tap moves the global switch along with it.
+    function bindCoverSound(v) {
+      const wrap = v.closest('.m-cover-wrap') || v.parentNode;
+      if (!wrap || wrap.querySelector('.sound-pill')) return;
+      const pill = soundPillEl(() => {
+        setSoundOn(v.muted, 'cover');
+        v.muted = !soundOn;
+        if (soundOn && v.paused) v.play().catch(() => {});
+      });
+      wrap.appendChild(pill);
+      const sync = () => syncSoundPill(pill, !v.muted);
+      v.addEventListener('volumechange', sync);
+      if (soundOn) {
+        // remembered "on": try to resume with sound; if the browser still wants a
+        // gesture on this page load, fall back to muted — the pill then says so.
+        v.muted = false;
+        const p = v.play();
+        if (p && p.catch) p.catch(() => { v.muted = true; v.play().catch(() => {}); });
+      }
+      sync();
+    }
+
+    // ---- Header auto-hide ----
+    // Hide after 24px of downward travel, show after 10px back up; always shown
+    // near the top; never hides while the mobile drawer is open. Scroll work is
+    // coalesced into one rAF tick so the handler never fights the compositor.
+    const HDR_HIDE_AFTER = 24, HDR_SHOW_AFTER = 10, HDR_MIN_Y = 90;
+    let hdrLastY = 0, hdrDown = 0, hdrUp = 0, hdrHidden = false, hdrRaf = 0;
+    let lastScrollTs = 0;   // also gates hover previews (see cardEl)
+    function setHeaderHidden(on) {
+      if (hdrHidden === on) return;
+      hdrHidden = on;
+      document.body.classList.toggle('hdr-hidden', on);
+    }
+    function showHeader() {
+      hdrDown = 0; hdrUp = 0;
+      hdrLastY = Math.max(0, window.scrollY);   // a route jump is not a scroll gesture
+      setHeaderHidden(false);
+    }
+    function headerScrollTick() {
+      hdrRaf = 0;
+      lastScrollTs = performance.now();
+      const y = Math.max(0, window.scrollY);
+      const dy = y - hdrLastY;
+      hdrLastY = y;
+      if (y < HDR_MIN_Y) { showHeader(); return; }
+      // iOS rubber-band past the bottom reports phantom "up" motion — ignore it
+      const maxY = document.documentElement.scrollHeight - window.innerHeight;
+      if (y > maxY - 2) return;
+      const navToggle = document.getElementById('navToggle');
+      if (navToggle && navToggle.getAttribute('aria-expanded') === 'true') { showHeader(); return; }
+      if (dy > 0) { hdrDown += dy; hdrUp = 0; if (hdrDown > HDR_HIDE_AFTER) setHeaderHidden(true); }
+      else if (dy < 0) { hdrUp -= dy; hdrDown = 0; if (hdrUp > HDR_SHOW_AFTER) setHeaderHidden(false); }
+    }
+    function initHeaderAutoHide() {
+      hdrLastY = Math.max(0, window.scrollY);
+      window.addEventListener('scroll', () => {
+        if (!hdrRaf) hdrRaf = requestAnimationFrame(headerScrollTick);
+      }, { passive: true });
+      // cursor parked on the top edge = reaching for the nav
+      document.addEventListener('mousemove', e => { if (hdrHidden && e.clientY <= 6) showHeader(); }, { passive: true });
+      // keyboard users tabbing into the bar must be able to see it
+      const bar = document.querySelector('.topbar');
+      if (bar) bar.addEventListener('focusin', showHeader);
+    }
+
     // ---- Reveal on scroll ----
     let revealObserver = null;
     function initRevealObserver() {
@@ -3549,40 +3721,61 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           const token = {};
           if (g.video) {
             const v = ensureVideoSrc(sound);
+            token.media = v;
             token.stop = () => {
               c.classList.remove('previewing');
               fadeVol(v, 0, 160, () => { v.pause(); v.currentTime = 0; v.muted = true; });
             };
             _activePreview = token;
-            v.muted = false; v.volume = 0;
-            const onOk = () => { if (_activePreview !== token) return; c.classList.add('previewing'); fadeVol(v, 1, 260); };
+            // silent unless the visitor has switched sound on; volume starts at 0 so
+            // a mid-preview switch fades in instead of slamming
+            v.muted = !soundOn; v.volume = 0;
+            const onOk = () => { if (_activePreview !== token) return; c.classList.add('previewing'); if (soundOn) fadeVol(v, 1, 260); };
             const go = v.play();
             if (go && go.then) go.then(onOk).catch(() => { if (_activePreview === token) { v.muted = true; v.play().catch(() => {}); } }); // sound blocked -> silent loop
             else onOk();
           } else {
+            // audio-only card: nothing to show silently — only preview when sound is on
+            if (!soundOn) return;
             if (!sound) { sound = new Audio(g.audio); sound.loop = true; sound.preload = 'auto'; }
             const a = sound;
+            token.media = a;
             token.stop = () => {
               c.classList.remove('previewing');
               fadeVol(a, 0, 180, () => a.pause());
             };
             _activePreview = token;
             try { a.currentTime = 0; } catch (e) {}
-            a.volume = 0;
+            a.muted = false; a.volume = 0;
             const onOk = () => { if (_activePreview !== token) { a.pause(); return; } c.classList.add('previewing'); fadeVol(a, 1, 300); };
             const go = a.play();
             if (go && go.then) go.then(onOk).catch(() => {});
             else onOk();
           }
         };
+        // the one place a visitor turns audio on; sits over the cover on hover
+        const wrapEl = c.querySelector('.cover-wrap');
+        if (wrapEl) {
+          wrapEl.appendChild(soundPillEl(() => {
+            setSoundOn(!soundOn, 'card');
+            // audio cards had nothing running while muted — start now that it's audible
+            if (soundOn && !g.video && !_activePreview && c.matches(':hover')) startPreview();
+          }));
+        }
         // Dwell gate: the cursor has to rest on the card for 180ms before we touch
         // the network. Without it, dragging the mouse diagonally across the grid
         // started ~10 video fetches, all of them abandoned a frame later.
+        // Scroll gate: cards sliding under a parked cursor while the page scrolls
+        // are not intent either — wait until the scroll has settled.
         let dwellT = 0;
-        c.addEventListener('mouseenter', () => {
+        const armPreview = () => {
           clearTimeout(dwellT);
-          dwellT = setTimeout(startPreview, 180);
-        });
+          dwellT = setTimeout(() => {
+            if (performance.now() - lastScrollTs < 260) { armPreview(); return; }
+            startPreview();
+          }, 180);
+        };
+        c.addEventListener('mouseenter', armPreview);
         c.addEventListener('mouseleave', () => { clearTimeout(dwellT); stopPreview(); });
       }
       // preload this guide's media on intent so opening it feels instant
@@ -4608,6 +4801,11 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
             () => guideBodyEl.classList.remove('guide-in'), { once: true });
         }
         attachMediaFade(guideBodyEl);
+        // sound policy: cover autoplays silent + carries the pill; step videos
+        // (user-started) inherit the site-wide switch
+        const coverVid = guideBodyEl.querySelector('video.m-cover');
+        if (coverVid) bindCoverSound(coverVid);
+        guideBodyEl.querySelectorAll('.m-step-media video').forEach(v => { v.muted = !soundOn; });
         revealGuideSteps();
         setupGuideChrome(g);
         const pl = guideBodyEl.querySelector('.qc-player');
@@ -5183,6 +5381,9 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       });
       refreshContinueHero();
       window.addEventListener('scroll', syncContinueScroll, { passive: true });
+      initHeaderAutoHide();
+      // any route change lands at the top with the bar visible
+      window.addEventListener('hashchange', showHeader);
 
       router();
     }

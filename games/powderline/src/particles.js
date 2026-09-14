@@ -39,6 +39,7 @@ export class Particles {
         attribute float aTint;
         varying float vLife;
         varying float vTint;
+        varying float vNear;
         uniform float uPix;
         void main() {
           vLife = aLife;
@@ -46,20 +47,26 @@ export class Particles {
           vec4 mv = modelViewMatrix * vec4(position, 1.0);
           gl_Position = projectionMatrix * mv;
           float grow = mix(0.55, 1.0, 1.0 - aLife);   // puffs expand as they die
-          gl_PointSize = aSize * grow * uPix * 300.0 / max(-mv.z, 1.0);
+          // The 1/z term with a 1 m floor let a 0.6-sized plume puff drawn one
+          // metre from the lens cover 180 px - the frame filled with white
+          // beach balls at speed. Hard cap at 30 device px, and fade anything
+          // inside 4 m so puffs die before they become foreground geometry.
+          gl_PointSize = min(aSize * grow * 300.0 / max(-mv.z, 1.0), 30.0) * uPix;
+          vNear = smoothstep(1.1, 4.2, -mv.z);
           if (aLife <= 0.0) gl_Position = vec4(2.0, 2.0, 2.0, 1.0);
         }
       `,
       fragmentShader: `
         varying float vLife;
         varying float vTint;
+        varying float vNear;
         void main() {
           vec2 d = gl_PointCoord - 0.5;
           float r = dot(d, d);
           if (r > 0.25) discard;
           float soft = 1.0 - smoothstep(0.05, 0.25, r);
           vec3 col = mix(vec3(0.98, 0.99, 1.0), vec3(1.0, 0.93, 0.76), vTint);
-          float a = soft * clamp(vLife, 0.0, 1.0) * 0.9;
+          float a = soft * clamp(vLife, 0.0, 1.0) * 0.9 * vNear;
           gl_FragColor = vec4(col, a);
         }
       `,

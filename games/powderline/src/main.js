@@ -129,6 +129,9 @@ async function boot() {
 
   terrain.prime(rider.pos.x, rider.pos.z);
   props.update(rider.pos.x, rider.pos.z, true);
+  // QA handle: lets the console read speed/flow and drive the rig without a
+  // human on the keyboard. Cheap, and the alternative is guessing.
+  window.__pl = { rider, props, camera, input, keys, sky, ridges, scene };
   applyQuality(qualityMode === 'AUTO' ? autoQuality : 1);
   resize();
   start.classList.add('gone');

@@ -9,3 +9,7 @@ node_modules
 *.md
 .DS_Store
 scripts
+
+# Local video-production viewer, not part of the guide site
+.local
+ui_views/assets/body-bench

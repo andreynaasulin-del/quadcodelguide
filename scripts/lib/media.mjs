@@ -101,6 +101,23 @@ export async function uploadLocalFile({
   }
 
   console.log(`  uploading ${name} (${sizeMb}MB)...`);
+
+  // Direct server-side upload when a store token is available locally
+  // (`vercel env pull` / linked Blob store) — skips the /api/upload hop and
+  // its 200MB client-token ceiling. Falls back to the client flow otherwise.
+  if (process.env.BLOB_READ_WRITE_TOKEN) {
+    const { put } = await import('@vercel/blob');
+    const blob = await put(pathname, readFileSync(absPath), {
+      access: 'public',
+      contentType: MIME[ext] || 'application/octet-stream',
+      addRandomSuffix: false,
+      allowOverwrite: true,
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    });
+    console.log(`  -> ${blob.url}`);
+    return blob.url;
+  }
+
   const blob = await upload(pathname, readFileSync(absPath), {
     access: 'public',
     contentType: MIME[ext] || 'application/octet-stream',

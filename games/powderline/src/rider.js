@@ -36,8 +36,11 @@ export class Rider {
     this.spinDir = 0;
     this.flip = 0;
     this.boostAir = false;      // true after a kicker launch: faster rotations
+    this.landCap = 13.0;        // impact the knees can eat on this air
     this.boosting = false;      // Shift held on the ground
+    this.boostSpool = 0;        // 0..1, spins up over ~1.6 s of held Shift
     this.kickerCooldown = 0;
+    this.hitCooldown = 0;       // one impact per contact, see checkHazards()
     this.flow = 0;
     this.stability = 1;
     this.state = STATE.RIDE;
@@ -61,6 +64,8 @@ export class Rider {
   respawn() {
     const s = spawnPoint();
     this.pos.set(s.x, s.y + 0.4, s.z);
+    this._prevX = s.x;
+    this._prevZ = s.z;
     this.vel.set(0, 0, 6);
     this.yaw = 0;
     this.edge = this.edgeTarget = 0;
@@ -75,11 +80,27 @@ export class Rider {
     this.spinDir = 0;
     this.flip = 0;
     this.boostAir = false;
+    this.boostSpool = 0;
     this.kickerCooldown = 0;
+    this.hitCooldown = 0;
     this.tumble.set(0, 0, 0);
   }
 
-  get speedCap() { return (14 + 34 * this.flow) * (this.boosting ? 1.35 : 1); }
+  // Speed ceiling, in m/s. Numbers chosen so the HUD (v * 3.6) reads:
+  //   coasting, no flow ............  25.0 m/s ->  90 km/h
+  //   full flow bar, no boost ......  36.0 m/s -> 130 km/h
+  //   Shift only, no flow ..........  36.0 m/s -> 130 km/h
+  //   Shift + a third of the bar ...  41.7 m/s -> 150 km/h  (hard ceiling)
+  // Measured in-browser with the boost multiplier at 0.16: holding Shift down a
+  // clean pitch settled at 104-109 km/h, because 0.16 only buys 4 m/s and the
+  // rest of the ceiling was gated behind a full flow bar you cannot hold while
+  // boosting straight. 0.44 makes Shift itself worth 11 m/s, so 150 is a thing
+  // that happens on a normal run instead of a number in a comment. The min()
+  // keeps 41.7 m/s as the absolute cap - without it, full flow plus boost would
+  // reach 51.8 m/s (186 km/h) and the terrain stops being readable.
+  get speedCap() {
+    return Math.min(41.7, (25 + 11 * this.flow) * (1 + 0.44 * this.boostSpool));
+  }
 
   emit(type, a = 0, b = 0) { this.events.push({ type, a, b }); }
 
@@ -97,6 +118,17 @@ export class Rider {
     // ---- edge input, deliberately slow: perfect movement is slow movement
     const steer = input.steer;
     this.boosting = !!input.boost && this.grounded;
+    // Spool charges off the KEY, not off ground contact. Instrumented run with
+    // 28 kicker launches in 944 m: the spool sat at ~0.6 the whole time because
+    // every launch spent 1-2 s airborne, bleeding it faster than the ground
+    // sections could rebuild it - so the 150 km/h ceiling was unreachable on
+    // exactly the terrain that makes you want it. Thrust is still ground-only.
+    const spooling = !!input.boost;
+    // Spool: full authority in 1.0 s, bleeds off over 1.4 s. Without it a
+    // tapped Shift would teleport the speed cap. The bleed is now slower than
+    // the spool so a short carve between two boost pulls keeps the top end.
+    this.boostSpool = clamp(
+      this.boostSpool + (spooling ? dt / 1.0 : -dt / 1.4), 0, 1);
     const deep = Math.abs(steer) > 0.9 ? 1.25 : 1.0;   // full stick commits the edge
     this.edgeTarget = clamp(steer * deep, -1.35, 1.35);
     const edgeRate = this.grounded ? 3.4 : 6.0;
@@ -128,7 +160,9 @@ export class Rider {
       this.airStep(dt, input);
     }
 
-    // ---- integrate
+    // ---- integrate (remember where we were: the hazard sweep needs the segment)
+    this._prevX = this.pos.x;
+    this._prevZ = this.pos.z;
     this.pos.addScaledVector(this.vel, dt);
 
     // ---- ground constraint
@@ -148,6 +182,7 @@ export class Rider {
     }
 
     // ---- hazards: trees, rocks and fallen logs
+    this.hitCooldown = Math.max(0, this.hitCooldown - dt);
     if (hazards) this.checkHazards(dt, hazards);
 
     // ---- kickers: hit one grounded with speed and it throws you
@@ -158,15 +193,23 @@ export class Rider {
       if (k && vh > 9) {
         // Launch strength scales with entry speed AND the kicker's size:
         // small side hits are pop, the big ones are proper airtime.
+        // Solve for a target apex instead of scaling a velocity: vy = sqrt(2gh).
+        // The old formula was linear in entry speed, so a 2.45-height sender hit
+        // at 42 m/s gave vy = 37 m/s - a 31 m apex and a 3.4 s hang time.
+        // Apex now runs 0.5 m (small pop, slow) to 6.2 m (sender, full speed).
         const size = k.size || 1;
-        this.vel.y = Math.max(this.vel.y, (3.2 + vh * 0.42) * (0.62 + 0.42 * size));
-        this.pos.y += 0.45 * size;
+        const speedF = clamp(vh / 42, 0, 1.15);
+        const apex = size * (0.85 + 1.6 * speedF);
+        const vy = Math.sqrt(2 * G * apex);
+        this.vel.y = Math.max(this.vel.y, vy);
+        this.landCap = 9 + 0.55 * vy;      // knees absorb what the lip gave you
+        this.pos.y += 0.30 * size;
         this.grounded = false;
         this.boostAir = true;
         this.lastAirTime = 0;
         this.spin = 0;
         this.flip = 0;
-        this.kickerCooldown = 1.5;
+        this.kickerCooldown = 0.5;   // 1.5 s ate the next kicker 20 m downhill
         this.emit('kicker', vh);
       }
     }
@@ -242,8 +285,13 @@ export class Rider {
     const smooth = 1 - smoothstep(2.2, 7.0, edgeJerk);
     const clean = (1 - this.scrub) * smooth * turning * smoothstep(0.12, 0.55, absEdge);
     this.carveQuality = clean;
-    const flowGain = clean * 0.20 * (input.tuck ? 0.55 : 1.0);   // tucking is fast, not stylish
-    const flowLoss = 0.055 + this.scrub * 0.85 + (input.brake ? 0.5 : 0);
+    // 0.28/s means ~3.6 s of clean carving fills the bar; at 0.20 it took 5 s,
+    // long enough that the 150 km/h ceiling felt theoretical.
+    const flowGain = clean * 0.32 * (input.tuck ? 0.55 : 1.0);   // tucking is fast, not stylish
+    // Idle decay 0.055 -> 0.035: at 0.055 a 3 s straight line between two turns
+    // ate a third of the bar, so the flow-gated top speed kept slipping away
+    // exactly when you were going fast enough to need it.
+    const flowLoss = 0.035 + this.scrub * 0.85 + (input.brake ? 0.5 : 0);
     this.flow = clamp(this.flow + (flowGain - flowLoss) * dt, 0, 1);
 
     // ---- pump: the actual speed-build mechanic
@@ -252,7 +300,11 @@ export class Rider {
     let thrust = clean * 15.5 * headroom * absEdge;
     // ---- boost (Shift): raw forward push, works without a carve.
     if (input.boost) {
-      thrust += 26 * headroom;
+      // sqrt(headroom), not headroom: a linear falloff dies at ~26 m/s because
+      // quadratic air drag (0.0021*v^2 = 3.7 m/s^2 at 42 m/s) outgrows it. With
+      // sqrt the push is still 7.6 m/s^2 at 97% of the cap, so the cap is
+      // actually reachable instead of being a number the HUD never shows.
+      thrust += 44 * Math.sqrt(headroom) * (0.45 + 0.55 * this.boostSpool);
       if (this.speed > 6) this.emit('boostspray', this.speed);
     }
     this.vel.x += fx * thrust * dt; this.vel.y += fy * thrust * dt; this.vel.z += fz * thrust * dt;
@@ -314,7 +366,7 @@ export class Rider {
     const flipErr = Math.abs(Math.abs(this.flip) - flips * TAU);
     const spins = Math.round(this.spin / TAU);
     // Kicker airs come in hot by design; the knees absorb more there.
-    const softCap = this.boostAir ? 13.0 : 7.5;
+    const softCap = this.boostAir ? (this.landCap || 13.0) : 7.5;
     const soft = impact < softCap && align > 0.72 && flipErr < 0.85;
 
     if (soft) {
@@ -344,18 +396,50 @@ export class Rider {
   }
 
   checkHazards(dt, hazards) {
-    const hit = hazards.query(this.pos.x, this.pos.z);
-    if (!hit) return;
-    // Low obstacles (logs, small rocks) can be cleared: if the board is above
-    // the hazard's top, there is no contact at all. `top` is metres above snow.
-    if (hit.top !== undefined) {
-      const clearance = this.pos.y - this.surf.h;
-      if (clearance > hit.top) return;
+    // SWEPT test. At 41.8 m/s one 60 Hz frame moves the board 0.70 m, and a bad
+    // frame (30 Hz) moves it 1.39 m - wider than a tree's 0.7 m radius. A single
+    // point test at the new position therefore tunnelled straight through
+    // trunks. We walk the movement segment in <=0.5 m steps instead.
+    const px = this._prevX, pz = this._prevZ;
+    const dx = this.pos.x - px, dz = this.pos.z - pz;
+    const travel = Math.hypot(dx, dz);
+    const steps = Math.min(8, Math.max(1, Math.ceil(travel / 0.5)));
+
+    let hit = null;
+    for (let i = 1; i <= steps; i++) {
+      const t = i / steps;
+      const h = hazards.query(px + dx * t, pz + dz * t);
+      if (!h) continue;
+      // Low obstacles (logs) can be jumped: yTop is an absolute world height,
+      // so this stays correct on a slope. +0.04 m of slack for the board edge.
+      if (h.yTop !== undefined && this.pos.y > h.yTop + 0.04) continue;
+      if (!hit || h.d - h.r < hit.d - hit.r) hit = h;
+      if (hit.d < hit.r) break;     // real contact, no need to keep sweeping
     }
+    if (!hit) return;
+
     if (hit.d < hit.r) {
-      this.stability -= hit.hard ? 0.62 : 0.34;
-      this.vel.multiplyScalar(hit.hard ? 0.45 : 0.7);
-      this.emit('impact', hit.hard ? 1 : 0.5);
+      // One impact per contact. After a log hit the speed drops to 34%, so the
+      // board sits inside the 1.05 m capsule for another ~12 frames and the
+      // penalty fired on every one of them: 0.55 x 12 = instant wipeout from a
+      // single trunk. 0.55 s of immunity is one contact, not twelve.
+      if (this.hitCooldown > 0) return;
+      this.hitCooldown = 0.55;
+      // A log is not a bush. Riding into a 34 cm frozen trunk at 120 km/h used
+      // to cost 0.34 stability and 30% speed, which felt like nothing - hence
+      // "it just passes through". A log now trips the board: two thirds of the
+      // speed gone, all flow gone, and it throws you forward off the trunk.
+      if (hit.log) {
+        this.stability -= 0.55;
+        this.flow = 0;
+        this.vel.multiplyScalar(0.34);
+        this.vel.y = Math.max(this.vel.y, 3.4);    // trip, pitch over the trunk
+        this.emit('impact', 1);
+      } else {
+        this.stability -= hit.hard ? 0.62 : 0.34;
+        this.vel.multiplyScalar(hit.hard ? 0.45 : 0.7);
+        this.emit('impact', hit.hard ? 1 : 0.5);
+      }
     } else if (hit.d < hit.r + 1.5) {
       this.stability -= 0.16 * dt;
       this.flow *= 1 - 0.25 * dt;

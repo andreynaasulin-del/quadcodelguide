@@ -95,7 +95,14 @@ export class VolumetricAtmosphere {
             return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+1.0),f.x),f.y);
           }
           void main(){
-            vec2 p=vWorld.xz*0.007+vec2(uTime*0.006,-uTime*0.002);
+            // The layers are camera-FACING planes, so vWorld.y sweeps the whole
+            // height of the quad while vWorld.xz barely moves. Sampling the
+            // noise on xz alone therefore produced a value that is constant
+            // down every column - which is exactly the smeared vertical
+            // curtain that made the backdrop look like a rendering bug. The
+            // domain now mixes horizontal position with height.
+            vec2 p=vec2(dot(vWorld.xz,vec2(0.0062,0.0062))+uTime*0.006,
+                        vWorld.y*0.028-uTime*0.002);
             float mist=n(p)*0.62+n(p*2.03+8.2)*0.38;
             mist=smoothstep(0.26,0.82,mist);
             float edge=smoothstep(0.0,0.18,vUv.x)*smoothstep(0.0,0.18,1.0-vUv.x);

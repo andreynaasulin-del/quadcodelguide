@@ -212,7 +212,13 @@ export class Props {
     for (const list of [this.hazards, this.features.hazards]) {
       for (let i = 0; i < list.length; i++) {
         const h = list[i];
-        const dx = x - h.x, dz = z - h.z;
+        // A fallen log is 6.5 m wide. Testing it as a single circle of r=1.0 at
+        // its centre meant the board passed clean through the outer 2.25 m on
+        // each side - which is where you actually ride, since the log sits on
+        // the run centreline. halfLen turns the test into a capsule along x.
+        const ax = Math.abs(x - h.x);
+        const dx = h.halfLen ? Math.max(0, ax - h.halfLen) : ax;
+        const dz = z - h.z;
         const d = Math.sqrt(dx * dx + dz * dz);
         const gap = d - h.r;
         if (gap < bestGap) { bestGap = gap; best = h; best.d = d; }
@@ -228,7 +234,23 @@ const UP = new THREE.Vector3(0, 1, 0);
 
 // Kickers and fallen logs, seeded per z-segment so they never move.
 // Kickers are launch triggers for the trick system; logs are soft hazards.
-const FEATURE_PERIOD = 150;
+// 62 m, down from 150. At 150 you could ride 20 s of a 122 km/h run and meet a
+// single kicker; the mountain read as empty. 62 m with 2-3 slots per segment
+// puts a lip in front of you roughly every 3-6 s at speed.
+const FEATURE_PERIOD = 62;
+
+// Four archetypes so the airtime you get is a real choice, not one wedge with a
+// random scalar. len/wide/hgt multiply the 4.2 x 3.6 x 1.15 m base wedge.
+const KICKER_KINDS = [
+  { len: 0.80, wide: 0.85, hgt: 0.55 },   // 3.4 m ramp, 0.63 m lip - side pop
+  { len: 1.05, wide: 1.05, hgt: 1.05 },   // 4.4 m ramp, 1.21 m lip - medium
+  { len: 1.35, wide: 1.20, hgt: 1.70 },   // 5.7 m ramp, 1.96 m lip - booter
+  { len: 1.75, wide: 1.35, hgt: 2.45 },   // 7.4 m ramp, 2.82 m lip - sender
+];
+
+// 6 segments in view x 4 slots, plus slack.
+const KICKER_BUDGET = 32;
+const LOG_BUDGET = 16;
 
 function kickerGeometry() {
   // Wedge: rises from the snow to a 1.15 m lip over 4.2 m.
@@ -248,7 +270,7 @@ class TrailFeatures extends THREE.Group {
   constructor(scene) {
     super();
     const snowMat = new THREE.MeshStandardMaterial({ color: 0xe8f2fc, roughness: 0.55 });
-    this.kickers = new THREE.InstancedMesh(kickerGeometry(), snowMat, 12);
+    this.kickers = new THREE.InstancedMesh(kickerGeometry(), snowMat, KICKER_BUDGET);
     this.kickers.frustumCulled = false;
     this.kickers.castShadow = true;
     this.add(this.kickers);
@@ -256,13 +278,13 @@ class TrailFeatures extends THREE.Group {
     // Red lip marker so the kicker reads from a distance.
     const lipGeo = new THREE.BoxGeometry(3.6, 0.1, 0.22);
     lipGeo.translate(0, 1.12, 2.0);
-    this.lips = new THREE.InstancedMesh(lipGeo, new THREE.MeshStandardMaterial({ color: 0xff3b30, roughness: 0.5 }), 12);
+    this.lips = new THREE.InstancedMesh(lipGeo, new THREE.MeshStandardMaterial({ color: 0xff3b30, roughness: 0.5 }), KICKER_BUDGET);
     this.lips.frustumCulled = false;
     this.add(this.lips);
 
     const logGeo = new THREE.CylinderGeometry(0.3, 0.34, 6.5, 9, 1);
     logGeo.rotateZ(Math.PI / 2);   // lie across the run
-    this.logs = new THREE.InstancedMesh(logGeo, new THREE.MeshStandardMaterial({ color: 0x5a4232, roughness: 0.85 }), 8);
+    this.logs = new THREE.InstancedMesh(logGeo, new THREE.MeshStandardMaterial({ color: 0x5a4232, roughness: 0.85 }), LOG_BUDGET);
     this.logs.frustumCulled = false;
     this.logs.castShadow = true;
     this.add(this.logs);
@@ -289,45 +311,82 @@ class TrailFeatures extends THREE.Group {
     this.kickerList.length = 0;
     this.hazards.length = 0;
 
-    for (let s = seg - 1; s <= seg + 2; s++) {
+    // Two behind, four ahead: at 42 m/s you cover a 62 m segment in 1.5 s, so a
+    // 2-segment lookahead would pop kickers in inside the draw distance.
+    for (let s = seg - 1; s <= seg + 4; s++) {
       if (s < 1) continue;  // keep the spawn area clean
       const base = s * FEATURE_PERIOD;
       const hA = hash2i(s, 11, seed + 101);
       const hB = hash2i(s, 23, seed + 103);
 
-      // one or two kickers per segment on the groomed run, skipping park
-      // segments. Size is seeded per kicker: 0.7 = side pop, 1.9 = big sender.
-      const slots = hB > 0.55 ? 2 : 1;
-      for (let sl = 0; sl < slots && ki < 12; sl++) {
+      // Three or four kickers per 62 m segment, spread across the run so you can
+      // pick your size instead of taking whatever the RNG put in your lane.
+      const slots = hB > 0.45 ? 4 : 3;
+      let placedHere = 0;
+      for (let sl = 0; sl < slots && ki < KICKER_BUDGET; sl++) {
         const hK = hash2i(s, 37 + sl * 17, seed + 107);
-        const kz = base + 40 + hA * 45 + sl * 62;
-        if (parkAt(kz) < 0.3 && this._placeOnRun(kz, (hash2i(s, 41 + sl * 13, seed + 109) - 0.5) * 1.2)) {
-          const size = 0.7 + hK * 1.2;
+        const hJ = hash2i(s, 53 + sl * 29, seed + 113);
+        const kz = base + 10 + hA * 10 + sl * (FEATURE_PERIOD / slots);
+        // Lane +/-1.1, was +/-1.55. Half the wide slots landed at groom < 0.35
+        // and got rejected, so a "3 kicker" segment often shipped one - which is
+        // why the ramps felt absent and never varied. Last slot rides the
+        // centreline so every segment has at least one lip you cannot miss.
+        // Lanes are ASSIGNED per slot, then jittered - not rolled. Measured
+        // with an autopilot that tracked the kicker line: 28 launches in 944 m.
+        // Riding the same 944 m straight, without the autopilot, gave 0 launches
+        // and 120 brush events, because a random lane in [-0.55, 0.55] puts
+        // every lip in the middle third of the run while the fall line drifts
+        // you toward the trees. Slots now fan out to +/-0.78 of the half-width,
+        // so whichever line you are on there is a lip within a few metres.
+        const LANES = [-0.78, -0.26, 0.26, 0.78];
+        let lane = LANES[sl % 4] + (hash2i(s, 41 + sl * 13, seed + 109) - 0.5) * 0.34;
+        if (sl === slots - 1 && placedHere === 0) lane = 0;
+        if (parkAt(kz) < 0.3 && this._placeOnRun(kz, lane)) {
+          placedHere++;
+          // (slot + hash) % 4, not hash alone: pure random let a whole segment
+          // roll three mediums. Rotating by the slot index guarantees the sizes
+          // you see side by side are different archetypes.
+          const kind = KICKER_KINDS[(sl + ((hK * 4) | 0)) % 4];
+          const jit = 0.88 + hJ * 0.24;               // +/-12% so no two match
+          const len = kind.len * jit;
+          const wide = kind.wide * (0.92 + hJ * 0.16);
+          const hgt = kind.hgt * jit;
           const { x, y, pitch } = this._placed;
           this._p.set(x, y, kz);
           this._q.setFromAxisAngle(RIGHT, pitch);
-          this._s.set(size, size, size);
+          this._s.set(wide, hgt, len);
           this._m.compose(this._p, this._q, this._s);
           this._s.set(1, 1, 1);
           this.kickers.setMatrixAt(ki, this._m);
           this.lips.setMatrixAt(ki, this._m);
           ki++;
-          this.kickerList.push({ x, z: kz, size });
+          this.kickerList.push({ x, z: kz, size: hgt, len, wide });
         }
       }
 
-      // a fallen log on roughly every other segment
-      if (hB > 0.45) {
-        const lz = base + 15 + hA * 30;
-        if (parkAt(lz) < 0.3 && this._placeOnRun(lz, (hA - 0.5) * 1.1)) {
+      // A log per segment now (was every other 150 m stretch, i.e. one per
+      // ~300 m). Position is jittered so they don't line up.
+      if (hB > 0.28 && li < LOG_BUDGET) {
+        const lz = base + 34 + hA * 22;
+        if (parkAt(lz) < 0.3 && this._placeOnRun(lz, (hA - 0.5) * 1.35)) {
           const { x, y } = this._placed;
+          const yaw = (hA - 0.5) * 0.5;
           this._p.set(x, y + 0.22, lz);
-          this._q.setFromAxisAngle(UP, (hA - 0.5) * 0.5);
+          this._q.setFromAxisAngle(UP, yaw);
           this._m.compose(this._p, this._q, this._s);
           this.logs.setMatrixAt(li++, this._m);
-          // top: the log's crown sits ~0.56 m over the snow; clearing 0.75 m
-          // (an ollie or any real air) sails over it with margin.
-          this.hazards.push({ x, z: lz, r: 1.0, hard: false, top: 0.75 });
+          // halfLen: the trunk is 6.5 m long, so the collision capsule runs
+          // 3.25 m either side of centre (shortened by the yaw).
+          // yTop is ABSOLUTE world height, not "metres above snow": the old
+          // relative `top` was compared against the snow height under the
+          // *rider*, which on a 25 deg slope is up to 1 m away from the snow
+          // under the log - so the check said "cleared" while the board was
+          // still below the trunk, and the log was silently skipped.
+          // Trunk: centre at y+0.22, radius 0.34 -> crown at y+0.56.
+          this.hazards.push({
+            x, z: lz, r: 1.05, halfLen: 3.25 * Math.cos(yaw),
+            hard: false, log: true, yTop: y + 0.56,
+          });
         }
       }
     }
@@ -354,9 +413,13 @@ class TrailFeatures extends THREE.Group {
   queryKicker(x, z) {
     for (let i = 0; i < this.kickerList.length; i++) {
       const k = this.kickerList[i];
-      const s = k.size || 1;
+      // Trigger box follows the wedge's own footprint: 3.6 m wide x 4.2 m long
+      // times the instance scale. Using `size` (height) for all three axes made
+      // the flat pop-kickers almost impossible to hit.
+      const w = 1.9 * (k.wide || 1);
+      const l = k.len || 1;
       const dz = z - k.z;
-      if (Math.abs(x - k.x) < 1.9 * s && dz > -2.0 * s && dz < 2.2 * s) return k;
+      if (Math.abs(x - k.x) < w && dz > -2.2 * l && dz < 2.2 * l) return k;
     }
     return null;
   }
