@@ -1171,8 +1171,8 @@
       "id": "snap01-parametric-kitchen-configurator",
       "cat": "Product Design",
       "sub": "Parametric Configurator",
-      "title": "Parametric kitchen configurator: form logic to 3D modules",
-      "desc": "A complete Senior product-design pipeline for a real-time kitchen configurator: input/live-preview wireframe logic, a weighted decision matrix for the snapping model, a flagship identity render, a locked-dimension module library, and 6 production GLB meshes rebuilt from photoreal studio references after root-causing two Meshy defects.",
+      "title": "The model did the arithmetic and got the geometry wrong",
+      "desc": "A parametric kitchen configurator built end to end. GPT-Image invented a weighted decision matrix with twelve scores and computed all three totals correctly — from a 171-character prompt containing no numbers. Then it drew the \"orthographic\" dimension sheet at six different scales, and Meshy returned all six modules normalised to the same 1.90-unit height. Measured, not eyeballed.",
       "time": "30 min",
       "date": "2026-07-23",
       "level": "Senior",
@@ -1183,106 +1183,54 @@
       "poster": "/ui_views/assets/snap01-03-identity-render.cover.webp",
       "steps": [
         {
-          "title": "1. Lock the input-to-preview wireframe logic",
-          "text": "Two-panel blueprint: a width/depth/height input form on the left, a live floor-plan preview on the right, connected by a \"LIVE SYNC\" link so every field edit redraws the plan immediately — no separate \"Generate\" button, no round-trip.",
-          "prompt": "GOAL: Two-panel wireframe sheet — input form (left) driving a live floor-plan preview (right), orange dimension arrows, explicit LIVE SYNC connector between the two panels.",
-          "result_image": "/ui_views/assets/snap01-01-wireframe-form-logic.webp"
-        },
-        {
-          "title": "2. Score the snapping model with a weighted matrix",
-          "text": "Three snapping strategies scored on Trust (35%), Speed (20%), Error Rate (30%), Build Cost (15%): Grid-Snap 4.50, Rigid Presets 4.35, Freeform 2.50. Grid-Snap wins by only 0.15 over Rigid Presets — close enough that the rule gets written down, not left to memory: grid pitch = width of the narrowest module.",
+          "title": "It invented twelve scores and added them up correctly",
+          "text": "The prompt below is 171 characters and contains no numbers at all — no weights, no scores, no totals. What came back: four criteria weighted 35 / 20 / 30 / 15, summing to exactly 100%; twelve individual scores; and three weighted totals. Check the arithmetic by hand and all three are exact to two decimals. Grid-Snap: 5×0.35 + 4×0.20 + 5×0.30 + 3×0.15 = 4.50. Rigid Presets: 4×0.35 + 5×0.20 + 4×0.30 + 5×0.15 = 4.35. Freeform: 2×0.35 + 3×0.20 + 2×0.30 + 4×0.15 = 2.50. Nothing was corrected afterwards. This is the thing to take from the guide: the model is reliable when the output is a self-consistent number system, and everything downstream in this project failed in exactly the opposite way.",
           "prompt": "GOAL: Decision-matrix sheet comparing Grid-Snap / Freeform / Rigid Presets against 4 weighted criteria, with floor-plan icon per strategy and a locked scoring rule footer.",
-          "result_image": "/ui_views/assets/snap01-02-interaction-matrix.webp"
+          "result_image": "/ui_views/assets/snap01-02-interaction-matrix.webp",
+          "result_label": "The delivered sheet · every total re-computed by hand",
+          "result_caption": "Grid-Snap 4.50, Rigid Presets 4.35, Freeform 2.50 — all three verify against the printed weights. The 0.15 margin between the top two is real, which is why the pitch rule got written into the footer instead of left to memory.",
+          "result_source": "final"
         },
         {
-          "title": "3. Render the flagship identity kitchen",
-          "text": "One L-shaped run + island, on a neutral graphite studio backdrop, with the material palette locked before any single module gets modeled: OAK #C08A52 for fronts, GRAPHITE #22262B for worktops, STEEL #9AA3AC for hardware. Six modules visible and separable in one shot: base run, wall run, corner unit, appliance tower, island, hood.",
-          "prompt": "GOAL: Flagship L-kitchen + island identity render, neutral graphite studio background, OAK/GRAPHITE/STEEL material palette, all 6 module types clearly separable.",
-          "result_image": "/ui_views/assets/snap01-03-identity-render.webp"
-        },
-        {
-          "title": "4. Define the module library on a locked grid pitch",
-          "text": "Six modules, one 300mm grid: Base Cabinet 600×600×720, Wall Cabinet 600×350×720, Drawer Stack 300×600×720 (the narrowest — sets the pitch), Corner Unit 900×900×720, Island 1800×900×900, Appliance Bay 600×600×2100. Every width is a multiple of 300mm, so any two modules snap edge-to-edge with zero gap or overlap.",
+          "title": "The \"orthographic\" sheet is drawn at six different scales",
+          "text": "Same model, same session, one step later. The labels are correct — every width is a multiple of 300mm, the drawer stack at 300 really is the narrowest. The drawing is not. Measure the white dimension lines in pixels and divide by the printed millimetres and you get six different scales on one sheet: base cabinet 0.390 px/mm, wall cabinet 0.372, drawer stack 0.450, corner unit 0.311, island 0.302, appliance bay 0.223. That is a 2.0× spread. The drawer stack is labelled half the width of the base cabinet and drawn at 58% of it; the appliance bay is labelled 2100mm tall and drawn 314px against the base cabinet's 239px for 720mm — it should be 697px. Three modules share a printed 720mm height and, to the sheet's credit, all three are drawn at exactly 239px. Everything else is decoration. Treat a generated spec sheet as a labelled diagram, never as a drawing you can scale off.",
           "prompt": "GOAL: Orthographic module-library sheet, 3×2 grid, 6 kitchen modules with dimension lines and W×D×H spec line each, same OAK/GRAPHITE/STEEL palette as the identity render.",
-          "result_image": "/ui_views/assets/snap01-04-module-library.webp"
+          "result_image": "/ui_views/assets/snap01-04-module-library.webp",
+          "result_label": "The delivered sheet · dimension lines measured in pixels",
+          "result_caption": "Top row heights agree (239px each for 720mm). Widths do not: 234px and 223px both labelled 600mm, 135px labelled 300mm. The bottom row runs on a third and fourth scale again.",
+          "result_source": "final"
         },
         {
-          "title": "5. Rebuild all 6 modules as production GLB meshes",
-          "text": "First pass fed the flat schematic icons straight into Meshy — result: phantom drawer-front seams and no depth cues. Fix: 6 dedicated photoreal studio references (same palette, same background) generated first, then meshed. Two defects still slipped through — a corner unit reading its \"diagonal-face door\" as a literal barn-door Z-brace, and a base cabinet growing tiny metal legs no prompt asked for. Root-cause fix for both is in the prompts below, not in the mesh: reworded the corner reference to \"one angled corner facet, plain flat door, no Z-brace,\" and the base cabinet to \"flush plinth base, zero gap to floor.\" Both regenerated clean on the next pass.",
+          "title": "One of the six meshes came back the right shape — try it live",
+          "text": "Meshy returned all six modules with their longest axis between 1.8959 and 1.8996 units. Not similar — normalised. The 300mm pitch the whole project is built on does not exist in the files. Check the proportions instead of the absolute size and only the wall cabinet survives: measured 2.059 : 1.752 : 1.000 against 2.057 : 1.714 : 1.000 for the briefed 600×350×720. The drawer stack — the module that defines the pitch — should read 2.400 : 2.000 : 1.000 and comes back 1.659 : 1.357 : 1.000. The island's two equal dimensions hold to within 1.5% but its long axis is 26% short. So every mesh needs rescaling by hand before it can be placed, and a viewer will not show you this, because model-viewer auto-frames each file to fill the canvas. Two more things worth knowing before you download: the prompt asked for quad topology and glTF cannot store quads, so what shipped is 8.2k triangles per module; and 5.5 MB of each 9 MB file is a single uncompressed PNG normal map — 53 MB across six modules, which is why the inspector below takes a moment on first click. The widget itself is 308 lines of hand-written HTML/CSS/JS with real numbers in it: 44px per 300mm cell, prices €420 / €260 / €340 / €610 / €1,450 / €890, total × 1.08. One honest limitation is visible on the plan — the wall cabinet is 350mm deep but occupies a 2×2 cell block, because 350 is not a multiple of 300. Pitch locks width, not depth.",
           "prompt": "GOAL: 6 individual production GLB meshes (quad topology, ENABLE_PBR) built from 6 photoreal single-module studio references, matching the step-3 identity render palette and the step-4 locked dimensions exactly.",
-          "models": [
-            {
-              "model": "/ui_views/assets/snap01-05-base-cabinet.glb",
-              "poster": "/ui_views/assets/snap01-05-base-cabinet-poster.png",
-              "label": "Base Cabinet — 600×600×720"
-            },
-            {
-              "model": "/ui_views/assets/snap01-05-wall-cabinet.glb",
-              "poster": "/ui_views/assets/snap01-05-wall-cabinet-poster.png",
-              "label": "Wall Cabinet — 600×350×720"
-            },
-            {
-              "model": "/ui_views/assets/snap01-05-drawer-stack.glb",
-              "poster": "/ui_views/assets/snap01-05-drawer-stack-poster.png",
-              "label": "Drawer Stack — 300×600×720"
-            },
-            {
-              "model": "/ui_views/assets/snap01-05-corner-unit.glb",
-              "poster": "/ui_views/assets/snap01-05-corner-unit-poster.png",
-              "label": "Corner Unit — 900×900×720"
-            },
-            {
-              "model": "/ui_views/assets/snap01-05-island.glb",
-              "poster": "/ui_views/assets/snap01-05-island-poster.png",
-              "label": "Island — 1800×900×900"
-            },
-            {
-              "model": "/ui_views/assets/snap01-05-appliance-bay.glb",
-              "poster": "/ui_views/assets/snap01-05-appliance-bay-poster.png",
-              "label": "Appliance Bay — 600×600×2100"
-            }
-          ]
-        },
-        {
-          "title": "6. Build the real configurator — hand-coded, not generated",
-          "text": "~300 lines of plain HTML/CSS/JS, no framework: a 6-item drag palette, a 300mm-pitch grid canvas (44px per cell — same pitch step 2 locked), a live BOM panel, and a 3D inspector reusing the exact 6 GLB files from step 5. Collision check is an AABB scan against an occupied-cell hash set; Corner Unit is only accepted if its 3×3-cell footprint lines up with one of the 4 room corners — 4 boolean comparisons, not a general polygon test, because a rectangular room only has 4 corners.",
-          "result_image": "/ui_views/assets/snap01-06-configurator-widget.webp"
-        },
-        {
-          "title": "7. Ship it live — drag, snap and orbit right here",
-          "text": "Not a screen recording — the actual widget, embedded live below via iframe, running the same JS that produced the step-6 screenshot. Drag Corner Unit into a corner, drag Island into the open floor, then click any placed piece to orbit it in 3D. Resize the room and modules that no longer fit get dropped automatically.",
           "widget_iframe": "/ui_views/assets/snap01-configurator.html"
-        },
-        {
-          "title": "8. Technical spec — BOM, pricing formula, collision rules",
-          "text": "BOM fields: module name, quantity, unit price, line total. Formula: Total = Σ(unit price × qty) × 1.08 — the 8% hardware/install fee is a visible multiplier, not a hidden markup. Prices locked per module: Base Cabinet €420, Wall Cabinet €260, Drawer Stack €340, Corner Unit €610, Island €1,450, Appliance Bay €890. Collision rule: zero clearance by design — the grid pitch already equals the narrowest module, so edge-to-edge snapping needs no gap. Corner rule: Corner Unit valid only at the 4 room-corner cells.",
-          "result_image": "/ui_views/assets/snap01-08-technical-spec.webp"
         }
       ],
-      "result": "A locked 300mm-pitch module library (6 GLB meshes, all snap-compatible edge-to-edge), the 4 concept sheets that justify every dimension and interaction rule, and a real hand-coded configurator widget — drag-and-drop grid placement, live 3D inspection and a live-computed BOM — embedded and playable directly in this guide.",
+      "result": "A working configurator whose grid logic, prices and collision rules are all hand-written and all correct — sitting on top of six meshes that need manual rescaling and a spec sheet that cannot be scaled off. The model was trustworthy for the numbers and unreliable for the geometry, and it took measurement to tell which was which.",
       "downloads": [
         {
-          "label": "Download Base Cabinet GLB (600×600×720)",
+          "label": "Base Cabinet GLB · 8.9 MB · mesh 1.81 × 1.90 × 1.60 u — rescale to 600×600×720",
           "file": "/ui_views/assets/snap01-05-base-cabinet.glb"
         },
         {
-          "label": "Download Wall Cabinet GLB (600×350×720)",
+          "label": "Wall Cabinet GLB · 9.0 MB · mesh 1.62 × 1.90 × 0.92 u — proportions already correct",
           "file": "/ui_views/assets/snap01-05-wall-cabinet.glb"
         },
         {
-          "label": "Download Drawer Stack GLB (300×600×720)",
+          "label": "Drawer Stack GLB · 8.7 MB · mesh 1.55 × 1.90 × 1.14 u — rescale to 300×600×720",
           "file": "/ui_views/assets/snap01-05-drawer-stack.glb"
         },
         {
-          "label": "Download Corner Unit GLB (900×900×720)",
+          "label": "Corner Unit GLB · 8.9 MB · mesh 1.63 × 1.47 × 1.90 u — rescale to 900×900×720",
           "file": "/ui_views/assets/snap01-05-corner-unit.glb"
         },
         {
-          "label": "Download Island GLB (1800×900×900)",
+          "label": "Island GLB · 8.2 MB · mesh 1.90 × 1.31 × 1.29 u — rescale to 1800×900×900",
           "file": "/ui_views/assets/snap01-05-island.glb"
         },
         {
-          "label": "Download Appliance Bay GLB (600×600×2100)",
+          "label": "Appliance Bay GLB · 9.4 MB · mesh 0.74 × 1.90 × 0.40 u — rescale to 600×600×2100",
           "file": "/ui_views/assets/snap01-05-appliance-bay.glb"
         }
       ]
@@ -1291,8 +1239,8 @@
       "id": "npc01-dark-fantasy-deceiver",
       "cat": "Gamedev",
       "sub": "Character Design",
-      "title": "Dark-fantasy NPC: silhouette to 3D handoff",
-      "desc": "A complete Senior Gamedev pipeline for an original dark-fantasy NPC (The Court Parasite): silhouette readability test, weighted score matrix, identity render, 4-view turnaround, FACS expressions, animation poses, interactive 3D GLB model, and technical A-pose socket spec.",
+      "title": "A rigging spec no rigger can use — and the sheet that held",
+      "desc": "The technical handoff sheet is internally flawless: 12,000 + 18,000 + 5,000 tris add up to exactly the 35,000 budget printed in its header. The mesh that shipped alongside it has 493,266 triangles, zero joints out of the promised 68, and its arms hanging straight down instead of the 45° A-pose the sheet draws. One sheet in this pipeline did survive contact with a ruler — the turnaround, to within 1.2%.",
       "time": "35 min",
       "date": "2026-07-22",
       "level": "Senior",
@@ -1303,63 +1251,42 @@
       "poster": "/ui_views/assets/npc01-03-identity-render.cover.webp",
       "steps": [
         {
-          "title": "1. Force three distinct silhouette massings",
-          "text": "Start with pure black shapes at 1:1 scale before any face or costume work. Variant A (Wing Collar), B (Relic Chain) and C (Moth Cloak) each test a different C-curve and collar height. If a silhouette does not read at 120 px, it is dead — no render saves it.",
-          "prompt": "GOAL: Generate 3 distinct black silhouette massings for a dark-fantasy diplomat NPC. A: high bat-wing collar, hands hidden. B: heavy relic chain weighting the torso forward. C: moth-cloak shoulders dissolving into the coat. Pure black on light grey, 1:1, no faces, no costume detail. Judge only readability at small size.",
-          "result_image": "/ui_views/assets/npc01-01-silhouette-test.webp"
-        },
-        {
-          "title": "2. Score variants with a weighted decision matrix",
-          "text": "Score every silhouette against Authority (30%), Threat (25%), Magic (20%), Readability at 120px (15%), Mobility (10%). Variant A wins at 4.25 weighted — the bat-wing collar is locked by numbers, not taste. This sheet is what you show a client when they ask \"why this one\".",
+          "title": "Every weighted total on the decision sheet is wrong",
+          "text": "The prompt named five criteria and their weights and asked for per-criterion scores plus weighted totals. What came back looks authoritative: five rows summing to exactly 100%, bar charts, a lock icon on the winner. Then do the arithmetic the sheet itself prints. Variant A: (5×0.30)+(3×0.20)+(4×0.25)+(3×0.10)+(5×0.15) = 4.15, printed 4.25. Variant B: 3.60, printed 3.55. Variant C: 3.95, printed 3.90. Three formulas, three wrong sums — and the model wrote both the formula and the answer, so it disagrees with itself. The saving grace is that the ranking survives: A still beats C still beats B, so the decision the sheet was made to justify is not affected. Worth knowing what \"not affected\" is worth: a sibling guide in this collection ran the same kind of sheet through the same model and got all three totals exact. You cannot predict which one you are getting. You can only check.",
           "prompt": "GOAL: Senior game-concept decision sheet. Score the 3 silhouettes from step 1 against 5 weighted criteria (Authority 30, Threat 25, Magic 20, Readability 15, Mobility 10). Show per-criterion scores, weighted totals, and a verdict row declaring the winner. Swiss editorial layout, dark ink on bone paper.",
-          "result_image": "/ui_views/assets/npc01-02-variant-matrix.webp"
+          "result_image": "/ui_views/assets/npc01-02-variant-matrix.webp",
+          "result_label": "The delivered sheet · all three totals re-computed from the printed formulas",
+          "result_caption": "Weights are correct and sum to 100%. The totals are not: 4.25 / 3.55 / 3.90 printed against 4.15 / 3.60 / 3.95 computed. Ranking unchanged.",
+          "result_source": "final"
         },
         {
-          "title": "3. Lock face, materials and palette in the identity render",
-          "text": "Render the canonical 3/4 full-body anchor. Palette lock: VOID #120F17, BLOOD #4A1830, BONE #C7B79B, STEEL #8A9199. High stiffened collar, concealed hands, signet cane. Every later sheet must match this render — it is the single source of truth.",
-          "prompt": "GOAL: Full-body identity render for THE COURT PARASITE using silhouette A. 3/4 view, high stiffened wing collar hiding the jaw, long sleeves concealing hands, signet cane. Palette: void black #120F17 coat, dried-blood #4A1830 lining, bone #C7B79B face, steel #8A9199 accents. Flat neutral backdrop, concept-art finish.",
-          "result_image": "/ui_views/assets/npc01-03-identity-render.webp"
-        },
-        {
-          "title": "4. Produce the orthographic 4-view turnaround",
-          "text": "FRONT / 3-4 / SIDE / BACK locked to the identity render on warm bone paper (#EDE8DF). The back view designs the collar rear plane without inventing a cape. Modelers build from this sheet — proportions here are law.",
+          "title": "\"Keep proportions identical across views\" actually worked",
+          "text": "This is the instruction most likely to be ignored, and it held. Measure the figure in each of the four panels — dark pixels below luma 110, ignoring the panel labels — and the heights come out 855, 865, 865 and 859 pixels. A 10-pixel spread across four independently drawn views, 1.2% of the mean. Not a copy-paste: the side view genuinely shows a different collar profile and the back view designs the rear collar plane rather than inventing a cape. So the model can hold a proportion lock across separate drawings in one image. What it cannot do is carry that lock into the next tool, which is the whole subject of the next step.",
           "prompt": "GOAL: Production turnaround sheet, 4 orthographic views (FRONT, 3/4, SIDE, BACK) of THE COURT PARASITE on warm bone paper #EDE8DF. Keep proportions identical across views, match the identity render palette and collar geometry. Clean line art with flat color fills, labeled view headers.",
-          "result_image": "/ui_views/assets/npc01-04-turnaround.webp"
+          "result_image": "/ui_views/assets/npc01-04-turnaround.webp",
+          "result_label": "The delivered turnaround · figure heights 855 / 865 / 865 / 859 px",
+          "result_caption": "Measured left to right: FRONT 855, 3/4 865, SIDE 865, BACK 859. Spread 10 px = 1.2% of the mean.",
+          "result_source": "final"
         },
         {
-          "title": "5. Map expression range and prop logic",
-          "text": "Six facial states (Neutral Court, Polite Smile, Predator Focus, Dialogue Tell, Spell Whisper, Mask Crack) plus 4 functional callouts: Wing Collar, Void Coat, Signet Cane, Court Ring. Animators and dialogue writers work from this sheet.",
-          "prompt": "GOAL: Expression + accessory sheet. 6 head portraits of THE COURT PARASITE (Neutral Court, Polite Smile, Predator Focus, Dialogue Tell, Spell Whisper, Mask Crack) and 4 clean accessory callout panels (Wing Collar, Void Coat, Signet Cane, Court Ring). Keep the identity render face model consistent across all states.",
-          "result_image": "/ui_views/assets/npc01-05-expression-accessories.webp"
-        },
-        {
-          "title": "6. Define the key animation start poses",
-          "text": "Four readable full-body start poses: 01 Idle, 02 Dialogue Tell, 03 Spell Cue, 04 Attack Anticipation. Each preserves the silhouette — no generic action-hero spread. These are the first frames animators key from.",
-          "prompt": "GOAL: Animation handoff sheet with 4 key start poses (Idle, Dialogue Tell, Spell Cue, Attack Anticipation). Full body, same model and palette as the identity render. Poses must read as silhouettes and avoid superhero tropes — this character threatens with stillness.",
-          "result_image": "/ui_views/assets/npc01-06-animation-poses.webp"
-        },
-        {
-          "title": "7. Inspect the production 3D model — drag to orbit",
-          "text": "The GLB mesh generated from the concept stack (35k tris budget). Drag to orbit, scroll to zoom. Check the collar volume from behind and the sleeve drape from the side — the two spots where 2D-to-3D translations usually break.",
-          "prompt": "GOAL: Generate a production 3D character mesh from the locked identity render and turnaround. Budget 35k triangles, A-pose, watertight, ready for retopo and rigging. Export GLB.",
-          "result_model": "/ui_views/assets/npc01-07-3d-model.glb",
-          "result_poster": "/ui_views/assets/npc01-07-3d-viewer-poster.webp"
-        },
-        {
-          "title": "8. Spec the technical A-pose, sockets and FACS targets",
-          "text": "The rigging contract: 45° A-pose blueprint with engine sockets (socket_hand_r, socket_collar_vfx, socket_ring_l, root_ground), 68-joint skeleton, 35k tris budget, 1024 px/m texel density, and FACS facial targets (AU1, AU2, AU4, AU12, AU15, AU25). This sheet ends design arguments — everything is measurable.",
+          "title": "The spec sheet is perfect. The mesh matches none of it.",
+          "text": "Read the sheet first: 35,000 tris in the header, broken down as head/collar 12,000 + coat/body 18,000 + props 5,000. That adds up exactly. It names four engine sockets, a 68-joint skeleton with 4 cloth chains, six FACS action units, 2048×2048 PBR maps, a 220cm scale ruler, and it draws the arms at a proper 45° A-pose. It is the most convincing document in the whole pipeline. Now open the GLB that shipped with it. 493,266 triangles — 14.1× the budget, in a 19.1 MB file. Zero skins, zero joints, zero animations: the entire node graph is two nodes, so the 68-joint skeleton and every FACS target exist only as ink. The bounding box is 0.2965 × 1.0010 × 0.2021 units, a width-to-height ratio of 0.296, which is a figure with its arms hanging down — a real 45° A-pose runs closer to 0.45. Textures are 4096×4096, not 2048. Even the palette drifted: the atlas medians #1B1615 against the locked #120F17, close in value but hue-flipped from blue-leaning to red-leaning, which is why the coat reads warm brown in the viewer instead of void black. Orbit it below and check the collar from behind — that part it got right. Then treat every number on the blueprint as a request you still have to fulfil by hand.",
           "prompt": "GOAL: Technical 3D rigging sheet in orthographic A-pose (45° arms). Annotate engine sockets (socket_hand_r, socket_collar_vfx, socket_ring_l, root_ground), joint count 68, poly budget 35k tris, texel density 1024 px/m, FACS targets AU1 AU2 AU4 AU12 AU15 AU25. Blueprint style, precise callouts, no decoration.",
-          "result_image": "/ui_views/assets/npc01-08-apose-technical.webp"
+          "result_model": "/ui_views/assets/npc01-07-3d-model.glb",
+          "result_poster": "/ui_views/assets/npc01-07-3d-viewer-poster.webp",
+          "result_label": "The delivered GLB · 493,266 tris, 0 joints, arms down",
+          "result_caption": "Drag to orbit. The blueprint it was supposed to satisfy is in the downloads below — compare them line by line.",
+          "result_source": "final"
         }
       ],
-      "result": "Full production-grade character bible for an original dark-fantasy NPC: 6 concept sheets, an inspectable 3D GLB mesh (35k tris), and a technical A-pose socket + FACS specification ready for engine handoff.",
+      "result": "Six concept sheets, one of which holds up under measurement, and a 19.1 MB mesh that needs a full retopo and a rig built from scratch before it is worth anything. The pipeline is real; the handoff document is a drawing of a handoff document.",
       "downloads": [
         {
-          "label": "Download 3D GLB Model Mesh (35k tris)",
+          "label": "3D GLB mesh · 19.1 MB · 493,266 tris, unrigged, needs retopo",
           "file": "/ui_views/assets/npc01-07-3d-model.glb"
         },
         {
-          "label": "Download Technical A-Pose & Socket Spec",
+          "label": "Technical A-pose & socket sheet · the spec the mesh does not meet",
           "file": "/ui_views/assets/npc01-08-apose-technical.webp"
         }
       ]
@@ -1368,8 +1295,8 @@
       "id": "savor01-evidence-of-food",
       "cat": "Motion Design",
       "sub": "Motion Identity",
-      "title": "20-second food motion identity from six stills",
-      "desc": "Turn scattered food evidence — receipts, printed dates, barcodes, notes — into a typographic decision system: USE FIRST / USE SOON / STABLE / CHECK. Six GPT-Image keyframes, one controlled 20-second sequence, zero fake freshness scores.",
+      "title": "The safety rule survived. The dates did not.",
+      "desc": "A food-triage motion identity built on one hard constraint: never claim to know whether food is safe. Across 19.09 seconds the model never once broke that rule — no score, no danger icon, and a closing line that reads ORDER, NOT A SAFETY VERDICT. It also produced a package that was opened four days before it was packaged, because it carried the dates forward between frames and quietly changed what one of them meant.",
       "time": "45 min",
       "date": "2026-07-20",
       "level": "Senior",
@@ -1381,55 +1308,34 @@
       "poster": "/ui_views/assets/cover-savor01-lockup.cover.webp",
       "steps": [
         {
-          "title": "1. Define what the system refuses to do",
-          "text": "Start with the negative brief, not the moodboard. SAVOR/01 never detects freshness, never labels food safe or unsafe, and never replaces package guidance. That constraint is the entire concept: the system organizes evidence the user already has — receipts, printed dates, opened dates, storage zones — instead of inventing an AI verdict. Write four plain-language states before touching visuals: USE FIRST, USE SOON, STABLE, CHECK.",
+          "title": "A negative brief is the one instruction it never broke",
+          "text": "The first prompt in this project forbids things instead of requesting them: no freshness analysis, no score, no medical or danger iconography, and every status readable as text plus shape plus colour so meaning never depends on colour alone. Nineteen seconds later, none of that has been violated — no percentage anywhere in the reel, no cross, no warning triangle used as a hazard sign, and the four-state frame closes on the line ORDER, NOT A SAFETY VERDICT in the model's own typesetting. The redundant encoding survived too, and it earned its keep: sample the four lane colours and three of them sit within ΔRGB 26–29 of the hex values in the prompt, but STABLE came back #696763 against the specified #9A9B96 — a distance of 88, a third darker than asked, and the only lane whose colour genuinely missed. It does not matter, because STABLE is also an equals sign and the word STABLE. That is what redundancy is for. If you only take one habit from this guide, take this one: spend the first prompt on what the output must never contain.",
           "prompt": "Lock the safety rule: this system organizes known information. It never claims to analyze food, never outputs a score, never uses medical or danger iconography. Every status must be readable as text + shape + color, so meaning never depends on color alone.",
-          "result_image": "/ui_views/assets/savor01-evidence-of-food/05-four-states-final.webp"
+          "result_image": "/ui_views/assets/evidence/savor01-evidence-of-food/step-1.webp",
+          "result_label": "Frame at 0:15.2 · four lanes, three signals each, one honest footer",
+          "result_caption": "Measured against the brief: USE FIRST #AC3D2D vs #C6382C, USE SOON #B3762C vs #C68A24, CHECK #22528C vs #1755A5 — all within ΔRGB 29. STABLE #696763 vs #9A9B96 is off by 88 and the shape covers for it.",
+          "result_source": "final"
         },
         {
-          "title": "2. Spill the evidence with physical inertia",
-          "text": "The opening is chaos on purpose: receipt fragments, barcode stripes, printed dates and halftone food crops enter from the frame edges at different speeds with slight rotational overshoot. The SAVOR/01 lockup stays dead still at center while the mess moves around it — the contrast between a fixed identity and uncontrolled evidence is the hook.",
-          "prompt": "Editorial collage frame, warm paper background #F2EEE5, near-black ink typography. Scattered food evidence fragments: thermal receipt strips with torn edges, barcode sections, printed date stamps, opened-product notes, halftone food photography crops. Fragments enter from frame edges with varied rotation and overlap, physically scattered not decoratively arranged. A small fixed typographic lockup 'SAVOR/01' holds still at the center. Condensed grotesk display type, tabular numerals, registration marks. 16:9, 1920x1080. No UI mockups, no app screens, no people, no gradients.",
-          "result_image": "/ui_views/assets/savor01-evidence-of-food/01-evidence-spill.webp"
-        },
-        {
-          "title": "3. Make conflicting dates break the grid",
-          "text": "Food date language is genuinely broken: USE BY, BEST BEFORE, OPENED and purchase dates contradict each other in real kitchens. Show it as a typographic collision — one giant black date, three competing labels sliding and rotating into it, an 8-frame hold on the impact. This is the 'why' of the whole system in 3 seconds.",
-          "prompt": "Editorial typographic frame on warm paper #F2EEE5. One massive black date '21 JUN' in condensed grotesk dominates the grid. Three conflicting date labels collide with it: 'USE BY' sliding left to right, 'OPENED' rolling downward, 'BEST BEFORE' rotated 7 degrees into the collision. Ink texture like rubber date stamps, hard overlaps, registration marks at edges, barcode shutter closing from the sides. Near-black ink #20201E, tomato accent #C6382C. 16:9, 1920x1080. English text only, no UI, no icons, no people.",
-          "result_image": "/ui_views/assets/savor01-evidence-of-food/02-date-collision.webp"
-        },
-        {
-          "title": "4. Register evidence with OCR logic",
-          "text": "The system earns trust by showing what it reads. Six registration boxes draw on clockwise around a yoghurt crop — product name, use-by date, opened date, storage zone, quantity — and each box overshoots its target by a few pixels before snapping into place. The seventh box says NO SAFETY VERDICT and stays neutral black: the system states its own limit inside the design.",
+          "title": "Same date, two meanings, four seconds apart",
+          "text": "Neither prompt supplied a calendar. The collision prompt named one value, 21 JUN, and the capture prompt named none at all. The model invented 14 JUN and 18 JUN, then carried both across into a separately generated frame — genuine continuity, and more than most image models manage. What it dropped was what the numbers meant. At 0:04.6 the torn strips read OPENED 14 JUN, USE BY 18 JUN, BEST BEFORE 21 JUN. At 0:08.4 the same 18 JUN is boxed and labelled PACKAGE DATE, sitting next to OPENED DATE 14 JUN: a yoghurt opened four days before it was manufactured. The registration sheet drifts elsewhere too. The prompt asked for six boxes labelled PRODUCT, USE BY, OPENED, STORAGE, QTY plus a neutral NO SAFETY VERDICT. Seven boxes shipped. Only OPENED and STORAGE kept their labels; PRODUCT became BARCODE, USE BY became PACKAGE DATE, QTY became WEIGHT CHANGE −18 g, and an unrequested USER CONFIRMED appeared. The single label that survived verbatim is the one the entire safety rule depends on. So the model defended the constraint and improvised everything around it — check the semantics of any value it carries between frames, because it will keep the digits and swap the noun.",
           "prompt": "Editorial evidence-capture frame on warm paper. One halftone yoghurt cup crop at center, surrounded by six precise registration boxes drawn in near-black ink: PRODUCT, USE BY, OPENED, STORAGE, QTY, and a final neutral box reading 'NO SAFETY VERDICT'. Boxes have thin rule lines, corner ticks, small tabular metadata labels, OCR-style alignment marks. Dry scanner aesthetic, condensed grotesk labels, cobalt accent #1755A5 for active registration. 16:9, 1920x1080. No glossy UI, no holograms, no scan beams, no people.",
-          "result_image": "/ui_views/assets/savor01-evidence-of-food/03-evidence-capture.webp"
+          "result_image": "/ui_views/assets/evidence/savor01-evidence-of-food/step-2.webp",
+          "result_label": "0:04.6 and 0:08.4 side by side · 18 JUN is USE BY, then PACKAGE DATE",
+          "result_caption": "Left: the invented dates 14 / 18 / 21 JUN. Right: the same 18 JUN relabelled PACKAGE DATE above an OPENED DATE of 14 JUN.",
+          "result_source": "final"
         },
         {
-          "title": "5. Sort by position first, color second",
-          "text": "Exactly 12 evidence tiles enter from scattered positions and reorganize into four horizontal lanes. The motion rule matters: tiles sort by vertical position first, and status color appears only 4 frames later. Priority is expressed as physical order — color is a label, not the mechanism. Three tiles per lane, short stagger, small recoil at the settle point.",
-          "prompt": "Editorial system frame on warm paper, 12-column grid. Twelve evidence tiles — receipt fragments, date stamps, barcode pieces, food crops with metadata labels — reorganizing into four horizontal lanes. Lane headers in condensed grotesk: USE FIRST (tomato #C6382C), USE SOON (amber #C68A24), STABLE (cool grey #9A9B96), CHECK (cobalt #1755A5). Tiles mid-sort with visible position logic, tabular numerals, registration ticks. 16:9, 1920x1080. No app UI, no rounded cards, no drop shadows, no people.",
-          "result_image": "/ui_views/assets/savor01-evidence-of-food/04-triage-build.webp"
-        },
-        {
-          "title": "6. Build the four-state typographic system",
-          "text": "The payoff frame: four vertical fields, one per state. Each state is text + shape + color — circle for USE FIRST, triangle for USE SOON, equals sign for STABLE, diagonal X for CHECK. Never a medical plus, never color alone. Words reveal bottom-to-top through hard masks; symbols stamp in like print cylinders. This single frame is the whole product.",
-          "prompt": "Editorial typographic system frame on warm paper #F2EEE5. Four equal vertical fields separated by hairline rules. Each field shows one food-triage state in condensed grotesk: USE FIRST with a circle in tomato #C6382C, USE SOON with a triangle in amber #C68A24, STABLE with an equals sign in cool grey #9A9B96, CHECK with a diagonal X in cobalt #1755A5. Symbols read as stamped print marks, small metadata labels under each state, tabular numerals. 16:9, 1920x1080. English only, no icons beyond the four symbols, no UI, no people, no gradients.",
-          "result_image": "/ui_views/assets/savor01-evidence-of-food/05-four-states-final.webp"
-        },
-        {
-          "title": "7. Collapse everything into one lockup",
-          "text": "The finale is compression: the four fields fold into a single horizontal evidence strip, the barcode travels to center and stops dead, the four symbols reorder into one row. SAVOR/01 resolves with a 2-frame red misregistration before alignment — a small print-imperfection detail that makes the system feel physical, not rendered. Hold the final frame long enough to read.",
-          "prompt": "Editorial final-lockup frame on warm paper #F2EEE5. One horizontal evidence strip across the center combining receipt texture, barcode section and date stamps. Above it the condensed grotesk lockup 'SAVOR/01' in near-black ink with a subtle red misregistration offset, below it the line 'THE EVIDENCE OF FOOD'. The four state symbols — circle, triangle, equals, diagonal X — in one ordered row with their state colors. Registration marks at the corners, generous negative space. 16:9, 1920x1080. English only, no UI, no people.",
-          "result_image": "/ui_views/assets/savor01-evidence-of-food/06-final-lockup.webp"
-        },
-        {
-          "title": "8. Animate with sound as the timing layer",
-          "text": "The 20-second cut runs 00–03 spill, 03–06 collision, 06–09 capture, 09–13 triage, 13–17 states, 17–20 lockup at 24 fps. Sound is dry foley, not music: paper feed, scanner ticks, three stamp impacts, six optical clicks, four print-cylinder hits, one low tonal pulse at the lockup. A calm English voiceover explains the logic in three sentences — the system organizes evidence instead of inventing a score. Add the brand watermark at 10% frame width, centered, flush to the bottom edge.",
+          "title": "The voiceover in the brief is not in the file",
+          "text": "The animation note for this reel promises a calm English voiceover explaining the logic in three sentences. Open the audio and it is not there. Twelve digital-silence gaps carve up 3.73 of the 19.09 seconds — 19.5% of the track is nothing at all — and the longest unbroken audible stretch is 2.65 seconds, ending at 0:10.49. Run a voicing test across the whole file and the longest continuously periodic run is 0.60 seconds; a spoken sentence needs several seconds of that back to back. What you are hearing is paper foley and stamp hits with hard gaps between them, which is a better soundtrack than the one described, but the brief and the file disagree and only one of them is real. Two more numbers worth correcting. The reel is 19.09 seconds over 458 frames at 24 fps, not the 20 seconds it is named after, and it goes completely static at 0:16.42 — the final lockup holds for 2.67 seconds without a single measurable change. There are also no hard cuts anywhere: the highest scene-change score in the entire file is 0.174, so the six keyframes dissolve into each other rather than cutting. And the watermark, briefed at 10% frame width flush to the bottom edge, measures 144 × 23 px — 7.5% of a 1920px frame, horizontally centred to within 1.5 px, sitting 13 px above the bottom.",
           "prompt": "",
-          "result_video": "/ui_views/assets/savor01-evidence-of-food/savor01-twitter-promo-v01.mp4"
+          "result_video": "/ui_views/assets/savor01-evidence-of-food/savor01-twitter-promo-v01.mp4",
+          "result_label": "The delivered 19.09s reel · listen for the voiceover that was specified",
+          "result_caption": "19.5% of the audio is digital silence. Longest audible stretch 2.65s, longest voiced run 0.60s. No cut scores above 0.174 in the whole file.",
+          "result_source": "final"
         }
       ],
-      "result": "A complete 20-second motion identity: six GPT-Image keyframes on one warm-paper grid, a four-state typographic triage system (USE FIRST / USE SOON / STABLE / CHECK), dry foley sound design and a calm English voiceover. The system organizes food evidence the user already has — it never claims to detect freshness or safety.",
+      "result": "A 19.09-second motion identity that keeps the promise it was built around and breaks several it made in passing. The safety rule holds frame for frame; the dates contradict themselves, the box labels rewrote themselves, and the voiceover was never recorded. Worth knowing which failures matter: none of these touch the constraint the project existed to protect.",
       "downloads": [
         {
           "label": "View keyframe contact sheet",
@@ -1445,8 +1351,8 @@
       "id": "building-autopsy-boutique-hotel",
       "cat": "Design",
       "sub": "Architecture",
-      "title": "Building Autopsy: Convert an Abandoned Factory into a Boutique Hotel",
-      "desc": "Turn one 1912 textile factory into a 42-key boutique hotel without letting the plans, section and final render contradict each other.",
+      "title": "The plans hold to the millimetre. The labels on them do not.",
+      "desc": "Nine drawings of one converted factory, measured against each other in pixels. The survey grid comes back dimensionally perfect — 23.333 px/m on both axes, zero anisotropy, bay spacings with a standard deviation of 0.00 px — and the intervention sheet inherits it line for line. Then the annotations start describing a different building: a one-bay demolition note over a four-bay hole, a 2.0 m gallery drawn 0.85 m wide, and a section stretched 1.94× vertically while insisting all its floors are 4.50 m apart.",
       "time": "28 min",
       "date": "2026-07-19",
       "level": "Senior",
@@ -1456,68 +1362,45 @@
       "image": "/ui_views/assets/cover-building-autopsy.cover.webp",
       "steps": [
         {
-          "title": "1. Fix the facts before making a gesture",
-          "text": "Start with one measured base file. If the grid moves now, every later view will contradict it.",
+          "title": "The grid is exact, and the second sheet inherits it untouched",
+          "text": "This is the part that works, and it is worth more than it looks. Locate every column dot on the survey sheet and the four long bays measure 210.0, 210.0, 210.0, 210.0 px — standard deviation 0.00 — while the two short bays measure 140.0 and 140.0. That is 23.333 px/m in X and 23.333 px/m in Y: 0.00% anisotropy, so a circle drawn on this plan is a circle. Scan the perimeter and the wall centrelines sit 54.00 m apart the long way and 24.00 m the short way, exactly as briefed. Then generate the intervention diagram as a separate image and the grid does not move: identical column positions, identical y-lines at 439.5 / 579.5 / 719.5, identical building box. One column is gone, at grid 4/C, which is the single removal the prompt asked for. The bronze frame drawn around the void measures 420 × 280 px centreline to centreline = 18.00 × 12.00 m, matching the CONTROL dimension printed beside it. Two separately generated architectural sheets that agree with each other to the pixel — treat this as the baseline the rest of the set fails to reach.",
           "prompt": "Create a concept-level measured as-built plan for a fictional 1912 textile factory. Footprint: 54.0 m × 24.0 m. Grid: 6 bays at 9.0 m in the long direction and 4 bays at 6.0 m in the short direction. Keep the brick perimeter, every cast-iron column, and two existing stairs in opposite corners. Draw as a precise architectural survey sheet, not a mood board. Include grid labels 1–7 and A–E, a north arrow, dimensions, and a 1:200 scale bar.",
-          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/as-built-survey.webp"
+          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/as-built-survey.webp",
+          "result_label": "The delivered survey · bays 210.0 / 210.0 / 210.0 / 210.0 px, sd 0.00",
+          "result_caption": "23.333 px/m on both axes. Perimeter 54.00 × 24.00 m. The intervention sheet reproduces every one of these positions.",
+          "result_source": "final"
         },
         {
-          "title": "2. Make removal specific",
-          "text": "The void is one measured cut, not a vague instruction to open the centre.",
-          "prompt": "From the 54 × 24 m as-built plan, create a keep/remove/add intervention diagram. KEEP: brick perimeter, cast-iron grid, end stairs and all atrium-edge columns. REMOVE: floor plates at levels +4.50 and +9.00 plus roof directly over bays 3–4 / B–C; remove only the column at grid 4/C. ADD: a bronze independent frame around the 18.0 × 12.0 m void, two glass lifts, 2.0 m galleries and a roof lantern set back 1.5 m from the roof cut. Use charcoal for keep, coral hatch for remove, mint and bronze for add. Give every operation a clear legend.",
-          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/keep-remove-add.webp"
-        },
-        {
-          "title": "3. Program the ground floor around the void",
-          "text": "Public life belongs at ground level. Service stays in one corner; the atrium stays a public room.",
-          "prompt": "Create a proposed ground-floor plan for the factory hotel using the fixed 6 × 4 grid. Keep the 18.0 × 12.0 m atrium at bays 3–4 / B–C empty above ground level. Place reception and entry south-west; restaurant and kitchen north-east; back-of-house and staff south-east; two accessible rooms north-west; two retained stairs in opposite corners. Place a lounge bar and two glass lifts inside the atrium perimeter, without turning the void into enclosed rooms. Show the grid, program labels and a short note explaining circulation.",
-          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/proposed-ground.webp"
-        },
-        {
-          "title": "4. Stack keys without invading the atrium",
-          "text": "Each upper floor holds 20 keys while keeping the opening and a 2.0 m gallery loop intact.",
+          "title": "Three labels that describe a different building",
+          "text": "The geometry is right and the writing on top of it is not. Three cases, all measured on the sheets themselves. First, the demolition note. The prompt said remove over bays 3–4 / B–C, the legend on the sheet repeats it, and the hole actually drawn spans gridlines 3 to 5 and B to D — four bays, not one — while the CONTROL dimension a few centimetres away correctly reads 18.0 × 12.0 m. The drawing and its own caption disagree in the same image. Second, the gallery. The upper-floor plan prints 2.0 m GALLERY ALL AROUND inside the void; the green band measures 22 px, and at that sheet's 25.833 px/m that is 0.85 m. Measure generously, from the inner face of the bronze frame to the void edge, and you still only get 1.35 m. Nobody walks a 0.85 m hotel gallery. Third, the key count. 20 keys per floor is four empty rectangles with captions on them. The two labelled 10 NORTH ROOMS and 10 SOUTH ROOMS measure 400 × 105 px = 15.48 × 4.07 m, so ten rooms inside one of them is 6.3 m² each, and not one partition, door or bathroom is drawn. The other two boxes read HOUSEKEEPING + ROOMS and ROOMS / SUITE AT END, which means the floor's real key count cannot be derived from the drawing at all. The pattern: the model is reliable at reproducing coordinates and unreliable at describing them. Trust its geometry, re-derive every number in its text.",
           "prompt": "Create a typical upper-floor plan for levels +4.50 and +9.00 using the exact same 54 × 24 m grid and 18 × 12 m atrium void. Place 20 keys on each floor: 10 north-facing rooms, 10 south-facing rooms, with housekeeping and one suite at the east end. Keep the two existing stairs. Add a 2.0 m gallery all around the void. No room, bathroom or service enclosure may enter the atrium. Show level labels, grid, gallery width and room count.",
-          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/proposed-upper.webp"
+          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/proposed-upper.webp",
+          "result_label": "The delivered upper floor · the 2.0 m gallery measures 22 px = 0.85 m",
+          "result_caption": "Twenty keys are four empty boxes. The two labelled ones are 15.48 × 4.07 m, so ten rooms inside one would be 6.3 m² each with no partitions drawn.",
+          "result_source": "final"
         },
         {
-          "title": "5. Use a section to prove the spatial claim",
-          "text": "A plan can hide impossible ideas. The section has to prove the lantern, galleries and retained roof work together.",
+          "title": "The one drawing whose job is proof is the one that is not to scale",
+          "text": "The section exists to verify that the lantern, galleries and retained roof coexist. It cannot, because it is not drawn to a single scale. Horizontally, the outer wall centrelines sit 1390 px apart for a building known to be 54.0 m long: 25.741 px/m. Vertically, the floor lines at +0.00, +4.50 and +9.00 sit exactly 225.0 px apart: 50.0 px/m. That is a 1.94× vertical stretch, so every angle, every roof pitch and the lantern's proportions on this sheet are fiction. Worse, the stretch is not even consistent within the drawing: the top storey, eaves down to +9.00, measures 120.0 px where the two below measure 225.0 px each — 53% of the height, while the labels insist on a uniform 4.50 m rhythm. Take the drawing at its own vertical scale and the eaves marked +13.50 sit 570 px above ground = 11.40 m. The atrium void, captioned 18 m ATRIUM VOID in the model's own type, measures 420 px = 16.32 m at the section's horizontal scale. The final render, linked at the end of this guide, was generated last and is the most persuasive image in the set; it shows two galleries above the ground floor, which is what the section draws — so the render is coordinated even though the drawing that was supposed to prove it is not. Read that as the lesson: photorealism arrived intact and orthographic discipline did not, and only one of those two is checkable by eye.",
           "prompt": "Draw a longitudinal architectural section through the centre of the atrium. Show ground +0.00, level 1 +4.50, level 2 +9.00 and eaves +13.50. Retain the sawtooth roof outside the atrium. Cut the roof over the 18 m void and add a low-iron glass lantern set back 1.5 m from its edges. Show an independent dark bronze frame carrying the new lantern and gallery loads. Keep the existing brick shell separate from new steel. Add a concept-only engineering note that licensed structural and fire review is required.",
-          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/longitudinal-section.webp"
-        },
-        {
-          "title": "6. Explain the assembly, not just the silhouette",
-          "text": "The exploded axon exposes what is retained, cut, framed and glazed.",
-          "prompt": "Create an exploded axonometric diagram of the factory conversion in four layers. 01 RETAIN: brick shell and cast-iron grid. 02 CUT: floor plates at levels 1 and 2, and the roof, only over bays 3–4 / B–C. 03 FRAME: independent dark bronze steel around the void. 04 LANTERN: a low-iron glazed roof set back 1.5 m. Keep the 18 × 12 m opening aligned in every layer and identify the single removed column at 4/C.",
-          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/exploded-axon.webp"
-        },
-        {
-          "title": "7. Keep the façade calm",
-          "text": "The new work shows at the roofline; it does not erase the industrial identity.",
-          "prompt": "Create a before/after north façade sheet for a red-brick 1912 textile factory. Retain the arched window rhythm and sawtooth profile. In the after view, add only a restrained glazed lantern over bays 3–4, visibly set back behind the parapet. Do not reclad the façade, add oversized signs, or replace historic windows with curtain wall. Use a clear comparison layout and label exactly what is retained and what is added.",
-          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/facades-before-after.webp"
-        },
-        {
-          "title": "8. Give materials jobs",
-          "text": "Brick carries history. Bronze identifies new structure. Glass delivers light. Oak and wool make the public room usable.",
-          "prompt": "Create a restrained material palette for an adaptive-reuse boutique hotel. Include: repaired existing red brick; dark bronze independent steel; low-iron glass; oak and moss-green wool for lounge interiors. Add one construction-facing rule: all new metal and glass stop 25–50 mm short of historic brick, creating a visible shadow gap. Use large samples, short labels and no generic trend names.",
-          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/material-palette.webp"
-        },
-        {
-          "title": "9. Generate one render that obeys the drawings",
-          "text": "The final render is a coordination check: the shell, two galleries, lifts and 18 × 12 m void must match the drawings.",
-          "prompt": "Deliverable: a single photorealistic architectural interior visualization, landscape 16:10. Eye-level view from the reception side into an 18 m × 12 m central atrium in a converted 1912 textile factory. Retain red brick, tall cast-iron columns and sawtooth roof profile. Add a dark bronze independent frame, two glass lift enclosures, 2.0 m galleries at levels +4.50 and +9.00, and a low-iron roof lantern set back 1.5 m from the cut roof edges. Add a quiet lounge bar with oak, moss-green wool seating, restrained plants and a few guests. Use a 35 mm lens, balanced verticals, soft overcast daylight, real material wear and physically plausible contact shadows. No signage, text, logos, neon, cyberpunk styling, marble lobby, or extra floors.",
-          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/atrium-render.webp"
+          "result_image": "/ui_views/assets/building-autopsy-boutique-hotel/longitudinal-section.webp",
+          "result_label": "The delivered section · 25.741 px/m across, 50.0 px/m up",
+          "result_caption": "Storeys measure 225.0 / 225.0 / 120.0 px, all labelled 4.50 m apart. Eaves marked +13.50 measure 11.40 m; the 18 m void measures 16.32 m.",
+          "result_source": "final"
         }
       ],
-      "result": "A coordinated senior concept package: 9 linked steps, an annotated final render, SVG sources and a 9933 × 7016 px A1 presentation board. Concept study only; site survey and licensed structural, fire, access, MEP and conservation review are required before construction.",
+      "result": "Nine sheets in which the coordinates are trustworthy and the annotations are not. The survey and intervention grid are exact to 0.00 px and the render matches the section's storey count — but a one-bay note sits over a four-bay hole, the 2.0 m gallery is 0.85 m, and the section is stretched 1.94× vertically with one storey at half height. Concept study only; site survey and licensed structural, fire, access, MEP and conservation review are required before construction.",
       "downloads": [
         {
           "label": "Download A1 presentation board (9933 × 7016 PNG)",
           "file": "/ui_views/assets/building-autopsy-boutique-hotel/a1-presentation-sheet.png"
         },
         {
-          "label": "View annotated final render",
+          "label": "Final atrium render · two galleries, matches the section",
+          "file": "/ui_views/assets/building-autopsy-boutique-hotel/atrium-render.webp"
+        },
+        {
+          "label": "Annotated version of the same render",
           "file": "/ui_views/assets/building-autopsy-boutique-hotel/annotated-atrium-render.png"
         }
       ]
@@ -1526,8 +1409,8 @@
       "id": "jeweled-brand-icons-carousel",
       "cat": "Design",
       "sub": "Brand Icon Series",
-      "title": "Rebrand carousel: five jeweled brand icons with one prompt formula",
-      "desc": "Turn five familiar brand marks — YouTube, X, Quadcode, ChatGPT and Apple — into one luxury object series: glossy inflated metal, crystal detailing, black studio background. One reusable material formula, five swappable silhouettes.",
+      "title": "4 of 5 silhouettes obeyed the brief — the 5th drew a different logo",
+      "desc": "One material formula, five brand silhouettes: YouTube, X, ChatGPT and Apple all rendered as briefed. The Quadcode slot didn't — asked for a four-pointed sparkle, it delivered Quadcode's own nested-square \"Q\" mark instead, with the stated gradient never happening either.",
       "time": "20 min",
       "date": "2026-07-18",
       "level": "Middle",
@@ -1548,8 +1431,8 @@
           "result_image": "/ui_views/assets/jeweled-brand-icons-carousel/x_icon_v2_upscaled.webp"
         },
         {
-          "title": "3. Quadcode sparkle — the warm focal point of the set",
-          "text": "Every curated set needs one warm anchor. The Quadcode sparkle takes the brand gradient (#FF9569 → #DD344D) as its actual material color, so it becomes the emotional center of the carousel while still obeying the same formula: inflated gloss, crystal accents, black void around it.",
+          "title": "3. Quadcode — the model swapped the subject for its own logo",
+          "text": "The prompt asks for a four-pointed sparkle/star. What renders is Quadcode's actual nested-square \"Q\" bumper mark — no points, no apex where four points meet, so the promised \"crystal core glowing at the center\" has nothing to sit in; it's just a small flat coral square. The gradient fails too: sampling the top and base of the object gives #E86F5C and #F69892 — a 31-unit and 124-unit miss on the two target hexes, and the base reads lighter than the top, the opposite direction of \"coral-to-crimson\". Read as: when a brand name appears in the same sentence as its own logo, the model can substitute the logo for the described shape. State the geometry only (\"four-pointed star, no lettering, no brand marks\") if the sparkle is what you actually want.",
           "prompt": "Premium 3D brand icon, square 1:1, luxury product photography on a pure black studio background. Subject: a four-pointed sparkle/star mark reimagined as a physical jeweled object — glossy inflated metal with a coral-to-crimson gradient finish flowing from #FF9569 at the top points to #DD344D at the base, like anodized liquid metal. A small crystal core glows softly at the center where the four points meet. Fine details: balloon-smooth inflation, razor-clean point tips, warm coral light spill on the black floor, restrained bloom. Lighting: warm key light, cool rim accents. Tangible and physical, NOT flat vector art. Hard constraints: single object centered, generous negative space, no text, no watermark, no extra logos.",
           "result_image": "/ui_views/assets/jeweled-brand-icons-carousel/quadcode_icon_sparkle.webp"
         },
@@ -1560,13 +1443,13 @@
           "result_image": "/ui_views/assets/jeweled-brand-icons-carousel/chatgpt_icon_v2_upscaled_1.webp"
         },
         {
-          "title": "5. Apple — close the set with restraint",
-          "text": "The finale goes quiet on purpose: brushed silver, minimal sparkle, maximum surface quality. After four louder objects, restraint is what makes the set read as curated instead of repetitive. Then assemble all five into one 16:10 promo banner — feed the five finished icons back into GPT-Image as references and ask for a single editorial arrangement (that's exactly how the cover of this guide was made).",
+          "title": "5. Apple — asked for restraint, got the same stud count",
+          "text": "The prompt asks for \"fewer sparkles than a gem\" to close the set on a quieter note. Counting the diamonds on the render: about 10 studs ringing the apple body plus 2 on the leaf — the same density as the YouTube, X and ChatGPT icons before it, not a reduction. The brushed-silver material and separate polished leaf both land correctly; the \"restraint\" instruction is the one clause that didn't do anything. Then assemble all five into one 16:10 promo banner — feed the five finished icons back into GPT-Image as references and ask for a single editorial arrangement (that's exactly how the cover of this guide was made).",
           "prompt": "Premium 3D brand icon, square 1:1, luxury product photography on a pure black studio background. Subject: the Apple logomark reimagined as a physical jeweled object — glossy inflated silver metal with a soft brushed-chrome finish, the leaf as a separate polished piece with a faint crystal edge. Understated elegance: fewer sparkles than a gem, more mirror-like surface perfection, cool neutral reflections. Fine details: balloon-smooth inflation, immaculate surface, subtle silver glow pooled on the black floor. Lighting: soft key light, crisp white rim light on the silhouette. Tangible and physical, NOT flat vector art. Hard constraints: single object centered, generous negative space, no text, no watermark, no extra logos.",
           "result_image": "/ui_views/assets/jeweled-brand-icons-carousel/apple_icon_v2_upscaled_1.webp"
         }
       ],
-      "result": "Five brand marks rendered as one luxury object family — same inflated glossy-metal material, same black studio, same lighting system, five different silhouettes. Finish by compositing the five icons into a single 16:10 promo banner with GPT-Image using the icons themselves as references. Reuse the formula: keep the material block fixed, swap the silhouette, state the brand color as a material."
+      "result": "Four of five silhouettes rendered exactly as briefed: YouTube's play triangle read as a cut gem, X separated from a true black background through rim light alone, the ChatGPT knot kept all six strands distinct, Apple's leaf split into its own polished piece. The Quadcode slot is the exception on two counts — it drew the brand's own \"Q\" logo instead of the requested four-pointed sparkle, and its gradient never left flat coral. The other lesson came from Apple: telling the model to be \"restrained\" with sparkle density didn't reduce the stud count at all. Same reusable formula, same black studio — but silhouette and material instructions aren't guaranteed just because the surrounding recipe is fixed."
     },
     {
       "id": "cherry-blossom-boss-cinematic",
@@ -1657,20 +1540,20 @@
           "result_image": "/ui_views/assets/headphones-retouch-color-grade/detail-9x16.webp"
         },
         {
-          "title": "5. Upscale the whole set to 4K",
-          "text": "Finish by upscaling every deliverable to 4K. The rule: only add resolution, never reinterpret. A low-strength, quality-first upscaler (SeedVR2 4K) keeps the metal brushed and the leather grain intact instead of smoothing them into plastic. Run the same upscale pass across the set so the resolution jump is consistent.",
+          "title": "5. Upscale the set — but check the actual output size before calling it 4K",
+          "text": "The rule is right even if the delivered numbers here aren't: only add resolution, never reinterpret. What SeedVR2 actually returned for this set tops out at 1920px on the long edge (the hero) and 1200px on the e-comm square — real, clean, texture-preserving resolution, but roughly half of true 4K (3840px), not 4K itself. The retouch and grade held up on inspection: raw-source's dust and fine metal marks are visibly gone in the hero and e-comm crops, the leather grain reads pore-by-pore in the 9:16 detail, and the e-comm background sampled at #F0F0F0 against a #EDEDED target. Don't take an upscaler's output size on faith — measure the file before you write \"4K\" anywhere near it.",
           "prompt": "Upscale this product photo 2x. Preserve exactly: brushed silver metal texture, black leather grain, the lighting and the color grade. Only add real resolution and crisp micro-detail — do not change lighting, grade, composition or materials. Texture fidelity is everything; no smoothing, no hallucinated detail.",
           "result_image": "/ui_views/assets/headphones-retouch-color-grade/banner-preview.webp"
         }
       ],
-      "result": "A complete, coherent product set from one raw photo: a cinematic 16:9 hero, an honest 1:1 e-comm catalog shot and a vertical 9:16 texture detail — all retouched, graded and upscaled to 4K with the metal and leather textures fully intact."
+      "result": "A complete, coherent product set from one raw photo: a cinematic 16:9 hero, an honest 1:1 e-comm catalog shot and a vertical 9:16 texture detail — retouch, grade and neutral e-comm background all verified against the raw source. The one gap: the set was upscaled to 1920px, not the 3840px \"4K\" the last step promises — call it what it measures, not what the step title says."
     },
     {
       "id": "business-visuals-that-explain-work",
       "cat": "Design",
       "sub": "Business Visuals",
-      "title": "Turn business problems into visuals people understand",
-      "desc": "Make four clear business visuals: recurring revenue, AI onboarding, faster landing pages and a CRM that replaces spreadsheet chaos.",
+      "title": "Four different briefs, one template — read the pattern before you trust it",
+      "desc": "Four business visuals — recurring revenue, AI onboarding, landing-page speed, a CRM fix — each prompt asks for a different structure. The model rendered all four as the same red-and-black \"Before / After\" split, and ignored two explicit bans along the way.",
       "time": "12 min",
       "date": "2026-07-18",
       "level": "Middle+",
@@ -1680,8 +1563,8 @@
       "image": "/ui_views/assets/cover-business-visuals.cover.webp",
       "steps": [
         {
-          "title": "1. Show recurring revenue as a system",
-          "text": "A revenue visual should make the mechanism visible in one glance: payment happens, the service continues, the customer returns. Avoid vague arrows and fake dashboard numbers.",
+          "title": "1. Show recurring revenue as a system — minus the ban it broke",
+          "text": "The prompt explicitly says \"no fake statistics\" and the render ignores it: a dashboard reading $124,560 revenue, +18.6%, $8,420 earnings, 23,689 visitors, 5.2% conversion, plus four floating \"Payment received +$1,250 / +$2,340 / +$1,890 / +$980\" cards — none of them real, all of them precise-looking. The mechanism itself does land: the right side visibly shows payment → service continuing → customer relaxing, which is the actual point of a recurring-revenue visual. Ban the specific thing you don't want (\"no invented dollar or percentage figures\"), not the vague category (\"no fake statistics\") — the model reads the second as decoration, not a rule.",
           "prompt": "Create a clear premium business illustration explaining recurring revenue. Show a simple continuous loop between customer, payment and active service, with a readable 24/7 operating rhythm. Use a clean editorial SaaS style, strong hierarchy, restrained palette, real interface fragments rather than generic arrows, no fake statistics, no illegible microtext.",
           "result_image": "/ui_views/assets/business-visuals-that-explain-work/revenue_24_7.webp"
         },
@@ -1698,20 +1581,20 @@
           "result_image": "/ui_views/assets/business-visuals-that-explain-work/landing_week.webp"
         },
         {
-          "title": "4. Replace spreadsheet chaos with a CRM view",
-          "text": "The before-and-after must be practical: scattered rows and lost follow-ups become one shared pipeline with owners, stages and next actions. That is what a CRM actually fixes.",
+          "title": "4. Replace spreadsheet chaos with a CRM view — but the ban list has a hole in it",
+          "text": "The pipeline itself is legitimately good: New Leads → Qualified → Proposal → Closed Won reads instantly, with a Pipeline Value and Conversion Rate card giving it weight. But the prompt's \"no brand names\" ban only got applied to the After side — the Before panel's sidebar renders an actual LinkedIn icon (the lower-case \"in\" mark) among its integration icons, a real trademarked logo the ban should have caught. If a ban needs to hold on both halves of a before/after, say so explicitly on both halves — a single blanket instruction at the end of the prompt is easy for the model to apply unevenly.",
           "prompt": "Create a business before-and-after visual: an overloaded spreadsheet with duplicate customer rows, unclear ownership and missed follow-ups transforms into a clean CRM pipeline with visible stages, owner avatars and next actions. Product-led editorial design, strong information hierarchy, realistic but minimal interface detail, no brand names, no illegible text.",
           "result_image": "/ui_views/assets/business-visuals-that-explain-work/excel_crm.webp"
         }
       ],
-      "result": "Four business visuals that explain a real operational change in seconds — useful for landing pages, investor decks, sales posts and internal presentations."
+      "result": "Four business visuals that explain a real operational change in seconds. All four converged on the same red-and-black \"Before / After\" split composition — only one of the four prompts actually asked for a before/after, the other three just drifted there anyway. Two hard bans didn't hold: \"no fake statistics\" left a full dashboard of invented dollar figures in the revenue slide, and \"no brand names\" caught the After side of the CRM slide but missed a real LinkedIn icon sitting in the Before side. Useful output, but proofread every number and every icon before it ships."
     },
     {
       "id": "compare-interior-directions",
       "cat": "Design",
       "sub": "Interior Visualization",
-      "title": "Compare three interior directions before you commit",
-      "desc": "Use the same real-estate brief to compare a Baroque cottage, an industrial loft and a modern studio — then choose a direction with a clear point of view.",
+      "title": "\"Same room, three directions\" — except it's three different rooms",
+      "desc": "The brief asks for one locked room compared across three material directions. What rendered is three unrelated spaces: a double-height barn hall with a spiral staircase, a single-story brick loft with no staircase, and a glass-walled high-rise apartment with a city skyline. Same idea, but the \"identical room\" claim doesn't survive a side-by-side look.",
       "time": "8 min",
       "date": "2026-07-18",
       "level": "Middle+",
@@ -1721,8 +1604,8 @@
       "image": "/ui_views/assets/compare-interior-directions/baroque_cottage_final.cover.webp",
       "steps": [
         {
-          "title": "1. Lock what must stay the same",
-          "text": "Start with one comparable brief: room size, daylight direction, camera height and the buyer profile. If those change between renders, you are comparing different apartments rather than different interior directions.",
+          "title": "1. Lock what must stay the same — the model unlocked it anyway",
+          "text": "The instruction is exactly right: keep architecture, camera angle, daylight direction and proportions identical, vary only the material direction. Look at what actually rendered across the three: the Baroque version is a double-height barn hall with a spiral staircase and timber-beam vault; the industrial loft is a single-story brick space with no staircase or upper floor at all; the modern studio is a standard-ceiling high-rise apartment with a floor-to-ceiling city view. Three different buildings, three different ceiling heights, three different window walls — not one room in three finishes. If the room must be identical, generate the empty locked room ONCE as its own reference image first, then feed that exact image back into each direction prompt as an edit — don't describe the room in text three separate times and hope it converges.",
           "prompt": "Create three high-end real-estate interior concepts for the exact same compact urban living room. Keep the architecture, camera angle, daylight direction and room proportions identical in every version. The comparison must show only the interior direction changing: furniture, material palette, lighting mood and decorative language. Editorial property-photography quality, realistic scale, no people, no text.",
           "result_image": "/ui_views/assets/compare-interior-directions/baroque_cottage_final.webp"
         },
@@ -1745,7 +1628,7 @@
           "result_image": "/ui_views/assets/compare-interior-directions/modern_studio_final.webp"
         }
       ],
-      "result": "Three coherent directions for the same property, ready to show a client or test in a listing: character-rich Baroque cottage, urban industrial loft and calm modern studio."
+      "result": "Three individually strong, coherent interior renders — but not a valid same-room comparison. Baroque cottage is a double-height barn hall, industrial loft is a single-story brick space, modern studio is a high-rise apartment: different ceiling heights, different window walls, no shared architecture between any of the three. Useful as three separate mood boards; not useful as evidence that one room \"works\" in three directions, because no single room was ever actually held constant."
     },
     {
       "id": "rolex-4k-before-after-upscale",
