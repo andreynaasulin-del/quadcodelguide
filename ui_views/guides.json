@@ -2214,8 +2214,8 @@
       "id": "jazz-rnb-restaurant-track",
       "cat": "Music",
       "sub": "Jazz R&B",
-      "title": "Make a jazz R&B restaurant track",
-      "desc": "Score a smooth, upscale fine-dining lounge track with one prompt.",
+      "title": "A jazz R&B restaurant track that cannot loop in a restaurant",
+      "desc": "One prompt, 3:39 of smooth fine-dining lounge. The tempo instruction landed almost exactly — 85 BPM asked, 86.1 measured. Two things did not: it fades out to silence over the last twelve seconds, and it is mastered at −13 LUFS with the true peak sitting on 0.0 dBFS. Both are fixable, neither is obvious until you measure.",
       "time": "5 min",
       "date": "2026-07-02",
       "level": "Junior",
@@ -2224,43 +2224,34 @@
       "audio": "/ui_views/assets/music-rnb-latenight.mp3",
       "steps": [
         {
-          "title": "Set the vibe",
-          "text": "Say the mood and place in one line. For a premium restaurant, keep it smooth and classy.",
-          "prompt": "Sophisticated jazz R&B instrumental for an upscale fine-dining restaurant lounge, smooth, elegant and relaxed",
+          "title": "Put the number in the prompt — it is the instruction that survives",
+          "text": "Mood words are negotiable, numbers are not. This prompt asked for \"relaxed 85 BPM\"; beat-tracking the finished file returns 86.1 BPM, and it holds that tempo from the first bar to the last. Everything vaguer got looser: \"smooth dynamics\" came back as a loudness range of 5.3 LU, which is narrower than the phrase suggests — the track barely breathes. Write the values you actually care about (tempo, key, length, no vocals) as numbers and words the model can only read one way, then let it improvise on the adjectives.",
+          "prompt": "Sophisticated jazz R&B instrumental for an upscale fine-dining restaurant lounge, smooth, elegant and relaxed. Warm Rhodes electric piano, soft brushed drums, walking upright bass, mellow muted trumpet and tenor saxophone, lush jazz chords. Relaxed 85 BPM, subtle vinyl warmth, tasteful and understated, no vocals",
           "result_audio": "/ui_views/assets/evidence/jazz-rnb-restaurant-track/step-1.mp3",
           "result_label": "Excerpt from the final track · 0:00–0:12",
-          "result_caption": "Intro. The room tone — brushed drums, low keys — is the \"vibe\" line from the prompt, verbatim.",
+          "result_caption": "The opening twelve seconds. Tempo measured across the whole file: 86.1 BPM against the 85 that was asked for.",
           "result_source": "final"
         },
         {
-          "title": "Name the instruments",
-          "text": "List a few real instruments so it sounds live and warm, not synthetic.",
-          "prompt": "Warm Rhodes electric piano, soft brushed drums, walking upright bass, mellow muted trumpet and tenor saxophone, lush jazz chords",
-          "result_audio": "/ui_views/assets/evidence/jazz-rnb-restaurant-track/step-2.mp3",
-          "result_label": "Excerpt from the final track · 0:40–0:52",
-          "result_caption": "Guitar and Rhodes enter. Naming instruments is why these two are here and nothing else is.",
-          "result_source": "final"
-        },
-        {
-          "title": "Set tempo and finish",
-          "text": "Add a slow tempo and keep it instrumental so it never gets in the way of conversation.",
-          "prompt": "Relaxed 85 BPM, subtle vinyl warmth, smooth dynamics, tasteful and understated, no vocals",
-          "result_audio": "/ui_views/assets/evidence/jazz-rnb-restaurant-track/step-3.mp3",
-          "result_label": "Excerpt from the final track · 3:20–3:32",
-          "result_caption": "The finish. Tempo holds to the end and the track resolves instead of fading.",
-          "result_source": "final"
-        },
-        {
-          "title": "Generate and pick your take",
-          "text": "Run it, listen, and keep the version that feels the most refined. Press play below to hear the result.",
+          "title": "The arrangement changes where the model decides, not where you expect",
+          "text": "A restaurant track lives or dies on where it moves. Measure that instead of guessing: track loudness and spectral centroid second by second and the real events show up as numbers. In this file the biggest arrangement change is at 2:01 — energy in the 2–5 kHz band, where a lead horn sits, drops from 20.8% to 10.2% of the spectrum while the low mids swell from 14.5% to 22.2%. The lead simply stops and the rhythm section takes the room back. Nothing comparable happens in the first minute: compare 0:10–0:22 with 0:40–0:52 and the centroid moves 1895 Hz → 1916 Hz, which is nothing. If you need a change at a specific minute, generate in sections and join them — one prompt gives you one shape and it is the model's shape.",
           "prompt": "",
-          "result_audio": "/ui_views/assets/evidence/jazz-rnb-restaurant-track/step-4.mp3",
-          "result_label": "Excerpt from the final track · 1:30–1:42",
-          "result_caption": "The hook from the take that was kept. Compare against your own generations at the same point.",
+          "result_audio": "/ui_views/assets/evidence/jazz-rnb-restaurant-track/step-2.mp3",
+          "result_label": "Excerpt from the final track · 1:55–2:08",
+          "result_caption": "The only structural move in three and a half minutes: the lead drops out at 2:01 and does not come back.",
+          "result_source": "final"
+        },
+        {
+          "title": "Two numbers decide whether it works in a real room — and both are wrong here",
+          "text": "First: it fades. Over the final twelve seconds the level walks down −9, −9, −11, −11, −12, −12, −15, −16, −15, −16, −18, −24 dB into silence. A fade is the one ending that cannot loop, and background music is a loop by definition — every three minutes forty the room goes quiet and everybody notices. Second: the master is hot. Integrated loudness is −13 LUFS with the true peak resting on 0.0 dBFS, which is a mastering-for-Spotify number, not a dinner-service number; rooms want roughly −18 LUFS and a peak with headroom left in it. Neither needs a re-generation. Trim the last twelve seconds at the final downbeat, cross-fade the head over the tail for a seamless loop, then normalise the file to −18 LUFS with a −1 dBTP limiter. Two minutes of editing turns an unusable render into a usable one.",
+          "prompt": "",
+          "result_audio": "/ui_views/assets/evidence/jazz-rnb-restaurant-track/step-3.mp3",
+          "result_label": "The final twelve seconds, uncut and unedited · 3:27.8–3:39.8",
+          "result_caption": "No fades were added to this excerpt — the fade you hear is in the delivered file, dropping 15.2 dB into silence.",
           "result_source": "final"
         }
       ],
-      "result": "A polished jazz R&B instrumental ready to loop in a restaurant, cafe, or lounge."
+      "result": "3:39.8 of convincing fine-dining jazz at 86.1 BPM — plus the two edits nobody tells you about: cut the fade so it can actually loop, and pull it from −13 to −18 LUFS so it can sit under conversation."
     },
     {
       "id": "minidv-camcorder-memory",
@@ -2443,8 +2434,8 @@
       "id": "velvet-hour-ad-instrumental",
       "cat": "Music",
       "sub": "Neo-Soul Jazz",
-      "title": "Score a premium ad instrumental with Suno",
-      "desc": "A logo-safe neo-soul jazz R&B bed for ads — a clean 4-bar intro and edit points built into the prompt, no vocals.",
+      "title": "Suno obeys your numbers and ignores your structure",
+      "desc": "The prompt ordered three structural things: a Rhodes-only 4-bar intro that is safe to put a logo over, a dynamic lift in the middle, and a resolved ending. Measured against the delivered file, all three are missing — the bass is playing in bar one, the level moves 2.0 dB across eighty seconds, and the track is faded out mid-groove to land on exactly 90.00 seconds. What it did obey: 85 BPM and the length.",
       "time": "6 min",
       "date": "2026-07-16",
       "level": "Junior",
@@ -2453,47 +2444,40 @@
       "audio": "/ui_views/assets/music-velvet-hour-2.mp3",
       "steps": [
         {
-          "title": "Set the genre and instrumentation",
-          "text": "Name the exact instruments and mood in one line — Suno reads this as the song's DNA. Real instrument names like 'Rhodes' and 'upright bass' beat vague words like 'jazzy'.",
-          "prompt": "smooth neo-soul jazz R&B ad instrumental, warm Rhodes electric piano, brushed drums, walking upright bass, muted trumpet, elegant and luxurious late-evening lounge, relaxed 85 BPM",
+          "title": "The logo-safe intro does not exist",
+          "text": "\"4-bar clean intro (Rhodes only, logo-safe), full groove enters at bar 5\" was the whole point of this brief — an editor needs a quiet opening to lay a logo sting over. At 86.1 BPM four bars is 11.2 seconds. Measure the first 2.5 seconds of the delivered file and 28.6% of the spectral energy is already below 120 Hz, with another 31.0% between 120 and 300 Hz: bass and kick are in from bar one. Compare 0:00–0:11 against 0:11–0:22 and the low band barely moves, 22.1% → 24.0%. There is no bar 5 event because there was never an intro. If you need a clean opening, generate the bed and build the intro yourself — take four bars of the track, mute everything but the keys, and butt it onto the front.",
+          "prompt": "smooth neo-soul jazz R&B ad instrumental, warm Rhodes electric piano, brushed drums, walking upright bass, muted trumpet, elegant and luxurious late-evening lounge, relaxed 85 BPM. Structure for ads: 4-bar clean intro (Rhodes only, logo-safe), full groove enters at bar 5, soft dynamic lift in the middle, calm resolved ending with a short natural tail, no vocals",
           "result_audio": "/ui_views/assets/evidence/velvet-hour-ad-instrumental/step-1.mp3",
-          "result_label": "Excerpt from the final track · 0:00–0:12",
-          "result_caption": "Opening bars. Genre and instrumentation are audible in the first four.",
+          "result_label": "The first twelve seconds — supposedly the Rhodes-only intro · 0:00–0:12",
+          "result_caption": "Full band from the first bar. Nothing changes at 0:11 where bar 5 should be.",
           "result_source": "final"
         },
         {
-          "title": "Write the ad structure into the prompt",
-          "text": "Ads get cut at random timestamps, so build the cut points into the brief. A clean instrument-only intro before the groove locks in gives editors a logo-safe opening every time.",
-          "prompt": "Premium ad instrumental, smooth neo-soul jazz R&B at 85 BPM. Structure for ads: 4-bar clean intro (Rhodes only, logo-safe), full groove enters at bar 5, gentle brushed drums, walking upright bass, lush Rhodes chords, tasteful muted trumpet melody, soft dynamic lift in the middle, calm resolved ending with a short natural tail. Clear 4-bar edit points throughout, no vocals, refined, warm, upscale and understated.",
-          "result_audio": "/ui_views/assets/evidence/velvet-hour-ad-instrumental/step-2.mp3",
-          "result_label": "Excerpt from the final track · 0:30–0:42",
-          "result_caption": "The 30-second turn — an edit point written into the prompt as ad structure.",
-          "result_source": "final"
-        },
-        {
-          "title": "Design a cover that sounds like the track",
-          "text": "Skip literal instrument photos. Describe a surreal scene that matches the mood — velvet fabric, slow motion, gold light — and GPT-Image turns the feeling into an image.",
-          "prompt": "An experimental surreal album cover artwork for a smooth neo-soul jazz R&B instrumental called \"Velvet Hour II\", wide 16:10 composition, high-end editorial art photography. Core idea: a brass trumpet half-submerged in a slow-motion ocean of flowing liquid velvet fabric — deep wine-red and burnt-orange silk waves frozen mid-ripple, the trumpet sinking into the fabric like into thick honey. Lighting: single dramatic golden spotlight from upper left, deep wine-red shadow falloff, rich chiaroscuro, photorealistic render with editorial fashion-campaign polish.",
-          "result_image": "/ui_views/assets/music-velvet-hour-2-cover.webp"
-        },
-        {
-          "title": "Generate a few takes and pick the cleanest",
-          "text": "Suno gives you several versions per prompt. Keep the take with the tightest 4-bar intro and the smoothest mid-track lift — that's the one editors can actually cut around. Press play above to hear the result.",
+          "title": "No lift, no resolve — it runs out of clock",
+          "text": "Two more structural instructions, both measurable, both missing. \"Soft dynamic lift in the middle\": sample the level every five seconds and from 0:05 to 1:25 it sits between −11.9 and −13.9 dB — a two-decibel spread across eighty seconds, and an EBU loudness range of 1.8 LU, which is flatter than most podcast dialogue. Nothing lifts. \"Calm resolved ending with a short natural tail\": at 1:27.5 the groove is still running at −10 dB, then the level falls −21, −23, −28, −40 dB and the file stops at exactly 90.00 seconds. That is not a resolution, that is a fade to hit a duration. Useful, though: an ad bed this flat is genuinely easy to cut into, because no timestamp is louder than any other.",
           "prompt": "",
-          "result_audio": "/ui_views/assets/evidence/velvet-hour-ad-instrumental/step-4.mp3",
-          "result_label": "Excerpt from the final track · 1:00–1:12",
-          "result_caption": "The cleanest take, final third. No stray artefacts on the sustained notes.",
+          "result_audio": "/ui_views/assets/evidence/velvet-hour-ad-instrumental/step-2.mp3",
+          "result_label": "The last six seconds, no processing added · 1:24–1:30",
+          "result_caption": "Full groove at −10 dB two seconds from the end, then faded out to land on 90.00 exactly.",
           "result_source": "final"
+        },
+        {
+          "title": "The cover keeps your palette and ignores your physics",
+          "text": "Same pattern as the music, in a different medium. The measurable instructions landed: 16:10 exactly (1536×960), one golden light source from the upper left, wine-red and burnt-orange, chiaroscuro falloff. The physical instruction did not — \"half-submerged, sinking into the fabric like into thick honey\" came back as a trumpet lying on top of draped velvet with the whole bell above the surface, and the \"ocean frozen mid-ripple\" is ordinary folded fabric. The one thing worth keeping was never asked for: the dark left third is clean enough to hold a title. Describe light, colour and frame and you will get them; describe an object doing something unusual and you will get the object doing the usual thing.",
+          "prompt": "An experimental surreal album cover artwork for a smooth neo-soul jazz R&B instrumental called \"Velvet Hour II\", wide 16:10 composition, high-end editorial art photography. Core idea: a brass trumpet half-submerged in a slow-motion ocean of flowing liquid velvet fabric — deep wine-red and burnt-orange silk waves frozen mid-ripple, the trumpet sinking into the fabric like into thick honey. Lighting: single dramatic golden spotlight from upper left, deep wine-red shadow falloff, rich chiaroscuro, photorealistic render with editorial fashion-campaign polish.",
+          "result_image": "/ui_views/assets/music-velvet-hour-2-cover.webp",
+          "result_label": "The delivered cover · 1536×960",
+          "result_caption": "Palette, light direction and 16:10 frame as briefed. The trumpet is resting on the velvet, not sinking into it."
         }
       ],
-      "result": "A 90-second ad-ready instrumental with a logo-safe intro and clean 4-bar edit points, paired with a matching surreal cover — ready to drop under any premium product spot."
+      "result": "A 90.00-second neo-soul ad bed at 86.1 BPM that sounds expensive and needs two manual edits before an editor can use it: build the logo-safe intro yourself, and replace the timer fade with a real ending."
     },
     {
       "id": "brass-marble-ad-instrumental",
       "cat": "Music",
       "sub": "Jazz-Funk Groove",
-      "title": "Cut a rhythm-driven ad groove with built-in edit points",
-      "desc": "An uptempo jazz-funk groove where brass stabs every 2 bars double as ready-made cut points for fast product montages.",
+      "title": "\"Brass stabs every 2 bars\" landed to within 23 milliseconds",
+      "desc": "The same model that ignored three structural instructions on the previous track nailed this one exactly: measure the accent cycle in the finished file and it repeats every 4.574 seconds, against 4.551 seconds of theory at 105 BPM. The difference between the instruction that worked and the ones that did not is not effort — it is whether the instruction is a grid or a story.",
       "time": "6 min",
       "date": "2026-07-16",
       "level": "Junior",
@@ -2503,47 +2487,41 @@
       "audio": "/ui_views/assets/music-brass-marble.mp3",
       "steps": [
         {
-          "title": "Lock the groove and instrumentation",
-          "text": "State the tempo and the instruments that carry the rhythm. A punchy bass line plus brass stabs is what makes a track feel expensive instead of generic funk.",
-          "prompt": "uptempo jazz-funk R&B groove ad instrumental, tight punchy bass line, staccato brass section stabs, clean electric guitar, finger snaps, confident luxurious energy, polished studio production, 105 BPM",
+          "title": "Ask for a cut every 2 bars and you get a cut every 2 bars",
+          "text": "This is the instruction to copy. \"Staccato brass stabs accenting every 2 bars as natural cut points for video editing\" is a grid, not a mood — it can only be obeyed one way. Isolate the 2–6 kHz band of the delivered file, where brass transients live, and autocorrelate the onsets: the dominant cycle is 4.574 seconds. At the measured tempo of 105.5 BPM, two bars of 4/4 last 4.551 seconds. The model is 23 milliseconds off across ninety seconds, and the one-bar cycle at 2.287 seconds is almost as strong. That gives an editor a usable cut point roughly every four and a half seconds without touching the audio.",
+          "prompt": "Confident premium ad instrumental, uptempo jazz-funk R&B groove at 105 BPM. Tight punchy bass line drives throughout, staccato brass stabs (sax and trumpet) accenting every 2 bars as natural cut points for video editing, clean funky electric guitar comping, finger snaps on backbeat. No vocals, polished, energetic but expensive-sounding.",
           "result_audio": "/ui_views/assets/evidence/brass-marble-ad-instrumental/step-1.mp3",
-          "result_label": "Excerpt from the final track · 0:00–0:12",
-          "result_caption": "The groove locks in immediately. Instrumentation was named, not described.",
+          "result_label": "Exactly three 2-bar cycles from the final track · 0:30–0:43.7",
+          "result_caption": "Cut to the measured grid, not by ear: 13.72 seconds, three stab cycles, starting and ending on the accent.",
           "result_source": "final"
         },
         {
-          "title": "Turn brass stabs into edit points",
-          "text": "Ask for accents on a fixed bar count — 'every 2 bars' — so every stab lands on a clean cut. That single instruction is what makes the track editable instead of just danceable.",
-          "prompt": "Confident premium ad instrumental, uptempo jazz-funk R&B groove at 105 BPM. Tight punchy bass line drives throughout, staccato brass stabs (sax and trumpet) accenting every 2 bars as natural cut points for video editing, clean funky electric guitar comping, finger snaps on backbeat. Structure: 2-bar drum-and-snap intro, groove locks in, brass hook, breakdown to bass and snaps mid-track, full hook returns, hard clean ending on a downbeat. No vocals, polished, energetic but expensive-sounding.",
-          "result_audio": "/ui_views/assets/evidence/brass-marble-ad-instrumental/step-2.mp3",
-          "result_label": "Excerpt from the final track · 0:30–0:42",
-          "result_caption": "Brass stabs land on the grid — each one is a place a cut can sit.",
-          "result_source": "final"
-        },
-        {
-          "title": "Design a cover with attitude",
-          "text": "Match the track's confidence with a scene that has tension in it — something breaking open, not just sitting still. A calm product shot would undersell a groove this punchy.",
-          "prompt": "An experimental surreal album cover artwork for an uptempo jazz-funk R&B groove instrumental called \"Brass & Marble\", wide 16:10 composition, high-end sculptural art photography. Core idea: a classical white marble statue bust cracked open across the chest — and from inside the cracks, polished brass is bursting out: a gleaming tenor saxophone bell erupting through the shattered marble chest, fragments of marble suspended mid-explosion. Lighting: hard-edged studio spotlight from the right, warm golden key on the brass, cool neutral fill on the marble, dark charcoal-to-black background, glossy floor reflection, photorealistic.",
-          "result_image": "/ui_views/assets/music-brass-marble-cover.webp"
-        },
-        {
-          "title": "Generate and pick the punchiest take",
-          "text": "Run it a few times and keep the version where the brass stabs actually land tight on the 2-bar grid — a lazy stab kills the whole edit-point idea. Press play above to hear the result.",
+          "title": "The same prompt also ordered a breakdown and a hard ending — neither exists",
+          "text": "Everything in that prompt written as a narrative was dropped. \"Breakdown to bass and snaps mid-track\": sample the level once a second from 0:40 to 1:06 and it never leaves the −12.8 to −15.8 dB band, with brass energy holding at a quarter to a third of the spectrum throughout — the arrangement never thins out. \"Hard clean ending on a downbeat\": the groove is still at −16 dB four seconds from the end, then the level falls to −19 and −28 dB and the file stops at exactly 90.00 seconds. Note that number, because it is the same on every track in this set: the model writes to a duration and fades to hit it. Two structural instructions in the same sentence as the grid instruction, and only the grid survived.",
           "prompt": "",
-          "result_audio": "/ui_views/assets/evidence/brass-marble-ad-instrumental/step-4.mp3",
-          "result_label": "Excerpt from the final track · 1:00–1:12",
-          "result_caption": "The punchiest take, final third. Transients are sharp all the way through.",
+          "result_audio": "/ui_views/assets/evidence/brass-marble-ad-instrumental/step-2.mp3",
+          "result_label": "The last six seconds, no processing added · 1:24–1:30",
+          "result_caption": "Requested: a hard clean ending on a downbeat. Delivered: a fade, timed to land on 90.00 seconds.",
+          "result_source": "final"
+        },
+        {
+          "title": "Why the cover came back perfect and the arrangement did not",
+          "text": "Check this one against its prompt line by line and there is nothing to report: marble bust cracked open across the chest, tenor saxophone bell erupting through it, fragments suspended mid-air, hard key from the right with warm gold on the brass and cool fill on the marble, charcoal-to-black background, glossy floor reflection, 16:10 at 1536×960. Every instruction landed — and every instruction describes one frozen instant. The music instructions that failed all described change over time: a breakdown in the middle, a hard ending on a downbeat, a lift. The grid instruction worked because it is arithmetic, not narrative. Write image prompts as a single state, write audio prompts as numbers, and build any structure that has to change over time in the edit.",
+          "prompt": "An experimental surreal album cover artwork for an uptempo jazz-funk R&B groove instrumental called \"Brass & Marble\", wide 16:10 composition, high-end sculptural art photography. Core idea: a classical white marble statue bust cracked open across the chest — and from inside the cracks, polished brass is bursting out: a gleaming tenor saxophone bell erupting through the shattered marble chest, fragments of marble suspended mid-explosion. Lighting: hard-edged studio spotlight from the right, warm golden key on the brass, cool neutral fill on the marble, dark charcoal-to-black background, glossy floor reflection, photorealistic.",
+          "result_image": "/ui_views/assets/music-brass-marble-cover.webp",
+          "result_label": "The delivered cover · 1536×960",
+          "result_caption": "Checked against the prompt clause by clause: no deviations found.",
           "result_source": "final"
         }
       ],
-      "result": "A 90-second jazz-funk ad groove with brass stabs every 2 bars, ready-cut for fast product montages, plus a cover that matches its energy."
+      "result": "A 90.00-second jazz-funk bed at 105.5 BPM with a genuine 4.574-second cut grid an editor can rely on — and a cover that matched its brief exactly, unlike the arrangement."
     },
     {
       "id": "after-midnight-ad-instrumental",
       "cat": "Music",
       "sub": "Downtempo Soul",
-      "title": "Build a VO-safe soul bed for voiceover ads",
-      "desc": "A sparse downtempo R&B instrumental that deliberately leaves the vocal range open — built to sit under a voiceover, not fight it.",
+      "title": "Writing \"1–4 kHz open\" in the prompt bought about 2 dB",
+      "desc": "The brief spelled out the voiceover range in hertz. Measured against three other beds from the same set, the track that asked sits 2.6 dB quieter in the voice band than the restaurant jazz — and 2.0 dB louder than a track that never mentioned voiceover at all. What actually cleared space for a narrator was a texture word: sparse.",
       "time": "6 min",
       "date": "2026-07-16",
       "level": "Junior",
@@ -2552,40 +2530,34 @@
       "audio": "/ui_views/assets/music-after-midnight.mp3",
       "steps": [
         {
-          "title": "Set a deliberately sparse mood",
-          "text": "Ask for space between the notes, not just 'slow'. Sparse piano with room to breathe reads as premium; a full arrangement at this tempo just reads as slow and dull.",
-          "prompt": "slow-burn downtempo R&B soul ad instrumental, sparse lonely piano, deep sub bass, minimal slow beat, breathy tenor saxophone phrases, vinyl crackle warmth, intimate minimalist late-night mood, 70 BPM",
-          "result_audio": "/ui_views/assets/evidence/after-midnight-ad-instrumental/step-1.mp3",
-          "result_label": "Excerpt from the final track · 0:00–0:12",
-          "result_caption": "Deliberately sparse from bar one. Space is the brief.",
-          "result_source": "final"
-        },
-        {
-          "title": "Leave room for a voiceover",
-          "text": "Say the frequency range out loud — '1-4 kHz open' — so the arrangement stays out of the way of a narrator. This one line is the difference between a VO track and a track that competes with the VO.",
+          "title": "\"Sparse\" produced the intro that \"4-bar clean intro\" could not",
+          "text": "One sibling guide in this set asked for a four-bar logo-safe intro in bars and got a full band in bar one. This one asked for nothing structural — just \"sparse lonely piano chords with space between them\" — and the delivered file opens with thirteen seconds of piano and sub bass running between −18 and −33 dB, with the spectral centroid under 1.7 kHz because there is nothing up top. At 13.0 seconds the arrangement arrives and the level jumps more than 14 dB. That is the largest single event in the track, and nobody asked for it by name. Describe the texture you want and the model will build a shape around it; describe the shape in bars and it will ignore you.",
           "prompt": "Intimate minimalist ad instrumental, slow-burn downtempo R&B soul at 70 BPM. Sparse lonely piano chords with space between them, deep soft sub bass, minimal laid-back beat, occasional breathy tenor saxophone phrases, subtle vinyl crackle texture. Arrangement stays open and uncluttered in the 1-4 kHz range so a voiceover can sit on top. Gentle swell in the middle, fades to piano and vinyl noise at the end. No vocals, seductive, calm, expensive.",
-          "result_audio": "/ui_views/assets/evidence/after-midnight-ad-instrumental/step-2.mp3",
-          "result_label": "Excerpt from the final track · 0:30–0:42",
-          "result_caption": "Midsection. Nothing sits in the voice range — the room left for a voiceover.",
+          "result_audio": "/ui_views/assets/evidence/after-midnight-ad-instrumental/step-1.mp3",
+          "result_label": "The first fifteen seconds, no processing added · 0:00–0:15",
+          "result_caption": "Thirteen seconds of near-silence, then the band arrives — a 14 dB step you can hear without a meter.",
           "result_source": "final"
         },
         {
-          "title": "Design a cover built on negative space",
-          "text": "Mirror the music in the image: mostly empty, one warm point of light. A busy cover would contradict a track built entirely around silence.",
-          "prompt": "An experimental minimal surreal album cover artwork for a slow-burn downtempo R&B soul instrumental called \"After Midnight\", wide 16:10 composition, fine-art night photography. Core idea: a vinyl record hanging in a pitch-black night sky as a full moon — its grooves glowing with a thin cold silver rim light, one warm amber beam from the record's center falling down like moonlight onto a vast dark ocean below made of glossy black piano keys stretching to the horizon like water. Lighting: near-total darkness, cold silver rim light on the vinyl moon, one single warm amber light beam as the only warm accent, deep black dominating 70% of the frame, photorealistic, cinematic.",
-          "result_image": "/ui_views/assets/music-after-midnight-cover.webp"
+          "title": "The frequency instruction is worth about 2 dB — verify it yourself",
+          "text": "Band-pass all four beds from this set to 1–4 kHz, the range a narrator occupies, and rank them by median level. This track, the only one that asked: −30.9 dB. Restaurant jazz: −28.3 dB. Jazz-funk: −26.6 dB. The velvet-hour ad bed, which never mentioned voiceover: −32.9 dB, quieter than the one that did. So the instruction is not magic — sparse arrangement and slow tempo are what open the midrange, and a busy arrangement will fill it no matter what you write. It is also not uniformly clear: the loudest voice-band second in this file is at 1:14, at −24.3 dB, roughly six decibels above its own median. Before you commit, run the bed under a real voiceover and duck 1–4 kHz by three or four decibels wherever the narrator speaks.",
+          "prompt": "",
+          "result_audio": "/ui_views/assets/evidence/after-midnight-ad-instrumental/step-2.mp3",
+          "result_label": "The busiest stretch in the voice band · 1:09–1:21",
+          "result_caption": "Not the calmest part of the track — the loudest, at 1:14. This is where a narrator will fight the sax.",
+          "result_source": "final"
         },
         {
-          "title": "Generate and pick the take with the most space",
-          "text": "Run a few takes and keep the one where the piano actually leaves gaps — some takes fill every bar out of habit, which defeats the point. Press play above to hear the result.",
-          "prompt": "",
-          "result_audio": "/ui_views/assets/evidence/after-midnight-ad-instrumental/step-4.mp3",
-          "result_label": "Excerpt from the final track · 1:00–1:12",
-          "result_caption": "The take with the most space, final third. Fewest elements, longest gaps.",
+          "title": "Ask for 70% black, measure 91.8%",
+          "text": "The cover prompt is the one place a percentage appears, and it is the one instruction that overshot: \"deep black dominating 70% of the frame\" came back with 91.8% of pixels below luma 32. Everything else is exact — vinyl-as-moon with a cold silver rim, a single warm amber beam falling onto an ocean of glossy black piano keys, 1536×960 at 16:10. The overshoot is not a flaw, it is a decision the model made for you: the left third of this image is 99.9% black, which is a title area nobody specified. Treat percentages in image prompts as direction, not as a spec, and check the histogram before you build a layout on top.",
+          "prompt": "An experimental minimal surreal album cover artwork for a slow-burn downtempo R&B soul instrumental called \"After Midnight\", wide 16:10 composition, fine-art night photography. Core idea: a vinyl record hanging in a pitch-black night sky as a full moon — its grooves glowing with a thin cold silver rim light, one warm amber beam from the record's center falling down like moonlight onto a vast dark ocean below made of glossy black piano keys stretching to the horizon like water. Lighting: near-total darkness, cold silver rim light on the vinyl moon, one single warm amber light beam as the only warm accent, deep black dominating 70% of the frame, photorealistic, cinematic.",
+          "result_image": "/ui_views/assets/music-after-midnight-cover.webp",
+          "result_label": "The delivered cover · 1536×960",
+          "result_caption": "Measured, not eyeballed: 91.8% of pixels below luma 32, against the 70% the prompt asked for.",
           "result_source": "final"
         }
       ],
-      "result": "A 90-second VO-safe downtempo soul instrumental with an intentionally open midrange, paired with a cover built on the same idea: silence as the main character."
+      "result": "90.00 seconds at 69.8 BPM with a loudness range of 9.0 LU — five times more dynamic than the other ad beds in this set, and the only one whose quiet opening arrived without being asked for. It still fades out to hit the ninety-second mark, so cut the last twelve seconds if you need a real ending."
     }
   ]
 }

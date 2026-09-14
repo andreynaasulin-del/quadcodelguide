@@ -51,7 +51,18 @@ Batch = 5 guides. After each batch: commit, update this table, update pin.
 | crimson-adventure-trailer | ✅ | ✅ | ✅ | character block held perfectly but the outfit is not the one written; "environment every six seconds" = 22.6s single take after 7.71s; the golem climax was never briefed |
 | brazil-street-documentary | ✅ | ✅ | ✅ | "do not ask for a turn" — she turns to camera at 0:00.2 and again at 0:06.2 with a smile, unprompted, inside a zero-cut take |
 
-## Batch D–H — July (32), 5 per batch. Priority: 9 image-only, 4 audio first.
+## Batch D — July audio (4) ✅
+| id | verdict |
+|---|---|
+| jazz-rnb-restaurant-track | 86.1 BPM vs 85 asked ✓; fades out (cannot loop); −13 LUFS / 0.0 dBTP too hot; one structural move at 2:01 |
+| velvet-hour-ad-instrumental | logo-safe 4-bar intro absent (bass in bar 1); no mid lift (LRA 1.8); fade to hit 90.00s; cover trumpet rests on velvet, not submerged |
+| brass-marble-ad-instrumental | "stabs every 2 bars" = 4.574s measured vs 4.551s theory ✓; breakdown + hard ending absent; cover matches prompt exactly |
+| after-midnight-ad-instrumental | "sparse" bought a real 13.0s intro; "1–4 kHz open" worth ~2 dB vs siblings; cover 91.8% black vs 70% asked |
+
+Theme: the model obeys numbers and grids, ignores narrative structure, and always
+fades to land on an exact duration. All four cut 4 steps → 3.
+
+## Batch E–H — July (28), 5 per batch. Priority: 9 image-only next.
 
 ## Known dead steps (no media, no embed) — delete unless embed exists
 - jerry01-quadcode-testimonials step 5
