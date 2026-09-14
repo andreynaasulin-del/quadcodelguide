@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 1920px; height: 2400px;
+    background-color: #F4EFE6 !important;
+    font-family: Georgia, 'Times New Roman', serif;
+    color: #1C1815;
+    position: relative;
+    overflow: hidden;
+  }
+  .bg-layer {
+    position: fixed; left: 0; top: 0; width: 1920px; height: 2400px;
+    background: #F4EFE6; z-index: -2;
+  }
+  .gutter-shadow {
+    position: fixed; left: 0; top: 0; width: 1920px; height: 2400px;
+    z-index: -1;
+    box-shadow: inset 40px 0 70px -46px rgba(0,0,0,0.22);
+  }
+  .abs { position: absolute; }
+
+  .masthead {
+    left: 128px; top: 76px; width: 1664px; height: 34px;
+    display: flex; justify-content: space-between; align-items: baseline;
+  }
+  .masthead-name {
+    font-family: Georgia, serif; font-size: 21px; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase; color: #1C1815;
+  }
+  .masthead-issue {
+    font-family: Helvetica, Arial, sans-serif; font-size: 15px;
+    letter-spacing: 2px; text-transform: uppercase; color: #8A7F6F;
+  }
+  .masthead-rule {
+    left: 128px; top: 118px; width: 1664px; height: 1px; background: #1C1815;
+  }
+
+  .kicker {
+    left: 128px; top: 156px; width: 1664px; height: 36px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 22px; font-weight: 700; letter-spacing: 5px;
+    color: #8A5A2F; text-transform: uppercase;
+  }
+  .headline {
+    left: 128px; top: 202px; width: 1600px; height: 260px;
+    font-size: 96px; font-weight: 700; line-height: 1.04;
+    letter-spacing: -1px; color: #1C1815;
+  }
+  .dek {
+    left: 128px; top: 486px; width: 1180px; height: 100px;
+    font-size: 29px; font-style: italic; line-height: 1.4; color: #4B443C;
+  }
+  .byline {
+    left: 128px; top: 616px; width: 1664px; height: 30px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 19px; letter-spacing: 1px; color: #6B6258; text-transform: uppercase;
+  }
+  .rule {
+    left: 128px; top: 664px; width: 1664px; height: 1px;
+    background: #C9BEA8;
+  }
+  .col-rule {
+    left: 964px; top: 716px; width: 1px; height: 780px;
+    background: #C9BEA8;
+  }
+  .col-a {
+    left: 128px; top: 716px; width: 780px; height: 780px;
+    font-size: 24px; line-height: 1.58; color: #2A241E;
+  }
+  .col-a p { margin-bottom: 24px; }
+  .col-a p:first-of-type::first-letter {
+    font-size: 148px; font-weight: 700; float: left; line-height: 0.72;
+    padding-right: 14px; padding-top: 8px; color: #8A5A2F;
+    font-family: Georgia, serif;
+  }
+  .col-b {
+    left: 1012px; top: 716px; width: 780px; height: 780px;
+    font-size: 24px; line-height: 1.58; color: #2A241E;
+  }
+  .col-b p { margin-bottom: 24px; }
+  .col-b .lede {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 20px; font-weight: 700; letter-spacing: 0.5px;
+    color: #8A5A2F; text-transform: uppercase; margin-bottom: 16px;
+  }
+  .pullquote-rule-top, .pullquote-rule-bottom {
+    left: 128px; width: 1664px; height: 3px; background: #8A5A2F;
+  }
+  .pullquote-rule-top { top: 1512px; }
+  .pullquote-rule-bottom { top: 1706px; }
+  .quote-glyph {
+    left: 158px; top: 1500px; width: 200px; height: 160px;
+    font-family: Georgia, serif; font-size: 220px; font-weight: 700;
+    color: #DDCBA8; line-height: 1;
+  }
+  .pullquote {
+    left: 260px; top: 1548px; width: 1400px; height: 150px;
+    font-size: 46px; font-style: italic; font-weight: 700;
+    line-height: 1.28; text-align: center; color: #1C1815;
+  }
+  .infobox {
+    left: 128px; top: 1770px; width: 1664px; height: 400px;
+    background: #ECE4D3; border: 1px solid #D8CDB4; border-radius: 6px;
+  }
+  .infobox-label {
+    left: 168px; top: 1798px; width: 800px; height: 30px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 19px; font-weight: 700; letter-spacing: 3px;
+    color: #8A5A2F; text-transform: uppercase;
+  }
+  .folio-left {
+    left: 128px; top: 2300px; width: 1000px; height: 30px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 17px; letter-spacing: 2px; color: #8A7F6F; text-transform: uppercase;
+  }
+  .folio-right {
+    left: 1742px; top: 2296px; width: 50px; height: 40px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 24px; font-weight: 700; color: #1C1815; text-align: right;
+  }
+</style>
+</head>
+<body>
+  <div class="bg-layer"></div>
+  <div class="gutter-shadow"></div>
+
+  <div class="abs masthead">
+    <div class="masthead-name">The Atelier Review</div>
+    <div class="masthead-issue">Vol. IV &nbsp;·&nbsp; No. 12 &nbsp;·&nbsp; Features</div>
+  </div>
+  <div class="abs masthead-rule"></div>
+
+  <div class="abs kicker">The Craft</div>
+  <div class="abs headline">The Last<br>Hand-Wound Movement</div>
+  <div class="abs dek">In an age of quartz batteries and smart displays, a small number of watchmakers still build movements by hand — one gear, one screw, one hour at a time.</div>
+  <div class="abs byline">Words by J. Okafor &nbsp;·&nbsp; 6 min read</div>
+  <div class="abs rule"></div>
+
+  <div class="abs col-rule"></div>
+
+  <div class="abs col-a">
+    <p>A mechanical watch has no battery. Its heartbeat is a coiled strip of steel, wound by hand, releasing its energy through a chain of forty-odd tiny parts that most owners will never see. Assembling one takes a watchmaker the better part of a day; assembling one well can take a decade of practice to learn.</p>
+    <p>The workshop is quiet by design. A loose thread of dust can stop a movement dead. Tweezers replace fingers. A loupe replaces the eye. Every gear is placed, checked, and placed again — because a movement off by a hundredth of a millimetre will still run. For a while.</p>
+  </div>
+
+  <div class="abs col-b">
+    <div class="lede">What actually survives</div>
+    <p>It isn't nostalgia. It's a level of tolerance no assembly line has matched: a hand-finished escapement, adjusted by feel, running true for a lifetime — and then some.</p>
+    <p>Every part on this page came from the same movement, laid out in the order energy actually travels through it: from the turn of a crown to the tick of a wheel.</p>
+  </div>
+
+  <div class="abs pullquote-rule-top"></div>
+  <div class="abs quote-glyph">&#8220;</div>
+  <div class="abs pullquote">A movement doesn't fail loudly.<br>It just quietly stops keeping time.</div>
+  <div class="abs pullquote-rule-bottom"></div>
+
+  <div class="abs infobox"></div>
+  <div class="abs infobox-label">Anatomy of a Movement — energy flow</div>
+
+  <svg class="abs" style="left:168px; top:1850px;" width="1584" height="300" viewBox="0 0 1584 300">
+    <line x1="90" y1="120" x2="1494" y2="120" stroke="#C9BEA8" stroke-width="2" stroke-dasharray="2 10"/>
+
+    <circle cx="90"  cy="120" r="26" fill="none" stroke="#1C1815" stroke-width="3"/>
+    <circle cx="440" cy="120" r="48" fill="none" stroke="#1C1815" stroke-width="3"/>
+    <circle cx="440" cy="120" r="10" fill="#1C1815"/>
+    <circle cx="792" cy="120" r="40" fill="none" stroke="#1C1815" stroke-width="3"/>
+    <circle cx="792" cy="120" r="18" fill="none" stroke="#1C1815" stroke-width="3"/>
+    <path d="M 752 120 L 758 108 L 764 120 L 770 108 L 776 120 L 782 108 L 788 120" fill="none" stroke="#1C1815" stroke-width="2.5"/>
+    <circle cx="1144" cy="120" r="34" fill="none" stroke="#1C1815" stroke-width="3"/>
+    <circle cx="1144" cy="120" r="34" fill="none" stroke="#1C1815" stroke-width="1" stroke-dasharray="4 6"/>
+    <circle cx="1494" cy="120" r="56" fill="none" stroke="#1C1815" stroke-width="3"/>
+    <line x1="1494" y1="70" x2="1494" y2="170" stroke="#1C1815" stroke-width="2"/>
+    <line x1="1444" y1="120" x2="1544" y2="120" stroke="#1C1815" stroke-width="2"/>
+
+    <line x1="90"  y1="146" x2="90"  y2="200" stroke="#8A5A2F" stroke-width="2"/>
+    <line x1="440" y1="168" x2="440" y2="200" stroke="#8A5A2F" stroke-width="2"/>
+    <line x1="792" y1="160" x2="792" y2="200" stroke="#8A5A2F" stroke-width="2"/>
+    <line x1="1144" y1="154" x2="1144" y2="200" stroke="#8A5A2F" stroke-width="2"/>
+    <line x1="1494" y1="176" x2="1494" y2="200" stroke="#8A5A2F" stroke-width="2"/>
+
+    <text x="90"  y="226" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#1C1815" text-anchor="middle">01</text>
+    <text x="440" y="226" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#1C1815" text-anchor="middle">02</text>
+    <text x="792" y="226" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#1C1815" text-anchor="middle">03</text>
+    <text x="1144" y="226" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#1C1815" text-anchor="middle">04</text>
+    <text x="1494" y="226" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#1C1815" text-anchor="middle">05</text>
+
+    <text x="90"  y="254" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#4B443C" text-anchor="middle">Crown &amp;</text>
+    <text x="90"  y="274" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#4B443C" text-anchor="middle">Stem</text>
+
+    <text x="440" y="254" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#4B443C" text-anchor="middle">Mainspring</text>
+    <text x="440" y="274" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#4B443C" text-anchor="middle">Barrel</text>
+
+    <text x="792" y="254" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#4B443C" text-anchor="middle">Gear</text>
+    <text x="792" y="274" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#4B443C" text-anchor="middle">Train</text>
+
+    <text x="1144" y="254" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#4B443C" text-anchor="middle">Escape-</text>
+    <text x="1144" y="274" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#4B443C" text-anchor="middle">ment</text>
+
+    <text x="1494" y="254" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#4B443C" text-anchor="middle">Balance</text>
+    <text x="1494" y="274" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#4B443C" text-anchor="middle">Wheel</text>
+  </svg>
+
+  <div class="abs folio-left">The Last Hand-Wound Movement</div>
+  <div class="abs folio-right">05</div>
+
+</body>
+</html>

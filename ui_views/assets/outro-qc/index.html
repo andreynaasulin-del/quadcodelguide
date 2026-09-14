@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>quadcode.ai — 5s outro (1920×1080 @60)</title>
+<style>
+  /* Quadcode.ai guidebook chrome: ink plane, signal red, 2px radii, uppercase microtype. */
+  html,body{margin:0;height:100%;background:#08080a;display:grid;place-items:center;overflow:hidden}
+  @font-face{
+    font-family:'InterVar';
+    src:url('/.temp/fonts/Inter-Variable.ttf') format('truetype-variations');
+    font-weight:100 900;font-style:normal;font-display:block;
+  }
+  canvas{width:min(96vw,calc(96vh*1.7778));height:auto;display:block;
+         box-shadow:0 30px 90px rgb(0 0 0/.6);background:#0e0e0e}
+  /* preview-only scrub bar, never recorded */
+  #scrub{position:fixed;left:0;right:0;bottom:0;height:34px;display:flex;align-items:center;
+         gap:12px;padding:0 16px;background:rgb(20 20 20/.94);
+         border-top:1px solid rgb(255 255 255/.14);
+         font:800 10px/1 'InterVar',system-ui;letter-spacing:.16em;color:#f7f7f4;text-transform:uppercase}
+  #scrub input{flex:1;accent-color:#ff3b30}
+  #scrub b{color:#ff3b30}
+  body.recording #scrub{display:none}
+</style>
+</head>
+<body>
+<canvas id="c" width="1920" height="1080"></canvas>
+<div id="scrub"><b>QC</b><span id="tc">0000 / 0.000s</span><input id="sl" type="range" min="0" max="299" value="0" step="1"><span id="pl">PLAY</span></div>
+<script>
+/* ─────────────────────────────────────────────────────────────────────────
+   quadcode.ai — 5.000s end card, 1920×1080, 60fps, 300 frames.
+   Fully deterministic: every pixel is a pure function of the frame index,
+   so the playwright recorder gets frame-exact output with zero drift.
+   ───────────────────────────────────────────────────────────────────────── */
+
+const W = 1920, H = 1080, FPS = 60, TOTAL = 300;   // 300 / 60 = 5.000s exactly
+const cv  = document.getElementById('c');
+const ctx = cv.getContext('2d', { alpha: false });
+
+/* ── Brand tokens (guidebook) ─────────────────────────────────────────── */
+const INK      = '#0e0e0e';
+const INK_2    = '#171717';
+const RED      = '#ff3b30';   // signal red
+const CORAL    = '#ff9569';   // accent warm
+const TEXT     = '#f7f7f4';
+const HAIRLINE = 'rgba(255,255,255,0.14)';
+const GRIDLINE = 'rgba(255,255,255,0.055)';
+const MARGIN   = 96;          // 2 × 48px guidebook grid unit
+
+/* ── Assets ───────────────────────────────────────────────────────────── */
+const lockup = new Image();
+let lockupOK = false;
+lockup.onload  = () => { lockupOK = true; };
+lockup.onerror = () => { lockupOK = false; };
+lockup.src = '/ui_views/assets/qcai-logo-lockup.webp';
+
+/* ── Easing ───────────────────────────────────────────────────────────── */
+const clamp01  = v => v < 0 ? 0 : v > 1 ? 1 : v;
+const seg      = (f, a, b) => clamp01((f - a) / (b - a));
+const outQuint = t => 1 - Math.pow(1 - t, 5);
+const outExpo  = t => t >= 1 ? 1 : 1 - Math.pow(2, -10 * t);
+const inOutQuint = t => t < .5 ? 16*t*t*t*t*t : 1 - Math.pow(-2*t + 2, 5) / 2;
+const outCubic = t => 1 - Math.pow(1 - t, 3);
+
+/* ── Cached 48px grid plane with a radial falloff mask ────────────────── */
+let gridCanvas = null;
+function buildGrid() {
+  const pad = 120;
+  const g = document.createElement('canvas');
+  g.width = W + pad * 2; g.height = H + pad * 2;
+  const c = g.getContext('2d');
+  c.strokeStyle = GRIDLINE;
+  c.lineWidth = 1;
+  c.beginPath();
+  for (let x = 0; x <= g.width; x += 48) { c.moveTo(x + .5, 0); c.lineTo(x + .5, g.height); }
+  for (let y = 0; y <= g.height; y += 48) { c.moveTo(0, y + .5); c.lineTo(g.width, y + .5); }
+  c.stroke();
+  // fade the grid out towards the edges so it never fights the type
+  const m = c.createRadialGradient(g.width/2, g.height/2, 120, g.width/2, g.height/2, g.width*0.60);
+  m.addColorStop(0,   'rgba(0,0,0,1)');
+  m.addColorStop(.55, 'rgba(0,0,0,0.55)');
+  m.addColorStop(1,   'rgba(0,0,0,0)');
+  c.globalCompositeOperation = 'destination-in';
+  c.fillStyle = m; c.fillRect(0, 0, g.width, g.height);
+  gridCanvas = g;
+}
+
+/* ── Primitives ───────────────────────────────────────────────────────── */
+function roundRect(c, x, y, w, h, r) {
+  c.beginPath();
+  c.moveTo(x + r, y);
+  c.arcTo(x + w, y,     x + w, y + h, r);
+  c.arcTo(x + w, y + h, x,     y + h, r);
+  c.arcTo(x,     y + h, x,     y,     r);
+  c.arcTo(x,     y,     x + w, y,     r);
+  c.closePath();
+}
+
+/* Fallback mark, drawn only if the official lockup webp fails to load.
+   Mirrors the quadcode.ai glyph: rounded square, notched corner, inner square. */
+function drawFallbackLockup(c, x, y, w, h) {
+  const s = h;
+  const g = c.createLinearGradient(x, y, x + s, y + s);
+  g.addColorStop(0, '#f57860'); g.addColorStop(1, '#eb564b');
+  c.strokeStyle = g; c.lineWidth = s * 0.14;
+  roundRect(c, x + s*.07, y + s*.07, s*.86, s*.86, s*.30); c.stroke();
+  c.fillStyle = g;
+  roundRect(c, x + s*.34, y + s*.34, s*.32, s*.32, s*.08); c.fill();
+  c.fillStyle = TEXT;
+  c.font = `600 ${s*0.70}px 'InterVar', system-ui, sans-serif`;
+  c.textBaseline = 'middle';
+  c.letterSpacing = '-0.02em';
+  c.fillText('quadcode.ai', x + s * 1.24, y + s * 0.54);
+  c.letterSpacing = '0px';
+}
+
+/* ── Layout constants ─────────────────────────────────────────────────── */
+const CX        = W / 2;
+const LOCK_W    = 480, LOCK_H = 114;          // 384×91 official lockup × 1.25
+const LOCK_X    = CX - LOCK_W / 2;
+const LOCK_Y    = 452;
+const KICK_Y    = 404;                        // baseline of "MADE IN"
+const RULE_Y    = 642;
+const RULE_HALF = 360;
+const URL_Y     = 712;                        // baseline of "QUADCODE.AI"
+const MARK_CX   = LOCK_X + LOCK_W * 0.117;    // centre of the glyph inside the lockup
+const MARK_CY   = LOCK_Y + LOCK_H * 0.50;
+
+/* ── Timeline (frames @60fps) ─────────────────────────────────────────── */
+const T = {
+  wipeInA:  [0,   24],   // red plane covers screen, left → right
+  wipeOutA: [24,  52],   // red plane exits right, its trailing edge reveals the card
+  rings:    [46, 108],   // pulse rings off the glyph
+  kicker:   [58,  88],   // "MADE IN" block-wipes in
+  rule:     [82, 118],   // hairline draws centre → out
+  url:      [110,168],   // "QUADCODE.AI" types, 11 chars
+  hold:     [168,246],
+  wipeInB:  [246,286],   // red plane closes over, left → right
+  toBlack:  [286,300],
+};
+
+/* ── Per-element renderers ────────────────────────────────────────────── */
+function drawKicker(c, f) {
+  const p = seg(f, T.kicker[0], T.kicker[1]);
+  if (p <= 0) return;
+  const e = outQuint(p);
+  c.save();
+  // hard-edge block wipe, left → right — no soft fades, guidebook style
+  c.beginPath();
+  c.rect(CX - 300, KICK_Y - 40, 600 * e, 60);
+  c.clip();
+  c.globalAlpha = clamp01(p * 2.2);
+  c.translate(0, (1 - e) * 10);
+  c.font = `800 20px 'InterVar', system-ui, sans-serif`;
+  c.letterSpacing = '0.28em';
+  c.textAlign = 'center';
+  c.textBaseline = 'alphabetic';
+  c.fillStyle = RED;
+  c.fillText('MADE IN', CX + 6, KICK_Y);   // +6 optically re-centres the tracked run
+  c.letterSpacing = '0px';
+  c.restore();
+}
+
+function drawRings(c, f) {
+  const p = seg(f, T.rings[0], T.rings[1]);
+  if (p <= 0 || p >= 1) return;
+  c.save();
+  for (let i = 0; i < 3; i++) {
+    const rp = clamp01(p * 1.35 - i * 0.16);
+    if (rp <= 0 || rp >= 1) continue;
+    const e = outExpo(rp);
+    const s = 74 + e * 190;
+    c.globalAlpha = (1 - rp) * 0.42;
+    c.strokeStyle = i === 0 ? RED : CORAL;
+    c.lineWidth = 2 - i * 0.5;
+    roundRect(c, MARK_CX - s/2, MARK_CY - s/2, s, s, s * 0.30);
+    c.stroke();
+  }
+  c.restore();
+}
+
+function drawRule(c, f) {
+  const p = seg(f, T.rule[0], T.rule[1]);
+  if (p <= 0) return;
+  const e = outQuint(p);
+  const half = RULE_HALF * e;
+  c.save();
+  c.strokeStyle = HAIRLINE; c.lineWidth = 1;
+  c.beginPath();
+  c.moveTo(CX - half, RULE_Y + .5); c.lineTo(CX + half, RULE_Y + .5);
+  c.stroke();
+  // red tick on the left terminal — the guidebook's signal marker
+  if (e > 0.92) {
+    c.strokeStyle = RED; c.lineWidth = 2;
+    c.beginPath();
+    c.moveTo(CX - RULE_HALF, RULE_Y); c.lineTo(CX - RULE_HALF + 64, RULE_Y);
+    c.stroke();
+  }
+  c.restore();
+}
+
+const URL_TEXT = 'QUADCODE.AI';
+function drawUrl(c, f) {
+  const p = seg(f, T.url[0], T.url[1]);
+  if (p <= 0) return;
+  const n = Math.min(URL_TEXT.length, Math.floor(p * (URL_TEXT.length + 1)));
+  const shown = URL_TEXT.slice(0, n);
+  c.save();
+  c.font = `700 26px 'InterVar', system-ui, sans-serif`;
+  c.letterSpacing = '0.24em';
+  c.textAlign = 'left';
+  c.textBaseline = 'alphabetic';
+  const full = c.measureText(URL_TEXT + ' ').width;
+  const x0 = CX - full / 2;
+  c.fillStyle = TEXT;
+  c.fillText(shown, x0, URL_Y);
+  const w = c.measureText(shown).width;
+  c.letterSpacing = '0px';
+  // block cursor: solid while typing, 1.67Hz blink once the string lands
+  const typing = n < URL_TEXT.length;
+  const blinkOn = typing ? true : (Math.floor((f - T.url[1]) / 18) % 2 === 0);
+  if (blinkOn) { c.fillStyle = RED; c.fillRect(x0 + w + 4, URL_Y - 19, 13, 24); }
+  c.restore();
+}
+
+function drawLockup(c, f) {
+  const p = seg(f, T.wipeOutA[0], T.wipeOutA[1]);
+  if (p <= 0) return;
+  c.save();
+  c.globalAlpha = clamp01(p * 1.6);
+  if (lockupOK) c.drawImage(lockup, LOCK_X, LOCK_Y, LOCK_W, LOCK_H);
+  else          drawFallbackLockup(c, LOCK_X, LOCK_Y, LOCK_W, LOCK_H);
+  c.restore();
+}
+
+/* Margin rails at x=96 / x=1824 — the 48px grid made visible, quietly. */
+function drawRails(c, f) {
+  const p = seg(f, 52, 96);
+  if (p <= 0) return;
+  const e = outCubic(p);
+  c.save();
+  c.globalAlpha = e;
+  c.strokeStyle = 'rgba(255,255,255,0.09)'; c.lineWidth = 1;
+  for (const x of [MARGIN, W - MARGIN]) {
+    c.beginPath(); c.moveTo(x + .5, 0); c.lineTo(x + .5, H); c.stroke();
+  }
+  c.strokeStyle = RED; c.lineWidth = 2;
+  const segH = 56 * e;
+  for (const x of [MARGIN, W - MARGIN]) {
+    c.beginPath(); c.moveTo(x, H/2 - segH/2); c.lineTo(x, H/2 + segH/2); c.stroke();
+  }
+  c.restore();
+}
+
+/* 5-second bottom progress hairline — reads as "this is the end card". */
+function drawProgress(c, f) {
+  c.save();
+  c.fillStyle = 'rgba(255,255,255,0.10)';
+  c.fillRect(0, H - 3, W, 3);
+  c.fillStyle = RED;
+  c.fillRect(0, H - 3, W * clamp01(f / (TOTAL - 1)), 3);
+  c.restore();
+}
+
+/* ── Frame renderer ───────────────────────────────────────────────────── */
+function renderFrame(f) {
+  f = Math.max(0, Math.min(TOTAL - 1, f | 0));
+  if (!gridCanvas) buildGrid();
+
+  /* base ink plane */
+  const bg = ctx.createRadialGradient(CX, 500, 60, CX, 560, 1250);
+  bg.addColorStop(0, INK_2);
+  bg.addColorStop(1, INK);
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
+
+  /* grid, drifting 14px over the whole 5s — motion without distraction */
+  const drift = (f / (TOTAL - 1)) * 14;
+  ctx.drawImage(gridCanvas, -120 - drift * 0.6, -120 - drift);
+
+  /* content group, revealed by the trailing edge of the exiting red plane */
+  const revealX = f < T.wipeOutA[0] ? 0
+                : W * outQuint(seg(f, T.wipeOutA[0], T.wipeOutA[1]));
+
+  if (revealX > 0) {
+    ctx.save();
+    ctx.beginPath(); ctx.rect(0, 0, revealX, H); ctx.clip();
+
+    /* imperceptible 1.2% push keeps the 1.3s hold alive */
+    const push = 1 + 0.012 * outCubic(seg(f, 52, 246));
+    ctx.translate(CX, 560); ctx.scale(push, push); ctx.translate(-CX, -560);
+
+    drawRails(ctx, f);
+    drawRings(ctx, f);
+    drawLockup(ctx, f);
+    drawKicker(ctx, f);
+    drawRule(ctx, f);
+    drawUrl(ctx, f);
+    ctx.restore();
+  }
+
+  drawProgress(ctx, f);
+
+  /* ── red plane: opens the card and closes it ── */
+  let planeX = null, planeW = 0;
+  if (f <= T.wipeInA[1]) {                       // 0.00–0.40s  cover from left
+    planeX = 0; planeW = W * outQuint(seg(f, T.wipeInA[0], T.wipeInA[1]));
+  } else if (f <= T.wipeOutA[1]) {               // 0.40–0.87s  exit to the right
+    planeX = revealX; planeW = W - revealX;
+  } else if (f >= T.wipeInB[0]) {                // 4.10–4.77s  close from left
+    planeX = 0; planeW = W * inOutQuint(seg(f, T.wipeInB[0], T.wipeInB[1]));
+  }
+  if (planeW > 0.5) {
+    ctx.fillStyle = RED;
+    ctx.fillRect(planeX, 0, planeW, H);
+    // leading edge highlight in accent coral, 6px
+    ctx.fillStyle = CORAL;
+    ctx.fillRect(planeX + planeW - 6, 0, 6, H);
+  }
+
+  /* red → black tail so the outro can hard-cut to anything */
+  const tb = seg(f, T.toBlack[0], T.toBlack[1] - 1);
+  if (tb > 0) {
+    ctx.globalAlpha = inOutQuint(tb);
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, W, H);
+    ctx.globalAlpha = 1;
+  }
+}
+
+/* ── Recorder API ─────────────────────────────────────────────────────── */
+window.QC_TOTAL   = TOTAL;
+window.QC_FPS     = FPS;
+window.renderFrame = renderFrame;
+window.captureFrameDataUrl = () => cv.toDataURL('image/png');
+window.qcReady = false;
+
+(async () => {
+  try { await document.fonts.load(`800 20px 'InterVar'`); } catch (e) {}
+  try { await document.fonts.load(`700 26px 'InterVar'`); } catch (e) {}
+  try { await document.fonts.ready; } catch (e) {}
+  if (!lockupOK) {
+    await new Promise(res => {
+      if (lockup.complete) return res();
+      lockup.onload = () => { lockupOK = true; res(); };
+      lockup.onerror = () => res();
+      setTimeout(res, 4000);
+    });
+  }
+  buildGrid();
+  renderFrame(0);
+  window.qcReady = true;
+})();
+
+/* ── Preview scrubber (never part of a recording) ─────────────────────── */
+const sl = document.getElementById('sl'), tc = document.getElementById('tc'), pl = document.getElementById('pl');
+let playing = true, t0 = performance.now();
+function label(f) { tc.textContent = String(f).padStart(4, '0') + ' / ' + (f / FPS).toFixed(3) + 's'; }
+sl.addEventListener('input', () => { playing = false; pl.textContent = 'PLAY'; renderFrame(+sl.value); label(+sl.value); });
+pl.addEventListener('click', () => { playing = !playing; pl.textContent = playing ? 'PAUSE' : 'PLAY'; t0 = performance.now() - (+sl.value / FPS) * 1000; });
+pl.style.cursor = 'pointer';
+function loop() {
+  if (playing && window.qcReady) {
+    const f = Math.floor(((performance.now() - t0) / 1000) * FPS) % TOTAL;
+    renderFrame(f); sl.value = f; label(f);
+  }
+  requestAnimationFrame(loop);
+}
+loop();
+</script>
+</body>
+</html>

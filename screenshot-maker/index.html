@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Screenshot Maker — App Store ready shots in seconds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=7">
+</head>
+<body>
+<main class="app">
+
+  <!-- LEFT: live canvas preview -->
+  <section class="stage" id="stage">
+    <div class="stage-inner">
+      <canvas id="preview"></canvas>
+      <div class="drop-hint" id="dropHint">
+        <div class="drop-hint-box">
+          <span class="drop-ico">⤓</span>
+          <strong>Drop your app screenshot</strong>
+          <span>or paste from clipboard (⌘V) · PNG/JPG</span>
+        </div>
+      </div>
+    </div>
+    <!-- slide strip -->
+    <div class="slides" id="slideStrip"></div>
+  </section>
+
+  <!-- RIGHT: controls -->
+  <aside class="panel">
+    <header class="panel-head">
+      <h1>screenshot maker</h1>
+      <p class="panel-sub" id="sizeLabel">1290 × 2796 · APP STORE READY</p>
+    </header>
+
+    <div class="panel-scroll">
+
+      <div class="group">
+        <label class="lbl" for="captionInput">Caption</label>
+        <textarea id="captionInput" rows="2" placeholder="Train harder. *Rest smarter*.">Train harder. *Rest smarter*.</textarea>
+        <p class="hint">Wrap a word in *asterisks* for an accent. Use | for line breaks.</p>
+
+        <label class="lbl">Size</label>
+        <input type="range" id="captionSize" min="60" max="140" value="100">
+
+        <label class="lbl">Position</label>
+        <div class="seg" data-seg="position">
+          <button class="on" data-val="top">Top</button>
+          <button data-val="bottom">Bottom</button>
+        </div>
+
+        <label class="lbl">Screenshot density</label>
+        <div class="seg" data-seg="density">
+          <button data-val="comfy">Comfy</button>
+          <button class="on" data-val="tight">Tight</button>
+          <button data-val="xtight">X-tight</button>
+        </div>
+        <p class="hint">Tight = less padding, larger screenshot.</p>
+      </div>
+
+      <div class="sep"></div>
+
+      <div class="group">
+        <label class="lbl" for="subtitleInput">Subtitle (optional)</label>
+        <input type="text" id="subtitleInput" placeholder="e.g. Backed by real studies">
+        <p class="hint">Smaller text. *asterisks* for accent. Leave empty to hide.</p>
+
+        <label class="lbl">Placement</label>
+        <div class="seg" data-seg="subPlacement">
+          <button data-val="above">Above caption</button>
+          <button class="on" data-val="below">Below caption</button>
+        </div>
+      </div>
+
+      <div class="sep"></div>
+
+      <div class="group">
+        <label class="lbl">Screenshot</label>
+        <button class="pick" id="pickBtn">Pick file or drop on canvas →</button>
+        <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp" multiple hidden>
+        <p class="hint">Multiple files become slides. Or paste from clipboard (⌘V).</p>
+      </div>
+
+      <div class="sep"></div>
+
+      <div class="group">
+        <label class="lbl">Screen content</label>
+        <div class="seg" data-seg="screenMode">
+          <button class="on" data-val="tracker">Fitness demo</button>
+          <button data-val="screenshot">My screenshot</button>
+        </div>
+
+        <label class="lbl">Exercises</label>
+        <div class="ex-list" id="exList"></div>
+        <div class="ex-add-row">
+          <input type="text" id="exName" placeholder="e.g. Push-ups">
+          <select id="exType">
+            <option value="pushups">Push-ups</option>
+            <option value="strength">Strength</option>
+            <option value="cardio">Cardio</option>
+          </select>
+          <input type="text" id="exDetail" placeholder="3 × 15">
+          <button id="exAdd" title="Add exercise">+</button>
+        </div>
+
+        <label class="lbl">Work / Rest timer</label>
+        <div class="timer-row">
+          <label class="mini-lbl">Work <input type="number" id="workSec" min="0" max="599" value="45"> s</label>
+          <label class="mini-lbl">Rest <input type="number" id="restSec" min="0" max="599" value="15"> s</label>
+        </div>
+        <div class="seg" data-seg="timerPhase">
+          <button class="on" data-val="work">Show work</button>
+          <button data-val="rest">Show rest</button>
+        </div>
+      </div>
+
+      <div class="sep"></div>
+
+      <div class="group">
+        <label class="lbl">Zoom callout</label>
+        <p class="hint">Drag a rectangle on the phone screen to magnify it. Drag inside to move, corners to resize.</p>
+        <div id="calloutRow"></div>
+        <label class="lbl">Magnify</label>
+        <input type="range" id="zoomAmt" min="110" max="300" value="140">
+      </div>
+
+      <div class="sep"></div>
+
+      <div class="group">
+        <label class="lbl">Style</label>
+        <div class="swatches" id="presetRow"></div>
+        <button class="magic" id="magicBtn">✦ Auto-match from screenshot</button>
+        <p class="hint">Pulls the palette out of your screenshot and styles the background to match.</p>
+        <div class="custom-colors">
+          <label class="mini-lbl">BG <input type="color" id="bgColor" value="#ece5d8"></label>
+          <label class="mini-lbl">BG 2 <input type="color" id="bgColor2" value="#e3d9c6"></label>
+          <label class="mini-lbl">Text <input type="color" id="textColor" value="#1c1914"></label>
+          <label class="mini-lbl">Accent <input type="color" id="accentColor" value="#b4543a"></label>
+        </div>
+      </div>
+
+      <div class="sep"></div>
+
+      <div class="group">
+        <label class="lbl">Export size</label>
+        <div class="sizes" id="sizeRow"></div>
+      </div>
+
+    </div>
+
+    <footer class="panel-foot">
+      <button class="export" id="exportBtn">Export PNG</button>
+      <div class="foot-row">
+        <button class="ghost" id="exportAllBtn">Export all sizes</button>
+        <button class="ghost" id="resetBtn">Reset</button>
+      </div>
+    </footer>
+  </aside>
+
+</main>
+<script src="app.js?v=7"></script>
+</body>
+</html>

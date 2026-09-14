@@ -33,7 +33,10 @@ export const STANDARD = {
   },
   video: {
     codec: 'h264',
-    maxHeight: 1080,
+    maxHeight: 1080,       // ceiling on the SHORT side (height when landscape, width when portrait)
+    portraitMaxWidth: 720, // encode target for vertical clips — forcing a 9:16 source
+                           // to 1080 tall leaves it 607px wide and visibly soft
+
     crf: 23,
     preset: 'slow',
     audioKbps: 128,
@@ -168,12 +171,24 @@ export function convertImage(abs, { maxW = STANDARD.image.maxWidth, quality = ST
   return out;
 }
 
+/** Oversized? Measured on the short side, so 9:16 is judged the same way as 16:9. */
+export function videoOverSize(i) {
+  return Math.min(i.w, i.h) > STANDARD.video.maxHeight;
+}
+
+/** The ffmpeg -vf scale expression that brings a clip into the tier, or null. */
+function scaleFilter(i) {
+  const S = STANDARD.video;
+  if (!videoOverSize(i)) return null;
+  return i.h > i.w ? `scale=${S.portraitMaxWidth}:-2:flags=lanczos` : `scale=-2:${S.maxHeight}:flags=lanczos`;
+}
+
 /** Re-encode a video to the delivery tier if it is over budget. Returns abs path. */
 export function convertVideo(abs, { log = () => {} } = {}) {
   const info = probeVideo(abs);
   const S = STANDARD.video;
   const fast = hasFaststart(abs);
-  const needs = info.h > S.maxHeight || info.kbps > S.maxKbps || info.bytes > S.maxBytes || info.codec !== 'h264' || !fast || !/\.mp4$/i.test(abs);
+  const needs = videoOverSize(info) || info.kbps > S.maxKbps || info.bytes > S.maxBytes || info.codec !== 'h264' || !fast || !/\.mp4$/i.test(abs);
   if (!needs) return abs;
   const out = abs.replace(VID_EXT, '') + '.mp4';
   const tmp = join(dirname(abs), '.norm-' + basename(out));
@@ -188,7 +203,8 @@ export function convertVideo(abs, { log = () => {} } = {}) {
   for (; crf <= 32; crf += 3) {
     const args = ['-y', '-i', src, '-map', '0:v:0'];
     if (srcInfo.hasAudio) args.push('-map', '0:a:0', '-c:a', 'aac', '-b:a', `${S.audioKbps}k`, '-ac', '2'); else args.push('-an');
-    if (srcInfo.h > S.maxHeight) args.push('-vf', `scale=-2:${S.maxHeight}:flags=lanczos`);
+    const vf = scaleFilter(srcInfo);
+    if (vf) args.push('-vf', vf);
     args.push('-c:v', 'libx264', '-preset', S.preset, '-crf', String(crf), '-profile:v', 'high', '-level', '4.1',
       '-pix_fmt', 'yuv420p', '-g', '120', '-movflags', '+faststart', tmp);
     execFileSync('ffmpeg', args, { stdio: 'pipe' });
@@ -258,7 +274,7 @@ export function checkGuide(guide, { baseDir = REPO_ROOT } = {}) {
       if (!VID_EXT.test(abs)) { errors.push(`${m.where}: not a video (${extname(abs)})`); continue; }
       const i = probeVideo(abs);
       if (!/\.mp4$/i.test(abs) || i.codec !== 'h264') errors.push(`${m.where}: must be H.264 .mp4 (is ${i.codec} ${extname(abs)})`);
-      if (i.h > STANDARD.video.maxHeight) errors.push(`${m.where}: ${i.h}p > ${STANDARD.video.maxHeight}p`);
+      if (videoOverSize(i)) errors.push(`${m.where}: ${i.w}x${i.h}, short side > ${STANDARD.video.maxHeight}`);
       if (i.kbps > STANDARD.video.maxKbps) errors.push(`${m.where}: ${i.kbps} kbps > ${STANDARD.video.maxKbps}`);
       if (i.bytes > STANDARD.video.maxBytes) errors.push(`${m.where}: ${(i.bytes / 1048576).toFixed(1)}MB > ${STANDARD.video.maxBytes / 1048576}MB`);
       if (!hasFaststart(abs)) errors.push(`${m.where}: no faststart (moov after mdat)`);

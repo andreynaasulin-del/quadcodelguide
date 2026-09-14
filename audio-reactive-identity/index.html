@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#08090d">
+  <title>Audio-Reactive Identity Lab</title>
+  <meta name="description" content="A local Web Audio FFT drives a Three.js identity mesh in real time.">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="lab" aria-labelledby="page-title">
+    <header class="topline">
+      <a class="brand" href="#stage" aria-label="Audio-Reactive Identity home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>AR<span>/</span>ID</span>
+      </a>
+      <div class="telemetry" aria-label="Renderer telemetry">
+        <span><i id="statusDot"></i><b id="audioState">AUDIO IDLE</b></span>
+        <span id="fpsReadout">-- FPS</span>
+        <span id="fftReadout">FFT 2048</span>
+      </div>
+    </header>
+
+    <section class="stage" id="stage" aria-label="Audio-reactive 3D identity preview">
+      <canvas id="sceneCanvas" aria-label="Deforming 3D mesh driven by audio frequencies"></canvas>
+      <div class="stage-grid" aria-hidden="true"></div>
+      <div class="axis axis-x" aria-hidden="true"></div>
+      <div class="axis axis-y" aria-hidden="true"></div>
+
+      <div class="intro">
+        <p class="eyebrow">REAL-TIME IDENTITY SYSTEM / 001</p>
+        <h1 id="page-title">Sound becomes<br><em>structure.</em></h1>
+        <p class="dek">A live FFT separates bass, mids and highs, then routes each band into mesh displacement, rotation and light.</p>
+      </div>
+
+      <div class="band-readout" aria-label="Live frequency energy">
+        <div><span>BASS</span><b id="bassValue">00</b></div>
+        <div><span>MID</span><b id="midValue">00</b></div>
+        <div><span>HIGH</span><b id="highValue">00</b></div>
+      </div>
+
+      <div class="spectrum-wrap" aria-label="Live FFT spectrum">
+        <canvas id="spectrumCanvas"></canvas>
+        <div class="spectrum-axis" aria-hidden="true"><span>20 HZ</span><span>250</span><span>2K</span><span>20 KHZ</span></div>
+      </div>
+
+      <button class="start-gate" id="startButton" type="button">
+        <span class="play-icon" aria-hidden="true"></span>
+        <span><b>Start demo signal</b><small>Audio begins only after this click</small></span>
+      </button>
+
+      <div class="unsupported" id="unsupported" hidden>
+        WebGL is unavailable. The audio controls still work, but the identity mesh cannot render.
+      </div>
+    </section>
+
+    <section class="control-deck" aria-label="Identity controls">
+      <div class="transport">
+        <button class="transport-button" id="playButton" type="button" disabled aria-label="Play demo">
+          <span class="play-icon" aria-hidden="true"></span>
+        </button>
+        <div class="track-meta">
+          <span id="trackLabel">SYNTHETIC DEMO LOOP</span>
+          <div class="time-row"><span id="elapsed">00:00</span><div class="progress"><i id="progressFill"></i></div><span id="duration">00:08</span></div>
+        </div>
+        <label class="upload-button" for="audioFile">LOAD AUDIO</label>
+        <input id="audioFile" type="file" accept="audio/*" hidden>
+      </div>
+
+      <div class="controls">
+        <label class="control">
+          <span><b>SPEED</b><output id="speedOutput" for="speed">0.75×</output></span>
+          <input id="speed" type="range" min="0.15" max="1.8" step="0.05" value="0.75">
+        </label>
+        <label class="control">
+          <span><b>NOISE</b><output id="noiseOutput" for="noise">0.55</output></span>
+          <input id="noise" type="range" min="0" max="1.4" step="0.05" value="0.55">
+        </label>
+        <label class="control">
+          <span><b>INTENSITY</b><output id="intensityOutput" for="intensity">1.10</output></span>
+          <input id="intensity" type="range" min="0" max="2" step="0.05" value="1.10">
+        </label>
+      </div>
+    </section>
+
+    <footer class="footline">
+      <span>WEB AUDIO API → ANALYSER NODE → FFT → SHADER UNIFORMS</span>
+      <span>LOCAL AUDIO NEVER LEAVES THIS DEVICE</span>
+    </footer>
+  </main>
+  <audio id="fileAudio" preload="metadata"></audio>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

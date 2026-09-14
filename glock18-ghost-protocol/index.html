@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GLOCK-18C · GHOST PROTOCOL — procedural reconstruction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<canvas id="stage"></canvas>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark" aria-hidden="true"></div>
+    <div>
+      <h1>GLOCK-18C <span>/ GHOST PROTOCOL</span></h1>
+      <p id="spec-line">—</p>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div><b id="stat-parts">—</b><i>parts</i></div>
+    <div><b id="stat-tris">—</b><i>triangles</i></div>
+    <div><b id="stat-draws">—</b><i>draw calls</i></div>
+    <div><b id="stat-build">—</b><i>build time</i></div>
+    <div><b id="stat-fps">—</b><i>fps</i></div>
+  </div>
+</header>
+
+<aside class="panel panel-left">
+  <div class="panel-head">
+    <h2>Parts</h2>
+    <p>Click a group to isolate it, a part to inspect it. Triangle counts are read
+       off the buffers, not typed in.</p>
+  </div>
+  <div id="parts-list" class="panel-body"></div>
+</aside>
+
+<aside class="panel panel-right">
+  <div id="inspector" class="inspector empty">
+    <div class="ins-placeholder">
+      <p>Nothing selected.</p>
+      <p class="dim">Pick a part in the scene or in the list. Everything you see is
+         solved from a spec table in <code>build-glock18.js</code> — no mesh file
+         is loaded.</p>
+    </div>
+  </div>
+</aside>
+
+<div id="boot" class="boot">
+  <div class="boot-row">
+    <span class="boot-tag">RECONSTRUCTING</span>
+    <span id="boot-count">0 parts seated</span>
+  </div>
+  <div class="boot-track"><div id="boot-bar" class="boot-bar"></div></div>
+</div>
+
+<footer class="toolbar">
+  <!-- The disassembly slider is the primary control on this page, so it gets its
+       own block, its own readout and roughly half the toolbar width. -->
+  <div class="explode-rig">
+    <div class="explode-top">
+      <button id="btn-explode" class="btn ghost">Disassemble <kbd>E</kbd></button>
+      <div class="explode-read">
+        <b id="explode-value">0</b><i>%</i>
+        <span id="explode-stage">assembled</span>
+      </div>
+    </div>
+    <div class="explode-track">
+      <input id="explode" type="range" min="0" max="100" value="0" step="0.5"
+             aria-label="Disassembly amount">
+      <div class="explode-ticks">
+        <span>assembled</span><span>field strip</span><span>full teardown</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tool-group">
+    <button id="btn-isolate" class="btn">Isolate <kbd>I</kbd></button>
+    <button id="btn-wireframe" class="btn">Wireframe <kbd>W</kbd></button>
+    <button id="btn-spin" class="btn on">Spin <kbd>Space</kbd></button>
+    <button id="btn-reset" class="btn">Reset <kbd>R</kbd></button>
+  </div>
+
+  <div class="tool-group right">
+    <span id="isolate-label" class="badge"></span>
+    <button id="btn-source" class="btn primary">View generated source <kbd>S</kbd></button>
+  </div>
+</footer>
+
+<div id="source-modal" class="modal">
+  <div class="modal-card">
+    <div class="modal-head">
+      <div>
+        <h3 id="source-title">build-glock18.js</h3>
+        <p id="source-meta"></p>
+      </div>
+      <button id="source-close" class="btn">Close <kbd>Esc</kbd></button>
+    </div>
+    <div id="source-body" class="source"></div>
+  </div>
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,6 +1,27 @@
 {
   "_readme": "Per guide → per step index (1-based): type frame|clip|audio, at = seconds into the FINAL, caption = what to look at and why this step caused it. Hand-picked from contact sheets in .temp/evidence/sheets/.",
 
+  "gym-diary-pov-vlog": {
+    "1": { "type": "frame", "at": 1.0, "caption": "Her forearm crops the bottom of the frame and the lens is a hand's length from her face — that is the whole format, before a single beat happens." },
+    "2": { "type": "clip", "at": 8.5, "caption": "She looks at the shaker, stretches her arms overhead, leans back in to talk. Four seconds of nothing happening — that is the beat list working." }
+  },
+  "seoul-street-food-fisheye-tape": {
+    "1": { "type": "frame", "at": 1.0, "caption": "Round image, hard black corners — even a steel steam tray of tteokbokki bows at the edges. Crop this to 16:9 and it is ordinary food stock footage." },
+    "2": { "type": "clip", "at": 4.5, "caption": "The cup is handed across the counter, then she is eating under the bulb. Showing the hand-off is why the cup can never appear out of nowhere later." }
+  },
+  "white-fit-fisheye-fashion-film": {
+    "1": { "type": "frame", "at": 2.4, "caption": "The lens is on the ground: the sneaker is the nearest thing in frame, the brick and the roller shutters bend away into the black corners. Same street at eye level would be unremarkable." },
+    "2": { "type": "clip", "at": 3.3, "caption": "Four seconds, four shots — two from directly overhead, the headphone macro, then straight back down to pavement level. Nothing is held long enough to explain itself." }
+  },
+  "polar-scalp-shampoo-ad": {
+    "1": { "type": "clip", "at": 6.5, "caption": "The middle of the ad, with no product in it at all: the tail of the vortex, a cream-white wave, then water hitting hair. Moving water is the only thing holding these cuts together." },
+    "2": { "type": "frame", "at": 1.0, "caption": "Read the label: the brand line holds, the sub-line under it came out as \"ANTI ING ECALR\". Large type survives, small type does not." }
+  },
+  "anatomy-atelier-3d-explorer": {
+    "1": { "type": "frame", "at": 25.0, "caption": "Every rail row carries two lines — Liver, then Digestive System under it. The list groups the body before a single organ is opened." },
+    "2": { "type": "frame", "at": 45.0, "caption": "The eye's facts read Size, Weight, Daily, Location, Blood supply, Function. The liver's list is different — same panel, different keys." }
+  },
+
   "winter-ops-fps-industrial": {
     "1": { "type": "frame", "at": 17.0, "caption": "Same rifle, same snow, three shots apart — the weapon and weather were locked before any route was written." },
     "2": { "type": "clip", "at": 6.8, "caption": "Tunnel into corridor in one continuous pass. Rooms chain; there is no cut to hide behind." }

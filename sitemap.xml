@@ -3,9 +3,59 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://quadcodeguide.vercel.app/</loc>
-    <lastmod>2026-09-10</lastmod>
+    <lastmod>2026-09-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/gym-diary-pov-vlog</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/gym-diary-pov-vlog-poster.webp</image:loc>
+      <image:title>Gym diary POV: a vertical vlog shot at arm's length</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/seoul-street-food-fisheye-tape</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/seoul-street-food-fisheye-poster.webp</image:loc>
+      <image:title>Seoul street food through a fisheye: 15 seconds at the orange tent</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/white-fit-fisheye-fashion-film</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/white-fit-fisheye-fashion-poster.webp</image:loc>
+      <image:title>Ankle-height fisheye: twelve shots of one all-white fit in 15 seconds</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/polar-scalp-shampoo-ad</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/polar-scalp-shampoo-ad-poster.webp</image:loc>
+      <image:title>Polar Scalp: a 13-second shampoo ad with no model, no hands, no voiceover</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://quadcodeguide.vercel.app/guide/anatomy-atelier-3d-explorer</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://quadcodeguide.vercel.app/ui_views/assets/showcase/anatomy-atelier-explorer-poster.webp</image:loc>
+      <image:title>Anatomy Atelier: a 3D organ explorer with a dissection slider</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://quadcodeguide.vercel.app/guide/castlevania-pixel-art-prompt-breakdown</loc>

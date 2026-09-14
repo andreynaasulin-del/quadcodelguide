@@ -11,6 +11,220 @@
   ],
   "guides": [
     {
+      "id": "gym-diary-pov-vlog",
+      "cat": "Video",
+      "sub": "POV Vlog",
+      "title": "Gym diary POV: a vertical vlog shot at arm's length",
+      "desc": "A redhead in a grey crop top talks to her own camera between sets — a floor stretch, a deep side lunge, a look at the protein shaker, an overhead stretch, then the gym bag slung over her shoulder on the way out. Vertical, handheld, no tripod anywhere in the frame.",
+      "time": "8 min",
+      "date": "2026-09-14",
+      "level": "Junior",
+      "models": "AI video generation",
+      "new": true,
+      "video": "/ui_views/assets/showcase/gym-diary-pov-vlog.mp4",
+      "poster": "/ui_views/assets/showcase/gym-diary-pov-vlog-poster.webp",
+      "steps": [
+        {
+          "title": "Put the camera in her hand, not on a tripod",
+          "text": "A tripod shot of a gym is stock footage. An arm's-length shot of the same gym is a diary. Say where the camera is — held in her own hand, close, wide, slightly tilted — and accept that her shoulder and forearm will crop the frame. That crop is the format.",
+          "prompt": "Vertical 9:16 handheld phone video, first-person vlog. A young woman with red hair in a ponytail, grey sports bra and cream long-sleeve crop, dark leggings, sits on the floor of a dim gym. She holds the phone herself at arm's length: wide lens, close to her face, slight tilt, her forearm and shoulder entering the bottom of the frame. Background: racks of dumbbells, dark ceiling, scattered downlights. Natural handheld shake, no stabilisation, no camera moves that a hand cannot make.",
+          "result_image": "/ui_views/assets/evidence/gym-diary-pov-vlog/step-1.webp",
+          "result_label": "Frame from the final render · 0:01",
+          "result_caption": "Her forearm crops the bottom of the frame and the lens is a hand's length from her face — that is the whole format, before a single beat happens.",
+          "result_source": "final"
+        },
+        {
+          "title": "Give her a routine, not a workout",
+          "text": "Nobody films their whole session. List the small beats instead — sit down, stretch, a side lunge, checking the shaker, shouldering the bag — and let them run out of order. Mundane beats are what a real diary is made of; a set-by-set workout reads as an ad.",
+          "prompt": "Beats, same woman and same gym throughout: (1) sits cross-legged on the floor, talks to the camera between sets. (2) Deep side lunge on the floor, holding the phone up with one hand. (3) Holds a clear shaker of milky-beige protein up near her face and looks at it, not at the lens. (4) Steps back from the phone and stretches both arms overhead — the only shot where her whole body is in frame. (5) Slings a black gym bag over her shoulder and looks into the lens on the way out. Keep her hair, top and leggings identical in every beat.",
+          "result_video": "/ui_views/assets/evidence/gym-diary-pov-vlog/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/gym-diary-pov-vlog/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:08–0:12",
+          "result_caption": "She looks at the shaker, stretches her arms overhead, leans back in to talk. Four seconds of nothing happening — that is the beat list working.",
+          "result_source": "final"
+        },
+        {
+          "title": "Deliver vertical, not letterboxed",
+          "text": "Vertical source gets ruined by a 1080-tall pipeline: it comes out 607 px wide and soft. Cap the width instead — 720×1280 H.264 keeps the phone aspect, stays sharp on a phone and lands far under the size cap. Play the clip above.",
+          "prompt": "",
+          "result_video": "/ui_views/assets/showcase/gym-diary-pov-vlog.mp4",
+          "result_poster": "/ui_views/assets/showcase/gym-diary-pov-vlog-poster.webp"
+        }
+      ],
+      "result": "Fifteen vertical seconds that read as somebody's own phone footage: the arm is in shot, the framing is wrong on purpose, and nothing in it looks directed."
+    },
+    {
+      "id": "seoul-street-food-fisheye-tape",
+      "cat": "Video",
+      "sub": "Retro Camcorder",
+      "title": "Seoul street food through a fisheye: 15 seconds at the orange tent",
+      "desc": "A circular fisheye follows a girl down a Seoul side street into an orange pojangmacha tent — a steel tray of tteokbokki, a paper cup handed over the counter, then back out past the stalls as the light turns blue.",
+      "time": "10 min",
+      "date": "2026-09-14",
+      "level": "Middle",
+      "models": "AI video generation",
+      "new": true,
+      "video": "/ui_views/assets/showcase/seoul-street-food-fisheye.mp4",
+      "poster": "/ui_views/assets/showcase/seoul-street-food-fisheye-poster.webp",
+      "steps": [
+        {
+          "title": "Name the lens, not the mood",
+          "text": "\"Nostalgic\" and \"retro\" produce nothing. A circular fisheye with hard black corners produces an image you can recognise before you read the caption. Describe the optics — round image inside a black frame, extreme barrel distortion, close focus — and the era comes for free.",
+          "prompt": "Handheld camcorder footage through a circular fisheye lens: round image with hard black corners, extreme barrel distortion, straight lines bending, close focus, slight chromatic fringing, soft contrast. Subject: a young Korean woman in an olive jacket over a white hoodie, dark hair, walking a narrow Seoul side street in the early evening. Keep her jacket, hoodie and hair identical in every shot.",
+          "result_image": "/ui_views/assets/evidence/seoul-street-food-fisheye-tape/step-1.webp",
+          "result_label": "Frame from the final render · 0:01",
+          "result_caption": "Round image, hard black corners — even a steel steam tray of tteokbokki bows at the edges. Crop this to 16:9 and it is ordinary food stock footage.",
+          "result_source": "final"
+        },
+        {
+          "title": "One street, one stall, one cup",
+          "text": "Continuity is cheap when the location is small. Write the whole visit as a route through a single tent — the food before the face, the hand-off over the counter, eating standing up, then back out — and the model has nothing left to invent between shots. One paper cup carries the second half of the film; give it to her on camera and it can never appear out of nowhere.",
+          "prompt": "Route, same lens and same subject: (1) macro of tteokbokki — red-sauced rice cakes in a steel steam tray, the vendor out of focus behind it. (2) She takes a white paper cup of it from the vendor's hand across the steel counter, smiling. (3) Standing under the orange-and-blue striped tent, bare bulb overhead, eating from the cup with a wooden skewer. (4) Side view as she walks off, still eating from the same cup. (5) She walks down the middle of the street holding the cup up toward the lens, streetlights on, sky gone blue.",
+          "result_video": "/ui_views/assets/evidence/seoul-street-food-fisheye-tape/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/seoul-street-food-fisheye-tape/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:04–0:08",
+          "result_caption": "The cup is handed across the counter, then she is eating under the bulb. Showing the hand-off is why the cup can never appear out of nowhere later.",
+          "result_source": "final"
+        },
+        {
+          "title": "Keep the 4:3 frame the lens was shot on",
+          "text": "The round image needs a near-square frame or the black corners get cropped into bars and the whole effect dies. Source is 1664×1248 — deliver it at 4:3, 1080 tall, and leave the vignette alone. Play the clip above.",
+          "prompt": "",
+          "result_video": "/ui_views/assets/showcase/seoul-street-food-fisheye.mp4",
+          "result_poster": "/ui_views/assets/showcase/seoul-street-food-fisheye-poster.webp"
+        }
+      ],
+      "result": "Fifteen seconds of believable found footage: round frame, black corners, one street, one stall, one cup — and a face that stays the same in every shot."
+    },
+    {
+      "id": "white-fit-fisheye-fashion-film",
+      "cat": "Video",
+      "sub": "Fashion Film",
+      "title": "Ankle-height fisheye: twelve shots of one all-white fit in 15 seconds",
+      "desc": "A circular fisheye sits on the pavement while a cream total-look walks over it — brick, roller shutters, graffiti. Between the walks: two beats from directly overhead, a macro of the white headphones, another of white wraparound shades, a wet night street, the block upside-down in a puddle, and a crew of three standing over the lens.",
+      "time": "12 min",
+      "date": "2026-09-14",
+      "level": "Middle+",
+      "models": "AI video generation",
+      "new": true,
+      "video": "/ui_views/assets/showcase/white-fit-fisheye-fashion.mp4",
+      "poster": "/ui_views/assets/showcase/white-fit-fisheye-fashion-poster.webp",
+      "steps": [
+        {
+          "title": "Put the lens on the pavement, not at eye level",
+          "text": "A street fashion clip at eye level is a hundred other street fashion clips. Rest the circular fisheye on the ground and let the subject walk over it: white sneakers stay sharp in the middle of the round frame while the brick, the shutters and the graffiti bend away into the black corners. The camera position is the whole idea — nothing has to be styled to make the shot work.",
+          "prompt": "Circular fisheye lens: round image with hard black corners, extreme barrel distortion, straight lines bending hard. Camera resting on wet grey pavement, looking up and forward as a person walks over and past it — off-white baggy sweatpants, white sneakers, cream layers, black bucket hat, large white over-ear headphones. Narrow city street, red brick facade, metal roller shutters, graffiti on one wall, parked cars. Overcast daylight, handheld, no stabilisation.",
+          "result_image": "/ui_views/assets/evidence/white-fit-fisheye-fashion-film/step-1.webp",
+          "result_label": "Frame from the final render · 0:02",
+          "result_caption": "The lens is on the ground: the sneaker is the nearest thing in frame, the brick and the roller shutters bend away into the black corners. Same street at eye level would be unremarkable.",
+          "result_source": "final"
+        },
+        {
+          "title": "Twelve shots in fifteen seconds — write them as a flat list",
+          "text": "The longest shot here is under three seconds and most are barely one, so nothing has room to explain itself. Write the whole film as a numbered list where the outfit is the only constant, and keep coming back to the ankle-height camera between the detours. That return is what makes twelve unrelated framings read as one film instead of a mood-board.",
+          "prompt": "Shot list, same all-white fit and same circular fisheye throughout: (1)(2)(3) ground-level walks past red brick and graffitied roller shutters, white sneakers closest to the lens, parked cars behind. (4)(5) Straight down from above: the walker centred in the round frame, black bucket hat and white over-ear headphones, pavement filling the circle. (6) Extreme macro of the white headphone cup and headband, matte shell and brushed metal arm, black background. (7) Back to the pavement — a sneaker steps directly over the lens. (8) Extreme macro of white wraparound sport sunglasses on the face, the street reflected in the lenses. (9) Night: wet asphalt, car and street lights smeared in the reflections, cream trousers walking through. (10)(11) The block hanging upside-down in a puddle, ripples crossing the buildings. (12) Three people in white fits standing over the camera, arms out, brick wall behind them.",
+          "result_video": "/ui_views/assets/evidence/white-fit-fisheye-fashion-film/step-2.mp4",
+          "result_poster": "/ui_views/assets/evidence/white-fit-fisheye-fashion-film/step-2-poster.webp",
+          "result_label": "Excerpt from the final render · 0:03–0:07",
+          "result_caption": "Four seconds, four shots — two from directly overhead, the headphone macro, then straight back down to pavement level. Nothing is held long enough to explain itself.",
+          "result_source": "final"
+        },
+        {
+          "title": "Downscale once, at the very end",
+          "text": "The source is 3840×2160 at 70 Mbps — 133 MB for fifteen seconds. Grade at 4K, then take exactly one Lanczos pass down to 1080p H.264. A second resize somewhere in the middle of the chain is what turns the stretched fisheye edges into mush. Play the clip above.",
+          "prompt": "",
+          "result_video": "/ui_views/assets/showcase/white-fit-fisheye-fashion.mp4",
+          "result_poster": "/ui_views/assets/showcase/white-fit-fisheye-fashion-poster.webp"
+        }
+      ],
+      "result": "Fifteen seconds cut from twelve shots that keep returning to the same ankle-height camera, held together by one outfit and one lens."
+    },
+    {
+      "id": "polar-scalp-shampoo-ad",
+      "cat": "Video",
+      "sub": "Product Ads",
+      "title": "Polar Scalp: a 13-second shampoo ad with no model, no hands, no voiceover",
+      "desc": "Condensation on a cold bottle between ice cubes, a cucumber-and-mint water vortex, a silky cream wave, hair strands hit by a splash, the bottle in a water crown, then a flat navy end card. The whole spot is water and one bottle.",
+      "time": "12 min",
+      "date": "2026-09-14",
+      "level": "Middle",
+      "models": "AI video generation",
+      "new": true,
+      "video": "/ui_views/assets/showcase/polar-scalp-shampoo-ad.mp4",
+      "poster": "/ui_views/assets/showcase/polar-scalp-shampoo-ad-poster.webp",
+      "steps": [
+        {
+          "title": "Five macros beat one hero shot",
+          "text": "A single rotating bottle is a render, not an ad. Break the promise into separate physical close-ups — cold, fresh, rich, clean — and the product gets a new reason to be on screen each time. Water is the connective tissue: it moves in every shot, which is what lets hard cuts between unrelated macros read as one spot. Note that the bottle is absent from the middle of the film entirely; the cream wave and the hair splash carry it alone.",
+          "prompt": "Cosmetics commercial, macro, deep blue palette, studio light, dark background throughout. Shots: (1) a tall silver-white shampoo bottle covered in condensation, ice cubes and water droplets suspended around it, shallow depth of field, blue bokeh. (2) The same bottle standing inside a spinning vortex of clear water with cucumber slices and mint leaves orbiting it, backlit, a horizontal light streak behind it. (3) No product: a thick silky cream-white wave folding over itself on deep blue. (4) No product: extreme macro of straight dark hair strands as a sheet of water hits them, droplets in the air. (5) The bottle inside a rising crown of water, ice cube tumbling past the lens.",
+          "result_video": "/ui_views/assets/evidence/polar-scalp-shampoo-ad/step-1.mp4",
+          "result_poster": "/ui_views/assets/evidence/polar-scalp-shampoo-ad/step-1-poster.webp",
+          "result_label": "Excerpt from the final render · 0:06–0:10",
+          "result_caption": "The middle of the ad, with no product in it at all: the tail of the vortex, a cream-white wave, then water hitting hair. Moving water is the only thing holding these cuts together.",
+          "result_source": "final"
+        },
+        {
+          "title": "The label will lie — keep the small type out of focus",
+          "text": "Look at the frame below: the brand line survived, the sub-line under it came out as \"ANTI ING ECALR\". This happens on every label at every quality setting. The fix is compositional, not a better prompt — keep only the big brand word sharp, throw everything smaller into bokeh or shoot it edge-on, and replace real ingredient copy in post if it has to be legible.",
+          "prompt": "Label rule for every product shot: the brand word large, centred and sharp; all secondary copy small, low-contrast and outside the plane of focus. Never ask for a paragraph of ingredient text on the bottle.",
+          "result_image": "/ui_views/assets/evidence/polar-scalp-shampoo-ad/step-2.webp",
+          "result_label": "Frame from the final render · 0:01",
+          "result_caption": "Read the label: the brand line holds, the sub-line under it came out as \"ANTI ING ECALR\". Large type survives, small type does not.",
+          "result_source": "final"
+        },
+        {
+          "title": "End on a flat card, not on the product",
+          "text": "The last frame is the only place typography is fully under your control — a plain navy card with the name and one line (\"Feel the Ultimate Freshness\") carries the branding the bottle could not. Deliver 1080p H.264. Play the clip above.",
+          "prompt": "",
+          "result_video": "/ui_views/assets/showcase/polar-scalp-shampoo-ad.mp4",
+          "result_poster": "/ui_views/assets/showcase/polar-scalp-shampoo-ad-poster.webp"
+        }
+      ],
+      "result": "A finished cosmetics spot built from five macro shots and one card — plus the honest version of what AI does to the small type on a label."
+    },
+    {
+      "id": "anatomy-atelier-3d-explorer",
+      "cat": "Interfaces",
+      "sub": "Interactive Learning",
+      "title": "Anatomy Atelier: a 3D organ explorer with a dissection slider",
+      "desc": "A dark reference app walked through heart, liver and eye — an organ rail on the left, a rotating specimen in the middle with clickable hotspots and an \"Intact specimen\" dissection slider under it, and a key-facts dossier on the right.",
+      "time": "22 min",
+      "date": "2026-09-14",
+      "level": "Senior",
+      "models": "Quadcode agent, Three.js / WebGL",
+      "new": true,
+      "video": "/ui_views/assets/showcase/anatomy-atelier-explorer.mp4",
+      "poster": "/ui_views/assets/showcase/anatomy-atelier-explorer-poster.webp",
+      "steps": [
+        {
+          "title": "Rail, stage, dossier — name the three columns first",
+          "text": "Most \"explorer\" briefs produce a gallery. Ask for three fixed columns instead and the app gets a spine: a scrollable rail of organs on the left, a single 3D stage in the middle, a facts panel on the right. One extra demand does the heavy lifting — every rail row carries the body system under the organ name, so the list teaches grouping before anything is clicked.",
+          "prompt": "Build a dark anatomy reference web app, \"Anatomy Atelier\". Three fixed columns. Left: a vertical rail of organ rows, each a small illustrated thumbnail, the organ name, and the body system in smaller grey type underneath — Heart / Cardiovascular, Brain / Nervous System, Lungs / Respiratory System, Liver / Digestive System, Kidneys / Urinary System, Eye / Sensory System, Intestine / Digestive System. The active row sits in a lifted rounded panel. Centre: a 3D stage with one photoreal organ specimen, slow auto-rotate, drag to orbit, near-black background. Right: a facts panel. Deep charcoal UI, coral accents.",
+          "result_image": "/ui_views/assets/evidence/anatomy-atelier-3d-explorer/step-1.webp",
+          "result_label": "Frame from the final render · 0:25",
+          "result_caption": "Every rail row carries two lines — Liver, then Digestive System under it. The list groups the body before a single organ is opened.",
+          "result_source": "final"
+        },
+        {
+          "title": "Fix the skeleton of the dossier, not the fields",
+          "text": "The usual advice is to keep identical fields for every item. That is wrong here: an eye has a diameter, a liver has a portal vein. Fix the *shape* instead — tagline, a KEY FACTS table, then two highlight cards — and let the keys inside change per organ. The user learns where to look once; the content stays medically honest.",
+          "prompt": "Right panel contract for every organ: organ name, a one-line epithet, a short paragraph on what it does, a KEY FACTS table of icon + key + value rows, then two highlight cards — \"Medical importance\" and \"Did you know\". The keys are chosen per organ, not shared: the eye reads Size, Weight, Daily, Location, Blood supply, Function. Selecting a different organ in the rail replaces the specimen and the panel contents; the panel order and position never change.",
+          "result_image": "/ui_views/assets/evidence/anatomy-atelier-3d-explorer/step-2.webp",
+          "result_label": "Frame from the final render · 0:45",
+          "result_caption": "The eye's facts read Size, Weight, Daily, Location, Blood supply, Function. The liver's list is different — same panel, different keys.",
+          "result_source": "final"
+        },
+        {
+          "title": "Make the slider the interaction, then record at 30 fps",
+          "text": "The control under the stage is a dissection depth slider that starts at \"Intact specimen\" — dragging it opens the specimen up, and hotspot dots on the model (\"click a dot to explore\") carry the rest. One continuous control beats a menu of layer checkboxes. Delivery: screen capture arrives at 60 fps, conform to 30 and the file halves with nothing visible lost. Play the clip above.",
+          "prompt": "",
+          "result_video": "/ui_views/assets/showcase/anatomy-atelier-explorer.mp4",
+          "result_poster": "/ui_views/assets/showcase/anatomy-atelier-explorer-poster.webp"
+        }
+      ],
+      "result": "A teaching app where the furniture never moves: switching organs swaps the specimen and the facts, and the dissection slider is the only thing that changes what you are looking at."
+    },
+    {
       "id": "castlevania-pixel-art-prompt-breakdown",
       "cat": "Design",
       "sub": "Prompt Breakdown",

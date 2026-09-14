@@ -1,0 +1,683 @@
+/**
+ * GLOCK-18C | GHOST PROTOCOL — viewer chrome, Quadcode design language.
+ *
+ * Tokens below are the Quadcode set: #0E0E14 base, #FF9569 → #DD344D accent
+ * ramp, 14 px radius, Space Grotesk for display, Manrope for body, JetBrains
+ * Mono only where numbers have to line up in a column.
+ *
+ * The accent gradient is used for exactly two things — the primary action and
+ * the disassembly slider — because those are the two things a first-time visitor
+ * has to find in under a second. Everything else is white at low opacity.
+ */
+
+:root {
+  --bg: #0E0E14;
+  --bg-2: #1A1A24;
+  --bg-3: #0A0A10;
+
+  --text: #FFFFFF;
+  --muted: rgba(255, 255, 255, 0.65);
+  --muted-2: rgba(255, 255, 255, 0.38);
+  --line: rgba(255, 255, 255, 0.08);
+  --line-2: rgba(255, 255, 255, 0.14);
+
+  --acc-1: #FF9569;
+  --acc-2: #DD344D;
+  --grad: linear-gradient(100deg, #FF9569, #DD344D);
+
+  --radius: 14px;
+  --radius-sm: 9px;
+
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Manrope', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --panel-w: 300px;
+  --gutter: 18px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+#stage {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: grab;
+  touch-action: none;
+}
+#stage:active { cursor: grabbing; }
+
+/* A single vignette over the canvas. Keeps the panels legible without needing a
+   backdrop on every one of them. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 90% at 50% 45%, transparent 40%, rgba(10, 10, 16, 0.72) 100%);
+}
+
+/* --- shared surface -------------------------------------------------------- */
+
+.panel,
+.toolbar,
+.topbar,
+.boot,
+.modal-card {
+  position: fixed;
+  z-index: 2;
+  background: rgba(14, 14, 20, 0.78);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+/* --- topbar ---------------------------------------------------------------- */
+
+.topbar {
+  top: var(--gutter);
+  left: var(--gutter);
+  right: var(--gutter);
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+
+.brand { display: flex; align-items: center; gap: 13px; }
+
+.brand-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--grad);
+  position: relative;
+  flex: none;
+}
+/* Two stacked bars inside the mark — a wordless nod to the Quadcode glyph, drawn
+   in CSS so the page ships zero image assets. */
+.brand-mark::before,
+.brand-mark::after {
+  content: '';
+  position: absolute;
+  left: 9px;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(14, 14, 20, 0.88);
+}
+.brand-mark::before { top: 12px; width: 16px; }
+.brand-mark::after { top: 19px; width: 10px; }
+
+.topbar h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.topbar h1 span {
+  font-weight: 400;
+  color: transparent;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.topbar #spec-line {
+  margin: 2px 0 0;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.02em;
+  color: var(--muted-2);
+}
+
+.stats { display: flex; gap: 22px; padding-right: 4px; }
+.stats > div { text-align: right; }
+.stats b {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.stats i {
+  font-style: normal;
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+
+/* --- side panels ----------------------------------------------------------- */
+
+.panel {
+  top: calc(var(--gutter) + 62px + 10px);
+  bottom: calc(var(--gutter) + 118px);
+  width: var(--panel-w);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.panel-left { left: var(--gutter); }
+.panel-right { right: var(--gutter); }
+
+.panel-head {
+  padding: 15px 16px 13px;
+  border-bottom: 1px solid var(--line);
+}
+.panel-head h2 {
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.panel-head p {
+  margin: 0;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--muted-2);
+}
+
+.panel-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.panel-body::-webkit-scrollbar,
+.source::-webkit-scrollbar { width: 8px; }
+.panel-body::-webkit-scrollbar-thumb,
+.source::-webkit-scrollbar-thumb {
+  background: var(--line-2);
+  border-radius: 4px;
+}
+
+/* --- module groups --------------------------------------------------------- */
+
+.module { margin-bottom: 6px; }
+
+.module-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 9px;
+  background: none;
+  border: 0;
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-align: left;
+  cursor: pointer;
+  transition: background 120ms ease;
+}
+.module-head:hover { background: rgba(255, 255, 255, 0.05); }
+
+.module .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent, var(--acc-1));
+  box-shadow: 0 0 9px var(--accent, var(--acc-1));
+  flex: none;
+}
+.module-name { flex: 1; }
+.module-meta {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--muted-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.part-row {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 5px 9px 5px 25px;
+  background: none;
+  border: 0;
+  border-left: 2px solid transparent;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+  transition: color 110ms ease, background 110ms ease, border-color 110ms ease;
+}
+.part-row:hover,
+.part-row.hovered {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.045);
+  border-left-color: var(--line-2);
+}
+.part-row.selected {
+  color: var(--text);
+  background: rgba(255, 149, 105, 0.10);
+  border-left-color: var(--acc-1);
+}
+.part-name { flex: 1; }
+.part-tri {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--muted-2);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- inspector ------------------------------------------------------------- */
+
+.inspector {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.ins-placeholder p { margin: 0 0 9px; font-size: 12.5px; }
+.ins-placeholder .dim { color: var(--muted-2); line-height: 1.6; }
+.ins-placeholder code {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--acc-1);
+}
+
+.ins-module {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent, var(--acc-1));
+}
+.inspector h2 {
+  margin: 5px 0 15px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.ins-grid {
+  margin: 0 0 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.ins-grid > div {
+  background: var(--bg-3);
+  padding: 9px 11px;
+}
+.ins-grid > div:nth-child(3),
+.ins-grid > div:nth-child(4) { grid-column: 1 / -1; }
+.ins-grid dt {
+  font-size: 9px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+.ins-grid dd {
+  margin: 3px 0 0;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--text);
+  word-break: break-word;
+}
+
+.ins-note {
+  margin: 0 0 15px;
+  font-size: 12.5px;
+  line-height: 1.62;
+  color: var(--muted);
+  padding-left: 11px;
+  border-left: 2px solid var(--accent, var(--acc-1));
+}
+
+.ins-actions { display: flex; gap: 7px; flex-wrap: wrap; }
+.ins-actions button {
+  flex: 1;
+  min-width: 108px;
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line-2);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 120ms ease, border-color 120ms ease;
+}
+.ins-actions button:hover {
+  background: rgba(255, 149, 105, 0.13);
+  border-color: rgba(255, 149, 105, 0.45);
+}
+
+/* --- boot / reconstruction bar --------------------------------------------- */
+
+.boot {
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(var(--gutter) + 128px);
+  width: 340px;
+  padding: 11px 14px 13px;
+  transition: opacity 400ms ease, transform 400ms ease;
+}
+.boot.done {
+  opacity: 0;
+  transform: translateX(-50%) translateY(10px);
+  pointer-events: none;
+}
+
+.boot-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 9px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--muted-2);
+}
+.boot-tag {
+  color: var(--acc-1);
+  letter-spacing: 0.16em;
+}
+
+.boot-track {
+  height: 3px;
+  background: rgba(255, 255, 255, 0.09);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.boot-bar {
+  height: 100%;
+  width: 0;
+  background: var(--grad);
+}
+
+/* --- toolbar --------------------------------------------------------------- */
+
+.toolbar {
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: var(--gutter);
+  min-height: 88px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 12px 16px;
+}
+
+.tool-group { display: flex; align-items: center; gap: 7px; }
+.tool-group.right { margin-left: auto; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 13px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line-2);
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 120ms ease, background 120ms ease, border-color 120ms ease;
+}
+.btn:hover { color: var(--text); background: rgba(255, 255, 255, 0.09); }
+
+.btn.on {
+  color: var(--text);
+  background: rgba(255, 149, 105, 0.14);
+  border-color: rgba(255, 149, 105, 0.5);
+}
+
+.btn.primary {
+  background: var(--grad);
+  border-color: transparent;
+  color: #14100f;
+}
+.btn.primary:hover { filter: brightness(1.08); }
+.btn.primary kbd { background: rgba(20, 16, 15, 0.22); color: #14100f; }
+
+.btn.ghost { background: none; }
+
+kbd {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--muted-2);
+}
+
+.badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--acc-1);
+}
+
+/* --- the disassembly slider ------------------------------------------------ */
+
+.explode-rig {
+  flex: 1 1 auto;
+  max-width: 470px;
+  min-width: 260px;
+}
+
+.explode-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 7px;
+}
+
+.explode-read {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+.explode-read b {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  color: transparent;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.explode-read i {
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted-2);
+}
+.explode-read span {
+  margin-left: 8px;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+
+.explode-track { position: relative; }
+
+#explode {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 22px;
+  margin: 0;
+  background: none;
+  cursor: ew-resize;
+}
+
+/* The filled portion is painted with a CSS variable the viewer keeps in sync,
+   so the accent ramp grows with the actual disassembly value. */
+#explode::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background:
+    linear-gradient(90deg, var(--acc-1), var(--acc-2)) 0 / var(--fill, 0%) 100% no-repeat,
+    rgba(255, 255, 255, 0.10);
+}
+#explode::-moz-range-track {
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.10);
+}
+#explode::-moz-range-progress {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--acc-1), var(--acc-2));
+}
+
+#explode::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  margin-top: -6px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--acc-2);
+  box-shadow: 0 0 0 5px rgba(221, 52, 77, 0.16);
+  cursor: ew-resize;
+  transition: box-shadow 130ms ease;
+}
+#explode:hover::-webkit-slider-thumb { box-shadow: 0 0 0 8px rgba(221, 52, 77, 0.22); }
+#explode::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--acc-2);
+  cursor: ew-resize;
+}
+
+.explode-ticks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+.explode-ticks span:nth-child(2) { transform: translateX(-6px); }
+
+/* --- source modal ---------------------------------------------------------- */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 34px;
+  background: rgba(6, 6, 10, 0.74);
+  backdrop-filter: blur(6px);
+}
+.modal.open { display: flex; }
+
+.modal-card {
+  position: relative;
+  width: min(1000px, 100%);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: rgba(10, 10, 16, 0.96);
+  overflow: hidden;
+}
+
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 15px 18px;
+  border-bottom: 1px solid var(--line);
+}
+.modal-head h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+}
+.modal-head p {
+  margin: 3px 0 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted-2);
+}
+
+.source {
+  flex: 1;
+  overflow: auto;
+  padding: 14px 0 26px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  line-height: 1.62;
+}
+
+.src-line { display: flex; padding: 0 18px; white-space: pre; }
+.src-line .ln {
+  flex: none;
+  width: 44px;
+  color: rgba(255, 255, 255, 0.22);
+  user-select: none;
+  text-align: right;
+  padding-right: 14px;
+}
+.src-line code { color: rgba(255, 255, 255, 0.74); }
+
+/* The block that built the selected part, highlighted with the accent edge. */
+.src-line.hit {
+  background: rgba(255, 149, 105, 0.09);
+  box-shadow: inset 2px 0 0 var(--acc-1);
+}
+.src-line.hit code { color: #fff; }
+
+/* --- narrow screens -------------------------------------------------------- */
+
+@media (max-width: 1180px) {
+  :root { --panel-w: 254px; }
+  .stats > div:nth-child(n + 4) { display: none; }
+}
+
+@media (max-width: 900px) {
+  .panel-right { display: none; }
+  .explode-rig { max-width: none; }
+  .tool-group:not(.right) { display: none; }
+}

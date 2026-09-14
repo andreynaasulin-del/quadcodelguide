@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Setup steps</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background: #f6f6f8;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+  }
+  .rail {
+    width: 100%;
+    max-width: 820px;
+    display: flex;
+    align-items: flex-start;
+    padding: 24px 12px 8px;
+  }
+  .step {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  /* 2px connector between adjacent bubble centers (hidden on first step) */
+  .step + .step::before {
+    content: "";
+    position: absolute;
+    top: 16px;                 /* bubble centerline */
+    left: -50%;
+    width: 100%;
+    height: 2px;
+    background: #d5d5dd;       /* default: upcoming segment */
+  }
+  .step.is-done + .step.is-current::before,
+  .step.is-done + .step::before { background: #16161a; } /* reached segment */
+  .bubble {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 13px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .step.is-done .bubble {
+    background: #16161a;
+    color: #fff;
+  }
+  .step.is-done .bubble svg {
+    display: block;
+  }
+  .step.is-current .bubble {
+    border: 2px solid #16161a;
+    color: #16161a;
+    box-shadow: 0 0 0 4px rgba(22, 22, 26, 0.08); /* soft outer ring */
+  }
+  .step.is-next .bubble {
+    border: 2px solid #d5d5dd;
+    color: #9c9ca6;
+  }
+  .bubble svg { display: none; }
+  .label {
+    margin-top: 10px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #1a1a1f;
+    letter-spacing: -0.01em;
+  }
+  .step.is-next .label { color: #9c9ca6; font-weight: 500; }
+  .hint {
+    margin-top: 3px;
+    font-size: 11.5px;
+    color: #8a8a94;
+    font-weight: 400;
+  }
+  .step.is-next .hint { color: #b4b4bd; }
+</style>
+</head>
+<body>
+  <div class="rail" role="list" aria-label="Setup progress">
+
+    <div class="step is-done" role="listitem">
+      <div class="bubble" aria-label="Workspace complete">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M2 6.2 4.8 9 10 3.4" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="label">Workspace</div>
+      <div class="hint">Named</div>
+    </div>
+
+    <div class="step is-done" role="listitem">
+      <div class="bubble" aria-label="Team complete">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M2 6.2 4.8 9 10 3.4" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="label">Team</div>
+      <div class="hint">3 invites sent</div>
+    </div>
+
+    <div class="step is-current" role="listitem" aria-current="step">
+      <div class="bubble">3</div>
+      <div class="label">Pipeline</div>
+      <div class="hint">In progress</div>
+    </div>
+
+    <div class="step is-next" role="listitem">
+      <div class="bubble">4</div>
+      <div class="label">Publish key</div>
+      <div class="hint">Last step</div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1600px; height: 1000px; overflow: hidden; position: relative; }
+  .bg {
+    position: absolute; left: 0; top: 0; width: 1600px; height: 1000px;
+    background:
+      radial-gradient(ellipse 900px 700px at 78% 52%, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 62%),
+      linear-gradient(155deg, #2A2118 0%, #1B1611 55%, #100D0A 100%);
+  }
+  .grain-line {
+    position: absolute; left: 0; top: 0; width: 1600px; height: 1px;
+    background: rgba(255,255,255,0.04);
+  }
+</style>
+</head>
+<body>
+  <div class="bg"></div>
+</body>
+</html>
