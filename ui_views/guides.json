@@ -11,6 +11,286 @@
   ],
   "guides": [
     {
+      "id": "castlevania-pixel-art-prompt-breakdown",
+      "cat": "Design",
+      "sub": "Prompt Breakdown",
+      "title": "Castlevania pixel-art series: 8 prompts, line by line",
+      "desc": "Eight 16-bit gothic scenes from one style block — castle gate, relic shrine, stat altar, equip altar, corridor fork, castle map, boss fight, throne room — each with the copy-paste prompt and the one sentence that made it work.",
+      "time": "25 min",
+      "date": "2026-09-10",
+      "level": "Middle",
+      "models": "GPT-Image",
+      "new": true,
+      "trending": true,
+      "image": "/ui_views/assets/castlevania-prompt-breakdown/cover.webp",
+      "poster": "/ui_views/assets/castlevania-prompt-breakdown/cover.webp",
+      "steps": [
+        {
+          "title": "1. Castle gate — the opening shot",
+          "text": "This style block gets copied word-for-word into the seven prompts that follow. Everything after \"Style:\" is the series contract: chunky pixels, dithered shading, no anti-aliasing, cold moonlight against warm torchlight, and a flat ban on readable text.",
+          "prompt": "A wide 16-bit pixel-art RPG scene in the style of classic Castlevania games. A lone vampire hunter in a tattered dark-blue coat, holding a long whip coiled at his belt, stands before towering wrought-iron gothic castle gates atop a cliff. A full blood-red moon glows behind jagged castle towers; bats circle overhead; thin fog rolls across cracked stone stairs leading up to the gate.\nStyle: classic 16-bit Castlevania pixel art, chunky readable pixels, moody gothic game-dev aesthetic, dithered shading, no anti-aliasing blur.\nLighting: cold blue moonlight contrasted with warm torchlight flanking the gate, deep purple-black night sky, dramatic rim light on the hunter's silhouette.\nComposition: wide banner, hunter lower-left, castle gate dominating the right and center, strong vertical gothic architecture, cinematic RPG intro framing.\nConstraints: no readable text anywhere, no logos, no watermark, no UI labels.",
+          "result_image": "/ui_views/assets/castlevania-prompt-breakdown/01-castle-gate.webp"
+        },
+        {
+          "title": "2. Relic shrine — four pillars",
+          "text": "How to render a list without drawing one: four ideas become four numbered objects. Key move — numbering the relics 1) 2) 3) 4) inside one sentence is what stops the model from blending them into a single glowing pile.",
+          "prompt": "A wide 16-bit pixel-art RPG scene in the style of classic Castlevania games. A stone candle-lit shrine room inside a castle, with four ornate stone pedestals in a row, each holding a glowing relic on a velvet cushion: 1) an ancient open grimoire glowing pale blue, 2) a silver shield with a small pulsing rune gauge, 3) a leather satchel with glowing tagged vials, 4) an enchanted magnifying lens over a gear-shaped talisman.\nStyle: classic Castlevania pixel art, chunky readable pixels, gothic stonework, dithered shading, engraved stone arches behind each pedestal.\nLighting: warm flickering torchlight and candle glow on each relic, deep purple shadows, cobwebs in the corners, faint dust motes in torch beams.\nComposition: wide banner, four pedestals evenly spaced, symmetrical, centered, cathedral-like stone room framing.\nConstraints: no readable paragraph text, no logos, no watermark, no brand marks.",
+          "result_image": "/ui_views/assets/castlevania-prompt-breakdown/02-relic-shrine.webp"
+        },
+        {
+          "title": "3. Stat altar — core limits",
+          "text": "Abstract settings turned into three physical gauges you can actually see. Key move — every setting becomes a physical object: liquid meter, falling hourglass, stacked orbs. Models render objects, not abstractions.",
+          "prompt": "A wide 16-bit pixel-art RPG scene in the style of classic Castlevania games. A gothic stone altar room with three enchanted stained-glass windows set into the wall, each glowing with a different magical gauge: the left window shows a rising liquid blood-red meter (a scroll-length measure), the center window shows a glowing hourglass with sand mid-fall, the right window shows three stacked crystal orbs of increasing size (small, medium, large) each faintly lit.\nStyle: classic Castlevania pixel art, chunky readable pixels, ornate gothic stone carvings framing each window, dithered shading.\nLighting: cold moonlight through the glass mixing with warm candle sconces below each window, deep purple-black shadows, subtle magical particle glow.\nComposition: wide banner, three windows evenly spaced, symmetrical, centered, cathedral wall framing.\nConstraints: no readable paragraph text, no logos, no watermark, no brand marks.",
+          "result_image": "/ui_views/assets/castlevania-prompt-breakdown/03-stat-altar.webp"
+        },
+        {
+          "title": "4. Equip altar — prompt anatomy",
+          "text": "Five prompt parts drawn as five orbiting relics — metaphor and lesson in one object. Key move — inline parentheses — mask (identity), gauntlet (action), spyglass (camera) — lock a 1:1 mapping the model cannot shuffle.",
+          "prompt": "A wide 16-bit pixel-art RPG scene in the style of classic Castlevania games. A vampire hunter stands on a stone ritual circle in a candle-lit armory, arms slightly raised, surrounded by five glowing floating relics orbiting him at chest height: a carved wooden mask (identity), a gauntlet wrapped in chain (action), a brass spyglass (camera/viewpoint), a stained-glass shard glowing with shifting color (style), and a small lantern casting colored light (light & color).\nStyle: classic Castlevania pixel art, chunky readable pixels, gothic armory stonework, dithered shading, engraved ritual circle on the floor.\nLighting: candle glow mixed with each relic's own colored magic light, deep purple shadows, faint incense smoke curling upward.\nComposition: wide banner, hunter centered, five relics evenly arranged in an arc around him.\nConstraints: no readable paragraph text, no logos, no watermark, no brand marks.",
+          "result_image": "/ui_views/assets/castlevania-prompt-breakdown/04-equip-altar.webp"
+        },
+        {
+          "title": "5. Corridor fork — do's & don'ts",
+          "text": "One frame that argues with itself — safe path left, cursed path right, zero text. Key move — declaring \"split composition\" in the first sentence makes the model render two mini-scenes instead of one blurred average.",
+          "prompt": "A wide 16-bit pixel-art RPG scene in the style of classic Castlevania games, split composition inside a castle corridor fork. Left half: a sturdy stone-tiled corridor lit by warm steady torches, intact banners on the wall, a confident vampire hunter silhouette walking forward. Right half: a crumbling corridor with cracked broken tiles, a chasm gap, swinging spiked pendulum traps, and sickly green-red witch-light glow.\nStyle: classic Castlevania pixel art, chunky readable pixels, gothic stone architecture, dithered shading, cobwebs on the cursed side.\nLighting: warm amber torchlight on the left, sickly toxic-green and blood-red glow on the right, both set against shared deep purple-black stone.\nComposition: wide banner, clear left/right split down the center, symmetrical framing, single stone archway dividing the two paths.\nConstraints: no readable paragraph text, no logos, no watermark, no brand marks.",
+          "result_image": "/ui_views/assets/castlevania-prompt-breakdown/05-corridor-fork.webp"
+        },
+        {
+          "title": "6. Castle map — the workflow",
+          "text": "A map screen doing double duty as a four-stage process diagram. Key move — \"ascending left-to-right\" converts a floor plan into a timeline: the eye walks the workflow in the right order.",
+          "prompt": "A wide 16-bit pixel-art RPG scene in the style of a classic Castlevania castle map / overworld screen. Four gothic chambers connected by a winding stone stairway path rising left to right across a cross-section of a haunted castle: 1) a small candle-lit study with a sketch on a lectern (draft), 2) a mid tower room with a spinning hourglass and looping chain motif (iterate), 3) a workshop chamber with an anvil and glowing tools (refine), 4) the highest throne chamber with a lit brazier and banner (finalize).\nStyle: classic Castlevania pixel-art map screen, chunky readable pixels, cross-section castle silhouette, dithered shading, gothic stonework.\nLighting: warm golden torchlight tracing the stairway path between chambers, deep indigo night sky with bats and a crescent moon behind the towers.\nComposition: wide banner, ascending left-to-right path, four chambers evenly spaced along the castle's height.\nConstraints: no readable paragraph text, no logos, no watermark, no brand marks.",
+          "result_image": "/ui_views/assets/castlevania-prompt-breakdown/06-castle-map.webp"
+        },
+        {
+          "title": "7. Boss fight — troubleshooting",
+          "text": "The error state as a character, with the corruption scoped to one body. Key move — scoping the damage — \"molten fissures are the only corrupted element\" — keeps the hero and the hall clean pixel art. Even an error-state concept stays purely visual: no \"ERROR\" text anywhere in the frame.",
+          "prompt": "A wide 16-bit pixel-art RPG boss-battle scene in the style of classic Castlevania games. A vampire hunter braces with his whip in a grand castle hall, facing a large stone gargoyle boss with glowing molten-orange cracks running across its stone body, its eyes glowing an unstable flickering red.\nStyle: classic Castlevania pixel art, chunky readable pixels, gothic hall architecture, dithered shading. The gargoyle's cracked-stone texture and molten fissures are the only \"corrupted\" element — clean pixel art everywhere else, no static, no scanlines, no color noise, no scattered particle grain anywhere in the image, wings and background stay crisp and fully rendered.\nLighting: warning-style flickering red and amber glow radiating from the gargoyle's cracks, deep indigo hall shadows, hunter rim-lit by torchlight.\nComposition: wide banner, hunter on the left, corrupted gargoyle boss on the right, dynamic confrontation pose, tension in the stance.\nConstraints: no readable paragraph text, no logos, no watermark, no brand marks, no glitch/static/noise overlay, no scattered colored pixel grain.",
+          "result_image": "/ui_views/assets/castlevania-prompt-breakdown/07-boss-fight.webp"
+        },
+        {
+          "title": "8. Throne room — victory lap",
+          "text": "Same hunter, same light as step 01 — plus an empty plaque that blocks fake text. Key move — asking for an empty plaque \"(no text inside it)\" pre-empts the model's favourite failure: inventing letters. Name the shape, then forbid its contents in the same breath.",
+          "prompt": "A wide 16-bit pixel-art RPG victory scene in the style of classic Castlevania games. A vampire hunter stands triumphant on the steps of a grand throne room, holding a glowing ornate relic/artifact high above his head, coiled whip at his belt, one boot resting on a fallen bat-winged gargoyle statue fragment. Tall stained-glass windows behind him flood the hall with moonlight; a soft shower of pixel dust and golden light motes drifts down from above.\nStyle: classic Castlevania pixel art, chunky readable pixels, gothic throne room architecture, dithered shading, dramatic hero silhouette pose.\nLighting: warm golden light rays bursting from the raised relic, cool blue moonlight through stained glass, deep purple-black shadows in the corners.\nComposition: wide banner, hunter centered on a raised stone dais, an ornate empty stone banner/plaque shape low in frame (no text inside it).\nConstraints: no readable paragraph text anywhere, no logos, no watermark, no brand marks.",
+          "result_image": "/ui_views/assets/castlevania-prompt-breakdown/08-throne-room.webp"
+        }
+      ],
+      "result": "An eight-image RPG asset pack in a locked Castlevania style, plus the prompt anatomy behind it: how to render a list, a setting, a metaphor, a do/don't, a workflow and an error state without ever asking the model to write text.",
+      "downloads": [
+        {
+          "label": "Download the 8-slide prompt breakdown (PDF)",
+          "file": "/ui_views/assets/castlevania-prompt-breakdown/castlevania-prompt-breakdown.pdf"
+        }
+      ]
+    },
+    {
+      "id": "winter-ops-fps-industrial",
+      "cat": "Gamedev",
+      "sub": "FPS Concept",
+      "title": "Winter ops: bunker to container yard — a 40-second FPS continuation",
+      "desc": "One first-person route, no cuts that feel like a model switch: a smoke-filled bunker, a wet concrete corridor, then out into a snow-covered container yard with a forklift and a distant watchtower — rifle fixed in frame the whole way.",
+      "time": "14 min",
+      "date": "2026-09-10",
+      "level": "Middle+",
+      "models": "AI video generation, 2K upscale",
+      "new": true,
+      "video": "/ui_views/assets/showcase/winter-ops-fps.mp4",
+      "poster": "/ui_views/assets/showcase/winter-ops-fps-poster.webp",
+      "steps": [
+        {
+          "title": "Fix the weapon and the weather before the route",
+          "text": "Continuation breaks on two things: the gun morphs, or the sky changes. Lock both in one block and paste it at the top of every shot prompt. Snow is the weather here — it also hides seams, because everything is already desaturated.",
+          "prompt": "First-person shooter cinematic, photoreal, winter. Weapon fixed lower-right: modern carbine, black polymer, red-dot sight, foregrip, snow melting on the handguard. Weather: overcast, light snowfall, breath fog, flat grey light. Palette: concrete grey, rust orange, safety yellow, white snow."
+        },
+        {
+          "title": "Chain rooms, not shots",
+          "text": "Ask for a route through connected spaces — the model keeps geometry consistent when each shot exits where the previous one ended. Interior → threshold → exterior is the strongest chain because the light change reads as progress, not as an edit.",
+          "prompt": "Route, same weapon and weather block: (1) advance through a smoke-filled bunker room, dust in a light shaft. (2) Long wet concrete corridor, fluorescent strips, puddles. (3) Push through a steel door into daylight — snow-covered container yard, stacked shipping containers, a yellow forklift. (4) Sweep the yard, aim down sight toward a watchtower on the treeline. (5) Enter a warehouse: pallets, cable drums, a tracked vehicle under a skylight."
+        },
+        {
+          "title": "Extend from the last frame, then upscale once",
+          "text": "Generate the first 15 seconds, then feed the final frame back as the start image for the next segment — the source clip is literally named segment_01_continuation. Upscale the stitched master to 2K, deliver 1080p under 12 MB. Play the clip above.",
+          "prompt": "",
+          "result_video": "/ui_views/assets/showcase/winter-ops-fps.mp4",
+          "result_poster": "/ui_views/assets/showcase/winter-ops-fps-poster.webp"
+        }
+      ],
+      "result": "A 40-second first-person sequence that holds one weapon, one weather and one location across four rooms — the \"continuation\" test most video models fail at 15 seconds.",
+      "trending": true
+    },
+    {
+      "id": "anime-caramel-pudding-recipe",
+      "cat": "Video",
+      "sub": "Anime Recipe",
+      "title": "Anime caramel pudding: a recipe in eight cuts",
+      "desc": "Caramel swirling in a pan, eggs whisked, custard strained, the tin in the oven, the flip onto the plate — a 15-second anime cooking sequence that ends on a purple-haired girl with headphones taking the first spoonful.",
+      "time": "8 min",
+      "date": "2026-09-10",
+      "level": "Junior",
+      "models": "AI video generation, 4K upscale",
+      "new": true,
+      "video": "/ui_views/assets/showcase/anime-caramel-pudding.mp4",
+      "poster": "/ui_views/assets/showcase/anime-caramel-pudding-poster.webp",
+      "steps": [
+        {
+          "title": "Write the recipe as the shot list",
+          "text": "Food anime works because the process is the plot. Do not describe \"a cooking scene\" — list the actual steps of a caramel pudding in order and give each one a close-up. The model cannot invent a recipe, but it can illustrate one.",
+          "prompt": "Anime cooking sequence, clean cel-shaded 2D style, soft kitchen light, warm palette. Close-ups in order: (1) caramel swirling in a dark pan, amber to deep brown. (2) eggs and sugar whisked in a glass bowl. (3) custard poured through a fine sieve into a tin. (4) tin on the oven rack, door closing, orange glow. (5) top of the pudding turning golden. (6) tin flipped onto a white plate, caramel flooding down the sides. (7) spoon pressing the wobble."
+        },
+        {
+          "title": "Reveal the character last",
+          "text": "Keep hands only for the first six cuts. The face at the end is the payoff — describe her once, precisely, so the final shot lands as a character and not as a generic anime girl.",
+          "prompt": "Final shot: a young woman with long lavender hair and red over-ear headphones, white shirt, eyes closed in delight, tasting a spoonful of caramel pudding in a bright kitchen with a window and hanging utensils. Same cel-shaded style, same kitchen."
+        },
+        {
+          "title": "Upscale the master, deliver 1080p",
+          "text": "The source was rendered at 4K HEVC; flat-shaded anime compresses extremely well, so 1080p H.264 comes in far under the 12 MB cap with zero visible loss. Play the clip above.",
+          "prompt": "",
+          "result_video": "/ui_views/assets/showcase/anime-caramel-pudding.mp4",
+          "result_poster": "/ui_views/assets/showcase/anime-caramel-pudding-poster.webp"
+        }
+      ],
+      "result": "A 15-second anime food clip with a real recipe order, consistent kitchen and one character reveal — the format that gets saved, not scrolled.",
+      "trending": true
+    },
+    {
+      "id": "fauxreal-gaussian-splat-loop",
+      "cat": "Motion Design",
+      "sub": "3D Scan Loop",
+      "title": "Faux-real: a 10-second Gaussian-splat loop, four scans",
+      "desc": "Four photogrammetry scans in a raw 3D viewport — a girl at a phone booth, a kitchen with a dirt bike, a supermarket aisle from a shopping cart, a fridge — orbited and cut into one square loop that shows the scan falling apart at the edges on purpose.",
+      "time": "10 min",
+      "date": "2026-09-10",
+      "level": "Middle",
+      "models": "Gaussian splatting, screen capture",
+      "new": true,
+      "video": "/ui_views/assets/showcase/fauxreal-splat-loop.mp4",
+      "poster": "/ui_views/assets/showcase/fauxreal-splat-loop-poster.webp",
+      "steps": [
+        {
+          "title": "Scan with the edges in mind",
+          "text": "Gaussian splats look best when the subject is dense and the periphery dissolves into cloud. Shoot each scene tight — one person, one object cluster — and stop walking before the room ends. The ragged edge is what makes it look \"faux real\".",
+          "prompt": ""
+        },
+        {
+          "title": "Orbit, do not fly",
+          "text": "In the viewport, one slow orbit per scan, gizmo and bounding box left visible. The UI chrome tells the viewer this is a real 3D object, which is the entire point of the clip.",
+          "prompt": ""
+        },
+        {
+          "title": "Cut square, loop hard",
+          "text": "Four scans, 2.5 seconds each, hard cuts, first and last frame from the same scan so it loops. Capture at 1440×1440, deliver at 1080×1080 H.264. Play the clip above.",
+          "prompt": "",
+          "result_video": "/ui_views/assets/showcase/fauxreal-splat-loop.mp4",
+          "result_poster": "/ui_views/assets/showcase/fauxreal-splat-loop-poster.webp"
+        }
+      ],
+      "result": "A square 10-second loop where the splat noise at the boundaries is the aesthetic, not the flaw — ready for a profile header or a reel bumper."
+    },
+    {
+      "id": "graphics-lab-render-library",
+      "cat": "Gamedev",
+      "sub": "Procedural Rendering",
+      "title": "Graphics Lab: 37 procedural render scenes from one agent skill set",
+      "desc": "A screen walk through a local \"Render Library\": snow accumulation, wet-puddle rain, raytraced diamond, spectral glass, a procedural F1 car, planet surfaces, aurora — 37 WebGL scenes grouped by technique, every one written by the graphics agent.",
+      "time": "20 min",
+      "date": "2026-09-10",
+      "level": "Senior",
+      "models": "Quadcode graphics agent, Three.js / WebGL",
+      "new": true,
+      "video": "/ui_views/assets/showcase/graphics-lab-render-library.mp4",
+      "poster": "/ui_views/assets/showcase/graphics-lab-render-library-poster.webp",
+      "steps": [
+        {
+          "title": "Give the agent a taxonomy, not a wish list",
+          "text": "The library has categories because the brief had categories. \"Precipitation surfaces\", \"procedural materials\", \"procedural geometry\" — each is a skill the agent can be tested on. Without the taxonomy you get 37 random demos; with it you get a curriculum.",
+          "prompt": "Build a local Render Library web app (Three.js). Left rail: scene groups — Precipitation Surfaces, Procedural Architecture, Procedural Geometry, Procedural Materials, Procedural Planets, Procedural Vegetation. Main grid: one live WebGL card per scene with title and OPEN. Header: search \"find a system, effect or technique\", Rescan, Overview. Dark UI, Quadcode palette."
+        },
+        {
+          "title": "One scene, one technique, one file",
+          "text": "Every card is a single self-contained scene file that demonstrates exactly one thing — snow accumulation, parallax occlusion, dispersion. That isolation is what makes the library rescannable and what lets a failure be traced to a skill.",
+          "prompt": "Add scenes: Snow Accumulation (height-based snow on a wrecked car), Wet Puddle Rain (ripples + reflections on a disc), Atmosphere and Aerial Perspective, Silhouette Relief POM (parallax-occlusion sci-fi corridor), Raytraced Diamond, Spectral Dispersive Glass, Lava Flow Surface, Hybrid PBR Soil & Moss, Formula One Race Car, Sport Motorcycle, Procedural Financial Tower, Procedural Planet Surface. Each in its own module, auto-discovered by Rescan."
+        },
+        {
+          "title": "Record the walkthrough at 30 fps",
+          "text": "Screen recordings come out at 60 fps; for a browsing demo 30 fps halves the bitrate with no visible cost and keeps the file under 12 MB. Play the clip above.",
+          "prompt": "",
+          "result_video": "/ui_views/assets/showcase/graphics-lab-render-library.mp4",
+          "result_poster": "/ui_views/assets/showcase/graphics-lab-render-library-poster.webp"
+        }
+      ],
+      "result": "A browsable render library — 37 live scenes across precipitation, procedural geometry, PBR materials, planets and vegetation — that doubles as the regression suite for the agent's graphics skills.",
+      "trending": true
+    },
+    {
+      "id": "ps5-controller-configurator-page",
+      "cat": "Website",
+      "sub": "Product Configurator",
+      "title": "Custom controller store: a 3D product hero that swaps skins live",
+      "desc": "A PS5-controller landing page with a rotating 3D model in the hero — 007 First Light gold, Genshin Impact white-and-blue, God of War red — plus price, add-to-cart and a thumbnail rail that swaps the skin without a reload.",
+      "time": "15 min",
+      "date": "2026-09-10",
+      "level": "Middle+",
+      "models": "Three.js, AI-generated textures",
+      "new": true,
+      "video": "/ui_views/assets/showcase/ps5-controller-configurator.mp4",
+      "poster": "/ui_views/assets/showcase/ps5-controller-configurator-poster.webp",
+      "steps": [
+        {
+          "title": "One mesh, many materials",
+          "text": "Do not generate three controllers. Load one controller GLB and swap material sets — base color, roughness, emissive — per skin. Load time stays flat and the transitions can be animated.",
+          "prompt": "Build a product landing page for custom PS5 controllers. Hero: full-viewport 3D controller (Three.js, GLB), slow auto-rotate, drag to orbit, soft studio lighting, floor reflection. Skins as material sets: \"007 First Light\" — brushed gold with black grips; \"Genshin Impact\" — pearl white with cyan glow accents; \"God of War\" — matte crimson with white face plate. Right column: skin name as headline, short line, price $79.99, Add to cart."
+        },
+        {
+          "title": "Make the skin rail do the work",
+          "text": "A row of small controller thumbnails is the whole navigation. Clicking one crossfades the material set and updates the headline, copy and page tint. Keep the camera where the user left it.",
+          "prompt": "Below the price: horizontal thumbnail rail, one card per skin. On click: crossfade materials over 400 ms, headline and description update, background gradient shifts to the skin's accent color. Stats row: build time 12 hr, latency 1 ms, as small labels."
+        },
+        {
+          "title": "Capture at 60, deliver at 30",
+          "text": "Record the browser at native 60 fps for smooth orbit, then conform to 30 fps for the web deliverable. Play the clip above.",
+          "prompt": "",
+          "result_video": "/ui_views/assets/showcase/ps5-controller-configurator.mp4",
+          "result_poster": "/ui_views/assets/showcase/ps5-controller-configurator-poster.webp"
+        }
+      ],
+      "result": "A shippable product-configurator hero: one GLB controller, three material sets, camera orbit, and a UI that reads like a real store page.",
+      "trending": true
+    },
+    {
+      "id": "seoul-arcade-minidv-tape",
+      "cat": "Video",
+      "sub": "Retro Camcorder",
+      "title": "Seoul arcade on MiniDV: a 15-second tape nobody meant to keep",
+      "desc": "A young woman pushes into a small neighborhood arcade, picks a fighting cabinet, wins a round, loses the next, and the tape cuts to black on a zoomed-in screen — shot as an early-2000s Sony MiniDV home video with all its faults left in.",
+      "time": "10 min",
+      "date": "2026-09-10",
+      "level": "Middle",
+      "models": "Seedance, 2K upscale",
+      "new": true,
+      "video": "/ui_views/assets/showcase/seoul-arcade-minidv.mp4",
+      "poster": "/ui_views/assets/showcase/seoul-arcade-minidv-poster.webp",
+      "steps": [
+        {
+          "title": "Describe the camera as the main character",
+          "text": "What sells MiniDV is not the location — it is the mistakes. Name every artifact you want: late follow, overexposure at the door, autofocus hunting between screens and faces, tape-style cut to black. If you write \"cinematic\" anywhere, you lose.",
+          "prompt": "Main Subject: Young Korean woman, 24, naturally attractive, realistic skin, minimal makeup, long blonde hair loosely tied back. Loose cream cardigan over a faded red T-shirt, relaxed blue jeans, white sneakers, thin silver necklace. Preserve her exact identity throughout. Location: small old-fashioned Seoul neighborhood arcade, early evening — dim fluorescent light, rows of aging cabinets, colorful screens, scratched floor, plastic stools, faded posters, coin machines, tangled cables, a few local teenagers in the background, warm street light through the entrance. Style: ultra-realistic early-2000s Sony MiniDV home video. Heavy handheld shake, awkward framing, autofocus hunting between bright screens and faces, exposure pumping, faded colors, soft contrast, DV compression, slight motion blur and microphone distortion. No stabilization, no modern cinematic movement."
+        },
+        {
+          "title": "Give it a timeline with one human beat",
+          "text": "Fifteen seconds, five beats, timestamps in the prompt. The win-then-instant-loss at 00:09–00:12 is the moment — everything before it is setup, everything after is the tape running out.",
+          "prompt": "00:00–00:03: she pushes the arcade door and steps inside; the camera follows late, briefly overexposing from the bright street before adjusting. 00:03–00:06: she walks past machines deciding what to play; the camera wanders to other screens before finding her. 00:06–00:09: she sits at an old fighting-game cabinet and plays, competitive, leaning in, rapid button presses, camera shaking behind her. 00:09–00:12: she wins a round, small fist pump, proud grin to camera — then loses the next round instantly and bursts out laughing. 00:12–00:15: she stands and walks to another machine; the camera accidentally zooms tight onto a glowing screen, autofocus struggles against the pixels, and the recording cuts to black. Audio: arcade ambience only — buttons, joysticks, game sounds, coin mechanisms, fluorescent buzz, distant talk, footsteps, laughter. No music, no narration."
+        },
+        {
+          "title": "Watermark low, upscale once, leave the grain",
+          "text": "Brand mark bottom-center at 10% width, then a single 2× upscale. Do not denoise — the DV artifacts are the style. Play the clip above.",
+          "prompt": "",
+          "result_video": "/ui_views/assets/showcase/seoul-arcade-minidv.mp4",
+          "result_poster": "/ui_views/assets/showcase/seoul-arcade-minidv-poster.webp"
+        }
+      ],
+      "result": "Fifteen seconds of believable found footage: handheld shake, autofocus hunting, exposure pumping, DV compression — and a real human beat in the middle."
+    },
+    {
       "id": "rooftop-run-cel-shaded-trailer",
       "cat": "Gamedev",
       "sub": "Game Trailer",
@@ -290,7 +570,7 @@
       "models": "Quadcode, Three.js",
       "new": true,
       "image": "/ui_views/assets/jerry01-testimonials-cover.webp",
-      "poster": "/ui_views/assets/jerry01-testimonials-cover.webp",
+      "poster": "/ui_views/assets/showcase/jerry01-testimonials-live-poster.webp",
       "steps": [
         {
           "title": "1. Audit the source before touching anything",
@@ -331,7 +611,8 @@
         "zip": "https://pzppugfayde6tlqh.public.blob.vercel-storage.com/guides/jerry01-quadcode-testimonials/jerry01-quadcode-testimonials-project.zip",
         "size": "6.3 MB",
         "includes": "project files, a starter chat, open tabs — author history excluded"
-      }
+      },
+      "video": "/ui_views/assets/showcase/jerry01-testimonials-live.mp4"
     },
     {
       "id": "gta-skate-stunt",
