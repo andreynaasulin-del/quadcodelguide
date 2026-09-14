@@ -246,6 +246,14 @@ export function mediaFields(guide) {
     list.push({ obj: s, key: 'result_video', kind: 'video', where: `steps[${i}].result_video`, isRoot: false });
     list.push({ obj: s, key: 'result_audio', kind: 'audio', where: `steps[${i}].result_audio`, isRoot: false });
   }
+  // Download buttons: kind 'file' gets the existence and self-URL checks only —
+  // a .glb or a spec sheet has no format rules, but it must actually be there.
+  const dl = guide.downloads || [];
+  for (let i = 0; i < dl.length; i++) {
+    if (dl[i] && typeof dl[i] === 'object') {
+      list.push({ obj: dl[i], key: 'file', kind: 'file', where: `downloads[${i}].file`, isRoot: false });
+    }
+  }
   return list;
 }
 

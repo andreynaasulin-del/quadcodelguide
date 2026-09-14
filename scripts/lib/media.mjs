@@ -10,7 +10,9 @@ import { execFileSync } from 'node:child_process';
 import { upload } from '@vercel/blob/client';
 
 export const ROOT_MEDIA = ['video', 'poster', 'image', 'audio'];
-export const STEP_MEDIA = ['result_image', 'result_video', 'result_poster'];
+// `result_audio` is here because step evidence can be an audio cut; leaving it out
+// once meant a whole class of files was never checked or uploaded.
+export const STEP_MEDIA = ['result_image', 'result_video', 'result_poster', 'result_audio'];
 
 export const MIME = {
   mp4: 'video/mp4', webm: 'video/webm', mov: 'video/quicktime',
@@ -199,6 +201,11 @@ export function collectLocalMediaRefs(guides, { onlyExt = null } = {}) {
     for (const f of ROOT_MEDIA) add(g.id, f, g[f]);
     (g.steps || []).forEach((s, i) => {
       for (const f of STEP_MEDIA) add(g.id, `steps[${i}].${f}`, s[f]);
+    });
+    // Download buttons point at real files too — a stale extension here shipped a
+    // 404 to production once, because this loop did not exist.
+    (g.downloads || []).forEach((d, i) => {
+      if (d && typeof d === 'object') add(g.id, `downloads[${i}].file`, d.file);
     });
   }
   return refs;
