@@ -75,10 +75,17 @@ function denied(rel) {
   return QC_DENY.some(rx => rx.test(p));
 }
 
-function copyInto(srcRoot, rel, stageRoot) {
+/**
+ * Copy one payload entry into the stage. `rel` is either a project-relative
+ * path (lands at the same path) or `{src, dest}` — a repo file placed under a
+ * kit-friendly name (`ui_views/assets/showcase/x.mp4` → `result/final.mp4`).
+ */
+function copyInto(srcRoot, entry, stageRoot) {
+  const rel = typeof entry === 'string' ? entry : entry.src;
+  const destRel = typeof entry === 'string' ? entry : (entry.dest || entry.src);
   const src = join(srcRoot, rel);
   if (!existsSync(src) || denied(rel)) return 0;
-  const dst = join(stageRoot, rel);
+  const dst = join(stageRoot, destRel);
   mkdirSync(dirname(dst), { recursive: true });
   cpSync(src, dst, {
     recursive: true,
@@ -87,11 +94,15 @@ function copyInto(srcRoot, rel, stageRoot) {
   return 1;
 }
 
+function entryDest(entry) {
+  return typeof entry === 'string' ? entry : (entry.dest || entry.src);
+}
+
 /** File tree nodes to expand on open: the guide's own payload, nothing else. */
 function expandedTreeFor(payload) {
   const out = new Set();
-  for (const rel of payload) {
-    const parts = rel.replace(/\\/g, '/').split('/');
+  for (const entry of payload) {
+    const parts = entryDest(entry).replace(/\\/g, '/').split('/');
     const lastIsFile = parts[parts.length - 1].includes('.');
     const depth = lastIsFile ? parts.length - 1 : parts.length;
     for (let i = 1; i <= depth; i++) out.add(parts.slice(0, i).join('/'));
@@ -124,17 +135,48 @@ function sanitizeWorkspace({ stageRoot, workspace = {} }) {
   }
 
   // Don't open the reader onto an empty "Web browsers" panel when no browser
-  // window ships with the guide.
+  // window ships with the guide. A spec may name the right-hand tab outright
+  // (`rightTab`), e.g. 'File editors' for kits whose point is the result files.
   const guiStatePath = join(qc, '.data/gui_state.json');
-  if (!workspace.browserUrl && existsSync(guiStatePath)) {
+  if (existsSync(guiStatePath)) {
     try {
       const st = JSON.parse(readFileSync(guiStatePath, 'utf8'));
       const right = st.tabs_state && st.tabs_state.tabs_right;
-      if (right && right.selected === 'Web browsers') {
-        right.selected = 'Actions';
+      if (right) {
+        if (workspace.rightTab && (right.tabs || []).includes(workspace.rightTab)) right.selected = workspace.rightTab;
+        else if (!workspace.browserUrl && right.selected === 'Web browsers') right.selected = 'Actions';
         writeFileSync(guiStatePath, JSON.stringify(st), 'utf8');
       }
     } catch { /* unparseable gui_state — leave it, the IDE will heal it */ }
+  }
+
+  // Files already open in "File editors" when the project loads. The IDE's
+  // viewer handles video/audio/images as well as text, so a kit opens straight
+  // onto the result (`openFiles`, `currentFile`) instead of an empty panel.
+  if (Array.isArray(workspace.openFiles) && workspace.openFiles.length) {
+    const files = workspace.openFiles.map((filename, index) => ({ filename, index }));
+    const cur = Math.max(0, workspace.openFiles.indexOf(workspace.currentFile));
+    writeFileSync(join(qc, '.data/windows_state.json'), JSON.stringify({
+      standalone_windows: [],
+      main_window_tab_viewer: { files, current_tab: cur },
+      main_window_meta_tab_viewer: {},
+      tab_viewers: [],
+    }), 'utf8');
+  }
+
+  // Per-project context the agent reads on every turn — a kit tells the agent
+  // what this folder is, so a pasted prompt is treated as "make my version".
+  if (workspace.additionalContext) {
+    writeFileSync(join(qc, 'additional_context.yaml'),
+      `additional_context: ${JSON.stringify(String(workspace.additionalContext))}\n`, 'utf8');
+  }
+
+  // The author's MCP IDE server entry carries the author's project name.
+  const mcpIdePath = join(qc, 'mcp_ide_server.yaml');
+  if (workspace.projectName && existsSync(mcpIdePath)) {
+    const cleaned = readFileSync(mcpIdePath, 'utf8')
+      .replace(/^(\s*name:\s*).*$/m, `$1${JSON.stringify(workspace.projectName)}`);
+    writeFileSync(mcpIdePath, cleaned, 'utf8');
   }
 
   // filters.yaml carries a per-author whitelist of oversized files that have
@@ -155,7 +197,7 @@ function sanitizeWorkspace({ stageRoot, workspace = {} }) {
  * author-specific and get rewritten here: which chat is focused, which store
  * it lives in, and which folders the file tree has expanded.
  */
-function stageStarterChat({ stageRoot, chat, payload }) {
+function stageStarterChat({ stageRoot, chat, payload, expanded = null }) {
   const info = writeStarterChat({ stageRoot, chat, store: CHAT_STORE, chatId: 1 });
 
   const guiStatePath = join(stageRoot, '.quadcodeai/.data/gui_state.json');
@@ -165,7 +207,13 @@ function stageStarterChat({ stageRoot, chat, payload }) {
     st.focused_chat_id = 1;
     st.selected_model_node_id = info.store;
     if (chat.agent) st.last_used_agent = chat.agent;
-    st.file_tree_state = { ...(st.file_tree_state || {}), expanded: expandedTreeFor(payload) };
+    // A hand-listed payload expands its own folders. A repo-wide payload
+    // (900+ files) would expand every folder in the tree — the spec names the
+    // few worth opening instead.
+    st.file_tree_state = {
+      ...(st.file_tree_state || {}),
+      expanded: Array.isArray(expanded) ? expanded : expandedTreeFor(payload),
+    };
     st.meta_folder_scroll_pos = 0;
     st.file_tree_scroll_pos = 0;
     writeFileSync(guiStatePath, JSON.stringify(st), 'utf8');
@@ -179,15 +227,25 @@ function stageStarterChat({ stageRoot, chat, payload }) {
  * @param {string[]} payload    project-relative files/folders the guide needs
  * @param {string} stageRoot    absolute staging dir (wiped first)
  */
-export function stageProject({ projectRoot, payload, stageRoot, starterChat = null, workspace = {} }) {
+export function stageProject({ projectRoot, payload, stageRoot, starterChat = null, workspace = {}, extraFiles = [] }) {
   rmSync(stageRoot, { recursive: true, force: true });
   mkdirSync(stageRoot, { recursive: true });
 
-  const report = { payload: 0, qc: 0, chats: 0, skipped: [] };
+  const report = { payload: 0, qc: 0, chats: 0, generated: 0, skipped: [] };
 
-  for (const rel of payload) {
-    if (copyInto(projectRoot, rel, stageRoot)) report.payload++;
-    else report.skipped.push(rel);
+  for (const entry of payload) {
+    if (copyInto(projectRoot, entry, stageRoot)) report.payload++;
+    else report.skipped.push(typeof entry === 'string' ? entry : `${entry.src} → ${entry.dest}`);
+  }
+
+  // Generated text (README.md, prompts/*.txt): written, not copied. These are
+  // the reader-facing instruction layer of a kit — see guide_kit.mjs.
+  for (const f of extraFiles) {
+    if (!f || !f.dest || typeof f.content !== 'string') continue;
+    const dst = join(stageRoot, f.dest);
+    mkdirSync(dirname(dst), { recursive: true });
+    writeFileSync(dst, f.content, 'utf8');
+    report.generated++;
   }
 
   const qcRoot = join(projectRoot, '.quadcodeai');
@@ -202,7 +260,9 @@ export function stageProject({ projectRoot, payload, stageRoot, starterChat = nu
   // Preferred path: ship a chat we wrote for the reader, and NONE of the
   // author's real sessions. See stageStarterChat / starter_chat.mjs.
   if (starterChat) {
-    report.starterChat = stageStarterChat({ stageRoot, chat: starterChat, payload });
+    report.starterChat = stageStarterChat({
+      stageRoot, chat: starterChat, payload, expanded: workspace.expanded || null,
+    });
     report.chats = 3; // .chat_version + chat_1.json + chat_1.jsonl
     return report;
   }
@@ -273,6 +333,32 @@ export function stageProject({ projectRoot, payload, stageRoot, starterChat = nu
   }
 
   return report;
+}
+
+/**
+ * Payload for a repo-wide archive: every git-tracked file, minus heavy media.
+ * Tracked-only is the safety property — .env.local, .temp/, node_modules and
+ * anything else gitignored can never leak into a public zip by construction.
+ *
+ * @param {string} projectRoot
+ * @param {RegExp|null} excludeExt   e.g. /\.(mp4|glb)$/i
+ * @param {number} maxFileBytes      files above this are dropped (0 = no cap)
+ * @returns {{ payload: string[], dropped: string[] }}
+ */
+export function gitTrackedPayload({ projectRoot, excludeExt = null, maxFileBytes = 0 }) {
+  const out = execFileSync('git', ['ls-files', '-z'], { cwd: projectRoot, maxBuffer: 64 * 1024 * 1024 });
+  const payload = [], dropped = [];
+  for (const rel of out.toString('utf8').split('\0')) {
+    if (!rel) continue;
+    const abs = join(projectRoot, rel);
+    if (!existsSync(abs) || !statSync(abs).isFile()) continue;      // sparse checkout / deleted
+    if (denied(rel)) continue;
+    if (excludeExt && excludeExt.test(rel)) { dropped.push(rel); continue; }
+    const size = statSync(abs).size;
+    if (maxFileBytes && size > maxFileBytes) { dropped.push(`${rel} (${humanSize(size)})`); continue; }
+    payload.push(rel);
+  }
+  return { payload, dropped };
 }
 
 /** Zip the staged dir so that its CONTENTS sit at the archive root. */

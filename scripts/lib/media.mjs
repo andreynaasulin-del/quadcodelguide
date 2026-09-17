@@ -114,6 +114,10 @@ export async function uploadLocalFile({
       contentType: MIME[ext] || 'application/octet-stream',
       addRandomSuffix: false,
       allowOverwrite: true,
+      // Archives are rebuilt in place at a stable URL; the default is a one-year
+      // browser cache. Keep the edge/browser cache short so a rebuilt kit is
+      // what the IDE actually downloads (guides.json also appends ?v=<hash>).
+      ...(ext === '.zip' ? { cacheControlMaxAge: 300 } : {}),
       token: process.env.BLOB_READ_WRITE_TOKEN,
     });
     console.log(`  -> ${blob.url}`);

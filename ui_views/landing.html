@@ -485,7 +485,6 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     background: rgba(255,149,105,.08);
   }
   .m-cta .m-cta-secondary:active { transform: scale(.97); }
-  .m-cta .m-cta-ide.is-busy { pointer-events: none; opacity: .7; }
   .m-cta-hint { margin-top: 12px; font-size: 12.5px; color: var(--muted-2); line-height: 1.45; }
   /* .m-cta b is a display-size heading — override it inside the hint line */
   .m-cta .m-cta-hint b { color: var(--muted); font-weight: 600; font-size: inherit;
@@ -1610,6 +1609,43 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
   }
   .m-step-media .media-caption::before { content: '\2192\00a0'; color: var(--acc-1); }
 
+  /* Side-by-side results. One prompt can legitimately return a set — three
+     directions, four variants — and showing one of them as "the" result while
+     silently reusing it in the next step is the lie this grid replaces. */
+  .m-step-media-grid { display: grid; gap: 10px; grid-template-columns: repeat(3, 1fr); align-items: start; }
+  .m-step-media-grid.is-2 { grid-template-columns: repeat(2, 1fr); }
+  .m-step-media-grid.is-4 { grid-template-columns: repeat(2, 1fr); }
+  /* A five-slide carousel is read as a strip, so it is shown as a strip. */
+  .m-step-media-grid.is-5 { grid-template-columns: repeat(5, 1fr); gap: 8px; }
+  .m-step-media-grid figure { margin: 0; position: relative; }
+  /* A set returned by one prompt shares its dimensions, so the rows line up on
+     their own. Forcing a ratio here would crop the very thing being compared. */
+  .m-step-media-grid img { display: block; width: 100%; height: auto; }
+  .m-step-media-grid figcaption {
+    margin-top: 6px; font-size: 11.5px; font-weight: 600; letter-spacing: .3px;
+    color: var(--muted); text-align: center;
+  }
+  .m-step-media-grid .media-label, .m-step-media-grid .media-caption { grid-column: 1 / -1; }
+  @media (max-width: 640px) {
+    .m-step-media-grid, .m-step-media-grid.is-4 { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* A clip with no poster frame: the player is dark until it buffers, which
+     reads as a broken box. Mark it with the site's own play affordance rather
+     than pasting a crude screen-grab in as artwork. The badge is anchored to
+     the video wrapper, not the block — the block also holds label + caption. */
+  .m-video-wrap { position: relative; }
+  .m-video-wrap.is-unposted video { min-height: 200px; }
+  .m-video-wrap.is-unposted::after {
+    content: ''; position: absolute; left: 50%; top: 50%; width: 54px; height: 54px;
+    margin: -27px 0 0 -27px; border-radius: 50%; pointer-events: none;
+    background: radial-gradient(circle at 50% 50%, rgba(255,149,105,.22), rgba(14,14,20,.72) 72%);
+    border: 1px solid var(--line-2); opacity: .9;
+    -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+    transition: opacity .25s ease;
+  }
+  .m-video-wrap.is-unposted.is-live::after { opacity: 0; }
+
   /* Audio excerpt — one row: play, bars, duration. Reuses the site's eq motion. */
   .m-excerpt {
     display: grid; grid-template-columns: 40px 1fr auto; align-items: center; gap: 14px;
@@ -2312,7 +2348,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     <div class="guide-sticky" id="guideSticky">
       <span class="gs-title" id="guideStickyTitle"></span>
       <span class="gs-step" id="guideStickyStep"></span>
-      <a class="cta cta-sm" id="guideStickyCta" target="_blank" rel="noopener">Open in Quadcode</a>
+      <button class="cta cta-sm" id="guideStickyCta" type="button">Open in Quadcode</button>
     </div>
     <nav class="step-rail" id="stepRail" aria-label="Guide steps"></nav>
     <div class="guide-page-inner">
@@ -2335,6 +2371,15 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
     document.body.classList.toggle('no-skills', !SHOW_SKILLS);
     let CATEGORIES = ["All"];
     let GUIDES = [];
+    // Site-wide project (guides.json top-level `project`): the whole site's
+    // sources as one IDE-openable archive. Any guide without a dedicated
+    // `project` falls back to it, so "Open in Quadcode" hands over a real
+    // project everywhere instead of an empty chat + clipboard prompt.
+    let SITE_PROJECT = null;
+    function guideProject(g) {
+      if (g && g.project && g.project.zip) return g.project;
+      return SITE_PROJECT && SITE_PROJECT.zip ? SITE_PROJECT : null;
+    }
 
     // ---- Local learning store (progress / light analytics) ----
     const STORE_KEY = 'qcguide.v1';
@@ -3219,6 +3264,13 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         img.addEventListener('error', () => handleCoverError(img));
       });
       root.querySelectorAll('video').forEach(v => {
+        // Posterless step clips carry a play badge until the browser has the
+        // real first frame; drop it the moment there is something to look at.
+        const vw = v.closest('.m-video-wrap.is-unposted');
+        if (vw) {
+          const live = () => vw.classList.add('is-live');
+          ['loadeddata', 'playing'].forEach(e => v.addEventListener(e, live));
+        }
         const lazy = v.getAttribute('data-src') && !v.getAttribute('src');
         if (lazy) {
           observeLazyVideo(v);
@@ -4204,6 +4256,12 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       location.hash = '#/guide/' + encodeURIComponent(g.id);
     }
 
+    // The step list is numbered by the UI (the round check button). Titles that
+    // also start with "3." were rendering as "3  3. Land back on the first scan".
+    function stepTitle(t) {
+      return String(t == null ? '' : t).replace(/^\s*\d+\s*[.)]\s+/, '');
+    }
+
     function stepMediaHtml(s) {
       if (s.widget_iframe) {
         return '<div class="m-step-media m-step-media-widget">' +
@@ -4258,9 +4316,29 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         ? '<p class="media-caption">' + esc(s.result_caption) + '</p>' : '';
       const cls = 'm-step-media' + (derived ? ' m-step-media-derived' : '');
       if (s.result_video) {
-        return '<div class="' + cls + '"><video data-src="' + esc(s.result_video) + '"' +
-          (s.result_poster ? ' poster="' + esc(s.result_poster) + '"' : '') +
-          ' controls muted loop playsinline preload="none"></video>' + kicker + caption + '</div>';
+        // No poster: let the browser paint the clip's own first frame
+        // (preload=metadata) instead of shipping a hand-cut screenshot as art.
+        const unposted = !s.result_poster;
+        return '<div class="' + cls + '">' +
+          '<div class="m-video-wrap' + (unposted ? ' is-unposted' : '') + '">' +
+            '<video data-src="' + esc(s.result_video) + '"' +
+            (s.result_poster ? ' poster="' + esc(s.result_poster) + '"' : '') +
+            ' controls muted loop playsinline preload="' + (unposted ? 'metadata' : 'none') + '"></video>' +
+          '</div>' + kicker + caption + '</div>';
+      }
+      if (Array.isArray(s.result_images) && s.result_images.length) {
+        // A prompt that returns a set is shown as a set. Picking one frame and
+        // calling it the result is how a guide ends up reusing the same image
+        // twice and claiming they are two different steps.
+        const n = s.result_images.length;
+        return '<div class="' + cls + ' m-step-media-grid' + (n === 2 ? ' is-2' : n === 4 ? ' is-4' : n === 5 ? ' is-5' : '') + '">' +
+          s.result_images.map(function (m) {
+            const src = typeof m === 'string' ? m : m.src;
+            const lbl = typeof m === 'string' ? '' : (m.label || '');
+            return '<figure><img src="' + esc(src) + '" alt="' + esc(lbl || s.result_label || 'Step result') +
+              '" loading="lazy" decoding="async">' +
+              (lbl ? '<figcaption>' + esc(lbl) + '</figcaption>' : '') + '</figure>';
+          }).join('') + kicker + caption + '</div>';
       }
       if (s.result_image) {
         return '<div class="' + cls + '"><img src="' + esc(s.result_image) + '" alt="' +
@@ -4426,7 +4504,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
                 (checked ? '✓' : (i + 1)) +
               '</button>' +
               '<div class="m-step-body">' +
-                '<h4>' + esc(s.title) + '</h4>' +
+                '<h4>' + esc(stepTitle(s.title)) + '</h4>' +
                 (s.text ? '<p>' + esc(s.text) + '</p>' : '') +
                 (s.prompt
                   ? '<div class="m-prompt">' +
@@ -4470,23 +4548,34 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         html += '</div></div>';
       }
       // primary conversion path: take them into the product to actually make it
+      const ctaProj = guideProject(g);
+      const ctaProjIsSite = !!(ctaProj && ctaProj.scope === 'site');
+      const ctaProjIsKit = !!(ctaProj && ctaProj.scope === 'kit');
       html += '<div class="m-cta">' +
         '<b>Ready to make this?</b>' +
-        '<span>Open Quadcode with the prompt ready — or copy it and paste in chat.</span>' +
+        '<span>' + (ctaProjIsKit
+          ? 'Open this guide in Quadcode — the prompts, the result files and a chat that shows prompt → result, step by step. Paste, change, send.'
+          : ctaProj
+            ? 'Open the project in Quadcode — sources, plans and prompts in one workspace.'
+            : 'Open Quadcode with the prompt ready — or copy it and paste in chat.') + '</span>' +
         '<div class="m-cta-actions">' +
           '<button class="cta" data-qc-open type="button">Open in Quadcode &rarr;</button>' +
-          (g.project && g.project.zip
-            ? '<button class="m-cta-secondary m-cta-ide" data-qc-ide type="button">Open in IDE</button>'
-            : '') +
           (allPrompts.length
             ? '<button class="m-cta-secondary" data-copy-all-prompts type="button">Copy all prompts</button>'
             : '') +
         '</div>' +
-        (g.project && g.project.zip
-          ? '<div class="m-cta-hint"><b>Open in IDE</b> hands the finished project to a running Quadcode IDE — ' +
-            'files, chat history and open tabs exactly as the author left them. ' +
-            '<a href="' + esc(g.project.zip) + '" target="_blank" rel="noopener" download>Download .zip</a>' +
-            (g.project.size ? ' &middot; ' + esc(g.project.size) : '') + '</div>'
+        (ctaProj
+          ? '<div class="m-cta-hint">' +
+            (ctaProjIsKit
+              ? 'Hands a running Quadcode IDE this guide as a small project: <code>prompts/</code>, ' +
+                '<code>result/</code> with the actual renders, a one-page README and the making-of chat. '
+              : ctaProjIsSite
+                ? 'Hands a running Quadcode IDE the sources of every guide on this site — ' +
+                  'this one included: landing, catalog, plans, interactive projects and a starter chat. '
+                : 'Hands the finished project to a running Quadcode IDE — ' +
+                  'files, chat history and open tabs exactly as the author left them. ') +
+            '<a href="' + esc(ctaProj.zip) + '" target="_blank" rel="noopener" download>Download .zip</a>' +
+            (ctaProj.size ? ' &middot; ' + esc(ctaProj.size) : '') + '</div>'
           : '') +
         '<div class="m-cta-foot">No app yet? <a href="' + CTA_URL + '" target="_blank" rel="noopener">Get Quadcode</a></div>' +
         '</div>';
@@ -4563,11 +4652,43 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       const resp = await fetch(IDE_API_URL + '/open-project', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name, download_url: downloadUrl }),
+        body: JSON.stringify({ name: String(name).replace(/</g, ''), download_url: String(downloadUrl) }),
       });
       if (!resp.ok) throw new Error('IDE returned HTTP ' + resp.status);
       return resp.json();   // 202 { status: "accepted" } — download continues in the IDE
     }
+
+    // After a deep-link launch, poll /ping for up to ~45s and send the project
+    // as soon as the IDE answers. One watcher at a time — a second click just
+    // restarts it with the new project. Aborts automatically on page unload.
+    let handoffTimer = 0;
+    function handoffWhenIdeUp(proj, g, maxMs = 45000) {
+      clearTimeout(handoffTimer);
+      const started = Date.now();
+      let sent = false;
+      const tick = async () => {
+        if (sent) return;
+        if (Date.now() - started > maxMs) {
+          showToast('Quadcode did not start in time — click the button again or download the .zip');
+          return;
+        }
+        if (await isIdeRunning(1200)) {
+          sent = true;
+          try {
+            await openProjectInIde(proj.name || g.title, proj.zip);
+            showToast('Quadcode is up — project sent, switch to the IDE');
+            track('ide_open', { id: g.id, via: 'after_launch' });
+          } catch (e) {
+            track('ide_open_fail', { id: g.id, via: 'after_launch' });
+            showToast('IDE is up but could not receive the project — try the .zip link');
+          }
+          return;
+        }
+        handoffTimer = setTimeout(tick, 2000);
+      };
+      handoffTimer = setTimeout(tick, 2500);
+    }
+    window.addEventListener('beforeunload', () => { clearTimeout(handoffTimer); });
 
     function copyPromptSilent(text) {
       if (!text) return Promise.resolve(false);
@@ -4645,16 +4766,16 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         }
         return;
       }
-      openDesktopQuadcode(text, { alreadyCopied: true });
+      openDesktopQuadcode(text, { alreadyCopied: true, launchToast: opts && opts.launchToast });
     }
 
     function openDesktopQuadcode(promptText, opts) {
       if (!(opts && opts.alreadyCopied)) copyPromptSilent(promptText);
       // Short deep link only — long ?prompt= payloads fail silently on Windows
       const deep = DESKTOP_URL;
-      showToast(promptText
+      showToast((opts && opts.launchToast) || (promptText
         ? 'Opening Quadcode — prompt copied (Ctrl+V in chat)'
-        : 'Opening Quadcode…');
+        : 'Opening Quadcode…'));
       let left = false;
       const onHide = () => { left = true; };
       document.addEventListener('visibilitychange', onHide, { once: true });
@@ -4923,7 +5044,9 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
       const steps = Array.isArray(g.steps) ? g.steps.filter(s => s.title || s.text || s.prompt) : [];
       guideStepCount = steps.length;
       guideStickyTitleEl.textContent = g.title;
-      guideStickyCtaEl.href = CTA_URL; // real link (focusable + fallback); onclick enriches with prompt
+      guideStickyCtaEl.href = '#open-in-quadcode';
+      guideStickyCtaEl.textContent = 'Open in Quadcode';
+      guideStickyCtaEl.setAttribute('role', 'button');
       // Same decision as the bottom CTA: delegate to it so both buttons behave identically.
       guideStickyCtaEl.onclick = (e) => {
         e.preventDefault();
@@ -5002,7 +5125,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         // Steps no longer carry their own "Open in Quadcode" button — each prompt
         // explains how to run it instead, and the bottom CTA handles the launch.
         const primaryPrompt = guidePrimaryPrompt(g);
-        const proj = g.project && g.project.zip ? g.project : null;
+        const proj = guideProject(g);   // guide's own archive, else the site-wide one
         // Primary CTA picks the strongest path that actually works right now:
         //   1. guide ships a project AND the IDE answers /ping → hand the project
         //      over (files + chat + tabs). This is the "opens with the guide" case.
@@ -5025,38 +5148,19 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
                   return;
                 } catch (e) {
                   track('ide_open_fail', { id: g.id, via: 'primary' });
-                  // fall through to prompt path
+                  // IDE answered /ping but refused /open-project — still try prompt path,
+                  // but let the user know there is a zip fallback.
                 }
               }
               btn.classList.remove('is-busy'); btn.textContent = label;
             }
-            openInQuadcode(primaryPrompt);
-          };
-        });
-        // "Open in IDE": ping the local IDE API, then hand it the project zip.
-        guideBodyEl.querySelectorAll('[data-qc-ide]').forEach(btn => {
-          btn.onclick = async () => {
-            if (!proj) return;
-            const label = btn.textContent;
-            const restore = () => { btn.classList.remove('is-busy'); btn.textContent = label; };
-            btn.classList.add('is-busy');
-            btn.textContent = 'Checking IDE…';
-            if (!(await isIdeRunning())) {
-              restore();
-              showToast('Quadcode IDE is not running — start it, then click again');
-              track('ide_open_blocked', { id: g.id });
-              return;
-            }
-            try {
-              await openProjectInIde(proj.name || g.title, proj.zip);
-              btn.textContent = 'Opening in IDE…';
-              showToast('Project sent — switch to the IDE');
-              track('ide_open', { id: g.id });
-            } catch (e) {
-              showToast('Could not send the project to the IDE: ' + e.message);
-              track('ide_open_fail', { id: g.id });
-            }
-            setTimeout(restore, 2600);
+            openInQuadcode(primaryPrompt, proj
+              ? { launchToast: 'Opening Quadcode — the guide project loads once the app is up (prompt copied too)' }
+              : undefined);
+            // The deep link launches the app; the project can't ride along in
+            // the URL. Watch for the IDE API to come up and hand the project
+            // over the moment it does — one click, no "now click again".
+            if (proj) handoffWhenIdeUp(proj, g);
           };
         });
         // share + copy link
@@ -5521,6 +5625,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
           if (text.charCodeAt(0) === 0xFEFF) text = text.slice(1);
           const data = JSON.parse(text);
           if (Array.isArray(data.guides)) GUIDES = normalizeFlags(data.guides);
+          SITE_PROJECT = data.project && data.project.zip ? data.project : null;
           if (Array.isArray(data.categories) && data.categories.length) {
             const used = new Set(GUIDES.map(g => g.cat));
             CATEGORIES = data.categories.filter(c =>

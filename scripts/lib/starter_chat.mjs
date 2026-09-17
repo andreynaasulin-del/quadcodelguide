@@ -36,11 +36,18 @@ function stamp(date) {
  * Every field the reader's IDE expects is written explicitly — a missing key
  * is a silently broken chat pane, which is the bug this module was born from.
  */
-function messageLine({ name, text, method, timestamp }) {
+function messageLine({ name, text, method, timestamp, images = null }) {
+  // Inline images travel the way the IDE itself stores an attached picture:
+  // an `[Uploaded Image: <key>]` marker in the text plus base64 under the same
+  // key in images_data. `images` is { key: base64 }.
+  const keys = images ? Object.keys(images) : [];
+  const withMarkers = keys.length
+    ? `${text}\n\n${keys.map((k) => `[Uploaded Image: ${k}]`).join(' ')}`
+    : text;
   return {
     name,
-    message: text,
-    message_raw: text,
+    message: withMarkers,
+    message_raw: text,  // the raw copy keeps the user's words clean; markers are UI-only
     method,
     tasks: '',
     is_status_message: false,
@@ -48,7 +55,7 @@ function messageLine({ name, text, method, timestamp }) {
     timestamp: stamp(timestamp),
     variation_index: 0,
     variations: [],
-    images_data: {},
+    images_data: images || {},
     documents_data: {},
     hidden_from_agent: false,
     model_auto_switched: false,
@@ -84,6 +91,7 @@ export function writeStarterChat({ stageRoot, chat, store = CHAT_STORE, chatId =
       text: m.text,
       method: isUser ? 'USER' : 'LLM',
       timestamp: new Date(base.getTime() + i * 60_000),
+      images: m.images || null,
     });
   });
 

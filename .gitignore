@@ -45,3 +45,10 @@ motion_render_ide_video 3/
 
 # Standalone local-only prototypes — never publish
 .local/
+
+# Claude / local AI tooling scratch
+.claude/
+.mcp.json
+CLAUDE.md
+*.zip
+
