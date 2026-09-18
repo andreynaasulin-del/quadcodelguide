@@ -4647,6 +4647,16 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
         return false;   // connection refused / blocked -> treat as not running
       }
     }
+    // A single slow first response (cold local socket, AV/firewall check on
+    // Windows) was enough to make isIdeRunning() report "not running" even
+    // though the IDE was up — that false negative is exactly what made the
+    // primary CTA fall back to the copy-prompt path instead of opening the
+    // guide's project. One quick retry smooths that over without making the
+    // button feel stuck.
+    async function isIdeRunningQuick() {
+      if (await isIdeRunning(1500)) return true;
+      return isIdeRunning(1500);
+    }
 
     async function openProjectInIde(name, downloadUrl) {
       const resp = await fetch(IDE_API_URL + '/open-project', {
@@ -5137,7 +5147,7 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
             if (proj) {
               const label = btn.textContent;
               btn.classList.add('is-busy'); btn.textContent = 'Checking IDE…';
-              const ideUp = await isIdeRunning();
+              const ideUp = await isIdeRunningQuick();
               if (ideUp) {
                 try {
                   await openProjectInIde(proj.name || g.title, proj.zip);
@@ -5148,19 +5158,31 @@ Any edits must follow skill with alias dev_create_meta_ui_to_work_with_project_d
                   return;
                 } catch (e) {
                   track('ide_open_fail', { id: g.id, via: 'primary' });
-                  // IDE answered /ping but refused /open-project — still try prompt path,
-                  // but let the user know there is a zip fallback.
+                  // IDE answered /ping but refused /open-project — still try the
+                  // project-handoff path below, not the chat-prompt shortcut.
                 }
               }
               btn.classList.remove('is-busy'); btn.textContent = label;
+              // A project exists for this guide — always take the
+              // project-handoff path, never openInQuadcode()'s "send prompt to
+              // agent chat" shortcut. That branch fires unconditionally
+              // whenever window.QC is present (e.g. testing from inside the
+              // IDE itself) and was swallowing the "open project" intent:
+              // the button looked like it just copied the prompt into chat
+              // instead of opening the guide's project. The deep link can't
+              // carry the project in its URL, so copy the prompt as a safety
+              // net, launch the app, and let handoffWhenIdeUp() deliver the
+              // actual project the moment /ping answers — one click, no
+              // "now click again".
+              copyPromptSilent(primaryPrompt);
+              openDesktopQuadcode(primaryPrompt, {
+                alreadyCopied: true,
+                launchToast: 'Opening Quadcode — the guide project loads once the app is up (prompt copied too)'
+              });
+              handoffWhenIdeUp(proj, g);
+              return;
             }
-            openInQuadcode(primaryPrompt, proj
-              ? { launchToast: 'Opening Quadcode — the guide project loads once the app is up (prompt copied too)' }
-              : undefined);
-            // The deep link launches the app; the project can't ride along in
-            // the URL. Watch for the IDE API to come up and hand the project
-            // over the moment it does — one click, no "now click again".
-            if (proj) handoffWhenIdeUp(proj, g);
+            openInQuadcode(primaryPrompt);
           };
         });
         // share + copy link
